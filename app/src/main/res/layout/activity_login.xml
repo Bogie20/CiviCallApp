@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    tools:context=".Login">
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="415dp"
+        android:layout_height="100dp"
+
+
+        app:cardBackgroundColor="@color/red"
+        app:cardCornerRadius="4dp">
+
+        <TextView
+            android:id="@+id/civicall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@id/logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="Sign in "
+            android:textColor="@color/white"
+            android:textSize="40dp" />
+
+        <TextView
+            android:id="@+id/civicalls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/civicall"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="55dp"
+            android:fontFamily="@font/inter_medium"
+
+            android:text="Sign in to your account"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="105dp"
+        android:text="Welcome to CiviCall"
+        android:textColor="@color/grey"
+        android:textSize="20dp" />
+
+
+    <ImageView
+        android:id="@+id/img"
+
+
+        android:layout_width="316dp"
+        android:layout_height="190dp"
+        android:layout_below="@+id/welcome"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+
+
+        android:layout_marginEnd="26dp"
+        android:src="@drawable/lolo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/img"
+
+        android:layout_marginTop="2dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/email_login"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:background="@drawable/button_shape"
+            android:backgroundTint="@color/white"
+
+            android:drawableStart="@drawable/baseline_email_24"
+            android:drawablePadding="5dp"
+            android:hint="Email Address"
+            android:paddingLeft="10dp" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_text"
+
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:background="@drawable/button_shape"
+                android:backgroundTint="@color/white"
+                android:drawableStart="@drawable/baseline_lock_24"
+                android:drawablePadding="5dp"
+                android:hint="Password"
+                android:paddingLeft="10dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </LinearLayout>
+    <ProgressBar
+        android:id="@+id/progress_loading"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnlogin"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="490dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/button_shape"
+        android:text="Login"
+        android:textColor="@color/white"
+        android:textSize="25dp">
+
+    </Button>
+
+
+    <TextView
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="560dp"
+        android:text="Forgot Password?"
+        android:textColor="@color/blue"
+
+
+        >
+
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/registers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="590dp"
+        android:text="----- or Sign in with -----"
+        android:textColor="@color/grey"
+        android:textSize="18dp">
+
+
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/registers"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/google_login"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="30dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Sign in with Name"
+            android:src="@drawable/name"></ImageButton>
+
+        <ImageButton
+            android:id="@+id/facebook"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+
+
+            android:background="@android:color/transparent"
+            android:contentDescription="Sign in with Name"
+            android:src="@drawable/fb" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="600dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/text_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="new user?"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/signUpTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="100dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="Create an Account"
+            android:textColor="@color/blue"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

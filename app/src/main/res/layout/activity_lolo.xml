@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/darkred"
+    android:layout_height="match_parent"
+    tools:context=".lolo">
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="415dp"
+        android:layout_height="170dp"
+
+        android:id="@+id/card"
+        app:cardBackgroundColor="@color/red"
+        app:cardCornerRadius="4dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+
+            android:layout_marginLeft="140dp"
+            android:id="@+id/profileImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/male"
+            android:layout_centerHorizontal="true"
+            />
+
+        <ImageView
+            android:id="@+id/logout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Home Icon"
+            android:layout_marginTop="28dp"
+
+            android:layout_marginLeft="320dp"
+
+            android:src="@drawable/logout3"
+            />
+
+        <TextView
+            android:id="@+id/profileName"
+
+            android:layout_marginLeft="120dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profileImage"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="120dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="Jherimy Mallorca"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+        <ImageView
+            android:id="@+id/back1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Home Icon"
+            android:layout_marginTop="20dp"
+            android:padding="6dp"
+
+            android:src="@drawable/baseline_arrow_circle_left_24"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="BackClick" />
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Rest of your menu components -->
+    <TextView
+        android:id="@+id/menuItem1"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MY PROFILE"
+        android:textColor="@android:color/white"
+        android:background="@drawable/menu_item_background"
+        android:drawableStart="@drawable/userprofile1"
+        android:drawablePadding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_below="@id/card"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+
+        android:clickable="true"
+        android:focusable="true"
+
+        android:onClick="onMenuItemClick" />
+    <TextView
+        android:id="@+id/menuItem2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ACCOUNT VERIFICATION"
+        android:textColor="@android:color/white"
+        android:background="@drawable/menu_item_background"
+        android:drawableStart="@drawable/check1"
+        android:drawablePadding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+
+        android:layout_below="@id/menuItem1"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+
+        android:clickable="true"
+        android:focusable="true"
+
+        android:onClick="onMenuItemClick" />
+    <TextView
+        android:id="@+id/menuItem3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NOTIFICATION"
+        android:textColor="@android:color/white"
+        android:background="@drawable/menu_item_background"
+        android:drawableStart="@drawable/notifications1"
+        android:drawablePadding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+
+        android:layout_below="@id/menuItem2"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+
+        android:clickable="true"
+        android:focusable="true"
+
+        android:onClick="onMenuItemClick" />
+    <TextView
+        android:id="@+id/menuItem4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EVENT CALENDAR"
+        android:textColor="@android:color/white"
+        android:background="@drawable/menu_item_background"
+        android:drawableStart="@drawable/calendar1"
+        android:drawablePadding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+
+        android:layout_below="@id/menuItem3"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+
+        android:clickable="true"
+        android:focusable="true"
+
+        android:onClick="onMenuItemClick" />
+    <TextView
+        android:id="@+id/menuItem5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CIVIC ENGAGEMENTS"
+        android:textColor="@android:color/white"
+        android:background="@drawable/menu_item_background"
+        android:drawableStart="@drawable/vol"
+        android:drawablePadding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+
+        android:layout_below="@id/menuItem4"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+
+        android:clickable="true"
+        android:focusable="true"
+
+        android:onClick="onMenuItemClick" />
+    <TextView
+        android:id="@+id/menuItem6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EDUCATIONAL RESOURCES"
+        android:textColor="@android:color/white"
+        android:background="@drawable/menu_item_background"
+        android:drawableStart="@drawable/bok"
+        android:drawablePadding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:gravity="center"
+        android:layout_below="@id/menuItem5"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+
+        android:clickable="true"
+        android:focusable="true"
+
+        android:onClick="onMenuItemClick" />
+
+    <TextView
+        android:id="@+id/menuItem8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OPEN FORUMS"
+        android:textColor="@android:color/white"
+        android:background="@drawable/menu_item_background"
+        android:drawableStart="@drawable/forums1"
+        android:drawablePadding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+
+        android:layout_below="@id/menuItem6"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+
+        android:clickable="true"
+        android:focusable="true"
+
+        android:onClick="onMenuItemClick" />
+
+    <TextView
+        android:id="@+id/menuItem9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FEEDBACK"
+        android:textColor="@android:color/white"
+        android:background="@drawable/menu_item_background"
+        android:drawableStart="@drawable/feed"
+        android:drawablePadding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+
+        android:layout_below="@id/menuItem8"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+
+        android:clickable="true"
+        android:focusable="true"
+
+        android:onClick="onMenuItemClick" />
+    <TextView
+        android:id="@+id/menuItem10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SETTINGS AND PRIVACY"
+        android:textColor="@android:color/white"
+        android:background="@drawable/menu_item_background"
+        android:drawableStart="@drawable/sett"
+        android:drawablePadding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+
+        android:layout_below="@id/menuItem9"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+
+        android:clickable="true"
+        android:focusable="true"
+
+        android:onClick="onMenuItemClick" />
+
+    <TextView
+        android:id="@+id/AboutUs1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="About Us"
+        android:textColor="@android:color/white"
+        android:background="@drawable/menu_item_background"
+      android:textSize="20dp"
+
+
+
+        android:layout_marginTop="700dp"
+
+     android:layout_marginLeft="150dp"
+        android:clickable="true"
+        android:focusable="true"
+
+        android:onClick="onMenuItemClick" />
+</RelativeLayout>

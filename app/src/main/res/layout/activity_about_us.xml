@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutUs">
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="415dp"
+        android:layout_height="100dp"
+        android:id="@+id/card"
+
+
+        app:cardBackgroundColor="@color/red"
+        app:cardCornerRadius="4dp">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+
+        <ImageView
+            android:id="@+id/back100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Home Icon"
+            android:padding="6dp"
+            android:src="@drawable/baseline_arrow_circle_left_24"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="BackClick" />
+
+        <TextView
+            android:id="@+id/civicall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="25dp"
+
+            android:fontFamily="@font/inter_bold"
+            android:text="About CiviCall App"
+            android:textColor="@color/white"
+            android:textSize="25dp" />
+
+
+
+
+    </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/civic11"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="-30dp"
+        android:layout_marginTop="70dp"
+        android:contentDescription="Home Icon"
+        android:src="@drawable/civic111" />
+
+    <TextView
+        android:id="@+id/civicallsss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+      android:layout_marginTop="150dp"
+
+        android:layout_marginLeft="140dp"
+        android:layout_marginRight="70dp"
+
+        android:fontFamily="@font/inter_bold"
+        android:text="CiviCall App"
+        android:textColor="@color/black"
+        android:textSize="30dp" />
+    <TextView
+        android:id="@+id/civicallinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="we help you Apply your hobbies and interest in noble ways  "
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/civicallinfo1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="320dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+
+        android:fontFamily="@font/inter_bold"
+        android:text="Civcall App is a powerful community  volunteer app design specifically for  students, providing them with a platform to make a positive impact in their community and beyond"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/civicallinfo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+android:layout_below="@+id/civicallinfo1"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+android:text="Now you can effortlessly discover Nearby Volunteer Opportunities ,Refine result, invite your friends and share contributions with your school."
+        android:fontFamily="@font/inter_bold"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/civicallinfo3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/civicallinfo2"
+        android:layout_marginTop="10dp"
+
+        android:layout_marginLeft="18dp"
+
+        android:padding="5dp"
+        android:text="Connect with Us"
+        android:fontFamily="@font/inter_bold"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/civicallinfo3"
+
+
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:id="@+id/google_login"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="50dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Sign in with Name"
+            android:src="@drawable/name"></ImageButton>
+
+        <ImageButton
+            android:id="@+id/facebook"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+        android:layout_marginLeft="50dp"
+
+            android:background="@android:color/transparent"
+            android:contentDescription="Sign in with Name"
+            android:src="@drawable/fb" />
+
+        <ImageButton
+            android:id="@+id/instgram"
+            android:layout_marginLeft="40dp"
+            android:layout_width="70dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+
+
+            android:background="@android:color/transparent"
+            android:contentDescription="Sign in with Name"
+            android:src="@drawable/instagram4" />
+
+
+
+
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="620dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/inter_bold"
+        android:text="More information"
+        android:textSize="15dp" />
+
+
+    <TextView
+        android:id="@+id/Privacy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="650dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/inter_medium"
+        android:text="Privacy And Policies"
+        android:textSize="20dp" />
+    <TextView
+        android:id="@+id/Terms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="675dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/inter_medium"
+        android:text="Terms Of Service"
+        android:textSize="20dp" />
+    <TextView
+        android:id="@+id/Fun"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="700dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/inter_medium"
+        android:text="FAQ"
+        android:textSize="20dp" />
+
+
+
+
+
+
+</RelativeLayout>

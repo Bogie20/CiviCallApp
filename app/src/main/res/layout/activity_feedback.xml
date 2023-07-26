@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".Feedback">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="415dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:cardBackgroundColor="@color/red"
+        app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/back100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="Home Icon"
+                android:padding="6dp"
+                android:src="@drawable/baseline_arrow_circle_left_24"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="BackClick"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/feed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:fontFamily="@font/lexend_medium"
+                android:text="Give Feedback"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:layout_gravity="center_vertical"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/feed1"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/card"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/lexend_medium"
+        android:text="How did we do?"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/feed1"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:progressBackgroundTint="#858687"
+        android:progressTint="#FFC107" />
+
+
+    <TextView
+        android:fontFamily="@font/lexend_medium"
+        android:id="@+id/editTextText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:layout_centerHorizontal="true"
+
+        android:layout_marginStart="25dp"
+        android:textSize="20dp"
+
+        android:textColor="@color/grey"
+        />
+    <EditText
+        android:id="@+id/editTextTextMultiLine"
+        android:fontFamily="@font/lexend_medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ratingBar"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/edittext_background"
+        android:textColorHint="@color/black"
+        android:ems="10"
+        android:gravity="start|top"
+        android:textSize="15dp"
+        android:hint="Enter your message here..."
+        android:inputType="textMultiLine"
+        android:lines="13"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"/>
+
+
+
+    <Button
+        android:id="@+id/button2"
+        android:fontFamily="@font/lexend_medium"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
+        android:layout_marginTop="640dp"
+        android:textColor="@color/white"
+
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+
+       android:background="@drawable/button_shape"
+        android:text="Publish feedback" />
+
+    <TextView
+        android:id="@+id/editTextText"
+        android:fontFamily="@font/lexend_medium"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:layout_marginLeft="29dp"
+
+        android:textSize="15dp"
+        android:text="Do you have any concern?"
+        android:textColor="@color/black"
+        />
+    <TextView
+        android:id="@+id/editTextText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/lexend_medium"
+        android:layout_below="@id/button2"
+
+        android:textSize="13dp"
+        android:text="Your Review will be posted to Google playstore"
+        android:textColor="@color/black"
+        />
+
+</RelativeLayout>
