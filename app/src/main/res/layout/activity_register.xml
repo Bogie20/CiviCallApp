@@ -145,6 +145,22 @@
             android:drawablePadding="5dp"
             android:hint="Contact Number"
             android:paddingLeft="20dp" />
+        <EditText
+            android:id="@+id/birthdate"
+            android:layout_width="350dp"
+            android:layout_height="54dp"
+            android:paddingEnd="15dp"
+            android:background="@drawable/button_shape"
+            android:backgroundTint="@color/white"
+            android:cursorVisible="false"
+            android:drawableEnd="@drawable/calendar"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="Birthday"
+            android:inputType="date"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="15dp"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -186,6 +202,8 @@
                 android:paddingLeft="20dp"
                 android:inputType="textPassword"
                 android:ems="10"/>
+
+
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
