@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DisasterResponse">
+
+    <ScrollView
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_centerHorizontal="true">
+            <ImageView
+                android:id="@+id/information"
+                android:layout_width="400dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="145dp"
+
+                android:src="@drawable/disasterpic" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="385dp"
+                android:background="@drawable/button_background"
+                android:backgroundTint="@color/newred"
+                android:layout_marginTop="45dp" />
+
+            <Button
+                android:id="@+id/reg1"
+                android:layout_width="360dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/educshape"
+                android:text="10 Preparatory Tips Before a Typhoon Strikes"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:drawablePadding="-20dp"
+                android:paddingEnd="30dp"
+                android:drawableEnd="@drawable/round_arrow_forward_24" />
+
+            <Button
+                android:id="@+id/reg2"
+                android:layout_width="360dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/educshape"
+                android:text="Emergency Contacts"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:drawablePadding="-55dp"
+                android:paddingEnd="30dp"
+                android:drawableEnd="@drawable/round_arrow_forward_24" />
+
+
+            <Button
+
+                android:id="@+id/reg3"
+                android:layout_width="360dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/educshape"
+                android:text="Environmental and Social Issue "
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:drawablePadding="17dp"
+                android:paddingEnd="30dp"
+                android:drawableEnd="@drawable/round_arrow_forward_24" />
+
+
+            <Button
+
+                android:id="@+id/reg4"
+                android:layout_width="360dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/educshape"
+                android:text="Civic Rights and Responsibilities"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:drawablePadding="17dp"
+                android:paddingEnd="30dp"
+                android:drawableEnd="@drawable/round_arrow_forward_24" />
+
+            <Button
+                android:id="@+id/reg5"
+                android:layout_width="360dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/educshape"
+                android:text="Ethics and Civic Leadership"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="30dp"
+                android:drawableEnd="@drawable/round_arrow_forward_24" />
+
+            <Button
+
+                android:id="@+id/reg6"
+                android:layout_width="360dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/educshape"
+                android:text="Community Engagement"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="30dp"
+                android:drawableEnd="@drawable/round_arrow_forward_24" />
+
+            <Button
+
+                android:id="@+id/reg7"
+                android:layout_width="360dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/educshape"
+                android:text="Public Policy and Advocacy"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="30dp"
+                android:drawableEnd="@drawable/round_arrow_forward_24" />
+
+            <Button
+                android:id="@+id/reg8"
+                android:layout_width="360dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/educshape"
+                android:text="Digital Citizenship"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:paddingStart="25dp"
+                android:drawablePadding="-90dp"
+                android:paddingEnd="30dp"
+                android:drawableEnd="@drawable/round_arrow_forward_24" />
+
+        </LinearLayout>
+    </ScrollView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="415dp"
+        android:layout_height="100dp"
+        android:id="@+id/card"
+        app:cardBackgroundColor="@color/red"
+        app:cardCornerRadius="4dp">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+
+            <ImageView
+                android:id="@+id/educational"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="Home Icon"
+                android:padding="6dp"
+                android:src="@drawable/baseline_arrow_circle_left_24"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="BackClick" />
+
+            <TextView
+                android:id="@+id/civicall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="25dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Disaster Response"
+                android:textColor="@color/white"
+                android:textSize="30dp" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+</RelativeLayout>

@@ -22,7 +22,7 @@
         android:id="@+id/information"
         android:layout_width="350dp"
         android:layout_height="180dp"
-        android:layout_marginTop="135dp"
+        android:layout_marginTop="145dp"
 
         android:src="@drawable/educlogo" />
     <Button
