@@ -114,24 +114,35 @@ class Register1 : AppCompatActivity() {
         }
 
     }
-    private fun createUserAccount(){
-        progressDialog.setMessage("Creating Account...")
-        progressDialog.show()
+    private fun createUserAccount() {
+        // Show a separate progressDialog for account creation
+        val accountCreationDialog = ProgressDialog(this)
+        accountCreationDialog.setMessage("Creating Account...")
+        accountCreationDialog.show()
 
         firebaseAuth.createUserWithEmailAndPassword(email, pass)
-            .addOnCompleteListener{
-                updateUserInfo()
-            }
-            .addOnCompleteListener{ e->
-                progressDialog.dismiss()
-                Toast.makeText(this, "Failed Creating Account due to $e.message", Toast.LENGTH_LONG).show()
+            .addOnCompleteListener { task ->
+                // Dismiss the account creation progressDialog when the task is complete
+                accountCreationDialog.dismiss()
+
+                if (task.isSuccessful) {
+                    // Account created successfully, proceed with updating user info.
+                    updateUserInfo()
+                } else {
+                    // Account creation failed, handle the error.
+                    val errorMessage = task.exception?.message ?: "Unknown error occurred."
+                    Toast.makeText(this, "Failed Creating Account due to $errorMessage", Toast.LENGTH_LONG).show()
+                }
             }
     }
-    private fun updateUserInfo(){
-        progressDialog.setMessage("Saving user Info...")
+
+    private fun updateUserInfo() {
+        // Show a separate progressDialog for user info update
+        val userInfoUpdateDialog = ProgressDialog(this)
+        userInfoUpdateDialog.setMessage("Saving User Info...")
+        userInfoUpdateDialog.show()
 
         val timestamp = System.currentTimeMillis()
-
         val uid = firebaseAuth.uid
 
         val hashMap: HashMap<String, Any?> = HashMap()
@@ -151,17 +162,14 @@ class Register1 : AppCompatActivity() {
         ref.child(uid!!)
             .setValue(hashMap)
             .addOnSuccessListener {
-                progressDialog.dismiss()
+                userInfoUpdateDialog.dismiss()
                 Toast.makeText(this, "Account Created!", Toast.LENGTH_LONG).show()
-                startActivity(Intent(this, Dashboard::class.java))
+                startActivity(Intent(this, Login::class.java))
                 finish()
             }
-            .addOnFailureListener{ e->
-                progressDialog.dismiss()
+            .addOnFailureListener { e ->
+                userInfoUpdateDialog.dismiss()
                 Toast.makeText(this, "Failed Saving User's Info due to ${e.message}", Toast.LENGTH_LONG).show()
             }
-
-
-
     }
 }
