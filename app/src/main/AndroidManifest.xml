@@ -13,9 +13,6 @@
         android:theme="@style/Theme.New"
         tools:targetApi="31">
         <activity
-            android:name=".DisasterResponse"
-            android:exported="true" />
-        <activity
             android:name=".EducationalResources"
             android:exported="true" />
         <activity
