@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import com.example.anew.databinding.ActivityDashboardBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-
 class Dashboard : AppCompatActivity() {
     lateinit var binding: ActivityDashboardBinding
     private lateinit var homeIconImageView: ImageView

@@ -35,12 +35,12 @@
             <Button
                 android:id="@+id/reg1"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="125dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/educshape"
-                android:text="10 Preparatory Tips Before a Typhoon Strikes"
+                android:text="10 Preparatory Tips for Typhoon"
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:drawablePadding="-20dp"
@@ -50,12 +50,12 @@
             <Button
                 android:id="@+id/reg2"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/educshape"
-                android:text="10 Essential Earthquake Safety Tips"
+                android:text="10 Earthquake Safety Tips"
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:drawablePadding="-55dp"
@@ -67,12 +67,12 @@
 
                 android:id="@+id/reg3"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/educshape"
-                android:text="Volcanic Eruption: 10 Crucial Tips to Ensure Your Safety and Well-being"
+                android:text="10 Tips to Ensure Your Safety during Volcanic Eruption"
                 android:textColor="@color/white"
                 android:textSize="16dp"
                 android:drawablePadding="17dp"
@@ -84,12 +84,12 @@
 
                 android:id="@+id/reg4"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/educshape"
-                android:text="Flood Survival Guide: 10 Essential Tips for Dealing with Flooding"
+                android:text="10 Essential Tips for Dealing with Flooding"
                 android:textColor="@color/white"
                 android:textSize="16dp"
                 android:drawablePadding="17dp"
@@ -99,12 +99,12 @@
             <Button
                 android:id="@+id/reg5"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/educshape"
-                android:text="Landslide Preparedness: 10 Crucial Tips for Staying Safe and Secure"
+                android:text="10 Crucial Tips for Staying Safe and Secure During a Landslide"
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:paddingStart="25dp"
@@ -115,12 +115,12 @@
 
                 android:id="@+id/reg6"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/educshape"
-                android:text="Storm Surge Preparedness: 10 Essential Tips to Safeguard Your Life and Property"
+                android:text="10 Essential Tips to Safeguard Your Life and Property"
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:paddingStart="25dp"
@@ -131,7 +131,7 @@
 
                 android:id="@+id/reg7"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
@@ -146,12 +146,12 @@
             <Button
                 android:id="@+id/reg8"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/educshape"
-                android:text="Conquering Droughts: 10 Essential Preparedness Tips for Water Scarcity"
+                android:text="10 Essential Preparedness Tips During Droughts (Tagtuyot)"
                 android:textColor="@color/white"
                 android:textSize="18dp"
                 android:paddingStart="25dp"
@@ -162,7 +162,7 @@
             <Button
                 android:id="@+id/reg9"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
@@ -177,7 +177,7 @@
             <Button
                 android:id="@+id/reg10"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
@@ -188,7 +188,8 @@
                 android:paddingStart="25dp"
                 android:drawablePadding="-90dp"
                 android:paddingEnd="30dp"
-                android:drawableEnd="@drawable/round_arrow_forward_24" />
+                android:drawableEnd="@drawable/round_arrow_forward_24"
+                android:layout_marginBottom="20dp"/>
 
         </LinearLayout>
     </ScrollView>
@@ -198,8 +199,6 @@
         android:id="@+id/card"
         app:cardBackgroundColor="@color/red"
         app:cardCornerRadius="4dp">
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
