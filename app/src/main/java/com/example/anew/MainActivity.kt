@@ -11,6 +11,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Set the fade-in animation for the splash screen
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+
         // Delay for 2 seconds before launching the login form
         Handler().postDelayed({
             // Start the login form activity
@@ -18,13 +21,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             // Close the current activity (splash screen)
             finish()
-        }, 5000) // 2000 milliseconds = 2 seconds
-
-
-        // Set a click listener to the button
-
+            // Set the fade-out animation for the splash screen transition
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }, 3000) // 3000 milliseconds = 3 seconds
     }
 }
-
-
-

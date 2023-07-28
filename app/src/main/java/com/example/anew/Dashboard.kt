@@ -7,7 +7,6 @@ import android.view.Menu
 import android.widget.ImageView
 import com.example.anew.databinding.ActivityDashboardBinding
 
-
 class Dashboard : AppCompatActivity() {
     lateinit var binding: ActivityDashboardBinding
     private lateinit var homeIconImageView: ImageView
