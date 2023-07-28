@@ -10,7 +10,7 @@
             android:layout_height="200dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
-            android:src="@drawable/thank1" />
+            android:src="@drawable/thankyou222" />
 
         <!-- TextViews -->
         <!-- Replace the text values as per your requirement -->
