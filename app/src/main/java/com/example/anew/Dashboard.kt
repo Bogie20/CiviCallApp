@@ -21,10 +21,15 @@ class Dashboard : AppCompatActivity() {
         homeIconImageView = findViewById(R.id.homeic)
 
         homeIconImageView.setOnClickListener {
-            // Open the "Menu" activity/form
+            // Open the "lolo" activity/form with slide-in animation
             val intent = Intent(this, lolo::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_from_left, R.anim.fade_in)
         }
-
     }
 }
+
+
+
+
+
