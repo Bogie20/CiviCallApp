@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import com.example.anew.databinding.ActivityDashboardBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class Dashboard : AppCompatActivity() {
@@ -18,7 +20,7 @@ class Dashboard : AppCompatActivity() {
 
 
 
-        homeIconImageView = findViewById(R.id.homeic)
+        homeIconImageView = findViewById(R.id.homeic2)
 
         homeIconImageView.setOnClickListener {
             // Open the "lolo" activity/form with slide-in animation
@@ -26,7 +28,11 @@ class Dashboard : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_from_left, R.anim.fade_in)
         }
+
     }
+
+
+
 }
 
 
