@@ -48,8 +48,7 @@
                 android:paddingEnd="30dp"
                 android:gravity="start|center_vertical"
                 android:paddingStart="15dp"
-
-
+                android:drawableStart="@drawable/agoncillo"
                 android:drawableEnd="@drawable/round_arrow_forward_24" />
 
             <Button
