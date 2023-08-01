@@ -36,20 +36,20 @@
             <Button
                 android:id="@+id/btn1"
                 android:layout_width="360dp"
-                android:layout_height="70dp"
+                android:layout_height="100dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/educshape"
+                android:drawableStart="@drawable/agoncillo"
+                android:drawableEnd="@drawable/round_arrow_forward_24"
+                android:drawablePadding="40dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="30dp"
                 android:text="Agoncillo"
                 android:textColor="@color/white"
-                android:textSize="18dp"
-                android:drawablePadding="40dp"
-                android:paddingEnd="30dp"
-                android:gravity="start|center_vertical"
-                android:paddingStart="15dp"
-                android:drawableStart="@drawable/agoncillo"
-                android:drawableEnd="@drawable/round_arrow_forward_24" />
+                android:textSize="18dp" />
 
             <Button
                 android:id="@+id/btn2"
