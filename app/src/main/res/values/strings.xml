@@ -27,13 +27,4 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="typhoon">Typhoon</string>
-    <string name="earthquake">Earthquake </string>
-    <string name="vulcan">Volcanic Eruption </string>
-    <string name="flood">Floods</string>
-    <string name="landslide">Landslide</string>
-    <string name="tsunami">Tsunami</string>
-    <string name="heat">Extreme Heat</string>
-    <string name="terrorism">Terrorism</string>
-    <string name="tropicaldisease">Tropical Diseases</string>
 </resources>
