@@ -34,7 +34,7 @@ class Login : AppCompatActivity() {
 
 
         registertext.setOnClickListener {
-            val intent = Intent(this, Register::class.java)
+            val intent = Intent(this, Register1::class.java)
             startActivity(intent)
 
         }

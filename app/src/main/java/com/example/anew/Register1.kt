@@ -67,12 +67,13 @@ class Register1 : AppCompatActivity() {
     }
     private var fname =""
     private var lname=""
+    private var gender = ""
     private var email = ""
     private var pass = ""
     private var phoneno = ""
     private var address = ""
     private var birtdate = ""
-    private var gender = ""
+
 
 
 

@@ -125,12 +125,12 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/educshape"
-            android:text="Public Policy and Advocacy"
+            android:text="Survival Hacks"
             android:textColor="@color/white"
             android:textSize="18dp"
             android:paddingStart="25dp"
-            android:drawablePadding="3dp"
-            android:drawableStart="@drawable/policy"/>
+            android:drawablePadding="-120dp"
+            android:drawableStart="@drawable/survive"/>
         <Button
             android:id="@+id/reg8"
             android:layout_width="360dp"

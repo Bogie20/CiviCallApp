@@ -27,11 +27,7 @@ class Dashboard : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_from_left, R.anim.fade_in)
         }
-
     }
-
-
-
 }
 
 

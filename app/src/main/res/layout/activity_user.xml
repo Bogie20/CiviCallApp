@@ -6,4 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".User">
 
+    <Button
+        android:id="@+id/myButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/survive"
+        android:text="Very Long Button Text That Needs to Be More Fit and Visible"
+        android:ellipsize="end"
+        android:maxLines="70"
+        android:layout_margin="30dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
