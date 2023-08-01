@@ -2,21 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_item_1"
-        android:title="Item 1" />
+        android:title="Menu" />
 
     <item
         android:id="@+id/menu_item_2"
-        android:title="Item 2" />
+        android:title="Activities" />
 
     <item
         android:id="@+id/menu_item_3"
-        android:title="Item 3" />
+        android:title="Calendar" />
 
     <item
         android:id="@+id/menu_item_4"
-        android:title="Item 4" />
+        android:title="Profile" />
 
-    <item
-        android:id="@+id/menu_item_5"
-        android:title="Item 5" />
+
 </menu>

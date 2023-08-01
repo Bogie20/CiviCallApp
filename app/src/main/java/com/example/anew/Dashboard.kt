@@ -24,7 +24,17 @@ class Dashboard : AppCompatActivity() {
                 overridePendingTransition(R.anim.slide_in_from_left, R.anim.fade_in)
                 return@OnNavigationItemSelectedListener true
             }
+
+
+
             com.example.anew.R.id.menu_item_2 -> {
+                // Open the "Feedback" activity/form with slide-in animation
+                val intent = Intent(this, Feedback::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_from_left, R.anim.fade_in)
+                return@OnNavigationItemSelectedListener true
+            }
+            com.example.anew.R.id.menu_item_3 -> {
                 // Open the "Feedback" activity/form with slide-in animation
                 val intent = Intent(this, Feedback::class.java)
                 startActivity(intent)
