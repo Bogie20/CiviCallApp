@@ -27,168 +27,177 @@
                 android:src="@drawable/disasterpic" />
             <View
                 android:layout_width="match_parent"
-                android:layout_height="385dp"
+                android:layout_height="600dp"
                 android:background="@drawable/button_background"
                 android:backgroundTint="@color/newred"
                 android:layout_marginTop="45dp" />
 
             <Button
-                android:id="@+id/reg1"
+                android:id="@+id/btn1"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="125dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/educshape"
-                android:text="10 Preparatory Tips Before a Typhoon Strikes"
-                android:textColor="@color/white"
-                android:textSize="18dp"
-                android:drawablePadding="-20dp"
-                android:paddingEnd="30dp"
-                android:drawableEnd="@drawable/round_arrow_forward_24" />
-
-            <Button
-                android:id="@+id/reg2"
-                android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/educshape"
-                android:text="10 Essential Earthquake Safety Tips"
+                android:text="@string/typhoon"
                 android:textColor="@color/white"
                 android:textSize="18dp"
-                android:drawablePadding="-55dp"
+                android:drawablePadding="40dp"
+                android:paddingEnd="30dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/typhoon"
+                android:drawableEnd="@drawable/round_arrow_forward_24" />
+
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="360dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/educshape"
+                android:text="@string/earthquake"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:drawablePadding="40dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/earthquake"
                 android:paddingEnd="30dp"
                 android:drawableEnd="@drawable/round_arrow_forward_24" />
 
 
             <Button
 
-                android:id="@+id/reg3"
+                android:id="@+id/btn3"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/educshape"
-                android:text="Volcanic Eruption: 10 Crucial Tips to Ensure Your Safety and Well-being"
+                android:text="@string/vulcan"
                 android:textColor="@color/white"
                 android:textSize="16dp"
-                android:drawablePadding="17dp"
+                android:drawablePadding="37dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/volcano"
                 android:paddingEnd="30dp"
                 android:drawableEnd="@drawable/round_arrow_forward_24" />
 
 
             <Button
 
-                android:id="@+id/reg4"
+                android:id="@+id/btn4"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/educshape"
-                android:text="Flood Survival Guide: 10 Essential Tips for Dealing with Flooding"
+                android:text="@string/flood"
                 android:textColor="@color/white"
                 android:textSize="16dp"
-                android:drawablePadding="17dp"
+                android:drawablePadding="40dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/floods"
                 android:paddingEnd="30dp"
                 android:drawableEnd="@drawable/round_arrow_forward_24" />
 
             <Button
-                android:id="@+id/reg5"
+                android:id="@+id/btn5"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/educshape"
-                android:text="Landslide Preparedness: 10 Crucial Tips for Staying Safe and Secure"
+                android:text="@string/landslide"
                 android:textColor="@color/white"
                 android:textSize="18dp"
-                android:paddingStart="25dp"
-                android:paddingEnd="30dp"
-                android:drawableEnd="@drawable/round_arrow_forward_24" />
-
-            <Button
-
-                android:id="@+id/reg6"
-                android:layout_width="360dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/educshape"
-                android:text="Storm Surge Preparedness: 10 Essential Tips to Safeguard Your Life and Property"
-                android:textColor="@color/white"
-                android:textSize="18dp"
-                android:paddingStart="25dp"
+                android:drawablePadding="40dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/landslide"
                 android:paddingEnd="30dp"
                 android:drawableEnd="@drawable/round_arrow_forward_24" />
 
             <Button
 
-                android:id="@+id/reg7"
+                android:id="@+id/btn6"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/educshape"
-                android:text="Tsunami Preparedness: 10 Vital Tips to Ensure Your Safety and Readiness"
+                android:text="@string/tsunami"
                 android:textColor="@color/white"
                 android:textSize="18dp"
-                android:paddingStart="25dp"
+                android:drawablePadding="40dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/tsunami"
                 android:paddingEnd="30dp"
                 android:drawableEnd="@drawable/round_arrow_forward_24" />
 
             <Button
-                android:id="@+id/reg8"
+                android:id="@+id/btn7"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/educshape"
-                android:text="Conquering Droughts: 10 Essential Preparedness Tips for Water Scarcity"
+                android:text="@string/heat"
                 android:textColor="@color/white"
                 android:textSize="18dp"
-                android:paddingStart="25dp"
-                android:drawablePadding="-90dp"
+                android:drawablePadding="40dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/sun"
                 android:paddingEnd="30dp"
                 android:drawableEnd="@drawable/round_arrow_forward_24" />
+            <Button
 
-            <Button
-                android:id="@+id/reg9"
+                android:id="@+id/btn8"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/educshape"
-                android:text="Heatwave Survival Guide: 10 Crucial Preparedness Tips for Extreme Heat"
+                android:text="@string/tropicaldisease"
                 android:textColor="@color/white"
-                android:textSize="18dp"
-                android:paddingStart="25dp"
-                android:drawablePadding="-90dp"
+                android:textSize="16dp"
+                android:drawablePadding="33dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/virus"
                 android:paddingEnd="30dp"
                 android:drawableEnd="@drawable/round_arrow_forward_24" />
             <Button
-                android:id="@+id/reg10"
+                android:id="@+id/btn9"
                 android:layout_width="360dp"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/educshape"
-                android:text="Terrorism Preparedness: 10 Essential Tips for Staying Safe and Vigilant"
+                android:text="@string/terrorism"
                 android:textColor="@color/white"
                 android:textSize="18dp"
-                android:paddingStart="25dp"
-                android:drawablePadding="-90dp"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/ribbon"
+                android:drawablePadding="35dp"
+                android:gravity="start|center_vertical"
                 android:paddingEnd="30dp"
-                android:drawableEnd="@drawable/round_arrow_forward_24" />
+                android:drawableEnd="@drawable/round_arrow_forward_24"
+                android:layout_marginBottom="20dp"/>
 
         </LinearLayout>
     </ScrollView>
@@ -198,8 +207,6 @@
         android:id="@+id/card"
         app:cardBackgroundColor="@color/red"
         app:cardCornerRadius="4dp">
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -227,9 +234,9 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="25dp"
                 android:fontFamily="@font/inter_bold"
-                android:text="Disaster Response"
+                android:text="Disaster Preparedness"
                 android:textColor="@color/white"
-                android:textSize="30dp" />
+                android:textSize="25dp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

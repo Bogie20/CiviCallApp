@@ -13,6 +13,9 @@
         android:theme="@style/Theme.New"
         tools:targetApi="31">
         <activity
+            android:name=".EmergencyContact"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name">
@@ -24,51 +27,67 @@
         </activity>
         <activity
             android:name=".EducationalResources"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Settings"
-            android:exported="true" />
+            android:exported="true"
+             android:screenOrientation="portrait"/>
         <activity
             android:name=".Feedback"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Forums"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Civicengagement"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Eventcalendar"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Notification"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Accountverification"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".AboutUs"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Myprofile"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".lolo"
-            android:exported="true" />
-
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Dashboard"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+
+
         <activity
             android:name=".Login"
             android:exported="true"
-            android:launchMode="singleTop" />
-        <activity
-            android:name=".Register"
-            android:exported="true" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Register1"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".DisasterResponse"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="preloaded_fonts"

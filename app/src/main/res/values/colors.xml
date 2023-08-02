@@ -13,4 +13,5 @@
     <color name="blue">#0386D0</color>
     <color name="underline">@color/black</color>
     <color name="newred">#E53C38</color>
+    <color name="red2">#9c1919</color>
 </resources>

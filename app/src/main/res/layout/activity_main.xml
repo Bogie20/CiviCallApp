@@ -10,57 +10,54 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="110dp"
         android:src="@drawable/logo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/civicall"
-        android:layout_marginTop="30dp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/civicall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CIVICALL"
-        android:textSize="50dp"
-        android:textColor="@color/black"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/inter_bold"
-        app:layout_constraintTop_toBottomOf="@id/logo"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="CIVICALL"
+        android:textColor="@color/black"
+        android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
-        />
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo" />
 
     <TextView
         android:id="@+id/civicalls"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/inter_medium"
         android:text="ENGAGED ZONE"
         android:textSize="40dp"
-        android:fontFamily="@font/inter_medium"
-        app:layout_constraintTop_toBottomOf="@id/civicall"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="1dp"
-        />
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/civicall" />
 
     <TextView
         android:id="@+id/civicallss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Serving the community,\nCollaborate with others"
-        android:textSize="20dp"
-        android:textColor="@color/black"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/inter_medium"
-        app:layout_constraintTop_toBottomOf="@id/civicalls"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Serving the community,\nCollaborate with others"
+        android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="-2dp"
-        />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/civicalls" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
