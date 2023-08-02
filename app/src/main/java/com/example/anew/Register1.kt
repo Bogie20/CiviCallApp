@@ -3,6 +3,7 @@ package com.example.anew
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
@@ -23,6 +24,8 @@ class Register1 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+
         activityRegister1Binding = ActivityRegister1Binding.inflate(layoutInflater)
         setContentView(activityRegister1Binding.root)
 
