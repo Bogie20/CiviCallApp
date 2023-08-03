@@ -42,6 +42,7 @@
                 android:fontFamily="@font/inter_bold"
                 android:text="Emergency Contact"
                 android:textColor="@color/white"
+
                 android:textSize="27dp" />
 
         </LinearLayout>
