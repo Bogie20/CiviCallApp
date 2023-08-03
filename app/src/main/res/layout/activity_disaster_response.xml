@@ -60,13 +60,11 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:orientation="vertical">
-
-            <!-- ImageView is aligned at the top with 145dp top margin -->
             <ImageView
                 android:id="@+id/information"
                 android:layout_width="400dp"
                 android:layout_height="250dp"
-                android:layout_marginTop="145dp"
+                android:layout_marginTop="50dp"
                 android:src="@drawable/disasterpic" />
 
             <View
@@ -76,7 +74,6 @@
                 android:backgroundTint="@color/newred"
                 android:layout_marginTop="45dp" />
 
-            <!-- Rest of the buttons with 20dp top margin and aligned to the start, end, and bottom of the parent -->
             <Button
                 android:id="@+id/btn1"
                 android:layout_width="360dp"
@@ -90,6 +87,7 @@
                 android:textSize="18dp"
                 android:drawablePadding="40dp"
                 android:gravity="start|center_vertical"
+                android:paddingEnd="30dp"
                 android:paddingStart="15dp"
                 android:drawableStart="@drawable/typhoon"
                 android:drawableEnd="@drawable/round_arrow_forward_24" />
