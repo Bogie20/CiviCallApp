@@ -10,12 +10,26 @@ import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import com.example.anew.databinding.ActivityDashboardBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import android.util.Log
+import android.widget.TextView
+import android.widget.Toast
+import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.auth.User
 
 class Dashboard : AppCompatActivity() {
-
+    private lateinit var reference: DatabaseReference
     private lateinit var homeIconImageView: ImageView
     private lateinit var binding: ActivityDashboardBinding
 
+    private lateinit var userID: String
+    private var user: FirebaseUser? = FirebaseAuth.getInstance().currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,8 +38,6 @@ class Dashboard : AppCompatActivity() {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
         replaceFragment(SearchFragment())
-
-
 
         // Set the bottomNavItemSelectedListener to the BottomNavigationView
         binding.bottomNavigationView.setOnNavigationItemSelectedListener { item ->
@@ -66,12 +78,12 @@ class Dashboard : AppCompatActivity() {
         // Add menu item click listeners here if needed
         popupMenu.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.filter_option_1-> {
+                R.id.filter_option_1 -> {
                     // Handle menu item click for item 1
                     true
                 }
 
-                R.id.filter_option_1 -> {
+                R.id.filter_option_2 -> {
                     // Handle menu item click for item 2
                     true
                 }
@@ -80,5 +92,26 @@ class Dashboard : AppCompatActivity() {
             }
         }
         popupMenu.show()
+
+        user = FirebaseAuth.getInstance().currentUser
+        reference = FirebaseDatabase.getInstance().getReference("Users")
+        userID = user?.uid ?: ""
+
+        val greetingText: TextView = binding.greetingText
+        reference.child(userID).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val userProfile = snapshot.getValue(Users::class.java)
+
+                if (userProfile != null) {
+                    val firstName = userProfile.firstname ?: ""
+                    greetingText.text = "Welcome, $firstName!"
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle cancelled event if needed
+                Toast.makeText(this@Dashboard, "Something wrong happened!", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 }
