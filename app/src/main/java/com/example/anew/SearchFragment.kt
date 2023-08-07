@@ -28,27 +28,12 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_search, container, false)
-        val titleLargeTextView = view.findViewById<TextView>(R.id.title_large)
-
-        val userFirstName = arguments?.getString("firstName")
-        if (userFirstName != null) {
-            titleLargeTextView.text = "Hi $userFirstName!"
-        } else {
-            titleLargeTextView.text = "Hi!" // Or handle the case when the first name is null
-        }
-
-        return view
+        // Inflate the layout for this fragment
+        // You should replace 'fragment_search' with your fragment layout resource ID
+        return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
     companion object {
-        fun newInstance(firstName: String): SearchFragment {
-            val fragment = SearchFragment()
-            val args = Bundle()
-            args.putString("firstName", firstName)
-            fragment.arguments = args
-            return fragment
-
-            }
-        }
+        // You can add static methods or constants here if needed
     }
+}

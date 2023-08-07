@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -27,16 +28,20 @@ class Dashboard : AppCompatActivity() {
     private lateinit var reference: DatabaseReference
     private lateinit var homeIconImageView: ImageView
     private lateinit var binding: ActivityDashboardBinding
+    private lateinit var firebaseAuth: FirebaseAuth
+    lateinit var userDataViewModel: UserDataViewModel
 
-    private lateinit var userID: String
-    private var user: FirebaseUser? = FirebaseAuth.getInstance().currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
+        userDataViewModel = ViewModelProvider(this).get(UserDataViewModel::class.java)
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        firebaseAuth= FirebaseAuth.getInstance()
+        checkUser()
         replaceFragment(SearchFragment())
 
         // Set the bottomNavItemSelectedListener to the BottomNavigationView
@@ -54,6 +59,42 @@ class Dashboard : AppCompatActivity() {
         // Replace the default fragment with the initial fragment here if needed
         // For example, to display SearchFragment as the initial fragment
         //replaceFragment(SearchFragment())
+    }
+
+    private fun readData(uid: String) {
+        reference = FirebaseDatabase.getInstance().getReference("Users")
+        reference.child(uid).get()
+            .addOnSuccessListener {
+                if (it.exists()){
+                    val uid = it.child("uid").value
+                    val fname=it.child("firstname").value
+                    val lname=it.child("lastname").value
+                    val email = it.child("email").value
+
+                    userDataViewModel.uid = uid as? String
+                    userDataViewModel.fname = fname as? String
+                    userDataViewModel.lname = lname as? String
+                    Toast.makeText(this, "Successfull Retrieved", Toast.LENGTH_LONG).show()
+                }
+                else{
+                    Toast.makeText(this, "User Not existed", Toast.LENGTH_LONG).show()
+                }
+
+            }.addOnFailureListener{
+                Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun checkUser() {
+        val firebaseUser = firebaseAuth.currentUser
+        if (firebaseUser == null){
+            startActivity(Intent(this, Login::class.java))
+            finish()
+            }
+        else {
+            val uid = firebaseUser.uid
+            readData(uid)
+        }
     }
 
     private fun performSearch() {
@@ -93,25 +134,7 @@ class Dashboard : AppCompatActivity() {
         }
         popupMenu.show()
 
-        user = FirebaseAuth.getInstance().currentUser
-        reference = FirebaseDatabase.getInstance().getReference("Users")
-        userID = user?.uid ?: ""
 
-        val greetingText: TextView = binding.greetingText
-        reference.child(userID).addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val userProfile = snapshot.getValue(Users::class.java)
-
-                if (userProfile != null) {
-                    val firstName = userProfile.firstname ?: ""
-                    greetingText.text = "Welcome, $firstName!"
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Handle cancelled event if needed
-                Toast.makeText(this@Dashboard, "Something wrong happened!", Toast.LENGTH_LONG).show()
-            }
-        })
+        }
     }
-}
+
