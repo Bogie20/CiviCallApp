@@ -140,12 +140,16 @@ class Register1 : AppCompatActivity() {
             }
     }
 
+
     private fun updateUserInfo() {
         // Show a separate progressDialog for user info update
         val userInfoUpdateDialog = ProgressDialog(this)
         userInfoUpdateDialog.setMessage("Saving User Info...")
         userInfoUpdateDialog.show()
-
+        val searchFragment = SearchFragment()
+        val args = Bundle()
+        args.putString("firstName", fname)
+        searchFragment.arguments = args
         val timestamp = System.currentTimeMillis()
         val uid = firebaseAuth.uid
 
@@ -161,7 +165,9 @@ class Register1 : AppCompatActivity() {
         hashMap["ImageProfile"] = ""
         hashMap["userType"]="requestor"
         hashMap["timestamp"] = timestamp
-
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, searchFragment)
+            .commit()
         val ref = FirebaseDatabase.getInstance().getReference("Users")
         ref.child(uid!!)
             .setValue(hashMap)
