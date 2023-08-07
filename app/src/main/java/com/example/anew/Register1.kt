@@ -163,7 +163,7 @@ class Register1 : AppCompatActivity() {
         hashMap["birthday"] = birtdate
         hashMap["gender"] = gender
         hashMap["ImageProfile"] = ""
-        hashMap["userType"]="requestor"
+        hashMap["userType"]="Student"
         hashMap["timestamp"] = timestamp
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, searchFragment)

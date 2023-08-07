@@ -82,7 +82,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/email_login"
+            android:id="@+id/emailLogin"
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:background="@drawable/button_shape"
@@ -101,7 +101,7 @@
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/password_text"
+                android:id="@+id/passwordText"
 
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
