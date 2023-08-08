@@ -3,6 +3,7 @@ package com.example.anew
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
@@ -23,6 +24,8 @@ class Register1 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+
         activityRegister1Binding = ActivityRegister1Binding.inflate(layoutInflater)
         setContentView(activityRegister1Binding.root)
 
@@ -137,12 +140,16 @@ class Register1 : AppCompatActivity() {
             }
     }
 
+
     private fun updateUserInfo() {
         // Show a separate progressDialog for user info update
         val userInfoUpdateDialog = ProgressDialog(this)
         userInfoUpdateDialog.setMessage("Saving User Info...")
         userInfoUpdateDialog.show()
-
+        val searchFragment = SearchFragment()
+        val args = Bundle()
+        args.putString("firstName", fname)
+        searchFragment.arguments = args
         val timestamp = System.currentTimeMillis()
         val uid = firebaseAuth.uid
 
@@ -156,9 +163,11 @@ class Register1 : AppCompatActivity() {
         hashMap["birthday"] = birtdate
         hashMap["gender"] = gender
         hashMap["ImageProfile"] = ""
-        hashMap["userType"]="requestor"
+        hashMap["userType"]="Student"
         hashMap["timestamp"] = timestamp
-
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, searchFragment)
+            .commit()
         val ref = FirebaseDatabase.getInstance().getReference("Users")
         ref.child(uid!!)
             .setValue(hashMap)

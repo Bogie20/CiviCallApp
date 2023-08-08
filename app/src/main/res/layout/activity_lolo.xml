@@ -7,8 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".lolo">
 
-
-
     <androidx.cardview.widget.CardView
         android:layout_width="415dp"
         android:layout_height="170dp"

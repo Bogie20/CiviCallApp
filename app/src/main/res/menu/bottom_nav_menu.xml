@@ -2,19 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_item_1"
-        android:title="Menu" />
+        android:title="Home"
+        android:icon="@drawable/baseline_home_24"
+        />
 
     <item
         android:id="@+id/menu_item_2"
-        android:title="Activities" />
+        android:title="Info"
+        android:icon="@drawable/activityjhe"
+        />
 
     <item
         android:id="@+id/menu_item_3"
-        android:title="Calendar" />
+        android:title="Forums"
+        android:icon="@drawable/forums1"
+        />
 
     <item
         android:id="@+id/menu_item_4"
-        android:title="Profile" />
+        android:title="Profile"
+        android:icon="@drawable/userprofile1"
+        />
 
 
 </menu>

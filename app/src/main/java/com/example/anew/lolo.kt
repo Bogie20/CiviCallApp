@@ -1,20 +1,35 @@
 package com.example.anew
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-
-import com.example.anew.databinding.ActivityLoloBinding
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 
 
 class lolo : AppCompatActivity() {
+
     private lateinit var BackClick: ImageView
-    private lateinit var binding: ActivityLoloBinding
+    private lateinit var userDataViewModel: UserDataViewModel
+    private lateinit var profileName: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lolo)
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        userDataViewModel = ViewModelProvider(this).get(UserDataViewModel::class.java)
+
+        profileName= findViewById(R.id.profileName)
+        val fname = userDataViewModel.fname
+        //val lname = userDataViewModel.lname
+
+
+        profileName.text = "$fname"
+
+
+
 
         BackClick = findViewById(R.id.back1)
 

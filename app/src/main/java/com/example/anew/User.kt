@@ -1,7 +1,5 @@
 package com.example.anew
 
-
-
 data class Users(
     var firstname: String? = null,
     var lastname: String? = null,
@@ -9,11 +7,5 @@ data class Users(
     var contact: String? = null,
     var password: String? = null,
     var repassword: String? = null,
-    var Uid: String? = null,
-
-
-
-
-
-    )
-
+    var Uid: String? = null
+)

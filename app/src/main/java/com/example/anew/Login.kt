@@ -1,92 +1,92 @@
 package com.example.anew
 
+import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.util.Patterns
 import android.widget.Toast
-import com.google.android.material.textfield.TextInputLayout
+import com.example.anew.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class Login : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
+    private lateinit var binding: ActivityLoginBinding
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var progressDialog: ProgressDialog
 
-    private val emailpattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Please wait...")
+        progressDialog.setCanceledOnTouchOutside(false)
 
 
-        auth = FirebaseAuth.getInstance()
-
-
-        val emailadd: EditText = findViewById(R.id.email_login)
-        val password: EditText = findViewById(R.id.password_text)
-        val passwordlayout: TextInputLayout = findViewById(R.id.password_layout)
-        val loginbtn: Button = findViewById(R.id.btnlogin)
-        val loginprogbar: ProgressBar = findViewById(R.id.progress_loading)
-
-        val registertext: TextView = findViewById(R.id.signUpTextView)
-
-
-        registertext.setOnClickListener {
-            val intent = Intent(this, Register1::class.java)
-            startActivity(intent)
-
+        binding.signUpTextView.setOnClickListener {
+            startActivity(Intent(this, Register1::class.java))
         }
+        binding.btnlogin.setOnClickListener {
+            validateData()
+        }
+    }
+    private var email = ""
+    private var password = ""
 
-        loginbtn.setOnClickListener {
-            loginprogbar.visibility = View.VISIBLE
-            passwordlayout.isPasswordVisibilityToggleEnabled = true
+    private fun validateData() {
+        email = binding.emailLogin.text.toString().trim()
+        password = binding.passwordText.text.toString().trim()
+        if (email.isEmpty()){
+            binding.emailLogin.setError("Please Input your Email")
+        }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            binding.emailLogin.setError("Invalid Email")
+        }
+        else if(password.isEmpty()){
+            binding.passwordText.setError("Please Enter Password")
+        }else{
+            loginUser()
+        }
+    }
+    private fun loginUser() {
+       progressDialog.setMessage("Logging In...")
+        progressDialog.show()
 
-            val email = emailadd.text.toString()
-            val pass = password.text.toString()
-
-
-            if (email.isEmpty() || pass.isEmpty()) {
-                if (email.isEmpty()) {
-                    emailadd.error = "Enter Email Address"
-
-
-                }
-                if (pass.isEmpty()) {
-                    password.error = "Enter Password"
-                    passwordlayout.isPasswordVisibilityToggleEnabled = false
-
-
-                }
-                loginprogbar.visibility = View.GONE
-                Toast.makeText(this, "Enter Valid Details", Toast.LENGTH_SHORT).show()
-
-
-            } else if (!email.matches(emailpattern.toRegex())) {
-                loginprogbar.visibility = View.GONE
-                emailadd.error = "Enter Valid Email Address"
-                Toast.makeText(this, "Enter Valid Email Address", Toast.LENGTH_SHORT).show()
-            } else if (pass.length <= 8) {
-                loginprogbar.visibility = View.GONE
-                password.error = "Enter a password more than 8 character"
-                Toast.makeText(this, "Something went Wrong", Toast.LENGTH_SHORT).show()
-
-
-            } else {
-                auth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        val intent = Intent(this, Dashboard::class.java)
-                        startActivity(intent)
-                    } else {
-                        Toast.makeText(this, "Email or password are incorrect", Toast.LENGTH_SHORT)
-                        loginprogbar.visibility = View.GONE
-
-                    }
-                }
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+            .addOnSuccessListener {
+                checkUser()
             }
+            .addOnFailureListener{e->
+                progressDialog.dismiss()
+                Toast.makeText(this, "Login Failed due to $e.message", Toast.LENGTH_LONG).show()
 
-        }
+            }
+    }
+
+    private fun checkUser() {
+        progressDialog.setMessage("Checking User...")
+
+        val firebaseUser = firebaseAuth.currentUser!!
+        val ref = FirebaseDatabase.getInstance().getReference("Users")
+
+        ref.child(firebaseUser.uid)
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    startActivity(Intent(this@Login , Dashboard::class.java))
+                    finish()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
     }
 }
 
