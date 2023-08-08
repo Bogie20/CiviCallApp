@@ -1,5 +1,6 @@
 package com.example.anew
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +25,7 @@ class Dashboard : AppCompatActivity() {
     lateinit var userDataViewModel: UserDataViewModel
 
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
@@ -40,10 +42,23 @@ class Dashboard : AppCompatActivity() {
         binding.bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             // Handle bottom navigation item clicks here
             when (item.itemId) {
-                R.id.menu_item_1 -> replaceFragment(SearchFragment())
-                R.id.menu_item_2 -> replaceFragment(Infofragment())
-                R.id.menu_item_3 -> replaceFragment(ForumsFragment())
-                R.id.menu_item_4 -> launchLoloActivity()
+                R.id.menu_item_1 ->{
+                    binding.titleLarge.text = "Civic Engagement"
+                    replaceFragment(SearchFragment())
+                }
+                R.id.menu_item_2 -> {
+                    binding.titleLarge.text = "Information Resources"
+                    replaceFragment(Infofragment())
+                }
+                R.id.menu_item_3 -> {
+                    binding.titleLarge.text = "Forum"
+                    replaceFragment(ForumsFragment())
+                }
+                R.id.menu_item_4 -> {
+                    binding.titleLarge.text = "Notifications"
+                    replaceFragment(notificationFragment())
+
+                }
             }
             true // Return true for other cases, false if you don't want to change the selection.
         }
@@ -51,6 +66,9 @@ class Dashboard : AppCompatActivity() {
         // Replace the default fragment with the initial fragment here if needed
         // For example, to display SearchFragment as the initial fragment
         //replaceFragment(SearchFragment())
+        binding.profileburger.setOnClickListener{
+            launchLoloActivity()
+        }
     }
 
     private fun readData(uid: String) {

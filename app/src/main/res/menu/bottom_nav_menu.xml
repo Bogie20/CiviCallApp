@@ -20,8 +20,8 @@
 
     <item
         android:id="@+id/menu_item_4"
-        android:title="Profile"
-        android:icon="@drawable/userprofile1"
+        android:title="Notification"
+        android:icon="@drawable/ic_notification"
         />
 
 
