@@ -5,29 +5,30 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.anew.databinding.ActivityLoloBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 
 class lolo : AppCompatActivity() {
 
     private lateinit var BackClick: ImageView
-    private lateinit var userDataViewModel: UserDataViewModel
-    private lateinit var profileName: TextView
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var database: DatabaseReference
+    private lateinit var binding: ActivityLoloBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lolo)
+        binding = ActivityLoloBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-        userDataViewModel = ViewModelProvider(this).get(UserDataViewModel::class.java)
 
-        profileName= findViewById(R.id.profileName)
-        val fname = userDataViewModel.fname
-        //val lname = userDataViewModel.lname
-
-
-        profileName.text = "$fname"
-
+        firebaseAuth= FirebaseAuth.getInstance()
+        checkUser()
 
 
 
@@ -67,6 +68,43 @@ class lolo : AppCompatActivity() {
             startActivity(intent)
 
         }
+
+    }
+
+    private fun checkUser() {
+        val firebaseUser = firebaseAuth.currentUser
+        if (firebaseUser == null){
+            startActivity(Intent(this, Login::class.java))
+            finish()
+        }
+        else {
+            val uid = firebaseUser.uid
+            readData(uid)
+        }
+    }
+
+    private fun readData(uid: String) {
+        database = FirebaseDatabase.getInstance().getReference("Users")
+        database.child(uid).get()
+            .addOnSuccessListener {
+                if (it.exists()){
+                    val uid = it.child("uid").value
+                    val fname=it.child("firstname").value
+                    val lname=it.child("lastname").value
+                    val email = it.child("email").value
+
+                    binding.firstName.text = "$fname"
+                    binding.lastName.text = "$lname"
+
+                    Toast.makeText(this, "Successfull Retrieved", Toast.LENGTH_LONG).show()
+                }
+                else{
+                    Toast.makeText(this, "User Not existed", Toast.LENGTH_LONG).show()
+                }
+
+            }.addOnFailureListener{
+                Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+            }
 
     }
 }

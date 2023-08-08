@@ -9,20 +9,12 @@ import android.widget.ImageView
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import com.example.anew.databinding.ActivityDashboardBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import android.util.Log
-import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.google.firebase.auth.ktx.userProfileChangeRequest
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.firestore.auth.User
+
 
 class Dashboard : AppCompatActivity() {
     private lateinit var reference: DatabaseReference
