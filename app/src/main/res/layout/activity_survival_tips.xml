@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DisasterResponse">
+    tools:context=".SurvivalTips">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
@@ -39,9 +39,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:fontFamily="@font/inter_bold"
-                android:text="Disaster Preparedness"
+                android:text="Survival Tips"
                 android:textColor="@color/white"
-                android:textSize="25dp" />
+                android:textSize="35dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -65,7 +65,7 @@
                 android:layout_width="400dp"
                 android:layout_height="250dp"
                 android:layout_marginTop="50dp"
-                android:src="@drawable/disasterpic" />
+                android:src="@drawable/survivallogo" />
 
             <View
                 android:layout_width="match_parent"
@@ -242,7 +242,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/btn8" />
-
+            <Button
+                android:id="@+id/btn10"
+                android:layout_width="360dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/educshape"
+                android:text="Kier Bryant"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/ribbon"
+                android:drawablePadding="35dp"
+                android:gravity="start|center_vertical"
+                android:paddingEnd="30dp"
+                android:drawableEnd="@drawable/round_arrow_forward_24"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn8" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
