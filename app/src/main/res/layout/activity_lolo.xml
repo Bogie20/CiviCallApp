@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="415dp"
-        android:layout_height="170dp"
+        android:layout_height="200dp"
 
         android:id="@+id/card"
         app:cardBackgroundColor="@color/red"
@@ -59,6 +59,10 @@
 
 </LinearLayout>
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <LinearLayout
 
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -74,18 +78,28 @@
                     android:fontFamily="@font/inter_bold"
                     android:text="FirstName"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/lastName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter_bold"
-                    android:text="LastName"
+                    android:fontFamily="@font/inter_bold"                    android:text="LastName"
                     android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:textSize="15sp"
+                    android:paddingLeft="15dp"/>
 
 
+            </LinearLayout>
+                <TextView
+                    android:id="@+id/email1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="Email"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:layout_gravity="center"/>
             </LinearLayout>
 </LinearLayout>
 
@@ -94,25 +108,22 @@
     <!-- Rest of your menu components -->
     <TextView
         android:id="@+id/menuItem1"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MY PROFILE"
         android:textColor="@android:color/white"
         android:background="@drawable/menu_item_background"
         android:drawableStart="@drawable/userprofile1"
-        android:drawablePadding="8dp"
+
+        android:drawablePadding="10dp"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+
         android:layout_below="@id/card"
         android:layout_marginTop="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-
-        android:clickable="true"
-        android:focusable="true"
-
-        android:onClick="onMenuItemClick" />
+        android:gravity="center_vertical|start"
+         />
     <TextView
         android:id="@+id/menuItem2"
         android:layout_width="wrap_content"
