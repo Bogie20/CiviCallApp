@@ -47,10 +47,8 @@
                 android:id="@+id/settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                center
 
-
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="25dp"
 
                 android:fontFamily="@font/inter_bold"
                 android:text="My Profile"
@@ -61,6 +59,14 @@
 
 
         </LinearLayout>
+
+
+
+
+
+
+
+
 
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

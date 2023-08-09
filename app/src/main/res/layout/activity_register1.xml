@@ -86,13 +86,15 @@
             android:id="@+id/line"
             android:layout_width="wrap_content"
             android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:paddingHorizontal="-10dp">
 
 
 
             <EditText
                 android:id="@+id/fname"
-                android:layout_width="385dp"
+                android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:drawableStart="@drawable/baseline_person_24"
                 android:hint="First Name"
@@ -104,7 +106,7 @@
 
             <EditText
                 android:id="@+id/Lname"
-                android:layout_width="385dp"
+                android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:drawableStart="@drawable/baseline_person_24"
                 android:hint="Last Name"
@@ -116,7 +118,7 @@
 
             <EditText
                 android:id="@+id/Emailline"
-                android:layout_width="385dp"
+                android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:drawableStart="@drawable/baseline_email_24"
                 android:hint="Email"
@@ -129,7 +131,7 @@
 
             <EditText
                 android:id="@+id/Contactline"
-                android:layout_width="385dp"
+                android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_marginTop="7dp"
                 android:background="@drawable/button_shape"
@@ -138,10 +140,14 @@
                 android:drawablePadding="5dp"
                 android:hint="Contact Number"
                 android:paddingLeft="20dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
             <EditText
                 android:drawableStart="@drawable/cake1"
                 android:id="@+id/birthdate"
-                android:layout_width="385dp"
+                android:layout_width="200dp"
                 android:layout_height="54dp"
                 android:paddingEnd="15dp"
                 android:background="@drawable/button_shape"
@@ -155,10 +161,20 @@
                 android:inputType="date"
                 android:paddingLeft="20dp"
                 android:layout_marginTop="15dp"/>
+                <Spinner
+                    android:layout_width="200dp"
+                    android:layout_height="54dp"
+                    android:id="@+id/spinnerSex"
+                    android:layout_marginTop="15dp"
+                    android:entries="@array/gender_array"
+                    android:background="@drawable/button_shape"
+                    android:backgroundTint="@color/white"/>
+
+            </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/adress"
-                    android:layout_width="385dp"
+                    android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:drawableStart="@drawable/baseline_lock_24"
                     android:hint="Address"
@@ -178,7 +194,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/pass"
-                    android:layout_width="385dp"
+                    android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:drawableStart="@drawable/baseline_lock_24"
                     android:hint="Password"
@@ -196,7 +212,7 @@
             <Button
                 android:id="@+id/Reg"
 
-                android:layout_width="370dp"
+                android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginLeft="10dp"
                 android:text="Register"

@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-<solid android:color="@color/red"></solid>
-    <corners android:topLeftRadius="40dp"
-        android:topRightRadius="40dp"></corners>
+    <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Shadow -->
+<item>
+    <shape android:shape="rectangle">
+        <solid android:color="#33000000" />
+        <corners android:topLeftRadius="20dp" android:topRightRadius="20dp" />
+    </shape>
+</item>
+
+    <!-- Shape with rounded corners -->
+<item android:top="1dp" android:left="1dp" android:right="1dp">
+<shape android:shape="rectangle">
+    <solid android:color="@color/white" />
+    <corners android:topLeftRadius="10dp" android:topRightRadius="10dp" />
 </shape>
+</item>
+    </layer-list>
+
+
+
+
+
