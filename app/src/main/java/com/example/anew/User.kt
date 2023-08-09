@@ -7,5 +7,6 @@ data class Users(
     var contact: String? = null,
     var password: String? = null,
     var repassword: String? = null,
-    var Uid: String? = null
+    var Uid: String? = null,
+    var gender: String? = null,
 )

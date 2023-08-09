@@ -35,12 +35,13 @@
         android:onClick="BackClick" />
         <de.hdodenhof.circleimageview.CircleImageView
 
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="70dp"
             android:id="@+id/profileImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
             android:src="@drawable/male"
+            android:layout_centerHorizontal="true"
 
             />
 
@@ -50,7 +51,7 @@
             android:layout_height="wrap_content"
             android:contentDescription="Home Icon"
             android:layout_marginTop="28dp"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="60dp"
             android:src="@drawable/logout3"
             />
 
@@ -68,7 +69,6 @@
 
                 <TextView
                     android:id="@+id/firstName"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_bold"

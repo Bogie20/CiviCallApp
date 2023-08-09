@@ -1,4 +1,5 @@
 package com.example.anew
+import android.content.res.ColorStateList
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -15,6 +16,9 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import android.view.animation.AnimationUtils
+import nl.joery.animatedbottombar.AnimatedBottomBar
+
 
 
 class Dashboard : AppCompatActivity() {
@@ -24,6 +28,7 @@ class Dashboard : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     lateinit var userDataViewModel: UserDataViewModel
 
+    private var currentItemId: Int = R.id.menu_item_1
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,42 +36,47 @@ class Dashboard : AppCompatActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         userDataViewModel = ViewModelProvider(this).get(UserDataViewModel::class.java)
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-        firebaseAuth= FirebaseAuth.getInstance()
+        firebaseAuth = FirebaseAuth.getInstance()
         checkUser()
         replaceFragment(SearchFragment())
 
-        // Set the bottomNavItemSelectedListener to the BottomNavigationView
-        binding.bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            // Handle bottom navigation item clicks here
-            when (item.itemId) {
-                R.id.menu_item_1 ->{
-                    binding.titleLarge.text = "Civic Engagement"
-                    replaceFragment(SearchFragment())
-                }
-                R.id.menu_item_2 -> {
-                    binding.titleLarge.text = "Information Resources"
-                    replaceFragment(Infofragment())
-                }
-                R.id.menu_item_3 -> {
-                    binding.titleLarge.text = "Forum"
-                    replaceFragment(ForumsFragment())
-                }
-                R.id.menu_item_4 -> {
-                    binding.titleLarge.text = "Notifications"
-                    replaceFragment(notificationFragment())
-
+        binding.bottomBar.setOnTabSelectListener(object : AnimatedBottomBar.OnTabSelectListener {
+            override fun onTabSelected(
+                lastIndex: Int,
+                lastTab: AnimatedBottomBar.Tab?,
+                newIndex: Int,
+                newTab: AnimatedBottomBar.Tab
+            ) {
+                when (newIndex) {
+                    0 -> {
+                        binding.titleLarge.text = "Civic Engagement"
+                        replaceFragment(SearchFragment())
+                    }
+                    1 -> {
+                        binding.titleLarge.text = "Information Resources"
+                        replaceFragment(Infofragment())
+                    }
+                    2 -> {
+                        binding.titleLarge.text = "Forum"
+                        replaceFragment(ForumsFragment())
+                    }
+                    3 -> {
+                        binding.titleLarge.text = "Notifications"
+                        replaceFragment(ProfileFragment())
+                    }
                 }
             }
-            true // Return true for other cases, false if you don't want to change the selection.
-        }
 
-        // Replace the default fragment with the initial fragment here if needed
-        // For example, to display SearchFragment as the initial fragment
-        //replaceFragment(SearchFragment())
-        binding.profileburger.setOnClickListener{
+            override fun onTabReselected(index: Int, tab: AnimatedBottomBar.Tab) {
+                // Handle reselected tab if needed
+            }
+        })
+
+        binding.profileburger.setOnClickListener {
             launchLoloActivity()
         }
     }
@@ -74,48 +84,40 @@ class Dashboard : AppCompatActivity() {
     private fun readData(uid: String) {
         reference = FirebaseDatabase.getInstance().getReference("Users")
         reference.child(uid).get()
-            .addOnSuccessListener {
-                if (it.exists()){
-                    val uid = it.child("uid").value
-                    val fname=it.child("firstname").value
-                    val lname=it.child("lastname").value
-                    val email = it.child("email").value
+            .addOnSuccessListener { snapshot ->
+                if (snapshot.exists()) {
+                    val userId = snapshot.child("uid").value as? String
+                    val fname = snapshot.child("firstname").value as? String
+                    val lname = snapshot.child("lastname").value as? String
+                    val email = snapshot.child("email").value as? String
 
-                    userDataViewModel.uid = uid as? String
-                    userDataViewModel.fname = fname as? String
-                    userDataViewModel.lname = lname as? String
-                    Toast.makeText(this, "Successfull Retrieved", Toast.LENGTH_LONG).show()
+                    userDataViewModel.uid = userId
+                    userDataViewModel.fname = fname
+                    userDataViewModel.lname = lname
+                    Toast.makeText(this, "Successfully Retrieved", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this, "User Not Existed", Toast.LENGTH_LONG).show()
                 }
-                else{
-                    Toast.makeText(this, "User Not existed", Toast.LENGTH_LONG).show()
-                }
-
-            }.addOnFailureListener{
+            }.addOnFailureListener {
                 Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
             }
     }
 
     private fun checkUser() {
         val firebaseUser = firebaseAuth.currentUser
-        if (firebaseUser == null){
+        if (firebaseUser == null) {
             startActivity(Intent(this, Login::class.java))
             finish()
-            }
-        else {
+        } else {
             val uid = firebaseUser.uid
             readData(uid)
         }
     }
 
-    private fun performSearch() {
-        // Add your search logic here
-    }
-
     private fun replaceFragment(fragment: Fragment) {
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragment1, fragment)
-        fragmentTransaction.commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment1, fragment)
+            .commit()
     }
 
     private fun launchLoloActivity() {
@@ -143,8 +145,5 @@ class Dashboard : AppCompatActivity() {
             }
         }
         popupMenu.show()
-
-
-        }
     }
-
+}
