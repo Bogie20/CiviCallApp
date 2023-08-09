@@ -14,4 +14,7 @@
     <color name="underline">@color/black</color>
     <color name="newred">#E53C38</color>
     <color name="red2">#9c1919</color>
+    <color name="whitegray">#bab6ba</color>
+    <color name="redgray">#b3a6a7</color>
+    <color name="redgray2">#bd8e91</color>
 </resources>
