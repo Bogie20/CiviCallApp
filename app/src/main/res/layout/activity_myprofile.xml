@@ -116,7 +116,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
         <EditText
-            android:id="@+id/fsname"
+            android:id="@+id/fstname"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
@@ -174,9 +174,49 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
+        <Spinner
+            android:id="@+id/campusSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/button_editprofile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <EditText
+            android:paddingLeft="10dp"
+
+            android:id="@+id/emergencyContact"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/button_editprofile"
+            android:hint="Emergency Contact Numbers"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </LinearLayout>
+    <Button
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:text="Save"
+        android:background="@drawable/button_background_red"
+        android:layout_marginTop="20dp"
+        android:id="@+id/savebtn"
+        android:layout_gravity="center"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"/>
 </LinearLayout>
+
 </RelativeLayout>
 
 

@@ -16,6 +16,9 @@ import com.example.anew.databinding.ActivityLoloBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import de.hdodenhof.circleimageview.CircleImageView
+import com.squareup.picasso.Picasso
+
 import android.text.style.ImageSpan  // Import the ImageSpan class
 
 class lolo : AppCompatActivity() {
@@ -38,7 +41,6 @@ class lolo : AppCompatActivity() {
 
         BackClick.setOnClickListener {
             // Open the "Menu" activity/form
-
 
             val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)
@@ -101,7 +103,7 @@ class lolo : AppCompatActivity() {
                     val fname = it.child("firstname").value
                     val lname = it.child("lastname").value
                     val email = it.child("email").value
-
+                    val imageProfile = it.child("ImageProfile").value
                     // Add space between first name and last name
 
 
@@ -109,6 +111,13 @@ class lolo : AppCompatActivity() {
                     binding.firstName.text = fname.toString()
                     binding.lastName.text = lname.toString()
                     binding.email1.text = email.toString()
+
+                    val profileImage =
+                        binding.profileImage // Replace with your ImageView ID in the layout
+                    // Load the profile image using Picasso library
+                    if (imageProfile != null && imageProfile.toString().isNotEmpty()) {
+                        Picasso.get().load(imageProfile.toString()).into(profileImage)
+                    }
                     Toast.makeText(this, "Successfully Retrieved", Toast.LENGTH_LONG).show()
                 } else {
                     Toast.makeText(this, "User Not existed", Toast.LENGTH_LONG).show()

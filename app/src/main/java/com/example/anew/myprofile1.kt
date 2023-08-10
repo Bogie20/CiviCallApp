@@ -23,6 +23,11 @@ class myprofile1 : AppCompatActivity() {
         binding = ActivityMyprofile1Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.Edit.setOnClickListener {
+            startActivity(Intent(this, Myprofile::class.java))
+
+        }
+
         // Initialize Firebase authentication instance
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -64,26 +69,39 @@ class myprofile1 : AppCompatActivity() {
                 val email2 = snapshot.child("email").value
                 val birthday = snapshot.child("birthday").value
                 val gender = snapshot.child("gender").value
-              //  val imageProfile= snapshot.child("ImageProfile").value
+                val contact = snapshot.child("contactno").value
+                val imageProfile = snapshot.child("ImageProfile").value
+                val campus = snapshot.child("campus").value
+                val emergencyContact = snapshot.child("emergencyContact").value
 
                 // Set the fetched data to respective TextViews
                 binding.FirstName1.text = firstName1.toString()
                 binding.LastName2.text = lastName2.toString()
-
+                binding.ContactNum.text = contact.toString()
                 binding.useraddress.text = address.toString()
                 binding.Email2.text = email2.toString()
                 binding.userbday.text = birthday.toString()
                 binding.usergender.text = gender.toString()
-
-              //  val profileImage = binding.profileImage // Replace with your ImageView ID in the layout
+                binding.Campus1.text = campus.toString()
+                binding.EmergencyContact.text = emergencyContact.toString()
+                val profileImage =
+                    binding.profileImage // Replace with your ImageView ID in the layout
                 // Load the profile image using Picasso library
-              //  if (imageProfile != null && imageProfile.toString().isNotEmpty()) {
-              //      Picasso.get().load(imageProfile.toString()).into(profileImage)
+                if (imageProfile != null && imageProfile.toString().isNotEmpty()) {
+                    Picasso.get().load(imageProfile.toString()).into(profileImage)
                 }
+                }
+                else {
+                    Toast.makeText(this, "User Not existed", Toast.LENGTH_LONG).show()
+
+                }
+
+            }.addOnFailureListener {
+                        // Show a toast if there's a failure in fetching data
+                        Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+                    }
             }
-        .addOnFailureListener {
-            // Show a toast if there's a failure in fetching data
-            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
         }
-    }
-}
+
+
+
