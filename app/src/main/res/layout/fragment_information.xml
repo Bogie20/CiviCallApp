@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PracticeFragment"
+    tools:context=".InformationFragment"
     style="@style/parent.contentLayout">
 
     <androidx.core.widget.NestedScrollView
@@ -52,7 +52,7 @@
                         style="@style/viewParent.headerText.HomeCardTitle" />
 
                     <TextView
-                        android:text="&quot;The power of the people is stronger than\n the people in power. - Wael Ghonim&quot;"
+                        android:text="&quot;The power of the people is stronger \nthan the people in power.&quot; - Wael Ghonim"
                         style="@style/viewParent.headerText.homeCardContent"
                         android:layout_marginTop="15dp"
                         android:layout_below="@id/textViewSub1Title"/>
@@ -61,7 +61,7 @@
                         android:id="@+id/imageView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ready"
+                        android:src="@drawable/civic"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true" />
@@ -88,7 +88,7 @@
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
-                    android:text="&quot;By failing to prepare, you are \npreparing to fail. - Benjamin Franklin&quot;"
+                    android:text="&quot;By failing to prepare, you are \npreparing to fail.&quot; - Benjamin Franklin"
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:layout_below="@id/textViewSub2Title"/>
@@ -97,7 +97,7 @@
                     android:id="@+id/imageView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ready"
+                    android:src="@drawable/disaster"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
@@ -124,16 +124,16 @@
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
-                    android:text="&quot;In the midst of survival, our true strengths \nand abilities are revealed. - Les Stroud&quot;"
+                    android:text="&quot;In the midst of survival, our true\n strengths and abilities are revealed.&quot; \n- Les Stroud"
                     style="@style/viewParent.headerText.homeCardContent"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_below="@id/textViewSub3Title"/>
 
                 <ImageView
                     android:id="@+id/imageView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ready"
+                    android:src="@drawable/survive"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
@@ -161,7 +161,7 @@
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
-                    android:text="Study nature, love nature,\nclose to nature"
+                    android:text="&quot;Rights mean little if you cannot exercise \nthem without fear of harm.&quot; \n- Aung San Suu Kyi"
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:layout_below="@id/textViewSub4Title"/>
@@ -170,7 +170,7 @@
                     android:id="@+id/imageView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ready"
+                    android:src="@drawable/civicr"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
@@ -197,7 +197,7 @@
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
-                    android:text="Study nature, love nature,\nclose to nature"
+                    android:text="&quot;We won't have a society if we destroy the environment.&quot; - Margaret Mead"
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:layout_below="@id/textViewSub5Title"/>
@@ -206,7 +206,7 @@
                     android:id="@+id/imageView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ready"
+                    android:src="@drawable/environm"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
@@ -234,16 +234,16 @@
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
-                    android:text="Study nature, love nature,\nclose to nature"
+                    android:text="&quot;Education's purpose is to replace an \nempty mind with an open one.&quot; \n- Malcolm Forbes"
                     style="@style/viewParent.headerText.homeCardContent"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="3dp"
                     android:layout_below="@id/textViewSub6Title"/>
 
                 <ImageView
                     android:id="@+id/imageView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ready"
+                    android:src="@drawable/campus"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
@@ -266,12 +266,12 @@
 
                 <TextView
                     android:id="@+id/textViewSub7Title"
-                    android:text="Campus Emergency Contact"
+                    android:text="Campus Emergency Cont."
                     android:textSize="23dp"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
-                    android:text="Study nature, love nature,\nclose to nature"
+                    android:text="&quot;Emergency contacts on campus are the \nguardian angels of safety.&quot;"
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:layout_below="@id/textViewSub7Title"/>
@@ -280,7 +280,7 @@
                     android:id="@+id/imageView7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ready"
+                    android:src="@drawable/campusemerg"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
@@ -303,12 +303,12 @@
 
                 <TextView
                     android:id="@+id/textViewSub8Title"
-                    android:text="LGU-Emergency Contacts"
+                    android:text="LGU-Emergency Cont."
                     android:textSize="23dp"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
-                    android:text="Study nature, love nature,\nclose to nature"
+                    android:text="&quot;Empowering communities through reliable \nLGU emergency contacts.&quot;"
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:layout_below="@id/textViewSub8Title"/>
@@ -317,7 +317,7 @@
                     android:id="@+id/imageView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ready"
+                    android:src="@drawable/phoneLGU"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
