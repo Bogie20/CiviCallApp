@@ -26,13 +26,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".EducationalResources"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".Settings"
             android:exported="true"
              android:screenOrientation="portrait"/>
-        <activity
-            android:name=".InformationFragment"
-            android:exported="true"
-            android:screenOrientation="portrait"/>
         <activity
             android:name=".Feedback"
             android:exported="true"

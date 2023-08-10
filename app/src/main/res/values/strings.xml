@@ -4,6 +4,20 @@
         <item>Female</item>
         <item>Others</item>
     </string-array>
+    <string-array name="allowed_campuses">
+        <item>ARASOF Nasugbu Campus</item>
+        <item>Balayan Campus</item>
+        <item>JPLPC Malvar Campus</item>
+        <item>Lemery Campus</item>
+        <item>Lipa Campus</item>
+        <item>Lobo Campus</item>
+        <item>Mabini Campus</item>
+        <item>Pablo Borbon Campus I</item>
+        <item>Pablo Borbon Campus II</item>
+        <item>Rosario Campus</item>
+        <item>San Juan Campus</item>
+        <!-- Add more campuses here -->
+    </string-array>
     <string name="app_name">New</string>
     <string name="title_activity_menu">Menu</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

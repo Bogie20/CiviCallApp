@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".myprofile1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="290dp"
+            app:cardBackgroundColor="@color/red"
+            app:cardCornerRadius="4dp">
+            <ImageView
+                android:id="@+id/back100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layout_marginTop="10dp"
+                android:contentDescription="Home Icon"
+                android:focusable="true"
+                android:onClick="BackClick"
+                android:padding="9dp"
+                android:src="@drawable/baseline_arrow_circle_left_24" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/tittlebar"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+
+                <TextView
+                    android:id="@+id/civicall"
+                    android:layout_marginStart="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="Profile"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    />
+
+
+
+            </LinearLayout>
+            <LinearLayout
+
+                android:id="@+id/leonard"
+
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/profileImage"
+                    android:layout_width="120dp"
+                    android:layout_height="125dp"
+                    android:src="@drawable/male"
+                    app:civ_border_color="@color/white"
+
+                    app:civ_border_width="4dp"
+
+
+                    />
+
+            </LinearLayout>
+    <LinearLayout
+
+        android:id="@+id/fullname2"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/FirstName1"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
+            android:text="Jherimy"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/LastName2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+
+
+            android:fontFamily="@font/inter_bold"
+            android:text="mallorca"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintStart_toEndOf="@id/FirstName1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </LinearLayout>
+    <TextView
+        android:layout_gravity="center"
+        android:id="@+id/Email2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        android:fontFamily="@font/inter_bold"
+        android:text="Example@gmail.com"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:paddingTop="5dp"
+        android:paddingLeft="39dp"
+        android:fontFamily="@font/inter_bold"
+        android:textColor="@color/white"
+        android:background="@drawable/button_background"
+        android:textSize="15sp"
+        android:id="@+id/Edit"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:text="Edit Profile"
+
+        />
+
+</LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+        <LinearLayout
+            android:id="@+id/lolo1"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <LinearLayout
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+
+                >
+                <TextView
+                    android:id="@+id/Total"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="40sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/Total1"
+                    android:gravity="center"
+
+                    android:text="Total \nEngagement"
+                    android:textSize="15sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:padding="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.0"
+                    android:textSize="40dp"
+
+                    />
+                <TextView
+                    android:layout_marginTop="-9dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text = "Activity \n Points"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:padding="10dp"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.0"
+                    android:textSize="40dp"
+                    />
+                <TextView
+                    android:layout_marginTop="-9dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text = "Pending \n Engagament"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <View
+            android:layout_marginTop="420dp"
+            android:layout_width="400dp"
+            android:layout_height="2dp"
+            android:background="@color/red"
+            android:layout_marginBottom="10dp"/>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lives in:"
+            android:fontFamily="@font/inter_medium"
+            android:drawablePadding="10dp"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:id="@+id/useraddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:fontFamily="@font/inter_medium"
+            android:textColor="@color/newred"
+
+            android:paddingLeft="10dp"
+
+          />
+    </LinearLayout>
+
+        <LinearLayout
+            android:fontFamily="@font/inter_medium"
+            android:padding="5dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Birthday:"
+                android:fontFamily="@font/inter_medium"
+
+                android:drawablePadding="10dp"
+                android:textSize="20dp"
+                />
+            <TextView
+                android:id="@+id/userbday"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:paddingLeft="10dp"
+                android:fontFamily="@font/inter_medium"
+                android:textColor="@color/newred"
+                android:textSize="20dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:padding="5dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender:"
+                android:fontFamily="@font/inter_medium"
+
+
+                android:textSize="20dp"
+                />
+            <TextView
+                android:id="@+id/usergender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:paddingLeft="10dp"
+                android:fontFamily="@font/inter_medium"
+
+                android:textColor="@color/newred"
+
+                android:textSize="20dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:padding="5dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contact No#:"
+
+                android:fontFamily="@font/inter_medium"
+
+                android:textSize="20dp"
+                />
+            <TextView
+                android:id="@+id/ContactNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:paddingLeft="10dp"
+                android:fontFamily="@font/inter_medium"
+                android:textColor="@color/newred"
+
+
+                android:textSize="20dp"
+                />
+        </LinearLayout>
+
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="400dp"
+            android:layout_height="2dp"
+
+            android:background="@color/red"/>
+
+        <LinearLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            >
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lives in"
+                android:fontFamily="@font/inter_medium"
+                android:drawablePadding="10dp"
+                android:textSize="20dp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:padding="5dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Campus"
+
+                android:fontFamily="@font/inter_medium"
+
+                android:textSize="20dp"
+                />
+            <TextView
+                android:id="@+id/Campus1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:paddingLeft="10dp"
+                android:fontFamily="@font/inter_medium"
+                android:textColor="@color/newred"
+
+
+                android:textSize="20dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:padding="5dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Emergency No#:"
+
+                android:fontFamily="@font/inter_medium"
+
+                android:textSize="20dp"
+                />
+            <TextView
+                android:id="@+id/EmergencyContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:paddingLeft="10dp"
+                android:fontFamily="@font/inter_medium"
+                android:textColor="@color/newred"
+
+
+                android:textSize="20dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+<!--
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="290dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardBackgroundColor="@color/red"
+        app:cardCornerRadius="4dp">
+
+
+
+        <LinearLayout
+            android:id="@+id/tittlebar"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/back100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layout_marginTop="10dp"
+                android:contentDescription="Home Icon"
+                android:focusable="true"
+                android:onClick="BackClick"
+                android:padding="6dp"
+                android:src="@drawable/baseline_arrow_circle_left_24" />
+
+            <TextView
+                android:id="@+id/civicall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Profile"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                 />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:id="@+id/leonard"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+
+                android:id="@+id/profileImage"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="-20dp"
+                android:src="@drawable/male"
+                app:civ_border_color="@color/white"
+
+                app:civ_border_width="4dp"
+
+
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/fullname2"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/FirstName1"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:fontFamily="@font/inter_bold"
+            android:text="Jherimy"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/LastName2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+
+
+            android:fontFamily="@font/inter_bold"
+            android:text="mallorca"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintStart_toEndOf="@id/FirstName1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+        </LinearLayout>
+        <LinearLayout
+        android:id="@+id/Email5"
+        android:orientation="horizontal"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/Email2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="230dp"
+
+            android:fontFamily="@font/inter_bold"
+            android:text="Email:"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/LastName2" />
+
+            <TextView
+                android:id="@+id/Email3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="230dp"
+                android:paddingLeft="10dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Example@gmail.com"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+
+                app:layout_constraintEnd_toEndOf="@+id/Email3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/Email3" />
+
+        </LinearLayout>
+
+        <TextView
+
+            android:layout_marginTop="260dp"
+            android:paddingLeft="10dp"
+            android:fontFamily="@font/inter_bold"
+            android:textColor="@color/white"
+            android:layout_marginStart="150dp"
+            android:textSize="15sp"
+            android:id="@+id/Edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+
+            />
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_below="@+id/Email6"
+        android:id="@+id/box1"
+        android:layout_width="410dp"
+        android:orientation="horizontal"
+
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginHorizontal="20dp"
+            >
+        <TextView
+            android:id="@+id/Total"
+                android:gravity="center"
+            android:text="0"
+            android:textSize="40sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/Total1"
+            android:gravity="center"
+
+            android:text="Total Engagement \nParticipated"
+            android:textSize="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginHorizontal="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.0"
+                android:textSize="40dp"
+
+                />
+            <TextView
+                android:layout_marginTop="-9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "Activity \n Points"
+                android:textAlignment="center"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginHorizontal="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.0"
+                android:textSize="40dp"
+                />
+            <TextView
+                android:layout_marginTop="-9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "Pending \n Engagament"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </LinearLayout>
+-->
+
+</RelativeLayout>
