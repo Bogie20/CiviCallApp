@@ -58,7 +58,7 @@ class Dashboard : AppCompatActivity() {
                     }
                     1 -> {
                         binding.titleLarge.text = "Information Resources"
-                        replaceFragment(Infofragment())
+                        replaceFragment(InformationFragment())
                     }
                     2 -> {
                         binding.titleLarge.text = "Forum"
