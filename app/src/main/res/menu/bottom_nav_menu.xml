@@ -3,25 +3,26 @@
     <item
         android:id="@+id/menu_item_1"
         android:title="Home"
+
         android:icon="@drawable/baseline_home_24"
         />
 
     <item
         android:id="@+id/menu_item_2"
         android:title="Info"
-        android:icon="@drawable/activityjhe"
+        android:icon="@drawable/baseline_search_24"
         />
 
     <item
         android:id="@+id/menu_item_3"
         android:title="Forums"
-        android:icon="@drawable/forums1"
+        android:icon="@drawable/baseline_clear_24"
         />
 
     <item
         android:id="@+id/menu_item_4"
-        android:title="Profile"
-        android:icon="@drawable/userprofile1"
+        android:title="Notification"
+        android:icon="@drawable/ic_notification"
         />
 
 

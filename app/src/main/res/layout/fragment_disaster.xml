@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".DisasterFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/information"
+                android:layout_width="300dp"
+                android:layout_height="250dp"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/disasterpic"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:background="@drawable/button_background"
+                android:backgroundTint="@color/newred"
+                android:layout_marginTop="45dp"
+                app:layout_constraintTop_toBottomOf="@id/information"/>
+
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="360dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/educshape"
+                android:text="@string/earthquake"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:drawablePadding="40dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/earthquake"
+                android:paddingEnd="30dp"
+                android:drawableEnd="@drawable/round_arrow_forward_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view" />
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="360dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/educshape"
+                android:text="@string/earthquake"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:drawablePadding="40dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/earthquake"
+                android:paddingEnd="30dp"
+                android:drawableEnd="@drawable/round_arrow_forward_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn1" />
+
+
+            <Button
+                android:id="@+id/btn3"
+                android:layout_width="360dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/educshape"
+                android:text="@string/vulcan"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:drawablePadding="37dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/volcano"
+                android:paddingEnd="30dp"
+                android:drawableEnd="@drawable/round_arrow_forward_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn2" />
+
+            <Button
+                android:id="@+id/btn4"
+                android:layout_width="360dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/educshape"
+                android:text="@string/flood"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:drawablePadding="40dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/floods"
+                android:paddingEnd="30dp"
+                android:drawableEnd="@drawable/round_arrow_forward_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn3" />
+
+            <Button
+                android:id="@+id/btn5"
+                android:layout_width="360dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/educshape"
+                android:text="@string/landslide"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:drawablePadding="40dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/landslide"
+                android:paddingEnd="30dp"
+                android:drawableEnd="@drawable/round_arrow_forward_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn4" />
+            <Button
+                android:id="@+id/btn6"
+                android:layout_width="360dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/educshape"
+                android:text="@string/tsunami"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:drawablePadding="40dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/tsunami"
+                android:paddingEnd="30dp"
+                android:drawableEnd="@drawable/round_arrow_forward_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn5" />
+
+            <Button
+                android:id="@+id/btn7"
+                android:layout_width="360dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/educshape"
+                android:text="@string/heat"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:drawablePadding="40dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/sun"
+                android:paddingEnd="30dp"
+                android:drawableEnd="@drawable/round_arrow_forward_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn6" />
+            <Button
+                android:id="@+id/btn8"
+                android:layout_width="360dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/educshape"
+                android:text="@string/tropicaldisease"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:drawablePadding="33dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/virus"
+                android:paddingEnd="30dp"
+                android:drawableEnd="@drawable/round_arrow_forward_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn7" />
+
+            <Button
+                android:id="@+id/btn9"
+                android:layout_width="360dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/educshape"
+                android:text="@string/terrorism"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:paddingStart="15dp"
+                android:drawableStart="@drawable/ribbon"
+                android:drawablePadding="35dp"
+                android:gravity="start|center_vertical"
+                android:paddingEnd="30dp"
+                android:drawableEnd="@drawable/round_arrow_forward_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn8" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+    </FrameLayout>

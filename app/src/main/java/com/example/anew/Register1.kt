@@ -7,9 +7,13 @@ import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Spinner
 import android.widget.Toast
 import com.example.anew.databinding.ActivityRegister1Binding
 
@@ -22,30 +26,56 @@ class Register1 : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var progressDialog: ProgressDialog
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
         activityRegister1Binding = ActivityRegister1Binding.inflate(layoutInflater)
         setContentView(activityRegister1Binding.root)
+        val genderSpinner = activityRegister1Binding.spinnerSex
 
+
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.gender_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            genderSpinner.adapter = adapter
+
+            // Set an OnItemSelectedListener to capture the selected gender value
+            genderSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    // Get the selected gender from the spinner
+                    spinnerSex = parent?.getItemAtPosition(position).toString()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    // This method is required, but you can leave it empty
+                }
+            }
+        }
 
         firebaseAuth = FirebaseAuth.getInstance()
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please wait...")
         progressDialog.setCanceledOnTouchOutside(false)
 
-        val backbtn : ImageView = findViewById(R.id.back)
+        val backbtn: ImageView = findViewById(R.id.back)
 
-        backbtn.setOnClickListener{
+        backbtn.setOnClickListener {
             onBackPressed()
         }
         val regbtn: Button = findViewById(R.id.Reg)
-        regbtn.setOnClickListener{
+        regbtn.setOnClickListener {
             validateData()
         }
-
-
 
         val birthday = activityRegister1Binding.birthdate
         val cal = Calendar.getInstance()
@@ -66,22 +96,18 @@ class Register1 : AppCompatActivity() {
             )
             datePickerDialog.show()
         }
-
     }
-    private var fname =""
-    private var lname=""
-    private var gender = ""
+
+    private var fname = ""
+    private var lname = ""
     private var email = ""
     private var pass = ""
     private var phoneno = ""
     private var address = ""
     private var birtdate = ""
+    private var spinnerSex = ""
 
-
-
-
-
-    private fun validateData(){
+    private fun validateData() {
         fname = activityRegister1Binding.fname.text.toString().trim()
         lname = activityRegister1Binding.Lname.text.toString().trim()
         email = activityRegister1Binding.Emailline.text.toString().trim()
@@ -89,34 +115,27 @@ class Register1 : AppCompatActivity() {
         phoneno = activityRegister1Binding.Contactline.text.toString().trim()
         address = activityRegister1Binding.adress.text.toString().trim()
         birtdate = activityRegister1Binding.birthdate.text.toString().trim()
+        spinnerSex = activityRegister1Binding.spinnerSex.selectedItem.toString()
 
-
-        if (fname.isEmpty()){
+        if (fname.isEmpty()) {
             activityRegister1Binding.fname.setError("Please Enter First Name")
-
-        }else  if (lname.isEmpty()){
-            activityRegister1Binding.Lname.setError("Please Enter First Name")
-
-        }else  if (email.isEmpty()){
-            activityRegister1Binding.Emailline.setError("Please Enter First Name")
-
-        }
-        else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        } else if (lname.isEmpty()) {
+            activityRegister1Binding.Lname.setError("Please Enter Last Name")
+        } else if (email.isEmpty()) {
+            activityRegister1Binding.Emailline.setError("Please Enter Email")
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(this, "Invalid Email Address", Toast.LENGTH_LONG).show()
-        }
-        else if (pass.isEmpty()){
-            activityRegister1Binding.pass.setError("Please Enter First Name")
-        }else  if (phoneno.isEmpty()){
-            activityRegister1Binding.Contactline.setError("Please Enter First Name")
-
-        }
-        else  if (address.isEmpty()){
-            activityRegister1Binding.adress.setError("Please Enter First Name")
-
-        }else{
+        } else if (pass.isEmpty()) {
+            activityRegister1Binding.pass.setError("Please Enter Password")
+        } else if (phoneno.isEmpty()) {
+            activityRegister1Binding.Contactline.setError("Please Enter Contact Number")
+        } else if (spinnerSex.isEmpty()) {
+            Toast.makeText(this, "Please Select Gender", Toast.LENGTH_SHORT).show()
+        } else if (address.isEmpty()) {
+            activityRegister1Binding.adress.setError("Please Enter Address")
+        } else {
             createUserAccount()
         }
-
     }
     private fun createUserAccount() {
         // Show a separate progressDialog for account creation
@@ -140,12 +159,16 @@ class Register1 : AppCompatActivity() {
             }
     }
 
+
     private fun updateUserInfo() {
         // Show a separate progressDialog for user info update
         val userInfoUpdateDialog = ProgressDialog(this)
         userInfoUpdateDialog.setMessage("Saving User Info...")
         userInfoUpdateDialog.show()
-
+        val searchFragment = SearchFragment()
+        val args = Bundle()
+        args.putString("firstName", fname)
+        searchFragment.arguments = args
         val timestamp = System.currentTimeMillis()
         val uid = firebaseAuth.uid
 
@@ -157,11 +180,13 @@ class Register1 : AppCompatActivity() {
         hashMap["phoneno"] = phoneno
         hashMap["address"] = address
         hashMap["birthday"] = birtdate
-        hashMap["gender"] = gender
+        hashMap["gender"] = spinnerSex
         hashMap["ImageProfile"] = ""
-        hashMap["userType"]="requestor"
+        hashMap["userType"]="Student"
         hashMap["timestamp"] = timestamp
-
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, searchFragment)
+            .commit()
         val ref = FirebaseDatabase.getInstance().getReference("Users")
         ref.child(uid!!)
             .setValue(hashMap)

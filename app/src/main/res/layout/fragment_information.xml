@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InformationFragment"
+    style="@style/parent.contentLayout">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="Categories"
+                style="@style/viewParent.headerText"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:text="Learning about civic happenings gives you the knowledge to be an active part of your community's story."
+                style="@style/viewParent.headerText.contentText"
+                android:layout_marginBottom="2dp"/>
+
+            <!-- CardView 1 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="15dp"
+                app:cardPreventCornerOverlap="true"
+                android:layout_marginTop="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="100dp"
+                    android:background="@drawable/gradientbox"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:id="@+id/textViewSub1Title"
+                        android:text="Civic Engagement"
+                        style="@style/viewParent.headerText.HomeCardTitle" />
+
+                    <TextView
+                        android:text="&quot;The power of the people is stronger \nthan the people in power.&quot; - Wael Ghonim"
+                        style="@style/viewParent.headerText.homeCardContent"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@id/textViewSub1Title"/>
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/civic"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardPreventCornerOverlap="true"
+            android:layout_marginTop="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="100dp"
+                android:background="@drawable/gradientbox1"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/textViewSub2Title"
+                    android:text="Disaster Preparedness"
+                    style="@style/viewParent.headerText.HomeCardTitle" />
+
+                <TextView
+                    android:text="&quot;By failing to prepare, you are \npreparing to fail.&quot; - Benjamin Franklin"
+                    style="@style/viewParent.headerText.homeCardContent"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/textViewSub2Title"/>
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/disaster"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardPreventCornerOverlap="true"
+            android:layout_marginTop="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="100dp"
+                android:background="@drawable/gradient2"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/textViewSub3Title"
+                    android:text="Survival TIps"
+                    style="@style/viewParent.headerText.HomeCardTitle" />
+
+                <TextView
+                    android:text="&quot;In the midst of survival, our true\n strengths and abilities are revealed.&quot; \n- Les Stroud"
+                    style="@style/viewParent.headerText.homeCardContent"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/textViewSub3Title"/>
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/survive"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardPreventCornerOverlap="true"
+            android:layout_marginTop="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="100dp"
+                android:background="@drawable/gradientbox3"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/textViewSub4Title"
+                    android:text="Civic Rights &amp; Responsibility"
+                    android:textSize="23dp"
+                    style="@style/viewParent.headerText.HomeCardTitle" />
+
+                <TextView
+                    android:text="&quot;Rights mean little if you cannot exercise \nthem without fear of harm.&quot; \n- Aung San Suu Kyi"
+                    style="@style/viewParent.headerText.homeCardContent"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/textViewSub4Title"/>
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/civicr"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardPreventCornerOverlap="true"
+            android:layout_marginTop="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="100dp"
+                android:background="@drawable/gradientbox4"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/textViewSub5Title"
+                    android:text="Environmental &amp; Social Issue"
+                    android:textSize="23dp"
+                    style="@style/viewParent.headerText.HomeCardTitle" />
+
+                <TextView
+                    android:text="&quot;We won't have a society if we destroy the environment.&quot; - Margaret Mead"
+                    style="@style/viewParent.headerText.homeCardContent"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/textViewSub5Title"/>
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/environm"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardPreventCornerOverlap="true"
+            android:layout_marginTop="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="100dp"
+                android:background="@drawable/gradientbox5"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/textViewSub6Title"
+                    android:text="Campus Governance"
+                    android:textSize="23dp"
+                    style="@style/viewParent.headerText.HomeCardTitle" />
+
+                <TextView
+                    android:text="&quot;Education's purpose is to replace an \nempty mind with an open one.&quot; \n- Malcolm Forbes"
+                    style="@style/viewParent.headerText.homeCardContent"
+                    android:layout_marginTop="3dp"
+                    android:layout_below="@id/textViewSub6Title"/>
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/campus"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardPreventCornerOverlap="true"
+            android:layout_marginTop="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="100dp"
+                android:background="@drawable/gradientbox6"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/textViewSub7Title"
+                    android:text="Campus Emergency Cont."
+                    android:textSize="23dp"
+                    style="@style/viewParent.headerText.HomeCardTitle" />
+
+                <TextView
+                    android:text="&quot;Emergency contacts on campus are the \nguardian angels of safety.&quot;"
+                    style="@style/viewParent.headerText.homeCardContent"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/textViewSub7Title"/>
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/campusemerg"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp"
+            app:cardPreventCornerOverlap="true"
+            android:layout_marginTop="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="100dp"
+                android:background="@drawable/gradientbox7"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/textViewSub8Title"
+                    android:text="LGU-Emergency Cont."
+                    android:textSize="23dp"
+                    style="@style/viewParent.headerText.HomeCardTitle" />
+
+                <TextView
+                    android:text="&quot;Empowering communities through reliable \nLGU emergency contacts.&quot;"
+                    style="@style/viewParent.headerText.homeCardContent"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/textViewSub8Title"/>
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

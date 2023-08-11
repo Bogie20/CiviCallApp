@@ -3,9 +3,9 @@ package com.example.anew
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class DisasterResponse : AppCompatActivity() {
+class SurvivalTips : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_disaster_response)
+        setContentView(R.layout.activity_survival_tips)
     }
 }
