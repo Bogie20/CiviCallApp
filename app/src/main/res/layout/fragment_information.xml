@@ -49,12 +49,14 @@
                     <TextView
                         android:id="@+id/textViewSub1Title"
                         android:text="Civic Engagement"
+                        android:textSize="23dp"
                         style="@style/viewParent.headerText.HomeCardTitle" />
 
                     <TextView
                         android:text="&quot;The power of the people is stronger \nthan the people in power.&quot; - Wael Ghonim"
                         style="@style/viewParent.headerText.homeCardContent"
                         android:layout_marginTop="15dp"
+                        android:textSize="10dp"
                         android:layout_below="@id/textViewSub1Title"/>
 
                     <ImageView
@@ -85,12 +87,14 @@
                 <TextView
                     android:id="@+id/textViewSub2Title"
                     android:text="Disaster Preparedness"
+                    android:textSize="23dp"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
                     android:text="&quot;By failing to prepare, you are \npreparing to fail.&quot; - Benjamin Franklin"
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
+                    android:textSize="10dp"
                     android:layout_below="@id/textViewSub2Title"/>
 
                 <ImageView
@@ -120,13 +124,15 @@
 
                 <TextView
                     android:id="@+id/textViewSub3Title"
-                    android:text="Survival TIps"
+                    android:text="Survival Tips"
+                    android:textSize="23dp"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
                     android:text="&quot;In the midst of survival, our true\n strengths and abilities are revealed.&quot; \n- Les Stroud"
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="10dp"
+                    android:textSize="10dp"
                     android:layout_below="@id/textViewSub3Title"/>
 
                 <ImageView
@@ -157,13 +163,14 @@
                 <TextView
                     android:id="@+id/textViewSub4Title"
                     android:text="Civic Rights &amp; Responsibility"
-                    android:textSize="23dp"
+                    android:textSize="18dp"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
                     android:text="&quot;Rights mean little if you cannot exercise \nthem without fear of harm.&quot; \n- Aung San Suu Kyi"
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
+                    android:textSize="10dp"
                     android:layout_below="@id/textViewSub4Title"/>
 
                 <ImageView
@@ -193,13 +200,14 @@
                 <TextView
                     android:id="@+id/textViewSub5Title"
                     android:text="Environmental &amp; Social Issue"
-                    android:textSize="23dp"
+                    android:textSize="18dp"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
-                    android:text="&quot;We won't have a society if we destroy the environment.&quot; - Margaret Mead"
+                    android:text="&quot;We won't have a society if we destroy the \nenvironment.&quot; - Margaret Mead"
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
+                    android:textSize="10dp"
                     android:layout_below="@id/textViewSub5Title"/>
 
                 <ImageView
@@ -230,13 +238,14 @@
                 <TextView
                     android:id="@+id/textViewSub6Title"
                     android:text="Campus Governance"
-                    android:textSize="23dp"
+                    android:textSize="18dp"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
                     android:text="&quot;Education's purpose is to replace an \nempty mind with an open one.&quot; \n- Malcolm Forbes"
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="3dp"
+                    android:textSize="10dp"
                     android:layout_below="@id/textViewSub6Title"/>
 
                 <ImageView
@@ -267,13 +276,14 @@
                 <TextView
                     android:id="@+id/textViewSub7Title"
                     android:text="Campus Emergency Cont."
-                    android:textSize="23dp"
+                    android:textSize="18dp"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
                     android:text="&quot;Emergency contacts on campus are the \nguardian angels of safety.&quot;"
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
+                    android:textSize="10dp"
                     android:layout_below="@id/textViewSub7Title"/>
 
                 <ImageView
@@ -304,20 +314,21 @@
                 <TextView
                     android:id="@+id/textViewSub8Title"
                     android:text="LGU-Emergency Cont."
-                    android:textSize="23dp"
+                    android:textSize="18dp"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
                     android:text="&quot;Empowering communities through reliable \nLGU emergency contacts.&quot;"
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
+                    android:textSize="10dp"
                     android:layout_below="@id/textViewSub8Title"/>
 
                 <ImageView
                     android:id="@+id/imageView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
+                    android:src="@drawable/estudyantehanda"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
