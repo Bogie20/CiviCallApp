@@ -18,6 +18,13 @@
         <item>San Juan Campus</item>
         <!-- Add more campuses here -->
     </string-array>
+    <string-array name="NSTP">
+        <item>CWTS</item>
+        <item>LTS</item>
+        <item>ROTC</item>
+
+        <!-- Add more campuses here -->
+    </string-array>
     <string name="app_name">New</string>
     <string name="title_activity_menu">Menu</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
