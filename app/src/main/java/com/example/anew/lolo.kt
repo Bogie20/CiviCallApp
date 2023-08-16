@@ -2,24 +2,17 @@ package com.example.anew
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.text.SpannableString
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.anew.databinding.ActivityLoloBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import de.hdodenhof.circleimageview.CircleImageView
 import com.squareup.picasso.Picasso
-
-import android.text.style.ImageSpan  // Import the ImageSpan class
 
 class lolo : AppCompatActivity() {
 
@@ -40,11 +33,14 @@ class lolo : AppCompatActivity() {
         BackClick = findViewById(R.id.back1)
 
         BackClick.setOnClickListener {
-            // Open the "Menu" activity/form
-
             val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.fade_in1, R.anim.fade_out2)
         }
+
+
+
+
 
         val menuItem1: TextView = findViewById(R.id.menuItem1)
         val menuItem2: TextView = findViewById(R.id.menuItem2)
@@ -52,25 +48,21 @@ class lolo : AppCompatActivity() {
         val menuItem9: TextView = findViewById(R.id.menuItem9)
 
         menuItem1.setOnClickListener {
-            // Handle click for menu item 1
             val intent = Intent(this, myprofile1::class.java)
             startActivity(intent)
         }
 
         menuItem2.setOnClickListener {
-            // Handle click for menu item 2
             val intent = Intent(this, Accountverification::class.java)
             startActivity(intent)
         }
 
         AboutUs1.setOnClickListener {
-            // Handle click for About Us menu item
             val intent = Intent(this, AboutUs::class.java)
             startActivity(intent)
         }
 
         menuItem9.setOnClickListener {
-            // Handle click for Feedback menu item
             val intent = Intent(this, Feedback::class.java)
             startActivity(intent)
         }
@@ -81,11 +73,9 @@ class lolo : AppCompatActivity() {
         }
     }
 
-
-
     private fun checkUser() {
         val firebaseUser = firebaseAuth.currentUser
-        if (firebaseUser == null){
+        if (firebaseUser == null) {
             startActivity(Intent(this, Login::class.java))
             finish()
         } else {
@@ -104,17 +94,12 @@ class lolo : AppCompatActivity() {
                     val lname = it.child("lastname").value
                     val email = it.child("email").value
                     val imageProfile = it.child("ImageProfile").value
-                    // Add space between first name and last name
-
-
 
                     binding.firstName.text = fname.toString()
                     binding.lastName.text = lname.toString()
                     binding.email1.text = email.toString()
 
-                    val profileImage =
-                        binding.profileImage // Replace with your ImageView ID in the layout
-                    // Load the profile image using Picasso library
+                    val profileImage = binding.profileImage
                     if (imageProfile != null && imageProfile.toString().isNotEmpty()) {
                         Picasso.get().load(imageProfile.toString()).into(profileImage)
                     }
@@ -122,7 +107,7 @@ class lolo : AppCompatActivity() {
                 } else {
                     Toast.makeText(this, "User Not existed", Toast.LENGTH_LONG).show()
                 }
-            }.addOnFailureListener{
+            }.addOnFailureListener {
                 Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
             }
     }
@@ -145,6 +130,8 @@ class lolo : AppCompatActivity() {
         firebaseAuth.signOut()
         startActivity(Intent(this, Login::class.java))
         finish()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
     }
+
 }

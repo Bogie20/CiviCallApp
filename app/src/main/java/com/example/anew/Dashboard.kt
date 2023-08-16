@@ -77,8 +77,12 @@ class Dashboard : AppCompatActivity() {
         })
 
         binding.profileburger.setOnClickListener {
-            launchLoloActivity()
+            val intent = Intent(this, lolo::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
+
+
     }
 
     private fun readData(uid: String) {
