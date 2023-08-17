@@ -410,7 +410,7 @@
                 android:textSize="20dp"
                 />
             <EditText
-                android:drawableStart="@drawable/cake1"
+
                 android:id="@+id/birthdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -422,7 +422,7 @@
                 android:ems="10"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:hint="Birthday"
+
                 android:paddingLeft="10dp"
                 android:inputType="date"
                />
