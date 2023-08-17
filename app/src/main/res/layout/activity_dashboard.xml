@@ -37,7 +37,7 @@
             </LinearLayout>
 
             <ImageButton
-                android:id="@+id/profileburger"
+                    android:id="@+id/profileburger"
                 android:layout_width="wrap_content"
                 android:paddingLeft="10dp"
                 android:layout_height="wrap_content"

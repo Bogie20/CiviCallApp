@@ -46,30 +46,30 @@ class lolo : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val profile1: TextView = findViewById(R.id.Profile)
-        val verification1: TextView = findViewById(R.id.verification)
-        val aboutUs1: TextView = findViewById(R.id.AboutUs1)
-        val feedback1: TextView = findViewById(R.id.feedback)
+        val menuItem1: TextView = findViewById(R.id.menuItem1)
+        val menuItem2: TextView = findViewById(R.id.menuItem2)
+        val AboutUs1: TextView = findViewById(R.id.AboutUs1)
+        val menuItem9: TextView = findViewById(R.id.menuItem9)
 
-        profile1.setOnClickListener {
+        menuItem1.setOnClickListener {
             // Handle click for menu item 1
             val intent = Intent(this, myprofile1::class.java)
             startActivity(intent)
         }
 
-        verification1.setOnClickListener {
+        menuItem2.setOnClickListener {
             // Handle click for menu item 2
             val intent = Intent(this, Accountverification::class.java)
             startActivity(intent)
         }
 
-        aboutUs1.setOnClickListener {
+        AboutUs1.setOnClickListener {
             // Handle click for About Us menu item
             val intent = Intent(this, AboutUs::class.java)
             startActivity(intent)
         }
 
-        feedback1.setOnClickListener {
+        menuItem9.setOnClickListener {
             // Handle click for Feedback menu item
             val intent = Intent(this, Feedback::class.java)
             startActivity(intent)
