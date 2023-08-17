@@ -62,13 +62,18 @@ class Dashboard : AppCompatActivity() {
                     }
                     2 -> {
                         binding.titleLarge.text = "Forum"
-                        replaceFragment(ForumsFragment())
+                        launchAddEngagementActivity()
                     }
                     3 -> {
+                        binding.titleLarge.text = "Notifications"
+                        replaceFragment(ForumsFragment())
+                    }
+                    4 -> {
                         binding.titleLarge.text = "Notifications"
                         replaceFragment(ProfileFragment())
                     }
                 }
+
             }
 
             override fun onTabReselected(index: Int, tab: AnimatedBottomBar.Tab) {
@@ -84,7 +89,11 @@ class Dashboard : AppCompatActivity() {
 
 
     }
-
+    private fun launchAddEngagementActivity() {
+        val intent = Intent(this, add_engagement::class.java)
+        startActivity(intent)
+        // Add any animation transition if needed
+    }
     private fun readData(uid: String) {
         reference = FirebaseDatabase.getInstance().getReference("Users")
         reference.child(uid).get()
