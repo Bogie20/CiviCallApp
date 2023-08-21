@@ -22,6 +22,10 @@
         <item>CWTS</item>
         <item>LTS</item>
         <item>ROTC</item>
+        <item>ROTC&amp;CWTS</item>
+        <item>ROTC&amp;LTS</item>
+        <item>CWTS&amp;LTS</item>
+        <item>ALL</item>
 
         <!-- Add more campuses here -->
     </string-array>
