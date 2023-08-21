@@ -153,19 +153,21 @@ class add_engagement : AppCompatActivity() {
             .addOnSuccessListener { taskSnapshot ->
                 reference.downloadUrl.addOnSuccessListener { uri ->
                     val uploadImageUrl = uri.toString()
-                    updateData(uid, uploadImageUrl) // Pass the uploadImageUrl here
+                    updateData(uid, uploadImageUrl)
 
-                    // Hide the TextView and FloatingActionButton
+                    // Hide the TextView and FloatingActionButton after successful upload
                     binding.hintText.visibility = View.GONE
                     binding.addprofile.visibility = View.GONE
+
+                    progressDialog.dismiss()
                 }
             }
             .addOnFailureListener { e ->
                 progressDialog.dismiss()
-                Toast.makeText(this, "Failed to Upload due to ${e.message}", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(this, "Failed to Upload due to ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
+
 
     private fun Poster(uploadImageUrl: String) {
         progressDialog.setMessage("Updating Poster...")
