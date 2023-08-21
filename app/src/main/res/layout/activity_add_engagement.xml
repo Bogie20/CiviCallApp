@@ -95,339 +95,112 @@
             android:background="@color/red" />
 
         <LinearLayout
-
+            android:layout_marginLeft="-20dp"
             android:padding="5dp"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp">
-
-            <TextView
-                android:id="@+id/useraddress1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
-                android:fontFamily="@font/inter_medium"
-                android:text="Title of the engagements"
-                android:textSize="20dp" />
+          >
 
 
             <EditText
-                android:layout_marginTop="29dp"
-                android:layout_marginLeft="-255dp"
                 android:id="@+id/Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:fontFamily="@font/inter_medium"
-                android:textColor="@color/newred"
+                android:layout_width="310dp"
+                android:layout_height="50dp"
+                android:background="@drawable/text_shape1"
+                android:fontFamily="@font/inter_bold"
                 android:hint="Title"
                 android:inputType="text"
                 android:paddingLeft="10dp"
 
+                android:textColor="@color/black"
+                android:textSize="15dp"
+
                 />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:padding="5dp"
+            android:layout_marginLeft="-20dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+           >
 
-            android:layout_marginLeft="20dp"
-            android:fontFamily="@font/inter_medium"
-            android:padding="5dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
-                android:fontFamily="@font/inter_medium"
-
-                android:text="Community"
-                android:textSize="20dp" />
 
             <EditText
-                android:layout_marginTop="29dp"
-                android:layout_marginLeft="-120dp"
 
-                android:hint="Sample Community"
+
+                android:background="@drawable/text_shape1"
+
+                android:hint="Location"
                 android:inputType="text"
                 android:id="@+id/Title2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="310dp"
+                android:layout_height="50dp"
                 android:textSize="15dp"
-                android:fontFamily="@font/inter_medium"
-                android:textColor="@color/newred"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black"
 
                 android:paddingLeft="10dp"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="-20dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+
             android:padding="5dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-                android:text="Introduction"
 
-
-                android:textSize="20dp" />
 
             <EditText
-                android:layout_marginTop="29dp"
-                android:layout_marginLeft="-120dp"
 
-                android:hint="Intro"
-                android:inputType="text"
+                android:background="@drawable/text_shape1"
+                android:inputType="textMultiLine|textCapSentences"
+                android:hint="Introduction"
                 android:id="@+id/Title3"
-                android:layout_width="wrap_content"
+                android:lines="6"
+                android:layout_width="310dp"
                 android:layout_height="wrap_content"
                 android:textSize="15dp"
-                android:fontFamily="@font/inter_medium"
-                android:textColor="@color/newred"
-
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/black"
+                android:paddingTop="10dp"
+              android:gravity="top"
                 android:paddingLeft="10dp"/>
         </LinearLayout>
-
-
-
-        <View
-            android:layout_width="400dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="10dp"
-
-            android:background="@color/red" />
-
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="-20dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+
             android:padding="5dp">
+        <Button
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-                android:gravity="center"
-                android:text="Additional Information"
-                android:textSize="20dp" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-
+            android:id="@+id/button223"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:padding="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-
-                android:text="Purpose"
-
-                android:textSize="20dp" />
-
-            <EditText
-                android:layout_marginTop="29dp"
-                android:layout_marginLeft="-90dp"
-                android:id="@+id/Campus1"
-                android:hint="Information"
-                android:inputType="text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-                android:paddingLeft="10dp"
-                android:textColor="@color/newred"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/withstrokebutton"
+            android:text="Next"
+            android:textAllCaps="false"
 
 
-                android:textSize="15dp" />
+            android:textColor="@android:color/white" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:padding="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-
-                android:text="Emergency No."
-
-                android:textSize="20dp" />
-
-            <EditText
-                android:hint="Contact no."
-                android:inputType="text"
-                android:layout_marginTop="29dp"
-                android:layout_marginLeft="-158dp"
-                android:id="@+id/EmergencyContact"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/inter_medium"
-                android:paddingLeft="10dp"
-                android:textColor="@color/newred"
 
 
-                android:textSize="15dp" />
-        </LinearLayout>
-        <LinearLayout
-            android:padding="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Guardian First Name:"
-                android:fontFamily="@font/inter_medium"
-                android:drawablePadding="10dp"
-                android:textSize="20dp"
-                />
-            <EditText
-                android:id="@+id/guardianname1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:fontFamily="@font/inter_medium"
-                android:textColor="@color/newred"
-                android:hint="First Name"
-                android:inputType="text"
-                android:paddingLeft="10dp"
 
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:padding="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Guardian Last Name:"
-                android:fontFamily="@font/inter_medium"
-                android:drawablePadding="10dp"
-                android:textSize="20dp"
-                />
-            <EditText
 
-                android:id="@+id/guardianname2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:fontFamily="@font/inter_medium"
-                android:textColor="@color/newred"
-                android:hint="Last Name"
-                android:inputType="text"
-                android:paddingLeft="10dp"
 
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:padding="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Campus"
-                android:fontFamily="@font/inter_medium"
-                android:drawablePadding="10dp"
-                android:textSize="20dp"
-                />
-            <Spinner
-                android:id="@+id/campusSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/button_editprofile"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
 
-        </LinearLayout>
-        <LinearLayout
-            android:padding="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nstp"
-                android:fontFamily="@font/inter_medium"
-                android:drawablePadding="10dp"
-                android:textSize="20dp"
-                />
-            <Spinner
-                android:id="@+id/campusSpinner2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/button_editprofile"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:padding="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Date"
-                android:fontFamily="@font/inter_medium"
-                android:drawablePadding="10dp"
-                android:textSize="20dp"
-                />
-            <EditText
-
-                android:id="@+id/birthdate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingEnd="15dp"
-                android:background="@drawable/button_shape"
-                android:backgroundTint="@color/white"
-                android:cursorVisible="false"
-                android:drawableEnd="@drawable/calendar"
-                android:ems="10"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-
-                android:paddingLeft="10dp"
-                android:inputType="date"
-               />
-
-        </LinearLayout>
     </LinearLayout>
     </ScrollView>
 
