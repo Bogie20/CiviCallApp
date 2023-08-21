@@ -42,6 +42,9 @@ class add_engagement : AppCompatActivity() {
         binding.back100.setOnClickListener {
             onBackPressed()
         }
+        binding.clear.setOnClickListener {
+            clearInputs()
+        }
 
         binding.addprofile.setOnClickListener {
             showImageSourcesDialog()
@@ -54,6 +57,16 @@ class add_engagement : AppCompatActivity() {
         retrieveAndPopulateUserData()
     }
 
+    private fun clearInputs() {
+        binding.pic1.setImageResource(0) // Clear the image
+        binding.Title.text.clear() // Clear title EditText
+        binding.Title2.text.clear() // Clear location EditText
+        binding.Title3.text.clear() // Clear introduction EditText
+
+        // Show the TextView and FloatingActionButton
+        binding.hintText.visibility = View.VISIBLE
+        binding.addprofile.visibility = View.VISIBLE
+    }
 
     private fun showImageSourcesDialog() {
         val options = arrayOf("Camera", "Gallery")
@@ -141,6 +154,10 @@ class add_engagement : AppCompatActivity() {
                 reference.downloadUrl.addOnSuccessListener { uri ->
                     val uploadImageUrl = uri.toString()
                     updateData(uid, uploadImageUrl) // Pass the uploadImageUrl here
+
+                    // Hide the TextView and FloatingActionButton
+                    binding.hintText.visibility = View.GONE
+                    binding.addprofile.visibility = View.GONE
                 }
             }
             .addOnFailureListener { e ->
@@ -149,8 +166,9 @@ class add_engagement : AppCompatActivity() {
                     .show()
             }
     }
-    private fun updateProfile(uploadImageUrl: String) {
-        progressDialog.setMessage("Updating Profile...")
+
+    private fun Poster(uploadImageUrl: String) {
+        progressDialog.setMessage("Updating Poster...")
 
         val hashMap: HashMap<String, Any> = HashMap()
         hashMap["poster"] = uploadImageUrl
@@ -224,18 +242,22 @@ class add_engagement : AppCompatActivity() {
                     binding.Title2.setText(location.toString())
                     binding.Title3.setText(introduction.toString())
 
-
-
                     // Load profile image using Picasso if the profileImageUrl is not null
                     if (PosterUrl != null && PosterUrl.toString().isNotEmpty()) {
                         // Load profile image using Picasso
-                        Picasso.get().load(PosterUrl.toString()).into(binding.addprofile)
+                        Picasso.get().load(PosterUrl.toString()).into(binding.pic1)
+
+                        // Hide the TextView and FloatingActionButton
+                        binding.hintText.visibility = View.GONE
+                        binding.addprofile.visibility = View.GONE
                     }
                 }
             }
         }
     }
+
 }
+
 
 
 
