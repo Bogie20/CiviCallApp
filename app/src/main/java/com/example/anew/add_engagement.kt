@@ -53,10 +53,16 @@ class add_engagement : AppCompatActivity() {
         binding.buttonadd.setOnClickListener {
             checkUser()
         }
+        binding.buttonadd.setOnClickListener {
+            navigateToAddActivities2()
+        }
 
         retrieveAndPopulateUserData()
     }
-
+    private fun navigateToAddActivities2() {
+        val intent = Intent(this, Add_activities2::class.java)
+        startActivity(intent)
+    }
     private fun clearInputs() {
         binding.pic1.setImageResource(0) // Clear the image
         binding.Title.text.clear() // Clear title EditText
@@ -180,7 +186,7 @@ class add_engagement : AppCompatActivity() {
             .updateChildren(hashMap)
             .addOnSuccessListener {
                 progressDialog.dismiss()
-                startActivity(Intent(this, myprofile1::class.java))
+                startActivity(Intent(this, Add_activities2::class.java))
                 finish()
                 Toast.makeText(this, "Success to Update", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener { e ->
