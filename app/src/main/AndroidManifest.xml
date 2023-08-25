@@ -12,12 +12,57 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.New"
         tools:targetApi="31">
+
+        <!-- Emergency Contact Start -->
         <activity
-            android:name=".EmergencyContact.BalayanEmergency"
-            android:exported="false" />
+            android:name=".EmergencyCon.SanJuanCont"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
-            android:name=".EmergencyContact.Agoncillo"
-            android:exported="false" />
+            android:name=".EmergencyCon.RosarioCont"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name=".EmergencyCon.PabloBorbon2Cont"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name=".EmergencyCon.PabloBorbon1Cont"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name=".EmergencyCon.NasugbuCont"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name=".EmergencyCon.MalvarCont"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name=".EmergencyCon.MabiniCont"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name=".EmergencyCon.LoboCont"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name=".EmergencyCon.LipaCont"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name=".EmergencyCon.LemeryCont"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <activity
+            android:name=".EmergencyCon.BalayanCont"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+
+        <!-- Emergency Contact End-->
+
+
+
         <activity
             android:name=".Add_activities2"
             android:exported="true" />
@@ -101,10 +146,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Register1"
-            android:exported="true"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".DisasterResponse"
             android:exported="true"
             android:screenOrientation="portrait" />
 
