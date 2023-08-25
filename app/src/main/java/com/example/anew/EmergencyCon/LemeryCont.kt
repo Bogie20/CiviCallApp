@@ -66,7 +66,7 @@ class LemeryCont : AppCompatActivity() {
         mList.add(ContactData("\nBATSTATEU LEMERY \n"+"INFIRMARY", R.drawable.batstateu))
         mList.add(ContactData("\nBFP LEMERY", R.drawable.bfp))
         mList.add(ContactData("\nCOAST GUARD\n" + "LEMERY", R.drawable.pcg))
-        mList.add(ContactData("\nLEMERY CAMPUS\n"+"INFIRMARY", R.drawable.hospitallogo))
+        mList.add(ContactData("\nLEMERY CAMPUS\n"+"INFIRMARY", R.drawable.batstateu))
         mList.add(ContactData("\nLEMERY CAMPUS \n" + "SECURITY OFFICE", R.drawable.batstateu))
         mList.add(ContactData("\nLEMERY DOCTORS \n" + "MEDICAL CENTER", R.drawable.hospitallogo))
         mList.add(ContactData("\nLEMERY LGU", R.drawable.lemerylogo))
