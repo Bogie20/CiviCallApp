@@ -34,7 +34,7 @@
             <!-- CardView 1 -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="125dp"
                 app:cardCornerRadius="15dp"
                 app:cardPreventCornerOverlap="true"
                 android:layout_marginTop="10dp">
@@ -53,7 +53,7 @@
                         style="@style/viewParent.headerText.HomeCardTitle" />
 
                     <TextView
-                        android:text="&quot;The power of the people is stronger \nthan the people in power.&quot; - Wael Ghonim"
+                        android:text="&quot;The power of the people is stronger\nthan the people in power.&quot; - Wael Ghonim"
                         style="@style/viewParent.headerText.homeCardContent"
                         android:layout_marginTop="15dp"
                         android:textSize="10dp"
@@ -72,7 +72,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="125dp"
             app:cardCornerRadius="15dp"
             app:cardPreventCornerOverlap="true"
             android:layout_marginTop="10dp">
@@ -110,7 +110,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="125dp"
             app:cardCornerRadius="15dp"
             app:cardPreventCornerOverlap="true"
             android:layout_marginTop="10dp">
@@ -118,37 +118,37 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:minHeight="100dp"
                 android:background="@drawable/gradient2"
+                android:minHeight="100dp"
                 android:padding="10dp">
 
                 <TextView
                     android:id="@+id/textViewSub3Title"
+                    style="@style/viewParent.headerText.HomeCardTitle"
                     android:text="Survival Tips"
-                    android:textSize="23dp"
-                    style="@style/viewParent.headerText.HomeCardTitle" />
+                    android:textSize="23dp" />
 
                 <TextView
-                    android:text="&quot;In the midst of survival, our true\n strengths and abilities are revealed.&quot; \n- Les Stroud"
                     style="@style/viewParent.headerText.homeCardContent"
-                    android:layout_marginTop="10dp"
-                    android:textSize="10dp"
-                    android:layout_below="@id/textViewSub3Title"/>
+                    android:layout_below="@id/textViewSub3Title"
+                    android:layout_marginTop="15dp"
+                    android:text="&quot;In the midst of survival, our true\n strengths and abilities are revealed.&quot; \n- Les Stroud"
+                    android:textSize="10dp" />
 
                 <ImageView
                     android:id="@+id/imageView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/survive"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true" />
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/survive" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="125dp"
             app:cardCornerRadius="15dp"
             app:cardPreventCornerOverlap="true"
             android:layout_marginTop="10dp">
@@ -185,7 +185,7 @@
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="125dp"
             app:cardCornerRadius="15dp"
             app:cardPreventCornerOverlap="true"
             android:layout_marginTop="10dp">
@@ -223,7 +223,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="125dp"
             app:cardCornerRadius="15dp"
             app:cardPreventCornerOverlap="true"
             android:layout_marginTop="10dp">
@@ -244,7 +244,7 @@
                 <TextView
                     android:text="&quot;Education's purpose is to replace an \nempty mind with an open one.&quot; \n- Malcolm Forbes"
                     style="@style/viewParent.headerText.homeCardContent"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="15dp"
                     android:textSize="10dp"
                     android:layout_below="@id/textViewSub6Title"/>
 
@@ -261,7 +261,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="125dp"
             app:cardCornerRadius="15dp"
             app:cardPreventCornerOverlap="true"
             android:layout_marginTop="10dp">
@@ -275,12 +275,12 @@
 
                 <TextView
                     android:id="@+id/textViewSub7Title"
-                    android:text="Campus Emergency Cont."
+                    android:text="Public Health Awareness"
                     android:textSize="18dp"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
-                    android:text="&quot;Emergency contacts on campus are the \nguardian angels of safety.&quot;"
+                    android:text="&quot;Health is a state of complete physical, mental and \nsocial well-being, not merely the absence of disease \nor infirmity.- World Health Organization (WHO)&quot;"
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:textSize="10dp"
@@ -299,7 +299,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="125dp"
             app:cardCornerRadius="15dp"
             android:layout_marginBottom="50dp"
             app:cardPreventCornerOverlap="true"
@@ -314,12 +314,12 @@
 
                 <TextView
                     android:id="@+id/textViewSub8Title"
-                    android:text="LGU-Emergency Cont."
+                    android:text="Campus Emergency Contact"
                     android:textSize="18dp"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
-                    android:text="&quot;Empowering communities through reliable \nLGU emergency contacts.&quot;"
+                    android:text="&quot;Emergency contacts are not just names on a list; \nthey are lifelines that bridge the gap between \nhelplessness and hope in times of crisis.&quot;"
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:textSize="10dp"

@@ -82,10 +82,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".EducationalResources"
-            android:exported="true"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".Settings"
             android:exported="true"
