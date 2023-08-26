@@ -67,7 +67,7 @@ class LoboCont : AppCompatActivity() {
         mList.add(ContactData("\nBATSTATEU LOBO \n" + "SECURITY OFFICE", R.drawable.batstateu))
         mList.add(ContactData("\nBFP LOBO", R.drawable.bfp))
         mList.add(ContactData("\nCOAST GUARD\n" + "LOBO", R.drawable.pcg))
-        mList.add(ContactData("\nLOBO CAMPUS\n"+"EMERGENCY OPERATIONS\n"+"CENTER", R.drawable.batstateu))
+        mList.add(ContactData("LOBO CAMPUS\n"+"EMERGENCY\n"+"OPERATIONS CENTER", R.drawable.batstateu))
         mList.add(ContactData("\nLOBO MDRRMO", R.drawable.mdrrmo))
         mList.add(ContactData("\nLOBO MUNICIPAL\n"+"HOSPITAL", R.drawable.hospitallogo))
         mList.add(ContactData("\nPHILIPPINE RED CROSS\n"+ "BATANGAS CITY", R.drawable.redcross))

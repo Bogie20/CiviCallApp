@@ -61,6 +61,7 @@ class BalayanCont : AppCompatActivity() {
     }
 
     private fun addDataToList() {
+        mList.add(ContactData("\nNATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
         mList.add(ContactData("\nBALAYAN BAYVIEW\n" + "HOSPITAL", R.drawable.hospitallogo))
         mList.add(ContactData("BALAYAN CAMPUS\n" + "EMERGENCY\n" + "OPERATIONS CENTER", R.drawable.batstateu))
         mList.add(ContactData("\nBALAYAN MDRRMO", R.drawable.mdrrmo))

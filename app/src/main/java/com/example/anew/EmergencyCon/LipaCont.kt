@@ -61,6 +61,7 @@ class LipaCont : AppCompatActivity() {
     }
 
     private fun addDataToList() {
+        mList.add(ContactData("\nNATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
         mList.add(ContactData("\nBATANGAS PDRRMO", R.drawable.pdrrmobats))
         mList.add(ContactData("BATSTATE U INCIDENT \n" + "COMMANDERS OFFICE /\n" + "EXECUTIVE DIRECTORS\n"+"OFFICE", R.drawable.batstateu))
         mList.add(ContactData("\nBUREAU OF FIRE\n"+"LIPA CITY", R.drawable.bfp))
