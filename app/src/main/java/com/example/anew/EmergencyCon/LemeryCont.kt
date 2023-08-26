@@ -65,16 +65,16 @@ class LemeryCont : AppCompatActivity() {
         mList.add(ContactData("\nBATANGAS PDRRMO", R.drawable.pdrrmobats))
         mList.add(ContactData("BATSTATE U INCIDENT \n" + "COMMANDERS OFFICE /\n" + "EXECUTIVE DIRECTORS\n"+"OFFICE", R.drawable.batstateu))
         mList.add(ContactData("\nBATSTATEU LEMERY \n"+"INFIRMARY", R.drawable.batstateu))
-        mList.add(ContactData("\nBFP LEMERY", R.drawable.bfp))
+        mList.add(ContactData("BUREAU OF FIRE\n"+"PROTECTION\n"+"LEMERY", R.drawable.bfp))
         mList.add(ContactData("\nCOAST GUARD\n" + "LEMERY", R.drawable.pcg))
         mList.add(ContactData("\nLEMERY CAMPUS\n"+"INFIRMARY", R.drawable.batstateu))
         mList.add(ContactData("\nLEMERY CAMPUS \n" + "SECURITY OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("\nLEMERY DOCTORS \n" + "MEDICAL CENTER", R.drawable.hospitallogo))
+        mList.add(ContactData("\nLEMERY DOCTORS \n" + "MEDICAL CENTER", R.drawable.lemerydoctors))
         mList.add(ContactData("\nLEMERY LGU", R.drawable.lemerylogo))
         mList.add(ContactData("\nMETRO LEMERY\n"+"MEDICAL CENTER", R.drawable.metrolemery))
         mList.add(ContactData("\nOUR LADY OF CAYSASAY\n"+ "MEDICAL CENTER", R.drawable.ourlady))
         mList.add(ContactData("\nPHILIPPINE RED CROSS\n"+ "DISTRICT 1 (NASUGBU)", R.drawable.redcross))
-        mList.add(ContactData("\n PNP Lemery", R.drawable.pnp))
+        mList.add(ContactData("\nPNP Lemery", R.drawable.pnp))
 
 
     }

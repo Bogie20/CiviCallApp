@@ -64,7 +64,7 @@ class LipaCont : AppCompatActivity() {
         mList.add(ContactData("\nNATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
         mList.add(ContactData("\nBATANGAS PDRRMO", R.drawable.pdrrmobats))
         mList.add(ContactData("BATSTATE U INCIDENT \n" + "COMMANDERS OFFICE /\n" + "EXECUTIVE DIRECTORS\n"+"OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("\nBUREAU OF FIRE\n"+"LIPA CITY", R.drawable.bfp))
+        mList.add(ContactData("BUREAU OF FIRE\n"+"PROTECTION\n"+"LIPA CITY", R.drawable.bfp))
         mList.add(ContactData("\nCOAST GUARD\n" + "BATANGAS", R.drawable.pcg))
         mList.add(ContactData("\nLIPA CITY  \n"+"DISTRICT HOSPITAL", R.drawable.lipadistrict))
         mList.add(ContactData("\nLIPA CITY\n"+"POLICE STATION (PNP)", R.drawable.pnp))

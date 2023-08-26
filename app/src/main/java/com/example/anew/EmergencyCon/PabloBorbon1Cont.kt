@@ -59,6 +59,7 @@ class PabloBorbon1Cont : AppCompatActivity() {
     }
 
     private fun addDataToList() {
+        mList.add(ContactData("\nNATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
         mList.add(ContactData("\nBATANGAS CDRRMO", R.drawable.batangcdrrmo))
         mList.add(ContactData("\nBATANGAS MEDICAL\n"+"CENTER", R.drawable.batangmedical))
         mList.add(ContactData("\nBATANGAS PDRRMO", R.drawable.pdrrmobats))
@@ -66,11 +67,10 @@ class PabloBorbon1Cont : AppCompatActivity() {
         mList.add(ContactData("\nBATSTATEU\n"+"INFIRMARY", R.drawable.batstateu))
         mList.add(ContactData("\nBATSTATE U\n" + "ACTION CENTER", R.drawable.batstateu))
         mList.add(ContactData("\nBATSTATE U\n"+"CHIEF SECURITY\n"+"OFFICER", R.drawable.batstateu))
-        mList.add(ContactData("\nBFP BATANGAS CITY", R.drawable.bfp))
+        mList.add(ContactData("\nBUREAU OF FIRE\n"+"PROTECTION\n"+"BATANGAS CITY", R.drawable.bfp))
         mList.add(ContactData("\nCOAST GUARD\n" + "BATANGAS", R.drawable.pcg))
         mList.add(ContactData("\nGOLDEN GATE\n"+"HOSPITAL", R.drawable.batanggolden))
         mList.add(ContactData("\nMAYOR'S ACTION\n"+"CENTER", R.drawable.batangamayor))
-        mList.add(ContactData("\nNATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
         mList.add(ContactData("\nPHILIPPINE RED CROSS\n"+ "BATANGAS CITY", R.drawable.redcross))
         mList.add(ContactData("\nPNP BATANGAS CITY", R.drawable.pnp))
         mList.add(ContactData("\nPNP BATANGAS\n"+"PROVINCIAL\n"+"OFFICE", R.drawable.batangpnp))

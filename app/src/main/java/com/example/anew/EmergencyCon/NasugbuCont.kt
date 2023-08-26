@@ -61,22 +61,17 @@ class NasugbuCont : AppCompatActivity() {
     }
 
     private fun addDataToList() {
-        mList.add(ContactData("\nBALAYAN BAYVIEW\n" + "HOSPITAL", R.drawable.hospitallogo))
-        mList.add(ContactData("BALAYAN CAMPUS\n" + "EMERGENCY\n" + "OPERATIONS CENTER", R.drawable.batstateu))
-        mList.add(ContactData("\nBALAYAN MDRRMO", R.drawable.mdrrmo))
+        mList.add(ContactData("\nNATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
         mList.add(ContactData("\nBATANGAS PDRRMO", R.drawable.pdrrmobats))
-        mList.add(ContactData("\nBATSTATEU BALAYAN\n"+ "INFIRMARY", R.drawable.batstateu))
-        mList.add(ContactData("\nBATSTATEU BALAYAN\n"+ "SECURITY OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("BATSTATE U INCIDENT\n" + "COMMANDER/\n" + "EXECUTIVE\n" + "DIRECTORS OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("\nBATELEC I", R.drawable.batelec1))
-        mList.add(ContactData("\nBFP BALAYAN", R.drawable.bfp))
-        mList.add(ContactData("\nCOAST GUARD\n" + "BALAYAN", R.drawable.pcg))
-        mList.add(ContactData("DR. MANUEL LOPEZ\n"+ "DISTRICT MEMORIAL\n" + "HOSPITAL", R.drawable.hospitallogo))
-        mList.add(ContactData("\nMEDICAL CENTER\n" + "WESTERN BATANGAS", R.drawable.medwes))
-        mList.add(ContactData("\nMETRO BALAYAN\n" + "MEDICAL CENTER", R.drawable.metrobalayan))
+        mList.add(ContactData("\nBATSTATE U INCIDENT\n" + "COMMANDER OFFICE", R.drawable.batstateu))
+        mList.add(ContactData("\nBUREAU OF FIRE\n"+"PROTECTION\n"+"NASUGBU", R.drawable.bfp))
+        mList.add(ContactData("\nCOAST GUARD\n" + "NASUGBU", R.drawable.pcg))
+        mList.add(ContactData("\nEXECUTIVE DIRECTOR'S\n" + "OFFICE", R.drawable.batstateu))
+        mList.add(ContactData("\nJABEZ MEDICAL\n"+"CENTER", R.drawable.jabez))
+        mList.add(ContactData("\nMETROPOLITAN\n"+"MEDICAL CENTER", R.drawable.metrohospital))
+        mList.add(ContactData("\nNASUGBU MDRRMO", R.drawable.nasugbumdrrmo))
         mList.add(ContactData("\nPHILIPPINE RED CROSS\n"+ "DISTRICT 1 (NASUGBU)", R.drawable.redcross))
-        mList.add(ContactData("\n PNP BALAYAN", R.drawable.pnp))
-
+        mList.add(ContactData("\nPNP NASUGBU", R.drawable.pnp))
 
     }
 }

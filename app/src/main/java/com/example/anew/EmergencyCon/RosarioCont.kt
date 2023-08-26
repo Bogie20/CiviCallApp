@@ -59,21 +59,20 @@ class RosarioCont : AppCompatActivity() {
     }
 
     private fun addDataToList() {
-        mList.add(ContactData("\nBALAYAN BAYVIEW\n" + "HOSPITAL", R.drawable.hospitallogo))
-        mList.add(ContactData("BALAYAN CAMPUS\n" + "EMERGENCY\n" + "OPERATIONS CENTER", R.drawable.batstateu))
-        mList.add(ContactData("\nBALAYAN MDRRMO", R.drawable.mdrrmo))
+        mList.add(ContactData("\nNATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
         mList.add(ContactData("\nBATANGAS PDRRMO", R.drawable.pdrrmobats))
-        mList.add(ContactData("\nBATSTATEU BALAYAN\n"+ "INFIRMARY", R.drawable.batstateu))
-        mList.add(ContactData("\nBATSTATEU BALAYAN\n"+ "SECURITY OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("BATSTATE U INCIDENT\n" + "COMMANDER/\n" + "EXECUTIVE\n" + "DIRECTORS OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("\nBATELEC I", R.drawable.batelec1))
-        mList.add(ContactData("\nBFP BALAYAN", R.drawable.bfp))
-        mList.add(ContactData("\nCOAST GUARD\n" + "BALAYAN", R.drawable.pcg))
-        mList.add(ContactData("DR. MANUEL LOPEZ\n"+ "DISTRICT MEMORIAL\n" + "HOSPITAL", R.drawable.hospitallogo))
-        mList.add(ContactData("\nMEDICAL CENTER\n" + "WESTERN BATANGAS", R.drawable.medwes))
-        mList.add(ContactData("\nMETRO BALAYAN\n" + "MEDICAL CENTER", R.drawable.metrobalayan))
-        mList.add(ContactData("\nPHILIPPINE RED CROSS\n"+ "DISTRICT 1 (NASUGBU)", R.drawable.redcross))
-        mList.add(ContactData("\n PNP BALAYAN", R.drawable.pnp))
+        mList.add(ContactData("BATSTATE U INCIDENT\n" + "COMMANDER/\n"+"EXECUTIVE DIRECTOR'S\n"+"OFFICE", R.drawable.batstateu))
+        mList.add(ContactData("\nBATSTATEU ROSARIO\n"+ "INFIRMARY", R.drawable.batstateu))
+        mList.add(ContactData("\nBATSTATEU ROSARIO\n"+ "SECURITY OFFICE", R.drawable.batstateu))
+        mList.add(ContactData("BATSTATEU ROSARIO\n" + "EMERGENCY\n" + "OPERATIONS CENTER", R.drawable.batstateu))
+        mList.add(ContactData("\nBUREAU OF FIRE\n"+"PROTECTION\n"+"ROSARIO", R.drawable.bfp))
+        mList.add(ContactData("\nCOAST GUARD\n" + "BATANGAS", R.drawable.pcg))
+        mList.add(ContactData("\nMAHAL NA VIRGEN \n"+"MARIA SANTO ROSARIO\n" + "DISTRICT HOSPITAL", R.drawable.mahalnavirhen))
+        mList.add(ContactData("\nPALMA-MALALUAN\n"+"HOSPITAL", R.drawable.palma))
+        mList.add(ContactData("\nPHILIPPINE RED CROSS\n"+ "BATANGAS CITY", R.drawable.redcross))
+        mList.add(ContactData("\nPNP ROSARIO", R.drawable.pnp))
+        mList.add(ContactData("\nROSARIO LGU OFFICE\n"+"ON HEALTH SERVICES", R.drawable.rosariolgu))
+        mList.add(ContactData("\nSTO.ROSARIO\n"+"HOSPITAL", R.drawable.storosario))
 
 
     }

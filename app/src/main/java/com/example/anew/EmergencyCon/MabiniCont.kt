@@ -65,7 +65,7 @@ class MabiniCont : AppCompatActivity() {
         mList.add(ContactData("\nBATANGAS PDRRMO", R.drawable.pdrrmobats))
         mList.add(ContactData("\nBATSTATE U\n" + "MABINI ADMIN\n" + "OFFICE", R.drawable.batstateu))
         mList.add(ContactData("\nBATSTATEU MABINI \n"+"INFIRMARY", R.drawable.batstateu))
-        mList.add(ContactData("\nBFP MABINI", R.drawable.bfp))
+        mList.add(ContactData("\nBUREAU OF FIRE\n"+"PROTECTION\n"+"MABINI", R.drawable.bfp))
         mList.add(ContactData("\nCOAST GUARD\n" + "MABINI", R.drawable.pcg))
         mList.add(ContactData("\nMABINI CAMPUS\n"+"EMERGENCY OPERATIONS\n"+"CENTER", R.drawable.batstateu))
         mList.add(ContactData("\nMABINI GENERAL\n"+"HOSPITAL", R.drawable.hospitallogo))
