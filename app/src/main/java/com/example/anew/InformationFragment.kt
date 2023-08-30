@@ -1,59 +1,70 @@
 package com.example.anew
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
+import com.example.anew.EmergencyCon.MainEmergencyContact
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [InformationFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class InformationFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    // ... (other code)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_information, container, false)
+        val view = inflater.inflate(R.layout.fragment_information, container, false)
+
+        val cardview1 = view.findViewById<CardView>(R.id.cardview1)
+        val cardview2 = view.findViewById<CardView>(R.id.cardview2)
+        val cardview3 = view.findViewById<CardView>(R.id.cardview3)
+        val cardview4 = view.findViewById<CardView>(R.id.cardview4)
+        val cardview5 = view.findViewById<CardView>(R.id.cardview5)
+        val cardview6 = view.findViewById<CardView>(R.id.cardview6)
+        val cardview7 = view.findViewById<CardView>(R.id.cardview7)
+        val cardview8 = view.findViewById<CardView>(R.id.cardview8)
+
+        cardview1.setOnClickListener {
+            val intent = Intent(requireContext(), MainEmergencyContact::class.java)
+            startActivity(intent)
+        }
+
+        cardview2.setOnClickListener {
+            val intent = Intent(requireContext(), MainEmergencyContact::class.java)
+            startActivity(intent)
+        }
+
+
+        cardview3.setOnClickListener {
+            val intent = Intent(requireContext(), MainEmergencyContact::class.java)
+            startActivity(intent)
+        }
+        cardview4.setOnClickListener {
+            val intent = Intent(requireContext(), MainEmergencyContact::class.java)
+            startActivity(intent)
+        }
+        cardview5.setOnClickListener {
+            val intent = Intent(requireContext(), MainEmergencyContact::class.java)
+            startActivity(intent)
+        }
+        cardview6.setOnClickListener {
+            val intent = Intent(requireContext(), MainEmergencyContact::class.java)
+            startActivity(intent)
+        }
+        cardview7.setOnClickListener {
+            val intent = Intent(requireContext(), MainEmergencyContact::class.java)
+            startActivity(intent)
+        }
+        cardview8.setOnClickListener {
+            val intent = Intent(requireContext(), MainEmergencyContact::class.java)
+            startActivity(intent)
+        }
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PracticeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            InformationFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

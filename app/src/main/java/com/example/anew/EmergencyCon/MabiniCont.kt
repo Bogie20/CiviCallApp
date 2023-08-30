@@ -1,6 +1,7 @@
 package com.example.anew.EmergencyCon
 
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -20,6 +21,10 @@ class MabiniCont : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mabini_cont)
 
+        val backButton: ImageView = findViewById(R.id.backbutton)
+        backButton.setOnClickListener {
+            onBackPressed()
+        }
         recyclerView = findViewById(R.id.recyclerView)
         searchView = findViewById(R.id.searchView)
 
