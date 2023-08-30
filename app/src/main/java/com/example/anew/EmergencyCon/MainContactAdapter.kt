@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.anew.R
 
-class ContactAdapter(var mList: List<ContactData>) :
-    RecyclerView.Adapter<ContactAdapter.LanguageViewHolder>() {
+class MainContactAdapter(var mList: List<ContactData>) :
+    RecyclerView.Adapter<MainContactAdapter.LanguageViewHolder>() {
 
     inner class LanguageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val logo : ImageView = itemView.findViewById(R.id.logoIv)
@@ -22,7 +22,7 @@ class ContactAdapter(var mList: List<ContactData>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LanguageViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.each_contact , parent , false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.main_each_contact_option , parent , false)
         return LanguageViewHolder(view)
 
     }

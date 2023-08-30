@@ -70,7 +70,7 @@ class Dashboard : AppCompatActivity() {
                     }
                     4 -> {
                         binding.titleLarge.text = "Notifications"
-                        replaceFragment(ProfileFragment())
+                        replaceFragment(notificationFragment())
                     }
                 }
 

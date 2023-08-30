@@ -13,9 +13,9 @@
         android:theme="@style/Theme.New"
         tools:targetApi="31">
         <activity
-            android:name=".EmergencyCon.MainEmergencyCont"
-            android:exported="false" />
-        <!-- Emergency Contact Start -->
+            android:name=".EmergencyCon.MainEmergencyContact"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".EmergencyCon.SanJuanCont"
             android:exported="true"
@@ -67,9 +67,6 @@
             android:name=".add_engagement"
             android:exported="true" />
         <activity
-            android:name=".EmergencyContact"
-            android:exported="true" />
-        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name">
@@ -80,15 +77,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Settings"
-            android:exported="true"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Feedback"
-            android:exported="true"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Forums"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
