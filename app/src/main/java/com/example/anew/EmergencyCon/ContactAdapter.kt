@@ -52,9 +52,15 @@ class ContactAdapter(var mList: List<ContactData>) :
     }
 
     private fun showPhoneOptionsDialog(context: Context, title: String) {
-        val phoneOptions = arrayOf("123456789", "987654321") // Add your phone numbers here
+        val phoneOptions: Array<String> = when (title) {
+            "\nNATIONAL EMERGENCY\n"+"HOTLINE" -> arrayOf("911")
+            "\nBATANGAS PDRRMO" -> arrayOf("111111111", "222222222")
+            // Add similar cases for other titles
+            else -> arrayOf("Default Number 1", "Default Number 2")
+        }
+
         val builder = AlertDialog.Builder(context)
-        builder.setTitle("Call $title")
+        builder.setTitle("Call $title\n")
             .setItems(phoneOptions) { _, which ->
                 val selectedPhoneNumber = phoneOptions[which]
                 if (context is AppCompatActivity) {
@@ -65,7 +71,6 @@ class ContactAdapter(var mList: List<ContactData>) :
                     }
                 }
             }
-
         val dialog = builder.create()
         dialog.show()
     }
