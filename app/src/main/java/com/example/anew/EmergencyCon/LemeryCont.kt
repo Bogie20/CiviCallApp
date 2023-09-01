@@ -1,5 +1,7 @@
 package com.example.anew.EmergencyCon
 
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
@@ -83,5 +85,24 @@ class LemeryCont : AppCompatActivity() {
         mList.add(ContactData("\nPNP Lemery", R.drawable.pnp))
 
 
+    }
+    private fun makePhoneCall(phoneNumber: String) {
+        val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:$phoneNumber"))
+        startActivity(intent)
+
+    }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_PHONE_PERMISSION) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Call the selected number
+                // You can implement logic to store the selected number temporarily and call it after permission is granted
+            } else {
+                Toast.makeText(this, "Phone permission denied", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+    companion object {
+        private const val REQUEST_PHONE_PERMISSION = 1
     }
 }
