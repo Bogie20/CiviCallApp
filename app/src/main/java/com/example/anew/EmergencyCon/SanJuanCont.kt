@@ -39,22 +39,21 @@ class SanJuanCont : AppCompatActivity() {
 
         val phoneOptionsSanjuan = mapOf(
 
-            0 to arrayOf("911"),
-            1 to arrayOf("111111111", "222222222"),
-            2 to arrayOf("911"),
-            3 to arrayOf("11122111", "222222222"),
-            4 to arrayOf("911"),
-            5 to arrayOf("111111111", "112342222222"),
-            6 to arrayOf("911"),
-            7 to arrayOf("141111111", "222222222"),
-            8 to arrayOf("911"),
-            9 to arrayOf("111111111", "2220922222"),
-            10 to arrayOf("911"),
-            11 to arrayOf("111111111", "222222222"),
-            12 to arrayOf("911"),
-            13 to arrayOf("111111111", "222222222"),
-            13 to arrayOf("111111111", "222222222"),
-            // Add similar cases for other titles
+            0 to arrayOf("911"),// hotline
+            1 to arrayOf("0437239350"),// pddrrmo
+            2 to arrayOf("0439800385"),// incident
+            3 to arrayOf("0434250139"),// infirmary
+            4 to arrayOf("0434250139"),// security office
+            5 to arrayOf("0435755192"),// service office
+            6 to arrayOf("0435754166","09156022026"),// bfp
+            7 to arrayOf("09178093429","09985855848"),// coast guard
+            8 to arrayOf("0435753408"),// divine care
+            9 to arrayOf("09171429378"),// redcross
+            10 to arrayOf("09153850205","09985985701"),// pnp
+            11 to arrayOf("0435753756"),// district host
+            12 to arrayOf("0435753138"),// doctors host
+            13 to arrayOf("0435753210"),// mdrrmo
+            14 to arrayOf("0435753992"),// health unit
         )
         adapter = ContactAdapter(mList, phoneOptionsSanjuan)
 
@@ -101,7 +100,7 @@ class SanJuanCont : AppCompatActivity() {
         mList.add(ContactData("\nBUREAU OF FIRE\n"+"PROTECTION\n"+"SAN JUAN", R.drawable.bfp))
         mList.add(ContactData("\nCOAST GUARD\n" + "SAN JUAN", R.drawable.pcg))
         mList.add(ContactData("\nDIVINE CARE\n"+"HOSPITAL", R.drawable.divinecare))
-        mList.add(ContactData("\nPHILIPPINE RED CROSS\n"+ "DISCTRICT 4&6 (lIPA)", R.drawable.redcross))
+        mList.add(ContactData("\nPHILIPPINE RED CROSS\n"+ "DISCTRICT 4&6 (LIPA)", R.drawable.redcross))
         mList.add(ContactData("\nPNP SAN JUAN", R.drawable.pnp))
         mList.add(ContactData("\nSAN JUAN\n" + "DISTRICT HOSPITAL", R.drawable.sanjuandistrict))
         mList.add(ContactData("\nSAN JUAN\n" + "DOCTORS HOSPITAL", R.drawable.sanjuandoctors))

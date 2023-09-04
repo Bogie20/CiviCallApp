@@ -38,22 +38,20 @@ class RosarioCont : AppCompatActivity() {
         addDataToList()
         val phoneOptionsRosario = mapOf(
 
-            0 to arrayOf("911"),
-            1 to arrayOf("111111111", "45322222"),
-            2 to arrayOf("911"),
-            3 to arrayOf("11122111", "222222222"),
-            4 to arrayOf("911"),
-            5 to arrayOf("111111111", "112342222222"),
-            6 to arrayOf("911"),
-            7 to arrayOf("141111111", "222222222"),
-            8 to arrayOf("911"),
-            9 to arrayOf("111111111", "2220922222"),
-            10 to arrayOf("911"),
-            11 to arrayOf("111111111", "222222222"),
-            12 to arrayOf("911"),
-            13 to arrayOf("111111111", "222222222"),
-            13 to arrayOf("111111111", "222222222"),
-            // Add similar cases for other titles
+            0 to arrayOf("911"),// hotline
+            1 to arrayOf("0437239350"),// pddrrmo
+            2 to arrayOf("0434250139"),// incident
+            3 to arrayOf("0434250139"),// infirmary
+            4 to arrayOf("0434250139"),// security office
+            5 to arrayOf("0439800385"),// opt center
+            6 to arrayOf("09156024435"),// bfp
+            7 to arrayOf("09178426633"),// coast guard
+            8 to arrayOf("0437064137"),// virgen maria
+            9 to arrayOf("0437784811","0433211410"),// palma
+            10 to arrayOf("0437233027","09171356219","09177734912"),// redcross
+            11 to arrayOf("0437247026","09152542577"),// pnp
+            12 to arrayOf("0437401338"),// lgu
+            13 to arrayOf("0433211025"),// sto rosario host
         )
         adapter = ContactAdapter(mList, phoneOptionsRosario)
 

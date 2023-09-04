@@ -103,7 +103,7 @@ class BalayanCont : AppCompatActivity() {
         mList.add(ContactData("\nBATSTATEU BALAYAN\n"+ "INFIRMARY", R.drawable.batstateu))
         mList.add(ContactData("\nBATSTATEU BALAYAN\n"+ "SECURITY OFFICE", R.drawable.batstateu))
         mList.add(ContactData("\nBATELEC I", R.drawable.batelec1))
-        mList.add(ContactData("BUREAU OF FIRE\n"+"PROTECTION\n"+"BALAYAN", R.drawable.bfp))
+        mList.add(ContactData("\nBUREAU OF FIRE\n"+"PROTECTION\n"+"BALAYAN", R.drawable.bfp))
         mList.add(ContactData("\nCOAST GUARD\n" + "BALAYAN", R.drawable.pcg))
         mList.add(ContactData("DR. MANUEL LOPEZ\n"+ "DISTRICT MEMORIAL\n" + "HOSPITAL", R.drawable.donmanuel))
         mList.add(ContactData("\nMEDICAL CENTER\n" + "WESTERN BATANGAS", R.drawable.medwes))

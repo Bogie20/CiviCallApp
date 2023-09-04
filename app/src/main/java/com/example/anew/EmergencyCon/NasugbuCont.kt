@@ -40,22 +40,17 @@ class NasugbuCont : AppCompatActivity() {
         addDataToList()
         val phoneOptionsNasugbu = mapOf(
 
-            0 to arrayOf("911"),
-            1 to arrayOf("111111111", "222222222"),
-            2 to arrayOf("911"),
-            3 to arrayOf("11122111", "222222222"),
-            4 to arrayOf("911"),
-            5 to arrayOf("111111111", "112342222222"),
-            6 to arrayOf("911"),
-            7 to arrayOf("141111111", "222222222"),
-            8 to arrayOf("911"),
-            9 to arrayOf("111111111", "2220922222"),
-            10 to arrayOf("911"),
-            11 to arrayOf("111111111", "222222222"),
-            12 to arrayOf("911"),
-            13 to arrayOf("111111111", "222222222"),
-            13 to arrayOf("111111111", "222222222"),
-            // Add similar cases for other titles
+            0 to arrayOf("911"),// hotline
+            1 to arrayOf("0437239350"),// pdrrmo
+            2 to arrayOf("0439800385"),// incident
+            3 to arrayOf("09156021998","09069582122"),// bfp
+            4 to arrayOf("09178428063","09985855849"),// coast guard
+            5 to arrayOf("0434160349","09150623889"),// executive office
+            6 to arrayOf("0434160446"),// jabez medical
+            7 to arrayOf("0436964374"),// metropolitan
+            8 to arrayOf("09175089911","09196292599"),// mdrrmo
+            9 to arrayOf("09171331427","09989509663"),// red cross
+            10 to arrayOf("09275001199","09985985698"),// pnp
         )
         adapter = ContactAdapter(mList, phoneOptionsNasugbu)
 
