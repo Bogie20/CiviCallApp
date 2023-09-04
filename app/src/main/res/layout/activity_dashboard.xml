@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     app:elevation="15dp"
     tools:context=".Dashboard">
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -74,5 +75,6 @@
         app:abb_tabColorSelected="@color/red"
         app:abb_tabs="@menu/bottom_nav_menu"
         app:abb_selectedIndex="0"
-        android:layout_gravity="bottom"/>
+        android:layout_gravity="bottom"
+        app:layout_behavior=".ScrollingBehavior" />
 </FrameLayout>
