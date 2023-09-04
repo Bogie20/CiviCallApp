@@ -18,8 +18,10 @@ import androidx.recyclerview.widget.RecyclerView
 import android.Manifest
 import com.example.anew.R
 
-class ContactAdapter(private var mList: List<ContactData>) :
-    RecyclerView.Adapter<ContactAdapter.LanguageViewHolder>() {
+class ContactAdapter(
+    private var mList: List<ContactData>,
+    private val phoneOptions: Map<Int, Array<String>>
+) : RecyclerView.Adapter<ContactAdapter.LanguageViewHolder>() {
 
     inner class LanguageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val logo: ImageView = itemView.findViewById(R.id.logoIv)
@@ -37,22 +39,17 @@ class ContactAdapter(private var mList: List<ContactData>) :
         holder.titleTv.text = mList[position].title
 
         holder.callButton.setOnClickListener {
-            showPhoneOptionsDialog(holder.itemView.context, mList[position].title)
+            showPhoneOptionsDialog(holder.itemView.context, position)
         }
     }
 
-    private fun showPhoneOptionsDialog(context: Context, title: String) {
-        val phoneOptions: Array<String> = when (title) {
-            "\nNATIONAL EMERGENCY\n" + "HOTLINE" -> arrayOf("911")
-            "\nBATANGAS PDRRMO" -> arrayOf("111111111", "222222222")
-            // Add similar cases for other titles
-            else -> arrayOf("Default Number 1", "Default Number 2")
-        }
+    private fun showPhoneOptionsDialog(context: Context, position: Int) {
+        val optionsArray = phoneOptions[position] ?: arrayOf("Default Number 1", "Default Number 2")
 
         val builder = AlertDialog.Builder(context)
-        builder.setTitle("Call $title\n")
-            .setItems(phoneOptions) { _, which ->
-                val selectedPhoneNumber = phoneOptions[which]
+        builder.setTitle("Call ${mList[position].title}\n")
+            .setItems(optionsArray) { _, which ->
+                val selectedPhoneNumber = optionsArray[which]
                 makePhoneCall(context, selectedPhoneNumber)
             }
         val dialog = builder.create()
@@ -78,12 +75,13 @@ class ContactAdapter(private var mList: List<ContactData>) :
             )
         }
     }
+
     fun setFilteredList(filteredData: List<ContactData>) {
         mList = filteredData
         notifyDataSetChanged()
     }
+
     companion object {
         private const val REQUEST_CALL_PERMISSION = 1
     }
-
 }

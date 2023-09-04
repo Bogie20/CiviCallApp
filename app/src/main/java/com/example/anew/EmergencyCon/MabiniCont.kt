@@ -37,7 +37,27 @@ class MabiniCont : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
         addDataToList()
-        adapter = ContactAdapter(mList)
+        val phoneOptionsMabini = mapOf(
+
+            0 to arrayOf("911"),
+            1 to arrayOf("111111111", "222222222"),
+            2 to arrayOf("911"),
+            3 to arrayOf("11122111", "222222222"),
+            4 to arrayOf("911"),
+            5 to arrayOf("111111111", "112342222222"),
+            6 to arrayOf("911"),
+            7 to arrayOf("141111111", "222222222"),
+            8 to arrayOf("911"),
+            9 to arrayOf("111111111", "2220922222"),
+            10 to arrayOf("911"),
+            11 to arrayOf("111111111", "222222222"),
+            12 to arrayOf("911"),
+            13 to arrayOf("111111111", "222222222"),
+            13 to arrayOf("111111111", "222222222"),
+            // Add similar cases for other titles
+        )
+        adapter = ContactAdapter(mList, phoneOptionsMabini)
+
         recyclerView.adapter = adapter
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
