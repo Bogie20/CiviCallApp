@@ -2,6 +2,7 @@ package com.example.anew.EmergencyCon
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +12,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import android.Manifest
 import com.example.anew.R
 
 class ContactAdapter(private var mList: List<ContactData>) :
@@ -61,7 +64,26 @@ class ContactAdapter(private var mList: List<ContactData>) :
     }
 
     private fun makePhoneCall(context: Context, phoneNumber: String) {
-        val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
-        context.startActivity(intent)
+        val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:$phoneNumber"))
+        if (ContextCompat.checkSelfPermission(
+                context,
+                Manifest.permission.CALL_PHONE
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            context.startActivity(intent)
+        } else {
+            ActivityCompat.requestPermissions(
+                context as AppCompatActivity,
+                arrayOf(Manifest.permission.CALL_PHONE), REQUEST_CALL_PERMISSION
+            )
+        }
     }
+    fun setFilteredList(filteredData: List<ContactData>) {
+        mList = filteredData
+        notifyDataSetChanged()
+    }
+    companion object {
+        private const val REQUEST_CALL_PERMISSION = 1
+    }
+
 }
