@@ -41,22 +41,18 @@ class LoboCont : AppCompatActivity() {
 
         val phoneOptionsLobo = mapOf(
 
-            0 to arrayOf("911"),
-            1 to arrayOf("111111111", "222222222"),
-            2 to arrayOf("911"),
-            3 to arrayOf("11122111", "222222222"),
-            4 to arrayOf("911"),
-            5 to arrayOf("111111111", "112342222222"),
-            6 to arrayOf("911"),
-            7 to arrayOf("141111111", "222222222"),
-            8 to arrayOf("911"),
-            9 to arrayOf("111111111", "2220922222"),
-            10 to arrayOf("911"),
-            11 to arrayOf("111111111", "222222222"),
-            12 to arrayOf("911"),
-            13 to arrayOf("111111111", "222222222"),
-            13 to arrayOf("111111111", "222222222"),
-            // Add similar cases for other titles
+            0 to arrayOf("911"),// hotline
+            1 to arrayOf("0437239350"),// pddrrmo
+            2 to arrayOf("0439800385"),// incident
+            3 to arrayOf("0434250138"),// infirmary
+            4 to arrayOf("0434250139"),// security office
+            5 to arrayOf("09156022046", "09167194904"),// bfp
+            6 to arrayOf("09178016001","09985855850"),// coastguard
+            7 to arrayOf("09399252443"),// operation center
+            8 to arrayOf("09171349235"),// mdrrmo
+            9 to arrayOf("0434047131"), // municipal hostpital
+            10 to arrayOf(" 0437233027","09171356219","09177734912"),// red cross
+            11 to arrayOf("09167194906","09985985693"),// pnp
         )
         adapter = ContactAdapter(mList, phoneOptionsLobo)
 

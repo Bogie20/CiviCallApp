@@ -41,22 +41,20 @@ class LipaCont : AppCompatActivity() {
 
         val phoneOptionsLipa = mapOf(
 
-            0 to arrayOf("911"),
-            1 to arrayOf("111111111", "222222222"),
-            2 to arrayOf("911"),
-            3 to arrayOf("11122111", "222222222"),
-            4 to arrayOf("911"),
-            5 to arrayOf("111111111", "112342222222"),
-            6 to arrayOf("911"),
-            7 to arrayOf("141111111", "222222222"),
-            8 to arrayOf("911"),
-            9 to arrayOf("111111111", "2220922222"),
-            10 to arrayOf("911"),
-            11 to arrayOf("111111111", "222222222"),
-            12 to arrayOf("911"),
-            13 to arrayOf("111111111", "222222222"),
-            13 to arrayOf("111111111", "222222222"),
-            // Add similar cases for other titles
+            0 to arrayOf("911"),// hotline
+            1 to arrayOf("0437239350"),// pddrrmo
+            2 to arrayOf("0437782170"),// incident
+            3 to arrayOf("0437574618","092757558065","09156022011"),// bfp
+            4 to arrayOf("09178426633"),// coastguard
+            5 to arrayOf("0434048617"),// district hospital
+            6 to arrayOf("0437023832","09777449692"),// pnp
+            7 to arrayOf("0434250139"),// dean infirmary
+            8 to arrayOf("0437742526"),// operation center
+            9 to arrayOf("0437575164","0437560127"),// cdrrmo
+            10 to arrayOf("0437562342","0437562372","09285261578"), // medix
+            11 to arrayOf("0437736800"),// mediatrix
+            12 to arrayOf("0437025561","0437028198","0437025443"),// metro
+            13 to arrayOf("09171429378"),// redcross
         )
         adapter = ContactAdapter(mList, phoneOptionsLipa)
 

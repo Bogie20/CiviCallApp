@@ -41,22 +41,19 @@ class LemeryCont : AppCompatActivity() {
 
         val phoneOptionsLemery = mapOf(
 
-            0 to arrayOf("911"),
-            1 to arrayOf("111111111", "222222222"),
-            2 to arrayOf("911"),
-            3 to arrayOf("11122111", "222222222"),
-            4 to arrayOf("911"),
-            5 to arrayOf("111111111", "112342222222"),
-            6 to arrayOf("911"),
-            7 to arrayOf("141111111", "222222222"),
-            8 to arrayOf("911"),
-            9 to arrayOf("111111111", "2220922222"),
-            10 to arrayOf("911"),
-            11 to arrayOf("111111111", "222222222"),
-            12 to arrayOf("911"),
-            13 to arrayOf("111111111", "222222222"),
-            13 to arrayOf("111111111", "222222222"),
-            // Add similar cases for other titles
+            0 to arrayOf("911"),// hotline
+            1 to arrayOf("0437239350"),// pddrrmo
+            2 to arrayOf("0434250139"),// incident
+            3 to arrayOf("0434250139", "09278232295"),// infirmary
+            4 to arrayOf("0437402987","09550959026"),// bfp
+            5 to arrayOf("091783675520 ", "09985855852"),// coastguard
+            6 to arrayOf("09352017156"),// security office
+            7 to arrayOf("0434111531"),// lemery doc medical center
+            8 to arrayOf("0437400157"),// lgu
+            9 to arrayOf("0434090480"),// medical center metro
+            10 to arrayOf("0434091888"),// our lady
+            11 to arrayOf("09171331427"),// philippineredcross
+            12 to arrayOf("09277071191"),// pnp
         )
         adapter = ContactAdapter(mList, phoneOptionsLemery)
 
@@ -100,7 +97,6 @@ class LemeryCont : AppCompatActivity() {
         mList.add(ContactData("\nBATSTATEU LEMERY \n"+"INFIRMARY", R.drawable.batstateu))
         mList.add(ContactData("BUREAU OF FIRE\n"+"PROTECTION\n"+"LEMERY", R.drawable.bfp))
         mList.add(ContactData("\nCOAST GUARD\n" + "LEMERY", R.drawable.pcg))
-        mList.add(ContactData("\nLEMERY CAMPUS\n"+"INFIRMARY", R.drawable.batstateu))
         mList.add(ContactData("\nLEMERY CAMPUS \n" + "SECURITY OFFICE", R.drawable.batstateu))
         mList.add(ContactData("\nLEMERY DOCTORS \n" + "MEDICAL CENTER", R.drawable.lemerydoctors))
         mList.add(ContactData("\nLEMERY LGU", R.drawable.lemerylogo))

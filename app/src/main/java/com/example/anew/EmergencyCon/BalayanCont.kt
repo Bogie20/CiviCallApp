@@ -41,22 +41,22 @@ class BalayanCont : AppCompatActivity() {
 
         val phoneOptionsBalayan = mapOf(
 
-            0 to arrayOf("911"),
-            1 to arrayOf("111111111", "222222222"),
-            2 to arrayOf("911"),
-            3 to arrayOf("11122111", "222222222"),
-            4 to arrayOf("911"),
-            5 to arrayOf("111111111", "112342222222"),
-            6 to arrayOf("911"),
-            7 to arrayOf("141111111", "222222222"),
-            8 to arrayOf("911"),
-            9 to arrayOf("111111111", "2220922222"),
-            10 to arrayOf("911"),
-            11 to arrayOf("111111111", "222222222"),
-            12 to arrayOf("911"),
-            13 to arrayOf("111111111", "222222222"),
-            13 to arrayOf("111111111", "222222222"),
-            // Add similar cases for other titles
+            0 to arrayOf("911"),//hotline
+            1 to arrayOf("0432116734", "09365852893"),//balayan bay view
+            2 to arrayOf("0434257158", "0434257159"),// balayan campus emergency operation
+            3 to arrayOf("0432113755", "09156022053"),// balyan mdrrmo
+            4 to arrayOf("0437239350"),// batangas pdrrmo
+            5 to arrayOf("0434250143"),// batstate incident
+            6 to arrayOf("0434250139"),// batstate infirmary
+            7 to arrayOf("0434250139"),// batstate security
+            8 to arrayOf("0432114619", "09179920192"),//batelec 1
+            9 to arrayOf("09156022053"),// bfp
+            10 to arrayOf("09178428047", "09985855844"),//coastguard
+            11 to arrayOf("0432114169"),// dr.manuel
+            12 to arrayOf("0434071103", "09157846521", "09082426971"),// western medical center
+            13 to arrayOf("0437401350", "0432116633"),// metro balayan
+            14 to arrayOf("09171331427"),//red cross
+            15 to arrayOf("0432113637", "09274348008"),//pnp
         )
         adapter = ContactAdapter(mList, phoneOptionsBalayan)
 
@@ -99,9 +99,9 @@ class BalayanCont : AppCompatActivity() {
         mList.add(ContactData("BALAYAN CAMPUS\n" + "EMERGENCY\n" + "OPERATIONS CENTER", R.drawable.batstateu))
         mList.add(ContactData("\nBALAYAN MDRRMO", R.drawable.balayanmdrrmo))
         mList.add(ContactData("\nBATANGAS PDRRMO", R.drawable.pdrrmobats))
+        mList.add(ContactData("BATSTATE U INCIDENT\n" + "COMMANDER/\n" + "EXECUTIVE\n" + "DIRECTORS OFFICE", R.drawable.batstateu))
         mList.add(ContactData("\nBATSTATEU BALAYAN\n"+ "INFIRMARY", R.drawable.batstateu))
         mList.add(ContactData("\nBATSTATEU BALAYAN\n"+ "SECURITY OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("BATSTATE U INCIDENT\n" + "COMMANDER/\n" + "EXECUTIVE\n" + "DIRECTORS OFFICE", R.drawable.batstateu))
         mList.add(ContactData("\nBATELEC I", R.drawable.batelec1))
         mList.add(ContactData("BUREAU OF FIRE\n"+"PROTECTION\n"+"BALAYAN", R.drawable.bfp))
         mList.add(ContactData("\nCOAST GUARD\n" + "BALAYAN", R.drawable.pcg))
