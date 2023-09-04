@@ -9,41 +9,17 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".SearchFragment">
 
-    <TextView
-        android:id="@+id/greeting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" />
-    <TextView
-        android:id="@+id/subtitle_small2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search for relevant content:"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/greeting"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/Searchview"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/searchview"
         app:iconifiedByDefault="false"
-        app:layout_constraintEnd_toStartOf="@id/search_button1"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subtitle_small2"
+        android:layout_marginLeft="20dp"
         app:queryHint="search here.." />
 
     <ImageView
@@ -68,31 +44,53 @@
         app:layout_constraintTop_toBottomOf="@id/search_button1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageView
-            android:src="@drawable/students2023"
-
-            android:id="@+id/textView1"
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"> <!-- Set layout_height to match_parent -->
 
-            android:layout_marginTop="8dp" />
-
-        <TextView
+            <ImageView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+            android:src="@drawable/students2023"/>
+        </LinearLayout>
+<LinearLayout
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<TextView
+    android:layout_marginLeft="10dp"
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Text View 2"
+            android:text="Tittle"
+    android:textColor="@color/white"
             android:textSize="18sp"
-            android:layout_marginTop="8dp" />
-
+             />
+</LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <TextView
+            android:layout_marginLeft="10dp"
+
+            android:textColor="@color/white"
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Text View 3"
+            android:text="Location"
             android:textSize="18sp"
-            android:layout_marginTop="8dp" />
+            android:layout_marginBottom="10dp"
+            />
+    </LinearLayout>
+
+
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

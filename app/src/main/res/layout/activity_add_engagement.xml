@@ -232,13 +232,13 @@
             <Button
 
 
-                android:id="@+id/buttonres"
+                android:id="@+id/clear"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
 
                 android:layout_marginTop="20dp"
                 android:background="@drawable/withstrokebutton"
-                android:text="Reset"
+                android:text="clear"
                 android:textAllCaps="false"
 
 

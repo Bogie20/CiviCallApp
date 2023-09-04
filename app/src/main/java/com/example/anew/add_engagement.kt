@@ -42,6 +42,9 @@ class add_engagement : AppCompatActivity() {
         binding.back100.setOnClickListener {
             onBackPressed()
         }
+        binding.clear.setOnClickListener {
+            clearInputs()
+        }
 
         binding.addprofile.setOnClickListener {
             showImageSourcesDialog()
@@ -50,10 +53,26 @@ class add_engagement : AppCompatActivity() {
         binding.buttonadd.setOnClickListener {
             checkUser()
         }
+        binding.buttonadd.setOnClickListener {
+            navigateToAddActivities2()
+        }
 
         retrieveAndPopulateUserData()
     }
+    private fun navigateToAddActivities2() {
+        val intent = Intent(this, Add_activities2::class.java)
+        startActivity(intent)
+    }
+    private fun clearInputs() {
+        binding.pic1.setImageResource(0) // Clear the image
+        binding.Title.text.clear() // Clear title EditText
+        binding.Title2.text.clear() // Clear location EditText
+        binding.Title3.text.clear() // Clear introduction EditText
 
+        // Show the TextView and FloatingActionButton
+        binding.hintText.visibility = View.VISIBLE
+        binding.addprofile.visibility = View.VISIBLE
+    }
 
     private fun showImageSourcesDialog() {
         val options = arrayOf("Camera", "Gallery")
@@ -140,17 +159,24 @@ class add_engagement : AppCompatActivity() {
             .addOnSuccessListener { taskSnapshot ->
                 reference.downloadUrl.addOnSuccessListener { uri ->
                     val uploadImageUrl = uri.toString()
-                    updateData(uid, uploadImageUrl) // Pass the uploadImageUrl here
+                    updateData(uid, uploadImageUrl)
+
+                    // Hide the TextView and FloatingActionButton after successful upload
+                    binding.hintText.visibility = View.GONE
+                    binding.addprofile.visibility = View.GONE
+
+                    progressDialog.dismiss()
                 }
             }
             .addOnFailureListener { e ->
                 progressDialog.dismiss()
-                Toast.makeText(this, "Failed to Upload due to ${e.message}", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(this, "Failed to Upload due to ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
-    private fun updateProfile(uploadImageUrl: String) {
-        progressDialog.setMessage("Updating Profile...")
+
+
+    private fun Poster(uploadImageUrl: String) {
+        progressDialog.setMessage("Updating Poster...")
 
         val hashMap: HashMap<String, Any> = HashMap()
         hashMap["poster"] = uploadImageUrl
@@ -160,7 +186,7 @@ class add_engagement : AppCompatActivity() {
             .updateChildren(hashMap)
             .addOnSuccessListener {
                 progressDialog.dismiss()
-                startActivity(Intent(this, myprofile1::class.java))
+                startActivity(Intent(this, Add_activities2::class.java))
                 finish()
                 Toast.makeText(this, "Success to Update", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener { e ->
@@ -224,18 +250,22 @@ class add_engagement : AppCompatActivity() {
                     binding.Title2.setText(location.toString())
                     binding.Title3.setText(introduction.toString())
 
-
-
                     // Load profile image using Picasso if the profileImageUrl is not null
                     if (PosterUrl != null && PosterUrl.toString().isNotEmpty()) {
                         // Load profile image using Picasso
-                        Picasso.get().load(PosterUrl.toString()).into(binding.addprofile)
+                        Picasso.get().load(PosterUrl.toString()).into(binding.pic1)
+
+                        // Hide the TextView and FloatingActionButton
+                        binding.hintText.visibility = View.GONE
+                        binding.addprofile.visibility = View.GONE
                     }
                 }
             }
         }
     }
+
 }
+
 
 
 
