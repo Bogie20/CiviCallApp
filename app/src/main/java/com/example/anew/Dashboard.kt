@@ -1,14 +1,11 @@
 package com.example.anew
-import android.content.res.ColorStateList
+
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.ImageView
-import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import com.example.anew.databinding.ActivityDashboardBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -16,19 +13,15 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import android.view.animation.AnimationUtils
 import nl.joery.animatedbottombar.AnimatedBottomBar
 
 
 
 class Dashboard : AppCompatActivity() {
     private lateinit var reference: DatabaseReference
-    private lateinit var homeIconImageView: ImageView
     private lateinit var binding: ActivityDashboardBinding
     private lateinit var firebaseAuth: FirebaseAuth
     lateinit var userDataViewModel: UserDataViewModel
-
-    private var currentItemId: Int = R.id.menu_item_1
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -133,30 +126,4 @@ class Dashboard : AppCompatActivity() {
             .commit()
     }
 
-    private fun launchLoloActivity() {
-        val intent = Intent(this, lolo::class.java)
-        startActivity(intent)
-    }
-
-    private fun showPopupMenu(view: View) {
-        val popupMenu = PopupMenu(this, view)
-        popupMenu.inflate(R.menu.filter_menu) // Replace with your menu resource
-        // Add menu item click listeners here if needed
-        popupMenu.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.filter_option_1 -> {
-                    // Handle menu item click for item 1
-                    true
-                }
-
-                R.id.filter_option_2 -> {
-                    // Handle menu item click for item 2
-                    true
-                }
-                // Add other menu item click cases if needed
-                else -> false
-            }
-        }
-        popupMenu.show()
-    }
 }
