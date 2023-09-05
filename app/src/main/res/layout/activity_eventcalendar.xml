@@ -46,7 +46,7 @@
                 android:layout_marginLeft="25dp"
 
                 android:fontFamily="@font/inter_bold"
-                android:text="Event Calendar"
+                android:text="Schedule Calendar"
                 android:textColor="@color/white"
                 android:textSize="25dp" />
 

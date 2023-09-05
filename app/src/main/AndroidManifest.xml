@@ -2,11 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- Require telephony hardware only on devices that can make calls -->
-    <uses-feature
-        android:name="android.hardware.telephony"
-        android:required="false" />
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -18,76 +13,61 @@
         android:theme="@style/Theme.New"
         tools:targetApi="31">
         <activity
-            android:name=".ScrollingBehavior"
-            android:exported="true" />
-        <activity
-            android:name=".DisasterPreparedness.MainDisaster"
-            android:exported="false" /> <!-- EmergencyCon -->
-        <activity
-            android:name=".EmergencyCon.MainEmergencyContact"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:name=".EmergencyCon.MainEmergencyCont"
+            android:exported="false" />
+        <!-- Emergency Contact Start -->
         <activity
             android:name=".EmergencyCon.SanJuanCont"
             android:exported="true"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".EmergencyCon.RosarioCont"
             android:exported="true"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".EmergencyCon.PabloBorbon2Cont"
             android:exported="true"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".EmergencyCon.PabloBorbon1Cont"
             android:exported="true"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".EmergencyCon.NasugbuCont"
             android:exported="true"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".EmergencyCon.MalvarCont"
             android:exported="true"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".EmergencyCon.MabiniCont"
             android:exported="true"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".EmergencyCon.LoboCont"
             android:exported="true"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".EmergencyCon.LipaCont"
             android:exported="true"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".EmergencyCon.LemeryCont"
             android:exported="true"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".EmergencyCon.BalayanCont"
             android:exported="true"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" /> <!-- Emergency Contact End -->
         <activity
             android:name=".Add_activities2"
             android:exported="true" />
         <activity
             android:name=".add_engagement"
+            android:exported="true" />
+        <activity
+            android:name=".EmergencyContact"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
@@ -100,7 +80,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".Settings"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".Feedback"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Forums"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
@@ -109,6 +97,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Eventcalendar"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Notification"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
@@ -139,7 +131,6 @@
             android:name=".Dashboard"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Login"
