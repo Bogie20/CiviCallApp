@@ -75,6 +75,5 @@
         app:abb_tabColorSelected="@color/red"
         app:abb_tabs="@menu/bottom_nav_menu"
         app:abb_selectedIndex="0"
-        android:layout_gravity="bottom"
-        app:layout_behavior=".ScrollingBehavior" />
+        android:layout_gravity="bottom" />
 </FrameLayout>
