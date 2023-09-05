@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:letterSpacing="0.10"
         android:id="@+id/civicall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,31 +34,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logo" />
 
-    <TextView
-        android:id="@+id/civicalls"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inter_medium"
-        android:text="ENGAGED ZONE"
-        android:textSize="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/civicall" />
 
     <TextView
         android:id="@+id/civicallss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:letterSpacing="0.20"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/inter_medium"
+        android:fontFamily="@font/inter_semibold"
         android:text="Serving the community,\nCollaborate with others"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/civicalls" />
+        app:layout_constraintTop_toBottomOf="@id/civicall" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

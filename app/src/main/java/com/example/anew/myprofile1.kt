@@ -38,8 +38,8 @@ class myprofile1 : AppCompatActivity() {
 
 
         binding.back100.setOnClickListener {
-            onBackPressed()
-        }
+            val intent = Intent(this, Dashboard::class.java)
+            startActivity(intent)        }
 
 
     }

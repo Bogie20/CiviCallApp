@@ -9,18 +9,19 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".SearchFragment">
 
-
     <androidx.appcompat.widget.SearchView
         android:id="@+id/Searchview"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="5dp"
         android:background="@drawable/searchview"
         app:iconifiedByDefault="false"
-        android:layout_marginLeft="20dp"
-        app:queryHint="search here.." />
+        android:layout_marginStart="-30dp"
+        app:queryHint="search here.."
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/search_button1"
@@ -29,68 +30,23 @@
         android:clickable="true"
         android:focusable="true"
         android:padding="5dp"
-        android:src="@drawable/filternirj3"
-        app:layout_constraintBottom_toBottomOf="@id/Searchview"
+        android:src="@drawable/filter_25"
         app:layout_constraintStart_toEndOf="@id/Searchview"
-        app:layout_constraintTop_toTopOf="@id/Searchview" />
+        app:layout_constraintTop_toTopOf="@id/Searchview"
+        app:layout_constraintBottom_toBottomOf="@id/Searchview" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:background="@drawable/activities_shape"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="16dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/userList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="10dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/search_button1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-        <LinearLayout
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"> <!-- Set layout_height to match_parent -->
-
-            <ImageView
-                android:id="@+id/textView1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-            android:src="@drawable/students2023"/>
-        </LinearLayout>
-<LinearLayout
-    android:layout_marginTop="10dp"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-<TextView
-    android:layout_marginLeft="10dp"
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tittle"
-    android:textColor="@color/white"
-            android:textSize="18sp"
-             />
-</LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_marginLeft="10dp"
-
-            android:textColor="@color/white"
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Location"
-            android:textSize="18sp"
-            android:layout_marginBottom="10dp"
-            />
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/userpost" />
 
 
 
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

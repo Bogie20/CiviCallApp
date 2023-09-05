@@ -45,7 +45,8 @@ class lolo : AppCompatActivity() {
             val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)
         }
-
+        val setting: TextView = findViewById(R.id.Setting)
+        val calendar: TextView = findViewById(R.id.calendar)
         val profile1: TextView = findViewById(R.id.Profile)
         val verification1: TextView = findViewById(R.id.verification)
         val AboutUs1: TextView = findViewById(R.id.AboutUs1)
@@ -62,6 +63,11 @@ class lolo : AppCompatActivity() {
             val intent = Intent(this, Accountverification::class.java)
             startActivity(intent)
         }
+        setting.setOnClickListener {
+            // Handle click for menu item 2
+            val intent = Intent(this, Settings::class.java)
+            startActivity(intent)
+        }
 
         AboutUs1.setOnClickListener {
             // Handle click for About Us menu item
@@ -72,6 +78,11 @@ class lolo : AppCompatActivity() {
         feedback1.setOnClickListener {
             // Handle click for Feedback menu item
             val intent = Intent(this, Feedback::class.java)
+            startActivity(intent)
+        }
+        calendar.setOnClickListener {
+            // Handle click for Feedback menu item
+            val intent = Intent(this, Eventcalendar::class.java)
             startActivity(intent)
         }
 
