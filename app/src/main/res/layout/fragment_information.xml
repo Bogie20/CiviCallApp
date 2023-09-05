@@ -33,6 +33,7 @@
 
             <!-- CardView 1 -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardview1"
                 android:layout_width="match_parent"
                 android:layout_height="125dp"
                 app:cardCornerRadius="15dp"
@@ -71,6 +72,7 @@
             </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardview2"
             android:layout_width="match_parent"
             android:layout_height="125dp"
             app:cardCornerRadius="15dp"
@@ -109,6 +111,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardview3"
             android:layout_width="match_parent"
             android:layout_height="125dp"
             app:cardCornerRadius="15dp"
@@ -147,6 +150,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardview4"
             android:layout_width="match_parent"
             android:layout_height="125dp"
             app:cardCornerRadius="15dp"
@@ -184,6 +188,7 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardview5"
             android:layout_width="match_parent"
             android:layout_height="125dp"
             app:cardCornerRadius="15dp"
@@ -222,6 +227,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardview6"
             android:layout_width="match_parent"
             android:layout_height="125dp"
             app:cardCornerRadius="15dp"
@@ -260,6 +266,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardview7"
             android:layout_width="match_parent"
             android:layout_height="125dp"
             app:cardCornerRadius="15dp"
@@ -298,6 +305,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardview8"
             android:layout_width="match_parent"
             android:layout_height="125dp"
             app:cardCornerRadius="15dp"
