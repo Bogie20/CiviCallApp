@@ -61,11 +61,11 @@ class Dashboard : AppCompatActivity() {
                         replaceFragment(InformationFragment())
                     }
                     2 -> {
-                        binding.titleLarge.text = "Forum"
+                        binding.titleLarge.text = "Add Post"
                         launchAddEngagementActivity()
                     }
                     3 -> {
-                        binding.titleLarge.text = "Notifications"
+                        binding.titleLarge.text = "Forum"
                         replaceFragment(ForumsFragment())
                     }
                     4 -> {
