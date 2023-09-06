@@ -52,7 +52,7 @@
 
         <LinearLayout
 
-            android:backgroundTint="@color/pinkyata"
+            android:backgroundTint="@color/newred"
             android:id="@+id/fullscreen"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
