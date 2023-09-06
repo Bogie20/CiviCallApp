@@ -29,7 +29,7 @@
         android:clickable="true"
         android:focusable="true"
         android:padding="5dp"
-        android:src="@drawable/filternirj3"
+        android:src="@drawable/filter_25"
         app:layout_constraintBottom_toBottomOf="@id/Searchview"
         app:layout_constraintStart_toEndOf="@id/Searchview"
         app:layout_constraintTop_toTopOf="@id/Searchview" />
