@@ -55,7 +55,7 @@ class Dashboard : AppCompatActivity() {
                     }
                     2 -> {
                         binding.titleLarge.text = "Add Post"
-                        launchAddEngagementActivity()
+                        replaceFragment(ForumsFragment())
                     }
                     3 -> {
                         binding.titleLarge.text = "Forum"

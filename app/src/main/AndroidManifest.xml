@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- permissions -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
@@ -9,13 +8,9 @@
         android:name="android.hardware.telephony"
         android:required="false" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <!-- Camera permission -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!-- Feature requirement for camera -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Camera permission -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- Feature requirement for camera -->
     <uses-feature android:name="android.hardware.camera" />
-
-<!--permission/-->
 
     <application
         android:allowBackup="true"
@@ -28,9 +23,18 @@
         android:theme="@style/Theme.New"
         tools:targetApi="31">
         <activity
-            android:name=".CivicEngagementPost.MainPost"
-            android:exported="false" />
-        <!-- Emergency Contact Start -->
+            android:name=".CivicEngagementPost.CivicPostMain"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementPost.Update_engagement"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementPost.DetailPost"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementPost.Upload_engagement"
+            android:exported="true" />
+       <!-- Emergency Contact Start -->
         <activity
             android:name=".EmergencyCon.MainEmergencyContact"
             android:exported="true"
