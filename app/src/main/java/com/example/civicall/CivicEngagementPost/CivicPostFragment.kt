@@ -2,22 +2,22 @@ package com.example.civicall.CivicEngagementPost
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class CivicPostMain : AppCompatActivity() {
-    private lateinit var fab: FloatingActionButton
+class CivicPostFragment : Fragment() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var eventListener: ValueEventListener
     private lateinit var recyclerView: RecyclerView
@@ -25,25 +25,26 @@ class CivicPostMain : AppCompatActivity() {
     private lateinit var adapter: PostAdapter
     private lateinit var searchView: SearchView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_civic_post_main)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val rootView = inflater.inflate(R.layout.fragment_civic_post, container, false)
 
-        recyclerView = findViewById(R.id.recyclerView)
-        fab = findViewById(R.id.fab)
-        searchView = findViewById(R.id.search)
+        recyclerView = rootView.findViewById(R.id.recyclerView)
+        searchView = rootView.findViewById(R.id.search)
         searchView.clearFocus()
 
-        val gridLayoutManager = GridLayoutManager(this, 1)
+        val gridLayoutManager = GridLayoutManager(requireContext(), 1)
         recyclerView.layoutManager = gridLayoutManager
 
-        val builder = AlertDialog.Builder(this)
+        val builder = AlertDialog.Builder(requireContext())
         builder.setCancelable(false)
         builder.setView(R.layout.loading_layout)
         val dialog = builder.create()
         dialog.show()
 
-        adapter = PostAdapter(this, dataList)
+        adapter = PostAdapter(requireContext(), dataList)
         recyclerView.adapter = adapter
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
@@ -76,10 +77,8 @@ class CivicPostMain : AppCompatActivity() {
             }
         })
 
-        fab.setOnClickListener { view: View? ->
-            val intent = Intent(this@CivicPostMain, Upload_engagement::class.java)
-            startActivity(intent)
-        }
+
+        return rootView
     }
 
     private fun searchList(text: String) {

@@ -85,7 +85,7 @@ class Update_engagement : AppCompatActivity() {
 
         updateButton.setOnClickListener {
             saveData()
-            val intent = Intent(this@Update_engagement, CivicPostMain::class.java)
+            val intent = Intent(this@Update_engagement, CivicPostFragment::class.java)
             startActivity(intent)
         }
     }

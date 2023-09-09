@@ -11,6 +11,7 @@ import com.example.civicall.databinding.ActivityDashboardBinding
 import com.google.firebase.auth.FirebaseAuth
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.example.civicall.CivicEngagementPost.CivicPostFragment
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import nl.joery.animatedbottombar.AnimatedBottomBar
@@ -47,14 +48,14 @@ class Dashboard : AppCompatActivity() {
                 when (newIndex) {
                     0 -> {
                         binding.titleLarge.text = "Civic Engagement"
-                        replaceFragment(SearchFragment())
+                        replaceFragment(CivicPostFragment())
                     }
                     1 -> {
                         binding.titleLarge.text = "Information Resources"
                         replaceFragment(InformationFragment())
                     }
                     2 -> {
-                        binding.titleLarge.text = "Add Post"
+                        binding.titleLarge.text = ""
                         replaceFragment(ForumsFragment())
                     }
                     3 -> {

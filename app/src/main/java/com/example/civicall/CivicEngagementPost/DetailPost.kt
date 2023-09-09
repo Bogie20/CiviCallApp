@@ -57,7 +57,7 @@ class DetailPost : AppCompatActivity() {
             storageReference.delete().addOnSuccessListener(OnSuccessListener {
                 reference.child(key).removeValue()
                 Toast.makeText(this@DetailPost, "Deleted", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(applicationContext, CivicPostMain::class.java))
+                startActivity(Intent(applicationContext, CivicPostFragment::class.java))
                 finish()
             })
         }
