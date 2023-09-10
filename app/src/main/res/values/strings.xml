@@ -29,7 +29,7 @@
 
         <!-- Add more campuses here -->
     </string-array>
-    <string name="app_name">New</string>
+    <string name="app_name">CiviCall</string>
     <string name="title_activity_menu">Menu</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

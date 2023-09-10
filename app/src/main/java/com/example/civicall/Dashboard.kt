@@ -11,6 +11,8 @@ import com.example.civicall.databinding.ActivityDashboardBinding
 import com.google.firebase.auth.FirebaseAuth
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.example.civicall.CivicEngagementPost.CivicPostFragment
+import com.example.civicall.CivicEngagementPost.Upload_engagement
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import nl.joery.animatedbottombar.AnimatedBottomBar
@@ -35,7 +37,7 @@ class Dashboard : AppCompatActivity() {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         firebaseAuth = FirebaseAuth.getInstance()
         checkUser()
-        replaceFragment(SearchFragment())
+        replaceFragment(CivicPostFragment())
 
         binding.bottomBar.setOnTabSelectListener(object : AnimatedBottomBar.OnTabSelectListener {
             override fun onTabSelected(
@@ -47,14 +49,14 @@ class Dashboard : AppCompatActivity() {
                 when (newIndex) {
                     0 -> {
                         binding.titleLarge.text = "Civic Engagement"
-                        replaceFragment(SearchFragment())
+                        replaceFragment(CivicPostFragment())
                     }
                     1 -> {
                         binding.titleLarge.text = "Information Resources"
                         replaceFragment(InformationFragment())
                     }
                     2 -> {
-                        binding.titleLarge.text = "Add Post"
+                        binding.titleLarge.text = ""
                         launchAddEngagementActivity()
                     }
                     3 -> {
@@ -78,6 +80,16 @@ class Dashboard : AppCompatActivity() {
             val intent = Intent(this, lolo::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        }
+        binding.fab.setOnClickListener {
+            val intent = Intent(this, Upload_engagement::class.java)
+            startActivity(intent)
+            // You can also add any transition animations if needed
+        }
+        binding.fab.setOnClickListener {
+            val intent = Intent(this, Upload_engagement::class.java)
+            startActivity(intent)
+            // You can also add any transition animations if needed
         }
 
 
@@ -125,5 +137,6 @@ class Dashboard : AppCompatActivity() {
             .replace(R.id.fragment1, fragment)
             .commit()
     }
+
 
 }
