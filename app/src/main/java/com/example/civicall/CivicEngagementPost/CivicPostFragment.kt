@@ -1,5 +1,6 @@
 package com.example.civicall.CivicEngagementPost
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -50,6 +51,7 @@ class CivicPostFragment : Fragment() {
         databaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
         dialog.show()
         eventListener = databaseReference.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
                 dataList.clear()
                 for (itemSnapshot in snapshot.children) {

@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import com.example.civicall.CivicEngagementPost.CivicPostFragment
 import com.example.civicall.databinding.ActivityRegister1Binding
 
 import com.google.firebase.auth.FirebaseAuth
@@ -163,7 +164,7 @@ class Register1 : AppCompatActivity() {
         val userInfoUpdateDialog = ProgressDialog(this)
         userInfoUpdateDialog.setMessage("Saving User Info...")
         userInfoUpdateDialog.show()
-        val searchFragment = SearchFragment()
+        val searchFragment = CivicPostFragment()
         val args = Bundle()
         args.putString("firstName", fname)
         searchFragment.arguments = args
