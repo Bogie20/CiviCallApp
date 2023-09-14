@@ -54,4 +54,8 @@
    <color name="gradientred"> #EA4C46</color>
     <color name="gradientred2">#DC1C13</color>
     <color name="gradientred3">#F1959B</color>
+
+    <color name="purple">#6200EE</color>
+    <color name="purpleblue">#3700B3</color>
+    <color name="bluegreen">#03DAC5</color>
 </resources>

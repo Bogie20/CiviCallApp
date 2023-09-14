@@ -93,20 +93,20 @@ class LipaCont : AppCompatActivity() {
     }
 
     private fun addDataToList() {
-        mList.add(ContactData("\nNATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
-        mList.add(ContactData("\nBATANGAS PDRRMO", R.drawable.pdrrmobats))
+        mList.add(ContactData("NATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
+        mList.add(ContactData("BATANGAS PDRRMO", R.drawable.pdrrmobats))
         mList.add(ContactData("BATSTATE U INCIDENT \n" + "COMMANDERS OFFICE /\n" + "EXECUTIVE DIRECTORS\n"+"OFFICE", R.drawable.batstateu))
         mList.add(ContactData("BUREAU OF FIRE\n"+"PROTECTION\n"+"LIPA CITY", R.drawable.bfp))
-        mList.add(ContactData("\nCOAST GUARD\n" + "BATANGAS", R.drawable.pcg))
-        mList.add(ContactData("\nLIPA CITY  \n"+"DISTRICT HOSPITAL", R.drawable.lipadistrict))
-        mList.add(ContactData("\nLIPA CITY\n"+"POLICE STATION (PNP)", R.drawable.pnp))
+        mList.add(ContactData("COAST GUARD\n" + "BATANGAS", R.drawable.pcg))
+        mList.add(ContactData("LIPA CITY  \n"+"DISTRICT HOSPITAL", R.drawable.lipadistrict))
+        mList.add(ContactData("LIPA CITY\n"+"POLICE STATION (PNP)", R.drawable.pnp))
         mList.add(ContactData("LIPA CAMPUS\n"+"DEAN’S OFFICE /\n"+"INFIRMARY", R.drawable.batstateu))
         mList.add(ContactData("LIPA CAMPUS EMERGENCY\n" + "OPERATIONS CENTER", R.drawable.batstateu))
-        mList.add(ContactData("\nLIPA CITY \n" + "CDRRMO", R.drawable.lipacdrrmo))
-        mList.add(ContactData("\nLIPA MEDIX\n"+"MEDICAL CENTER", R.drawable.lipamedix))
-        mList.add(ContactData("\nMARY MEDIATRIX \n"+"MEDICAL CENTER", R.drawable.lipamediatrix))
-        mList.add(ContactData("\nMETRO LIPA \n"+ "MEDICAL CENTER", R.drawable.lipametro))
-        mList.add(ContactData("\nPHILIPPINE RED CROSS\n"+ "DISTRICT 4 & 6 (LIPA)", R.drawable.redcross))
+        mList.add(ContactData("LIPA CITY \n" + "CDRRMO", R.drawable.lipacdrrmo))
+        mList.add(ContactData("LIPA MEDIX\n"+"MEDICAL CENTER", R.drawable.lipamedix))
+        mList.add(ContactData("MARY MEDIATRIX \n"+"MEDICAL CENTER", R.drawable.lipamediatrix))
+        mList.add(ContactData("METRO LIPA \n"+ "MEDICAL CENTER", R.drawable.lipametro))
+        mList.add(ContactData("PHILIPPINE RED CROSS\n"+ "DISTRICT 4 & 6 (LIPA)", R.drawable.redcross))
     }
 
     private fun makePhoneCall(phoneNumber: String) {

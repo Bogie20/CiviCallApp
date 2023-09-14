@@ -91,21 +91,21 @@ class SanJuanCont : AppCompatActivity() {
     }
 
     private fun addDataToList() {
-        mList.add(ContactData("\nNATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
-        mList.add(ContactData("\nBATANGAS PDRRMO", R.drawable.pdrrmobats))
+        mList.add(ContactData("NATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
+        mList.add(ContactData("BATANGAS PDRRMO", R.drawable.pdrrmobats))
         mList.add(ContactData("BATSTATE U INCIDENT \n" + "COMMANDERS OFFICE /\n" + "EXECUTIVE DIRECTORS\n"+"OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("\nBATSTATE SAN JUAN\n"+ "INFIRMARY", R.drawable.batstateu))
-        mList.add(ContactData("\nBATSTATEU SAN JUAN\n"+ "SECURITY OFFICE", R.drawable.batstateu))
+        mList.add(ContactData("BATSTATE SAN JUAN\n"+ "INFIRMARY", R.drawable.batstateu))
+        mList.add(ContactData("BATSTATEU SAN JUAN\n"+ "SECURITY OFFICE", R.drawable.batstateu))
         mList.add(ContactData("BATSTATEU SAN JUAN\n" + "CAMPUS EXTENSION\n" + "SERVICE OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("\nBUREAU OF FIRE\n"+"PROTECTION\n"+"SAN JUAN", R.drawable.bfp))
-        mList.add(ContactData("\nCOAST GUARD\n" + "SAN JUAN", R.drawable.pcg))
-        mList.add(ContactData("\nDIVINE CARE\n"+"HOSPITAL", R.drawable.divinecare))
-        mList.add(ContactData("\nPHILIPPINE RED CROSS\n"+ "DISCTRICT 4&6 (LIPA)", R.drawable.redcross))
-        mList.add(ContactData("\nPNP SAN JUAN", R.drawable.pnp))
-        mList.add(ContactData("\nSAN JUAN\n" + "DISTRICT HOSPITAL", R.drawable.sanjuandistrict))
-        mList.add(ContactData("\nSAN JUAN\n" + "DOCTORS HOSPITAL", R.drawable.sanjuandoctors))
-        mList.add(ContactData("\nSAN JUAN MDRRMO", R.drawable.sanjuanmdrrmo))
-        mList.add(ContactData("\nSAN JUAN RURAL\n"+"HEALTH UNIT", R.drawable.hospitallogo))
+        mList.add(ContactData("BUREAU OF FIRE\n"+"PROTECTION\n"+"SAN JUAN", R.drawable.bfp))
+        mList.add(ContactData("COAST GUARD\n" + "SAN JUAN", R.drawable.pcg))
+        mList.add(ContactData("DIVINE CARE\n"+"HOSPITAL", R.drawable.divinecare))
+        mList.add(ContactData("PHILIPPINE RED CROSS\n"+ "DISCTRICT 4&6 (LIPA)", R.drawable.redcross))
+        mList.add(ContactData("PNP SAN JUAN", R.drawable.pnp))
+        mList.add(ContactData("SAN JUAN\n" + "DISTRICT HOSPITAL", R.drawable.sanjuandistrict))
+        mList.add(ContactData("SAN JUAN\n" + "DOCTORS HOSPITAL", R.drawable.sanjuandoctors))
+        mList.add(ContactData("SAN JUAN MDRRMO", R.drawable.sanjuanmdrrmo))
+        mList.add(ContactData("SAN JUAN RURAL\n"+"HEALTH UNIT", R.drawable.hospitallogo))
 
 
     }

@@ -176,7 +176,7 @@ class Register1 : AppCompatActivity() {
         hashMap["firstname"] = fname
         hashMap["lastname"] = lname
         hashMap["email"] = email
-        hashMap["phoneno"] = phoneno
+        hashMap["phoneno"] = phoneno    
         hashMap["address"] = address
         hashMap["birthday"] = birtdate
         hashMap["gender"] = spinnerSex

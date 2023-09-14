@@ -88,17 +88,17 @@ class NasugbuCont : AppCompatActivity() {
     }
 
     private fun addDataToList() {
-        mList.add(ContactData("\nNATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
-        mList.add(ContactData("\nBATANGAS PDRRMO", R.drawable.pdrrmobats))
-        mList.add(ContactData("\nBATSTATE U INCIDENT\n" + "COMMANDER OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("\nBUREAU OF FIRE\n"+"PROTECTION\n"+"NASUGBU", R.drawable.bfp))
-        mList.add(ContactData("\nCOAST GUARD\n" + "NASUGBU", R.drawable.pcg))
-        mList.add(ContactData("\nEXECUTIVE DIRECTOR'S\n" + "OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("\nJABEZ MEDICAL\n"+"CENTER", R.drawable.jabez))
-        mList.add(ContactData("\nMETROPOLITAN\n"+"MEDICAL CENTER", R.drawable.metrohospital))
-        mList.add(ContactData("\nNASUGBU MDRRMO", R.drawable.nasugbumdrrmo))
-        mList.add(ContactData("\nPHILIPPINE RED CROSS\n"+ "DISTRICT 1 (NASUGBU)", R.drawable.redcross))
-        mList.add(ContactData("\nPNP NASUGBU", R.drawable.pnp))
+        mList.add(ContactData("NATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
+        mList.add(ContactData("BATANGAS PDRRMO", R.drawable.pdrrmobats))
+        mList.add(ContactData("BATSTATE U INCIDENT\n" + "COMMANDER OFFICE", R.drawable.batstateu))
+        mList.add(ContactData("BUREAU OF FIRE\n"+"PROTECTION\n"+"NASUGBU", R.drawable.bfp))
+        mList.add(ContactData("COAST GUARD\n" + "NASUGBU", R.drawable.pcg))
+        mList.add(ContactData("EXECUTIVE DIRECTOR'S\n" + "OFFICE", R.drawable.batstateu))
+        mList.add(ContactData("JABEZ MEDICAL\n"+"CENTER", R.drawable.jabez))
+        mList.add(ContactData("METROPOLITAN\n"+"MEDICAL CENTER", R.drawable.metrohospital))
+        mList.add(ContactData("NASUGBU MDRRMO", R.drawable.nasugbumdrrmo))
+        mList.add(ContactData("PHILIPPINE RED CROSS\n"+ "DISTRICT 1 (NASUGBU)", R.drawable.redcross))
+        mList.add(ContactData("PNP NASUGBU", R.drawable.pnp))
 
     }
     private fun makePhoneCall(phoneNumber: String) {

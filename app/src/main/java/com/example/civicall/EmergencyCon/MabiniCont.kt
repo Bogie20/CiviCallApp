@@ -89,19 +89,19 @@ class MabiniCont : AppCompatActivity() {
     }
 
     private fun addDataToList() {
-        mList.add(ContactData("\nNATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
-        mList.add(ContactData("\nBATELEC II", R.drawable.batelec2))
-        mList.add(ContactData("\nBATANGAS PDRRMO", R.drawable.pdrrmobats))
-        mList.add(ContactData("\nBATSTATE U\n" + "MABINI ADMIN\n" + "OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("\nBATSTATEU MABINI \n"+"INFIRMARY", R.drawable.batstateu))
-        mList.add(ContactData("\nBUREAU OF FIRE\n"+"PROTECTION\n"+"MABINI", R.drawable.bfp))
-        mList.add(ContactData("\nCOAST GUARD\n" + "MABINI", R.drawable.pcg))
-        mList.add(ContactData("\nMABINI CAMPUS\n"+"EMERGENCY OPT.CENTER", R.drawable.batstateu))
-        mList.add(ContactData("\nMABINI GENERAL\n"+"HOSPITAL", R.drawable.hospitallogo))
-        mList.add(ContactData("\nMABINI MDRRMO", R.drawable.mdrrmo))
-        mList.add(ContactData("\nPHILIPPINE RED CROSS\n"+ "BATANGAS CITY", R.drawable.redcross))
-        mList.add(ContactData("\nPNP MABINI", R.drawable.pnp))
-        mList.add(ContactData("\nZIGZAG\n"+"HOSPITAL", R.drawable.hospitallogo))
+        mList.add(ContactData("NATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
+        mList.add(ContactData("BATELEC II", R.drawable.batelec2))
+        mList.add(ContactData("BATANGAS PDRRMO", R.drawable.pdrrmobats))
+        mList.add(ContactData("BATSTATE U\n" + "MABINI ADMIN\n" + "OFFICE", R.drawable.batstateu))
+        mList.add(ContactData("BATSTATEU MABINI \n"+"INFIRMARY", R.drawable.batstateu))
+        mList.add(ContactData("BUREAU OF FIRE\n"+"PROTECTION\n"+"MABINI", R.drawable.bfp))
+        mList.add(ContactData("COAST GUARD\n" + "MABINI", R.drawable.pcg))
+        mList.add(ContactData("MABINI CAMPUS\n"+"EMERGENCY OPT.CENTER", R.drawable.batstateu))
+        mList.add(ContactData("MABINI GENERAL\n"+"HOSPITAL", R.drawable.hospitallogo))
+        mList.add(ContactData("MABINI MDRRMO", R.drawable.mdrrmo))
+        mList.add(ContactData("PHILIPPINE RED CROSS\n"+ "BATANGAS CITY", R.drawable.redcross))
+        mList.add(ContactData("PNP MABINI", R.drawable.pnp))
+        mList.add(ContactData("ZIGZAG\n"+"HOSPITAL", R.drawable.hospitallogo))
 
     }
     private fun makePhoneCall(phoneNumber: String) {
