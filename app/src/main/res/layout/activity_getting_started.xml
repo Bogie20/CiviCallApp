@@ -64,109 +64,277 @@
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
+                android:backgroundTint="@color/white"
                 android:layout_width="330dp"
-                android:layout_height="wrap_content"
+                android:layout_height="1200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="4dp">
 
 
                 <TextView
                     android:id="@+id/title"
-                    android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5 Tips for the students who want \nto participate in Civic Engagement"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="16dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp" />
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend_bold"
+                    android:text="Civic Engagement 101: A Guide to Getting Started"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
                 <TextView
 
                     android:id="@+id/info"
-                    android:fontFamily="@font/lexend_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1.Stay Informed: Keep up with current events and local issues to understand what's happening in your community."
-                    android:textSize="12sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="80dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="80dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend_medium"
                     android:gravity="start"
+                    android:text="1.Understand Civic Engagement: Civic engagement encompasses a wide range of activities aimed at improving society and addressing community issues. It includes activities like voting, volunteering, advocacy, and community organizing."
                     android:textAlignment="viewStart"
-                    />
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+                <TextView
 
+                    android:id="@+id/info1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="170dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend_medium"
+                    android:gravity="start"
+                    android:text="2.Identify Your Interests: Start by considering the causes or issues that matter most to you. Whether it's environmental sustainability, education, healthcare, social justice, or any other topic, passion is a powerful motivator."
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
                 <TextView
 
                     android:id="@+id/info2"
-                    android:fontFamily="@font/lexend_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2.Join Clubs: Join or create clubs at school focused on civic engagement and community service."
-                    android:textSize="12sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="130dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="250dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend_medium"
                     android:gravity="start"
+                    android:text="3.Educate Yourself:Research and learn about the issues you care about. Read books, articles, and watch documentaries to deepen your knowledge."
                     android:textAlignment="viewStart"
-                    />
-
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
                 <TextView
 
                     android:id="@+id/info3"
-                    android:fontFamily="@font/lexend_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3.Volunteer: Get involved in volunteer opportunities that align with your interests and values."
-                    android:textSize="12sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="180dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="250dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend_medium"
                     android:gravity="start"
+                    android:text="3.Educate Yourself:Research and learn about the issues you care about. Read books, articles, and watch documentaries to deepen your knowledge."
                     android:textAlignment="viewStart"
-                    />
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
                 <TextView
 
                     android:id="@+id/info4"
-                    android:fontFamily="@font/lexend_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4.Speak Up: Don't be afraid to voice your opinions and concerns at school meetings or town hall events."
-                    android:textSize="12sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="230dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="300dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend_medium"
                     android:gravity="start"
+                    android:text="4.Register to Vote:If you're eligible to vote, make sure you're registered. Voting is one of the most direct ways to influence policy and governance."
                     android:textAlignment="viewStart"
-                    />
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
                 <TextView
 
                     android:id="@+id/info5"
-                    android:fontFamily="@font/lexend_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5.Register &amp; Vote: When eligible, register to vote and participate in elections to make your voice heard in government decisions."
-                    android:textSize="12sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="280dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="350dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend_medium"
                     android:gravity="start"
+                    android:text="5.Educate Yourself:Research and learn about the issues you care about. Read books, articles, and watch documentaries to deepen your knowledge."
                     android:textAlignment="viewStart"
-                    />
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+                <TextView
+
+                    android:id="@+id/info6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="400dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend_medium"
+                    android:gravity="start"
+                    android:text="6.Join Civic Organizations:Many communities have civic organizations, non-profits, and advocacy groups focused on specific issues. Joining these organizations can provide you with guidance and a platform for your efforts."
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+                <TextView
+
+                    android:id="@+id/info7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="480dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend_medium"
+                    android:gravity="start"
+                    android:text="7.Volunteer:Find local volunteer opportunities related to your interests. Whether it's working at a food bank, participating in a park cleanup, or mentoring students, volunteering is a tangible way to make a difference."
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+                <TextView
+
+                    android:id="@+id/info8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="560dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend_medium"
+                    android:gravity="start"
+                    android:text="8.Advocate for Change: Write letters, make phone calls, and meet with elected officials to express your concerns and support for specific policies or legislation."
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+                <TextView
+
+                    android:id="@+id/info9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="620dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend_medium"
+                    android:gravity="start"
+                    android:text="9. Connect with Like-Minded Individuals: Engage with people who share your interests. Attend community meetings or join online forums and social media groups dedicated to your cause."
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+                <TextView
+
+                    android:id="@+id/info10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="680dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend_medium"
+                    android:gravity="start"
+                    android:text="10.Organize Community Initiatives: - If you're passionate about a particular issue, consider starting a community initiative or project. This could be a neighborhood watch program, a local environmental campaign, or a youth mentoring program."
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+                <TextView
+
+                    android:id="@+id/info11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="770dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend_medium"
+                    android:gravity="start"
+                    android:text="11.Stay Informed:Stay updated on current events and policy changes related to your chosen issues. Follow reputable news sources and research organizations."
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+                <TextView
+
+                    android:id="@+id/info12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="830dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend_medium"
+                    android:gravity="start"
+                    android:text="12.Stay Informed:Stay updated on current events and policy changes related to your chosen issues. Follow reputable news sources and research organizations."
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+                <TextView
+
+                    android:id="@+id/info13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="890dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend_medium"
+                    android:gravity="start"
+                    android:text="13.Be Patient and Persistent:Civic engagement can be a long-term endeavor. Change often takes time, so be patient and persistent in your efforts."
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+                <TextView
+
+                    android:id="@+id/info14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="940dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend_medium"
+                    android:gravity="start"
+                    android:text="14.Practice Self-Care:Engaging in civic work can be emotionally draining. Don't forget to take breaks, practice self-care, and seek support when needed to avoid burnout."
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+                <TextView
+
+                    android:id="@+id/info15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="1000dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend_medium"
+                    android:gravity="start"
+                    android:text="15.Encourage Others to Get Involved:Share your experiences and passion for civic engagement with friends and family. Encouraging others to get involved can have a ripple effect."
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+
+
+
+
+
+
+
 
 
 
