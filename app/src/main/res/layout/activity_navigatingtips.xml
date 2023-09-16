@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    tools:context=".CivicEngagementInfo.navigatingtips">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/arrowBackImageView"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:padding="8dp"
+            android:src="@drawable/jherimyback24"
+            />
+
+        <TextView
+            android:id="@+id/titleTextView"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/lexend_bold"
+            android:text="Civic Engagement Tips"
+
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_marginTop="20dp"
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/relativeLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/volunteer"
+            android:layout_width="match_parent"
+            android:layout_height="1210dp"
+            android:orientation="vertical">
+
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/love2"
+                    />
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_width="330dp"
+                android:layout_height="1210dp"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="4dp">
+
+
+                <TextView
+                    android:id="@+id/title"
+                    android:fontFamily="@font/lexend_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tips Navigating Civic Engagement: Dos and Don'ts"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp" />
+                <TextView
+
+                    android:id="@+id/info"
+                    android:fontFamily="@font/lexend_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Navigating civic engagement effectively involves a combination of passion, knowledge, and thoughtful actions. Here are five dos and don'ts to help you make a positive impact:"
+                    android:textSize="10sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="start"
+                    android:textAlignment="viewStart"
+                    />
+
+                <TextView
+
+                    android:id="@+id/info2"
+                    android:fontFamily="@font/lexend_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dos:"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="130dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="start"
+                    android:textAlignment="viewStart"
+                    />
+
+                <TextView
+
+                    android:id="@+id/info4"
+                    android:fontFamily="@font/lexend_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.Stay Informed: Do educate yourself about the issues that matter to you and your community. Follow reliable news sources, attend public meetings, and engage in meaningful conversations with others to gain a comprehensive understanding of the challenges and opportunities."
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="150dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="start"
+                    android:textAlignment="viewStart"
+                    />
+                <TextView
+
+                    android:id="@+id/info5"
+                    android:fontFamily="@font/lexend_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2.Engage in Civil Discourse: Do engage in respectful and constructive conversations with people who may have different opinions. Listen actively, ask questions, and try to find common ground. Productive dialogue can lead to consensus and positive change."
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="260dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="start"
+                    android:textAlignment="viewStart"
+                    />
+                <TextView
+
+                    android:id="@+id/info6"
+                    android:fontFamily="@font/lexend_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3.Participate Actively: Do actively participate in civic activities, such as voting in elections, attending community meetings, and volunteering for causes you care about. Your involvement can make a real difference in shaping policies and initiatives."
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="350dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="start"
+                    android:textAlignment="viewStart"
+                    />
+                <TextView
+
+                    android:id="@+id/info7"
+                    android:fontFamily="@font/lexend_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.Advocate for Change: Do advocate for policies and initiatives that align with your values and beliefs. Write to your elected representatives, join advocacy groups, and use your voice to influence decision-makers at all levels of government."
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="440dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="start"
+                    android:textAlignment="viewStart"
+                    />
+                <TextView
+
+                    android:id="@+id/info8"
+                    android:fontFamily="@font/lexend_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5.Empower Others: Do encourage and empower others in your community to become engaged citizens. Share information, provide resources, and mentor those who are new to civic participation. A strong, informed community is a catalyst for positive change."
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="530dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="start"
+                    android:textAlignment="viewStart"
+                    />
+                <TextView
+
+                    android:id="@+id/info9"
+                    android:fontFamily="@font/lexend_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Don'ts:"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="640dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="start"
+                    android:textAlignment="viewStart"
+                    />
+                <TextView
+
+                    android:id="@+id/info10"
+                    android:fontFamily="@font/lexend_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.Don't Disregard Facts: Don't base your civic engagement on misinformation or unfounded rumors. Verify information from credible sources and avoid spreading false or misleading content."
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="660dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="start"
+                    android:textAlignment="viewStart"
+                    />
+                <TextView
+
+                    android:id="@+id/info11"
+                    android:fontFamily="@font/lexend_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2.Don't Resort to Hostility: Don't engage in hostile or disrespectful behavior, whether online or in person. Personal attacks and aggression are counterproductive and hinder meaningful dialogue."
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="720dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="start"
+                    android:textAlignment="viewStart"
+                    />
+
+                <TextView
+
+                    android:id="@+id/info12"
+                    android:fontFamily="@font/lexend_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3.Don't Disengage When Frustrated: Don't give up on civic engagement when you encounter obstacles or face setbacks. Change can be slow, and perseverance is essential to achieving long-term goals."
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="800dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="start"
+                    android:textAlignment="viewStart"
+                    />
+                <TextView
+
+                    android:id="@+id/info13"
+                    android:fontFamily="@font/lexend_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.Don't Overcommit: Don't spread yourself too thin by trying to engage in every possible civic activity. Focus on a few causes or issues that matter most to you, and dedicate your time and energy effectively."
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="880dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="start"
+                    android:textAlignment="viewStart"
+                    />
+                <TextView
+
+                    android:id="@+id/info14"
+                    android:fontFamily="@font/lexend_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5.Don't Ignore Local Engagement: Don't underestimate the importance of local civic engagement. Community-level actions and decisions can have a significant impact on your daily life, so be sure to stay involved at the local level as well as at the national or global level."
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="960dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="start"
+                    android:textAlignment="viewStart"
+                    />
+
+
+
+
+
+
+
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

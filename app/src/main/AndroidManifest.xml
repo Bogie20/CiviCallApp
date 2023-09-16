@@ -23,8 +23,39 @@
         android:theme="@style/Theme.New"
         tools:targetApi="31">
         <activity
-            android:name=".CivicEngagementPost.CivicPostMain"
+            android:name=".CivicEngagementInfo.Roadmap"
             android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.TacticsImpact"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.GettingStarted"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.Strategies"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.navigatingtips"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.ParticipantTips"
+            android:exported="true"
+            android:label="@string/title_activity_participant_tips"
+            android:theme="@style/Theme.New" />
+        <activity
+            android:name=".CivicEngagementInfo.civicengagement1"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.civicengagementinfo22"
+            android:exported="true" />
+        <activity
+            android:name=".Forum.main.Main.CreatePostActivityForums"
+            android:exported="true" />
+        <activity
+            android:name=".Forum.main.Main.CommentsActivityForums"
+            android:exported="true"
+            android:label="@string/title_activity_comments_forums"
+            android:theme="@style/Theme.New" />
         <activity
             android:name=".CivicEngagementPost.Update_engagement"
             android:exported="true" />
@@ -33,12 +64,11 @@
             android:exported="true" />
         <activity
             android:name=".CivicEngagementPost.Upload_engagement"
-            android:exported="true" />
-       <!-- Emergency Contact Start -->
+            android:exported="true" /> <!-- Emergency Contact Start -->
         <activity
             android:name=".EmergencyCon.MainEmergencyContact"
             android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:theme="@style/Theme.MaterialComponents" />
         <activity
             android:name=".EmergencyCon.SanJuanCont"
             android:exported="true"

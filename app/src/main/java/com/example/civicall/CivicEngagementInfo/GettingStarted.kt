@@ -1,12 +1,12 @@
-package com.example.civicall.DisasterPreparedness
+package com.example.civicall.CivicEngagementInfo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.civicall.R
 
-class MainDisaster : AppCompatActivity() {
+class GettingStarted : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_disaster)
+        setContentView(R.layout.activity_getting_started)
     }
 }
