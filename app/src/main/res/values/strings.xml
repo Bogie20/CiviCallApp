@@ -148,4 +148,11 @@
     <string name="save">Save</string>
     <string name="title_activity_civic_engagement">CivicEngagementActivity</string>
     <string name="title_activity_participant_tips">ParticipantTips</string>
+    <string name="amplify">Amplify Your Voice: Civic Engagement Tactics for Impact</string>
+    <string name="yourcivicjourney">Your Civic Journey: A Roadmap to Successful Engagement</string>
+    <string name="civic101">Civic Engagement 101: A Guide to Getting Started`</string>
+    <string name="civiclead">10 Tips Becoming a Civic Leader: Strategies for Meaningful Engagement</string>
+    <string name="navigatecivic">10 Tips Navigating Civic Engagement: Dos and Don\'ts</string>
+    <string name="wanttoparti">10 Tips for the students who want \nto participate in Civic Engagement</string>
+    <string name="makingthemost">Making the Most of your Civic Engagement Experience</string>
 </resources>
