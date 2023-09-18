@@ -15,4 +15,7 @@
     <style name="Theme.CiviCall.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.CiviCall.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
 </resources>

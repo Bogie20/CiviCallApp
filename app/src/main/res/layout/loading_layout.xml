@@ -6,10 +6,11 @@
     android:layout_height="wrap_content">
 
     <ProgressBar
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:indeterminateTint="@color/red2"/>
+        android:indeterminateDrawable="@drawable/custom_progress_drawable"
+     />
 
     <TextView
         android:layout_width="0dp"

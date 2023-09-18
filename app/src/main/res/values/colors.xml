@@ -55,6 +55,12 @@
     <color name="gradientred2">#DC1C13</color>
     <color name="gradientred3">#F1959B</color>
 
+    <color name="yourBackgroundColor">#E0E0E0</color>
+    <color name="yourStartColor">#FF5252</color>
+    <color name="yourCenterColor">#FF1744</color>
+    <color name="yourEndColor">#D50000</color>
+
+
     <color name="purple">#6200EE</color>
     <color name="purpleblue">#3700B3</color>
     <color name="bluegreen">#03DAC5</color>

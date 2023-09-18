@@ -122,7 +122,7 @@ class BalayanCont : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:$phoneNumber"))
             startActivity(intent)
         } else {
-            // Request the CALL_PHONE permission
+
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf(Manifest.permission.CALL_PHONE),
