@@ -26,15 +26,13 @@ class Register1 : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var progressDialog: ProgressDialog
 
-    // Validation functions
-    // Validation functions
-    // Validation functions
+
     private fun validateFirstName() {
         val firstName = activityRegister1Binding.fname.text.toString().trim()
 
         if (firstName.isEmpty()) {
             activityRegister1Binding.fname.error = "Required"
-        } else if (firstName.length > 80) { // Adjust the character limit as needed
+        } else if (firstName.length > 80) {
             activityRegister1Binding.fname.error = "First Name is too long"
         } else {
             activityRegister1Binding.fname.error = null
@@ -79,29 +77,33 @@ class Register1 : AppCompatActivity() {
         val password = activityRegister1Binding.pass.text.toString().trim()
 
         if (password.isEmpty()) {
-            activityRegister1Binding.pass.error = "Required"
+            activityRegister1Binding.pass.error = "Password is required"
+        } else if (password.length < 8) {
+            activityRegister1Binding.pass.error = "Password must be at least 8 characters long"
+        } else if (!password.matches("^(?=.*[a-zA-Z])(?=.*\\d).+\$".toRegex())) {
+            activityRegister1Binding.pass.error = "Password must contain both letters and numbers"
         } else {
             activityRegister1Binding.pass.error = null
         }
     }
 
-    private fun validateContactNumber() {
-        val contactNumber = activityRegister1Binding.Contactline.text.toString().trim()
 
-        if (contactNumber.isEmpty()) {
-            activityRegister1Binding.Contactline.error = "Required"
-        } else if (!isValidPhoneNumber(contactNumber)) {
-            activityRegister1Binding.Contactline.error = "Invalid Contact Number"
-        } else {
-            activityRegister1Binding.Contactline.error = null
-        }
-    }
+    private fun validateContactNumber() {
+     val contactNumber = activityRegister1Binding.Contactline.text.toString().trim()
+
+     if (contactNumber.isEmpty()) {
+         activityRegister1Binding.Contactline.error = "Please enter Contact Number"
+     } else if (!isValidPhoneNumber(contactNumber)) {
+         activityRegister1Binding.Contactline.error = "Invalid Contact Number"
+     } else {
+         activityRegister1Binding.Contactline.error = null
+     }
+ }
 
     private fun isValidPhoneNumber(contactNumber: String): Boolean {
-        // Remove spaces and special characters from the contact number
+
         val sanitizedNumber = contactNumber.replace("\\s".toRegex(), "")
 
-        // Check if it starts with either "+63" or "0"
         return if (sanitizedNumber.startsWith("+63")) {
             sanitizedNumber.length == 13
         } else if (sanitizedNumber.startsWith("09")) {
@@ -111,17 +113,17 @@ class Register1 : AppCompatActivity() {
         }
     }
 
-    private fun validateContactEme() {
-        val contactNum = activityRegister1Binding.ContactEme.text.toString().trim()
+  private fun validateContactEme() {
+      val contactNum = activityRegister1Binding.ContactEme.text.toString().trim()
 
-        if (contactNum.isEmpty()) {
-            activityRegister1Binding.ContactEme.error = "Required"
-        } else if (!isValidPhoneEme(contactNum)) {
-            activityRegister1Binding.ContactEme.error = "Invalid Contact Number"
-        } else {
-            activityRegister1Binding.ContactEme.error = null
-        }
-    }
+      if (contactNum.isEmpty()) {
+          activityRegister1Binding.ContactEme.error = "Please enter Contact Person"
+      } else if (!isValidPhoneEme(contactNum)) {
+          activityRegister1Binding.ContactEme.error = "Invalid Contact Person"
+      } else {
+          activityRegister1Binding.ContactEme.error = null
+      }
+  }
 
     private fun isValidPhoneEme(contactNum: String): Boolean {
         // Remove spaces and special characters from the contact number
@@ -164,12 +166,17 @@ class Register1 : AppCompatActivity() {
         val password = activityRegister1Binding.pass.text.toString().trim()
         val confirmPassword = activityRegister1Binding.confirmPass.text.toString().trim()
 
-        if (password != confirmPassword) {
+        if (password.isEmpty()) {
+            activityRegister1Binding.pass.error = "Please Enter Password"
+        } else if (confirmPassword.isEmpty()) {
+            activityRegister1Binding.confirmPass.error = "Please Confirm Password"
+        } else if (password != confirmPassword) {
             activityRegister1Binding.confirmPass.error = "Passwords do not match"
         } else {
             activityRegister1Binding.confirmPass.error = null
         }
     }
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -181,7 +188,6 @@ class Register1 : AppCompatActivity() {
 
         val genderSpinner = activityRegister1Binding.spinnerSex
 
-        // Set the adapter and default selection
         val adapter = ArrayAdapter.createFromResource(
             this,
             R.array.gender_array,
@@ -189,9 +195,8 @@ class Register1 : AppCompatActivity() {
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         genderSpinner.adapter = adapter
-        genderSpinner.setSelection(adapter.getPosition("Gender")) // Set the default selection
+        genderSpinner.setSelection(adapter.getPosition("Gender"))
 
-        // Set an OnItemSelectedListener to capture the selected gender value
         genderSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -199,12 +204,10 @@ class Register1 : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                // Get the selected gender from the spinner
                 spinnerSex = parent?.getItemAtPosition(position).toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                // This method is required, but you can leave it empty
             }
         }
 
@@ -332,66 +335,61 @@ class Register1 : AppCompatActivity() {
         val checkBox = findViewById<CheckBox>(R.id.checkedTextView)
         val isChecked = checkBox.isChecked
 
-        // Create a list to store error messages
         val errorMessages = mutableListOf<String>()
 
-        if (fname.isEmpty()) {
-            errorMessages.add("Please Enter First Name")
+        if (fname.isEmpty() && lname.isEmpty() && email.isEmpty() && phoneno.isEmpty() &&
+            phoneEme.isEmpty() && address.isEmpty() && birtdate.isEmpty() && spinnerSex == "-Gender-") {
+            activityRegister1Binding.fname.error = "Required"
+            errorMessages.add("Please Fill All the Fields")
+        } else {
+            activityRegister1Binding.fname.error = null
         }
 
-        if (lname.isEmpty()) {
-            errorMessages.add("Please Enter Last Name")
-        }
-
-        if (email.isEmpty()) {
-            errorMessages.add("Please Enter Email")
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (email.isNotEmpty() && !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             errorMessages.add("Invalid Email Address")
         }
 
-        if (pass.isEmpty()) {
-            errorMessages.add("Please Enter Password")
+        if (phoneno.isNotEmpty() && !isValidPhoneNumber(phoneno)) {
+            errorMessages.add("Invalid Contact Number")
         }
 
-        if (confirmPass.isEmpty()) {
-            errorMessages.add("Please Confirm Password")
+        if (phoneEme.isNotEmpty() && !isValidPhoneEme(phoneEme)) {
+            errorMessages.add("Invalid Contact Person Number")
         }
 
-        if (phoneno.isEmpty()) {
-            errorMessages.add("Please Enter Contact Number")
-        }
+        if (birtdate.isNotEmpty()) {
+            val dobParts = birtdate.split(" / ")
+            if (dobParts.size == 3) {
+                val day = dobParts[0].toInt()
+                val month = dobParts[1].toInt()
+                val year = dobParts[2].toInt()
 
-        if (phoneEme.isEmpty()) {
-            errorMessages.add("Please Enter Contact Person")
-        }
+                val calendar = Calendar.getInstance()
+                val currentYear = calendar.get(Calendar.YEAR)
+                val currentMonth = calendar.get(Calendar.MONTH) + 1
+                val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
 
-        if (birtdate.isEmpty()) {
-            errorMessages.add("Please Enter Date of Birth")
-        } else if (spinnerSex == "-Gender-") {
-            errorMessages.add("Please Select Gender")
-        }
+                val age = currentYear - year - if (currentMonth < month || (currentMonth == month && currentDay < day)) 1 else 0
 
-        if (address.isEmpty()) {
-            errorMessages.add("Please Enter Address")
-        } else if (address.length > 200) {
-            errorMessages.add("Address is too long")
+                if (age < 18) {
+                    errorMessages.add("You must be at least 18 years old to register")
+                }
+            } else {
+                errorMessages.add("Invalid Date of Birth format")
+            }
         }
 
         if (!isChecked) {
             errorMessages.add("Please accept the agreement to register")
         }
 
-        if (pass != confirmPass) {
-            errorMessages.add("Passwords do not match")
-        }
+        validatePasswordMatch()
 
         if (errorMessages.isNotEmpty()) {
-            // If there are errors, display them using Toast or any other method
             for (message in errorMessages) {
                 Toast.makeText(this, message, Toast.LENGTH_LONG).show()
             }
         } else {
-            // Call createUserAccount only when everything else is valid
             createUserAccount(phoneEme)
         }
     }

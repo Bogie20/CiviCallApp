@@ -13,18 +13,12 @@
             android:layout_centerInParent="true"
             android:visibility="gone"/>
 
-
-
         <androidx.cardview.widget.CardView
             android:layout_width="415dp"
             android:layout_height="90dp"
             android:id="@+id/card"
-
-
             app:cardBackgroundColor="@color/red"
             app:cardCornerRadius="4dp">
-
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,24 +66,12 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:paddingHorizontal="1dp">
-            <TextView
-                android:id="@+id/header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/lexend_semibold"
-                android:text=" &quot;IGNITE CHANGE: SIGN-UP NOW!&quot;"
-                android:textColor="@color/DarkGray"
-                android:textSize="18sp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="20dp"
-            />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/fnameTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 app:hintEnabled="true"
                 app:hintTextColor="@color/DarkGray"
                 style="@style/ElevatedHint">
@@ -190,7 +172,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:drawableStart="@drawable/contacteme"
-                    android:hint="Contact Person"
+                    android:hint="Emergency Contact"
                     android:backgroundTint="@color/white"
                     android:drawablePadding="5dp"
                     android:background="@drawable/button_shape"
@@ -206,7 +188,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/birthdateTextInputLayout"
-                    android:layout_width="0dp"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:hintEnabled="false">
@@ -219,7 +201,7 @@
                         android:drawableStart="@drawable/calendar"
                         android:hint="Date of Birth"
                         style="@style/ElevatedHint"
-                        android:paddingRight="17dp"
+                        android:paddingRight="20dp"
                         android:backgroundTint="@color/white"
                         android:background="@drawable/button_shape"
                         android:paddingLeft="22dp"
@@ -359,6 +341,4 @@
         android:layout_marginTop="8dp"
        android:layout_marginBottom="8dp"
     />
-
-
     </RelativeLayout>
