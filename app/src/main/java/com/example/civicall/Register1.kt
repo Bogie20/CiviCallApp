@@ -390,11 +390,11 @@ class Register1 : AppCompatActivity() {
                 Toast.makeText(this, message, Toast.LENGTH_LONG).show()
             }
         } else {
-            createUserAccount(phoneEme)
+            createUserAccount()
         }
     }
 
-    private fun createUserAccount(contactEme: String) {
+    private fun createUserAccount() {
         val accountCreationDialog = ProgressDialog(this)
         accountCreationDialog.setMessage("Creating Account...")
         accountCreationDialog.show()
@@ -404,7 +404,7 @@ class Register1 : AppCompatActivity() {
                 accountCreationDialog.dismiss()
 
                 if (task.isSuccessful) {
-                    updateUserInfo(contactEme)
+                    updateUserInfo()
                 } else {
                     val errorMessage = task.exception?.message ?: "Unknown error occurred."
                     Toast.makeText(
@@ -416,7 +416,7 @@ class Register1 : AppCompatActivity() {
             }
     }
 
-    private fun updateUserInfo(contactEme: String) {
+    private fun updateUserInfo() {
         val userInfoUpdateDialog = ProgressDialog(this)
         userInfoUpdateDialog.setMessage("Saving User Info...")
         userInfoUpdateDialog.show()

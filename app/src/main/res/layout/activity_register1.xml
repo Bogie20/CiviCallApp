@@ -216,22 +216,27 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:hintEnabled="true">
+                    app:hintEnabled="true"
+                    app:hintTextColor="@color/DarkGray"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:elevation="0dp"
+                    android:background="@drawable/button_shape"
+                    android:backgroundTint="@color/white">
+
 
                     <Spinner
                         android:id="@+id/spinnerSex"
                         android:layout_width="match_parent"
                         android:layout_height="54dp"
-                        android:paddingLeft="45dp"
-                        android:background="@drawable/button_shape"
-                        android:backgroundTint="@color/white"
+                        android:paddingLeft="10dp"
+                        app:hintTextColor="@color/DarkGray"
                         android:spinnerMode="dropdown"
                         android:dropDownWidth="match_parent"
                         android:dropDownVerticalOffset="-8dp"
                         android:popupBackground="@color/white"
-                        android:layoutDirection="ltr"
-                        android:drawableEnd="@drawable/drobdown"
-                    />
+                        android:elevation="-100dp"
+                     />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

@@ -51,7 +51,7 @@ class LoboCont : AppCompatActivity() {
             7 to arrayOf("09399252443"),// operation center
             8 to arrayOf("09171349235"),// mdrrmo
             9 to arrayOf("0434047131"), // municipal hostpital
-            10 to arrayOf(" 0437233027","09171356219","09177734912"),// red cross
+            10 to arrayOf("0437233027","09171356219","09177734912"),// red cross
             11 to arrayOf("09167194906","09985985693"),// pnp
         )
         adapter = ContactAdapter(mList, phoneOptionsLobo)

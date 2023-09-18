@@ -77,28 +77,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/img"
-
         android:layout_marginTop="2dp"
         android:orientation="vertical">
-
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailadd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintTextColor="@color/DarkGray"
+            >
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailLogin"
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:background="@drawable/button_shape"
             android:backgroundTint="@color/white"
-
             android:drawableStart="@drawable/baseline_email_24"
-            android:drawablePadding="5dp"
+            android:drawablePadding="10dp"
             android:hint="Email Address"
-            android:paddingLeft="10dp" />
+            app:hintTextColor="@color/DarkGray"
+            android:paddingRight="42dp"
+            android:paddingLeft="10dp"/>
 
-
+    </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/password_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            app:hintTextColor="@color/DarkGray"
+           >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordText"
@@ -107,10 +114,11 @@
                 android:background="@drawable/button_shape"
                 android:backgroundTint="@color/white"
                 android:drawableStart="@drawable/baseline_lock_24"
-                android:drawablePadding="5dp"
+                android:drawablePadding="10dp"
                 android:hint="Password"
                 android:inputType="textPassword"
-            android:paddingLeft="10dp" />
+                android:paddingRight="42dp"
+                android:paddingLeft="10dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
