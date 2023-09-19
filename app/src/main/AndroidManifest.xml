@@ -55,8 +55,9 @@
             android:label="@string/title_activity_participant_tips"
             android:theme="@style/Theme.New" />
         <activity
-            android:name=".CivicEngagementInfo.civicengagement1"
+            android:name=".CivicEngagementInfo.Civic"
             android:exported="true" />
+
         <activity
             android:name=".CivicEngagementInfo.civicengagementinfo22"
             android:exported="true" />

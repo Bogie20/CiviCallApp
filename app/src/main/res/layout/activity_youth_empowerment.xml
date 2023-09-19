@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -75,7 +76,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Civic Engagement and Advocacy: Making Your Voice Heard on Key Issues"
+                    android:text="Youth Empowerment in Civic Engagement: Shaping Tomorrow's Leaders"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -88,7 +89,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Ready to turn your passion into powerful action? Dive into 'Civic Engagement and Advocacy: Making Your Voice Heard on Key Issues,' your roadmap to becoming a fearless advocate. Unleash your potential and become a voice for change!&quot;"
+                    android:text="&quot;Are you ready to seize the reins of change? Dive into 'Youth Empowerment in Civic Engagement: Shaping Tomorrow's Leaders' and embark on a transformative journey to become a leader who shapes a brighter future!&quot;"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -105,6 +106,23 @@
                 <TextView
 
                     android:id="@+id/info3"
+                    android:fontFamily="@font/lexend_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10 Tips for Youth Empowerment in Civic Engagement:"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="200dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="start"
+                    android:textAlignment="viewStart"
+                    />
+
+                <TextView
+
+                    android:id="@+id/info4"
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -112,40 +130,23 @@
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="230dp"
+                    android:layout_marginTop="260dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:gravity="start"
                     android:textAlignment="viewStart"
                     />
-                <TextView
-
-                    android:id="@+id/info4"
-                    android:fontFamily="@font/lexend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2.Educate Yourself: Dive deep into research and gather facts to strengthen your arguments and broaden your knowledge."
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="310dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    />
-
                 <TextView
 
                     android:id="@+id/info5"
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3.Craft Your Message: Develop concise, compelling messages to convey your stance and persuade others."
+                    android:text="2.Learn Continuously: Education is your ally; never stop learning about the issues that matter most to you."
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="390dp"
+                    android:layout_marginTop="350dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:gravity="start"
@@ -158,34 +159,32 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4.Networking: Build relationships with like-minded individuals and organizations to amplify your impact."
+                    android:text="3.Lead by Example: Be the change you want to see in the world and inspire others through your actions."
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="450dp"
+                    android:layout_marginTop="420dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:gravity="start"
                     android:textAlignment="viewStart"
                     />
-
                 <TextView
 
                     android:id="@+id/info7"
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5.Meet with Officials: Arrange meetings with policymakers to discuss your concerns and propose solutions."
+                    android:text="4.Embrace Diversity: Welcome diverse perspectives, as they enrich your understanding and effectiveness as a leader."
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="510dp"
+                    android:layout_marginTop="490dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:gravity="start"
                     android:textAlignment="viewStart"
                     />
-
 
                 <TextView
 
@@ -193,7 +192,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="6.Leverage Social Media: Utilize social platforms to raise awareness, mobilize support, and connect with a broader audience."
+                    android:text="5.Build Bridges: Forge connections with fellow youth leaders, mentors, and organizations to broaden your influence."
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -210,55 +209,59 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="7.Collaborate: Team up with others who share your goals, as collective action often achieves more significant results."
+                    android:text="6.Master Communication: Hone your communication skills to convey your ideas persuasively and foster collaboration."
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="650dp"
+                    android:layout_marginTop="635dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:gravity="start"
                     android:textAlignment="viewStart"
                     />
+
                 <TextView
 
                     android:id="@+id/info10"
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="8.Advocate Locally: Start at the community level, where change can often happen more swiftly and tangibly."
+                    android:text="7.Advocate for Youth: Champion causes that empower and uplift young voices in your community and beyond."
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="710dp"
+                    android:layout_marginTop="720dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:gravity="start"
                     android:textAlignment="viewStart"
                     />
+
                 <TextView
 
                     android:id="@+id/info11"
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="9.Nonviolent Protest: Organize or participate in peaceful protests and demonstrations to draw attention to your cause."
+                    android:text="8.Take Initiative: Don't wait for opportunities; create them by initiating projects and campaigns."
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="770dp"
+                    android:layout_marginTop="785dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:gravity="start"
                     android:textAlignment="viewStart"
                     />
+
+
                 <TextView
 
                     android:id="@+id/info12"
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10.Stay Resilient: Advocacy can be challenging, but persistence is key. Your voice matters, and lasting change is within reach."
+                    android:text="9.Stay Resilient: Persevere through challenges, knowing that your leadership can effect lasting change."
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -268,6 +271,24 @@
                     android:gravity="start"
                     android:textAlignment="viewStart"
                     />
+
+                <TextView
+
+                    android:id="@+id/info13"
+                    android:fontFamily="@font/lexend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10.Mentor Others: Pay it forward by mentoring and guiding the next generation of youth leaders to continue the cycle of empowerment."
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="915dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="start"
+                    android:textAlignment="viewStart"
+                    />
+
 
 
 

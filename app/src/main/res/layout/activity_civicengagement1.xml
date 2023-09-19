@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".CivicEngagementInfo.civicengagement1">
+    tools:context=".CivicEngagementInfo.Civic">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -107,7 +107,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:layout_width="330dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="4dp">
                 <TextView
@@ -115,12 +115,14 @@
                     android:id="@+id/button1"
                     android:fontFamily="@font/lexend_medium"
                     android:layout_width="match_parent"
+                    android:paddingTop="8dp"
                     android:layout_height="wrap_content"
                     android:text="@string/wanttoparti"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
+
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:gravity="start"
@@ -133,8 +135,10 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+
+                android:paddingTop="9dp"
                 android:layout_width="326dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="-6dp"
                 android:layout_marginBottom="10dp"
@@ -167,9 +171,10 @@
                 android:backgroundTint="@color/white"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="-6dp"
+                android:paddingTop="8dp"
                 android:layout_gravity="center"
                 android:layout_width="330dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="4dp">
                 <TextView
@@ -231,7 +236,8 @@
                 android:layout_marginTop="-6dp"
                 android:layout_gravity="center"
                 android:layout_width="330dp"
-                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:layout_height="60dp"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="4dp">
                 <TextView
@@ -262,7 +268,7 @@
                 android:layout_marginTop="-6dp"
                 android:layout_gravity="center"
                 android:layout_width="330dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="4dp">
             <TextView
@@ -320,7 +326,7 @@
                 android:layout_marginTop="-6dp"
                 android:layout_gravity="center"
                 android:layout_width="330dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="4dp">
                 <TextView
@@ -349,7 +355,8 @@
                 android:layout_marginTop="-6dp"
                 android:layout_gravity="center"
                 android:layout_width="330dp"
-                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:layout_height="60dp"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="4dp">
                 <TextView
@@ -378,7 +385,8 @@
                 android:layout_marginTop="-6dp"
                 android:layout_gravity="center"
                 android:layout_width="330dp"
-                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:layout_height="60dp"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="4dp">
                 <TextView
