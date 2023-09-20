@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
 import android.util.Patterns
 import android.view.View
 import android.widget.AdapterView
@@ -30,27 +31,31 @@ class Register1 : AppCompatActivity() {
     private fun validateFirstName() {
         val firstName = activityRegister1Binding.fname.text.toString().trim()
 
+        val regex = "^[a-zA-Z.,-]+$"
+
         if (firstName.isEmpty()) {
             activityRegister1Binding.fname.error = "Required"
-        } else if (firstName.length > 80) {
-            activityRegister1Binding.fname.error = "First Name is too long"
+        } else if (!firstName.matches(regex.toRegex())) {
+            activityRegister1Binding.fname.error = "Only letters and symbols (, . -) are allowed"
         } else {
             activityRegister1Binding.fname.error = null
         }
     }
 
+
     private fun validateLastName() {
         val lastName = activityRegister1Binding.Lname.text.toString().trim()
 
+        val regex = "^[a-zA-Z.-]+$" // Regular expression to allow letters, '.', and '-'
+
         if (lastName.isEmpty()) {
             activityRegister1Binding.Lname.error = "Required"
-        } else if (lastName.length > 80) { // Adjust the character limit as needed
-            activityRegister1Binding.Lname.error = "Last Name is too long"
+        } else if (!lastName.matches(regex.toRegex())) {
+            activityRegister1Binding.Lname.error =  "Only letters and symbols (, . -) are allowed"
         } else {
             activityRegister1Binding.Lname.error = null
         }
     }
-
 
     private fun validateEmail() {
         val email = activityRegister1Binding.Emailline.text.toString().trim()
@@ -62,6 +67,7 @@ class Register1 : AppCompatActivity() {
             activityRegister1Binding.Emailline.error = null
         }
     }
+
 
     private fun validateConfirmPassword() {
         val password = activityRegister1Binding.confirmPass.text.toString().trim()
@@ -143,13 +149,14 @@ class Register1 : AppCompatActivity() {
         val address = activityRegister1Binding.adress.text.toString().trim()
 
         if (address.isEmpty()) {
-            activityRegister1Binding.adress.error = "Required"
-        } else if (address.length > 200) { // Adjust the character limit as needed
-            activityRegister1Binding.adress.error = "Address is too long"
+            activityRegister1Binding.adress.error = "Address is required"
+        } else if (address.length < 5) {
+            activityRegister1Binding.adress.error = "Address is too short"
         } else {
             activityRegister1Binding.adress.error = null
         }
     }
+
 
 
     private fun validateBirthday() {
@@ -187,16 +194,24 @@ class Register1 : AppCompatActivity() {
         setContentView(activityRegister1Binding.root)
 
         val genderSpinner = activityRegister1Binding.spinnerSex
+        val genderArray = resources.getStringArray(R.array.gender_array).toMutableList()
+        val contactNumber = activityRegister1Binding.Contactline
+        val contactEme = activityRegister1Binding.ContactEme
+        genderArray.add(0, "Gender") // Add "Gender" as the first item in the list
 
-        val adapter = ArrayAdapter.createFromResource(
+        contactNumber.inputType = InputType.TYPE_CLASS_PHONE
+        contactEme.inputType = InputType.TYPE_CLASS_PHONE
+        val adapter = CustomSpinnerAdapter(
             this,
-            R.array.gender_array,
-            android.R.layout.simple_spinner_item
+            android.R.layout.simple_spinner_item,
+            genderArray
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         genderSpinner.adapter = adapter
-        genderSpinner.setSelection(adapter.getPosition("Gender"))
 
+// Set the initial selection to "Gender"
+        val initialSelection = 0
+        genderSpinner.setSelection(initialSelection)
         genderSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -204,12 +219,17 @@ class Register1 : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                spinnerSex = parent?.getItemAtPosition(position).toString()
+                spinnerSex = if (position == 0) {
+                    "" // Set an empty string if "Gender" is selected
+                } else {
+                    parent?.getItemAtPosition(position).toString()
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
+
 
         val firstNameEditText = activityRegister1Binding.fname
         val lastNameEditText = activityRegister1Binding.Lname
@@ -337,24 +357,63 @@ class Register1 : AppCompatActivity() {
 
         val errorMessages = mutableListOf<String>()
 
-        if (fname.isEmpty() && lname.isEmpty() && email.isEmpty() && phoneno.isEmpty() &&
-            phoneEme.isEmpty() && address.isEmpty() && birtdate.isEmpty() && spinnerSex == "-Gender-") {
-            activityRegister1Binding.fname.error = "Required"
+        if (fname.isEmpty() || lname.isEmpty() || email.isEmpty() || phoneno.isEmpty() ||
+            phoneEme.isEmpty() || address.isEmpty() || birtdate.isEmpty() || spinnerSex == "Gender") {
+            if (fname.isEmpty()) {
+                activityRegister1Binding.fname.error = "Required"
+            } else {
+                activityRegister1Binding.fname.error = null
+            }
+            if (lname.isEmpty()) {
+                activityRegister1Binding.Lname.error = "Required"
+            } else {
+                activityRegister1Binding.Lname.error = null
+            }
+            if (email.isEmpty()) {
+                activityRegister1Binding.Emailline.error = "Email is required"
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                activityRegister1Binding.Emailline.error = "Invalid email format"
+            } else {
+                activityRegister1Binding.Emailline.error = null
+            }
+            if (phoneno.isEmpty() || !isValidPhoneNumber(phoneno)) {
+                activityRegister1Binding.Contactline.error = if (phoneno.isEmpty()) {
+                    "Please enter Contact Number"
+                } else {
+                    "Invalid Contact Number"
+                }
+            } else {
+                activityRegister1Binding.Contactline.error = null
+            }
+            if (phoneEme.isEmpty() || !isValidPhoneEme(phoneEme)) {
+                activityRegister1Binding.ContactEme.error = if (phoneEme.isEmpty()) {
+                    "Please enter Contact Person"
+                } else {
+                    "Invalid Contact Person"
+                }
+            } else {
+                activityRegister1Binding.ContactEme.error = null
+            }
+            if (address.isEmpty()) {
+                activityRegister1Binding.adress.error = "Required"
+            } else {
+                activityRegister1Binding.adress.error = null
+            }
+            if (birtdate.isEmpty()) {
+                activityRegister1Binding.birthdate.error = "Required"
+            } else {
+                activityRegister1Binding.birthdate.error = null
+            }
+            if (spinnerSex == "Gender") {
+                val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
+                genderTextInputLayout.helperText = "*required"
+                errorMessages.add("Please select a gender")
+            } else {
+                val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
+                genderTextInputLayout.helperText = null
+            }
+
             errorMessages.add("Please Fill All the Fields")
-        } else {
-            activityRegister1Binding.fname.error = null
-        }
-
-        if (email.isNotEmpty() && !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            errorMessages.add("Invalid Email Address")
-        }
-
-        if (phoneno.isNotEmpty() && !isValidPhoneNumber(phoneno)) {
-            errorMessages.add("Invalid Contact Number")
-        }
-
-        if (phoneEme.isNotEmpty() && !isValidPhoneEme(phoneEme)) {
-            errorMessages.add("Invalid Contact Person Number")
         }
 
         if (birtdate.isNotEmpty()) {
@@ -392,6 +451,17 @@ class Register1 : AppCompatActivity() {
         } else {
             createUserAccount()
         }
+
+
+    if (spinnerSex == "Gender") {
+            val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
+            genderTextInputLayout.helperText = "*required"
+            errorMessages.add("Please select a gender")
+        } else {
+            val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
+            genderTextInputLayout.helperText = null
+        }
+
     }
 
     private fun createUserAccount() {

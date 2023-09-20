@@ -15,7 +15,6 @@ android:layout_height="70dp"
 android:layout_gravity="center"
 android:indeterminate="true" android:layout_marginTop="10dp"
 android:indeterminateTint="@color/colorAccent" />
-
 <TextView
 android:id="@+id/messageTextView"
 android:layout_width="wrap_content"
