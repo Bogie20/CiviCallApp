@@ -61,31 +61,33 @@
             android:layout_marginEnd="10dp"
             android:paddingHorizontal="1dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fnameTextInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="50dp"
-                app:hintTextColor="@color/DarkGray"
-                android:layout_marginTop="10dp"
-                app:counterEnabled="true"
-                app:counterMaxLength="80">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fname"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fnameTextInputLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:background="@drawable/button_shape"
-                    android:backgroundTint="@color/white"
-                    android:drawableStart="@drawable/baseline_person_24"
-                    android:drawablePadding="15dp"
-                    android:hint="First Name"
+                    android:layout_height="wrap_content"
+                    android:elevation="50dp"
                     app:hintTextColor="@color/DarkGray"
-                    android:paddingRight="42dp"
-                    android:paddingLeft="20dp"
-                    />
+                    android:layout_marginTop="10dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="80">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fname"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:background="@drawable/button_shape"
+                        android:backgroundTint="@color/white"
+                        android:drawableStart="@drawable/baseline_person_24"
+                        android:drawablePadding="15dp"
+                        android:hint="First Name"
+                        android:lines="1"
+                        android:inputType="text"
+                        app:hintTextColor="@color/DarkGray"
+                        android:paddingRight="42dp"
+                        android:paddingLeft="20dp"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/lastNameTextInputLayout"
@@ -104,6 +106,8 @@
                     android:drawableStart="@drawable/baseline_person_24"
                     android:drawablePadding="15dp"
                     android:hint="Last Name"
+                    android:lines="1"
+                    android:inputType="text"
                     app:hintTextColor="@color/DarkGray"
                     android:paddingRight="42dp"
                     android:paddingLeft="20dp"/>
@@ -114,9 +118,11 @@
                 android:id="@+id/emailTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:elevation="50dp"
                 app:hintTextColor="@color/DarkGray"
                 app:counterEnabled="true"
                 app:counterMaxLength="320">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Emailline"
                     android:layout_width="match_parent"
@@ -126,9 +132,12 @@
                     android:drawableStart="@drawable/baseline_email_24"
                     android:drawablePadding="15dp"
                     android:hint="Email"
+                    android:lines="1"
+                    android:inputType="text"
                     app:hintTextColor="@color/DarkGray"
                     android:paddingRight="42dp"
-                    android:paddingLeft="20dp"/>
+                    android:paddingLeft="20dp"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -149,6 +158,7 @@
                     android:drawableStart="@drawable/baseline_perm_contact_calendar_24"
                     android:drawablePadding="15dp"
                     android:hint="Mobile Number"
+                    android:lines="1"
                     app:hintTextColor="@color/DarkGray"
                     android:paddingRight="42dp"
                     android:paddingLeft="20dp"/>
@@ -171,6 +181,7 @@
                     android:backgroundTint="@color/white"
                     android:drawableStart="@drawable/baseline_perm_contact_calendar_24"
                     android:drawablePadding="15dp"
+                    android:lines="1"
                     android:hint="No. In Case of Emergency "
                     app:hintTextColor="@color/DarkGray"
                     android:paddingRight="42dp"
@@ -192,7 +203,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     app:hintEnabled="false"
-                    app:helperText="*required"
                     app:helperTextTextColor="@color/red">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/birthdate"
@@ -214,7 +224,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/genderTextInputLayout"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="54dp"
                     android:layout_weight="1"
                     app:hintEnabled="true"
                     app:hintTextColor="@color/DarkGray"
@@ -246,9 +256,12 @@
                 android:id="@+id/addressTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:elevation="50dp"
                 app:hintTextColor="@color/DarkGray"
+                android:layout_marginTop="10dp"
                 app:counterEnabled="true"
                 app:counterMaxLength="255">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/adress"
                     android:layout_width="match_parent"
@@ -258,11 +271,15 @@
                     android:drawableStart="@drawable/sharelocation"
                     android:drawablePadding="15dp"
                     android:hint="Address"
+                    android:lines="1"
+                    android:inputType="text"
                     app:hintTextColor="@color/DarkGray"
                     android:paddingRight="42dp"
-                    android:paddingLeft="20dp"/>
+                    android:paddingLeft="20dp"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
+
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -283,6 +300,7 @@
                     android:drawableStart="@drawable/baseline_lock_24"
                     android:drawablePadding="15dp"
                     android:hint="Password"
+                    android:lines="1"
                     android:inputType="textPassword"
                     android:paddingRight="42dp"
                     android:paddingLeft="20dp"/>
@@ -305,6 +323,7 @@
                     android:backgroundTint="@color/white"
                     android:drawableStart="@drawable/baseline_lock_24"
                     android:drawablePadding="15dp"
+                    android:lines="1"
                     android:hint="Confirm Password"
                     android:inputType="textPassword"
                     android:paddingRight="42dp"

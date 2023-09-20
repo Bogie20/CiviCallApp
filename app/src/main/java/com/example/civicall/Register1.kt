@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputFilter
 import android.text.InputType
 import android.util.Patterns
 import android.view.View
@@ -17,6 +18,7 @@ import android.widget.Toast
 import android.widget.CheckBox
 import com.example.civicall.CivicEngagementPost.CivicPostFragment
 import com.example.civicall.databinding.ActivityRegister1Binding
+import com.google.android.material.textfield.TextInputLayout
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -29,18 +31,19 @@ class Register1 : AppCompatActivity() {
 
 
     private fun validateFirstName() {
-        val firstName = activityRegister1Binding.fname.text.toString().trim()
+        val lastName = activityRegister1Binding.fname.text.toString().trim()
 
-        val regex = "^[a-zA-Z.,-]+$"
+        val regex = "^[a-zA-Z.-]+$" // Regular expression to allow letters, '.', and '-'
 
-        if (firstName.isEmpty()) {
+        if (lastName.isEmpty()) {
             activityRegister1Binding.fname.error = "Required"
-        } else if (!firstName.matches(regex.toRegex())) {
-            activityRegister1Binding.fname.error = "Only letters and symbols (, . -) are allowed"
+        } else if (!lastName.matches(regex.toRegex())) {
+            activityRegister1Binding.fname.error =  "Only letters and symbols (, . -) are allowed"
         } else {
             activityRegister1Binding.fname.error = null
         }
     }
+
 
 
     private fun validateLastName() {
@@ -161,13 +164,17 @@ class Register1 : AppCompatActivity() {
 
     private fun validateBirthday() {
         val birthday = activityRegister1Binding.birthdate.text.toString().trim()
+        val birthdateTextInputLayout = activityRegister1Binding.birthdateTextInputLayout
 
         if (birthday.isEmpty()) {
-            activityRegister1Binding.birthdate.error = "Required"
+            birthdateTextInputLayout.error = null // Set error to null when it's empty
+            birthdateTextInputLayout.helperText = "*required"
         } else {
-            activityRegister1Binding.birthdate.error = null
+            birthdateTextInputLayout.error = null // Set error to null when it's not empty
+            birthdateTextInputLayout.helperText = null
         }
     }
+
 
     private fun validatePasswordMatch() {
         val password = activityRegister1Binding.pass.text.toString().trim()
@@ -197,8 +204,38 @@ class Register1 : AppCompatActivity() {
         val contactEme = activityRegister1Binding.ContactEme
         genderArray.add(0, "Gender") // Add "Gender" as the first item in the list
 
+        val maxLength = 80
+        val maxEmailLength = 320
+        val maxContactLength = 20
+        val maxAddressLength = 255
+        val maxPasswordLength = 128
+
+        val firstNameEditText = activityRegister1Binding.fname
+        val lastNameEditText = activityRegister1Binding.Lname
+        val filters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxLength))
+        val emailEditText = activityRegister1Binding.Emailline
+        val emailFilters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxEmailLength))
+        val contactNumberEditText = activityRegister1Binding.Contactline
+        val contactEmeEditText = activityRegister1Binding.ContactEme
+        val contactFilters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxContactLength))
+        val addressEditText = activityRegister1Binding.adress
+        val addressFilters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxAddressLength))
+        val passwordEditText = activityRegister1Binding.pass
+        val confirmPasswordEditText = activityRegister1Binding.confirmPass
+        val passwordFilters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxPasswordLength))
+        passwordEditText.filters = passwordFilters
+        confirmPasswordEditText.filters = passwordFilters
+
+        addressEditText.filters = addressFilters
+
+        contactNumberEditText.filters = contactFilters
+        contactEmeEditText.filters = contactFilters
+        emailEditText.filters = emailFilters
+        firstNameEditText.filters = filters
+        lastNameEditText.filters = filters
         contactNumber.inputType = InputType.TYPE_CLASS_PHONE
         contactEme.inputType = InputType.TYPE_CLASS_PHONE
+
         val adapter = CustomSpinnerAdapter(
             this,
             android.R.layout.simple_spinner_item,
@@ -207,7 +244,6 @@ class Register1 : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         genderSpinner.adapter = adapter
 
-// Set the initial selection to "Gender"
         val initialSelection = 0
         genderSpinner.setSelection(initialSelection)
         genderSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -227,15 +263,6 @@ class Register1 : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
-
-
-        val firstNameEditText = activityRegister1Binding.fname
-        val lastNameEditText = activityRegister1Binding.Lname
-        val emailEditText = activityRegister1Binding.Emailline
-        val passwordEditText = activityRegister1Binding.pass
-        val contactNumberEditText = activityRegister1Binding.Contactline
-        val contactEmeEditText = activityRegister1Binding.ContactEme
-        val addressEditText = activityRegister1Binding.adress
         val birthdayEditText = activityRegister1Binding.birthdate
         val confirmpassword = activityRegister1Binding.confirmPass
 
@@ -303,8 +330,10 @@ class Register1 : AppCompatActivity() {
         }
         val regbtn: Button = findViewById(R.id.Reg)
         regbtn.setOnClickListener {
+            validateBirthday()
             validateData()
         }
+
 
         val birthday = activityRegister1Binding.birthdate
         val cal = Calendar.getInstance()

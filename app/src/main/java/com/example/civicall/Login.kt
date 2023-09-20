@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputFilter
 import android.util.Patterns
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -24,7 +25,18 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val maxEmailLength = 80
+        val maxPasswordLength = 80
 
+        val emailEditText = binding.emailLogin
+        val passwordEditText = binding.passwordText
+
+        // Apply character limits to email and password fields
+        val emailFilters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxEmailLength))
+        val passwordFilters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxPasswordLength))
+
+        emailEditText.filters = emailFilters
+        passwordEditText.filters = passwordFilters
         firebaseAuth = FirebaseAuth.getInstance()
 
         progressDialog = Dialog(this)
