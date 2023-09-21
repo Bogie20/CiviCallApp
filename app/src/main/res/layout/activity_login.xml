@@ -121,7 +121,7 @@
                 android:background="@drawable/button_shape"
                 android:backgroundTint="@color/white"
                 android:drawableStart="@drawable/baseline_lock_24"
-                android:drawablePadding="10dp"
+                android:drawablePadding="15dp"
                 android:hint="Password"
                 android:lines="1"
                 android:inputType="textPassword"
