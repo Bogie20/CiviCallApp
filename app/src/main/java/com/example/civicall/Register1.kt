@@ -338,8 +338,15 @@ class Register1 : AppCompatActivity() {
             if (!hasFocus) {
                 email = emailEditText.text.toString().trim()
             } else {
-                // When email field gains focus, restore the entire password
                 passwordEditText.setText(pass)
+                emailEditText.setText(email)
+                addressEditText.setText(address)
+                firstNameEditText.setText(fname)
+                lastNameEditText.setText(lname)
+                confirmPasswordEditText.setText(confirmPass)
+                contactEmeEditText.setText(phoneEme)
+                contactNumberEditText.setText(phoneno)
+
             }
         }
 
@@ -347,16 +354,42 @@ class Register1 : AppCompatActivity() {
             if (!hasFocus) {
                 pass = passwordEditText.text.toString().trim()
             } else {
-                // When password field gains focus, restore the entire email
+                passwordEditText.setText(pass)
                 emailEditText.setText(email)
+                addressEditText.setText(address)
+                firstNameEditText.setText(fname)
+                lastNameEditText.setText(lname)
+                confirmPasswordEditText.setText(confirmPass)
+                contactEmeEditText.setText(phoneEme)
+                contactNumberEditText.setText(phoneno)
+            }
+        }
+        confirmPasswordEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                confirmPass = confirmPasswordEditText.text.toString().trim()
+            } else {
+                passwordEditText.setText(pass)
+                emailEditText.setText(email)
+                addressEditText.setText(address)
+                firstNameEditText.setText(fname)
+                lastNameEditText.setText(lname)
+                confirmPasswordEditText.setText(confirmPass)
+                contactEmeEditText.setText(phoneEme)
+                contactNumberEditText.setText(phoneno)
             }
         }
         firstNameEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 fname = firstNameEditText.text.toString().trim()
             } else {
-                // When email field gains focus, restore the entire password
+                passwordEditText.setText(pass)
+                emailEditText.setText(email)
+                addressEditText.setText(address)
+                firstNameEditText.setText(fname)
                 lastNameEditText.setText(lname)
+                confirmPasswordEditText.setText(confirmPass)
+                contactEmeEditText.setText(phoneEme)
+                contactNumberEditText.setText(phoneno)
             }
         }
 
@@ -364,10 +397,62 @@ class Register1 : AppCompatActivity() {
             if (!hasFocus) {
                 lname = lastNameEditText.text.toString().trim()
             } else {
-                // When password field gains focus, restore the entire email
+                passwordEditText.setText(pass)
+                emailEditText.setText(email)
+                addressEditText.setText(address)
                 firstNameEditText.setText(fname)
+                lastNameEditText.setText(lname)
+                confirmPasswordEditText.setText(confirmPass)
+                contactEmeEditText.setText(phoneEme)
+                contactNumberEditText.setText(phoneno)
+            }
+
+        }
+        addressEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                address = addressEditText.text.toString().trim()
+            } else {
+                passwordEditText.setText(pass)
+                emailEditText.setText(email)
+                addressEditText.setText(address)
+                firstNameEditText.setText(fname)
+                lastNameEditText.setText(lname)
+                confirmPasswordEditText.setText(confirmPass)
+                contactEmeEditText.setText(phoneEme)
+                contactNumberEditText.setText(phoneno)
+            }
+
+        }
+        contactNumberEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                phoneno = contactNumberEditText.text.toString().trim()
+            } else {
+                passwordEditText.setText(pass)
+                emailEditText.setText(email)
+                addressEditText.setText(address)
+                firstNameEditText.setText(fname)
+                lastNameEditText.setText(lname)
+                confirmPasswordEditText.setText(confirmPass)
+                contactEmeEditText.setText(phoneEme)
+                contactNumberEditText.setText(phoneno)
+            }
+
+        }
+        contactEmeEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                phoneEme = contactEmeEditText.text.toString().trim()
+            } else {
+                passwordEditText.setText(pass)
+                emailEditText.setText(email)
+                addressEditText.setText(address)
+                firstNameEditText.setText(fname)
+                lastNameEditText.setText(lname)
+                confirmPasswordEditText.setText(confirmPass)
+                contactEmeEditText.setText(phoneEme)
+                contactNumberEditText.setText(phoneno)
             }
         }
+
         val birthday = activityRegister1Binding.birthdate
         val cal = Calendar.getInstance()
         val Myear = cal.get(Calendar.YEAR)

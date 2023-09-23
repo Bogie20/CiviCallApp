@@ -115,23 +115,23 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/emailTextInputLayout"
+                android:id="@+id/addressTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:elevation="50dp"
                 app:hintTextColor="@color/DarkGray"
                 app:counterEnabled="true"
-                app:counterMaxLength="320">
+                app:counterMaxLength="255">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/Emailline"
+                    android:id="@+id/adress"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:background="@drawable/button_shape"
                     android:backgroundTint="@color/white"
-                    android:drawableStart="@drawable/baseline_email_24"
+                    android:drawableStart="@drawable/sharelocation"
                     android:drawablePadding="15dp"
-                    android:hint="Email"
+                    android:hint="Address"
                     android:lines="1"
                     android:inputType="text"
                     app:hintTextColor="@color/DarkGray"
@@ -140,7 +140,6 @@
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/contactNumberTextInputLayout"
@@ -238,7 +237,7 @@
                         android:id="@+id/spinnerSex"
                         android:layout_width="match_parent"
                         android:layout_height="54dp"
-                        android:paddingLeft="10dp"
+                        android:paddingLeft="25dp"
                         app:hintTextColor="@color/DarkGray"
                         android:spinnerMode="dropdown"
                         android:dropDownWidth="match_parent"
@@ -251,26 +250,25 @@
             </LinearLayout>
 
 
-
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/addressTextInputLayout"
+                android:id="@+id/emailTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:elevation="50dp"
                 app:hintTextColor="@color/DarkGray"
-                android:layout_marginTop="10dp"
                 app:counterEnabled="true"
-                app:counterMaxLength="255">
+                app:counterMaxLength="320"
+                android:layout_marginTop="10dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/adress"
+                    android:id="@+id/Emailline"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:background="@drawable/button_shape"
                     android:backgroundTint="@color/white"
-                    android:drawableStart="@drawable/sharelocation"
+                    android:drawableStart="@drawable/baseline_email_24"
                     android:drawablePadding="15dp"
-                    android:hint="Address"
+                    android:hint="Email"
                     android:lines="1"
                     android:inputType="text"
                     app:hintTextColor="@color/DarkGray"
@@ -279,7 +277,6 @@
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
 
             <com.google.android.material.textfield.TextInputLayout
