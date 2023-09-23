@@ -334,7 +334,40 @@ class Register1 : AppCompatActivity() {
             validateData()
         }
 
+        emailEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                email = emailEditText.text.toString().trim()
+            } else {
+                // When email field gains focus, restore the entire password
+                passwordEditText.setText(pass)
+            }
+        }
 
+        passwordEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                pass = passwordEditText.text.toString().trim()
+            } else {
+                // When password field gains focus, restore the entire email
+                emailEditText.setText(email)
+            }
+        }
+        firstNameEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                fname = firstNameEditText.text.toString().trim()
+            } else {
+                // When email field gains focus, restore the entire password
+                lastNameEditText.setText(lname)
+            }
+        }
+
+        lastNameEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                lname = lastNameEditText.text.toString().trim()
+            } else {
+                // When password field gains focus, restore the entire email
+                firstNameEditText.setText(fname)
+            }
+        }
         val birthday = activityRegister1Binding.birthdate
         val cal = Calendar.getInstance()
         val Myear = cal.get(Calendar.YEAR)
