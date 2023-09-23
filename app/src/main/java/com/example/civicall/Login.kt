@@ -2,14 +2,16 @@ package com.example.civicall
 
 import android.app.Dialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
-import android.text.InputFilter
 import android.util.Patterns
 import android.view.View
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.civicall.databinding.ActivityLoginBinding
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
@@ -99,10 +101,73 @@ class Login : AppCompatActivity() {
             }
             .addOnFailureListener { e ->
                 progressDialog.dismiss()
-                Toast.makeText(this, "Login Failed due to $e.message", Toast.LENGTH_LONG).show()
+
+                if (e.message == "The email address is badly formatted.") {
+                    // Handle invalid email format error
+                    binding.emailLogin.setError("Invalid Email")
+                } else if (e.message == "There is no user record corresponding to this identifier. The user may have been deleted.") {
+                    // User does not exist in the database, show the custom popup
+                    showUserNotExistPopup()
+                } else if (e.message == "The password is invalid or the user does not have a password.") {
+                    // Incorrect password, show a custom popup
+                    showIncorrectPasswordPopup()
+                } else {
+                    // Handle other login errors
+                    Toast.makeText(this, "Login Failed due to ${e.message}", Toast.LENGTH_LONG).show()
+                }
             }
     }
 
+    private fun showUserNotExistPopup() {
+        // Use the custom popup code you provided earlier
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.custom_popup, null)
+
+        val popupMessageTextView = dialogView.findViewById<TextView>(R.id.popupMessageTextView)
+        popupMessageTextView.text = "Account Not Found"
+
+        dialogBuilder.setView(dialogView)
+
+        val alertDialog = dialogBuilder.create()
+
+        val okButton = dialogView.findViewById<Button>(R.id.popupOkButton)
+        okButton.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.setOnDismissListener(DialogInterface.OnDismissListener {
+            // Handle dismiss event if needed
+        })
+
+        alertDialog.show()
+    }
+
+    private fun showIncorrectPasswordPopup() {
+        // Use the custom popup code you provided earlier
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.custom_popup, null)
+
+        // Update the message text for the incorrect password
+        val popupMessageTextView = dialogView.findViewById<TextView>(R.id.popupMessageTextView)
+        popupMessageTextView.text = "Incorrect Password"
+
+        dialogBuilder.setView(dialogView)
+
+        val alertDialog = dialogBuilder.create()
+
+        val okButton = dialogView.findViewById<Button>(R.id.popupOkButton)
+        okButton.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.setOnDismissListener(DialogInterface.OnDismissListener {
+            // Handle dismiss event if needed
+        })
+
+        alertDialog.show()
+    }
     private fun checkUser() {
         val messageTextView = progressDialog.findViewById<TextView>(R.id.messageTextView)
         messageTextView.text = "Checking User..."

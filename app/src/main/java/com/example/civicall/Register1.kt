@@ -1,5 +1,6 @@
 package com.example.civicall
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Intent
@@ -16,6 +17,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import android.widget.CheckBox
+import android.widget.ProgressBar
+import android.widget.TextView
 import com.example.civicall.CivicEngagementPost.CivicPostFragment
 import com.example.civicall.databinding.ActivityRegister1Binding
 import com.google.android.material.textfield.TextInputLayout
@@ -98,16 +101,16 @@ class Register1 : AppCompatActivity() {
 
 
     private fun validateContactNumber() {
-     val contactNumber = activityRegister1Binding.Contactline.text.toString().trim()
+        val contactNumber = activityRegister1Binding.Contactline.text.toString().trim()
 
-     if (contactNumber.isEmpty()) {
-         activityRegister1Binding.Contactline.error = "Please enter Contact Number"
-     } else if (!isValidPhoneNumber(contactNumber)) {
-         activityRegister1Binding.Contactline.error = "Invalid Contact Number"
-     } else {
-         activityRegister1Binding.Contactline.error = null
-     }
- }
+        if (contactNumber.isEmpty()) {
+            activityRegister1Binding.Contactline.error = "Please enter Contact Number"
+        } else if (!isValidPhoneNumber(contactNumber)) {
+            activityRegister1Binding.Contactline.error = "Invalid Contact Number"
+        } else {
+            activityRegister1Binding.Contactline.error = null
+        }
+    }
 
     private fun isValidPhoneNumber(contactNumber: String): Boolean {
 
@@ -122,17 +125,17 @@ class Register1 : AppCompatActivity() {
         }
     }
 
-  private fun validateContactEme() {
-      val contactNum = activityRegister1Binding.ContactEme.text.toString().trim()
+    private fun validateContactEme() {
+        val contactNum = activityRegister1Binding.ContactEme.text.toString().trim()
 
-      if (contactNum.isEmpty()) {
-          activityRegister1Binding.ContactEme.error = "Please enter Contact Person"
-      } else if (!isValidPhoneEme(contactNum)) {
-          activityRegister1Binding.ContactEme.error = "Invalid Contact Person"
-      } else {
-          activityRegister1Binding.ContactEme.error = null
-      }
-  }
+        if (contactNum.isEmpty()) {
+            activityRegister1Binding.ContactEme.error = "Please enter Contact Person"
+        } else if (!isValidPhoneEme(contactNum)) {
+            activityRegister1Binding.ContactEme.error = "Invalid Contact Person"
+        } else {
+            activityRegister1Binding.ContactEme.error = null
+        }
+    }
 
     private fun isValidPhoneEme(contactNum: String): Boolean {
         // Remove spaces and special characters from the contact number
@@ -549,16 +552,15 @@ class Register1 : AppCompatActivity() {
             } else {
                 activityRegister1Binding.birthdate.error = null
             }
-            if (spinnerSex == "Gender") {
+            errorMessages.add("Please Fill All the Fields")
+            if (spinnerSex.isEmpty() || spinnerSex == "Gender") {
                 val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
-                genderTextInputLayout.helperText = "*required"
-                errorMessages.add("Please select a gender")
+                genderTextInputLayout.error = "Please select a Gender"
+
             } else {
                 val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
-                genderTextInputLayout.helperText = null
+                genderTextInputLayout.error = null
             }
-
-            errorMessages.add("Please Fill All the Fields")
         }
 
         if (birtdate.isNotEmpty()) {
@@ -582,36 +584,53 @@ class Register1 : AppCompatActivity() {
                 errorMessages.add("Invalid Date of Birth format")
             }
         }
-
         if (!isChecked) {
-            errorMessages.add("Please accept the agreement to register")
+            errorMessages.add("Please Accept the Agreement to Register")
         }
 
         validatePasswordMatch()
 
         if (errorMessages.isNotEmpty()) {
             for (message in errorMessages) {
-                Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+                showCustomPopup(message)
             }
         } else {
             createUserAccount()
         }
 
 
-    if (spinnerSex == "Gender") {
-            val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
-            genderTextInputLayout.helperText = "*required"
-            errorMessages.add("Please select a gender")
-        } else {
-            val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
-            genderTextInputLayout.helperText = null
+    }
+    private fun showCustomPopup(message: String) {
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.custom_popup, null)
+        dialogBuilder.setView(dialogView)
+
+        val alertDialog = dialogBuilder.create()
+
+        val messageTextView = dialogView.findViewById<TextView>(R.id.popupMessageTextView)
+        val okButton = dialogView.findViewById<Button>(R.id.popupOkButton)
+
+        messageTextView.text = message
+
+        okButton.setOnClickListener {
+            alertDialog.dismiss()
         }
 
+        alertDialog.show()
     }
 
     private fun createUserAccount() {
-        val accountCreationDialog = ProgressDialog(this)
-        accountCreationDialog.setMessage("Creating Account...")
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.loading_layout, null)
+        dialogBuilder.setView(dialogView)
+        dialogBuilder.setCancelable(false) // Prevent users from dismissing the dialog
+
+        val accountCreationDialog = dialogBuilder.create()
+        val progressMessage = dialogView.findViewById<TextView>(R.id.messageTextView)
+        progressMessage.text = "Creating Account..." // Set the initial message
+
         accountCreationDialog.show()
 
         firebaseAuth.createUserWithEmailAndPassword(email, pass)
@@ -619,8 +638,10 @@ class Register1 : AppCompatActivity() {
                 accountCreationDialog.dismiss()
 
                 if (task.isSuccessful) {
+                    // Account creation success
                     updateUserInfo()
                 } else {
+                    // Account creation failed
                     val errorMessage = task.exception?.message ?: "Unknown error occurred."
                     Toast.makeText(
                         this,
@@ -630,11 +651,19 @@ class Register1 : AppCompatActivity() {
                 }
             }
     }
-
     private fun updateUserInfo() {
-        val userInfoUpdateDialog = ProgressDialog(this)
-        userInfoUpdateDialog.setMessage("Saving User Info...")
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.loading_layout, null)
+        dialogBuilder.setView(dialogView)
+        dialogBuilder.setCancelable(false) // Prevent users from dismissing the dialog
+
+        val userInfoUpdateDialog = dialogBuilder.create()
+        val progressMessage = dialogView.findViewById<TextView>(R.id.messageTextView)
+        progressMessage.text = "Saving User Info..." // Set the initial message
+
         userInfoUpdateDialog.show()
+        userInfoUpdateDialog.dismiss()
         val searchFragment = CivicPostFragment()
         val args = Bundle()
         args.putString("firstName", fname)
