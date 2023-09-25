@@ -17,13 +17,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageView
-            android:id="@+id/arrowBackImageView"
+        <ImageButton
+            android:id="@+id/profileburger"
             android:layout_width="60dp"
+            android:paddingLeft="5dp"
             android:layout_height="60dp"
-            android:padding="8dp"
-            android:src="@drawable/backjherimy27"
-            />
+            android:layout_gravity="center|left"
+            android:background="@android:color/transparent"
+            android:src="@drawable/menubutton"
+            android:contentDescription="Open Navigation Menu" />
 
         <TextView
             android:id="@+id/titleTextView"
@@ -31,8 +33,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Do's and Don'ts"
-            android:textAllCaps="true"
+            android:text="Lasting Impact"
+
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -52,12 +54,13 @@
             android:orientation="vertical">
 
 
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/love2"
+                android:src="@drawable/images21"
                 />
 
             <androidx.cardview.widget.CardView
@@ -70,13 +73,12 @@
                 app:cardCornerRadius="15dp"
                 app:cardElevation="4dp">
 
-
                 <TextView
                     android:id="@+id/title"
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Youth Empowerment in Civic Engagement: Shaping Tomorrow's Leaders"
+                    android:text="Youth Empowerement in Civic Engagement: Shaping Tomorrow's Leaders"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -89,7 +91,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Are you ready to seize the reins of change? Dive into 'Youth Empowerment in Civic Engagement: Shaping Tomorrow's Leaders' and embark on a transformative journey to become a leader who shapes a brighter future!&quot;"
+                    android:text="&quot;Embarking on your college journey is not just about textbooks and lectures; it's a pivotal moment in your life when your voice can echo far beyond the classroom walls. 'Youth Empowerment in Civic Engagement: Shaping Tomorrow's Leaders' is your roadmap to becoming an empowered and impactful leader right now. In the dynamic world of college, where ideas flourish and passions ignite, this guide will help you harness your potential to create real change, leaving an indelible mark on your campus and the world beyond.&quot;"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -99,209 +101,12 @@
                     android:gravity="start"
                     android:textAlignment="viewStart"
                     />
-
-
-
-
-                <TextView
-
-                    android:id="@+id/info3"
-                    android:fontFamily="@font/lexend_bold"
-                    android:layout_width="wrap_content"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="10 Tips for Youth Empowerment in Civic Engagement:"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="200dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
+                    android:layout_marginTop="310dp"
                     />
-
-                <TextView
-
-                    android:id="@+id/info4"
-                    android:fontFamily="@font/lexend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1.Find Your Cause: Discover the social or political issue that resonates most with you, as genuine passion fuels effective advocacy."
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="260dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    />
-                <TextView
-
-                    android:id="@+id/info5"
-                    android:fontFamily="@font/lexend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2.Learn Continuously: Education is your ally; never stop learning about the issues that matter most to you."
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="350dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    />
-
-                <TextView
-
-                    android:id="@+id/info6"
-                    android:fontFamily="@font/lexend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="3.Lead by Example: Be the change you want to see in the world and inspire others through your actions."
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="420dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    />
-                <TextView
-
-                    android:id="@+id/info7"
-                    android:fontFamily="@font/lexend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="4.Embrace Diversity: Welcome diverse perspectives, as they enrich your understanding and effectiveness as a leader."
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="490dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    />
-
-                <TextView
-
-                    android:id="@+id/info8"
-                    android:fontFamily="@font/lexend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="5.Build Bridges: Forge connections with fellow youth leaders, mentors, and organizations to broaden your influence."
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="570dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    />
-
-                <TextView
-
-                    android:id="@+id/info9"
-                    android:fontFamily="@font/lexend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="6.Master Communication: Hone your communication skills to convey your ideas persuasively and foster collaboration."
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="635dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    />
-
-                <TextView
-
-                    android:id="@+id/info10"
-                    android:fontFamily="@font/lexend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="7.Advocate for Youth: Champion causes that empower and uplift young voices in your community and beyond."
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="720dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    />
-
-                <TextView
-
-                    android:id="@+id/info11"
-                    android:fontFamily="@font/lexend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="8.Take Initiative: Don't wait for opportunities; create them by initiating projects and campaigns."
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="785dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    />
-
-
-                <TextView
-
-                    android:id="@+id/info12"
-                    android:fontFamily="@font/lexend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="9.Stay Resilient: Persevere through challenges, knowing that your leadership can effect lasting change."
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="850dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    />
-
-                <TextView
-
-                    android:id="@+id/info13"
-                    android:fontFamily="@font/lexend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="10.Mentor Others: Pay it forward by mentoring and guiding the next generation of youth leaders to continue the cycle of empowerment."
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="915dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             </androidx.cardview.widget.CardView>
         </LinearLayout>

@@ -16,13 +16,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageView
-            android:id="@+id/arrowBackImageView"
+        <ImageButton
+            android:id="@+id/profileburger"
             android:layout_width="60dp"
+            android:paddingLeft="5dp"
             android:layout_height="60dp"
-            android:padding="8dp"
-            android:src="@drawable/backjherimy27"
-            />
+            android:layout_gravity="center|left"
+            android:background="@android:color/transparent"
+            android:src="@drawable/menubutton"
+            android:contentDescription="Open Navigation Menu" />
 
         <TextView
             android:id="@+id/titleTextView"
@@ -30,8 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Do's and Don'ts"
-            android:textAllCaps="true"
+
+            android:text="Digital Age Civic"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -51,12 +53,15 @@
             android:orientation="vertical">
 
 
+
             <ImageView
-                android:layout_width="wrap_content"
+
+                android:padding="-40dp"
+                android:layout_width="320dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/love2"
+                android:src="@drawable/images26"
                 />
 
             <androidx.cardview.widget.CardView
@@ -69,14 +74,15 @@
                 app:cardCornerRadius="15dp"
                 app:cardElevation="4dp">
 
-
                 <TextView
                     android:id="@+id/title"
+
+
                     android:fontFamily="@font/lexend_bold"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="10 Tips Navigating Civic Engagement: Dos and Don'ts"
-                    android:textSize="16sp"
+                    android:text="Digital Age Civic Engagement: Harnessing Social Media for Change"
+                    android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
@@ -85,52 +91,24 @@
                 <TextView
 
                     android:id="@+id/info"
-                    android:fontFamily="@font/lexend_medium"
+                    android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Navigating civic engagement effectively involves a combination of passion, knowledge, and thoughtful actions. Here are five dos and don'ts to help you make a positive impact:"
-                    android:textSize="10sp"
+                    android:text="&quot;In the era of digital connectivity, today's college students are at the forefront of a revolution—transforming social media into a powerful force for change, uniting voices, and driving impactful civic engagement.&quot;"
+                    android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="60dp"
+                    android:layout_marginTop="100dp"
                     android:layout_marginStart="13dp"
                     android:layout_marginEnd="16dp"
                     android:gravity="start"
                     android:textAlignment="viewStart"
                     />
-
-                <TextView
-
-                    android:id="@+id/info2"
-                    android:fontFamily="@font/lexend_bold"
-                    android:layout_width="wrap_content"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Dos:"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="130dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    />
-
-                <TextView
-
-                    android:id="@+id/info3"
-                    android:fontFamily="@font/lexend_medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1.Do Educate Yourself: Stay well-informed about the issues you care about. Read books, articles, and research to deepen your understanding."
-                    android:textSize="12sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="150dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
+                    android:layout_marginTop="190dp"
                     />
 
             </androidx.cardview.widget.CardView>

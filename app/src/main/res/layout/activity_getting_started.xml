@@ -10,19 +10,22 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@color/red"
+        android:elevation="4dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageView
-            android:id="@+id/arrowBackImageView"
+        <ImageButton
+            android:id="@+id/profileburger"
             android:layout_width="60dp"
-            android:layout_height="80dp"
-            android:padding="8dp"
-            android:src="@drawable/baseline_arrow_back_ios_24"
-            />
+            android:paddingLeft="5dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center|left"
+            android:background="@android:color/transparent"
+            android:src="@drawable/menubutton"
+            android:contentDescription="Open Navigation Menu" />
 
         <TextView
             android:id="@+id/titleTextView"
@@ -30,10 +33,11 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Civic Engagement Tips"
-            android:textAllCaps="true"
+
+            android:text="Getting Started"
             android:textColor="@color/white"
             android:textSize="18dp" />
+
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -44,184 +48,65 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/volunteer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/love2"
-                    />
-            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/img_29"
+                />
 
             <androidx.cardview.widget.CardView
                 android:backgroundTint="@color/white"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
                 android:layout_width="330dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="4dp">
 
-                <LinearLayout
-                    android:id="@+id/title2"
+                <TextView
+                    android:id="@+id/title"
+                    android:fontFamily="@font/lexend_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Civic Engagement 101: A Guide to Getting Started"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp" />
+                <TextView
+
+                    android:id="@+id/info"
+                    android:fontFamily="@font/lexend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&quot;Ready to make a difference? Dive into Civic Engagement 101 and discover 10 powerful tips to kickstart your journey towards positive change!&quot;"
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="start"
+                    android:textAlignment="viewStart"
+                    />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/lexend_bold"
-                        android:text="Civic Engagement 101: A Guide to Getting Started"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/info"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="-10dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/lexend"
-                        android:gravity="start"
-                        android:text="&quot;Ready to make a difference? Dive into Civic Engagement 101 and discover 10 powerful tips to kickstart your journey towards positive change!&quot;"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="150dp"
-                    android:id="@+id/num1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/info1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/lexend_bold"
-                        android:gravity="start"
-                        android:text="1. Define Your Values and Interests:"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/info2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginTop="-10dp"
-                        android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/lexend"
-                        android:gravity="start"
-                        android:text="Reflect on the issues that matter most to you, whether it's the environment, education, healthcare, or social justice."
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="260dp"
-                    android:id="@+id/num2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintTop_toBottomOf="@+id/num1">
-
-                    <TextView
-                        android:id="@+id/info3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/lexend_bold"
-                        android:gravity="start"
-                        android:text="2. Define Your Values and Interests:"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:layout_marginTop="-10dp"
-                        android:id="@+id/info4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/lexend"
-                        android:gravity="start"
-                        android:text="Reflect on the issues that matter most to you, whether it's the environment, education, healthcare, or social justice."
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="360dp"
-                    android:id="@+id/num3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintTop_toBottomOf="@+id/num1">
-
-                    <TextView
-                        android:id="@+id/info5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/lexend_bold"
-                        android:gravity="start"
-                        android:text="3. Define Your Values and Interests:"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:layout_marginTop="-10dp"
-                        android:id="@+id/info6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/lexend"
-                        android:gravity="start"
-                        android:text="Reflect on the issues that matter most to you, whether it's the environment, education, healthcare, or social justice."
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-                </LinearLayout>
-
+                    android:layout_marginTop="195dp"
+                    />
 
             </androidx.cardview.widget.CardView>
         </LinearLayout>

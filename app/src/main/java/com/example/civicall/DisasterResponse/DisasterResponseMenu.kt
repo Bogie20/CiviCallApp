@@ -1,12 +1,12 @@
-package com.example.civicall.DisasterPreparednessInfo
+package com.example.civicall.DisasterResponse
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.civicall.R
 
-class MainDisaster : AppCompatActivity() {
+class DisasterResponseMenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_disaster)
+        setContentView(R.layout.activity_disaster_response_menu)
     }
 }
