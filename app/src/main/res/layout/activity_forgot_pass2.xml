@@ -36,7 +36,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="140dp"
         android:text="&quot;Enter the Necessary Information&quot;"
-        android:textColor="@color/grey"
+        android:textColor="@color/DarkGray"
         android:textSize="23dp" />
 
 

@@ -23,6 +23,24 @@
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
         <activity
+            android:name=".CivicEngagementInfo.Advocacy"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponse.FirstAidInfo"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponse.NaturalDisasterInfo"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponse.EmergencyPreparednessInfo"
+            android:exported="true" />
+        <activity
+            android:name=".ForgotPass2"
+            android:exported="true" />
+        <activity
+            android:name=".ForgotPassword"
+            android:exported="true" />
+        <activity
             android:name=".CivicEngagementPost.CivicPostMain"
             android:exported="true" />
         <activity
@@ -33,8 +51,7 @@
             android:exported="true" />
         <activity
             android:name=".CivicEngagementPost.Upload_engagement"
-            android:exported="true" />
-       <!-- Emergency Contact Start -->
+            android:exported="true" /> <!-- Emergency Contact Start -->
         <activity
             android:name=".EmergencyCon.MainEmergencyContact"
             android:exported="true"

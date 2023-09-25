@@ -1,4 +1,7 @@
 package com.example.civicall.CivicEngagementInfo
 
-data class DataItem(val title: String?, val paragraph: String)
-
+data class DataItem(
+    val title: String,
+    val paragraph: String,
+    val imageResourceId: Int // Resource ID for the image
+)

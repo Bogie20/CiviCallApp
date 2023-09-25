@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
-    tools:context=".CivicEngagementInfo.Advocacy">
+    tools:context=".DisasterResponse.EmergencyPreparednessInfo">
+
+
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -31,9 +32,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:fontFamily="@font/lexend_bold"
 
-            android:text="Making Your Voice Heard"
+            android:fontFamily="@font/lexend_bold"
+            android:text="Emergency Preparedness"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -77,7 +78,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Civic Engagement and Advocacy: Making Your Voice Heard on Key Issues"
+                    android:text="Emergency Preparedness Plan ahead for safety"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -90,7 +91,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Ready to turn your passion into powerful action? Dive into 'Civic Engagement and Advocacy: Making Your Voice Heard on Key Issues,' your roadmap to becoming a fearless advocate. Unleash your potential and become a voice for change&quot;"
+                    android:text="&quot;Hello, future Spartan scholars! Ever pondered what it takes to become a real-life hero? Well, it begins with a simple act - planning ahead for safety. Today, we're delving into the intriguing realm of emergency preparedness, equipping you with the skills to tackle any challenge life throws your way.&quot;"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -100,15 +101,16 @@
                     android:gravity="start"
                     android:textAlignment="viewStart"
                     />
-            </androidx.cardview.widget.CardView>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                />
-        </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="230dp"
+                    />
 
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
