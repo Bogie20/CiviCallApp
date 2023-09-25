@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey"
+    tools:context=".Profile.Profile">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScroll"
@@ -25,7 +29,6 @@
                 android:translationZ="100dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/header"
-                app:onBackPressed="@{true}"
                 app:srcCompat="@drawable/back_arrow" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -77,9 +80,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/header"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:paletteImage="@{pokemon.imageUrl}"
-                app:paletteView="@{header}"
-                app:toast="@{vm.toastMessage}" />
+                />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/ribbonRecyclerView"
@@ -99,7 +100,6 @@
                 android:id="@+id/progressbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:gone="@{!vm.loading}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -148,7 +148,7 @@
                 android:id="@+id/totaleng_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/weight"
+
                 android:textColor="@color/white_56"
                 android:paddingLeft="20dp"
                 app:layout_constraintStart_toEndOf="parent"
@@ -160,7 +160,7 @@
                 android:id="@+id/activepts_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/height"
+
                 tools:text="Active Points"
                 android:layout_marginLeft="-70dp"
                 android:textColor="@color/white_56"
@@ -171,7 +171,6 @@
                 android:id="@+id/pending_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/height"
                 tools:text="Active Points"
                 android:layout_marginRight="-20dp"
                 android:textColor="@color/white_56"
@@ -268,5 +267,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>

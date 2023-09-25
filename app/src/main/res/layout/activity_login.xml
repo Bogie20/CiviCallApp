@@ -54,7 +54,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="105dp"
         android:text="Welcome to CiviCall"
-        android:textColor="@color/grey"
+        android:textColor="@color/DarkGray"
         android:textSize="20dp" />
 
 
@@ -66,8 +66,6 @@
         android:scaleType="fitXY"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-
-
         android:layout_marginEnd="26dp"
         android:src="@drawable/lolo" />
 
@@ -175,7 +173,7 @@
         android:layout_marginLeft="140dp"
         android:layout_marginTop="590dp"
         android:text="----- or Sign in with -----"
-        android:textColor="@color/grey"
+        android:textColor="@color/DarkGray"
         android:textSize="18dp">
 
 
