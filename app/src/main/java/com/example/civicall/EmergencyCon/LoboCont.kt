@@ -51,7 +51,7 @@ class LoboCont : AppCompatActivity() {
             7 to arrayOf("09399252443"),// operation center
             8 to arrayOf("09171349235"),// mdrrmo
             9 to arrayOf("0434047131"), // municipal hostpital
-            10 to arrayOf(" 0437233027","09171356219","09177734912"),// red cross
+            10 to arrayOf("0437233027","09171356219","09177734912"),// red cross
             11 to arrayOf("09167194906","09985985693"),// pnp
         )
         adapter = ContactAdapter(mList, phoneOptionsLobo)
@@ -90,18 +90,18 @@ class LoboCont : AppCompatActivity() {
     }
 
     private fun addDataToList() {
-        mList.add(ContactData("\nNATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
-        mList.add(ContactData("\nBATANGAS PDRRMO", R.drawable.pdrrmobats))
+        mList.add(ContactData("NATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
+        mList.add(ContactData("BATANGAS PDRRMO", R.drawable.pdrrmobats))
         mList.add(ContactData("BATSTATE U INCIDENT \n" + "COMMANDERS OFFICE /\n" + "EXECUTIVE DIRECTORS\n"+"OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("\nBATSTATEU LOBO \n"+"INFIRMARY", R.drawable.batstateu))
-        mList.add(ContactData("\nBATSTATEU LOBO \n" + "SECURITY OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("\nBUREAU OF FIRE\n"+"PROTECTION\n"+"LOBO", R.drawable.bfp))
-        mList.add(ContactData("\nCOAST GUARD\n" + "LOBO", R.drawable.pcg))
-        mList.add(ContactData("\nLOBO CAMPUS\n"+"EMERGENCY\n"+"OPERATIONS CENTER", R.drawable.batstateu))
-        mList.add(ContactData("\nLOBO MDRRMO", R.drawable.lobomdrrmo))
-        mList.add(ContactData("\nLOBO MUNICIPAL\n"+"HOSPITAL", R.drawable.hospitallogo))
-        mList.add(ContactData("\nPHILIPPINE RED CROSS\n"+ "BATANGAS CITY", R.drawable.redcross))
-        mList.add(ContactData("\n PNP LOBO", R.drawable.pnp))
+        mList.add(ContactData("BATSTATEU LOBO \n"+"INFIRMARY", R.drawable.batstateu))
+        mList.add(ContactData("BATSTATEU LOBO \n" + "SECURITY OFFICE", R.drawable.batstateu))
+        mList.add(ContactData("BUREAU OF FIRE\n"+"PROTECTION\n"+"LOBO", R.drawable.bfp))
+        mList.add(ContactData("COAST GUARD\n" + "LOBO", R.drawable.pcg))
+        mList.add(ContactData("LOBO CAMPUS\n"+"EMERGENCY\n"+"OPERATIONS CENTER", R.drawable.batstateu))
+        mList.add(ContactData("LOBO MDRRMO", R.drawable.lobomdrrmo))
+        mList.add(ContactData("LOBO MUNICIPAL\n"+"HOSPITAL", R.drawable.hospitallogo))
+        mList.add(ContactData("PHILIPPINE RED CROSS\n"+ "BATANGAS CITY", R.drawable.redcross))
+        mList.add(ContactData("PNP LOBO", R.drawable.pnp))
 
 
     }

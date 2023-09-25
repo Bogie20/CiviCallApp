@@ -4,16 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context=".Login">
-
-
+    tools:context=".ForgotPass2">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
         android:layout_width="415dp"
         android:layout_height="100dp"
-
-
         app:cardBackgroundColor="@color/red"
         app:cardCornerRadius="4dp">
 
@@ -21,29 +17,15 @@
             android:id="@+id/civicall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="25dp"
             android:fontFamily="@font/inter_bold"
-            android:text="Sign in "
+            android:text="Forgot Password"
             android:textColor="@color/white"
-            android:textSize="40dp" />
+            android:textSize="35dp" />
 
-        <TextView
-            android:id="@+id/civicalls"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/civicall"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="55dp"
-            android:fontFamily="@font/inter_medium"
 
-            android:text="Sign in to your account"
-            android:textColor="@color/white"
-            android:textSize="20dp" />
 
     </androidx.cardview.widget.CardView>
 
@@ -52,36 +34,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="105dp"
-        android:text="Welcome to CiviCall"
+        android:layout_marginTop="140dp"
+        android:text="&quot;Enter the Necessary Information&quot;"
         android:textColor="@color/grey"
-        android:textSize="20dp" />
+        android:textSize="23dp" />
 
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="316dp"
-        android:layout_height="190dp"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
         android:layout_below="@+id/welcome"
         android:scaleType="fitXY"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-
-
         android:layout_marginEnd="26dp"
-        android:src="@drawable/lolo" />
+        android:src="@drawable/forgotimage" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/img"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical">
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailadd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="50dp"
+            android:elevation="60dp"
             app:hintTextColor="@color/DarkGray">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -92,8 +72,9 @@
                 android:backgroundTint="@color/white"
                 android:drawableStart="@drawable/baseline_email_24"
                 android:drawablePadding="15dp"
-                android:hint="Email Address"
+                android:hint="Enter OTP"
                 android:lines="1"
+
                 android:inputType="text"
                 app:hintTextColor="@color/DarkGray"
                 android:paddingRight="42dp"
@@ -102,25 +83,23 @@
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
-
-
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password_layout"
+            android:id="@+id/newpassword_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:passwordToggleEnabled="true"
             app:hintTextColor="@color/DarkGray"
-           >
+            >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passwordText"
+                android:id="@+id/newpasswordText"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:background="@drawable/button_shape"
                 android:backgroundTint="@color/white"
                 android:drawableStart="@drawable/baseline_lock_24"
                 android:drawablePadding="15dp"
-                android:hint="Password"
+                android:hint="New Password"
                 android:lines="1"
                 android:inputType="textPassword"
                 android:paddingRight="42dp"
@@ -129,97 +108,33 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
+
+
+
     </LinearLayout>
-    <ProgressBar
-        android:id="@+id/progress_loading"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_centerInParent="true"
-        android:visibility="gone" />
 
     <Button
-        android:id="@+id/btnlogin"
+        android:id="@+id/resetBtn"
         android:layout_width="400dp"
         android:layout_height="60dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="490dp"
+        android:layout_marginTop="560dp"
         android:layout_marginRight="30dp"
         android:textAllCaps="false"
         android:background="@drawable/button_shape"
-        android:text="Login"
+        android:text="Reset Password"
         android:textColor="@color/white"
         android:textSize="25dp">
 
     </Button>
 
-
-    <TextView
-        android:id="@+id/forgotpass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="565dp"
-        android:text="Forgot Password?"
-        android:textColor="@color/blue"
-
-        >
-
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/registers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="590dp"
-        android:text="----- or Sign in with -----"
-        android:textColor="@color/grey"
-        android:textSize="18dp">
-
-
-    </TextView>
-
-    <LinearLayout
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/registers"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/google_login"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-            android:scaleType="fitXY"
-            android:layout_marginRight="30dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="Sign in with Name"
-            android:src="@drawable/name"></ImageButton>
-
-        <ImageButton
-            android:id="@+id/facebook"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-            android:scaleType="fitXY"
-            android:background="@android:color/transparent"
-            android:contentDescription="Sign in with Name"
-            android:src="@drawable/fb" />
-
-
-    </LinearLayout>
-
     <LinearLayout
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="540dp"
         android:orientation="horizontal">
 
 
@@ -230,22 +145,27 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dp"
             android:fontFamily="@font/inter_medium"
-            android:text="new user?"
+            android:text="Back to"
             android:textSize="15dp" />
 
         <TextView
-            android:id="@+id/signUpTextView"
+            android:id="@+id/forgotpasstext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="100dp"
             android:fontFamily="@font/inter_medium"
-            android:text="Create an Account"
+            android:text="Forgot Password"
             android:textColor="@color/blue"
             android:textSize="15dp" />
 
     </LinearLayout>
+
+
+
+
+
 
 
 </RelativeLayout>

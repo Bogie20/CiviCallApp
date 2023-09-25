@@ -89,18 +89,18 @@ class MalvarCont : AppCompatActivity() {
     }
 
     private fun addDataToList() {
-        mList.add(ContactData("\nNATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
-        mList.add(ContactData("\nBATANGAS PDRRMO", R.drawable.pdrrmobats))
-        mList.add(ContactData("\nBUREAU OF FIRE\n"+"PROTECTION\n"+"MALVAR", R.drawable.bfp))
-        mList.add(ContactData("\nCOAST GUARD\n" + "BATANGAS", R.drawable.pcg))
-        mList.add(ContactData("\nC.P. REYES\n"+"HOSPITAL", R.drawable.cpreyes))
-        mList.add(ContactData("\nDANIEL O. MERCADO\n"+"MEDICAL CENTER", R.drawable.mercado))
-        mList.add(ContactData("\nMALVAR CAMPUS\n" + "HEALTH SERVICES", R.drawable.batstateu))
-        mList.add(ContactData("\nMALVAR CAMPUS\n" + "SECURITY SERVICES", R.drawable.batstateu))
-        mList.add(ContactData("\nMALVAR INCIDENT \n" + "COMMANDER'S/\n"+"EXECUTIVE DIRECTOR'S\n"+"OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("\nMALVAR MDRRMO", R.drawable.mdrrmo))
-        mList.add(ContactData("\nPNP MALVAR", R.drawable.pnp))
-        mList.add(ContactData("\nPHILIPPINE RED CROSS\n"+ "DISTRICT 3 (TANAUAN)", R.drawable.redcross))
+        mList.add(ContactData("NATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
+        mList.add(ContactData("BATANGAS PDRRMO", R.drawable.pdrrmobats))
+        mList.add(ContactData("BUREAU OF FIRE\n"+"PROTECTION\n"+"MALVAR", R.drawable.bfp))
+        mList.add(ContactData("COAST GUARD\n" + "BATANGAS", R.drawable.pcg))
+        mList.add(ContactData("C.P. REYES\n"+"HOSPITAL", R.drawable.cpreyes))
+        mList.add(ContactData("DANIEL O. MERCADO\n"+"MEDICAL CENTER", R.drawable.mercado))
+        mList.add(ContactData("MALVAR CAMPUS\n" + "HEALTH SERVICES", R.drawable.batstateu))
+        mList.add(ContactData("MALVAR CAMPUS\n" + "SECURITY SERVICES", R.drawable.batstateu))
+        mList.add(ContactData("MALVAR INCIDENT \n" + "COMMANDER'S/\n"+"EXECUTIVE DIRECTOR'S\n"+"OFFICE", R.drawable.batstateu))
+        mList.add(ContactData("MALVAR MDRRMO", R.drawable.mdrrmo))
+        mList.add(ContactData("PNP MALVAR", R.drawable.pnp))
+        mList.add(ContactData("PHILIPPINE RED CROSS\n"+ "DISTRICT 3 (TANAUAN)", R.drawable.redcross))
     }
     private fun makePhoneCall(phoneNumber: String) {
         if (ContextCompat.checkSelfPermission(

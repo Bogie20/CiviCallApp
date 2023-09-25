@@ -91,19 +91,19 @@ class LemeryCont : AppCompatActivity() {
     }
 
     private fun addDataToList() {
-        mList.add(ContactData("\nNATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
-        mList.add(ContactData("\nBATANGAS PDRRMO", R.drawable.pdrrmobats))
+        mList.add(ContactData("NATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
+        mList.add(ContactData("BATANGAS PDRRMO", R.drawable.pdrrmobats))
         mList.add(ContactData("BATSTATE U INCIDENT \n" + "COMMANDERS OFFICE /\n" + "EXECUTIVE DIRECTORS\n"+"OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("\nBATSTATEU LEMERY \n"+"INFIRMARY", R.drawable.batstateu))
+        mList.add(ContactData("BATSTATEU LEMERY \n"+"INFIRMARY", R.drawable.batstateu))
         mList.add(ContactData("BUREAU OF FIRE\n"+"PROTECTION\n"+"LEMERY", R.drawable.bfp))
-        mList.add(ContactData("\nCOAST GUARD\n" + "LEMERY", R.drawable.pcg))
-        mList.add(ContactData("\nLEMERY CAMPUS \n" + "SECURITY OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("\nLEMERY DOCTORS \n" + "MEDICAL CENTER", R.drawable.lemerydoctors))
-        mList.add(ContactData("\nLEMERY LGU", R.drawable.lemerylogo))
-        mList.add(ContactData("\nMETRO LEMERY\n"+"MEDICAL CENTER", R.drawable.metrolemery))
-        mList.add(ContactData("\nOUR LADY OF CAYSASAY\n"+ "MEDICAL CENTER", R.drawable.ourlady))
-        mList.add(ContactData("\nPHILIPPINE RED CROSS\n"+ "DISTRICT 1 (NASUGBU)", R.drawable.redcross))
-        mList.add(ContactData("\nPNP Lemery", R.drawable.pnp))
+        mList.add(ContactData("COAST GUARD\n" + "LEMERY", R.drawable.pcg))
+        mList.add(ContactData("LEMERY CAMPUS \n" + "SECURITY OFFICE", R.drawable.batstateu))
+        mList.add(ContactData("EMERY DOCTORS \n" + "MEDICAL CENTER", R.drawable.lemerydoctors))
+        mList.add(ContactData("LEMERY LGU", R.drawable.lemerylogo))
+        mList.add(ContactData("METRO LEMERY\n"+"MEDICAL CENTER", R.drawable.metrolemery))
+        mList.add(ContactData("OUR LADY OF CAYSASAY\n"+ "MEDICAL CENTER", R.drawable.ourlady))
+        mList.add(ContactData("PHILIPPINE RED CROSS\n"+ "DISTRICT 1 (NASUGBU)", R.drawable.redcross))
+        mList.add(ContactData("PNP Lemery", R.drawable.pnp))
 
 
     }

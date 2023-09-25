@@ -12,7 +12,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.CiviCall.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.New.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.CiviCall..PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.New.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
