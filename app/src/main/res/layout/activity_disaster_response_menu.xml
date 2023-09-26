@@ -71,7 +71,6 @@
                 app:cardCornerRadius="15dp"
                 app:cardElevation="4dp">
 
-
                 <TextView
                     android:id="@+id/title"
                     android:fontFamily="@font/lexend_bold"
@@ -106,8 +105,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
                 />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
