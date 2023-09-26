@@ -13,18 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
 
 class Strategies : AppCompatActivity() {
-    val referenceLinks = arrayOf(
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_strategies)

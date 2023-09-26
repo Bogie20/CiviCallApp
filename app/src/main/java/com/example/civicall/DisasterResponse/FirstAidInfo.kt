@@ -11,18 +11,6 @@ import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
 class FirstAidInfo : AppCompatActivity() {
-    val referenceLinks = arrayOf(
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-        "https://www.youtube.com/watch?v=tPNxVTtAT5w&ab_channel=Young%26Free",
-    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first_aid_info)
