@@ -67,7 +67,7 @@
             android:layout_height="18dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/lexend_semibold"
-            android:text="See the Details"
+            android:text="More Details"
             android:textColor="@color/DarkGray"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"

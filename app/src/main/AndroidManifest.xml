@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <!-- permissions -->
+    <!-- permissions start -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <uses-feature
@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Camera permission -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- Feature requirement for camera -->
     <uses-feature android:name="android.hardware.camera" />
-
+    <!-- permissions end -->
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -22,12 +22,45 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
+
+        <!-- CivicEngagementInfo Start-->
+        <activity
+            android:name=".CivicEngagementInfo.DigitalAgeCivic"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.GettingStarted"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.LastingImpact"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.navigatingtips"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.ParticipantTips"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.Roadmap"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.Strategies"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.TacticsImpact"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.YouthEmpowerment"
+            android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.Civic"
             android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.Advocacy"
             android:exported="true" />
+
+        <!-- CivicEngagementInfo End-->
+
+
         <activity
             android:name=".DisasterResponse.FirstAidInfo"
             android:exported="true" />
