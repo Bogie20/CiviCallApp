@@ -1,5 +1,7 @@
 package com.example.civicall.CivicEngagementInfo
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +13,32 @@ import com.example.civicall.R
 class DataAdapter(private val dataList: List<DataItem>) :
     RecyclerView.Adapter<DataAdapter.ViewHolder>() {
 
+    // Define an interface to handle item clicks
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    // Add a variable to hold the click listener
+    private var itemClickListener: OnItemClickListener? = null
+
+    // Provide a method to set the click listener from outside the adapter
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        itemClickListener = listener
+    }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
         val paragraphTextView: TextView = itemView.findViewById(R.id.paragraphTextView)
         val imageView: ImageView = itemView.findViewById(R.id.feed_post_image)
-    }
+        val referenceTextView: TextView = itemView.findViewById(R.id.reference)
 
+        init {
+            // Add a click listener to the referenceTextView
+            referenceTextView.setOnClickListener {
+                itemClickListener?.onItemClick(adapterPosition)
+            }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)

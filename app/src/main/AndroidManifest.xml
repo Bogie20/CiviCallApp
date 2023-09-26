@@ -7,7 +7,7 @@
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Camera permission -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- Feature requirement for camera -->
     <uses-feature android:name="android.hardware.camera" />
@@ -22,6 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
+        <activity
+            android:name=".CivicEngagementInfo.Civic"
+            android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.Advocacy"
             android:exported="true" />
@@ -39,9 +42,6 @@
             android:exported="true" />
         <activity
             android:name=".ForgotPassword"
-            android:exported="true" />
-        <activity
-            android:name=".CivicEngagementPost.CivicPostMain"
             android:exported="true" />
         <activity
             android:name=".CivicEngagementPost.Update_engagement"

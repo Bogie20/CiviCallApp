@@ -3,5 +3,6 @@ package com.example.civicall.CivicEngagementInfo
 data class DataItem(
     val title: String,
     val paragraph: String,
-    val imageResourceId: Int // Resource ID for the image
+    val imageResourceId: Int,
+    val link: String
 )

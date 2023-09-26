@@ -48,20 +48,25 @@
             android:orientation="vertical">
 
 
+
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/img_46"
+                android:src="@drawable/love2"
                 />
 
             <androidx.cardview.widget.CardView
                 android:backgroundTint="@color/white"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_gravity="center"
-                android:layout_width="330dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="4dp">
@@ -95,318 +100,15 @@
                     android:gravity="start"
                     android:textAlignment="viewStart"
                     />
-
-
-
             </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:backgroundTint="@color/white"
-                android:layout_marginBottom="10dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:layout_width="330dp"
-                android:layout_height="70dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="4dp">
-                <TextView
-
-                    android:id="@+id/button1"
-                    android:fontFamily="@font/lexend_medium"
-                    android:layout_width="match_parent"
-                    android:paddingTop="8dp"
-                    android:layout_height="wrap_content"
-                    android:text="Emergency Preparedness: Plan ahead for safety."
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    android:paddingLeft="5dp"
-                    android:drawableEnd="@drawable/next_24"
-                    android:drawablePadding="10dp"
-                    />
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-
-                android:paddingTop="9dp"
-                android:layout_width="326dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="-6dp"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/white"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="4dp">
-
-                <TextView
-
-                    android:id="@+id/button2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:drawableEnd="@drawable/next_24"
-                    android:drawablePadding="10dp"
-                    android:fontFamily="@font/lexend_medium"
-                    android:gravity="start"
-                    android:paddingLeft="5dp"
-                    android:text="Natural Disasters: Know the types."
-                    android:textAlignment="viewStart"
-
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:backgroundTint="@color/white"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="-6dp"
-                android:paddingTop="4dp"
-                android:layout_gravity="center"
-                android:layout_width="330dp"
-                android:layout_height="60dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="4dp">
-                <TextView
-
-                    android:id="@+id/button3"
-                    android:fontFamily="@font/lexend_medium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="First Aid and Basic Life Support:Learn life-saving skills."
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    android:paddingLeft="5dp"
-
-                    android:drawableEnd="@drawable/next_24"
-                    android:drawablePadding="10dp"
-                    />
-
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:backgroundTint="@color/white"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="-6dp"
-                android:layout_gravity="center"
-                android:layout_width="330dp"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="4dp">
-                <TextView
-
-                    android:id="@+id/button4"
-                    android:fontFamily="@font/lexend_medium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Shelter and Evacuation Strategies: Find safe shelter."
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    android:paddingLeft="5dp"
-
-                    android:drawableEnd="@drawable/next_24"
-                    android:drawablePadding="10dp"
-                    />
-
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:backgroundTint="@color/white"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="-6dp"
-                android:layout_gravity="center"
-                android:layout_width="330dp"
-                android:paddingTop="8dp"
-                android:layout_height="60dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="4dp">
-                <TextView
-
-                    android:id="@+id/button5"
-                    android:fontFamily="@font/lexend_medium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Communication and Information Management: Stay informed."
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    android:paddingLeft="5dp"
-
-                    android:drawableEnd="@drawable/next_24"
-                    android:drawablePadding="10dp"
-                    />
-
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:backgroundTint="@color/white"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="-6dp"
-                android:layout_gravity="center"
-                android:layout_width="330dp"
-                android:layout_height="60dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="4dp">
-                <TextView
-
-                    android:id="@+id/button6"
-                    android:fontFamily="@font/lexend_medium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Community Engagement: Work together."
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    android:paddingLeft="5dp"
-                    android:drawableEnd="@drawable/next_24"
-                    android:drawablePadding="10dp"
-                    />
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:backgroundTint="@color/white"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="-6dp"
-                android:layout_gravity="center"
-                android:layout_width="330dp"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="4dp">
-                <TextView
-
-                    android:id="@+id/button7"
-                    android:fontFamily="@font/lexend_medium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Search and Rescue Operations: Find survivors."
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    android:paddingLeft="5dp"
-                    android:drawableEnd="@drawable/next_24"
-                    android:drawablePadding="10dp"
-                    />
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:backgroundTint="@color/white"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="-6dp"
-                android:layout_gravity="center"
-                android:layout_width="330dp"
-                android:layout_height="70dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="4dp">
-                <TextView
-
-                    android:id="@+id/button8"
-                    android:fontFamily="@font/lexend_medium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Medical Response and Field Hospitals:Set up field clinics."
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    android:paddingLeft="5dp"
-                    android:drawableEnd="@drawable/next_24"
-                    android:drawablePadding="10dp"
-                    />
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:backgroundTint="@color/white"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="-6dp"
-                android:layout_gravity="center"
-                android:layout_width="330dp"
-                android:paddingTop="8dp"
-                android:layout_height="60dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="4dp">
-                <TextView
-
-                    android:id="@+id/button9"
-                    android:fontFamily="@font/lexend_medium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Psychosocial Support: Care for emotions."
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    android:paddingLeft="5dp"
-                    android:drawableEnd="@drawable/next_24"
-                    android:drawablePadding="10dp"
-                    />
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:backgroundTint="@color/white"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="-6dp"
-                android:layout_gravity="center"
-                android:layout_width="330dp"
-                android:paddingTop="8dp"
-                android:layout_height="60dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="4dp">
-                <TextView
-
-                    android:id="@+id/button10"
-                    android:fontFamily="@font/lexend_medium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Technology and Innovation in Disaster Response:Use advanced tools."
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:gravity="start"
-                    android:textAlignment="viewStart"
-                    android:paddingLeft="5dp"
-                    android:drawableEnd="@drawable/next_24"
-                    android:drawablePadding="10dp"
-                    />
-            </androidx.cardview.widget.CardView>
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
