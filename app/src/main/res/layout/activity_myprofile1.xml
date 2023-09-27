@@ -59,7 +59,7 @@
             </LinearLayout>
             <LinearLayout
 
-                android:id="@+id/leonard"
+                android:id="@+id/back"
 
                 android:gravity="center"
                 android:layout_width="match_parent"

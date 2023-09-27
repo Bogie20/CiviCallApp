@@ -23,7 +23,13 @@
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
         <activity
-            android:name=".CivicEngagementPost.CivicPostMain"
+            android:name=".ForgotPass2"
+            android:exported="true" />
+        <activity
+            android:name=".Profile.Profile"
+            android:exported="true" />
+        <activity
+            android:name=".ForgotPassword"
             android:exported="true" />
         <activity
             android:name=".CivicEngagementPost.Update_engagement"
