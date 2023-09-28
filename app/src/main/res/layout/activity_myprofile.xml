@@ -95,11 +95,11 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="101dp"
+                    android:layout_marginStart="116dp"
                     android:layout_marginLeft="50dp"
-                    android:layout_marginTop="60dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginBottom="-1dp"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginEnd="17dp"
+                    android:layout_marginBottom="4dp"
                     android:clickable="true"
                     app:srcCompat="@drawable/edit31" />
             </RelativeLayout>
@@ -228,7 +228,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/birthdate"
-                android:layout_width="183dp"
+                android:layout_width="169dp"
                 android:layout_height="54dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="10dp"
@@ -243,7 +243,7 @@
                 android:inputType="date"
                 android:paddingLeft="22dp"
                 android:paddingRight="20dp"
-                android:textSize="17sp"
+                android:textSize="15sp"
                 app:hintTextColor="@color/DarkGray" />
         </com.google.android.material.textfield.TextInputLayout>
 

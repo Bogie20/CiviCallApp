@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:elevation="15dp"
+    android:background="@color/background"
     tools:context=".Dashboard">
 
     <LinearLayout
@@ -15,8 +16,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/titlecard"
             android:layout_width="match_parent"
-            android:layout_height="85dp"
-            app:cardBackgroundColor="@color/red">
+            android:layout_height="60dp"
+            app:cardBackgroundColor="@color/redpink">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -26,13 +27,14 @@
                     android:id="@+id/titleLarge"
                     android:paddingLeft="30dp"
                     android:gravity="center"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="14dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexend_medium"
                     android:text="Civic Engagement"
                     android:textColor="@color/white"
                     android:textSize="23sp"
+
                     android:layout_marginRight="20dp"
                  />
 
@@ -63,24 +65,25 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
+        android:layout_gravity="bottom"
+        android:elevation="20dp">
 
         <!-- Centered AnimatedBottomBar -->
         <nl.joery.animatedbottombar.AnimatedBottomBar
             android:id="@+id/bottom_bar"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@drawable/nav_shape"
+            android:background="@drawable/fab_background"
             app:abb_selectedTabType="text"
             app:abb_indicatorAppearance="round"
-            app:abb_indicatorMargin="16dp"
+            app:abb_indicatorMargin="15dp"
             app:abb_indicatorHeight="4dp"
-            app:abb_indicatorColor="@color/red"
-            app:abb_tabColor="@color/red"
-            app:abb_tabColorSelected="@color/red"
+            app:abb_indicatorColor="@color/redpink"
+            app:abb_tabColor="@color/redpink"
+            app:abb_tabColorSelected="@color/redpink"
             app:abb_tabs="@menu/bottom_nav_menu"
             app:abb_selectedIndex="0" />
 
@@ -90,7 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@color/redpink"
             android:background="@drawable/fab_selector"
             android:src="@drawable/fab_add"
             app:tint="@color/white"

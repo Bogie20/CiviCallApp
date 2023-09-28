@@ -40,6 +40,7 @@
         <activity
             android:name=".CivicEngagementPost.Upload_engagement"
             android:exported="true" />
+
        <!-- Emergency Contact Start -->
         <activity
             android:name=".EmergencyCon.MainEmergencyContact"
@@ -88,7 +89,8 @@
         <activity
             android:name=".EmergencyCon.BalayanCont"
             android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" /> <!-- Emergency Contact End -->
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+        <!-- Emergency Contact End -->
         <activity
             android:name=".Add_activities2"
             android:exported="true" />
@@ -149,7 +151,8 @@
             android:name=".Dashboard"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity
             android:name=".Login"
             android:exported="true"
