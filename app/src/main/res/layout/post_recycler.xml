@@ -49,7 +49,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="ENVIRONMENT CLEANING PROGRAM "
             android:textColor="@color/DarkGray"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/recIntro"
@@ -65,7 +65,7 @@
             android:layout_marginBottom="65dp"
             android:text="Barangay Santiago Malvar Batangas"
             android:textColor="@color/DarkGray"
-            android:textSize="17sp"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recTitle"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -84,7 +84,7 @@
             android:layout_marginBottom="40dp"
             android:text=" 09-12-2023, 5:30am to 10:00am"
             android:textColor="@color/DarkGray"
-            android:textSize="15sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recIntro"
             app:layout_constraintBottom_toBottomOf="parent"/>
