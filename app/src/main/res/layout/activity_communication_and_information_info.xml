@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DisasterResponseInfo.NaturalDisasterInfo">
+    tools:context=".DisasterResponseInfo.CommunicationAndInformationInfo">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -69,7 +69,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Natural Disasters Know the types"
+                    android:text="First Aid and Basic Life Support:Learn life-saving skills."
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -82,7 +82,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Hey there, Spartan! Life at college is an epic journey, and part of being a true Spartan is knowing how to conquer every challenge, even the forces of nature. Today, we're delving into the thrilling world of natural disasters. Buckle up, because by the end of this, you'll have the knowledge to face them head-on!&quot;"
+                    android:text="&quot;Hello,Spartans! On your path to greatness, there's one skill set you must wield with confidence – life-saving skills. Today, we're diving into the world of First Aid and Basic Life Support, arming you with the knowledge to be the true heroes our community needs. Let's embark on this journey of preparedness together!&quot;"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -105,5 +105,4 @@
                 />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

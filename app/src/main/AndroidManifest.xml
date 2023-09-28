@@ -7,11 +7,12 @@
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Camera permission -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- Feature requirement for camera -->
     <uses-feature android:name="android.hardware.camera" />
-    <!-- permissions end -->
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -22,8 +23,40 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
-
-        <!-- CivicEngagementInfo Start-->
+        <activity
+            android:name=".DisasterResponseInfo.RecoveryandRebuildingEffortsInfo"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponseInfo.VolunteerandDonationsManagementInfo"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponseInfo.PsychologicalSupportServicesInfo"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponseInfo.FoodDistributionAndNutrionInfo"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponseInfo.CommunicationAndInformationInfo"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponseInfo.SearchAndRescueinfo"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponseInfo.FireSafetyInfo"
+            android:exported="true" /> <!-- DisasterResponseInfo Start -->
+        <activity
+            android:name=".DisasterResponseInfo.DisasterResponseMenu"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponseInfo.FirstAidInfo"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponseInfo.NaturalDisasterInfo"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponseInfo.EmergencyPreparednessInfo"
+            android:exported="true" /> <!-- CivicEngagementInfo End -->
+        <!-- CivicEngagementInfo Start -->
         <activity
             android:name=".CivicEngagementInfo.DigitalAgeCivic"
             android:exported="true" />
@@ -56,20 +89,7 @@
             android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.Advocacy"
-            android:exported="true" />
-
-        <!-- CivicEngagementInfo End-->
-
-
-        <activity
-            android:name=".DisasterResponse.FirstAidInfo"
-            android:exported="true" />
-        <activity
-            android:name=".DisasterResponse.NaturalDisasterInfo"
-            android:exported="true" />
-        <activity
-            android:name=".DisasterResponse.EmergencyPreparednessInfo"
-            android:exported="true" />
+            android:exported="true" /> <!-- CivicEngagementInfo End -->
         <activity
             android:name=".ForgotPass2"
             android:exported="true" />

@@ -1,4 +1,4 @@
-package com.example.civicall.DisasterResponse
+package com.example.civicall.DisasterResponseInfo
 
 import android.content.Intent
 import android.net.Uri

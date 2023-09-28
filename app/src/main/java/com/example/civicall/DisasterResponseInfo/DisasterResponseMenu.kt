@@ -1,4 +1,4 @@
-package com.example.civicall.DisasterResponse
+package com.example.civicall.DisasterResponseInfo
 
 import android.content.Intent
 import android.os.Bundle
@@ -20,15 +20,15 @@ class DisasterResponseMenu : AppCompatActivity() {
 
         val campusList = listOf(
             DataMain("Emergency Preparedness: Plan ahead for safety."),
-            DataMain("Tips Navigating Civic Engagement: Do's and Don't"),
-            DataMain("Skills and Qualities of a Successful Community Engagement Leader"),
-            DataMain("Civic Engagement 101: A Guide to Getting Started"),
-            DataMain("Amplify Your Voice: Civic Engagement Tactics for Impact"),
-            DataMain("Your Civic Journey: A Roadmap to Successful Engagement"),
-            DataMain("Civic Engagement and Advocacy: Making Your Voice Heard on Key Issues"),
-            DataMain("Youth Empowerment in Civic Engagement: Shaping Tomorrow's Leaders"),
-            DataMain("Digital Age Civic Engagement: Harnessing Social Media for Change"),
-            DataMain("Civic Engagement Beyond Voting: How to Make a Lasting Impact"),
+            DataMain("First Aid and Basic Life Support:Learn life-saving skills."),
+            DataMain("Fire Safety: Mastering the Flames."),
+            DataMain("The Role of Campus Security in Fire Safety: What You Should Know"),
+            DataMain("Search and Rescue Operations"),
+            DataMain("Communication and Information Management"),
+            DataMain("Food Distribution and Nutrition"),
+            DataMain("Psychological Support Services"),
+            DataMain("Volunteer and Donations Management"),
+            DataMain("Recovery and Rebuilding Efforts"),
         )
 
         val adapter = CivicAdapterMain(campusList) { position ->
