@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="415dp"
-        android:layout_height="70dp"
+        android:layout_height="100dp"
         android:id="@+id/card"
 
 
@@ -32,9 +32,7 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="Home Icon"
                 android:padding="6dp"
-                android:src="@drawable/menubutton"
-
-
+                android:src="@drawable/baseline_arrow_circle_left_24"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="BackClick" />
@@ -48,8 +46,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="25dp"
 
-                android:fontFamily="@font/lexend_bold"
-                android:text="Account Verifications"
+                android:fontFamily="@font/lexend_medium"
+                android:text="ACCOUNT VERIFICATION"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
 

@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import com.example.civicall.databinding.ActivityLoloBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -44,6 +45,7 @@ class lolo : AppCompatActivity() {
         val verification1: TextView = findViewById(R.id.verification)
         val AboutUs1: TextView = findViewById(R.id.AboutUs1)
         val feedback1: TextView = findViewById(R.id.feedback)
+        val editProfileCardView:TextView= findViewById(R.id.editprofile)
 
         profile1.setOnClickListener {
             // Handle click for menu item 1
@@ -78,11 +80,13 @@ class lolo : AppCompatActivity() {
             val intent = Intent(this, Eventcalendar::class.java)
             startActivity(intent)
         }
-
-        val logoutIcon: ImageView = findViewById(R.id.logout1)
-        logoutIcon.setOnClickListener {
-            showLogoutConfirmationDialog()
+        editProfileCardView.setOnClickListener {
+            // Open the "Edit Profile" activity/form
+            val intent = Intent(this, myprofile1::class.java)
+            startActivity(intent)
         }
+
+
     }
 
 
@@ -131,24 +135,8 @@ class lolo : AppCompatActivity() {
             }
     }
 
-    private fun showLogoutConfirmationDialog() {
-        val alertDialogBuilder = AlertDialog.Builder(this)
-        alertDialogBuilder.setTitle("Logout")
-        alertDialogBuilder.setMessage("Are you sure you want to logout?")
-        alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
-            logoutUser()
-        }
-        alertDialogBuilder.setNegativeButton("Cancel") { _, _ ->
-            // Do nothing, simply close the dialog
-        }
-        val alertDialog: AlertDialog = alertDialogBuilder.create()
-        alertDialog.show()
+
     }
 
-    private fun logoutUser() {
-        firebaseAuth.signOut()
-        startActivity(Intent(this, Login::class.java))
-        finish()
-        Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
-    }
-}
+
+

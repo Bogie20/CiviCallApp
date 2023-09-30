@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
+    android:background="@color/white"
     tools:context=".Profile.Profile">
 
     <androidx.core.widget.NestedScrollView
@@ -12,13 +12,83 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="32dp"
-            android:descendantFocusability="blocksDescendants">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:descendantFocusability="blocksDescendants"
+                android:layout_marginBottom="32dp">
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+
+                    app:cardCornerRadius="80dp"
+                    android:id="@+id/card"
+                    android:layout_width="match_parent"
+                    android:layout_height="230dp"
+                    android:background="@drawable/kurt1"
+                    app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                   >
+
+                    <ImageView
+                        android:id="@+id/profileImage"
+                        android:layout_width="122dp"
+                        android:layout_height="122dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/profilenone"
+                        android:layout_marginTop="35dp"
+                        app:layout_constraintBottom_toTopOf="@+id/fullname2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/fullname2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:ignore="MissingConstraints"
+                        tools:layout_editor_absoluteY="165dp">
+
+                        <TextView
+                            android:id="@+id/FirstName1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_bold"
+                            android:gravity="center"
+                            android:text="Jherimy"
+                            android:layout_marginTop="0dp"
+                            android:textColor="@color/white"
+                            android:textSize="25sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/LastName2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+
+
+                            android:fontFamily="@font/inter_bold"
+                            android:text="mallorca"
+                            android:textColor="@color/white"
+                            android:textSize="25sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/FirstName1"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/arrow"
                 android:layout_width="wrap_content"
@@ -28,7 +98,7 @@
                 android:paddingEnd="6dp"
                 android:translationZ="100dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/header"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/back_arrow" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -44,125 +114,87 @@
                 app:layout_constraintTop_toTopOf="@id/arrow" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="36dp"
-                android:text="@{pokemon.name}"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                android:textColor="@color/white"
-                android:textSize="36sp"
-                android:textStyle="bold"
-                android:translationZ="100dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/header"
-                tools:text="Full Name" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/header"
-                android:layout_width="match_parent"
-                android:layout_height="260dp"
-                android:background="@color/redpink"
-                android:elevation="9dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.CardView" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image"
-                android:layout_width="190dp"
-                android:layout_height="190dp"
-                android:layout_marginBottom="20dp"
-                android:scaleType="center"
-                android:translationZ="100dp"
-                app:layout_constraintBottom_toBottomOf="@id/header"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/ribbonRecyclerView"
+                android:id="@+id/Email2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white_56"
                 android:paddingLeft="20dp"
                 android:gravity="center"
-                android:layout_marginLeft="-20dp"
+                android:textSize="22sp"
                 android:layout_marginTop="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/name"
-                tools:text="Email Address Here" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card"
+                android:text="Email Address Here" />
 
-            <ProgressBar
-                android:id="@+id/progressbar"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/myButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Edit Profile"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/Email2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="gone" />
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="13dp"
+                android:background="@drawable/button_profile" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/totaleng"
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="@{vm.pokemonInfo.weightString}"
-                android:textSize="21sp"
-                android:layout_marginLeft="60dp"
+                android:layout_marginTop="70dp"
+                android:text="0"
+                android:textSize="30sp"
+                android:layout_marginLeft="45dp"
                 app:layout_constraintStart_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ribbonRecyclerView"
-                tools:text="0" />
+                app:layout_constraintTop_toBottomOf="@id/Email2" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/activepts"
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{vm.pokemonInfo.heightString}"
-                android:textSize="21sp"
-                android:layout_marginLeft="-70dp"
+                android:textSize="30sp"
+                android:layout_marginLeft="-80dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/totaleng"
                 app:layout_constraintTop_toTopOf="@id/totaleng"
-                tools:text="0.0" />
+                android:text="0.0" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/pending"
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{vm.pokemonInfo.heightString}"
-                android:textSize="21sp"
-                android:layout_marginRight="-20dp"
+                android:textSize="30sp"
+                android:layout_marginRight="-55dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/activepts"
                 app:layout_constraintTop_toTopOf="@id/activepts"
-                tools:text="0" />
+                android:text="0" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/totaleng_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:textColor="@color/white_56"
-                android:paddingLeft="20dp"
+                android:paddingLeft="8dp"
+                android:textSize="15sp"
                 app:layout_constraintStart_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/totaleng"
-                tools:text="Total Engagement" />
+                android:text="Total Engagement" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/activepts_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                tools:text="Active Points"
-                android:layout_marginLeft="-70dp"
+                android:text="Active Points"
+                android:textSize="15sp"
+                android:layout_marginLeft="-80dp"
                 android:textColor="@color/white_56"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/totaleng"
@@ -171,100 +203,260 @@
                 android:id="@+id/pending_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Active Points"
-                android:layout_marginRight="-20dp"
+                android:text="Active Points"
+                android:textSize="15sp"
+                android:layout_marginRight="-55dp"
                 android:textColor="@color/white_56"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/activepts"
                 app:layout_constraintTop_toBottomOf="@id/pending" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/stats_title"
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="40dp"
                 android:text="Account Info"
                 android:textColor="@color/white_93"
-                android:textSize="21sp"
+                android:textSize="25sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/totaleng" />
+   <LinearLayout
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/stats_title"
+       android:id="@+id/gender"
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
+                >
             <TextView
                 android:id="@+id/hp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="6dp"
                 android:text="Gender:"
+                android:textSize="20sp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/stats_title" />
+                 />
+       <TextView
+           android:layout_marginTop="6dp"
+           android:id="@+id/usergender"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Male"
+           android:textSize="20dp"
+           android:fontFamily="@font/inter_medium"
+           android:textColor="@color/white"
+           android:layout_marginLeft="10dp"
+           android:layout_marginStart="10dp"
+           android:layout_marginEnd="10dp"
+           android:paddingLeft="10dp"
 
 
+
+           />
+
+
+   </LinearLayout>
+
+                <LinearLayout
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/gender"
+                    android:id="@+id/address"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    >
             <TextView
                 android:id="@+id/attack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
-                android:text="Address:"
+                android:layout_marginTop="15dp"
+                android:text="Campus"
+                android:textSize="20sp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/hp" />
+                />
+                    <TextView
+                        android:id="@+id/useradress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
 
+                        android:layout_marginTop="15dp"
+                        android:text="Sample Address"
+                        android:textSize="20sp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        />
+
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/address"
+                    android:id="@+id/birthdate"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    >
 
             <TextView
                 android:id="@+id/defense"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="15dp"
                 android:text="Date of Birth:"
+                android:textSize="20sp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/attack" />
+                 />
 
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/userbday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="15dp"
+                        android:text="Date of Birth:"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/birthdate"
+                    android:id="@+id/contact"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    >
             <TextView
                 android:id="@+id/speed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="15dp"
                 android:text="Contact No:"
+                android:textSize="20sp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/defense" />
+                app:layout_constraintTop_toBottomOf="@id/birthdate" />
 
+                    <TextView
+                        android:id="@+id/usercontact"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
 
+                        android:layout_marginTop="15dp"
+                        android:text="Contact "
+                        android:textSize="20sp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/contact"
+                    android:id="@+id/campus"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    >
             <TextView
                 android:id="@+id/exp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
-                android:text="Campus:"
+                android:layout_marginTop="15dp"
+                android:text="Emergency No."
+                android:textSize="20sp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/speed" />
+                app:layout_constraintTop_toBottomOf="@id/contact" />
+                    <TextView
+                        android:id="@+id/useremergencyno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="15dp"
+                        android:text="Contact "
+                        android:textSize="20sp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/campus"
+                    android:id="@+id/campus2"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    >
             <TextView
                 android:id="@+id/department"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="12dp"
-                android:text="Department:"
+                android:layout_marginTop="15dp"
+                android:text="Address:"
+                android:textSize="20sp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/exp" />
+                app:layout_constraintTop_toBottomOf="@id/campus"
+                android:layout_marginBottom="400dp"/>
+
+                    <TextView
+                        android:id="@+id/useraddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="15dp"
+                        android:text="sample Address "
+                        android:textSize="20sp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        />
+                </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
