@@ -7,7 +7,6 @@
     <dimen name="fab_margin">16dp</dimen>
 
 
-
     <!-- practice -->
     <dimen name="normalPadding">20dp</dimen>
     <dimen name="headerTextSize">25sp</dimen>

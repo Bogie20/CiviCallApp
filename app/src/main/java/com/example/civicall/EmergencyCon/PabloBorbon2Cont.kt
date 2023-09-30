@@ -89,20 +89,20 @@ class PabloBorbon2Cont : AppCompatActivity() {
     }
 
     private fun addDataToList() {
-        mList.add(ContactData("\nNATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
-        mList.add(ContactData("\nBATANGAS CDRRMO", R.drawable.batangcdrrmo))
-        mList.add(ContactData("\nBATANGAS MEDICAL\n"+"CENTER", R.drawable.batangmedical))
-        mList.add(ContactData("\nBATANGAS PDRRMO", R.drawable.pdrrmobats))
-        mList.add(ContactData("\nBUREAU OF FIRE\n"+"PROTECTION\n"+"BATANGAS CITY", R.drawable.bfp))
-        mList.add(ContactData("\nCOAST GUARD\n" + "BATANGAS", R.drawable.pcg))
-        mList.add(ContactData("\nGOLDEN GATE\n"+"HOSPITAL", R.drawable.batanggolden))
-        mList.add(ContactData("\nMAIN 2 INCIDENT \n" + "COMMANDERS OFFICE /\n" + "EXECUTIVE OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("\nMAIN 2 INFIRMARY", R.drawable.batstateu))
-        mList.add(ContactData("\nMAIN 2 SECURITY\n"+"OFFICE", R.drawable.batstateu))
-        mList.add(ContactData("\nPHILIPPINE RED CROSS\n"+ "BATANGAS CITY", R.drawable.redcross))
-        mList.add(ContactData("\nPNP BATANGAS CITY", R.drawable.pnp))
-        mList.add(ContactData("\nPNP BATANGAS\n"+"PROVINCIAL\n"+"OFFICE", R.drawable.batangpnp))
-        mList.add(ContactData("\nST.PATRICK'S\n"+"HOSPITAL", R.drawable.batangsaintpat))
+        mList.add(ContactData("NATIONAL EMERGENCY\n"+"HOTLINE", R.drawable.nationalhotline))
+        mList.add(ContactData("BATANGAS CDRRMO", R.drawable.batangcdrrmo))
+        mList.add(ContactData("BATANGAS MEDICAL\n"+"CENTER", R.drawable.batangmedical))
+        mList.add(ContactData("BATANGAS PDRRMO", R.drawable.pdrrmobats))
+        mList.add(ContactData("BUREAU OF FIRE\n"+"PROTECTION\n"+"BATANGAS CITY", R.drawable.bfp))
+        mList.add(ContactData("COAST GUARD\n" + "BATANGAS", R.drawable.pcg))
+        mList.add(ContactData("GOLDEN GATE\n"+"HOSPITAL", R.drawable.batanggolden))
+        mList.add(ContactData("MAIN 2 INCIDENT \n" + "COMMANDERS OFFICE /\n" + "EXECUTIVE OFFICE", R.drawable.batstateu))
+        mList.add(ContactData("MAIN 2 INFIRMARY", R.drawable.batstateu))
+        mList.add(ContactData("MAIN 2 SECURITY\n"+"OFFICE", R.drawable.batstateu))
+        mList.add(ContactData("PHILIPPINE RED CROSS\n"+ "BATANGAS CITY", R.drawable.redcross))
+        mList.add(ContactData("PNP BATANGAS CITY", R.drawable.pnp))
+        mList.add(ContactData("PNP BATANGAS\n"+"PROVINCIAL\n"+"OFFICE", R.drawable.batangpnp))
+        mList.add(ContactData("ST.PATRICK'S\n"+"HOSPITAL", R.drawable.batangsaintpat))
 
 
     }

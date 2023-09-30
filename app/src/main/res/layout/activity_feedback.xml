@@ -11,7 +11,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
         android:layout_width="415dp"
-        android:layout_height="100dp"
+        android:layout_height="70dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         app:cardBackgroundColor="@color/red"
@@ -29,7 +29,8 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="Home Icon"
                 android:padding="6dp"
-                android:src="@drawable/baseline_arrow_circle_left_24"
+
+                android:src="@drawable/menubutton"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="BackClick"

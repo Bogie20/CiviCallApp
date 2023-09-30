@@ -1,272 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/darkred"
     android:layout_height="match_parent"
-    tools:context=".lolo">
+    android:background="@color/background"
+    tools:context=".lolo"
+    tools:layout_editor_absoluteX="-40dp"
+    tools:layout_editor_absoluteY="9dp">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="415dp"
-        android:layout_height="200dp"
 
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/card"
-        app:cardBackgroundColor="@color/red"
-        app:cardCornerRadius="4dp">
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:background="@drawable/kurt1"
+        app:cardCornerRadius="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:fontFamily="@font/inter_bold"
+            android:paddingBottom="-50dp"
+            android:text="Menu"
+
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/profileImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/editprofile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
+
+            android:paddingBottom="-50dp"
+            android:text="Edit Profile"
+            android:textColor="@color/white"
+
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.859"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.083" />
+
+        <ImageView
+            android:id="@+id/back1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:contentDescription="Home Icon"
+            android:focusable="true"
+            android:onClick="BackClick"
+            android:padding="6dp"
+            android:src="@drawable/baseline_arrow_circle_left_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImage"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/profilenone"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="NotSibling" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-    <ImageView
-        android:id="@+id/back1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="Home Icon"
-        android:layout_marginTop="20dp"
-        android:padding="6dp"
-        android:src="@drawable/baseline_arrow_circle_left_24"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="BackClick" />
-        <de.hdodenhof.circleimageview.CircleImageView
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profileImage">
 
-            android:layout_marginLeft="70dp"
-            android:id="@+id/profileImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/profilenone"
-            android:layout_centerHorizontal="true"
-            app:civ_border_color="@color/white"
-
-            app:civ_border_width="2dp"
-            />
-
-        <ImageView
-            android:id="@+id/logout1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="Home Icon"
-            android:layout_marginTop="28dp"
-            android:layout_marginLeft="80dp"
-            android:src="@drawable/logout3"
-            />
-
-
-
-</LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-            <LinearLayout
-
                 android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-
-                >
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/firstName"
-                    android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_bold"
+                    android:gravity="center"
                     android:text="Jherimy"
                     android:textColor="@color/white"
                     android:textSize="20sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/lastName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-
-
                     android:fontFamily="@font/inter_bold"
                     android:text="mallorca"
                     android:textColor="@color/white"
                     android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@id/firstName"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/firstName"
+                    app:layout_constraintTop_toTopOf="parent" />
             </LinearLayout>
-                <TextView
-                    android:layout_gravity="center"
 
-                    android:id="@+id/email1"
+            <TextView
+                android:id="@+id/email1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/inter_bold"
+                android:text="Example@gmail.com"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+
+        </LinearLayout>
 
 
-                    android:fontFamily="@font/inter_bold"
-                    android:text="Example@gmail.com"
-                    android:textColor="@color/white"
-                    android:textSize="15sp" />
-            </LinearLayout>
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
-
-    <!-- Rest of your menu components -->
-    <TextView
-        android:id="@+id/Profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MY PROFILE"
-        android:textColor="@android:color/white"
-        android:background="@drawable/menu_item_background"
-        android:drawableStart="@drawable/userprofile1"
-
-        android:drawablePadding="10dp"
-        android:paddingStart="16dp"
-
-        android:layout_below="@id/card"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="center_vertical|start"
-         />
     <TextView
         android:id="@+id/verification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ACCOUNT VERIFICATION"
-        android:textColor="@android:color/white"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/menu_item_background"
         android:drawableStart="@drawable/check1"
         android:drawablePadding="8dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
+        android:text="ACCOUNT VERIFICATION"
 
-        android:layout_below="@id/Profile"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-
-        android:clickable="true"
-        android:focusable="true"
-
-        android:onClick="onMenuItemClick" />
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card" />
 
     <TextView
         android:id="@+id/calendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SCHEDULE CALENDAR"
-        android:textColor="@android:color/white"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/menu_item_background"
         android:drawableStart="@drawable/calendar1"
         android:drawablePadding="8dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
+        android:text="SCHEDULE CALENDAR"
 
-        android:layout_below="@id/verification"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/verification" />
 
-        android:clickable="true"
-        android:focusable="true"
-
-        android:onClick="onMenuItemClick" />
     <TextView
         android:id="@+id/Engagement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CIVIC ENGAGEMENTS"
-        android:textColor="@android:color/white"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/menu_item_background"
         android:drawableStart="@drawable/vol"
         android:drawablePadding="8dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
+        android:text="CIVIC ENGAGEMENTS"
 
-        android:layout_below="@id/calendar"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-
-        android:clickable="true"
-        android:focusable="true"
-
-        android:onClick="onMenuItemClick" />
-
-
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calendar" />
 
     <TextView
         android:id="@+id/feedback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FEEDBACK"
-        android:textColor="@android:color/white"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/menu_item_background"
         android:drawableStart="@drawable/feed"
         android:drawablePadding="8dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
+        android:text="FEEDBACK"
 
-        android:layout_below="@id/Engagement"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Engagement" />
 
-        android:clickable="true"
-        android:focusable="true"
-
-        android:onClick="onMenuItemClick" />
     <TextView
         android:id="@+id/Setting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SETTINGS AND PRIVACY"
-        android:textColor="@android:color/white"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/menu_item_background"
         android:drawableStart="@drawable/sett"
         android:drawablePadding="8dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
+        android:text="SETTINGS AND PRIVACY"
 
-        android:layout_below="@id/feedback"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-
-        android:clickable="true"
-        android:focusable="true"
-
-        android:onClick="onMenuItemClick" />
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/feedback" />
 
     <TextView
         android:id="@+id/AboutUs1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="140dp"
+        android:background="@drawable/menu_item_background"
         android:text="About Us"
         android:textColor="@android:color/white"
+        android:textSize="20dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Setting" />
+
+    <TextView
+
+        android:id="@+id/Profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/menu_item_background"
-      android:textSize="20dp"
+        android:drawableStart="@drawable/logoutprofile"
+        android:drawablePadding="10dp"
+        android:paddingStart="16dp"
+        android:text="Log Out"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Setting"
+
+        />
 
 
 
-        android:layout_marginTop="700dp"
-
-     android:layout_marginLeft="150dp"
-        android:clickable="true"
-        android:focusable="true"
-
-        android:onClick="onMenuItemClick" />
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

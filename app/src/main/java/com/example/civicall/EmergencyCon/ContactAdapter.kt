@@ -16,6 +16,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import android.Manifest
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import com.example.civicall.R
 
 class ContactAdapter(
@@ -46,15 +48,30 @@ class ContactAdapter(
     private fun showPhoneOptionsDialog(context: Context, position: Int) {
         val optionsArray = phoneOptions[position] ?: arrayOf("Default Number 1", "Default Number 2")
 
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.custom_phone_options_dialog, null)
+        val titleTextView = dialogView.findViewById<TextView>(R.id.dialog_title)
+        val optionListView = dialogView.findViewById<ListView>(R.id.option_list)
+
+        titleTextView.text = "Call ${mList[position].title}"
+
+        val adapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, optionsArray)
+        optionListView.adapter = adapter
+
         val builder = AlertDialog.Builder(context)
-        builder.setTitle("Call ${mList[position].title}\n")
-            .setItems(optionsArray) { _, which ->
-                val selectedPhoneNumber = optionsArray[which]
-                makePhoneCall(context, selectedPhoneNumber)
-            }
+        builder.setView(dialogView)
+
         val dialog = builder.create()
+
+        optionListView.setOnItemClickListener { _, _, which, _ ->
+            val selectedPhoneNumber = optionsArray[which]
+            makePhoneCall(context, selectedPhoneNumber)
+            dialog.dismiss()
+        }
+
         dialog.show()
     }
+
+
 
     override fun getItemCount(): Int {
         return mList.size

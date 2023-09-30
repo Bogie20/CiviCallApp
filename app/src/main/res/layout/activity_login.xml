@@ -10,11 +10,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
-        android:layout_width="415dp"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
-
-
-        app:cardBackgroundColor="@color/red"
+        app:cardBackgroundColor="@color/redpink"
         app:cardCornerRadius="4dp">
 
         <TextView
@@ -54,22 +52,18 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="105dp"
         android:text="Welcome to CiviCall"
-        android:textColor="@color/grey"
+        android:textColor="@color/DarkGray"
         android:textSize="20dp" />
 
 
     <ImageView
         android:id="@+id/img"
-
-
         android:layout_width="316dp"
         android:layout_height="190dp"
         android:layout_below="@+id/welcome"
-
+        android:scaleType="fitXY"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="8dp"
-
-
         android:layout_marginEnd="26dp"
         android:src="@drawable/lolo" />
 
@@ -77,28 +71,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/img"
-
         android:layout_marginTop="2dp"
         android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/emailLogin"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailadd"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:background="@drawable/button_shape"
-            android:backgroundTint="@color/white"
+            android:layout_height="wrap_content"
+            android:elevation="50dp"
+            app:hintTextColor="@color/DarkGray">
 
-            android:drawableStart="@drawable/baseline_email_24"
-            android:drawablePadding="5dp"
-            android:hint="Email Address"
-            android:paddingLeft="10dp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailLogin"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:background="@drawable/button_shape"
+                android:backgroundTint="@color/white"
+                android:drawableStart="@drawable/baseline_email_24"
+                android:drawablePadding="15dp"
+                android:hint="Email Address"
+                android:lines="1"
+                android:inputType="text"
+                app:hintTextColor="@color/DarkGray"
+                android:paddingRight="42dp"
+                android:paddingLeft="20dp"
+                android:maxLength="80"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/password_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            app:hintTextColor="@color/DarkGray"
+           >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordText"
@@ -107,10 +115,13 @@
                 android:background="@drawable/button_shape"
                 android:backgroundTint="@color/white"
                 android:drawableStart="@drawable/baseline_lock_24"
-                android:drawablePadding="5dp"
+                android:drawablePadding="15dp"
                 android:hint="Password"
+                android:lines="1"
                 android:inputType="textPassword"
-            android:paddingLeft="10dp" />
+                android:paddingRight="42dp"
+                android:paddingLeft="20dp"
+                android:maxLength="80"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -139,14 +150,13 @@
 
 
     <TextView
-        android:id="@+id/register"
+        android:id="@+id/forgotpass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="560dp"
+        android:layout_marginTop="565dp"
         android:text="Forgot Password?"
         android:textColor="@color/blue"
-
 
         >
 
@@ -161,7 +171,7 @@
         android:layout_marginLeft="140dp"
         android:layout_marginTop="590dp"
         android:text="----- or Sign in with -----"
-        android:textColor="@color/grey"
+        android:textColor="@color/DarkGray"
         android:textSize="18dp">
 
 
@@ -180,6 +190,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="5dp"
+            android:scaleType="fitXY"
             android:layout_marginRight="30dp"
             android:background="@android:color/transparent"
             android:contentDescription="Sign in with Name"
@@ -190,8 +201,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="5dp"
-
-
+            android:scaleType="fitXY"
             android:background="@android:color/transparent"
             android:contentDescription="Sign in with Name"
             android:src="@drawable/fb" />

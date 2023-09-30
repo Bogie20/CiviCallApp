@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".InformationFragment"
-    style="@style/parent.contentLayout">
+    style="@style/parent.contentLayout"
+    android:background="@color/background">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -24,12 +25,14 @@
             <TextView
                 android:text="Categories"
                 style="@style/viewParent.headerText"
+                android:textColor="@color/white"
                 android:layout_marginBottom="10dp"/>
 
             <TextView
                 android:text="Learning about civic happenings gives you the knowledge to be an active part of your community's story."
                 style="@style/viewParent.headerText.contentText"
-                android:layout_marginBottom="2dp"/>
+                android:layout_marginBottom="2dp"
+                android:textColor="@color/white"/>
 
             <!-- CardView 1 -->
             <androidx.cardview.widget.CardView
@@ -42,8 +45,8 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:minHeight="100dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="125dp"
                     android:background="@drawable/gradientbox"
                     android:padding="10dp">
 
@@ -51,13 +54,17 @@
                         android:id="@+id/textViewSub1Title"
                         android:text="Civic Engagement"
                         android:textSize="23dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         style="@style/viewParent.headerText.HomeCardTitle" />
 
                     <TextView
-                        android:text="&quot;The power of the people is stronger\nthan the people in power.&quot; - Wael Ghonim"
+                        android:text="&quot;The power of the people is stronger\nthan the people in power.&quot; \n- Wael Ghonim"
                         style="@style/viewParent.headerText.homeCardContent"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="13dp"
                         android:textSize="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_below="@id/textViewSub1Title"/>
 
                     <ImageView
@@ -65,6 +72,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/civic"
+                        android:scaleType="fitXY"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true" />
@@ -81,8 +89,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minHeight="100dp"
+                android:layout_height="wrap_content"
+                android:minHeight="125dp"
                 android:background="@drawable/gradientbox1"
                 android:padding="10dp">
 
@@ -90,13 +98,17 @@
                     android:id="@+id/textViewSub2Title"
                     android:text="Disaster Preparedness"
                     android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
-                    android:text="&quot;By failing to prepare, you are \npreparing to fail.&quot; - Benjamin Franklin"
+                    android:text="&quot;By failing to prepare, you are \n preparing to fail.&quot; \n- Benjamin Franklin"
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/textViewSub2Title"/>
 
                 <ImageView
@@ -104,6 +116,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/disaster"
+                    android:scaleType="fitXY"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
@@ -120,21 +133,25 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@drawable/gradient2"
-                android:minHeight="100dp"
+                android:minHeight="125dp"
                 android:padding="10dp">
 
                 <TextView
                     android:id="@+id/textViewSub3Title"
                     style="@style/viewParent.headerText.HomeCardTitle"
                     android:text="Survival Tips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:textSize="23dp" />
 
                 <TextView
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_below="@id/textViewSub3Title"
-                    android:layout_marginTop="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
                     android:text="&quot;In the midst of survival, our true\n strengths and abilities are revealed.&quot; \n- Les Stroud"
                     android:textSize="10dp" />
 
@@ -142,6 +159,7 @@
                     android:id="@+id/imageView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
@@ -159,8 +177,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minHeight="100dp"
+                android:layout_height="wrap_content"
+                android:minHeight="125dp"
                 android:background="@drawable/gradientbox3"
                 android:padding="10dp">
 
@@ -168,6 +186,8 @@
                     android:id="@+id/textViewSub4Title"
                     android:text="Civic Rights &amp; Responsibility"
                     android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
@@ -175,6 +195,8 @@
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/textViewSub4Title"/>
 
                 <ImageView
@@ -182,6 +204,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/civicr"
+                    android:scaleType="fitXY"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
@@ -197,8 +220,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minHeight="100dp"
+                android:layout_height="wrap_content"
+                android:minHeight="125dp"
                 android:background="@drawable/gradientbox4"
                 android:padding="10dp">
 
@@ -206,13 +229,17 @@
                     android:id="@+id/textViewSub5Title"
                     android:text="Environmental &amp; Social Issue"
                     android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
-                    android:text="&quot;We won't have a society if we destroy the \nenvironment.&quot; - Margaret Mead"
+                    android:text="&quot;We won't have a society if we \ndestroy the environment.&quot; \n- Margaret Mead"
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/textViewSub5Title"/>
 
                 <ImageView
@@ -220,6 +247,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/environm"
+                    android:scaleType="fitXY"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
@@ -236,8 +264,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minHeight="100dp"
+                android:layout_height="wrap_content"
+                android:minHeight="125dp"
                 android:background="@drawable/gradientbox5"
                 android:padding="10dp">
 
@@ -245,6 +273,8 @@
                     android:id="@+id/textViewSub6Title"
                     android:text="Campus Governance"
                     android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
@@ -252,6 +282,8 @@
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/textViewSub6Title"/>
 
                 <ImageView
@@ -259,6 +291,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/campus"
+                    android:scaleType="fitXY"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
@@ -275,8 +308,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minHeight="100dp"
+                android:layout_height="wrap_content"
+                android:minHeight="125dp"
                 android:background="@drawable/gradientbox6"
                 android:padding="10dp">
 
@@ -284,6 +317,8 @@
                     android:id="@+id/textViewSub7Title"
                     android:text="Public Health Awareness"
                     android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
@@ -291,6 +326,8 @@
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/textViewSub7Title"/>
 
                 <ImageView
@@ -298,6 +335,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/campusemerg"
+                    android:scaleType="fitXY"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
@@ -315,8 +353,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:minHeight="100dp"
+                android:layout_height="wrap_content"
+                android:minHeight="125dp"
                 android:background="@drawable/gradientbox7"
                 android:padding="10dp">
 
@@ -324,6 +362,8 @@
                     android:id="@+id/textViewSub8Title"
                     android:text="Campus Emergency Contact"
                     android:textSize="18dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
@@ -331,6 +371,8 @@
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:textSize="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/textViewSub8Title"/>
 
                 <ImageView
@@ -338,6 +380,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/iamready"
+                    android:scaleType="fitXY"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />

@@ -59,7 +59,7 @@
             </LinearLayout>
             <LinearLayout
 
-                android:id="@+id/leonard"
+                android:id="@+id/back"
 
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -73,7 +73,6 @@
                     android:layout_height="125dp"
                     android:src="@drawable/profilenone"
                     app:civ_border_color="@color/white"
-
                     app:civ_border_width="2dp"
 
 
