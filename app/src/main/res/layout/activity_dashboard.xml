@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
+
+
+
     app:elevation="15dp"
     tools:context=".Dashboard">
 
@@ -15,7 +19,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/titlecard"
             android:layout_width="match_parent"
-            android:layout_height="85dp"
+            android:layout_height="70dp"
             app:cardBackgroundColor="@color/red">
 
             <LinearLayout
@@ -26,7 +30,7 @@
                     android:id="@+id/titleLarge"
                     android:paddingLeft="30dp"
                     android:gravity="center"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexend_medium"

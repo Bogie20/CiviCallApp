@@ -14,7 +14,7 @@
 
             android:id="@+id/card"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="70dp"
             app:cardBackgroundColor="@color/red"
             app:cardCornerRadius="4dp">
             <ImageView
@@ -22,9 +22,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="Home Icon"
-                android:layout_marginTop="20dp"
+
                 android:padding="6dp"
-                android:src="@drawable/baseline_arrow_circle_left_24"
+                android:src="@drawable/menubutton"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="BackClick"

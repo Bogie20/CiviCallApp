@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
+import com.example.civicall.CivicEngagementInfo.Civic
+import com.example.civicall.DisasterResponseInfo.DisasterResponseMenu
 import com.example.civicall.EmergencyCon.MainEmergencyContact
 
 class InformationFragment : Fragment() {
@@ -29,12 +31,12 @@ class InformationFragment : Fragment() {
         val cardview8 = view.findViewById<CardView>(R.id.cardview8)
 
         cardview1.setOnClickListener {
-            val intent = Intent(requireContext(), MainEmergencyContact::class.java)
+            val intent = Intent(requireContext(), Civic::class.java)
             startActivity(intent)
         }
 
         cardview2.setOnClickListener {
-            val intent = Intent(requireContext(), MainEmergencyContact::class.java)
+            val intent = Intent(requireContext(), DisasterResponseMenu::class.java)
             startActivity(intent)
         }
 
