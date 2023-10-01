@@ -70,7 +70,10 @@
                     app:hintTextColor="@color/DarkGray"
                     android:layout_marginTop="10dp"
                     app:counterEnabled="true"
-                    app:counterMaxLength="80">
+                    app:counterMaxLength="80"
+
+
+                    >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/fname"
@@ -86,6 +89,8 @@
                         app:hintTextColor="@color/DarkGray"
                         android:paddingRight="42dp"
                         android:paddingLeft="20dp"
+
+
                         />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -213,7 +218,7 @@
                     android:drawableStart="@drawable/calendar"
                     android:hint="Date of Birth"
                     android:paddingRight="20dp"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     android:backgroundTint="@color/white"
                     android:background="@drawable/button_shape"
                     android:paddingLeft="22dp"
@@ -234,7 +239,6 @@
                     android:background="@drawable/button_shape"
                     android:backgroundTint="@color/white"
                     >
-
                     <Spinner
                         android:id="@+id/spinnerSex"
                         android:layout_width="match_parent"

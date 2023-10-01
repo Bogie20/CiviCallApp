@@ -39,7 +39,7 @@ class Login : AppCompatActivity() {
         progressDialog.setContentView(R.layout.loading_layout)
         progressDialog.setCancelable(false)
 
-        val forgotPasswordTextView = findViewById<TextView>(R.id.forgotpass)
+        val forgotPasswordTextView = findViewById<TextView>(R.id.forgotpassword)
         // Initialize your email and password EditText fields
         emailEditText = binding.emailLogin
         passwordEditText = binding.passwordText
@@ -51,7 +51,6 @@ class Login : AppCompatActivity() {
         binding.btnlogin.setOnClickListener {
             validateData()
         }
-
         // Set a focus change listener for the email EditText
         // Set a focus change listener for the email EditText
         emailEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
@@ -74,6 +73,7 @@ class Login : AppCompatActivity() {
         }
         // Create an Intent to open the ForgotPassword activity
         forgotPasswordTextView.setOnClickListener {
+            // Create an Intent to open the ForgotPassword activity
             val intent = Intent(this, ForgotPassword::class.java)
             startActivity(intent)
         }

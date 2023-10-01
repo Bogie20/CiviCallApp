@@ -241,9 +241,10 @@ class Register1 : AppCompatActivity() {
 
         val adapter = CustomSpinnerAdapter(
             this,
-            android.R.layout.simple_spinner_item,
+            R.layout.spinner_item, // Use the custom layout here
             genderArray
         )
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         genderSpinner.adapter = adapter
 
@@ -501,12 +502,14 @@ class Register1 : AppCompatActivity() {
         spinnerSex = activityRegister1Binding.spinnerSex.selectedItem.toString()
 
         val checkBox = findViewById<CheckBox>(R.id.checkedTextView)
-        val isChecked = checkBox.isChecked
 
         val errorMessages = mutableListOf<String>()
 
         if (fname.isEmpty() || lname.isEmpty() || email.isEmpty() || phoneno.isEmpty() ||
-            phoneEme.isEmpty() || address.isEmpty() || birtdate.isEmpty() || spinnerSex == "Gender") {
+            phoneEme.isEmpty() || address.isEmpty() || birtdate.isEmpty() || spinnerSex.equals("Gender") ||
+            !checkBox.isChecked()) {
+            errorMessages.add("Please Fill All the Fields");
+        }
             if (fname.isEmpty()) {
                 activityRegister1Binding.fname.error = "Required"
             } else {
@@ -552,7 +555,7 @@ class Register1 : AppCompatActivity() {
             } else {
                 activityRegister1Binding.birthdate.error = null
             }
-            errorMessages.add("Please Fill All the Fields")
+
             if (spinnerSex.isEmpty() || spinnerSex == "Gender") {
                 val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
                 genderTextInputLayout.error = "Please select a Gender"
@@ -561,7 +564,7 @@ class Register1 : AppCompatActivity() {
                 val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
                 genderTextInputLayout.error = null
             }
-        }
+
 
         if (birtdate.isNotEmpty()) {
             val dobParts = birtdate.split(" / ")
@@ -583,9 +586,6 @@ class Register1 : AppCompatActivity() {
             } else {
                 errorMessages.add("Invalid Date of Birth format")
             }
-        }
-        if (!isChecked) {
-            errorMessages.add("Please Accept the Agreement to Register")
         }
 
         validatePasswordMatch()
