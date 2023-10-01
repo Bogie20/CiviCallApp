@@ -28,139 +28,181 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
         dataList.add(
             DataItem(
                 "Assess disaster damage and needs.",
-                "\"Hello, fellow college students, and welcome to a journey of preparedness and safety. Today, we embark on an essential lesson in ensuring your well-being during your academic adventures. As responsible and forward-thinking scholars, it's crucial to equip yourselves with the knowledge and tools to handle unexpected situations, and one fundamental aspect is having a well-stocked first aid kit tailored to your unique college experiences. \n\n" +
+                "\"Discover the incredible stories of communities and nations as they embark on the path of recovery and rebuilding after adversity. From natural disasters to economic challenges, witness the resilience and innovation that lead to a brighter future. Explore the strategies that help us not only recover but also thrive in the face of adversity.\n\n" +
 
-                        "1. Selecting Essential Supplies: Choose basic first aid supplies like bandages, gauze, antiseptics, and medications that are relevant to your travel plans and potential needs.\n\n" +
-                        "2. Organizing by Usage: Categorize and organize the supplies based on common injuries or ailments you may encounter during your specific type of travel.\n\n" +
-                        "3. Assembling the Kit: Place the selected items in a suitable container or bag, ensuring they are well-organized and easy to access.\n\n" +
-                        "4. Labeling and Documentation: Clearly label the kit and include a quick reference card detailing the contents and their uses for quick access during emergencies.\n\n" +
-                        "5. Regular Inspection: Periodically check the kit to replace expired or used items, ensuring that it remains fully functional and ready for use.\n\n" +
-                        "6. Immediate Response: Having a well-stocked first aid kit ensures you can respond promptly to injuries or medical issues, providing vital care until professional help is available.\n\n" +
-                        "7. Tailored Preparedness: Customize your first aid supplies based on the type of travel you undertake, whether it's for road trips, outdoor adventures, or international journeys.\n\n" +
-                        "8. Injury Prevention: Anticipating common travel-related injuries or illnesses allows for proactive measures, reducing the risk of complications and disruptions to your plans.\n\n" +
-                        "9. Peace of Mind: Knowing you have a properly stocked first aid kit provides peace of mind and promotes self-sufficiency in handling minor emergencies, enhancing your travel experience.\n\n" +
-                        "10. Safety and Responsibility: Stocking basic first aid supplies reflects your commitment to personal safety and the well-being of fellow travelers, contributing to a safer and more responsible travel environment.\n\n",
+                        "1. Program Enrollment: Start by enrolling in the \"Ready to Rebuild\" (R2R) program, a capacity-building initiative jointly developed and implemented by the World Bank and the Philippine government through the National Disaster Risk Reduction and Management Council and the Office of Civil Defense.\n\n" +
+                        "2. Assessment and Baseline Data: Utilize the program's tools and templates to assess your region's disaster risks and gather pre-disaster baseline data, crucial for evidence-based response and recovery efforts.\n\n" +
+                        "3. Recovery Framework: Develop a responsive pre-disaster and post-disaster recovery framework with a focus on risk-informed planning, using resources like the Philippines' GeoRiskPH integrated multi-hazard database.\n\n" +
+                        "4. Stakeholder Identification: Identify key stakeholders, establish institutional arrangements, and determine the modalities for effective collaboration during the recovery phase.\n\n" +
+                        "5. Disaster Risk Financing: Formulate a local disaster risk financing strategy, outlining how to fund recovery and reconstruction efforts, including identifying potential funding sources.\n\n" +
+                        "6. Pre-Disaster Recovery Plan: Create a local pre-disaster recovery plan, outlining the essential components required for recovery. This plan should be flexible for adjustments based on specific disaster impacts.\n\n" +
+                        "7. Technical Expertise: Participate in training sessions conducted by technical experts and practitioners as part of the R2R program, gaining insights into various recovery aspects.\n\n" +
+                        "8. Community Involvement: Actively engage with affected communities to gather their input and needs, ensuring that recovery plans are responsive to local priorities and concerns.\n\n" +
+                        "9. Output Completion: By the program's conclusion, ensure the completion of three essential outputs:\n\n" +
+
+                        "• Local pre-disaster baseline data, aiding in rapid damage and needs assessment post-disaster.\n\n" +
+                        "• Local disaster risk financing strategy, guiding the funding of recovery efforts.\n\n" +
+                        "• Local pre-disaster recovery plan, with components ready for swift implementation based on disaster impacts.\n\n" +
+
+
+
+                        "10. Implementation and Monitoring: When disaster strikes, execute the recovery plan promptly, closely monitoring progress, and making necessary adaptations to ensure a swift and efficient recovery process.\n\n" +
+                        "The importance of Focusing Recovery and Rebuilding Efforts in Disaster response\n\n" +
+                        "1. Timely Recovery: Having a structured recovery plan in place, as learned from the R2R program, minimizes the time and confusion associated with post-disaster recovery efforts, accelerating the rebuilding process.\n\n" +
+                        "2. Community Resilience: Engaging with communities and involving them in the planning process enhances their resilience, ensuring that their specific needs are addressed during recovery.\n\n" +
+                        "3. Resource Efficiency: A well-prepared recovery plan optimizes resource allocation, ensuring that funds and support are efficiently utilized for reconstruction.\n\n" +
+                        "4. Disaster Risk Reduction: The program equips local governments to reduce disaster risks, saving lives and safeguarding livelihoods during disasters.\n\n" +
+                        "5. Continued Support: As the Philippines continues its journey to resilience, continued partnership with organizations like the World Bank ensures access to tailored and sustainable solutions for long-term disaster preparedness and recovery.\"living document\" underscores the commitment to ongoing improvement. Regular reviews and updates of the guidelines ensure that EMS practices remain aligned with the latest advancements in emergency medical services, enhancing the overall preparedness and effectiveness of ambulance teams.\n\n",
+
+
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=dYKdWsVtbaE&ab_channel=IndependenceBlueCross"
+                "https://blogs.worldbank.org/eastasiapacific/philippines-ready-rebuild-aftermath-typhoon-rai"
             )
         )
         dataList.add(
             DataItem("Develop a recovery plan.",
-                "Ensuring that staff members are trained in first aid procedures and first aid medical care is vital, especially when faced with situations where someone has collapsed. This training equips employees with the knowledge and skills needed to perform an initial assessment, known as the primary survey, following the DR ABC protocol. By understanding and implementing these procedures, staff can respond effectively to emergencies, potentially saving lives and minimizing the impact of injuries or medical incidents within the workplace.\n\n" +
-                        "1. Primary Survey (DR ABC): Staff should be trained in conducting the primary survey, following the DR ABC protocol outlined in the script. This involves assessing for Danger, checking for Response, ensuring an open Airway, monitoring Breathing, and evaluating Circulation, as described in the provided script.\n\n" +
-                        "2. Assessing Danger and Response: Employees should learn to recognize potential dangers in emergency situations and ensure their safety before approaching the casualty, as emphasized in the script. They should also know how to communicate with an unresponsive casualty to elicit a response.\n\n" +
-                        "3. Airway and Breathing Assessment: Staff should be trained in opening an unresponsive casualty's airway and assessing normal breathing, as described in the script. They should be prepared to initiate CPR and call for emergency help if necessary.\n\n" +
-                        "4. Training on Equipment Use: Ensure that SAR team members are trained in the proper use and care of all equipment. Training should cover storage, handling, and emergency troubleshooting procedures.\n\n" +
-                        "5. Circulation and Bleeding Control: After addressing the airway and breathing, responders should check for signs of severe bleeding and take steps to control it to prevent life-threatening shock. If bleeding is present, calling for emergency assistance and providing appropriate first aid measures are essential.\n\n" +
-                        "6. Rapid Response: Conducting a primary survey allows responders to initiate assistance quickly and make critical decisions in a time-sensitive manner. The structured approach ensures that life-threatening conditions are identified and addressed promptly.\n\n" +
-                        "7. Increased Survival Rates: Training in the primary survey empowers individuals to recognize and respond to medical emergencies effectively. This can significantly increase the chances of survival for the casualty, especially in situations like cardiac arrest or severe bleeding.\n\n" +
-                        "8. Minimizing Complications: By following the DR ABC protocol, responders can identify and manage potential complications early. For example, opening the airway and ensuring normal breathing can prevent oxygen deprivation and brain damage.\n\n" +
-                        "9. Effective Communication: The script emphasizes the importance of introducing oneself and asking questions to elicit a response from the casualty. Effective communication not only aids in assessing the casualty's condition but also provides reassurance and support during a stressful situation.\n\n" +
+                "A disaster recovery plan (DRP) is a vital component of organizational resilience, designed to ensure the swift and effective response to natural or man-made disasters. This comprehensive plan outlines the actions to be taken before, during, and after a disaster to safeguard critical IT infrastructure and facilitate recovery. By setting recovery objectives, identifying essential personnel, and detailing backup procedures, a well-structured DRP plays a pivotal role in minimizing data loss, reducing downtime, and ultimately preserving business continuity.\n\n" +
 
-                        "10. Coordination with Emergency Services: The script highlights the importance of calling for emergency help (999/112) when necessary. This step ensures that professional medical assistance is on the way, and the responder can focus on immediate care until help arrives.\n\n",
+
+                        "1. Risk Assessment and Business Impact Analysis:Begin by conducting a comprehensive risk assessment and business impact analysis (BIA). This step helps identify potential disaster scenarios and assess their impact on critical business functions.\n\n" +
+                        "2. Identify Critical Needs:Prioritize business operations and functions based on their criticality. Determine which data, applications, hardware, and user accesses are essential for supporting these functions.\n\n" +
+                        "3. Set Recovery Objectives:Establish clear recovery objectives, including the Recovery Time Objective (RTO) and Recovery Point Objective (RPO). RTO defines the acceptable downtime after a disaster, while RPO specifies how much data loss is tolerable.\n\n" +
+                        "4. Collect Data and Documentation:Collect and document essential information, including contact lists, inventory of IT assets, backup procedures, and disaster recovery procedures. Maintain up-to-date records of hardware, software, and cloud services.\n\n" +
+                        "5. Personnel and Responsibilities:Define roles and responsibilities for individuals involved in executing the DRP. Ensure that backups and alternative personnel are designated for key tasks in case of unavailability.\n\n" +
+                        "6. Backup Procedures: Clearly outline how each data resource is backed up, including specific locations, devices, and folders. Describe the procedures for recovering each resource from backups.\n\n" +
+                        "7. Disaster Recovery Procedures:Develop detailed disaster recovery procedures that cover emergency responses, last-minute backups, mitigation measures, damage limitation, and cybersecurity threat eradication.\n\n" +
+                        "8. Disaster Recovery Sites: Designate a hot disaster recovery site, typically located remotely, where critical data and systems can be frequently backed up or replicated. This site serves as an alternative data center for swift operations in case of a disaster.\"living document\" with a framework for updates and revisions. Scheduled reviews will take place every three years to ensure that the guidelines remain aligned with the latest knowledge and skills in emergency medical services.\n\n" +
+                        "9. Testing and Revision:Regularly test the DRP based on predefined criteria and procedures. Conduct various types of tests, such as checklist tests, full interruption tests, parallel tests, and simulation tests. Revise the plan as needed to ensure its effectiveness.\n\n" +
+                        "10. Documentation and Maintenance:Maintain up-to-date documentation of the DRP, ensuring that it reflects the organization's evolving needs, IT infrastructure changes, and the latest best practices in disaster recovery.\n\n" +
+                        "The importance of disaster recovery plan:\n\n" +
+                        "1. Minimizing Downtime: A well-prepared DRP reduces downtime during and after a disaster, ensuring that critical business operations can resume swiftly. This minimizes disruptions to productivity and revenue loss.\n\n" +
+                        "2. Data Protection: DRPs safeguard data from loss or corruption caused by disasters, whether they are natural (e.g., floods, earthquakes) or man-made (e.g., cyberattacks). This protection is vital for maintaining business continuity and customer trust.\n\n" +
+                        "3. Regulatory Compliance: Many industries and organizations are subject to strict regulatory requirements regarding data protection and business continuity. A DRP helps ensure compliance with these regulations, avoiding potential legal issues and penalties.\n\n" +
+                        "4. Customer Trust: Reliable disaster recovery measures demonstrate a commitment to customer service and reliability. Customers are more likely to trust businesses that have contingency plans in place to protect their data and maintain uninterrupted services.\n\n" +
+                        "5. Cost-Efficiency: While implementing a DRP incurs initial costs, it ultimately leads to cost-efficiency. By preventing data loss, reducing downtime, and streamlining recovery processes, it saves the organization from potentially significant financial losses in the long run.\n\n",
+
+
+
+
+
 
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=ea1RJUOiNfQ&ab_channel=StJohnAmbulance")
+                "https://www.druva.com/glossary/what-is-a-disaster-recovery-plan-definition-and-related-faqs")
         )
         dataList.add(
             DataItem("Secure funding and resources.",
-                "Ensuring that emergency medical contact information is readily accessible on smartphones has become a critical component of modern first aid and medical care. In this digital age, being able to swiftly access vital medical details on a patient's smartphone can be a lifesaving practice for healthcare providers and emergency responders. This video from the Kessler Trauma Center serves as a valuable resource, guiding healthcare professionals on how to retrieve smartphone emergency medical ID information efficiently. Let's delve into the importance and methods of accessing this information on both Android and Apple iPhones.\n\n" +
-                        "1. Easy Access for Critical Information: Accessing smartphone emergency medical ID information is a straightforward process for both Android and Apple iPhones, as demonstrated in the video. Healthcare providers and responders can quickly retrieve essential medical details when needed.\n\n" +
-                        "2. Educational Outreach: The Kessler Trauma Center's proactive educational program emphasizes the significance of utilizing smartphone emergency medical ID features. Healthcare providers with direct patient care responsibilities are encouraged to be well-versed in accessing this information in emergency situations.\n\n" +
-                        "3. Android Access: On locked Android phones, simply swipe up on the screen, tap \"Emergency\" at the bottom of the lock screen, and select \"Emergency Information\" to view the patient's medical and emergency contact details. This process ensures timely access to critical information.\n\n" +
-                        "4. Apple iPhone Access (Newer Models): For newer iPhones without a home button (e.g., iPhone X series, 11, or newer), simultaneously press and hold the side button and volume up button to activate the emergency screen. Swipe the \"Medical ID\" slider to the right to access important medical information.\n\n" +
-                        "5. Apple iPhone Access (Older Models): On older iPhone models with a home button, press the home button to open the lock screen. Tap \"Emergency\" in the lower-left corner, and then select \"Medical ID.\" This grants healthcare providers access to vital medical and contact information.\n\n" +
-                        "6. Life-Saving Potential: Rapid access to smartphone emergency medical ID information holds the potential to save lives in critical situations. It allows healthcare providers and responders to make informed decisions and provide appropriate care promptly.\n\n" +
-                        "7. Patient Communication Challenges: The importance of this feature becomes evident when patients are unable to communicate due to injury, illness, or loss of consciousness. Having access to their medical history and emergency contacts is invaluable in such scenarios.\n\n" +
-                        "8. Transportation Considerations: Healthcare professionals responsible for transporting patients to medical facilities should consider bringing the patient's smartphone with them, especially if the patient is unresponsive. The information stored on the device could significantly aid in the patient's care.\n\n" +
-                        "9. Simple and Quick Process: The video demonstrates that the process of accessing emergency medical information on smartphones is straightforward and does not consume much time. It is a minimal effort that can yield substantial benefits in terms of patient care.\n\n" +
-                        "10. Promoting Awareness: Encouraging the practice of checking for smartphone emergency medical ID activation should be an integral part of healthcare training and protocols. This awareness ensures that healthcare providers are prepared to utilize this valuable resource when needed.\n\n",
+                "In the realm of disaster risk management and financial protection, securing the necessary funding and resources is paramount for safeguarding communities and assets from the devastating impact of disasters. This strategic guide outlines ten critical steps to effectively mobilize resources, engage stakeholders, and prioritize investments in disaster risk reduction and response, reinforcing resilience in the face of adversity.\n\n" +
+
+
+
+                        "1. Assessment of Funding Needs: Begin by conducting a comprehensive assessment to determine the financial requirements for disaster risk management initiatives, including risk reduction, preparedness, and recovery efforts.\n\n" +
+                        "2. Prioritization of Investments: Prioritize funding allocation based on identified risks and vulnerabilities, focusing on the most critical areas that require immediate attention and resources.\n\n" +
+                        "3. Development of a Funding Strategy: Create a strategic plan that outlines the sources and mechanisms for securing funding, taking into account both public and private sector contributions.\n\n" +
+                        "4. Engagement with Stakeholders: Collaborate with relevant stakeholders, including government agencies, local communities, non-governmental organizations, and the private sector, to garner support and resources for disaster risk management.\n\n" +
+                        "5. Identification of Funding Sources: Identify potential funding sources, such as government budgets, international donors, grants, insurance mechanisms, and public-private partnerships.\n\n" +
+                        "6. Budget Planning: Develop a detailed budget that clearly outlines how the secured funding will be allocated across different risk reduction and disaster response activities.\n\n" +
+                        "7. Policy Advocacy: Advocate for policies and regulations that promote funding and resource mobilization for disaster risk management, including tax incentives and financial incentives for private sector engagement.\n\n" +
+                        "8. Capacity Building: Build the capacity of relevant institutions and agencies to effectively manage and utilize the secured funding and resources for disaster risk management.\n\n" +
+                        "9. Monitoring and Evaluation: Implement robust monitoring and evaluation mechanisms to track the utilization of funds, measure the impact of risk reduction initiatives, and ensure transparency and accountability.\n\n" +
+                        "10. Risk Communication: Continuously engage with the public and stakeholders to communicate the importance of securing funding for disaster risk management and financial protection, fostering a culture of resilience and preparedness.\n\n" +
+                        "The importance of Securing funding and resources:\n\n" +
+                        "1. Enhanced Resilience: Securing adequate funding and resources allows governments and communities to invest in risk reduction measures, preparedness, and recovery efforts. This, in turn, enhances resilience by reducing vulnerabilities and improving the ability to withstand and recover from disasters.\n\n" +
+                        "2. Faster Recovery: Adequate financial resources enable swift and effective disaster response and recovery. This can minimize the economic and social impacts of disasters, helping communities and economies bounce back more quickly.\n\n" +
+                        "3. Reduced Fiscal Impact: Proper funding and insurance mechanisms can reduce the fiscal burden on governments when disasters occur. This prevents severe financial shocks to government budgets and allows for continued public service delivery and infrastructure development.\n\n" +
+                        "4. Private Sector Engagement: Securing funding often involves collaboration with the private sector, which can bring in expertise, innovation, and financial contributions. Public-private partnerships can result in more robust disaster risk management strategies.\n\n" +
+                        "5. Sustainable Development: Investing in disaster risk management contributes to sustainable development by protecting infrastructure, livelihoods, and ecosystems. It ensures that development gains are not eroded by frequent disasters and promotes long-term stability and prosperity.\n\n",
+
+
+
+
+
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=SXwXjw1Q-88&ab_channel=URKesslerTrauma")
+                "https://www.financialprotectionforum.org/third-party/microsite_1/subpage02.html")
         )
         dataList.add(
-            DataItem("Coordinate with government agencies..",
+            DataItem("Coordinate with government agencies.",
 
-                "An Automated External Defibrillator, or AED, is a remarkable life-saving device that plays a pivotal role in responding to cardiac arrest situations. Its ability to deliver electric shocks to the heart can potentially restart it when it has stopped. In this context, maintaining an AED in top working condition is of utmost importance. This video from St John Ambulance provides valuable insights into not only how to use an AED but also how to ensure it remains ready for action at all times. Let's explore the essential aspects of AED maintenance that are critical in first aid and medical care.\n\n" +
-
-
+                "Disasters, whether natural or man-made, require a well-coordinated and timely response to mitigate their effects and aid affected communities. Government agencies are key stakeholders in disaster management, wielding the resources and authority to make a significant impact. In the following sections, we delve into the significance of aligning your disaster preparedness efforts with government agencies and provide a comprehensive guide to ensure effective coordination.\n\n" +
 
 
 
 
-                        "1. Emergency Call: In the event of an unresponsive individual not breathing normally, the first step is to call 999 or 112 for emergency assistance and request an AED if available.\n\n" +
-                        "2. CPR Initiation: If alone, immediately initiate CPR with chest compressions while waiting for the AED to arrive. It's crucial not to leave the casualty to search for the AED at this stage.\n\n" +
-                        "3. AED Activation: Once the AED arrives, ensure it is switched on while CPR is continued. The AED provides a series of visual and verbal prompts to guide users through the process.\n\n" +
-                        "4. Pad Application: Follow the AED's instructions, which typically include removing clothing from the patient's chest, placing the pads on bare skin as indicated in the pictures, and pressing them firmly.\n\n" +
-                        "5. Shock Delivery: After pad application, the AED analyzes the heart rhythm and may instruct users to stand clear while it delivers a shock if necessary. Following the shock, users are guided to provide chest compressions and rescue breaths.\n\n" +
-                        "6. Timely Intervention: Using an AED in the crucial minutes before an ambulance arrives can be a life-saving intervention, as it helps restore a normal heart rhythm during cardiac arrest.\n\n" +
-                        "7. User-Friendly Design: AEDs are designed to be user-friendly, ensuring that even individuals without medical training can confidently and effectively use them to aid a person in distress.\n\n" +
-                        "8. Minimizing Error: The AED's ability to analyze the casualty's heart rhythm and provide clear, step-by-step instructions minimizes the risk of errors during a high-stress situation.\n\n" +
-                        "9. Accessible to All: Anyone, including bystanders, can use an AED, making it a valuable resource in locations where immediate medical assistance may not be readily available.\n\n" +
-                        "10. Increased Survival Rates: The use of AEDs, as demonstrated in the video, contributes significantly to increasing the chances of survival during cardiac arrest incidents, emphasizing their critical role in saving lives.\n\n",
+                        "1. Establish a Local Coordination Team: Create a dedicated local coordination team within your organization responsible for liaising with local government agencies and emergency services.\n\n" +
+                        "2. Familiarize with Local Emergency Plans: Thoroughly review and understand the local government's emergency management plans, protocols, and contact information.\n\n" +
+                        "3. Identify Key Contacts: Establish and maintain relationships with key contacts in local government agencies, including emergency management offices, fire departments, law enforcement, and public health authorities.\n\n" +
+                        "4. Participate in Local Drills and Exercises: Actively participate in local disaster preparedness drills and exercises organized by government agencies to ensure seamless coordination during real emergencies.\n\n" +
+                        "5. Share Your Resources: Provide local government agencies with information about your organization's resources and capabilities that can be mobilized in times of disaster, such as equipment, personnel, and facilities.\n\n" +
+                        "6. Communicate Regularly: Maintain open lines of communication with government agencies through regular meetings, updates, and information sharing. Ensure they have up-to-date contact information for your organization.\n\n" +
+                        "7. Align with Government Protocols: Align your disaster response protocols with those of local government agencies to ensure compatibility and smooth collaboration during emergencies.\n\n" +
+                        "8. Contribute to Local Emergency Plans: Collaborate with government agencies to contribute to the development and improvement of local emergency plans, including resource allocation and response procedures.\"living document\" with a framework for updates and revisions. Scheduled reviews will take place every three years to ensure that the guidelines remain aligned with the latest knowledge and skills in emergency medical services.\n\n" +
+                        "9. Training and Capacity Building: Offer training and capacity-building opportunities to local government agencies to enhance their disaster response capabilities, including the use of specialized equipment or tools.\n\n" +
+                        "10. Test Communication Channels: Regularly test communication channels and procedures with government agencies to verify their effectiveness and address any issues that may arise.\n\n" +
+                        "The Importance for coordinating with government agencies in disaster preparedness and response:\n\n" +
+                        "1. Enhanced Disaster Response: Coordinating with government agencies ensures a more effective and coordinated disaster response. By working together, your organization can tap into government resources, expertise, and support, leading to a faster and more efficient response to emergencies.\n\n" +
+                        "2. Access to Critical Information: Government agencies often have access to vital information, including real-time updates on disaster situations, evacuation plans, and hazard assessments. Coordinating with these agencies provides your organization with valuable insights that can inform your response strategy.\n\n" +
+                        "3. Resource Mobilization: Collaboration with government agencies facilitates resource mobilization. In times of disaster, access to government-supplied resources, such as personnel, equipment, and supplies, can significantly bolster your organization's capacity to respond effectively.\n\n" +
+                        "4. Legal Compliance: Many disaster response activities require compliance with local regulations and emergency orders issued by government authorities. Coordinating with these agencies ensures that your organization operates within the bounds of the law, minimizing legal risks.\n\n" +
+                        "5. Community Safety: Ultimately, the primary goal of disaster preparedness and response is to protect and serve the community. Coordinating with government agencies helps ensure a unified and comprehensive approach to disaster management, which translates into better protection for community members and their property.\"\n\n",
+
 
 
 
 
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=UFvL7wTFzl0&ab_channel=StJohnAmbulance")
+                "https://blog.grahammedical.com/blog/agencies-involved-in-disaster-management-and-tools-to-help-them")
         )
         dataList.add(
             DataItem("Prioritize infrastructure repairs.",
-                "In the face of emergencies and disasters, where the number of victims may exceed the available resources, effective triage and the establishment of medical treatment areas become critical. This video, presented by Beth Beam from UNMC's College of Nursing, provides insights into the fundamental concepts of triage and offers valuable guidance on how to efficiently set up and manage medical treatment areas. Let's delve into the essential aspects of this process, ensuring a systematic and organized response to mass casualties.\n\n" +
+                "Attention, college students! Dive into the world of Disaster Resilient Infrastructure (DRI) and uncover how it safeguards communities and shapes our future. Join us on this captivating journey where science meets resilience, and be part of an exciting exploration into the realm of DRI.\n\n" +
 
-                        "1. Identify and Announce Yourself: Begin by identifying yourself and your role. Clear communication is vital in emergency situations.\n\n" +
-                        "2. Voice Triage: Initiate voice triage by announcing your presence and instructing those who can walk to come to your location. Assign someone to tag individuals who respond to voice triage.\n\n" +
-                        "3. Evaluate Remaining Victims: Systematically evaluate each remaining victim, assessing their condition and tagging them based on their triage category. Tags can be simple colored strips or comprehensive cards with relevant data fields.\n\n" +
-                        "• Green (Minor): Injuries treatable with basic first-aid.\n\n" +
-                        "• Yellow (Delayed): Injuries requiring medical treatment but not life-threatening.\n\n" +
-                        "• Red (Immediate): Life-threatening injuries necessitating rapid treatment.\n\n" +
-                        "• Black (Deceased): Victims not spontaneously breathing and considered deceased unless additional resources arrive.\n\n" +
-                        "5. Triage Steps: Follow these essential triage steps:\n\n" +
-                        "Step 1 - Airway and Breathing: Open the airway and check for breathing. Over 30 breaths per minute indicate shock, requiring immediate tagging and shock treatment.\n\n" +
-                        "Step 2 - Circulation and Bleeding: Check circulation using the blanch test. If color takes more than two seconds to return, tag the victim as immediate. Control severe bleeding promptly.\n\n" +
-
-
-
-
-                        "6. Resource Optimization: Triage and medical treatment areas ensure that limited resources are allocated efficiently, maximizing the impact of available medical assistance.\n\n" +
-                        "7. Clear Communication: Effective triage allows responders to communicate their roles clearly, reducing confusion and enhancing coordination.\n\n" +
-                        "8. Prioritizing Care: The triage process prioritizes care based on the severity of injuries, ensuring that immediate attention is given to those in critical condition.\n\n" +
-                        "9. Swift Decision-Making: Triage enables swift decision-making, allowing responders to focus on providing life-saving interventions promptly.\n\n" +
-                        "10. Adaptability: Triage protocols, as demonstrated in the video, provide a flexible framework that can be adjusted based on the unique characteristics of each emergency event and the available resources, ensuring an efficient response to mass casualties.\n\n",
-
+                        "1. Assess Vulnerabilities: Begin by assessing your community's vulnerabilities to various natural disasters based on its geographic location. Consider the types of disasters that pose the greatest threats, such as hurricanes, floods, earthquakes, or wildfires.\n\n" +
+                        "2. Gather Data: Collect comprehensive data on existing infrastructure, including roads, bridges, public buildings, and utilities. This data should include their current condition, age, and resilience to disasters.\n\n" +
+                        "3. Risk Analysis: Perform a detailed risk analysis to evaluate the potential impact of infrastructure failures during disasters. Consider factors like the number of residents affected, critical facilities at risk, and economic consequences.\n\n" +
+                        "4. Community Needs: Engage with community members to understand their needs and priorities during disaster situations. Their input can help determine which infrastructure repairs should take precedence.\n\n" +
+                        "5. Government Funding: Explore available government funding opportunities, such as federal grants and disaster relief programs, to support infrastructure repairs. Prioritize projects that align with these funding sources.\n\n" +
+                        "6. Resilience Enhancement: Focus on enhancing the resilience of critical infrastructure. This may involve retrofitting buildings to withstand earthquakes, improving drainage systems to mitigate flooding, or reinforcing power grids against wildfires.\n\n" +
+                        "7. Multi-Hazard Approach: Adopt a multi-hazard approach when prioritizing repairs. Infrastructure improvements should address vulnerabilities to various types of disasters, ensuring a comprehensive disaster response strategy.\n\n" +
+                        "8. Cost-Benefit Analysis: Conduct a cost-benefit analysis for each repair project. Evaluate the potential cost savings in disaster recovery and response compared to the investment required for repairs.\n\n" +
+                        "9. Community Impact: Consider the broader impact of infrastructure repairs on the community's well-being, economic stability, and quality of life. Projects that benefit the majority should be prioritized.\n\n" +
+                        "10. Regular Updates: Continuously update and revise the prioritization plan based on changing risks, emerging threats, and lessons learned from previous disasters. Flexibility and adaptability are key in disaster response planning.\n\n" +
+                        "The importance of Prioritizing infrastructure repairs for disaster response \n\n" +
+                        "1. Enhanced Disaster Response: Prioritizing infrastructure repairs for disaster response ensures that critical assets like hospitals, emergency shelters, and communication networks are functional during emergencies. This rapid response can save lives and reduce the overall impact of disasters.\n\n" +
+                        "2. Community Safety: Repairing and upgrading infrastructure elements that are most vulnerable to disasters increases the safety of the community. It helps mitigate risks and prevents potential injuries or casualties during catastrophic events.\n\n" +
+                        "3. Economic Resilience: Infrastructure repairs focused on disaster response contribute to economic resilience by minimizing disruptions to businesses and essential services. A quicker recovery means less downtime and economic losses for the community.\n\n" +
+                        "4. Resource Optimization: Prioritization allows for the efficient allocation of limited resources, such as funding and labor, to where they are needed most urgently. This prevents resource wastage and ensures a more effective disaster response.\n\n" +
+                        "5. Long-Term Resilience: By repairing and reinforcing critical infrastructure, communities are better prepared to withstand future disasters. This long-term resilience minimizes the need for repeated repairs and reduces the overall cost of disaster recovery efforts.\n\n",
 
 
 
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=9QHDs10e-G0&ab_channel=UNMCHEROES")
+                "https://www.govpilot.com/blog/what-is-disaster-resilient-infrastructure-why-is-it-needed")
         )
         dataList.add(
             DataItem("Promote community-led recovery. ",
-                "In the Philippines, the provision of ambulance services is essential for ensuring the timely and effective care of individuals facing medical emergencies. The Philippine Red Cross has established comprehensive standards and guidelines for ambulance operations, as well as emergency dispatch procedures. This video serves as a reference and educational resource for ambulance crews and EMS providers, outlining the critical protocols that must be followed during medical emergencies and patient transport.\n\n" +
+                "\"As you prepare to step into the world beyond college, explore the critical intersection of disaster response and community leadership. Dive into the wisdom of Filipino coastal communities as they navigate the challenges of climate change and disaster risk, and discover how their resilience can inspire a path forward in your senior year of academia.\"\n\n" +
 
 
-                        "1. Comprehensive Framework: The Philippine Red Cross's Ambulance Services Standards and Guidelines serve as a consolidated reference, encompassing all relevant institutional memoranda, operational standards, and standing orders related to ambulance use and management. It establishes a unified framework for consistent practices across different Red Cross chapters in the Philippines.\n\n" +
-                        "2. Operational Guidelines: These guidelines cover a wide range of topics, including the proper administration and maintenance of ambulance vehicles and equipment, qualifications and responsibilities of EMS personnel, and the coordination of communication between ambulance teams and the emergency dispatch unit.\n\n" +
-                        "3. Regulatory Alignment: The standards and guidelines adhere to government regulatory standards, ensuring that the qualifications and practices of EMS personnel align with national regulations. This alignment helps maintain a high level of care and professionalism in the field.\n\n" +
-                        "4. Emergency Dispatch: The guidebook provides detailed instructions for establishing and maintaining communication with the emergency dispatch unit throughout the ambulance team's shift. Effective communication is vital for efficient emergency response and patient care.\n\n" +
-                        "5. Patient Care Protocols: It outlines procedures for completing pre-hospital patient care reports, emphasizing the importance of accurate documentation in patient care. The guidelines also address handling special scenarios, such as non-initiation during crime scenes and responding to communicable diseases.\n\n" +
-                        "6. Scope of Practice: The document defines the scope of practice for ambulance teams, ensuring that they are well-prepared to handle various medical scenarios and emergencies.\n\n" +
-                        "7. Continuity of Care: A core principle emphasized throughout the guidebook is the continuity of care. From the initial ground response to the application of pre-hospital care, safe ambulance transport, and handoff to appropriate medical facilities, the document underscores the importance of seamless care.\n\n" +
-                        "8. Continuous Improvement: The Ambulance Services Standards and Guidelines are considered a \"living document\" with a framework for updates and revisions. Scheduled reviews will take place every three years to ensure that the guidelines remain aligned with the latest knowledge and skills in emergency medical services.\n\n" +
-                        "8. Optimal Patient Care: Ultimately, these protocols are designed to optimize patient care, uphold professionalism, and ensure that all ambulance-related assets and resources are properly maintained and accounted for by Philippine Red Cross EMS personnel.\n\n" +
-                        "10. Target Audience: These standards and guidelines primarily serve EMS providers and ambulance teams within the Philippine Red Cross, helping them deliver high-quality pre-hospital care and medical transportation services in compliance with established protocols and regulatory standards.\n\n" +
-                        "The importance of the Ambulance Services Standards and Guidelines:\n\n" +
-                        "1. Enhancing Patient Care: The standards and guidelines play a pivotal role in elevating the quality of patient care during medical emergencies. By establishing clear protocols and procedures, EMS personnel can provide timely and effective care to individuals in need, ultimately improving patient outcomes.\n\n" +
-                        "2. Uniform Practices: These guidelines serve as a unifying framework for ambulance operations across different Red Cross chapters in the Philippines. Standardized practices ensure that every patient receives consistent and reliable care, regardless of their location within the country.\n\n" +
-                        "3. Regulatory Compliance: Adherence to government regulatory standards is critical for maintaining the integrity of ambulance services. These guidelines help EMS providers align their qualifications and practices with national regulations, ensuring that the highest standards of professionalism are met.\n\n" +
-                        "4. Effective Communication: Proper communication between ambulance teams and emergency dispatch units is essential for swift and coordinated responses. The guidelines emphasize the importance of establishing and maintaining communication channels, enabling EMS personnel to receive critical information and assistance promptly.\n\n" +
-                        "5. Continuous Improvement: The concept of a \"living document\" underscores the commitment to ongoing improvement. Regular reviews and updates of the guidelines ensure that EMS practices remain aligned with the latest advancements in emergency medical services, enhancing the overall preparedness and effectiveness of ambulance teams.\n\n",
+                        "1. Community Needs Assessment: Begin by conducting a thorough assessment of the specific needs and vulnerabilities within a disaster-prone community, involving local residents and experts.\n\n" +
+                        "2. Establish Local Partnerships: Forge partnerships with local government agencies, non-profit organizations, and community leaders to create a collaborative disaster response framework.\n\n" +
+                        "3. Capacity Building: Develop programs to enhance the skills and knowledge of community members, empowering them to take an active role in disaster preparedness and response.\n\n" +
+                        "4. Open Information Channels: Establish transparent communication channels that provide timely and accurate information to the community, fostering trust and understanding.\n\n" +
+                        "5. Customized Disaster Plans: Work with the community to create tailored disaster response plans that consider local customs, practices, and resources.\n\n" +
+                        "6. Inclusive Decision-Making: Involve community members in the decision-making process for disaster response and recovery efforts, ensuring their voices are heard and respected.\n\n" +
+                        "7. Resource Allocation: Secure funding and resources for disaster mitigation, response, and recovery activities, addressing infrastructure improvements and community resilience.\n\n" +
+                        "8. Community Engagement Programs: Implement engagement programs that draw upon local customs and traditions, encouraging unity, cooperation, and collective action.\n\n" +
+                        "9. Policy Advocacy: Advocate for policies that prioritize community-led disaster response and recovery, promoting stronger government support and leadership.\n\n" +
+                        "10. Continuous Evaluation: Regularly assess the effectiveness of disaster response initiatives, making adjustments based on community feedback and evolving needs.\n\n" +
+                        "The importance of Promoting community-led recovery for disaster response:\n\n" +
+                        "1. Empowering Local Communities: Community-led recovery empowers local residents by involving them directly in disaster response efforts. This approach recognizes that communities are often the first responders and can harness their local knowledge and resources effectively.\n\n" +
+                        "2. Customized Solutions: Every community has unique needs, resources, and vulnerabilities. Community-led recovery allows for tailored disaster response plans that consider local customs, practices, and available resources, ensuring more effective and efficient recovery efforts.\n\n" +
+                        "3. Enhancing Resilience: By actively engaging community members in disaster preparedness and response, this approach strengthens the overall resilience of communities. It equips them with the knowledge and skills needed to adapt to and recover from disasters more effectively.\n\n" +
+                        "4. Fostering Collaboration: Community-led recovery encourages collaboration between various stakeholders, including local government agencies, non-profit organizations, and community leaders. This collaboration enhances the coordination of resources and support for disaster-affected communities.\n\n" +
+                        "5. Sustainability and Ownership: When communities actively participate in their recovery, they take ownership of the process. This sense of ownership increases the sustainability of recovery efforts, ensuring that communities continue to thrive long after the disaster has passed.\"\n\n",
 
 
 
@@ -168,47 +210,65 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=Xu9zdIwnJ0U&ab_channel=Etactics")
+                "https://knowledge.aidr.org.au/resources/ajem-jan-2019-resilience-in-the-philippines-through-effective-community-engagement/")
         )
         dataList.add(
-            DataItem("Support businesses and livelihoods.",
-                "Hey there, college students! Get ready for a captivating exploration of the Philippine healthcare system. As we venture into this fascinating world, we'll break down its complex structure into six crucial building blocks. Join us on this educational journey as we unveil the strengths and challenges of a healthcare system that impacts millions of lives in the Philippines. Whether you're studying medicine or simply curious, this insight-packed presentation is sure to broaden your horizons.\n\n" +
+            DataItem("Supporting in livelihoods for disaster response.",
+                "In a world where natural disasters threaten the Philippines' vulnerability, this report highlights the critical need for local-level disaster risk policies. We explore the importance of enhancing preparedness to strengthen community resilience and minimize the impact of disasters in the face of evolving global challenges.\n\n" +
 
-                        "1. Comprehensive Framework: The Philippine Red Cross's Ambulance Services Standards and Guidelines serve as a consolidated reference, encompassing all relevant institutional memoranda, operational standards, and standing orders related to ambulance use and management. It establishes a unified framework for consistent practices across different Red Cross chapters in the Philippines.\n\n" +
-                        "2. Specialization and Referral: Patients can choose from various providers depending on their healthcare needs. For complex cases, patients are referred to hospitals, with the choice of the facility depending on the severity and complexity of the condition.\n\n" +
-                        "3. Human Resources: The Philippines has a significant number of healthcare workers, including nurses, doctors, midwives, and medical technologists. However, there is still a shortage of healthcare professionals, leading to challenges in providing adequate care.\n\n" +
-                        "4. Medications and Medical Devices: The availability of essential medicines and medical devices varies, with some facilities experiencing shortages. Patients may need to purchase these items from private pharmacies and medical device resellers.\n\n" +
-                        "5. Health Information Systems: The healthcare system collects data to monitor diseases, epidemics, and pandemics. Efforts to modernize and digitize health information systems have been made, with a growing adoption of telemedicine, especially during the pandemic.\n\n" +
+                        "1. Assess Local Preparedness: Begin by conducting a comprehensive assessment of disaster preparedness at the local level, focusing on particularly vulnerable provinces.\n\n" +
+                        "2. Analyze Risk Perception: Understand how past disaster experiences influence risk perception. Identify managers who have faced severe storm events and prioritize their needs for preparedness.\n\n" +
+                        "3. Review Funding Allocation: Examine the allocation of financial aid across provinces in relation to damages suffered. Shift the focus from response-centric funding to bolstering preparedness and resilience.\n\n" +
+                        "4. Capacity-Building: Tailor capacity-building efforts to the specific needs, experiences, and vulnerabilities of local governments, particularly in impoverished regions.\n\n" +
+                        "5. Provide Climate Projections: Equip Local Disaster Risk Managers with robust climate projections and evidence-based disaster impact estimates. Ensure these resources are accessible and comprehensible.\n\n" +
+                        "6. Enhance Coordination: Foster better national-to-local dialogue and coordination, incorporating the subjective experiences and local knowledge of managers into disaster management strategies.\n\n" +
+                        "7. Prioritize Preparedness: Elevate the emphasis on pre-disaster preparedness alongside response and management strategies at both national and local government levels.\n\n" +
+                        "8. Support Disaster Response: Encourage overseas aid agencies and donors to maintain support for disaster preparedness and response in the Philippines. Advocate for increased investment in disaster risk reduction and climate change adaptation.\n\n" +
+                        "9. Promote Resilience: Promote the concept of resilience-building as a long-term strategy to minimize the potential damage to lives and livelihoods from future typhoons.\n\n" +
+                        "10. Community Engagement: Actively involve local communities in disaster preparedness efforts. Ensure they have access to information and resources to enhance their resilience.\n\n" +
+
+
+
+
+
 
                         "The importance of the Philippine healthcare system's coordination with local providers:\n\n" +
-                        "1. Accessibility: The presence of a network of local healthcare providers, including barangay health stations and rural health units, ensures that healthcare services are accessible to people in both urban and remote areas of the Philippines.\n\n" +
-                        "2. Customized Care: Patients have the flexibility to choose healthcare providers based on their specific needs, from routine check-ups at local health stations to specialized treatments at hospitals, improving the quality and customization of healthcare services.\n\n" +
-                        "3. Efficient Referral System: The tiered structure of healthcare facilities, from primary care centers to tertiary hospitals, allows for efficient referrals based on the severity and complexity of medical conditions, ensuring patients receive appropriate care promptly.\n\n" +
-                        "4. Human Resources: The healthcare system benefits from a diverse workforce of healthcare professionals, including nurses, doctors, and midwives, enhancing the capacity to address a wide range of health concerns.\n\n" +
-                        "5. Data-Driven Healthcare: The collection of health data and the adoption of telemedicine contribute to better disease monitoring, early detection of outbreaks, and improved healthcare delivery, which are crucial for public health and well-being.\n\n",
+                        "1. Enhancing Local Resilience: Supporting livelihoods for disaster response strengthens the resilience of communities by enabling them to withstand the economic shocks caused by disasters.\n\n" +
+                        "2. Reducing Vulnerability: By investing in livelihoods, communities can become less vulnerable to the adverse effects of typhoons and other disasters, reducing their dependence on external aid.\n\n" +
+                        "3. Sustainable Recovery: Livelihood support ensures that communities have the means to recover more swiftly and sustainably after disasters, reducing the long-term impact on their well-being.\n\n" +
+                        "4. Empowering Communities: Enabling communities to rebuild their livelihoods empowers them to take an active role in their recovery and fosters a sense of ownership over their future.\n\n" +
+                        "5. Comprehensive Disaster Management: Incorporating livelihood support into disaster response strategies ensures a more comprehensive approach to disaster management, addressing both immediate and long-term needs.\n\n",
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=J25bd7mpgr8&ab_channel=LakanCortezMD")
+                "https://www.lse.ac.uk/granthaminstitute/publication/disaster-impacts-and-financing-local-insights-from-the-philippines/")
         )
         dataList.add(
             DataItem("Provide housing assistance.",
-                " Welcome, college students, to the critical subject of public health emergency preparedness. In this discussion, we will delve into the essential procedures and significance of monitoring public health during disasters, whether they are natural or man-made. Join us as we explore the fundamental aspects of this field.\n\n" +
-
-                        "1. Pre-Planning: Comprehensive preparation for a wide range of emergencies, from infectious disease outbreaks to natural disasters, including coordination among all relevant sectors and stakeholders.\n\n" +
-                        "2. Coordinated Response: Ensuring that various entities, including emergency services, utility companies, and government systems, respond in a coordinated manner during emergencies.\n\n" +
-                        "3. Mass Health Care: Establishing systems capable of managing a surge in patients during mass casualty incidents, potentially involving hundreds or thousands of individuals.\n\n" +
-                        "4. Laboratory Support: Ensuring the availability of laboratories to conduct necessary tests for identifying environmental contamination and infectious diseases during emergencies.\n\n" +
-                        "5. Supply Chain Management: Establishing a robust supply chain to ensure that essential equipment and materials are readily available in the areas most affected by emergencies, reducing response time.\n\n" +
-
-                        "The Importance of Monitoring public health during disasters.\n\n" +
-                        "1. Timely Response: Public health emergency preparedness enables a rapid and well-coordinated response to crises, saving lives and minimizing the impact of disasters.\n\n" +
-                        "2. Community Engagement: Keeping the public informed about the situation without causing unnecessary panic, fostering trust, and encouraging appropriate actions during emergencies.\n\n" +
-                        "3. Resource Allocation: Efficiently managing resources, including supplies and personnel, to ensure they reach the areas that need them most urgently.\n\n" +
-                        "4. Skilled Workforce: Having a trained and expert workforce familiar with emergency preparedness procedures ensures effective decision-making and response, even in high-stress situations.\n\n" +
-                        "5. Accountability: Regular testing, measurement, and evaluation of emergency response systems and expenditures to ensure they are effective, efficient, and focused on public health priorities during crises.\n\n",
+                "In the aftermath of disasters, rebuilding lives begins with rebuilding homes. This strategy outlines a five-step solution that leverages technology and collaboration to provide efficient, targeted housing assistance after disasters, ultimately promoting community resilience.\n\n" +
 
 
+                        "1. Rapid Mapping: Utilize advanced technologies like drones, street cameras, and machine learning algorithms to swiftly map affected neighborhoods and houses.\n\n" +
+                        "2. Data Extraction: Employ machine learning to extract vital information from mapped areas, identifying vulnerable structures and assessing risks.\n\n" +
+                        "3. Housing Portal: Create a comprehensive housing portal containing actionable data to inform housing plans, construction, credit, and insurance markets.\n\n" +
+                        "4. Policy Design: Develop housing subsidy programs tailored to connect affected families with local construction or financial institutions. \n\n" +
+                        "5. Financial Partnerships: Leverage international organizations, like the World Bank, to secure financing for resilient housing projects.\n\n" +
+                        "6. Retrofitting Solutions: Promote cost-effective retrofitting options to enhance existing housing infrastructure.\n\n" +
+                        "7. Economic Analysis: Conduct rapid economic analyses to justify investments in safer housing and incentivize governments.\n\n" +
+                        "8. Subsidy Policies: Collaborate with countries, banks, and financial institutions to establish home improvement subsidy policies based on best practices.\n\n" +
+                        "9. Homeowner Incentives: Encourage homeowners and the private sector to invest in home improvement programs.\n\n" +
+                        "10. Insurance Access: Facilitate the sharing of housing information to help insurers extend coverage, enabling private lenders to offer loans for home improvements.\n\n" +
 
+
+
+
+
+
+                        "The Importances of Post-Disaster Housing Assistance:\n\n" +
+                        "1. Saving Lives: Rapid, targeted housing assistance protects families from the immediate dangers of disaster-affected homes.\n\n" +
+                        "2. Economic Resilience: Resilient housing safeguards families' investments, reduces reconstruction costs, and shields economies from disaster-related expenses.\n\n" +
+                        "3. Efficient Financing: Strategic housing subsidy programs and partnerships ensure efficient allocation of resources.\n\n" +
+                        "4. Community Recovery: By prioritizing housing, communities can recover faster, preserving their social fabric and stability.\n\n" +
+                        "5. Risk Reduction: Investing in resilient housing contributes to long-term disaster risk reduction, creating safer environments for future generations.\n\n",
 
 
 
@@ -220,54 +280,73 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=Lnoph21Je6I&ab_channel=JonathanNoel")
+                "https://www.worldbank.org/en/topic/disasterriskmanagement/brief/global-program-for-resilient-housing")
         )
         dataList.add(
             DataItem("Foster long-term resilience.",
-                "College students, let's dive into the crucial realm of medication safety. Often, medications that are meant to heal can inadvertently harm us if mishandled. In this discussion, we'll explore key aspects of ensuring the safe use and storage of medications, a topic vital to everyone's well-being. Join us as we delve into everything you should know to keep your medication regimen safe and effective.\n\n" +
-
-                        "1. Careful Label Reading: Always read medication labels thoroughly, focusing on essential details like the medicine's name, its intended recipient, purpose, and correct dosage. Additionally, check for any specific administration instructions.\n\n" +
-                        "2. Proper Administration: Follow the prescribed method of administering the medication precisely. For capsules, ensure you swallow them with water to avoid choking, or consider crushing them if advised. When dealing with liquid medications, use an accurate measuring device and double-check measurements before consumption.\n\n" +
-                        "3. Safe Storage Practices: Abide by the storage guidelines provided on medication labels. Never remove labels, and store medications separately, using color codes if necessary. Avoid the bathroom as a storage location due to humidity and warmth. Keep all medications out of children's reach.\n\n" +
-                        "4. Child Medication Safety: When administering medication to children, adhere to the prescribed dosage instructions from healthcare professionals. Ensure that medication containers are securely sealed and inaccessible to children. Never mix medication with candy, and maintain vigilant supervision.\n\n" +
-                        "5. Disposal of Expired Medications: Dispose of expired medications responsibly. You can discard them in the trash, flush them down the toilet (if appropriate), return them to a local pharmacy (if accepted), or hand them over to hazardous waste collection facilities (if available).\n\n" +
-
-                        "The Importance of Monitoring public health during disasters.\n\n" +
-                        "1. Preventing Harm: Proper medication handling prevents accidental overdose, mix-ups, or unsafe concoctions, reducing the risk of harm to individuals.\n\n" +
-                        "2. Optimal Medication Efficacy: Following correct administration procedures ensures that medications work as intended, leading to better health outcomes.\n\n" +
-                        "3. Avoiding Medication Errors: Thorough label reading minimizes the chances of taking the wrong medication or incorrect doses, preventing potential complications.\n\n" +
-                        "4. Safe Child Medication Use: Implementing child safety measures safeguards young ones from accidental medication ingestion, which can have severe consequences.\n\n" +
-                        "5. Environmental Responsibility: Proper disposal of expired medications helps protect the environment and prevents these substances from entering water supplies or ecosystems.\n\n",
+                "No person or place is immune from disasters, including natural hazards, infectious disease outbreaks, acts of terrorism, and financial crises. This report explores the concept of resilience and the importance of investing in resilience-building measures to reduce the impacts of disasters on individuals, communities, and the nation.\n\n" +
 
 
+                        "1. Assessing Risk and Vulnerability: Communities must assess their exposure to various hazards and understand their vulnerabilities to make informed decisions about resilience investments.\n\n" +
+                        "2. Engaging the Whole Community: Involving all community stakeholders in disaster policymaking and planning ensures that resilience strategies reflect local conditions and priorities.\n\n" +
+                        "3. Infrastructure Enhancement: Communities should invest in infrastructure improvements, including disaster-resistant construction and well-enforced building codes.\n\n" +
+                        "4. Risk Communication: Effective risk communication and community engagement are essential for promoting a culture of resilience and preparedness.\n\n" +
+                        "5. Land-Use Planning: Sound land-use planning practices, zoning ordinances, and building code enforcement are critical for reducing disaster risks.\n\n" +
+                        "6. Measuring Resilience: Develop and implement a consistent framework for measuring resilience, considering factors like infrastructure performance, social factors, and building resilience.\n\n" +
+                        "7. Community Coalitions: Establish community coalitions with strong leadership and governance structures to assess risk, communicate it, and enhance community capacity.\n\n" +
+                        "8. Policy Coordination: Ensure coordination between local, state, and federal policies to create a comprehensive approach to resilience-building.\n\n" +
+                        "9. Research and Technology: Support research, science, and technology policies to improve hazard detection, monitoring, and understanding.\n\n" +
+                        "10. Long-Term Shifts: Encourage long-term shifts in both physical and cultural approaches to resilience, fostering systemic strength within communities.\n\n" +
 
+
+
+
+
+
+                        "The Importance of Fostering long-term resilience in Disaster Response:\n\n" +
+                        "1. Prevention and Preparedness: Investing in resilience measures allows communities to prepare for disasters proactively, reducing loss of life, property damage, and economic costs.\n\n" +
+                        "2. Community Engagement: Resilience-building involves engaging the entire community, ensuring that local conditions and priorities are considered.\n\n" +
+                        "3. Policy Coordination: Effective policy coordination at all levels of government is crucial for creating a comprehensive and unified approach to resilience.\n\n" +
+                        "4. Data and Measurement: Developing a consistent framework for measuring resilience helps communities identify priorities and assess progress.\n\n" +
+                        "5. Long-Term Sustainability: Resilience measures contribute to the long-term sustainability of communities, reducing the need for costly disaster response and recovery efforts.\n\n",
 
 
 
 
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=iQozgr7XnoY&ab_channel=MedicalCentric")
+                "https://nap.nationalacademies.org/read/13457/chapter/2")
         )
         dataList.add(
             DataItem("Continuously evaluate and adapt the plan.",
-                "Are you ready to dive into the world of infection prevention and control? In this enlightening video, we'll explore the critical aspects of this essential field, brought to you by the experts at the Mid and South Essex Hospital. Whether you're a curious college student or a healthcare enthusiast, understanding infection control is vital. So, let's embark on this educational journey together.\n\n" +
+                "Monitoring and evaluation (M&E) involve establishing systems to consistently review the progress of an emergency communication response. This process assesses what needs improvement and whether program goals are being achieved.\n\n" +
 
 
 
 
-                        "1. Chain of Infection: Explore the six stages of the chain of infection, from infectious agents to susceptible hosts, to understand how germs spread and how to break the cycle.\n\n" +
-                        "2. Preventing Healthcare-Associated Infections (HAIs): Discover the legal duty of healthcare providers to protect patients, staff, and visitors from HAIs, and learn how to reduce the risk through consistent prevention practices.\n\n" +
-                        "3. Screening and Managing MRSA: Uncover the importance of screening patients for Methicillin-Resistant Staphylococcus Aureus (MRSA) and the measures taken to prevent its spread in healthcare settings.\n\n" +
-                        "4. Controlling Clostridium difficile (C. diff): Understand how C. diff infections occur, and learn the procedures for isolation, specimen collection, and patient care to prevent its transmission.\n\n" +
-                        "5. Hand Hygiene and Personal Protective Equipment (PPE): Master the \"Five Moments of Hand Hygiene\" and the proper use of PPE, including gloves, aprons, goggles, and respiratory protection, to shield against harmful microorganisms.\n\n" +
+                        "1. Set Clear Objectives: Begin by defining clear and specific objectives for your emergency communication response, including what you aim to achieve and how success will be measured.\n\n" +
+                        "2. Develop Key Performance Indicators (KPIs): Identify relevant KPIs that will help track progress and assess the effectiveness of your communication activities.\n\n" +
+                        "3. Data Collection: Establish a systematic data collection process to gather information on the implementation of communication activities, audience feedback, and other relevant data points.\n\n" +
+                        "4. Data Analysis: Regularly analyze the collected data to gain insights into the performance of your communication efforts. Look for patterns, trends, and areas that require attention.\n\n" +
+                        "5. Feedback Mechanisms: Create feedback mechanisms that allow stakeholders, including the affected population, to provide input and raise concerns regarding the communication response.\n\n" +
+                        "6. Regular Reporting: Generate and distribute regular reports summarizing the progress, challenges, and achievements of the communication response. Share these reports with relevant stakeholders.\n\n" +
+                        "7. Review Meetings: Hold periodic review meetings to discuss the findings from monitoring and evaluation efforts. Use these meetings to make informed decisions and adjustments to the response strategy.\n\n" +
+                        "8. Adaptation: Based on the monitoring data and feedback received, be prepared to adapt your communication strategy and tactics as needed to better meet the evolving needs of the affected population.\n\n" +
+                        "9. Document Lessons Learned: Keep a record of lessons learned throughout the emergency response. Document what worked well and what could be improved for future reference.\n\n" +
+                        "10. Post-Emergency Evaluation: After the crisis has been resolved, conduct a comprehensive post-emergency evaluation. Assess the overall effectiveness of the communication response, gather feedback from stakeholders, and identify areas for improvement in future responses.\n\n" +
 
-                        "Importance of Setting Up Infection Control Measures:\n\n" +
-                        "1. Patient Safety: Infection control measures safeguard patients, ensuring their protection from healthcare-associated infections during their hospital stay.\n\n" +
-                        "2. Healthcare Cost Reduction: By preventing HAIs, healthcare institutions can save significant costs associated with prolonged hospital stays and treatments.\n\n" +
-                        "3. Preventing Antibiotic Resistance: Proper infection control helps prevent the spread of antibiotic-resistant bacteria, preserving the effectiveness of these crucial medications.\n\n" +
-                        "4. Safe Child Medication Use: Implementing child safety measures safeguards young ones from accidental medication ingestion, which can have severe consequences.\n\n" +
-                        "5. Environmental Responsibility: Proper disposal of expired medications helps protect the environment and prevents these substances from entering water supplies or ecosystems.\n\n",
+
+
+
+
+
+                        "The importance of the Philippine healthcare system's coordination with local providers:\n\n" +
+                        "1. Tracking Progress: Monitoring helps track the progress of activities against established indicators.\n\n" +
+                        "2. Adaptation: It enables the adjustment of strategies to align with program goals and objectives as needed.\n\n" +
+
+                        "3. Accountability: M&E provides accountability to various stakeholders, including audiences, partners, and donors.\n\n" +
+                        "4. Assessment: Evaluation assesses the success of communication activities.\n\n" +
+                        "5. Learning: It identifies lessons learned and best practices to inform future emergency communication responses.\n\n",
 
 
 
@@ -275,7 +354,7 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=U_J7UOy5euo&ab_channel=MidEssexHospitalServicesNHSTrust")
+                "https://sbccimplementationkits.org/sbcc-in-emergencies/lessons/unit-9-monitoring-and-evaluation/")
         )
 
 

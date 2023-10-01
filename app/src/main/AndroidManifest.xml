@@ -22,9 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
-        <activity
-            android:name=".CivicEngagementPost.CivicPostMain"
-            android:exported="true" />
+        <!-- Posting Civic Engagement Start -->
         <activity
             android:name=".CivicEngagementPost.Update_engagement"
             android:exported="true" />
@@ -34,7 +32,78 @@
         <activity
             android:name=".CivicEngagementPost.Upload_engagement"
             android:exported="true" />
-       <!-- Emergency Contact Start -->
+        <!-- Posting Civic Engagement End -->
+        <!-- Educational Start -->
+        <!-- Civic Engagement Start -->
+        <activity
+            android:name=".CivicEngagementInfo.Advocacy"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.Civic"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.DigitalAgeCivic"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.GettingStarted"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.LastingImpact"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.navigatingtips"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.ParticipantTips"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.Roadmap"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.Strategies"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.TacticsImpact"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.YouthEmpowerment"
+            android:exported="true" />
+        <!--  Civic Engagement End -->
+        <!-- Disaster Response Start -->
+        <activity
+            android:name=".DisasterResponseInfo.CommunicationAndInformationInfo"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponseInfo.DisasterResponseMenu"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponseInfo.FireSafetyInfo"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponseInfo.FirstAidInfo"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponseInfo.FoodDistributionAndNutrionInfo"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponseInfo.NaturalDisasterInfo"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponseInfo.PsychologicalSupportServicesInfo"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponseInfo.RecoveryandRebuildingEffortsInfo"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponseInfo.SearchAndRescueinfo"
+            android:exported="true" />
+        <activity
+            android:name=".DisasterResponseInfo.VolunteerandDonationsManagementInfo"
+            android:exported="true" />
+
+        <!-- Disaster Response End -->
+        <!-- Educational End -->
+        <!-- Emergency Contact Start -->
         <activity
             android:name=".EmergencyCon.MainEmergencyContact"
             android:exported="true"
@@ -153,6 +222,7 @@
             android:name=".Register1"
             android:exported="true"
             android:screenOrientation="portrait" />
+
 
         <meta-data
             android:name="preloaded_fonts"
