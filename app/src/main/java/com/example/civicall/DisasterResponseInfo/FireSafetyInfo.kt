@@ -41,7 +41,8 @@ class FireSafetyInfo : AppCompatActivity() {
                         "10. REPORTING MATTERS: Report guideline violations to campus authorities promptly.\n\n",
 
                 R.drawable.love2,
-                "https://www.facebook.com/watch/live/?ref=watch_permalink&v=1110126603163215"
+                "https://www.facebook.com/watch/live/?ref=watch_permalink&v=1110126603163215",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863"
             )
         )
         dataList.add(
@@ -61,7 +62,8 @@ class FireSafetyInfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-            "https://issuu.com/hofstra/docs/living-factor-calendar_32413209ada772/s/16589034")
+            "https://issuu.com/hofstra/docs/living-factor-calendar_32413209ada772/s/16589034",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Thoroughly Navigating Your Dormitory's Fire Evacuation Plan",
@@ -78,7 +80,8 @@ class FireSafetyInfo : AppCompatActivity() {
                         "10. Reporting Concerns: Report any concerns about the effectiveness of the evacuation plan or obstacles along evacuation routes to campus authorities for improvement.\n\n",
 
             R.drawable.love2,
-            "https://www.lsu.edu/ehs/files/Section_IV_Part_A_Fire_Safety_in_Dormitories.pdf")
+            "https://www.lsu.edu/ehs/files/Section_IV_Part_A_Fire_Safety_in_Dormitories.pdf",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Culinary Fire Safety: A Recipe for Dormitory Security",
@@ -106,7 +109,8 @@ class FireSafetyInfo : AppCompatActivity() {
 
 
             R.drawable.love2,
-            "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies/fire.html#:~:text=Top%20Tips%20for%20Fire%20Safety,the%20plan%20twice%20a%20year.")
+            "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies/fire.html#:~:text=Top%20Tips%20for%20Fire%20Safety,the%20plan%20twice%20a%20year.",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Navigating the Current: Safeguarding Against Electrical Fires",
@@ -128,7 +132,8 @@ class FireSafetyInfo : AppCompatActivity() {
 
 
             R.drawable.love2,
-            "https://fens.sabanciuniv.edu/tr/laboratory-safety/general-laboratory-safety/preventing-electrical-hazards")
+            "https://fens.sabanciuniv.edu/tr/laboratory-safety/general-laboratory-safety/preventing-electrical-hazards",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("The Flame and the Forbidden: Candle and Open Flame Safety",
@@ -151,7 +156,8 @@ class FireSafetyInfo : AppCompatActivity() {
 
 
             R.drawable.love2,
-            "https://www.hamilton.edu/offices/epss/open-flame-candle-safety")
+            "https://www.hamilton.edu/offices/epss/open-flame-candle-safety",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Respecting the Smoke-Free Environment: A Breath of Fire Safety",
@@ -169,7 +175,8 @@ class FireSafetyInfo : AppCompatActivity() {
                     "10. Reporting Violations: Report any violations of the smoke-free policy to campus authorities for enforcement and fire safety.\n\n",
 
                 R.drawable.love2,
-            "https://www.hobartcity.com.au/Council/News-publications-and-announcements/Latest-news/smoke-free-parks")
+            "https://www.hobartcity.com.au/Council/News-publications-and-announcements/Latest-news/smoke-free-parks",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("8. Mastery of Fire Extinguisher Use: The PASS to Safety",
@@ -201,7 +208,8 @@ class FireSafetyInfo : AppCompatActivity() {
 
 
             R.drawable.love2,
-            "https://www.sc.edu/ehs/training/Fire/08_howto.htm")
+            "https://www.sc.edu/ehs/training/Fire/08_howto.htm",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("9. Vigilant Reporting: Safeguarding Your Community",
@@ -227,7 +235,8 @@ class FireSafetyInfo : AppCompatActivity() {
 
 
             R.drawable.love2,
-            "https://worldguardian.ca/neighborhood-patrol-security-safeguarding-cochranes-community-with-vigilance-and-trust/")
+            "https://worldguardian.ca/neighborhood-patrol-security-safeguarding-cochranes-community-with-vigilance-and-trust/",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("10.The Role of Campus Security in Fire Safety: What You Should Know.",
@@ -254,7 +263,8 @@ class FireSafetyInfo : AppCompatActivity() {
 
 
             R.drawable.love2,
-            "https://resources.impactfireservices.com/fire-prevention-and-preparedness-on-college-campuses")
+            "https://resources.impactfireservices.com/fire-prevention-and-preparedness-on-college-campuses",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
 
 
@@ -262,7 +272,7 @@ class FireSafetyInfo : AppCompatActivity() {
 
         // Set an item click listener for the adapter to open the link when the reference TextView is clicked
         adapter.setOnItemClickListener(object : DataAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int) {
+            override fun onReferenceClick(position: Int) {
                 val clickedItem = dataList[position]
                 val link = clickedItem.link
 
@@ -270,7 +280,17 @@ class FireSafetyInfo : AppCompatActivity() {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
                 startActivity(intent)
             }
+
+            override fun onImageClick(position: Int) {
+                val clickedItem = dataList[position]
+                val imageLink = clickedItem.imageLink
+
+                // Open the imageLink in a web browser
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(imageLink))
+                startActivity(intent)
+            }
         })
+
 
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter

@@ -44,7 +44,8 @@ class SearchAndRescueinfo : AppCompatActivity() {
                         "10. Safety: Training ensures that SAR team members can operate safely in challenging environments, minimizing the risk to themselves and others during rescue missions.\n\n",
 
                 R.drawable.love2,
-                "http://www.lifesafety.com/emergency-training/search-rescue-training/"
+                "http://www.lifesafety.com/emergency-training/search-rescue-training/",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863"
             )
         )
         dataList.add(
@@ -64,7 +65,8 @@ class SearchAndRescueinfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://www.ukfrs.com/guidance/search/personal-protective-equipment-ppe-rescues")
+                "https://www.ukfrs.com/guidance/search/personal-protective-equipment-ppe-rescues",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Establish Search Protocols.",
@@ -81,7 +83,8 @@ class SearchAndRescueinfo : AppCompatActivity() {
                         "10. Accountability: Protocols establish a framework for accountability, helping SAR teams document their actions, findings, and decisions throughout the search process, which can be essential for debriefing and analysis.\n\n",
 
                 R.drawable.love2,
-                "https://safety4sea.com/emergency-procedures-how-search-and-rescue-works/")
+                "https://safety4sea.com/emergency-procedures-how-search-and-rescue-works/",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Coordinate with Local Authorities.",
@@ -109,7 +112,8 @@ class SearchAndRescueinfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://www.unisdr.org/campaign/resilientcities/home/article/essential-nine-ensure-effective-disaster-response.html")
+                "https://www.unisdr.org/campaign/resilientcities/home/article/essential-nine-ensure-effective-disaster-response.html",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Assign Team Leaders.",
@@ -131,7 +135,8 @@ class SearchAndRescueinfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://www.nwcg.gov/ad-positions/srtl")
+                "https://www.nwcg.gov/ad-positions/srtl",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Conduct Damage Assessments ",
@@ -154,7 +159,8 @@ class SearchAndRescueinfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://slideplayer.com/slide/6949533/")
+                "https://slideplayer.com/slide/6949533/",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Prioritize Life-Saving Operations",
@@ -172,7 +178,8 @@ class SearchAndRescueinfo : AppCompatActivity() {
                         "10. Humanitarian Imperative: Prioritizing life-saving operations aligns with the humanitarian imperative to protect and preserve human life during times of crisis, reflecting a moral and ethical duty.\n\n",
 
                 R.drawable.love2,
-                "https://www.hobartcity.com.au/Council/News-publications-and-announcements/Latest-news/smoke-free-parks")
+                "https://www.hobartcity.com.au/Council/News-publications-and-announcements/Latest-news/smoke-free-parks",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Share Information with the Public.",
@@ -204,7 +211,8 @@ class SearchAndRescueinfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://www.sciencedirect.com/science/article/pii/S0925753520302927")
+                "https://www.sciencedirect.com/science/article/pii/S0925753520302927",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Consider K-9 units for Search Operations.",
@@ -230,7 +238,8 @@ class SearchAndRescueinfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://www.corinthiansgroup.com/importance-of-k-9-units-in-security/")
+                "https://www.corinthiansgroup.com/importance-of-k-9-units-in-security/",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Document and Report Findings.",
@@ -257,7 +266,8 @@ class SearchAndRescueinfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://www.imo.org/en/OurWork/Safety/Pages/IMO-documents-relevant-to-SAR.aspx")
+                "https://www.imo.org/en/OurWork/Safety/Pages/IMO-documents-relevant-to-SAR.aspx",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
 
 
@@ -265,7 +275,7 @@ class SearchAndRescueinfo : AppCompatActivity() {
 
         // Set an item click listener for the adapter to open the link when the reference TextView is clicked
         adapter.setOnItemClickListener(object : DataAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int) {
+            override fun onReferenceClick(position: Int) {
                 val clickedItem = dataList[position]
                 val link = clickedItem.link
 
@@ -273,7 +283,17 @@ class SearchAndRescueinfo : AppCompatActivity() {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
                 startActivity(intent)
             }
+
+            override fun onImageClick(position: Int) {
+                val clickedItem = dataList[position]
+                val imageLink = clickedItem.imageLink
+
+                // Open the imageLink in a web browser
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(imageLink))
+                startActivity(intent)
+            }
         })
+
 
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
