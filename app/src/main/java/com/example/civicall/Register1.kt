@@ -152,19 +152,16 @@ class Register1 : AppCompatActivity() {
     }
 
     private fun validateAddress() {
-        val address = activityRegister1Binding.adress.text.toString().trim()
+        val address = activityRegister1Binding.address.text.toString().trim()
 
         if (address.isEmpty()) {
-            activityRegister1Binding.adress.error = "Address is required"
+            activityRegister1Binding.address.error = "Address is required"
         } else if (address.length < 5) {
-            activityRegister1Binding.adress.error = "Address is too short"
+            activityRegister1Binding.address.error = "Address is too short"
         } else {
-            activityRegister1Binding.adress.error = null
+            activityRegister1Binding.address.error = null
         }
     }
-
-
-
     private fun validateBirthday() {
         val birthday = activityRegister1Binding.birthdate.text.toString().trim()
         val birthdateTextInputLayout = activityRegister1Binding.birthdateTextInputLayout
@@ -221,7 +218,7 @@ class Register1 : AppCompatActivity() {
         val contactNumberEditText = activityRegister1Binding.Contactline
         val contactEmeEditText = activityRegister1Binding.ContactEme
         val contactFilters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxContactLength))
-        val addressEditText = activityRegister1Binding.adress
+        val addressEditText = activityRegister1Binding.address
         val addressFilters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxAddressLength))
         val passwordEditText = activityRegister1Binding.pass
         val confirmPasswordEditText = activityRegister1Binding.confirmPass
@@ -497,7 +494,7 @@ class Register1 : AppCompatActivity() {
         confirmPass = activityRegister1Binding.confirmPass.text.toString().trim()
         phoneno = activityRegister1Binding.Contactline.text.toString().trim()
         phoneEme = activityRegister1Binding.ContactEme.text.toString().trim()
-        address = activityRegister1Binding.adress.text.toString().trim()
+        address = activityRegister1Binding.address.text.toString().trim()
         birtdate = activityRegister1Binding.birthdate.text.toString().trim()
         spinnerSex = activityRegister1Binding.spinnerSex.selectedItem.toString()
 
@@ -546,9 +543,9 @@ class Register1 : AppCompatActivity() {
                 activityRegister1Binding.ContactEme.error = null
             }
             if (address.isEmpty()) {
-                activityRegister1Binding.adress.error = "Required"
+                activityRegister1Binding.address.error = "Required"
             } else {
-                activityRegister1Binding.adress.error = null
+                activityRegister1Binding.address.error = null
             }
             if (birtdate.isEmpty()) {
                 activityRegister1Binding.birthdate.error = "Required"

@@ -12,11 +12,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import nl.joery.animatedbottombar.AnimatedBottomBar
 
 class CivicPostFragment : Fragment() {
     private lateinit var databaseReference: DatabaseReference
@@ -79,10 +82,33 @@ class CivicPostFragment : Fragment() {
             }
         })
 
+        val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
+        val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
+
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy > 0) {
+                    // Scrolling down
+                    if (animatedBottomBar.isShown) {
+                        animatedBottomBar.visibility = View.GONE
+                    }
+                    if (fab.isShown) {
+                        fab.hide()
+                    }
+                } else if (dy < 0) {
+                    // Scrolling up
+                    if (!animatedBottomBar.isShown) {
+                        animatedBottomBar.visibility = View.VISIBLE
+                    }
+                    if (!fab.isShown) {
+                        fab.show()
+                    }
+                }
+            }
+        })
 
         return rootView
     }
-
     private fun searchList(text: String) {
         val searchList = ArrayList<DataClass>()
         for (dataClass in dataList) {
