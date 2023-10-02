@@ -4,6 +4,7 @@
         <item>Female</item>
         <item>Others</item>
     </string-array>
+
     <string-array name="allowed_campuses">
         <item>ARASOF Nasugbu Campus</item>
         <item>Balayan Campus</item>

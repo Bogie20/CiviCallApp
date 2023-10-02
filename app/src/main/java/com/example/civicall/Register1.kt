@@ -12,16 +12,13 @@ import android.text.InputType
 import android.util.Patterns
 import android.view.View
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import android.widget.CheckBox
-import android.widget.ProgressBar
 import android.widget.TextView
 import com.example.civicall.CivicEngagementPost.CivicPostFragment
 import com.example.civicall.databinding.ActivityRegister1Binding
-import com.google.android.material.textfield.TextInputLayout
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -31,7 +28,7 @@ class Register1 : AppCompatActivity() {
     private lateinit var activityRegister1Binding: ActivityRegister1Binding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var progressDialog: ProgressDialog
-
+    private var selectedCampus = ""
 
     private fun validateFirstName() {
         val lastName = activityRegister1Binding.fname.text.toString().trim()
@@ -200,9 +197,13 @@ class Register1 : AppCompatActivity() {
 
         val genderSpinner = activityRegister1Binding.spinnerSex
         val genderArray = resources.getStringArray(R.array.gender_array).toMutableList()
+        val campusSpinner = activityRegister1Binding.campus
+        val campusArray = resources.getStringArray(R.array.allowed_campuses).toMutableList()
+
         val contactNumber = activityRegister1Binding.Contactline
         val contactEme = activityRegister1Binding.ContactEme
         genderArray.add(0, "Gender") // Add "Gender" as the first item in the list
+        campusArray.add(0, "Select Your Campus")
 
         val maxLength = 80
         val maxEmailLength = 320
@@ -235,10 +236,10 @@ class Register1 : AppCompatActivity() {
         lastNameEditText.filters = filters
         contactNumber.inputType = InputType.TYPE_CLASS_PHONE
         contactEme.inputType = InputType.TYPE_CLASS_PHONE
-
+// Gender Spinner
         val adapter = CustomSpinnerAdapter(
             this,
-            R.layout.spinner_item, // Use the custom layout here
+            R.layout.spinner_gender, // Use the custom layout here
             genderArray
         )
 
@@ -264,6 +265,40 @@ class Register1 : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
+
+        // Campus Spinner
+        val campusAdapter = CustomSpinnerAdapter(
+            this,
+            R.layout.spinner_campus, // Use the custom layout here
+            campusArray
+        )
+
+        campusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        campusSpinner.adapter = campusAdapter
+
+        val initialCampusSelection = 0
+        campusSpinner.setSelection(initialCampusSelection)
+        var selectedCampus = ""
+        campusSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                selectedCampus = if (position == 0) {
+                    "" // Set an empty string if "Select Campus" is selected
+                } else {
+                    parent?.getItemAtPosition(position).toString()
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                selectedCampus = "" // Set an empty string if nothing is selected
+            }
+        }
+
+
         val birthdayEditText = activityRegister1Binding.birthdate
         val confirmpassword = activityRegister1Binding.confirmPass
 
@@ -497,13 +532,14 @@ class Register1 : AppCompatActivity() {
         address = activityRegister1Binding.address.text.toString().trim()
         birtdate = activityRegister1Binding.birthdate.text.toString().trim()
         spinnerSex = activityRegister1Binding.spinnerSex.selectedItem.toString()
+        selectedCampus = activityRegister1Binding.campus.selectedItem.toString()
 
         val checkBox = findViewById<CheckBox>(R.id.checkedTextView)
-
+        val campusSpinner = activityRegister1Binding.campus
         val errorMessages = mutableListOf<String>()
 
         if (fname.isEmpty() || lname.isEmpty() || email.isEmpty() || phoneno.isEmpty() ||
-            phoneEme.isEmpty() || address.isEmpty() || birtdate.isEmpty() || spinnerSex.equals("Gender") ||
+            phoneEme.isEmpty() || address.isEmpty() || birtdate.isEmpty() || spinnerSex.equals("Gender") || selectedCampus.equals("Select Your Campus") ||
             !checkBox.isChecked()) {
             errorMessages.add("Please Fill All the Fields");
         }
@@ -553,14 +589,22 @@ class Register1 : AppCompatActivity() {
                 activityRegister1Binding.birthdate.error = null
             }
 
-            if (spinnerSex.isEmpty() || spinnerSex == "Gender") {
-                val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
-                genderTextInputLayout.error = "Please select a Gender"
+        if (spinnerSex.isEmpty() || spinnerSex == "Gender") {
+            val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
+            genderTextInputLayout.error = "Please select a Gender"
+        } else {
+            val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
+            genderTextInputLayout.error = null
+        }
+        if (selectedCampus.isEmpty() || selectedCampus == "Select Your Campus") {
+            val campusTextInputLayout = activityRegister1Binding.campusTextInputLayout
+            campusTextInputLayout.error = "Please select your Campus"
+        } else {
+            val campusTextInputLayout = activityRegister1Binding.campusTextInputLayout
+            campusTextInputLayout.error = null
+        }
 
-            } else {
-                val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
-                genderTextInputLayout.error = null
-            }
+
 
 
         if (birtdate.isNotEmpty()) {
@@ -681,6 +725,8 @@ class Register1 : AppCompatActivity() {
         hashMap["ImageProfile"] = ""
         hashMap["userType"] = "Student"
         hashMap["timestamp"] = timestamp
+        hashMap["campus"] = selectedCampus
+
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, searchFragment)
             .commit()
