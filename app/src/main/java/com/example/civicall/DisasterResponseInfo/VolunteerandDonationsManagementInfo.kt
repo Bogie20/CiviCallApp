@@ -42,7 +42,7 @@
 
                     R.drawable.img_81,
                     "https://www.govtech.com/em/disaster/how-to-recruit-retain-organize-volunteers.html",
-                    "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863"
+                    "https://stock.adobe.com/au/images/happy-volunteer-group-pointing-towards-camera/32032949"
                 )
             )
             dataList.add(
@@ -67,28 +67,26 @@
 
                     R.drawable.img_82,
                     "http://extension.msstate.edu/publications/managing-volunteers-times-disaster-the-local-volunteer-coordinator%E2%80%99s-role",
-                    "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                    "http://extension.msstate.edu/sites/default/files/publication-images/P2958/No.%204_opt.jpg")
             )
             dataList.add(
-                DataItem("Skills at the Service of Needs: Matching Expertise for Effective Disaster Response",
-                    "\"Hello, future change-makers! Today, we embark on a journey of impactful volunteerism in disaster response. It's not just about lending a hand; it's about matching your unique skills with the pressing needs of communities in crisis. Join us as we explore how to harness your commitment, compassion, and communication abilities to make a real difference in times of disaster.\"\n\n" +
+                DataItem("Volunteer Skills: Bridging the Gap Between Community Needs and Career Advancement",
+                    "\"Unlock the Power of Your Skills: Discover how your volunteer experiences can not only enrich your college life but also provide a strong foundation for future career success in our article 'Volunteer Skills: Bridging the Gap Between Community Needs and Career Advancement.\"\n\n" +
 
 
-                            "1. IDENTIFY POTENTIAL DISASTERS: Begin by identifying the types of disasters that your community may face. This knowledge is essential for tailoring your response plan to specific scenarios.\n\n" +
-                            "2. BUILD A CONTACT SHEET: Develop a comprehensive contact sheet that includes contact information for staff, board members, key volunteers, and community officials. Ensure that this contact information is regularly updated and readily accessible.\n\n" +
-                            "3. DEFINE CRITICAL SERVICES: Determine the critical services your organization will provide during and after a disaster. Consider whether you will offer food assistance to disaster survivors while continuing to serve your regular clients.\n\n" +
-                            "4. COLLABORATE WITH OTHER ORGANIZATIONS: Explore partnerships with other community organizations to provide food assistance. Collaboration ensures a coordinated response and avoids fragmented efforts.\n\n" +
-                            "5. KEEP PLANS PRACTICAL: When developing your disaster response plan, keep it focused, practical, and simple. Recognize that a one-size-fits-all approach may not be suitable for all disaster scenarios.\n\n" +
-                            "6. MAINTAIN FLEXIBILITY: Understand that every disaster is unique, and flexibility is essential. Be prepared to adapt your response based on the specific circumstances of each disaster event.\n\n" +
-                            "7. PRINT AND SHARE PLANS: Keep printed and electronic copies of your disaster response plan available. Share these copies with staff, board members, and key volunteers to ensure everyone is aware of their roles and responsibilities.\n\n" +
-                            "8. JOIN REGIONAL DISASTER RESPONSE NETWORKS: Consider becoming part of regional disaster response networks like the Food Bank Regional Disaster Response Network. These networks provide increased readiness, additional resources, and expertise for disaster response efforts.\n\n" +
-                            "9. FOLLOW THE PHASES OF DISASTER RESPONSE: Recognize the three phases of disaster response: initial response, sustained response, and long-term recovery. Tailor your actions and resources to each phase's specific needs.\n\n" +
-                            "10. RECRUIT AND ORGANIZE VOLUNTEERS: Be prepared to recruit and organize volunteers as needed, especially in the aftermath of a disaster. Volunteers play a crucial role in providing assistance to affected communities.\n\n",
-
-
-                    R.drawable.love2,
-                    "https://www.indeed.com/career-advice/resumes-cover-letters/skills-for-volunteering",
-                    "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                            "1. TEAMWORK: There are many things in life that can be achieved more efficiently with combined efforts of a team. As a volunteer, you will often get to work alongside with others and also under different managers. In order to pull off any projects, you will learn to be responsible for your task and also collaborate with others.\n\n" +
+                            "2. LEADERSHIP: Leaders are not born but are made with knowledge and experience. Volunteerism will expose you to opportunities to lead projects and manage people working under it.\n\n" +
+                            "3. COMMUNICATION: Working in a team requires a lot of communication – verbal and written. More often than not, volunteers and beneficiaries come from a range of ages and backgrounds. You will get to practice effective communication outside your usual circle.\n\n" +
+                            "4. ORGANIZATION AND PLANNING: There are many stages and processes towards completion of a project. You will learn to plan the timeline and organize resources well to carry out projects efficiently.\n\n" +
+                            "5. TIME-MANAGEMENT: Juggling tasks and deadlines are prevalent in many aspects of our lives – studies, work, and even social. As a volunteer, you may get the chance to deliver time-bound projects. By learning to prioritize tasks assigned, you will get to hone your time-management skills and work more effectively.\n\n" +
+                            "6. PROBLEM-SOLVING AND CRITICAL THINKING: Many non-profit organizations usually have to carry out projects and solve problems with limited resources. Therefore, volunteering with them gives you opportunities to think critically and creatively and be resourceful in order to achieve goals.\n\n" +
+                            "7. RELATIONSHIP BUILDING: Being able to build meaningful relationships is important in many areas of life. You will never know how the people we meet can support us in different ways – emotionally or professionally. Volunteering will introduce us to people who are outside our usual social circle and broaden our horizons with different perspectives.\n\n" +
+                            "8. EMPATHY: When working with beneficiaries of organizations, it allows us to have a chance at practicing empathy with those who are in different shoes. Being able to see from different perspectives can help us communicate better with those from different backgrounds and reduce the chances of conflict and misunderstanding in the future.\n\n" +
+                            "9. SELF-AWARENESS: As you receive feedback from other volunteers and managers, you will get to understand yourself more. Being self-aware and able to reflect is the key to self-improvement. Consider keeping a journal to track what you have learned and also how the volunteering experiences make you feel.\n\n" +
+                            "10. ABILITY TO LEARN: The skills required in volunteering can be very diverse. Volunteers also have a chance to play multiple roles. Each new role is a chance to learn new skills. Change is the new constant especially in this rapidly-changing era. The ability to learn will help us to adapt and keep up with the future. We will also never know how certain skills we gain from volunteering will eventually come to use.\n\n",
+                            R.drawable.img_84,
+                    "https://empower2free.com/hacks-on-building-life-skills-by-volunteering/",
+                    "https://empower2free.com/wp-content/uploads/2021/11/Building-Life-Skills-by-Volunteering-Blog-Banner-1.png")
             )
             dataList.add(
                 DataItem("Ensuring Trust and Capability: Screening and Credentialing Volunteers in Disaster Response",
@@ -96,89 +94,44 @@
                     "In the dynamic world of non-profit and community organizations, where our youngest members deserve nothing but the best, we recognize that child safety is paramount. Regardless of your connection with the community or your role, every college volunteer must undergo a robust screening process to ensure that our children remain secure. This commitment to safeguarding extends to all adult volunteers and employees, as it's our collective responsibility to protect our most vulnerable.\n\n" +
 
 
-
-                            "1. IDENTIFY POTENTIAL DISASTERS: Begin by identifying the types of disasters that your community may face. This knowledge is essential for tailoring your response plan to specific scenarios.\n\n" +
-                            "2. BUILD A CONTACT SHEET: Develop a comprehensive contact sheet that includes contact information for staff, board members, key volunteers, and community officials. Ensure that this contact information is regularly updated and readily accessible.\n\n" +
-                            "3. DEFINE CRITICAL SERVICES: Determine the critical services your organization will provide during and after a disaster. Consider whether you will offer food assistance to disaster survivors while continuing to serve your regular clients.\n\n" +
-                            "4. COLLABORATE WITH OTHER ORGANIZATIONS: Explore partnerships with other community organizations to provide food assistance. Collaboration ensures a coordinated response and avoids fragmented efforts.\n\n" +
-                            "5. KEEP PLANS PRACTICAL: When developing your disaster response plan, keep it focused, practical, and simple. Recognize that a one-size-fits-all approach may not be suitable for all disaster scenarios.\n\n" +
-                            "6. MAINTAIN FLEXIBILITY: Understand that every disaster is unique, and flexibility is essential. Be prepared to adapt your response based on the specific circumstances of each disaster event.\n\n" +
-                            "7. PRINT AND SHARE PLANS: Keep printed and electronic copies of your disaster response plan available. Share these copies with staff, board members, and key volunteers to ensure everyone is aware of their roles and responsibilities.\n\n" +
-                            "8. JOIN REGIONAL DISASTER RESPONSE NETWORKS: Consider becoming part of regional disaster response networks like the Food Bank Regional Disaster Response Network. These networks provide increased readiness, additional resources, and expertise for disaster response efforts.\n\n" +
-                            "9. FOLLOW THE PHASES OF DISASTER RESPONSE: Recognize the three phases of disaster response: initial response, sustained response, and long-term recovery. Tailor your actions and resources to each phase's specific needs.\n\n" +
-                            "10. RECRUIT AND ORGANIZE VOLUNTEERS: Be prepared to recruit and organize volunteers as needed, especially in the aftermath of a disaster. Volunteers play a crucial role in providing assistance to affected communities.\n\n",
-                    R.drawable.love2,
-                    "https://www.thesilverlining.com/safety-tips/volunteer-screening-best-practices#:~:text=A%20thorough%20screening%20will%20include%20many%20of%20the%20following%3A&text=Interviews%20(in%20person%20and%20via,National%20Sex%20Offender%20Public%20Registry",
-                    "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                            "1. DEVELOP COMPREHENSIVE SCREENING PROTOCOLS: Establish clear and comprehensive screening protocols that outline the steps and requirements for vetting potential volunteers.\n\n" +
+                            "2. PRIORITIZE VULNERABLE POPULATIONS: Recognize the importance of prioritizing the safety and protection of vulnerable populations, such as children, the elderly, and individuals with special needs, when screening volunteers.\n\n" +
+                            "3. CREATE A WRITTEN VOLUNTEER APPLICATION: Design a thorough volunteer application form that collects essential information, including personal details, qualifications, and areas of expertise.\n\n" +
+                            "4. VERIFY APPLICATION INFORMATION: Conduct a meticulous verification process for the information provided on the volunteer applications. Check for accuracy and consistency.\n\n" +
+                            "5. CONDUCT INTERVIEWS: Conduct in-person and phone interviews with potential volunteers to assess their qualifications, motivations, and alignment with the organization's mission and values.\n\n" +
+                            "6. REQUIRE REFERENCES: Request a minimum of three confirmed, non-related references for each volunteer applicant. Contact these references to gain insights into the candidate's character and suitability for the role.\n\n" +
+                            "7. PERFORM BACKGROUND CHECKS: Conduct comprehensive background checks, including criminal background checks, to identify any past criminal activity that may pose a risk to disaster response efforts.\n\n" +
+                            "8. UTILIZE NATIONAL DATABASES: Use national databases, such as the National Sex Offender Public Registry (NSOPR), to identify applicants registered as sex offenders.\n\n" +
+                            "9. EMPHASIZE TRAINING AND PREPAREDNESS: Prioritize training and preparedness among volunteers, ensuring they are well-equipped to respond effectively and safely in disaster situations.\n\n" +
+                            "10. MONITOR AND SUPERVISE: Continuously monitor and supervise volunteers, especially during their initial probationary period. Regularly review their performance and adherence to the organization's code of conduct.\n\n",
+         R.drawable.img_83,
+                    "https://www.gettyimages.com/detail/photo/mature-woman-volunteer-with-clipboard-royalty-free-image/1163686588",
+                    "https://www.gettyimages.com/detail/photo/mature-woman-volunteer-with-clipboard-royalty-free-image/1163686588")
             )
             dataList.add(
-                DataItem("Efficient Giving: Managing Donations Effectively in Disaster Response",
-                    "Unlock the power of meaningful giving and make your college years count! Effective donation management isn't just about handling funds; it's about creating a ripple of positive change that resonates with the community.\" In a world where generosity knows no bounds, where individuals come together to contribute a staggering \$122.9 billion in 2021 alone, the art of managing donations stands as the bridge between intent and impact. Join us on this journey as we delve into the dynamic realm of donation management, where your expertise can transform goodwill into tangible outcomes.\n\n" +
+                DataItem("Smart and Safe Giving: Tips for Donating to Charities in the Philippines",
+                    "In times of disaster, every donation counts. Whether it's a natural calamity or a humanitarian crisis, your generous contributions can make a significant impact. However, ensuring that your donations reach those in need efficiently and effectively is crucial. Here, we offer guidance on how to manage your donations wisely in disaster response situations.\" In a world where generosity knows no bounds, where individuals come together to contribute a staggering \$122.9 billion in 2021 alone, the art of managing donations stands as the bridge between intent and impact. Join us on this journey as we delve into the dynamic realm of donation management, where your expertise can transform goodwill into tangible outcomes.\n\n" +
+
+                            "1. RESEARCH TRUSTED ORGANIZATIONS: Begin by researching reputable organizations actively involved in disaster response efforts. Look for organizations with a proven track record of transparency and accountability.\n\n" +
+                            "2. SPECIFY DONATION PURPOSE: Clearly define the purpose of your donation. Whether it's for food, medical supplies, shelter, or other specific needs, specifying your donation helps ensure it is used as intended.\n\n" +
+                            "3. DONATE FINANCIALLY: Whenever possible, donate money rather than physical goods. Financial donations allow organizations to purchase exactly what is needed, avoiding the logistical challenges of handling physical donations.\n\n" +
+                            "4. USE SECURE DONATION CHANNELS: Ensure that you use secure and official channels for making donations. Visit the organization's official website or contact them directly to verify the legitimacy of the donation process.\n\n" +
+                            "5. CHECK ADMINISTRATIVE COSTS: Inquire about the administrative costs associated with your donation. Reputable organizations strive to keep overhead costs low, ensuring more of your donation goes directly to those in need.\n\n" +
+                            "6. FOLLOW REPORTING AND UPDATES: Stay informed about the organization's activities and the impact of your donation. Reputable organizations provide regular updates on their disaster response efforts.\n\n" +
+                            "7. CONSIDER LONG-TERM SUSTAINABILITY: While immediate relief is crucial, consider supporting organizations that also focus on long-term recovery and rebuilding efforts in disaster-affected areas.\n\n" +
+                            "8. VERIFY TAX DEDUCTIBILITY: If you want to claim a tax deduction for your donation, confirm that the organization is a registered charity and provides the necessary documentation for tax purposes.\n\n" +
+                            "9. AVOID UNSOLICITED REQUESTS: Be cautious of unsolicited donation requests, especially through emails or phone calls. Scammers often take advantage of disaster situations to solicit funds fraudulently.\n\n" +
+                            "10. SPREAD AWARENESS: Encourage others to contribute to disaster response efforts by sharing information about trusted organizations and the importance of responsible giving.\n\n",
 
 
-                            "1. IDENTIFY POTENTIAL DISASTERS: Begin by identifying the types of disasters that your community may face. This knowledge is essential for tailoring your response plan to specific scenarios.\n\n" +
-                            "2. BUILD A CONTACT SHEET: Develop a comprehensive contact sheet that includes contact information for staff, board members, key volunteers, and community officials. Ensure that this contact information is regularly updated and readily accessible.\n\n" +
-                            "3. DEFINE CRITICAL SERVICES: Determine the critical services your organization will provide during and after a disaster. Consider whether you will offer food assistance to disaster survivors while continuing to serve your regular clients.\n\n" +
-                            "4. COLLABORATE WITH OTHER ORGANIZATIONS: Explore partnerships with other community organizations to provide food assistance. Collaboration ensures a coordinated response and avoids fragmented efforts.\n\n" +
-                            "5. KEEP PLANS PRACTICAL: When developing your disaster response plan, keep it focused, practical, and simple. Recognize that a one-size-fits-all approach may not be suitable for all disaster scenarios.\n\n" +
-                            "6. MAINTAIN FLEXIBILITY: Understand that every disaster is unique, and flexibility is essential. Be prepared to adapt your response based on the specific circumstances of each disaster event.\n\n" +
-                            "7. PRINT AND SHARE PLANS: Keep printed and electronic copies of your disaster response plan available. Share these copies with staff, board members, and key volunteers to ensure everyone is aware of their roles and responsibilities.\n\n" +
-                            "8. JOIN REGIONAL DISASTER RESPONSE NETWORKS: Consider becoming part of regional disaster response networks like the Food Bank Regional Disaster Response Network. These networks provide increased readiness, additional resources, and expertise for disaster response efforts.\n\n" +
-                            "9. FOLLOW THE PHASES OF DISASTER RESPONSE: Recognize the three phases of disaster response: initial response, sustained response, and long-term recovery. Tailor your actions and resources to each phase's specific needs.\n\n" +
-                            "10. RECRUIT AND ORGANIZE VOLUNTEERS: Be prepared to recruit and organize volunteers as needed, especially in the aftermath of a disaster. Volunteers play a crucial role in providing assistance to affected communities.\n\n",
 
 
-
-
-                    R.drawable.love2,
+                    R.drawable.img_85,
                     "https://www.tatlerasia.com/power-purpose/philanthropy/5-tips-when-donating-to-charities-in-the-philippines",
-                    "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                    "https://cdn.tatlerasia.com/tatlerasia/i/2021/08/05130123-joel-muniz-a4ax1apccfa-unsplash_cover_2000x1333.jpg")
             )
-            dataList.add(
-                DataItem("Empowering Response: Prioritizing Cash Donations for Effective Disaster Relief. ",
-                    "In the Philippines, the provision of ambulance services is essential for ensuring the timely and effective care of individuals facing medical emergencies. The Philippine Red Cross has established comprehensive standards and guidelines for ambulance operations, as well as emergency dispatch procedures. This video serves as a reference and educational resource for ambulance crews and EMS providers, outlining the critical protocols that must be followed during medical emergencies and patient transport.\n\n" +
 
 
-                            "1. IDENTIFY POTENTIAL DISASTERS: Begin by identifying the types of disasters that your community may face. This knowledge is essential for tailoring your response plan to specific scenarios.\n\n" +
-                            "2. BUILD A CONTACT SHEET: Develop a comprehensive contact sheet that includes contact information for staff, board members, key volunteers, and community officials. Ensure that this contact information is regularly updated and readily accessible.\n\n" +
-                            "3. DEFINE CRITICAL SERVICES: Determine the critical services your organization will provide during and after a disaster. Consider whether you will offer food assistance to disaster survivors while continuing to serve your regular clients.\n\n" +
-                            "4. COLLABORATE WITH OTHER ORGANIZATIONS: Explore partnerships with other community organizations to provide food assistance. Collaboration ensures a coordinated response and avoids fragmented efforts.\n\n" +
-                            "5. KEEP PLANS PRACTICAL: When developing your disaster response plan, keep it focused, practical, and simple. Recognize that a one-size-fits-all approach may not be suitable for all disaster scenarios.\n\n" +
-                            "6. MAINTAIN FLEXIBILITY: Understand that every disaster is unique, and flexibility is essential. Be prepared to adapt your response based on the specific circumstances of each disaster event.\n\n" +
-                            "7. PRINT AND SHARE PLANS: Keep printed and electronic copies of your disaster response plan available. Share these copies with staff, board members, and key volunteers to ensure everyone is aware of their roles and responsibilities.\n\n" +
-                            "8. JOIN REGIONAL DISASTER RESPONSE NETWORKS: Consider becoming part of regional disaster response networks like the Food Bank Regional Disaster Response Network. These networks provide increased readiness, additional resources, and expertise for disaster response efforts.\n\n" +
-                            "9. FOLLOW THE PHASES OF DISASTER RESPONSE: Recognize the three phases of disaster response: initial response, sustained response, and long-term recovery. Tailor your actions and resources to each phase's specific needs.\n\n" +
-                            "10. RECRUIT AND ORGANIZE VOLUNTEERS: Be prepared to recruit and organize volunteers as needed, especially in the aftermath of a disaster. Volunteers play a crucial role in providing assistance to affected communities.\n\n",
-
-
-
-
-
-
-                    R.drawable.love2,
-                    "https://www.youtube.com/watch?v=Xu9zdIwnJ0U&ab_channel=Etactics",
-                    "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
-            )
-            dataList.add(
-                DataItem("\"Transparent Compassion: Ensuring Accountability in Disaster Response Donations\"",
-                    "Hey there, college students! Get ready for a captivating exploration of the Philippine healthcare system. As we venture into this fascinating world, we'll break down its complex structure into six crucial building blocks. Join us on this educational journey as we unveil the strengths and challenges of a healthcare system that impacts millions of lives in the Philippines. Whether you're studying medicine or simply curious, this insight-packed presentation is sure to broaden your horizons.\n\n" +
-
-
-                            "1. IDENTIFY POTENTIAL DISASTERS: Begin by identifying the types of disasters that your community may face. This knowledge is essential for tailoring your response plan to specific scenarios.\n\n" +
-                            "2. BUILD A CONTACT SHEET: Develop a comprehensive contact sheet that includes contact information for staff, board members, key volunteers, and community officials. Ensure that this contact information is regularly updated and readily accessible.\n\n" +
-                            "3. DEFINE CRITICAL SERVICES: Determine the critical services your organization will provide during and after a disaster. Consider whether you will offer food assistance to disaster survivors while continuing to serve your regular clients.\n\n" +
-                            "4. COLLABORATE WITH OTHER ORGANIZATIONS: Explore partnerships with other community organizations to provide food assistance. Collaboration ensures a coordinated response and avoids fragmented efforts.\n\n" +
-                            "5. KEEP PLANS PRACTICAL: When developing your disaster response plan, keep it focused, practical, and simple. Recognize that a one-size-fits-all approach may not be suitable for all disaster scenarios.\n\n" +
-                            "6. MAINTAIN FLEXIBILITY: Understand that every disaster is unique, and flexibility is essential. Be prepared to adapt your response based on the specific circumstances of each disaster event.\n\n" +
-                            "7. PRINT AND SHARE PLANS: Keep printed and electronic copies of your disaster response plan available. Share these copies with staff, board members, and key volunteers to ensure everyone is aware of their roles and responsibilities.\n\n" +
-                            "8. JOIN REGIONAL DISASTER RESPONSE NETWORKS: Consider becoming part of regional disaster response networks like the Food Bank Regional Disaster Response Network. These networks provide increased readiness, additional resources, and expertise for disaster response efforts.\n\n" +
-                            "9. FOLLOW THE PHASES OF DISASTER RESPONSE: Recognize the three phases of disaster response: initial response, sustained response, and long-term recovery. Tailor your actions and resources to each phase's specific needs.\n\n" +
-                            "10. RECRUIT AND ORGANIZE VOLUNTEERS: Be prepared to recruit and organize volunteers as needed, especially in the aftermath of a disaster. Volunteers play a crucial role in providing assistance to affected communities.\n\n",
-
-                    R.drawable.love2,
-                    "https://www.youtube.com/watch?v=J25bd7mpgr8&ab_channel=LakanCortezMD",
-                    "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
-            )
 
 
             val adapter = DataAdapter(dataList)

@@ -40,7 +40,7 @@ class NaturalDisasterInfo : AppCompatActivity() {
                         "10. CLIMATE-PROOFING INFRASTRUCTURE: Climate-proof essential infrastructure, including transport, irrigation, energy, and tourism facilities, to withstand the impact of typhoons and other natural disasters.\n\n",
                 R.drawable.img_67,
                 "https://www.adb.org/features/mitigating-natural-risks-philippines-adbs-take",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863"
+                "https://www.google.com/search?q=nytimes.com+super+typhoon&sca_esv=570303733&rlz=1C1CHBF_enPH1063PH1064&tbm=isch&source=lnms&sa=X&ved=2ahUKEwje0oD20dmBAxW4zTgGHT_aAHcQ_AUoAnoECAEQBA&biw=1396&bih=650&dpr=1.38#imgrc=L_F4VnMBXwJ6pM"
             )
         )
 
@@ -61,7 +61,7 @@ class NaturalDisasterInfo : AppCompatActivity() {
                         "10. ENVIRONMENTAL CONSIDERATIONS: Be mindful of environmental conditions, such as adverse weather, noise, and the potential for workplace violence, when carrying out response and recovery operations.\n\n",
                 R.drawable.img_68,
                 "https://www.osha.gov/earthquakes/response-recovery",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863"
+                "https://www.jkgeography.com/uploads/1/0/8/4/108433405/826272548.jpg"
             )
         )
 
@@ -82,7 +82,7 @@ class NaturalDisasterInfo : AppCompatActivity() {
                         "10. COMMUNITY ENGAGEMENT: Foster community engagement and awareness, involving residents in flood risk reduction efforts and disaster response planning.\n\n",
                 R.drawable.img_69,
                 "https://www.preventionweb.net/news/philippines-managing-floods-inclusive-and-resilient-development-metro-manila",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863"
+                "https://www.lowyinstitute.org/sites/default/files/styles/interpreter_article_image/public/GettyImages-1231252210%20copy.jpg?itok=W6n44WAq"
             )
         )
 
@@ -111,7 +111,7 @@ class NaturalDisasterInfo : AppCompatActivity() {
                         "10. INTERNATIONAL COOPERATION: Foster international cooperation and partnerships with organizations and countries experienced in volcanic disaster management to exchange knowledge, resources, and best practices for enhanced disaster preparedness and response.\n\n",
                 R.drawable.img_70,
                 "https://www.preventionweb.net/news/philippines-preparing-volcanoes",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://ndmd.kn/wp-content/uploads/2017/04/Volcano-2.jpg   ")
         )
 
         dataList.add(
@@ -137,7 +137,7 @@ class NaturalDisasterInfo : AppCompatActivity() {
 
                 R.drawable.img_71,
                 "https://www.pagasa.dost.gov.ph/information/climate-change-in-the-philippines",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.unicef.org/philippines/sites/unicef.org.philippines/files/styles/press_release_feature/public/UN0358918.jpg?itok=Y8XGhoNA")
         )
         dataList.add(
             DataItem("Disaster Risk Reduction in Coastal Communities: A Focus on the Philippines  ",
@@ -163,7 +163,7 @@ class NaturalDisasterInfo : AppCompatActivity() {
 
                 R.drawable.img_72,
                 "https://climate-laws.org/document/philippine-disaster-reduction-and-management-act-ra-10121_eda4",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://climateadaptationplatform.com/wp-content/uploads/2019/11/disaster-management-philippines.jpg")
         )
         dataList.add(
             DataItem("The Role of Technology in Disaster Response and Recovery in the Philippines",
@@ -185,7 +185,7 @@ class NaturalDisasterInfo : AppCompatActivity() {
 
                 R.drawable.img_73,
                 "https://www.ictworks.org/philippines-ict4d-solutions-disaster-risk-reduction/#:~:text=ICT4D%20can%20play%20a%20vital,and%20mapping%20of%20affected%20areas%2C",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.pdc.org/wp-content/uploads/AHACentre-DisasterAWARE-2.jpg")
         )
 
 
