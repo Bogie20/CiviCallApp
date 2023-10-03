@@ -11,7 +11,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="90dp"
         app:cardBackgroundColor="@color/redpink"
         app:cardCornerRadius="4dp">
 
@@ -23,7 +23,7 @@
 
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="2dp"
             android:fontFamily="@font/inter_bold"
             android:text="Sign in "
             android:textColor="@color/white"
@@ -36,21 +36,19 @@
             android:layout_below="@id/civicall"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="52dp"
             android:fontFamily="@font/inter_medium"
 
             android:text="Sign in to your account"
             android:textColor="@color/white"
             android:textSize="20dp" />
-
     </androidx.cardview.widget.CardView>
-
     <TextView
         android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="105dp"
+        android:layout_marginTop="95dp"
         android:text="Welcome to CiviCall"
         android:textColor="@color/DarkGray"
         android:textSize="20dp" />
@@ -58,12 +56,12 @@
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="316dp"
-        android:layout_height="190dp"
+        android:layout_width="300dp"
+        android:layout_height="185dp"
         android:layout_below="@+id/welcome"
         android:scaleType="fitXY"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="26dp"
         android:src="@drawable/lolo" />
 
@@ -74,54 +72,58 @@
         android:layout_marginTop="2dp"
         android:orientation="vertical">
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailadd"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:id="@+id/emailTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="50dp"
-            app:hintTextColor="@color/DarkGray">
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:hintTextColor="@color/DarkGray"
+            app:counterEnabled="true"
+            app:counterMaxLength="320"
+            android:layout_marginTop="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/emailLogin"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:background="@drawable/button_shape"
-                android:backgroundTint="@color/white"
+                android:layout_height="60dp"
                 android:drawableStart="@drawable/baseline_email_24"
                 android:drawablePadding="15dp"
-                android:hint="Email Address"
+                android:hint="Email"
                 android:lines="1"
                 android:inputType="text"
                 app:hintTextColor="@color/DarkGray"
                 android:paddingRight="42dp"
                 android:paddingLeft="20dp"
-                android:maxLength="80"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:id="@+id/passwordTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             app:passwordToggleEnabled="true"
             app:hintTextColor="@color/DarkGray"
-           >
+            app:counterEnabled="true"
+            app:counterMaxLength="128">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordText"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:background="@drawable/button_shape"
-                android:backgroundTint="@color/white"
+                android:layout_height="60dp"
                 android:drawableStart="@drawable/baseline_lock_24"
                 android:drawablePadding="15dp"
                 android:hint="Password"
                 android:lines="1"
                 android:inputType="textPassword"
                 android:paddingRight="42dp"
-                android:paddingLeft="20dp"
-                android:maxLength="80"/>
+                android:paddingLeft="20dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -138,7 +140,7 @@
         android:layout_width="400dp"
         android:layout_height="60dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="490dp"
+        android:layout_marginTop="525dp"
         android:layout_marginRight="30dp"
         android:textAllCaps="false"
         android:background="@drawable/button_shape"
@@ -153,7 +155,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="565dp"
+        android:layout_marginTop="600dp"
         android:text="Forgot Password?"
         android:textColor="@color/blue"
         >
@@ -167,7 +169,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="140dp"
-        android:layout_marginTop="590dp"
+        android:layout_marginTop="625dp"
         android:text="----- or Sign in with -----"
         android:textColor="@color/DarkGray"
         android:textSize="18dp">
@@ -187,7 +189,7 @@
             android:id="@+id/google_login"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:scaleType="fitXY"
             android:layout_marginRight="30dp"
             android:background="@android:color/transparent"
@@ -198,7 +200,7 @@
             android:id="@+id/facebook"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:scaleType="fitXY"
             android:background="@android:color/transparent"
             android:contentDescription="Sign in with Name"
@@ -211,9 +213,8 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="635dp"
         android:orientation="horizontal">
 
 
@@ -222,7 +223,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="95dp"
             android:fontFamily="@font/inter_medium"
             android:text="new user?"
             android:textSize="15dp" />
@@ -233,7 +234,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="95dp"
             android:fontFamily="@font/inter_medium"
             android:text="Create an Account"
             android:textColor="@color/blue"

@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Register1">
-
     />
         <androidx.cardview.widget.CardView
-            android:layout_width="415dp"
-            android:layout_height="90dp"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
             android:id="@+id/card"
             app:cardBackgroundColor="@color/redpink"
             app:cardCornerRadius="4dp">
@@ -19,7 +18,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
-
+                
                 <ImageView
                     android:id="@+id/back"
                     android:layout_width="wrap_content"
@@ -27,13 +26,9 @@
                     android:contentDescription="Home Icon"
                     android:padding="6dp"
 
-
                     android:clickable="true"
                     android:focusable="true"
                     android:onClick="BackClick" />
-
-
-
                 <TextView
                     android:id="@+id/civicall"
                     android:layout_width="wrap_content"
@@ -48,10 +43,13 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/card">
+
         <LinearLayout
             android:id="@+id/line"
             android:layout_width="match_parent"
@@ -62,25 +60,34 @@
             android:layout_marginEnd="10dp"
             android:paddingHorizontal="1dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/oleo_script"
+                android:text="Sign-Up Now and Be a Part of Change"
+                android:textColor="@color/black"
+                android:textSize="23dp" />
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:id="@+id/fnameTextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:elevation="50dp"
+                    android:elevation="80dp"
+                    android:autofillHints="name"
                     app:hintTextColor="@color/DarkGray"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     app:counterEnabled="true"
                     app:counterMaxLength="80"
-
-
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/fname"
                         android:layout_width="match_parent"
-                        android:layout_height="54dp"
-                        android:background="@drawable/button_shape"
-                        android:backgroundTint="@color/white"
+                        android:layout_height="60dp"
                         android:drawableStart="@drawable/baseline_person_24"
                         android:drawablePadding="15dp"
                         android:hint="First Name"
@@ -89,13 +96,12 @@
                         app:hintTextColor="@color/DarkGray"
                         android:paddingRight="42dp"
                         android:paddingLeft="20dp"
-
-
                         />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:id="@+id/lastNameTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -106,9 +112,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Lname"
                     android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:background="@drawable/button_shape"
-                    android:backgroundTint="@color/white"
+                    android:layout_height="60dp"
                     android:drawableStart="@drawable/baseline_person_24"
                     android:drawablePadding="15dp"
                     android:hint="Last Name"
@@ -121,6 +125,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:id="@+id/addressTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -132,9 +137,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/address"
                     android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:background="@drawable/button_shape"
-                    android:backgroundTint="@color/white"
+                    android:layout_height="60dp"
                     android:drawableStart="@drawable/sharelocation"
                     android:drawablePadding="15dp"
                     android:hint="Address"
@@ -148,6 +151,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:id="@+id/contactNumberTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -157,9 +161,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Contactline"
                     android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:background="@drawable/button_shape"
-                    android:backgroundTint="@color/white"
+                    android:layout_height="60dp"
                     android:drawableStart="@drawable/baseline_perm_contact_calendar_24"
                     android:drawablePadding="15dp"
                     android:hint="Mobile Number"
@@ -172,6 +174,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:id="@+id/contactEmeNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -181,9 +184,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ContactEme"
                     android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:background="@drawable/button_shape"
-                    android:backgroundTint="@color/white"
+                    android:layout_height="60dp"
                     android:drawableStart="@drawable/baseline_perm_contact_calendar_24"
                     android:drawablePadding="15dp"
                     android:lines="1"
@@ -197,45 +198,19 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/campusTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_weight="1"
-                app:hintEnabled="true"
-                app:hintTextColor="@color/DarkGray"
-                android:background="@drawable/button_shape"
-                android:backgroundTint="@color/white"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp">
-
-                <!-- Create a horizontal LinearLayout to hold the Spinner and an ImageView -->
-                <LinearLayout
+                android:layout_height="wrap_content"
+                android:hint="Campus"
+                app:startIconDrawable="@drawable/campusblg"
+                app:helperTextTextColor="@color/red"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <AutoCompleteTextView
+                    android:id="@+id/campus"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <!-- ImageView for the Spinner icon -->
-                    <ImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:src="@drawable/campusblg"
-                        android:layout_marginTop="13dp"
-                        android:layout_marginStart="18dp"
-                        android:contentDescription="Spinner Icon" />
-
-                    <!-- Spinner for campus selection -->
-                    <Spinner
-                        android:id="@+id/campus"
-                        android:layout_width="match_parent"
-                        android:layout_height="54dp"
-                        android:paddingLeft="15dp"
-                       android:layout_marginEnd="9dp"
-                        app:hintTextColor="@color/DarkGray"
-                        android:spinnerMode="dropdown"
-                        android:dropDownWidth="match_parent"
-                        android:dropDownVerticalOffset="-8dp"
-                        android:popupBackground="@color/white" />
-                </LinearLayout>
-
+                    android:layout_height="60dp"
+                    android:editable="false" />
             </com.google.android.material.textfield.TextInputLayout>            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -243,76 +218,45 @@
                 android:layout_marginTop="15dp"
                 >
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/birthdateTextInputLayout"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:hintEnabled="false"
-                    app:helperTextTextColor="@color/red">
-                <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/birthdateTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="Date of Birth"
+                app:startIconDrawable="@drawable/calendar"
+                android:layout_marginEnd="10dp"
+                app:helperTextTextColor="@color/green"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <AutoCompleteTextView
                     android:id="@+id/birthdate"
                     android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:drawablePadding="10dp"
-                    app:hintTextColor="@color/DarkGray"
-                    android:drawableStart="@drawable/calendar"
-                    android:hint="Date of Birth"
-                    android:paddingRight="20dp"
-                    android:textSize="15sp"
-                    android:backgroundTint="@color/white"
-                    android:background="@drawable/button_shape"
-                    android:paddingLeft="20dp"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:inputType="date" />
+                    android:layout_height="60dp"
+                    android:editable="false" />
             </com.google.android.material.textfield.TextInputLayout>
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/genderTextInputLayout"
-                android:layout_width="0dp"
-                android:layout_height="54dp"
-                android:layout_weight="1"
-                app:hintEnabled="true"
-                app:hintTextColor="@color/DarkGray"
-                android:layout_marginStart="8dp"
-                android:paddingTop="1dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/button_shape"
-                android:backgroundTint="@color/white">
-
-                <!-- Create a horizontal LinearLayout to hold the Spinner and an ImageView -->
-                <LinearLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Sex"
+                app:startIconDrawable="@drawable/gender"
+                app:helperTextTextColor="@color/green"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <AutoCompleteTextView
+                    android:id="@+id/spinnerSex"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <!-- ImageView for the Spinner icon -->
-                    <ImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:src="@drawable/gender"
-                        android:layout_marginTop="13dp"
-                        android:layout_marginStart="15dp"
-                        android:contentDescription="Spinner Icon" />
-                    <!-- Spinner for gender selection -->
-                    <Spinner
-                        android:id="@+id/spinnerSex"
-                        android:layout_width="match_parent"
-                        android:layout_height="54dp"
-                        android:paddingLeft="10dp"
-                        app:hintTextColor="@color/DarkGray"
-                        android:spinnerMode="dropdown"
-                        android:dropDownWidth="wrap_content"
-                        android:dropDownVerticalOffset="-8dp"
-                        android:popupBackground="@color/white" />
-                </LinearLayout>
+                    android:layout_height="60dp"
+                    android:editable="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
-
-
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:id="@+id/emailTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -325,9 +269,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Emailline"
                     android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:background="@drawable/button_shape"
-                    android:backgroundTint="@color/white"
+                    android:layout_height="60dp"
                     android:drawableStart="@drawable/baseline_email_24"
                     android:drawablePadding="15dp"
                     android:hint="Email"
@@ -342,6 +284,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:id="@+id/passwordTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -353,9 +296,7 @@
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/pass"
                     android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:background="@drawable/button_shape"
-                    android:backgroundTint="@color/white"
+                    android:layout_height="60dp"
                     android:drawableStart="@drawable/baseline_lock_24"
                     android:drawablePadding="15dp"
                     android:hint="Password"
@@ -366,6 +307,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:id="@+id/confirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -373,13 +315,10 @@
                 app:hintTextColor="@color/DarkGray"
                 app:counterEnabled="true"
                 app:counterMaxLength="128">
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/confirmPass"
                     android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:background="@drawable/button_shape"
-                    android:backgroundTint="@color/white"
+                    android:layout_height="60dp"
                     android:drawableStart="@drawable/baseline_lock_24"
                     android:drawablePadding="15dp"
                     android:lines="1"
@@ -388,7 +327,6 @@
                     android:paddingRight="42dp"
                     android:paddingLeft="20dp"/>
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <CheckBox
                 android:id="@+id/checkedTextView"
@@ -407,6 +345,7 @@
                 android:textSize="25dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/button_shape"
+                android:backgroundTint="@color/redpink"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="60dp">
 

@@ -244,7 +244,6 @@ class Register1 : AppCompatActivity() {
         )
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        genderSpinner.adapter = adapter
 
         val initialSelection = 0
         genderSpinner.setSelection(initialSelection)
@@ -274,7 +273,7 @@ class Register1 : AppCompatActivity() {
         )
 
         campusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        campusSpinner.adapter = campusAdapter
+
 
         val initialCampusSelection = 0
         campusSpinner.setSelection(initialCampusSelection)
@@ -531,8 +530,8 @@ class Register1 : AppCompatActivity() {
         phoneEme = activityRegister1Binding.ContactEme.text.toString().trim()
         address = activityRegister1Binding.address.text.toString().trim()
         birtdate = activityRegister1Binding.birthdate.text.toString().trim()
-        spinnerSex = activityRegister1Binding.spinnerSex.selectedItem.toString()
-        selectedCampus = activityRegister1Binding.campus.selectedItem.toString()
+        spinnerSex = activityRegister1Binding.spinnerSex.toString()
+        selectedCampus = activityRegister1Binding.campus.toString()
 
         val checkBox = findViewById<CheckBox>(R.id.checkedTextView)
         val campusSpinner = activityRegister1Binding.campus
