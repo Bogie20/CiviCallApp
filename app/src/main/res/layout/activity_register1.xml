@@ -70,7 +70,10 @@
                     app:hintTextColor="@color/DarkGray"
                     android:layout_marginTop="10dp"
                     app:counterEnabled="true"
-                    app:counterMaxLength="80">
+                    app:counterMaxLength="80"
+
+
+                    >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/fname"
@@ -86,6 +89,8 @@
                         app:hintTextColor="@color/DarkGray"
                         android:paddingRight="42dp"
                         android:paddingLeft="20dp"
+
+
                         />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -125,7 +130,7 @@
                 app:counterMaxLength="255">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/adress"
+                    android:id="@+id/address"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:background="@drawable/button_shape"
@@ -185,12 +190,53 @@
                     android:hint="No. In Case of Emergency "
                     app:hintTextColor="@color/DarkGray"
                     android:paddingRight="42dp"
-                    android:paddingLeft="20dp"/>
+                    android:paddingLeft="20dp"
+                   />
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/campusTextInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_weight="1"
+                app:hintEnabled="true"
+                app:hintTextColor="@color/DarkGray"
+                android:background="@drawable/button_shape"
+                android:backgroundTint="@color/white"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
 
-            <LinearLayout
+                <!-- Create a horizontal LinearLayout to hold the Spinner and an ImageView -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <!-- ImageView for the Spinner icon -->
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@drawable/campusblg"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginStart="18dp"
+                        android:contentDescription="Spinner Icon" />
+
+                    <!-- Spinner for campus selection -->
+                    <Spinner
+                        android:id="@+id/campus"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:paddingLeft="15dp"
+                       android:layout_marginEnd="9dp"
+                        app:hintTextColor="@color/DarkGray"
+                        android:spinnerMode="dropdown"
+                        android:dropDownWidth="match_parent"
+                        android:dropDownVerticalOffset="-8dp"
+                        android:popupBackground="@color/white" />
+                </LinearLayout>
+
+            </com.google.android.material.textfield.TextInputLayout>            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -213,43 +259,57 @@
                     android:drawableStart="@drawable/calendar"
                     android:hint="Date of Birth"
                     android:paddingRight="20dp"
-                    android:textSize="17sp"
+                    android:textSize="15sp"
                     android:backgroundTint="@color/white"
                     android:background="@drawable/button_shape"
-                    android:paddingLeft="22dp"
+                    android:paddingLeft="20dp"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:inputType="date" />
             </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/genderTextInputLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="54dp"
-                    android:layout_weight="1"
-                    app:hintEnabled="true"
-                    app:hintTextColor="@color/DarkGray"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/button_shape"
-                    android:backgroundTint="@color/white"
-                    >
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/genderTextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="54dp"
+                android:layout_weight="1"
+                app:hintEnabled="true"
+                app:hintTextColor="@color/DarkGray"
+                android:layout_marginStart="8dp"
+                android:paddingTop="1dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/button_shape"
+                android:backgroundTint="@color/white">
 
+                <!-- Create a horizontal LinearLayout to hold the Spinner and an ImageView -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <!-- ImageView for the Spinner icon -->
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@drawable/gender"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginStart="15dp"
+                        android:contentDescription="Spinner Icon" />
+                    <!-- Spinner for gender selection -->
                     <Spinner
                         android:id="@+id/spinnerSex"
                         android:layout_width="match_parent"
                         android:layout_height="54dp"
-                        android:paddingLeft="25dp"
+                        android:paddingLeft="10dp"
                         app:hintTextColor="@color/DarkGray"
                         android:spinnerMode="dropdown"
-                        android:dropDownWidth="match_parent"
+                        android:dropDownWidth="wrap_content"
                         android:dropDownVerticalOffset="-8dp"
-                        android:popupBackground="@color/white"
-                        android:elevation="-0.8dp"
-                        />
+                        android:popupBackground="@color/white" />
+                </LinearLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
+        </LinearLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout

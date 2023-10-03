@@ -18,7 +18,7 @@ class CustomSpinnerAdapter(context: Context, resource: Int, objects: List<String
         val view = super.getView(position, convertView, parent)
         if (position == 0) {
             // Customize the appearance of the hint item
-            view.findViewById<TextView>(android.R.id.text1)?.setTextColor(ContextCompat.getColor(context, R.color.DarkGray))
+            view.findViewById<TextView>(android.R.id.text1)?.setTextColor(ContextCompat.getColor(context, R.color.md_yellow_100))
         }
         return view
     }

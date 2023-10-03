@@ -65,7 +65,6 @@ class InformationFragment : Fragment() {
             val intent = Intent(requireContext(), MainEmergencyContact::class.java)
             startActivity(intent)
         }
-
         return view
     }
 

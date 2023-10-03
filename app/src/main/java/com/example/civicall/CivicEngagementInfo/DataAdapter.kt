@@ -1,7 +1,5 @@
 package com.example.civicall.CivicEngagementInfo
 
-import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +10,11 @@ import com.example.civicall.R
 
 class DataAdapter(private val dataList: List<DataItem>) :
     RecyclerView.Adapter<DataAdapter.ViewHolder>() {
-
-    // Define an interface to handle item clicks
     interface OnItemClickListener {
-        fun onItemClick(position: Int)
+        fun onReferenceClick(position: Int)
+        fun onImageClick(position: Int)
     }
+
 
     // Add a variable to hold the click listener
     private var itemClickListener: OnItemClickListener? = null
@@ -35,7 +33,11 @@ class DataAdapter(private val dataList: List<DataItem>) :
         init {
             // Add a click listener to the referenceTextView
             referenceTextView.setOnClickListener {
-                itemClickListener?.onItemClick(adapterPosition)
+                itemClickListener?.onReferenceClick(adapterPosition)
+            }
+            // Add a click listener to the imageView
+            imageView.setOnClickListener {
+                itemClickListener?.onImageClick(adapterPosition)
             }
         }
     }

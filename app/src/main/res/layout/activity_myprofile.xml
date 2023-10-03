@@ -260,19 +260,7 @@
             app:hintEnabled="true"
             app:hintTextColor="@color/DarkGray">
 
-            <Spinner
 
-                android:id="@+id/spinnerSex"
-                android:layout_width="wrap_content"
-                android:layout_height="54dp"
-                android:layout_marginLeft="30dp"
-                android:dropDownWidth="match_parent"
-                android:dropDownVerticalOffset="-8dp"
-                android:elevation="-0.8dp"
-                android:paddingLeft="25dp"
-                android:popupBackground="@color/white"
-                android:spinnerMode="dropdown"
-                app:hintTextColor="@color/DarkGray" />
 
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
@@ -284,7 +272,6 @@
         android:layout_marginTop="-20dp"
         android:background="@drawable/button_shape"
         android:backgroundTint="@color/white"
-
         android:drawablePadding="15dp"
         android:hint="Address"
         android:inputType="text"

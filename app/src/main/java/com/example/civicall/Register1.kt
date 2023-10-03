@@ -12,16 +12,13 @@ import android.text.InputType
 import android.util.Patterns
 import android.view.View
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import android.widget.CheckBox
-import android.widget.ProgressBar
 import android.widget.TextView
 import com.example.civicall.CivicEngagementPost.CivicPostFragment
 import com.example.civicall.databinding.ActivityRegister1Binding
-import com.google.android.material.textfield.TextInputLayout
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -31,7 +28,7 @@ class Register1 : AppCompatActivity() {
     private lateinit var activityRegister1Binding: ActivityRegister1Binding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var progressDialog: ProgressDialog
-
+    private var selectedCampus = ""
 
     private fun validateFirstName() {
         val lastName = activityRegister1Binding.fname.text.toString().trim()
@@ -152,19 +149,16 @@ class Register1 : AppCompatActivity() {
     }
 
     private fun validateAddress() {
-        val address = activityRegister1Binding.adress.text.toString().trim()
+        val address = activityRegister1Binding.address.text.toString().trim()
 
         if (address.isEmpty()) {
-            activityRegister1Binding.adress.error = "Address is required"
+            activityRegister1Binding.address.error = "Address is required"
         } else if (address.length < 5) {
-            activityRegister1Binding.adress.error = "Address is too short"
+            activityRegister1Binding.address.error = "Address is too short"
         } else {
-            activityRegister1Binding.adress.error = null
+            activityRegister1Binding.address.error = null
         }
     }
-
-
-
     private fun validateBirthday() {
         val birthday = activityRegister1Binding.birthdate.text.toString().trim()
         val birthdateTextInputLayout = activityRegister1Binding.birthdateTextInputLayout
@@ -203,9 +197,13 @@ class Register1 : AppCompatActivity() {
 
         val genderSpinner = activityRegister1Binding.spinnerSex
         val genderArray = resources.getStringArray(R.array.gender_array).toMutableList()
+        val campusSpinner = activityRegister1Binding.campus
+        val campusArray = resources.getStringArray(R.array.allowed_campuses).toMutableList()
+
         val contactNumber = activityRegister1Binding.Contactline
         val contactEme = activityRegister1Binding.ContactEme
         genderArray.add(0, "Gender") // Add "Gender" as the first item in the list
+        campusArray.add(0, "Select Your Campus")
 
         val maxLength = 80
         val maxEmailLength = 320
@@ -221,7 +219,7 @@ class Register1 : AppCompatActivity() {
         val contactNumberEditText = activityRegister1Binding.Contactline
         val contactEmeEditText = activityRegister1Binding.ContactEme
         val contactFilters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxContactLength))
-        val addressEditText = activityRegister1Binding.adress
+        val addressEditText = activityRegister1Binding.address
         val addressFilters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxAddressLength))
         val passwordEditText = activityRegister1Binding.pass
         val confirmPasswordEditText = activityRegister1Binding.confirmPass
@@ -238,12 +236,13 @@ class Register1 : AppCompatActivity() {
         lastNameEditText.filters = filters
         contactNumber.inputType = InputType.TYPE_CLASS_PHONE
         contactEme.inputType = InputType.TYPE_CLASS_PHONE
-
+// Gender Spinner
         val adapter = CustomSpinnerAdapter(
             this,
-            android.R.layout.simple_spinner_item,
+            R.layout.spinner_gender, // Use the custom layout here
             genderArray
         )
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         genderSpinner.adapter = adapter
 
@@ -266,6 +265,40 @@ class Register1 : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
+
+        // Campus Spinner
+        val campusAdapter = CustomSpinnerAdapter(
+            this,
+            R.layout.spinner_campus, // Use the custom layout here
+            campusArray
+        )
+
+        campusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        campusSpinner.adapter = campusAdapter
+
+        val initialCampusSelection = 0
+        campusSpinner.setSelection(initialCampusSelection)
+        var selectedCampus = ""
+        campusSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                selectedCampus = if (position == 0) {
+                    "" // Set an empty string if "Select Campus" is selected
+                } else {
+                    parent?.getItemAtPosition(position).toString()
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                selectedCampus = "" // Set an empty string if nothing is selected
+            }
+        }
+
+
         val birthdayEditText = activityRegister1Binding.birthdate
         val confirmpassword = activityRegister1Binding.confirmPass
 
@@ -496,17 +529,20 @@ class Register1 : AppCompatActivity() {
         confirmPass = activityRegister1Binding.confirmPass.text.toString().trim()
         phoneno = activityRegister1Binding.Contactline.text.toString().trim()
         phoneEme = activityRegister1Binding.ContactEme.text.toString().trim()
-        address = activityRegister1Binding.adress.text.toString().trim()
+        address = activityRegister1Binding.address.text.toString().trim()
         birtdate = activityRegister1Binding.birthdate.text.toString().trim()
         spinnerSex = activityRegister1Binding.spinnerSex.selectedItem.toString()
+        selectedCampus = activityRegister1Binding.campus.selectedItem.toString()
 
         val checkBox = findViewById<CheckBox>(R.id.checkedTextView)
-        val isChecked = checkBox.isChecked
-
+        val campusSpinner = activityRegister1Binding.campus
         val errorMessages = mutableListOf<String>()
 
         if (fname.isEmpty() || lname.isEmpty() || email.isEmpty() || phoneno.isEmpty() ||
-            phoneEme.isEmpty() || address.isEmpty() || birtdate.isEmpty() || spinnerSex == "Gender") {
+            phoneEme.isEmpty() || address.isEmpty() || birtdate.isEmpty() || spinnerSex.equals("Gender") || selectedCampus.equals("Select Your Campus") ||
+            !checkBox.isChecked()) {
+            errorMessages.add("Please Fill All the Fields");
+        }
             if (fname.isEmpty()) {
                 activityRegister1Binding.fname.error = "Required"
             } else {
@@ -543,25 +579,33 @@ class Register1 : AppCompatActivity() {
                 activityRegister1Binding.ContactEme.error = null
             }
             if (address.isEmpty()) {
-                activityRegister1Binding.adress.error = "Required"
+                activityRegister1Binding.address.error = "Required"
             } else {
-                activityRegister1Binding.adress.error = null
+                activityRegister1Binding.address.error = null
             }
             if (birtdate.isEmpty()) {
                 activityRegister1Binding.birthdate.error = "Required"
             } else {
                 activityRegister1Binding.birthdate.error = null
             }
-            errorMessages.add("Please Fill All the Fields")
-            if (spinnerSex.isEmpty() || spinnerSex == "Gender") {
-                val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
-                genderTextInputLayout.error = "Please select a Gender"
 
-            } else {
-                val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
-                genderTextInputLayout.error = null
-            }
+        if (spinnerSex.isEmpty() || spinnerSex == "Gender") {
+            val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
+            genderTextInputLayout.error = "Please select a Gender"
+        } else {
+            val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
+            genderTextInputLayout.error = null
         }
+        if (selectedCampus.isEmpty() || selectedCampus == "Select Your Campus") {
+            val campusTextInputLayout = activityRegister1Binding.campusTextInputLayout
+            campusTextInputLayout.error = "Please select your Campus"
+        } else {
+            val campusTextInputLayout = activityRegister1Binding.campusTextInputLayout
+            campusTextInputLayout.error = null
+        }
+
+
+
 
         if (birtdate.isNotEmpty()) {
             val dobParts = birtdate.split(" / ")
@@ -583,9 +627,6 @@ class Register1 : AppCompatActivity() {
             } else {
                 errorMessages.add("Invalid Date of Birth format")
             }
-        }
-        if (!isChecked) {
-            errorMessages.add("Please Accept the Agreement to Register")
         }
 
         validatePasswordMatch()
@@ -684,6 +725,8 @@ class Register1 : AppCompatActivity() {
         hashMap["ImageProfile"] = ""
         hashMap["userType"] = "Student"
         hashMap["timestamp"] = timestamp
+        hashMap["campus"] = selectedCampus
+
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, searchFragment)
             .commit()

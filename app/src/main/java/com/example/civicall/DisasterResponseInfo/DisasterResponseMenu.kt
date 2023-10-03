@@ -48,7 +48,7 @@ class DisasterResponseMenu : AppCompatActivity() {
 
                 2 -> {
                     // Handle click for Item 2
-                    val intent = Intent(this,  NaturalDisasterInfo::class.java)
+                    val intent = Intent(this,  FireSafetyInfo::class.java)
                     startActivity(intent)
                 }
 
@@ -90,7 +90,7 @@ class DisasterResponseMenu : AppCompatActivity() {
 
                 9 -> {
                     // Handle click for Item 9
-                    val intent = Intent(this, FirstAidInfo::class.java)
+                    val intent = Intent(this, RecoveryandRebuildingEffortsInfo::class.java)
                     startActivity(intent)
                 }
 

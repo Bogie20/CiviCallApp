@@ -32,7 +32,7 @@
 
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Natural Disasters"
+            android:text="Rebuilding Efforts"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -69,7 +69,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="First Aid and Basic Life Support:Learn life-saving skills."
+                    android:text="Focused Recovery and Rebuilding Efforts: Strategies for Post-Disaster Resilience"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -82,7 +82,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Hello,Spartans! On your path to greatness, there's one skill set you must wield with confidence – life-saving skills. Today, we're diving into the world of First Aid and Basic Life Support, arming you with the knowledge to be the true heroes our community needs. Let's embark on this journey of preparedness together!&quot;"
+                    android:text="&quot;Discover the incredible stories of communities and nations as they embark on the path of recovery and rebuilding after adversity. From natural disasters to economic challenges, witness the resilience and innovation that lead to a brighter future. Explore the strategies that help us not only recover but also thrive in the face of adversity.&quot;"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"

@@ -4,6 +4,7 @@
         <item>Female</item>
         <item>Others</item>
     </string-array>
+
     <string-array name="allowed_campuses">
         <item>ARASOF Nasugbu Campus</item>
         <item>Balayan Campus</item>
@@ -149,5 +150,5 @@
     <string name="title_activity_civic_engagement">CivicEngagementActivity</string>
     <string name="title_activity_participant_tips">ParticipantTips</string>
     <string name="makingthemost">Making the Most of your Civic Engagement Experience</string>
-    <string name="agreement">Youth Empowerment in Civic Engagement: Shaping Tomorrow\'s Leaders</string>
+    <string name="agreement">I have read and agree to the Terms of Service and Privacy Policy.</string>
 </resources>

@@ -47,7 +47,8 @@ class CommunicationAndInformationInfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=mZfwoA1aZJk&ab_channel=ChisholmLawFirm"
+                "https://www.youtube.com/watch?v=mZfwoA1aZJk&ab_channel=ChisholmLawFirm",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863"
             )
         )
         dataList.add(
@@ -71,7 +72,8 @@ class CommunicationAndInformationInfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=ea1RJUOiNfQ&ab_channel=StJohnAmbulance")
+                "https://www.youtube.com/watch?v=ea1RJUOiNfQ&ab_channel=StJohnAmbulance",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Establish redundant communication channels.",
@@ -93,7 +95,8 @@ class CommunicationAndInformationInfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=SXwXjw1Q-88&ab_channel=URKesslerTrauma")
+                "https://www.youtube.com/watch?v=SXwXjw1Q-88&ab_channel=URKesslerTrauma",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Monitor weather and disaster alerts.",
@@ -123,7 +126,8 @@ class CommunicationAndInformationInfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=UFvL7wTFzl0&ab_channel=StJohnAmbulance")
+                "https://www.youtube.com/watch?v=UFvL7wTFzl0&ab_channel=StJohnAmbulance",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Train staff in emergency communication.",
@@ -154,7 +158,8 @@ class CommunicationAndInformationInfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=9QHDs10e-G0&ab_channel=UNMCHEROES")
+                "https://www.youtube.com/watch?v=9QHDs10e-G0&ab_channel=UNMCHEROES",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Create a public information strategy. ",
@@ -184,7 +189,8 @@ class CommunicationAndInformationInfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=Xu9zdIwnJ0U&ab_channel=Etactics")
+                "https://www.youtube.com/watch?v=Xu9zdIwnJ0U&ab_channel=Etactics",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Use social media for updates.",
@@ -204,7 +210,8 @@ class CommunicationAndInformationInfo : AppCompatActivity() {
                         "5. Data-Driven Healthcare: The collection of health data and the adoption of telemedicine contribute to better disease monitoring, early detection of outbreaks, and improved healthcare delivery, which are crucial for public health and well-being.\n\n",
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=J25bd7mpgr8&ab_channel=LakanCortezMD")
+                "https://www.youtube.com/watch?v=J25bd7mpgr8&ab_channel=LakanCortezMD",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Implement a mass notification system.",
@@ -236,7 +243,8 @@ class CommunicationAndInformationInfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=Lnoph21Je6I&ab_channel=JonathanNoel")
+                "https://www.youtube.com/watch?v=Lnoph21Je6I&ab_channel=JonathanNoel",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Provide multi-lingual information.",
@@ -263,7 +271,8 @@ class CommunicationAndInformationInfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=iQozgr7XnoY&ab_channel=MedicalCentric")
+                "https://www.youtube.com/watch?v=iQozgr7XnoY&ab_channel=MedicalCentric",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
         dataList.add(
             DataItem("Address rumors and misinformation.",
@@ -291,7 +300,8 @@ class CommunicationAndInformationInfo : AppCompatActivity() {
 
 
                 R.drawable.love2,
-                "https://www.youtube.com/watch?v=U_J7UOy5euo&ab_channel=MidEssexHospitalServicesNHSTrust")
+                "https://www.youtube.com/watch?v=U_J7UOy5euo&ab_channel=MidEssexHospitalServicesNHSTrust",
+                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
 
 
@@ -299,7 +309,7 @@ class CommunicationAndInformationInfo : AppCompatActivity() {
 
         // Set an item click listener for the adapter to open the link when the reference TextView is clicked
         adapter.setOnItemClickListener(object : DataAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int) {
+            override fun onReferenceClick(position: Int) {
                 val clickedItem = dataList[position]
                 val link = clickedItem.link
 
@@ -307,7 +317,17 @@ class CommunicationAndInformationInfo : AppCompatActivity() {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
                 startActivity(intent)
             }
+
+            override fun onImageClick(position: Int) {
+                val clickedItem = dataList[position]
+                val imageLink = clickedItem.imageLink
+
+                // Open the imageLink in a web browser
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(imageLink))
+                startActivity(intent)
+            }
         })
+
 
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter

@@ -69,7 +69,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Natural Disasters Know the types"
+                    android:text="Understanding the Diversity of Natural Disasters: A Comprehensive Exploration"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"

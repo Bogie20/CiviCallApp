@@ -35,7 +35,7 @@
 
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Natural Disasters"
+            android:text="Psychological Support"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -72,7 +72,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="First Aid and Basic Life Support:Learn life-saving skills."
+                    android:text="Resilience and Recovery: Psychological Support Services in Disaster Response"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -85,7 +85,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Hello,Spartans! On your path to greatness, there's one skill set you must wield with confidence – life-saving skills. Today, we're diving into the world of First Aid and Basic Life Support, arming you with the knowledge to be the true heroes our community needs. Let's embark on this journey of preparedness together!&quot;"
+                    android:text="&quot;In the face of natural and man-made disasters, the provision of psychological support services has emerged as an essential component of disaster response efforts. This introduction explores the critical role that psychological support plays in promoting resilience and aiding recovery during and after calamitous events.&quot;"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"

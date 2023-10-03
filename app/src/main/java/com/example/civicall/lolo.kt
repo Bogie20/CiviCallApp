@@ -41,15 +41,15 @@ class lolo : AppCompatActivity() {
         }
         val setting: TextView = findViewById(R.id.Setting)
         val calendar: TextView = findViewById(R.id.calendar)
-        val profile1: TextView = findViewById(R.id.Profile)
+        val logout: TextView = findViewById(R.id.logout)
         val verification1: TextView = findViewById(R.id.verification)
         val AboutUs1: TextView = findViewById(R.id.AboutUs1)
         val feedback1: TextView = findViewById(R.id.feedback)
         val editProfileCardView:TextView= findViewById(R.id.editprofile)
 
-        profile1.setOnClickListener {
+        logout.setOnClickListener {
             // Handle click for menu item 1
-            val intent = Intent(this, myprofile1::class.java)
+            val intent = Intent(this, Login::class.java)
             startActivity(intent)
         }
 

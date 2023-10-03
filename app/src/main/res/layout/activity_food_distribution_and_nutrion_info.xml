@@ -31,12 +31,15 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
 
-            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="21dp"
             android:fontFamily="@font/lexend_bold"
-            android:text="Natural Disasters"
+            android:text="Food Distribution &amp; Nutrition"
             android:textColor="@color/white"
-            android:textSize="18dp" />
+            android:textSize="17dp" />
 
     </RelativeLayout>
 
@@ -71,7 +74,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="First Aid and Basic Life Support:Learn life-saving skills."
+                    android:text="Food Distribution &amp; Nutrition in Disaster Response"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -84,7 +87,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Hello,Spartans! On your path to greatness, there's one skill set you must wield with confidence – life-saving skills. Today, we're diving into the world of First Aid and Basic Life Support, arming you with the knowledge to be the true heroes our community needs. Let's embark on this journey of preparedness together!&quot;"
+                    android:text="&quot;Food Distribution and Nutrition in Disaster Response: Serving Hope in Times of Crisis. In the wake of calamity and catastrophe, understanding the vital role of efficient food distribution and nutrition becomes not only a humanitarian imperative but also a formidable challenge that requires strategic precision and unwavering dedication.&quot;"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
