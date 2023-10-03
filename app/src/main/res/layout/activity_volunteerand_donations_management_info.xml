@@ -32,7 +32,7 @@
 
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Natural Disasters"
+            android:text="Volunteer &amp; Donations"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -69,7 +69,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Volunteer and Donations Management in Disaster Response"
+                    android:text="Guiding Generosity: Volunteer and Donations Management in Disaster Response"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -82,7 +82,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Hey there, future change-makers! Today, we're diving into a world of impact and empathy. Disaster response isn't just a headline; it's a call to action, and you, college students, hold the power to make a difference. Join us in exploring the vital roles of volunteerism and donations management in disaster relief, where your passion meets purpose, and together, we become the heroes of hope.&quot;"
+                    android:text="&quot;Welcome to our discussion on 'Guiding Generosity: Volunteer and Donations Management in Disaster Response.' In this study, we'll explore the crucial aspects of effectively managing volunteers and coordinating donations during disasters, equipping you with the knowledge and skills to make a meaningful impact in disaster relief efforts.&quot;"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
