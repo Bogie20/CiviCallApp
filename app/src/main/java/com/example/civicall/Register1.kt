@@ -12,6 +12,7 @@ import android.text.InputType
 import android.util.Patterns
 import android.view.View
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -30,10 +31,19 @@ class Register1 : AppCompatActivity() {
     private lateinit var progressDialog: ProgressDialog
     private var selectedCampus = ""
 
+    private var initialFirstName = ""
+    private var initialLastName = ""
+    private var initialEmail = ""
+    private var initialPassword = ""
+    private var initialConfirmPassword = ""
+    private var initialContactNumber = ""
+    private var initialContactEme = ""
+    private var initialAddress = ""
+    private var initialBirthday = ""
     private fun validateFirstName() {
         val lastName = activityRegister1Binding.fname.text.toString().trim()
 
-        val regex = "^[a-zA-Z.-]+$" // Regular expression to allow letters, '.', and '-'
+        val regex = "^[a-zA-Z.\\s-]+$"
 
         if (lastName.isEmpty()) {
             activityRegister1Binding.fname.error = "Required"
@@ -49,7 +59,7 @@ class Register1 : AppCompatActivity() {
     private fun validateLastName() {
         val lastName = activityRegister1Binding.Lname.text.toString().trim()
 
-        val regex = "^[a-zA-Z.-]+$" // Regular expression to allow letters, '.', and '-'
+        val regex = "^[a-zA-Z.\\s-]+$"
 
         if (lastName.isEmpty()) {
             activityRegister1Binding.Lname.error = "Required"
@@ -195,21 +205,37 @@ class Register1 : AppCompatActivity() {
         activityRegister1Binding = ActivityRegister1Binding.inflate(layoutInflater)
         setContentView(activityRegister1Binding.root)
 
-        val genderSpinner = activityRegister1Binding.spinnerSex
-        val genderArray = resources.getStringArray(R.array.gender_array).toMutableList()
-        val campusSpinner = activityRegister1Binding.campus
-        val campusArray = resources.getStringArray(R.array.allowed_campuses).toMutableList()
+        initialFirstName = activityRegister1Binding.fname.text.toString().trim()
+        initialLastName = activityRegister1Binding.Lname.text.toString().trim()
+        initialEmail = activityRegister1Binding.Emailline.text.toString().trim()
+        initialPassword = activityRegister1Binding.pass.text.toString().trim()
+        initialConfirmPassword = activityRegister1Binding.confirmPass.text.toString().trim()
+        initialContactNumber = activityRegister1Binding.Contactline.text.toString().trim()
+        initialContactEme = activityRegister1Binding.ContactEme.text.toString().trim()
+        initialAddress = activityRegister1Binding.address.text.toString().trim()
+        initialBirthday = activityRegister1Binding.birthdate.text.toString().trim()
 
         val contactNumber = activityRegister1Binding.Contactline
         val contactEme = activityRegister1Binding.ContactEme
-        genderArray.add(0, "Gender") // Add "Gender" as the first item in the list
-        campusArray.add(0, "Select Your Campus")
 
         val maxLength = 80
         val maxEmailLength = 320
         val maxContactLength = 20
         val maxAddressLength = 255
         val maxPasswordLength = 128
+// For the "Campus" field
+        val campusAutoCompleteTextView = activityRegister1Binding.campus
+        val campusOptions = resources.getStringArray(R.array.allowed_campuses)
+
+        val campusAdapter = ArrayAdapter(this, R.layout.dropdown_item, campusOptions) // Create an ArrayAdapter with your options
+        campusAutoCompleteTextView.setAdapter(campusAdapter) // Set the adapter for the AutoCompleteTextView
+
+// For the "Gender" field
+        val spinnerSexAutoCompleteTextView = activityRegister1Binding.spinnerSex
+        val sexOptions = resources.getStringArray(R.array.gender_array)
+
+        val sexAdapter = ArrayAdapter(this, R.layout.dropdown_item, sexOptions) // Create an ArrayAdapter with your options
+        spinnerSexAutoCompleteTextView.setAdapter(sexAdapter) // Set the adapter for the AutoCompleteTextView
 
         val firstNameEditText = activityRegister1Binding.fname
         val lastNameEditText = activityRegister1Binding.Lname
@@ -226,9 +252,7 @@ class Register1 : AppCompatActivity() {
         val passwordFilters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxPasswordLength))
         passwordEditText.filters = passwordFilters
         confirmPasswordEditText.filters = passwordFilters
-
         addressEditText.filters = addressFilters
-
         contactNumberEditText.filters = contactFilters
         contactEmeEditText.filters = contactFilters
         emailEditText.filters = emailFilters
@@ -236,67 +260,6 @@ class Register1 : AppCompatActivity() {
         lastNameEditText.filters = filters
         contactNumber.inputType = InputType.TYPE_CLASS_PHONE
         contactEme.inputType = InputType.TYPE_CLASS_PHONE
-// Gender Spinner
-        val adapter = CustomSpinnerAdapter(
-            this,
-            R.layout.spinner_gender, // Use the custom layout here
-            genderArray
-        )
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-        val initialSelection = 0
-        genderSpinner.setSelection(initialSelection)
-        genderSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                spinnerSex = if (position == 0) {
-                    "" // Set an empty string if "Gender" is selected
-                } else {
-                    parent?.getItemAtPosition(position).toString()
-                }
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
-        }
-
-        // Campus Spinner
-        val campusAdapter = CustomSpinnerAdapter(
-            this,
-            R.layout.spinner_campus, // Use the custom layout here
-            campusArray
-        )
-
-        campusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-
-        val initialCampusSelection = 0
-        campusSpinner.setSelection(initialCampusSelection)
-        var selectedCampus = ""
-        campusSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                selectedCampus = if (position == 0) {
-                    "" // Set an empty string if "Select Campus" is selected
-                } else {
-                    parent?.getItemAtPosition(position).toString()
-                }
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                selectedCampus = "" // Set an empty string if nothing is selected
-            }
-        }
-
 
         val birthdayEditText = activityRegister1Binding.birthdate
         val confirmpassword = activityRegister1Binding.confirmPass
@@ -304,55 +267,64 @@ class Register1 : AppCompatActivity() {
         firstNameEditText.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 validateFirstName()
+                // Set selection to initial input length
+                firstNameEditText.setSelection(initialFirstName.length)
             }
         }
 
         lastNameEditText.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 validateLastName()
+                // Set selection to initial input length
+                lastNameEditText.setSelection(initialLastName.length)
             }
         }
-
         emailEditText.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 validateEmail()
+                emailEditText.setSelection(initialEmail.length)
             }
         }
 
         passwordEditText.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 validatePassword()
+                passwordEditText.setSelection(initialPassword.length)
             }
         }
         confirmpassword.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 validateConfirmPassword()
+                confirmpassword.setSelection(initialConfirmPassword.length)
             }
         }
 
         contactNumberEditText.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 validateContactNumber()
+                contactNumberEditText.setSelection(initialContactNumber.length)
             }
         }
         contactEmeEditText.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 validateContactEme()
+                contactEmeEditText.setSelection(initialContactEme.length)
             }
         }
 
         addressEditText.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 validateAddress()
+                addressEditText.setSelection(initialAddress.length)
             }
         }
 
         birthdayEditText.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 validateBirthday()
+                birthdayEditText.setSelection(initialBirthday.length)
             }
         }
-
         firebaseAuth = FirebaseAuth.getInstance()
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please wait...")
@@ -365,127 +337,7 @@ class Register1 : AppCompatActivity() {
         }
         val regbtn: Button = findViewById(R.id.Reg)
         regbtn.setOnClickListener {
-            validateBirthday()
             validateData()
-        }
-
-        emailEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                email = emailEditText.text.toString().trim()
-            } else {
-                passwordEditText.setText(pass)
-                emailEditText.setText(email)
-                addressEditText.setText(address)
-                firstNameEditText.setText(fname)
-                lastNameEditText.setText(lname)
-                confirmPasswordEditText.setText(confirmPass)
-                contactEmeEditText.setText(phoneEme)
-                contactNumberEditText.setText(phoneno)
-
-            }
-        }
-
-        passwordEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                pass = passwordEditText.text.toString().trim()
-            } else {
-                passwordEditText.setText(pass)
-                emailEditText.setText(email)
-                addressEditText.setText(address)
-                firstNameEditText.setText(fname)
-                lastNameEditText.setText(lname)
-                confirmPasswordEditText.setText(confirmPass)
-                contactEmeEditText.setText(phoneEme)
-                contactNumberEditText.setText(phoneno)
-            }
-        }
-        confirmPasswordEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                confirmPass = confirmPasswordEditText.text.toString().trim()
-            } else {
-                passwordEditText.setText(pass)
-                emailEditText.setText(email)
-                addressEditText.setText(address)
-                firstNameEditText.setText(fname)
-                lastNameEditText.setText(lname)
-                confirmPasswordEditText.setText(confirmPass)
-                contactEmeEditText.setText(phoneEme)
-                contactNumberEditText.setText(phoneno)
-            }
-        }
-        firstNameEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                fname = firstNameEditText.text.toString().trim()
-            } else {
-                passwordEditText.setText(pass)
-                emailEditText.setText(email)
-                addressEditText.setText(address)
-                firstNameEditText.setText(fname)
-                lastNameEditText.setText(lname)
-                confirmPasswordEditText.setText(confirmPass)
-                contactEmeEditText.setText(phoneEme)
-                contactNumberEditText.setText(phoneno)
-            }
-        }
-
-        lastNameEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                lname = lastNameEditText.text.toString().trim()
-            } else {
-                passwordEditText.setText(pass)
-                emailEditText.setText(email)
-                addressEditText.setText(address)
-                firstNameEditText.setText(fname)
-                lastNameEditText.setText(lname)
-                confirmPasswordEditText.setText(confirmPass)
-                contactEmeEditText.setText(phoneEme)
-                contactNumberEditText.setText(phoneno)
-            }
-
-        }
-        addressEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                address = addressEditText.text.toString().trim()
-            } else {
-                passwordEditText.setText(pass)
-                emailEditText.setText(email)
-                addressEditText.setText(address)
-                firstNameEditText.setText(fname)
-                lastNameEditText.setText(lname)
-                confirmPasswordEditText.setText(confirmPass)
-                contactEmeEditText.setText(phoneEme)
-                contactNumberEditText.setText(phoneno)
-            }
-
-        }
-        contactNumberEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                phoneno = contactNumberEditText.text.toString().trim()
-            } else {
-                passwordEditText.setText(pass)
-                emailEditText.setText(email)
-                addressEditText.setText(address)
-                firstNameEditText.setText(fname)
-                lastNameEditText.setText(lname)
-                confirmPasswordEditText.setText(confirmPass)
-                contactEmeEditText.setText(phoneEme)
-                contactNumberEditText.setText(phoneno)
-            }
-
-        }
-        contactEmeEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                phoneEme = contactEmeEditText.text.toString().trim()
-            } else {
-                passwordEditText.setText(pass)
-                emailEditText.setText(email)
-                addressEditText.setText(address)
-                firstNameEditText.setText(fname)
-                lastNameEditText.setText(lname)
-                confirmPasswordEditText.setText(confirmPass)
-                contactEmeEditText.setText(phoneEme)
-                contactNumberEditText.setText(phoneno)
-            }
         }
 
         val birthday = activityRegister1Binding.birthdate
@@ -530,81 +382,70 @@ class Register1 : AppCompatActivity() {
         phoneEme = activityRegister1Binding.ContactEme.text.toString().trim()
         address = activityRegister1Binding.address.text.toString().trim()
         birtdate = activityRegister1Binding.birthdate.text.toString().trim()
-        spinnerSex = activityRegister1Binding.spinnerSex.toString()
-        selectedCampus = activityRegister1Binding.campus.toString()
+        spinnerSex = activityRegister1Binding.spinnerSex.text.toString()
+        selectedCampus = activityRegister1Binding.campus.text.toString()
 
         val checkBox = findViewById<CheckBox>(R.id.checkedTextView)
-        val campusSpinner = activityRegister1Binding.campus
         val errorMessages = mutableListOf<String>()
 
         if (fname.isEmpty() || lname.isEmpty() || email.isEmpty() || phoneno.isEmpty() ||
-            phoneEme.isEmpty() || address.isEmpty() || birtdate.isEmpty() || spinnerSex.equals("Gender") || selectedCampus.equals("Select Your Campus") ||
-            !checkBox.isChecked()) {
-            errorMessages.add("Please Fill All the Fields");
+            phoneEme.isEmpty() || address.isEmpty() || birtdate.isEmpty() || !checkBox.isChecked() ||
+            selectedCampus.isEmpty() || spinnerSex.isEmpty()
+        ) {
+            errorMessages.add("Please Fill All the Fields")
         }
-            if (fname.isEmpty()) {
-                activityRegister1Binding.fname.error = "Required"
-            } else {
-                activityRegister1Binding.fname.error = null
-            }
-            if (lname.isEmpty()) {
-                activityRegister1Binding.Lname.error = "Required"
-            } else {
-                activityRegister1Binding.Lname.error = null
-            }
-            if (email.isEmpty()) {
-                activityRegister1Binding.Emailline.error = "Email is required"
-            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                activityRegister1Binding.Emailline.error = "Invalid email format"
-            } else {
-                activityRegister1Binding.Emailline.error = null
-            }
-            if (phoneno.isEmpty() || !isValidPhoneNumber(phoneno)) {
-                activityRegister1Binding.Contactline.error = if (phoneno.isEmpty()) {
-                    "Please enter Contact Number"
-                } else {
-                    "Invalid Contact Number"
-                }
-            } else {
-                activityRegister1Binding.Contactline.error = null
-            }
-            if (phoneEme.isEmpty() || !isValidPhoneEme(phoneEme)) {
-                activityRegister1Binding.ContactEme.error = if (phoneEme.isEmpty()) {
-                    "Please enter Contact Person"
-                } else {
-                    "Invalid Contact Person"
-                }
-            } else {
-                activityRegister1Binding.ContactEme.error = null
-            }
-            if (address.isEmpty()) {
-                activityRegister1Binding.address.error = "Required"
-            } else {
-                activityRegister1Binding.address.error = null
-            }
-            if (birtdate.isEmpty()) {
-                activityRegister1Binding.birthdate.error = "Required"
-            } else {
-                activityRegister1Binding.birthdate.error = null
-            }
 
-        if (spinnerSex.isEmpty() || spinnerSex == "Gender") {
-            val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
-            genderTextInputLayout.error = "Please select a Gender"
+        if (fname.isEmpty()) {
+            activityRegister1Binding.fname.error = "Required"
         } else {
-            val genderTextInputLayout = activityRegister1Binding.genderTextInputLayout
-            genderTextInputLayout.error = null
+            activityRegister1Binding.fname.error = null
         }
-        if (selectedCampus.isEmpty() || selectedCampus == "Select Your Campus") {
-            val campusTextInputLayout = activityRegister1Binding.campusTextInputLayout
-            campusTextInputLayout.error = "Please select your Campus"
+
+        if (lname.isEmpty()) {
+            activityRegister1Binding.Lname.error = "Required"
         } else {
-            val campusTextInputLayout = activityRegister1Binding.campusTextInputLayout
-            campusTextInputLayout.error = null
+            activityRegister1Binding.Lname.error = null
         }
 
+        if (email.isEmpty()) {
+            activityRegister1Binding.Emailline.error = "Email is required"
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            activityRegister1Binding.Emailline.error = "Invalid email format"
+        } else {
+            activityRegister1Binding.Emailline.error = null
+        }
 
+        if (phoneno.isEmpty() || !isValidPhoneNumber(phoneno)) {
+            activityRegister1Binding.Contactline.error = if (phoneno.isEmpty()) {
+                "Please enter Contact Number"
+            } else {
+                "Invalid Contact Number"
+            }
+        } else {
+            activityRegister1Binding.Contactline.error = null
+        }
 
+        if (phoneEme.isEmpty() || !isValidPhoneEme(phoneEme)) {
+            activityRegister1Binding.ContactEme.error = if (phoneEme.isEmpty()) {
+                "Please enter Contact Number"
+            } else {
+                "Invalid Contact Number"
+            }
+        } else {
+            activityRegister1Binding.ContactEme.error = null
+        }
+
+        if (address.isEmpty()) {
+            activityRegister1Binding.address.error = "Required"
+        } else {
+            activityRegister1Binding.address.error = null
+        }
+
+        if (birtdate.isEmpty()) {
+            activityRegister1Binding.birthdate.error = "Required"
+        } else {
+            activityRegister1Binding.birthdate.error = null
+        }
 
         if (birtdate.isNotEmpty()) {
             val dobParts = birtdate.split(" / ")
@@ -618,7 +459,8 @@ class Register1 : AppCompatActivity() {
                 val currentMonth = calendar.get(Calendar.MONTH) + 1
                 val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
 
-                val age = currentYear - year - if (currentMonth < month || (currentMonth == month && currentDay < day)) 1 else 0
+                val age =
+                    currentYear - year - if (currentMonth < month || (currentMonth == month && currentDay < day)) 1 else 0
 
                 if (age < 18) {
                     errorMessages.add("You must be at least 18 years old to register")
@@ -635,11 +477,12 @@ class Register1 : AppCompatActivity() {
                 showCustomPopup(message)
             }
         } else {
+            // Only create the user account if there are no validation errors
             createUserAccount()
         }
-
-
     }
+
+
     private fun showCustomPopup(message: String) {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
