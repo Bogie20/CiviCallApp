@@ -22,13 +22,13 @@ class DisasterResponseMenu : AppCompatActivity() {
             DataMain("Emergency Preparedness: Plan ahead for safety."),
             DataMain("First Aid and Basic Life Support:Learn life-saving skills."),
             DataMain("Fire Safety: Mastering the Flames."),
-            DataMain("The Role of Campus Security in Fire Safety: What You Should Know"),
-            DataMain("Search and Rescue Operations"),
-            DataMain("Communication and Information Management"),
-            DataMain("Food Distribution and Nutrition"),
-            DataMain("Psychological Support Services"),
-            DataMain("Volunteer and Donations Management"),
-            DataMain("Recovery and Rebuilding Efforts"),
+            DataMain("Understanding the Diversity of Natural Disasters: A Comprehensive Exploration"),
+            DataMain("Disaster Response and Search and Rescue Operations"),
+            DataMain("Connecting for Crisis Enhancing Communication and Information in Disaster Response"),
+            DataMain("Food Distribution &amp; Nutrition in Disaster Response"),
+            DataMain("Resilience and Recovery Psychological Support Services in Disaster Response"),
+            DataMain("Guiding Generosity: Volunteer and Donations Management in Disaster Response"),
+            DataMain("Focused Recovery and Rebuilding Efforts: Strategies for Post-Disaster Resilience"),
         )
 
         val adapter = CivicAdapterMain(campusList) { position ->
@@ -54,37 +54,37 @@ class DisasterResponseMenu : AppCompatActivity() {
 
                 3 -> {
                     // Handle click for Item 3
-                    val intent = Intent(this, FirstAidInfo::class.java)
+                    val intent = Intent(this, NaturalDisasterInfo::class.java)
                     startActivity(intent)
                 }
 
                 4 -> {
                     // Handle click for Item 4
-                    val intent = Intent(this, FirstAidInfo::class.java)
+                    val intent = Intent(this, SearchAndRescueinfo::class.java)
                     startActivity(intent)
                 }
 
                 5 -> {
                     // Handle click for Item 5
-                    val intent = Intent(this, FirstAidInfo::class.java)
+                    val intent = Intent(this, CommunicationAndInformationInfo::class.java)
                     startActivity(intent)
                 }
 
                 6 -> {
                     // Handle click for Item 6
-                    val intent = Intent(this, FirstAidInfo::class.java)
+                    val intent = Intent(this, FoodDistributionAndNutrionInfo::class.java)
                     startActivity(intent)
                 }
 
                 7 -> {
                     // Handle click for Item 7
-                    val intent = Intent(this, FirstAidInfo::class.java)
+                    val intent = Intent(this, PsychologicalSupportServicesInfo::class.java)
                     startActivity(intent)
                 }
 
                 8 -> {
                     // Handle click for Item 8
-                    val intent = Intent(this, FirstAidInfo::class.java)
+                    val intent = Intent(this, VolunteerandDonationsManagementInfo::class.java)
                     startActivity(intent)
                 }
 

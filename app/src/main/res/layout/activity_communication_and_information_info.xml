@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey"
     tools:context=".DisasterResponseInfo.CommunicationAndInformationInfo">
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -32,7 +33,7 @@
 
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Natural Disasters"
+            android:text="Communication &amp; info"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -69,29 +70,29 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="First Aid and Basic Life Support:Learn life-saving skills."
+                    android:text="Connecting for Crisis Enhancing Communication and Information in Disaster Response"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp" />
+
                 <TextView
 
                     android:id="@+id/info"
-                    android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Hello,Spartans! On your path to greatness, there's one skill set you must wield with confidence – life-saving skills. Today, we're diving into the world of First Aid and Basic Life Support, arming you with the knowledge to be the true heroes our community needs. Let's embark on this journey of preparedness together!&quot;"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="100dp"
                     android:layout_marginStart="13dp"
+                    android:layout_marginTop="120dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend"
                     android:gravity="start"
+                    android:text="&quot;Get ready to dive into the world of 'Crisis Communication Technologies.' In this fast-paced digital era, staying informed and connected during emergencies is crucial. Explore the cutting-edge technology and systems that empower us to communicate effectively when it matters most. &quot;"
                     android:textAlignment="viewStart"
-                    />
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
 
             </androidx.cardview.widget.CardView>
             <androidx.recyclerview.widget.RecyclerView

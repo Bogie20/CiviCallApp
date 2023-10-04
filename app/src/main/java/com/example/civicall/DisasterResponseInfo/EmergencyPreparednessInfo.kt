@@ -118,8 +118,8 @@ class EmergencyPreparednessInfo : AppCompatActivity() {
                         "9. Budgeting: Create a budget that outlines your income, expenses, and savings goals. Stick to this budget to maintain financial discipline and allocate funds for emergencies.\n\n" +
                         "10. Regular Review: Periodically review and update your financial plan, insurance coverage, and investment strategies to adapt to changing circumstances. Stay proactive in safeguarding your financial well-being.\n\n",
                 R.drawable.img_117,
-                "https://www.hobartcity.com.au/Council/News-publications-and-announcements/Latest-news/smoke-free-parks",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rcrc-resilience-southeastasia.org%2Fhealth%2Fcommunity-based-health-and-first-aid%2Ffirst-aid%2F&psig=AOvVaw2QU30hGPB9gHjsawRHz_IC&ust=1696427641351000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCNiBzamE2oEDFQAAAAAdAAAAABAD")
+                "https://singlife.com.ph/about/blog/5-ways-to-safeguard-your-finances/#:~:text=Insurance%20is%20a%20way%20of,in%20the%20worst%20case%2C%20death.",
+                "https://6rt99wqv.media.zestyio.com/CMS---June-2021-Blogs_Blog-4-boost.png")
         )
             val adapter = DataAdapter(dataList)
 
