@@ -40,7 +40,8 @@
             android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.Civic"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".CivicEngagementInfo.DigitalAgeCivic"
             android:exported="true" />
@@ -74,8 +75,13 @@
             android:name=".DisasterResponseInfo.CommunicationAndInformationInfo"
             android:exported="true" />
         <activity
+            android:name=".DisasterResponseInfo.EmergencyPreparednessInfo"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+        <activity
             android:name=".DisasterResponseInfo.DisasterResponseMenu"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
         <activity
             android:name=".DisasterResponseInfo.FireSafetyInfo"
             android:exported="true" />

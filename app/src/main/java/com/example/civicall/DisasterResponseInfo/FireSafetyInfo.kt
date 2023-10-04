@@ -40,9 +40,9 @@ class FireSafetyInfo : AppCompatActivity() {
                         "9. PROHIBITED ITEMS: Avoid bringing banned items into your living quarters.\n\n" +
                         "10. REPORTING MATTERS: Report guideline violations to campus authorities promptly.\n\n",
 
-                R.drawable.love2,
+                R.drawable.img_112,
                 "https://www.facebook.com/watch/live/?ref=watch_permalink&v=1110126603163215",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863"
+                "https://villaflorhospital.com.ph/wp-content/uploads/2019/02/FireBrigade-1024x683.jpg"
             )
         )
         dataList.add(
@@ -61,9 +61,9 @@ class FireSafetyInfo : AppCompatActivity() {
                     "10. REPORTING CONCERNS: If you have concerns about the effectiveness of the evacuation plan or notice any obstacles along the evacuation routes, report them to campus authorities to ensure a safer environment for all residents.\n\n",
 
 
-                R.drawable.love2,
+                R.drawable.img_107,
             "https://issuu.com/hofstra/docs/living-factor-calendar_32413209ada772/s/16589034",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fm.indiamart.com%2Fproddetail%2Ffire-protection-equipment-21907048762.html&psig=AOvVaw3JLmiFGP6j5n5WIM-dFX7v&ust=1696470647809000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMC9juuj24EDFQAAAAAdAAAAABAZ")
         )
         dataList.add(
             DataItem("Thoroughly Navigating Your Dormitory's Fire Evacuation Plan",
@@ -79,14 +79,14 @@ class FireSafetyInfo : AppCompatActivity() {
                         "9. Immediate Evacuation: Always treat a fire alarm as a real emergency and evacuate promptly. Avoid using elevators during evacuations.\n\n" +
                         "10. Reporting Concerns: Report any concerns about the effectiveness of the evacuation plan or obstacles along evacuation routes to campus authorities for improvement.\n\n",
 
-            R.drawable.love2,
-            "https://www.lsu.edu/ehs/files/Section_IV_Part_A_Fire_Safety_in_Dormitories.pdf",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+            R.drawable.img_108,
+            "https://www.firesafe.org.uk/fire-emergency-evacuation-plan-or-fire-procedure/",
+                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.alertmedia.com%2Fblog%2Ffire-evacuation-plan-for-your-business%2F&psig=AOvVaw05AWtlksUFTVjPJ8ip5L1g&ust=1696470967487000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCNCCu4Sl24EDFQAAAAAdAAAAABAI")
         )
         dataList.add(
             DataItem("Culinary Fire Safety: A Recipe for Dormitory Security",
 
-            "Differentiate between a tornado watch, which means tornadoes are possible in your area, and a tornado warning, indicating a tornado has been sighted or detected. Familiarize yourself with designated safe shelter locations both on and off-campus to seek refuge during tornadoes. Stay informed through weather alerts and local news and have a tornado emergency kit ready, including essentials like a flashlight, batteries, and a battery-powered weather radio.\n\n" +
+            "Spice up your dorm life without the drama! 'Culinary Fire Safety: A Recipe for Dormitory Security' is your go-to guide for safe and delicious cooking in shared spaces. Discover the recipe for kitchen peace of mind in these pages.\n\n" +
 
 
 
@@ -108,13 +108,13 @@ class FireSafetyInfo : AppCompatActivity() {
 
 
 
-            R.drawable.love2,
+            R.drawable.img_109,
             "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies/fire.html#:~:text=Top%20Tips%20for%20Fire%20Safety,the%20plan%20twice%20a%20year.",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://i.ytimg.com/vi/JAzFIpET9mg/mqdefault.jpg")
         )
         dataList.add(
             DataItem("Navigating the Current: Safeguarding Against Electrical Fires",
-            "Flash floods result from sudden heavy rainfall, dam failures, or rapid snowmelt, causing rapid inundation. River floods develop gradually due to prolonged rainfall, snowmelt, or dam releases, causing rivers to overflow. To ensure campus safety, identify flood-prone areas like basements, low-lying lots, and nearby water bodies during extreme weather.\n\n" +
+            "\"Dive into 'Navigating the Current: Safeguarding Against Electrical Fires' to ride the waves of electrical safety like a pro! This guide offers essential insights and precautions to keep you and your home safe from electrical hazards.\"\n\n" +
 
                     "1. Outlet Overloading: Avoid overloading electrical outlets with multiple devices, as it can lead to overheating and fires.\n\n" +
                     "2. Surge Protectors: Use surge protectors to safeguard your electronics and prevent electrical fires during power surges.\n\n" +
@@ -131,13 +131,13 @@ class FireSafetyInfo : AppCompatActivity() {
 
 
 
-            R.drawable.love2,
+            R.drawable.img_110,
             "https://fens.sabanciuniv.edu/tr/laboratory-safety/general-laboratory-safety/preventing-electrical-hazards",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.thehortongroup.com%2Fresources%2Felectrical-safety%2F&psig=AOvVaw3r4Rt6nvs5VWOOkPR5P0R2&ust=1696471759533000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLjwovin24EDFQAAAAAdAAAAABAQ")
         )
         dataList.add(
             DataItem("The Flame and the Forbidden: Candle and Open Flame Safety",
-            " Wildfires spread rapidly due to dry conditions, strong winds, and ignition sources like lightning or human activities. To safeguard your dorm or apartment in fire-prone areas, establish a defensible space by clearing dead vegetation, maintaining a safe distance from flammable materials, and having fire-resistant roofing and siding.\n\n" +
+            "Unlock the secrets of 'The Flame and the Forbidden: Candle and Open Flame Safety' to bring a warm and cozy ambiance to your space without risking safety. This guide provides essential tips and precautions to ensure that candlelit moments remain enchanting, not hazardous.\n\n" +
 
 
                     "1. Respect Prohibitions: Adhere to your dormitory's rules regarding the use of candles and open flames; many places prohibit them due to fire risks.\n\n" +
@@ -155,32 +155,13 @@ class FireSafetyInfo : AppCompatActivity() {
 
 
 
-            R.drawable.love2,
+            R.drawable.img_111,
             "https://www.hamilton.edu/offices/epss/open-flame-candle-safety",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.townandcountry-ins.com/wp-content/uploads/sites/155/2020/12/Candle-Safety-Blog.png")
         )
-        dataList.add(
-            DataItem("Respecting the Smoke-Free Environment: A Breath of Fire Safety",
-            "To safeguard yourself in volcanic-prone areas, become well-versed in recognizing early warning signs such as heightened seismic activity and gas emissions. It's equally important to acquaint yourself with the designated evacuation routes and locate nearby shelters for timely and safe evacuation during a volcanic event. Being prepared can make a crucial difference in protecting yourself and your community.\n\n" +
-
-                    "1. Policy Adherence: Strictly adhere to your college's smoke-free policy, which prohibits smoking in designated areas.\n\n" +
-                    "2. Designated Smoking Zones: If designated smoking areas exist on campus, use them responsibly and dispose of cigarette butts in designated containers.\n\n" +
-                    "3. No Indoor Smoking: Never smoke indoors, as it poses significant fire and health risks.\n" +
-                    "4. Fire-Safe Disposal: Always use proper receptacles for cigarette disposal to prevent fires caused by discarded butts.\n\n" +
-                    "5. Educate Peers: Encourage your peers to respect the smoke-free policy and promote a culture of fire safety.\n\n" +
-                    "6. Smoking Alternatives: Consider using smoking alternatives such as e-cigarettes or vaping only in designated areas, following campus regulations.\n\n" +
-                    "7. Emergency Response: Familiarize yourself with the location of fire alarms and emergency exits in case of fire emergencies.\n\n" +
-                    "8. Cigarette Fire Hazards: Be aware that cigarettes can ignite fires if not properly extinguished.\n\n" +
-                    "9. Cigarette Butt Containers: Ensure that designated containers for cigarette butts are available and regularly emptied.\n\n" +
-                    "10. Reporting Violations: Report any violations of the smoke-free policy to campus authorities for enforcement and fire safety.\n\n",
-
-                R.drawable.love2,
-            "https://www.hobartcity.com.au/Council/News-publications-and-announcements/Latest-news/smoke-free-parks",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
-        )
-        dataList.add(
-            DataItem("8. Mastery of Fire Extinguisher Use: The PASS to Safety",
-            "Tsunamis are frequently triggered by underwater earthquakes, making it essential to understand their origins. When a tsunami warning is issued, recognizing the critical need to move to higher ground swiftly can be a life-saving response, as it reduces the risk of being affected by the powerful and destructive waves.\n\n" +
+          dataList.add(
+            DataItem("Mastery of Fire Extinguisher Use: The PASS to Safety",
+            "Embark on the path to 'Mastery of Fire Extinguisher Use: The PASS to Safety' and equip yourself with life-saving knowledge. This guide is your key to confidently handling fire emergencies with the PASS technique.\n\n" +
 
 
                     "1. Understanding Fire Extinguishers: Familiarize yourself with the types of fire extinguishers and their specific uses (e.g., Class A, B, C, or ABC extinguishers).\n\n" +
@@ -207,64 +188,9 @@ class FireSafetyInfo : AppCompatActivity() {
 
 
 
-            R.drawable.love2,
+            R.drawable.img_105,
             "https://www.sc.edu/ehs/training/Fire/08_howto.htm",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
-        )
-        dataList.add(
-            DataItem("9. Vigilant Reporting: Safeguarding Your Community",
-            "Droughts have profound, long-term impacts on water sources and agriculture, often leading to reduced water availability and crop failures. To mitigate these effects, it is vital to adopt water conservation practices in your daily life, such as fixing leaks, using water-efficient appliances, and minimizing water waste, contributing to resource preservation and sustainability.\"Drop, Cover, and Hold On\" drill regularly with your roommates or neighbors.\n\n" +
-
-
-                    "1. Awareness of Hazards: Stay vigilant and be observant of potential fire hazards in your surroundings.\n\n" +
-                    "2. Malfunctioning Equipment: Report any malfunctioning fire safety equipment, such as fire extinguishers, smoke detectors, or fire alarms, immediately to campus authorities.\n\n" +
-                    "3. Violations of Fire Safety Rules: If you notice violations of fire safety rules or guidelines by yourself or others, report them to the appropriate authorities promptly.\n" +
-                    "4. Designated Reporting Channels: Utilize designated reporting channels, which may include contacting your resident advisor, housing office, or campus security, to report safety concerns.\n\n" +
-                    "5. Timely Reporting: Report hazards and violations promptly to ensure quick responses and necessary actions to address safety issues.\n\n" +
-                    "6. Communication: Encourage open communication among your fellow residents about the importance of reporting hazards to maintain a safe living environment.\n\n" +
-                    "7. Emergency Numbers: Keep a list of emergency contacts and important numbers handy in case of fire-related incidents.\n\n" +
-                    "8. Fire Alarm Activation: In case of a fire, pull the fire alarm to alert others and activate the building's fire alarm system.\n\n" +
-                    "9. Follow Protocols: Familiarize yourself with your college's fire safety reporting protocols, which may include specific procedures to follow when reporting hazards or violations.\n\n" +
-                    "10. Collective Responsibility: Remember that vigilance and reporting are collective responsibilities that contribute to the safety and well-being of your entire community.\n\n",
-
-
-
-
-
-
-
-
-            R.drawable.love2,
-            "https://worldguardian.ca/neighborhood-patrol-security-safeguarding-cochranes-community-with-vigilance-and-trust/",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
-        )
-        dataList.add(
-            DataItem("10.The Role of Campus Security in Fire Safety: What You Should Know.",
-            "\"Attention Spartan college students, your journey towards academic excellence and personal growth has just begun. As you navigate the halls of higher education, remember that knowledge is your most formidable weapon. Join us on a quest for success, where every challenge is an opportunity to conquer, and every day is a chance to become a true Spartan scholar.\n\n" +
-
-
-
-
-
-
-                    "1. Emergency Response: Campus security plays a vital role in responding to fire emergencies and coordinating with local fire departments.\n\n" +
-                    "2. 24/7 Availability: Campus security is typically available 24/7 to respond to emergencies and enforce fire safety protocols.\n\n" +
-                    "3. Fire Drills: They may coordinate and oversee fire drills to ensure the campus community is well-prepared in case of a fire.\n" +
-                    "4. Evacuation Assistance: Campus security personnel are trained to assist in the orderly evacuation of buildings during fire alarms.\n\n" +
-                    "5. Fire Alarm Maintenance: They are responsible for maintaining and testing fire alarm systems to ensure they function correctly.\n\n" +
-                    "6. Fire Extinguisher Inspection: They may conduct regular inspections of fire extinguishers and ensure they are in proper working order.\n\n" +
-                    "7. Reporting Hazards: Campus security should be informed of any fire hazards or violations of fire safety rules so they can take appropriate action.\n\n" +
-                    "8. First Responders: In some cases, security personnel may serve as first responders to small fires before the arrival of the fire department.\n\n" +
-                    "9. Safety Education: They often participate in fire safety education programs for students and staff.\n\n" +
-                    "10. Collaboration: Campus security works in collaboration with other emergency response teams to ensure a coordinated and effective response in the event of a fire or other emergencies.\n\n",
-
-
-
-
-
-            R.drawable.love2,
-            "https://resources.impactfireservices.com/fire-prevention-and-preparedness-on-college-campuses",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.google.com/url?sa=i&url=https%3A%2F%2Flpubatangas.edu.ph%2Flpu-batangas-conducts-fire-drills-in-all-campuses%2F&psig=AOvVaw133PXCvlsXgc484Vzp0-Kk&ust=1696468634352000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCNDI3Kic24EDFQAAAAAdAAAAABAY")
         )
 
 
