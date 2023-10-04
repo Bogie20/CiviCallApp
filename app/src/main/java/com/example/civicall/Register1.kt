@@ -5,22 +5,19 @@ import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputFilter
 import android.text.InputType
 import android.util.Patterns
-import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.ImageView
-import android.widget.Toast
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.civicall.CivicEngagementPost.CivicPostFragment
 import com.example.civicall.databinding.ActivityRegister1Binding
-
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.Calendar
@@ -40,87 +37,90 @@ class Register1 : AppCompatActivity() {
     private var initialContactEme = ""
     private var initialAddress = ""
     private var initialBirthday = ""
-    private fun validateFirstName() {
+    private fun validateFirstName(): Boolean {
         val lastName = activityRegister1Binding.fname.text.toString().trim()
-
         val regex = "^[a-zA-Z.\\s-]+$"
 
         if (lastName.isEmpty()) {
             activityRegister1Binding.fname.error = "Required"
+            return false
         } else if (!lastName.matches(regex.toRegex())) {
             activityRegister1Binding.fname.error =  "Only letters and symbols (, . -) are allowed"
+            return false
         } else {
             activityRegister1Binding.fname.error = null
+            return true
         }
     }
 
-
-
-    private fun validateLastName() {
+    private fun validateLastName(): Boolean {
         val lastName = activityRegister1Binding.Lname.text.toString().trim()
-
         val regex = "^[a-zA-Z.\\s-]+$"
 
         if (lastName.isEmpty()) {
             activityRegister1Binding.Lname.error = "Required"
+            return false
         } else if (!lastName.matches(regex.toRegex())) {
-            activityRegister1Binding.Lname.error =  "Only letters and symbols (, . -) are allowed"
+            activityRegister1Binding.Lname.error=  "Only letters and symbols (, . -) are allowed"
+            return false
         } else {
             activityRegister1Binding.Lname.error = null
+            return true
         }
     }
 
-    private fun validateEmail() {
+    private fun validateEmail(): Boolean {
         val email = activityRegister1Binding.Emailline.text.toString().trim()
         if (email.isEmpty()) {
             activityRegister1Binding.Emailline.error = "Email is required"
+            return false
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             activityRegister1Binding.Emailline.error = "Invalid email format"
-        } else {
-            activityRegister1Binding.Emailline.error = null
+            return false
         }
+        return true
     }
 
-
-    private fun validateConfirmPassword() {
+    private fun validateConfirmPassword(): Boolean {
         val password = activityRegister1Binding.confirmPass.text.toString().trim()
 
         if (password.isEmpty()) {
             activityRegister1Binding.confirmPass.error = "Required"
-        } else {
-            activityRegister1Binding.confirmPass.error = null
+            return false
         }
+        return true
     }
 
-    private fun validatePassword() {
+    private fun validatePassword(): Boolean {
         val password = activityRegister1Binding.pass.text.toString().trim()
 
         if (password.isEmpty()) {
             activityRegister1Binding.pass.error = "Password is required"
+            return false
         } else if (password.length < 8) {
             activityRegister1Binding.pass.error = "Password must be at least 8 characters long"
+            return false
         } else if (!password.matches("^(?=.*[a-zA-Z])(?=.*\\d).+\$".toRegex())) {
             activityRegister1Binding.pass.error = "Password must contain both letters and numbers"
-        } else {
-            activityRegister1Binding.pass.error = null
+            return false
         }
+        return true
     }
 
-
-    private fun validateContactNumber() {
+    private fun validateContactNumber(): Boolean {
         val contactNumber = activityRegister1Binding.Contactline.text.toString().trim()
 
         if (contactNumber.isEmpty()) {
             activityRegister1Binding.Contactline.error = "Please enter Contact Number"
+            return false
         } else if (!isValidPhoneNumber(contactNumber)) {
             activityRegister1Binding.Contactline.error = "Invalid Contact Number"
-        } else {
-            activityRegister1Binding.Contactline.error = null
+            return false
         }
+        return true
     }
 
     private fun isValidPhoneNumber(contactNumber: String): Boolean {
-
         val sanitizedNumber = contactNumber.replace("\\s".toRegex(), "")
 
         return if (sanitizedNumber.startsWith("+63")) {
@@ -132,23 +132,22 @@ class Register1 : AppCompatActivity() {
         }
     }
 
-    private fun validateContactEme() {
+    private fun validateContactEme(): Boolean {
         val contactNum = activityRegister1Binding.ContactEme.text.toString().trim()
 
         if (contactNum.isEmpty()) {
             activityRegister1Binding.ContactEme.error = "Please enter Contact Person"
+            return false
         } else if (!isValidPhoneEme(contactNum)) {
             activityRegister1Binding.ContactEme.error = "Invalid Contact Person"
-        } else {
-            activityRegister1Binding.ContactEme.error = null
+            return false
         }
+        return true
     }
 
     private fun isValidPhoneEme(contactNum: String): Boolean {
-        // Remove spaces and special characters from the contact number
         val sanitizedNum = contactNum.replace("\\s".toRegex(), "")
 
-        // Check if it starts with either "+63" or "0"
         return if (sanitizedNum.startsWith("+63")) {
             sanitizedNum.length == 13
         } else if (sanitizedNum.startsWith("09")) {
@@ -158,45 +157,48 @@ class Register1 : AppCompatActivity() {
         }
     }
 
-    private fun validateAddress() {
+    private fun validateAddress(): Boolean {
         val address = activityRegister1Binding.address.text.toString().trim()
 
         if (address.isEmpty()) {
             activityRegister1Binding.address.error = "Address is required"
+            return false
         } else if (address.length < 5) {
             activityRegister1Binding.address.error = "Address is too short"
-        } else {
-            activityRegister1Binding.address.error = null
+            return false
         }
+        return true
     }
-    private fun validateBirthday() {
+
+    private fun validateBirthday(): Boolean {
         val birthday = activityRegister1Binding.birthdate.text.toString().trim()
         val birthdateTextInputLayout = activityRegister1Binding.birthdateTextInputLayout
 
         if (birthday.isEmpty()) {
-            birthdateTextInputLayout.error = null // Set error to null when it's empty
+            birthdateTextInputLayout.error = null
             birthdateTextInputLayout.helperText = "*required"
-        } else {
-            birthdateTextInputLayout.error = null // Set error to null when it's not empty
-            birthdateTextInputLayout.helperText = null
+            return false
         }
+        return true
     }
 
-
-    private fun validatePasswordMatch() {
+    private fun validatePasswordMatch(): Boolean {
         val password = activityRegister1Binding.pass.text.toString().trim()
         val confirmPassword = activityRegister1Binding.confirmPass.text.toString().trim()
 
         if (password.isEmpty()) {
             activityRegister1Binding.pass.error = "Please Enter Password"
+            return false
         } else if (confirmPassword.isEmpty()) {
             activityRegister1Binding.confirmPass.error = "Please Confirm Password"
+            return false
         } else if (password != confirmPassword) {
             activityRegister1Binding.confirmPass.error = "Passwords do not match"
-        } else {
-            activityRegister1Binding.confirmPass.error = null
+            return false
         }
+        return true
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -388,63 +390,50 @@ class Register1 : AppCompatActivity() {
         val checkBox = findViewById<CheckBox>(R.id.checkedTextView)
         val errorMessages = mutableListOf<String>()
 
-        if (fname.isEmpty() || lname.isEmpty() || email.isEmpty() || phoneno.isEmpty() ||
-            phoneEme.isEmpty() || address.isEmpty() || birtdate.isEmpty() || !checkBox.isChecked() ||
-            selectedCampus.isEmpty() || spinnerSex.isEmpty()
-        ) {
-            errorMessages.add("Please Fill All the Fields")
+        if (!validateFirstName()) {
+            errorMessages.add("Please enter a valid first name")
         }
 
-        if (fname.isEmpty()) {
-            activityRegister1Binding.fname.error = "Required"
-        } else {
-            activityRegister1Binding.fname.error = null
+        if (!validateLastName()) {
+            errorMessages.add("Please enter a valid last name")
         }
 
-        if (lname.isEmpty()) {
-            activityRegister1Binding.Lname.error = "Required"
-        } else {
-            activityRegister1Binding.Lname.error = null
+        if (!validateEmail()) {
+            errorMessages.add("Please enter a valid email")
         }
 
-        if (email.isEmpty()) {
-            activityRegister1Binding.Emailline.error = "Email is required"
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            activityRegister1Binding.Emailline.error = "Invalid email format"
-        } else {
-            activityRegister1Binding.Emailline.error = null
+        if (!validatePassword()) {
+            errorMessages.add("Please enter a valid password")
         }
 
-        if (phoneno.isEmpty() || !isValidPhoneNumber(phoneno)) {
-            activityRegister1Binding.Contactline.error = if (phoneno.isEmpty()) {
-                "Please enter Contact Number"
-            } else {
-                "Invalid Contact Number"
-            }
-        } else {
-            activityRegister1Binding.Contactline.error = null
+        if (!validateConfirmPassword()) {
+            errorMessages.add("Please confirm your password")
         }
 
-        if (phoneEme.isEmpty() || !isValidPhoneEme(phoneEme)) {
-            activityRegister1Binding.ContactEme.error = if (phoneEme.isEmpty()) {
-                "Please enter Contact Number"
-            } else {
-                "Invalid Contact Number"
-            }
-        } else {
-            activityRegister1Binding.ContactEme.error = null
+        if (!validateContactNumber()) {
+            errorMessages.add("Please enter a valid contact number")
         }
 
-        if (address.isEmpty()) {
-            activityRegister1Binding.address.error = "Required"
-        } else {
-            activityRegister1Binding.address.error = null
+        if (!validateContactEme()) {
+            errorMessages.add("Please enter a valid contact person")
         }
 
-        if (birtdate.isEmpty()) {
-            activityRegister1Binding.birthdate.error = "Required"
-        } else {
-            activityRegister1Binding.birthdate.error = null
+        if (!validateAddress()) {
+            errorMessages.add("Please enter a valid address")
+        }
+        if (!validatePasswordMatch()) {
+            errorMessages.add("Password Not Match")
+        }
+        if (!checkBox.isChecked) {
+            errorMessages.add("Please accept the terms and conditions")
+        }
+
+        if (selectedCampus.isEmpty()) {
+            errorMessages.add("Please select a campus")
+        }
+
+        if (spinnerSex.isEmpty()) {
+            errorMessages.add("Please select a gender")
         }
 
         if (birtdate.isNotEmpty()) {
@@ -470,7 +459,9 @@ class Register1 : AppCompatActivity() {
             }
         }
 
+
         validatePasswordMatch()
+
 
         if (errorMessages.isNotEmpty()) {
             for (message in errorMessages) {
