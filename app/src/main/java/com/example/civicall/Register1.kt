@@ -6,8 +6,10 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputFilter
 import android.text.InputType
+import android.text.TextWatcher
 import android.util.Patterns
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -42,13 +44,14 @@ class Register1 : AppCompatActivity() {
         val regex = "^[a-zA-Z.\\s-]+$"
 
         if (lastName.isEmpty()) {
-            activityRegister1Binding.fname.error = "Required"
+            activityRegister1Binding.fnameTextInputLayout.error = "Required"
             return false
         } else if (!lastName.matches(regex.toRegex())) {
-            activityRegister1Binding.fname.error =  "Only letters and symbols (, . -) are allowed"
+            activityRegister1Binding.fnameTextInputLayout.error =
+                "Only letters and symbols (, . -) are allowed"
             return false
         } else {
-            activityRegister1Binding.fname.error = null
+            activityRegister1Binding.fnameTextInputLayout.error = null
             return true
         }
     }
@@ -58,13 +61,14 @@ class Register1 : AppCompatActivity() {
         val regex = "^[a-zA-Z.\\s-]+$"
 
         if (lastName.isEmpty()) {
-            activityRegister1Binding.Lname.error = "Required"
+            activityRegister1Binding.lastNameTextInputLayout.error = "Required"
             return false
         } else if (!lastName.matches(regex.toRegex())) {
-            activityRegister1Binding.Lname.error=  "Only letters and symbols (, . -) are allowed"
+            activityRegister1Binding.lastNameTextInputLayout.error =
+                "Only letters and symbols (, . -) are allowed"
             return false
         } else {
-            activityRegister1Binding.Lname.error = null
+            activityRegister1Binding.lastNameTextInputLayout.error = null
             return true
         }
     }
@@ -72,53 +76,67 @@ class Register1 : AppCompatActivity() {
     private fun validateEmail(): Boolean {
         val email = activityRegister1Binding.Emailline.text.toString().trim()
         if (email.isEmpty()) {
-            activityRegister1Binding.Emailline.error = "Email is required"
+            activityRegister1Binding.emailTextInputLayout.error = "Email is required"
             return false
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            activityRegister1Binding.Emailline.error = "Invalid email format"
+            activityRegister1Binding.emailTextInputLayout.error = "Invalid email format"
             return false
+        } else {
+            activityRegister1Binding.emailTextInputLayout.error = null
+            return true
         }
-        return true
     }
 
     private fun validateConfirmPassword(): Boolean {
         val password = activityRegister1Binding.confirmPass.text.toString().trim()
 
         if (password.isEmpty()) {
-            activityRegister1Binding.confirmPass.error = "Required"
+            activityRegister1Binding.confirmPassword.error = "Required"
             return false
+        } else {
+            activityRegister1Binding.confirmPassword.error = null
+            return true
         }
-        return true
     }
+
 
     private fun validatePassword(): Boolean {
         val password = activityRegister1Binding.pass.text.toString().trim()
 
         if (password.isEmpty()) {
-            activityRegister1Binding.pass.error = "Password is required"
+            activityRegister1Binding.passwordTextInputLayout.error = "Password is required"
             return false
         } else if (password.length < 8) {
-            activityRegister1Binding.pass.error = "Password must be at least 8 characters long"
+            activityRegister1Binding.passwordTextInputLayout.error =
+                "Password must be at least 8 characters long"
             return false
         } else if (!password.matches("^(?=.*[a-zA-Z])(?=.*\\d).+\$".toRegex())) {
-            activityRegister1Binding.pass.error = "Password must contain both letters and numbers"
+            activityRegister1Binding.passwordTextInputLayout.error =
+                "Password must contain both letters and numbers"
             return false
+        } else {
+            activityRegister1Binding.passwordTextInputLayout.error = null
+            return true
         }
-        return true
     }
+
 
     private fun validateContactNumber(): Boolean {
         val contactNumber = activityRegister1Binding.Contactline.text.toString().trim()
 
         if (contactNumber.isEmpty()) {
-            activityRegister1Binding.Contactline.error = "Please enter Contact Number"
+            activityRegister1Binding.contactNumberTextInputLayout.error =
+                "Please enter Contact Number"
             return false
         } else if (!isValidPhoneNumber(contactNumber)) {
-            activityRegister1Binding.Contactline.error = "Invalid Contact Number"
+            activityRegister1Binding.contactNumberTextInputLayout.error = "Invalid Contact Number"
             return false
+        } else {
+            activityRegister1Binding.contactNumberTextInputLayout.error = null
+            return true
         }
-        return true
     }
+
 
     private fun isValidPhoneNumber(contactNumber: String): Boolean {
         val sanitizedNumber = contactNumber.replace("\\s".toRegex(), "")
@@ -136,14 +154,17 @@ class Register1 : AppCompatActivity() {
         val contactNum = activityRegister1Binding.ContactEme.text.toString().trim()
 
         if (contactNum.isEmpty()) {
-            activityRegister1Binding.ContactEme.error = "Please enter Contact Person"
+            activityRegister1Binding.contactEmeNum.error = "Please enter Contact Person"
             return false
         } else if (!isValidPhoneEme(contactNum)) {
-            activityRegister1Binding.ContactEme.error = "Invalid Contact Person"
+            activityRegister1Binding.contactEmeNum.error = "Invalid Contact Person"
             return false
+        } else {
+            activityRegister1Binding.contactEmeNum.error = null
+            return true
         }
-        return true
     }
+
 
     private fun isValidPhoneEme(contactNum: String): Boolean {
         val sanitizedNum = contactNum.replace("\\s".toRegex(), "")
@@ -161,14 +182,17 @@ class Register1 : AppCompatActivity() {
         val address = activityRegister1Binding.address.text.toString().trim()
 
         if (address.isEmpty()) {
-            activityRegister1Binding.address.error = "Address is required"
+            activityRegister1Binding.addressTextInputLayout.error = "Address is required"
             return false
         } else if (address.length < 5) {
-            activityRegister1Binding.address.error = "Address is too short"
+            activityRegister1Binding.addressTextInputLayout.error = "Address is too short"
             return false
+        } else {
+            activityRegister1Binding.addressTextInputLayout.error = null
+            return true
         }
-        return true
     }
+
 
     private fun validateBirthday(): Boolean {
         val birthday = activityRegister1Binding.birthdate.text.toString().trim()
@@ -178,25 +202,30 @@ class Register1 : AppCompatActivity() {
             birthdateTextInputLayout.error = null
             birthdateTextInputLayout.helperText = "*required"
             return false
+        } else {
+            activityRegister1Binding.birthdateTextInputLayout.error = null
+            return true
         }
-        return true
     }
+
 
     private fun validatePasswordMatch(): Boolean {
         val password = activityRegister1Binding.pass.text.toString().trim()
         val confirmPassword = activityRegister1Binding.confirmPass.text.toString().trim()
 
         if (password.isEmpty()) {
-            activityRegister1Binding.pass.error = "Please Enter Password"
+            activityRegister1Binding.passwordTextInputLayout.error = "Please Enter Password"
             return false
         } else if (confirmPassword.isEmpty()) {
-            activityRegister1Binding.confirmPass.error = "Please Confirm Password"
+            activityRegister1Binding.confirmPassword.error = "Please Confirm Password"
             return false
         } else if (password != confirmPassword) {
-            activityRegister1Binding.confirmPass.error = "Passwords do not match"
+            activityRegister1Binding.confirmPassword.error = "Passwords do not match"
             return false
+        } else {
+            activityRegister1Binding.confirmPassword.error = null
+            return true
         }
-        return true
     }
 
 
@@ -229,14 +258,22 @@ class Register1 : AppCompatActivity() {
         val campusAutoCompleteTextView = activityRegister1Binding.campus
         val campusOptions = resources.getStringArray(R.array.allowed_campuses)
 
-        val campusAdapter = ArrayAdapter(this, R.layout.dropdown_item, campusOptions) // Create an ArrayAdapter with your options
+        val campusAdapter = ArrayAdapter(
+            this,
+            R.layout.dropdown_item,
+            campusOptions
+        ) // Create an ArrayAdapter with your options
         campusAutoCompleteTextView.setAdapter(campusAdapter) // Set the adapter for the AutoCompleteTextView
 
 // For the "Gender" field
         val spinnerSexAutoCompleteTextView = activityRegister1Binding.spinnerSex
         val sexOptions = resources.getStringArray(R.array.gender_array)
 
-        val sexAdapter = ArrayAdapter(this, R.layout.dropdown_item, sexOptions) // Create an ArrayAdapter with your options
+        val sexAdapter = ArrayAdapter(
+            this,
+            R.layout.dropdown_item,
+            sexOptions
+        ) // Create an ArrayAdapter with your options
         spinnerSexAutoCompleteTextView.setAdapter(sexAdapter) // Set the adapter for the AutoCompleteTextView
 
         val firstNameEditText = activityRegister1Binding.fname
@@ -361,6 +398,129 @@ class Register1 : AppCompatActivity() {
             )
             datePickerDialog.show()
         }
+
+        // Ang ginagawa nito is habang nag tatype ka nawawala na agad yung error
+        firstNameEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                validateFirstName()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+        lastNameEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                validateLastName()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+        emailEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                validateEmail()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+        passwordEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                validatePassword()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+        confirmPasswordEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                validateConfirmPassword()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+
+
+        contactNumberEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                validateContactNumber()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Handle before text changed
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Handle text changed
+            }
+        })
+        contactEmeEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                validateContactEme()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Handle before text changed
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Handle text changed
+            }
+        })
+        addressEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                validateAddress()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+
+        birthdayEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                // Clear the error message when valid input is provided
+                activityRegister1Binding.birthdateTextInputLayout.error = null
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+
     }
 
     private var fname = ""
@@ -387,53 +547,86 @@ class Register1 : AppCompatActivity() {
         spinnerSex = activityRegister1Binding.spinnerSex.text.toString()
         selectedCampus = activityRegister1Binding.campus.text.toString()
 
+
+        activityRegister1Binding.fnameTextInputLayout.error = null
+        activityRegister1Binding.lastNameTextInputLayout.error = null
+        activityRegister1Binding.emailTextInputLayout.error = null
+        activityRegister1Binding.passwordTextInputLayout.error = null
+        activityRegister1Binding.confirmPassword.error = null
+        activityRegister1Binding.contactNumberTextInputLayout.error = null
+        activityRegister1Binding.contactEmeNum.error = null
+        activityRegister1Binding.addressTextInputLayout.error = null
+
         val checkBox = findViewById<CheckBox>(R.id.checkedTextView)
         val errorMessages = mutableListOf<String>()
 
+        if (!validateFirstName() || !validateLastName() || !validateAddress() || !validateBirthday() ||
+            !validatePasswordMatch() || !validateEmail() || !validatePassword() || !validateConfirmPassword() || !validateContactNumber() && !validateContactEme()
+        ) {
+            errorMessages.add("Please provide valid information for the following fields.")
+        } else if (!checkBox.isChecked()) {
+            errorMessages.add("Please Accept the terms and Condition")
+        }
+
+        val campusAutoCompleteTextView = activityRegister1Binding.campus
+
+        campusAutoCompleteTextView.setOnItemClickListener { _, _, _, _ ->
+            // Clear the error message when a valid selection is made
+            activityRegister1Binding.campusTextInputLayout.error = null
+        }
+
+        val spinnerSexAutoCompleteTextView = activityRegister1Binding.spinnerSex
+
+        spinnerSexAutoCompleteTextView.setOnItemClickListener { _, _, _, _ ->
+            // Clear the error message when a valid selection is made
+            activityRegister1Binding.genderTextInputLayout.error = null
+        }
+
+
         if (!validateFirstName()) {
-            errorMessages.add("Please enter a valid first name")
+            activityRegister1Binding.fnameTextInputLayout.error = "Please enter a valid first name"
         }
 
         if (!validateLastName()) {
-            errorMessages.add("Please enter a valid last name")
+            activityRegister1Binding.lastNameTextInputLayout.error =
+                "Please enter a valid last name"
         }
 
         if (!validateEmail()) {
-            errorMessages.add("Please enter a valid email")
+            activityRegister1Binding.emailTextInputLayout.error = "Please enter a valid email"
         }
 
         if (!validatePassword()) {
-            errorMessages.add("Please enter a valid password")
+            activityRegister1Binding.passwordTextInputLayout.error = "Please enter a valid password"
         }
 
         if (!validateConfirmPassword()) {
-            errorMessages.add("Please confirm your password")
+            activityRegister1Binding.confirmPassword.error = "Please confirm your password"
         }
 
         if (!validateContactNumber()) {
-            errorMessages.add("Please enter a valid contact number")
+            activityRegister1Binding.contactNumberTextInputLayout.error =
+                "Please enter a valid contact number"
         }
 
         if (!validateContactEme()) {
-            errorMessages.add("Please enter a valid contact person")
+            activityRegister1Binding.contactEmeNum.error = "Please enter a valid contact person"
         }
 
         if (!validateAddress()) {
-            errorMessages.add("Please enter a valid address")
-        }
-        if (!validatePasswordMatch()) {
-            errorMessages.add("Password Not Match")
-        }
-        if (!checkBox.isChecked) {
-            errorMessages.add("Please accept the terms and conditions")
+            activityRegister1Binding.addressTextInputLayout.error = "Please enter a valid address"
         }
 
+
         if (selectedCampus.isEmpty()) {
-            errorMessages.add("Please select a campus")
+            activityRegister1Binding.campusTextInputLayout.error = "Please select a campus"
         }
 
         if (spinnerSex.isEmpty()) {
-            errorMessages.add("Please select a gender")
+            activityRegister1Binding.genderTextInputLayout.error = "Select a Gender"
+        }
+        if (birtdate.isEmpty()) {
+            activityRegister1Binding.birthdateTextInputLayout.error = "Select Date of Birth"
         }
 
         if (birtdate.isNotEmpty()) {
@@ -452,10 +645,12 @@ class Register1 : AppCompatActivity() {
                     currentYear - year - if (currentMonth < month || (currentMonth == month && currentDay < day)) 1 else 0
 
                 if (age < 18) {
-                    errorMessages.add("You must be at least 18 years old to register")
+                    activityRegister1Binding.birthdateTextInputLayout.error =
+                        "You must be at least 18 years old to register"
                 }
             } else {
-                errorMessages.add("Invalid Date of Birth format")
+                activityRegister1Binding.birthdateTextInputLayout.error =
+                    "Invalid Date of Birth format"
             }
         }
 
@@ -513,18 +708,16 @@ class Register1 : AppCompatActivity() {
 
                 if (task.isSuccessful) {
                     // Account creation success
+                    progressMessage.text = ("Account Created Successfully!")
                     updateUserInfo()
                 } else {
                     // Account creation failed
                     val errorMessage = task.exception?.message ?: "Unknown error occurred."
-                    Toast.makeText(
-                        this,
-                        "Failed Creating Account due to $errorMessage",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    showCustomPopup("Failed Creating Account due to $errorMessage")
                 }
             }
     }
+
     private fun updateUserInfo() {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
@@ -537,7 +730,7 @@ class Register1 : AppCompatActivity() {
         progressMessage.text = "Saving User Info..." // Set the initial message
 
         userInfoUpdateDialog.show()
-        userInfoUpdateDialog.dismiss()
+
         val searchFragment = CivicPostFragment()
         val args = Bundle()
         args.putString("firstName", fname)
@@ -568,17 +761,15 @@ class Register1 : AppCompatActivity() {
             .setValue(hashMap)
             .addOnSuccessListener {
                 userInfoUpdateDialog.dismiss()
-                Toast.makeText(this, "Account Created!", Toast.LENGTH_LONG).show()
-                startActivity(Intent(this, Login::class.java))
+                val intent = Intent(this, Login::class.java)
+                intent.putExtra("successMessage", "Account Created Successfully!")
+                startActivity(intent)
                 finish()
+
             }
             .addOnFailureListener { e ->
                 userInfoUpdateDialog.dismiss()
-                Toast.makeText(
-                    this,
-                    "Failed Saving User's Info due to ${e.message}",
-                    Toast.LENGTH_LONG
-                ).show()
+                showCustomPopup("Failed Saving User's Info due to ${e.message}")
             }
     }
 }

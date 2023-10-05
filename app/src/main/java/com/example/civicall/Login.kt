@@ -39,6 +39,10 @@ class Login : AppCompatActivity() {
         progressDialog.setContentView(R.layout.loading_layout)
         progressDialog.setCancelable(false)
 
+        val successMessage = intent.getStringExtra("successMessage")
+        if (!successMessage.isNullOrEmpty()) {
+            showCustomPopup(successMessage)
+        }
         val forgotPasswordTextView = findViewById<TextView>(R.id.forgotpassword)
         // Initialize your email and password EditText fields
         emailEditText = binding.emailLogin
@@ -79,7 +83,31 @@ class Login : AppCompatActivity() {
         }
     }
 
-        private fun validateData() {
+    private fun showCustomPopup(message: String) {
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.custom_popup, null)
+
+        val popupMessageTextView = dialogView.findViewById<TextView>(R.id.popupMessageTextView)
+        popupMessageTextView.text = message
+
+        dialogBuilder.setView(dialogView)
+
+        val alertDialog = dialogBuilder.create()
+
+        val okButton = dialogView.findViewById<Button>(R.id.popupOkButton)
+        okButton.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.setOnDismissListener(DialogInterface.OnDismissListener {
+            // Handle dismiss event if needed
+        })
+
+        alertDialog.show()
+    }
+
+    private fun validateData() {
         email = binding.emailLogin.text.toString().trim()
         password = binding.passwordText.text.toString().trim()
         if (email.isEmpty()) {
@@ -119,7 +147,8 @@ class Login : AppCompatActivity() {
                     showIncorrectPasswordPopup()
                 } else {
                     // Handle other login errors
-                    Toast.makeText(this, "Login Failed due to ${e.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Login Failed due to ${e.message}", Toast.LENGTH_LONG)
+                        .show()
                 }
             }
     }
@@ -174,6 +203,7 @@ class Login : AppCompatActivity() {
 
         alertDialog.show()
     }
+
     private fun checkUser() {
         val messageTextView = progressDialog.findViewById<TextView>(R.id.messageTextView)
         messageTextView.text = "Checking User..."
@@ -184,6 +214,10 @@ class Login : AppCompatActivity() {
         ref.child(firebaseUser.uid)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    // User has been successfully logged in, show the success message here
+                    showCustomPopup("Account Created Successfully!")
+
+                    // Proceed to the Dashboard or any other desired activity
                     startActivity(Intent(this@Login, Dashboard::class.java))
                     finish()
                 }
