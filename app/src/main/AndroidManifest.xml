@@ -36,39 +36,59 @@
         <!-- Educational Start -->
         <!-- Civic Engagement Start -->
         <activity
-            android:name=".CivicEngagementInfo.Advocacy"
-            android:exported="true" />
+            android:name=".CivicEngagementInfo.CivicAdvocacyStrategiesInfo"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+        <activity
+            android:name=".CivicEngagementInfo.GlobalCitizenshipInfo"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+        <activity
+            android:name=".CivicEngagementInfo.DigitalToolsforCivicEngagementInfo"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+
+        <activity
+            android:name=".CivicEngagementInfo.ChampionsofSocialJusticeInfo"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+        <activity
+            android:name=".CivicEngagementInfo.AmplifyingStudentVoicesInfo"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+        <activity
+            android:name=".CivicEngagementInfo.StudentLeadershipInfo"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
         <activity
             android:name=".CivicEngagementInfo.Civic"
             android:exported="true"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
-            android:name=".CivicEngagementInfo.DigitalAgeCivic"
-            android:exported="true" />
+            android:name=".CivicEngagementInfo.TechforGoodInfo"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
         <activity
-            android:name=".CivicEngagementInfo.GettingStarted"
-            android:exported="true" />
+            android:name=".CivicEngagementInfo.SkillsandOpportunitiesinfo"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
         <activity
-            android:name=".CivicEngagementInfo.LastingImpact"
-            android:exported="true" />
+            android:name=".CivicEngagementInfo.SustainabilityInitiativesInfo"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+            />
+
+
         <activity
-            android:name=".CivicEngagementInfo.navigatingtips"
-            android:exported="true" />
+            android:name=".CivicEngagementInfo.CivicParticipationInfo"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+
+
         <activity
-            android:name=".CivicEngagementInfo.ParticipantTips"
-            android:exported="true" />
-        <activity
-            android:name=".CivicEngagementInfo.Roadmap"
-            android:exported="true" />
-        <activity
-            android:name=".CivicEngagementInfo.Strategies"
-            android:exported="true" />
-        <activity
-            android:name=".CivicEngagementInfo.TacticsImpact"
-            android:exported="true" />
-        <activity
-            android:name=".CivicEngagementInfo.YouthEmpowerment"
-            android:exported="true" />
+            android:name=".CivicEngagementInfo.CivicAdvocacyStrategiesInfo"
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
         <!--  Civic Engagement End -->
         <!-- Disaster Response Start -->
         <activity
