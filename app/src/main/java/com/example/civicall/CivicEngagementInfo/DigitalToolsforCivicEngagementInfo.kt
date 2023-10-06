@@ -22,98 +22,98 @@ class DigitalToolsforCivicEngagementInfo : AppCompatActivity() {
         dataList.add(
             DataItem(
                 "Social Media Activism",
-                "In the realm of youth activism, the profound impact on student leaders is undeniable. This exploration delves into how the fervor of youth activism molds and empowers the next generation of student leaders, igniting their passion for change and driving them to become influential forces in society.\"Comprehensive Disaster Preparedness Kits: A Guide to Effective Disaster Response\" and equip yourself with the knowledge to safeguard your community and ensure a brighter, more resilient future.\"\"\n\n" +
-                        "1. Youth Activism Awareness Campaigns: Organize awareness campaigns within educational institutions to highlight the significance of youth activism, inspiring students to engage in meaningful causes.\n\n" +
-                        "2. Student Activist Networks: Establish student activist networks or clubs that provide a platform for students to learn about and actively participate in youth activism efforts.\n\n" +
-                        "3. Guest Speaker Series: Invite youth activists to share their experiences and insights with students, emphasizing the transformative power of activism.\n\n" +
-                        "4. Leadership Workshops: Conduct workshops that focus on leadership skills and ethical activism, equipping student leaders with the tools needed to drive change responsibly.\n\n" +
-                        "5. Collaborative Projects: Encourage student-led initiatives that collaborate with youth activists, allowing students to work alongside experienced change-makers on real-world issues.\n\n" +
-                        "6. Community Engagement: Facilitate opportunities for student leaders to engage with their local communities, enabling them to witness firsthand the impact of activism.\n\n" +
-                        "7. Advocacy Training: Offer training programs that equip students with effective advocacy skills, teaching them how to raise awareness, mobilize support, and drive change.\n\n" +
-                        "8. Mentorship Programs: Create mentorship programs where youth activists can guide and inspire student leaders, nurturing their passion for activism.\n\n" +
-                        "9. Leadership Recognition: Acknowledge and celebrate student leaders who actively engage in youth activism, reinforcing the idea that their efforts can make a significant impact.\n\n" +
-                        "10. Youth-Led Initiatives: Encourage student leaders to initiate their own youth-led projects, allowing them to apply their activism knowledge and drive positive change in their communities.\n\n",
+                "\"Social media activism fuels global movements, connecting virtual and physical worlds for change. Explore 'Comprehensive Disaster Preparedness Kits' to empower your community and build resilience.\"" +
+                        "1. Identify Your Cause: Begin by clearly defining the social or civic issue you want to address. Whether it's environmental conservation, human rights, or local community development, a well-defined cause is essential.\n\n" +
+                        "2. Set Clear Goals: Establish specific, measurable, achievable, relevant, and time-bound (SMART) goals for your activism campaign. These goals will help you stay focused and track your progress.\n\n" +
+                        "3. Choose the Right Platforms: Research which social media platforms are most effective for your cause and target audience. Consider platforms like Twitter, Facebook, Instagram, or TikTok, depending on your objectives.\n\n" +
+                        "4. Create Compelling Content: Craft engaging and shareable content that resonates with your audience. Use visuals, videos, and impactful storytelling to convey your message effectively.\n\n" +
+                        "5. Build an Online Community: Foster a supportive and engaged community around your cause. Encourage discussions, respond to comments, and acknowledge your supporters.\n\n" +
+                        "6. Collaborate with Influencers: Partner with social media influencers or advocates who share your passion. Their reach and credibility can amplify your message.\n\n" +
+                        "7. Utilize Hashtags: Create and promote relevant hashtags to make your campaign discoverable and encourage participation. Monitor trending hashtags to join relevant conversations.\n\n" +
+                        "8. Implement Online Campaigns: Launch online campaigns such as petition drives, fundraisers, or awareness challenges. Leverage the power of social media to mobilize support.\n\n" +
+                        "9. Measure Impact: Use analytics tools provided by social media platforms to track the reach, engagement, and impact of your campaigns. Adjust your strategies based on data insights.\n\n" +
+                        "10. Advocate Offline: While social media is a potent tool, remember that real-world action is often essential for change. Encourage your online community to participate in offline activities like rallies, volunteering, or contacting policymakers.\n\n",
 
-                R.drawable.img_125,
-                "https://www.rappler.com/moveph/27023-youth-activism-organized-action/",
-                "https://cms-image-bucket-production-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/8/6/8/0/31910868-3-eng-GB/Cropped-1611220222R20210121%20University%20of%20the%20Philippines%20protest.JPG"
+                R.drawable.img_141,
+                "https://su.edu.ph/2008-social-media-activism/",
+                "https://assets2.rappler.com/2020/07/1595408971-collage_CE09D7C6348A49BE93CC55CFD81382D3-1.jpg"
             )
         )
         dataList.add(
             DataItem("Online Petitions and Campaigns",
-                "In the realm of student-led movements, understanding the keys to success is vital. This exploration delves into the core principles that empower student leaders and drive tangible results in civic engagement.\n\n" +
-                        "1. Focus on Clear Objectives: Define specific, achievable goals for your movement, ensuring clarity of purpose and direction.\n\n" +
-                        "2. Effective Organizational Structure: Establish a well-structured organization with defined roles, responsibilities, and leadership positions.\n\n" +
-                        "3. Strategic Planning: Develop a strategic plan that outlines the steps, timeline, and resources required to achieve your objectives.\n\n" +
-                        "4. Building Alliances: Collaborate with other student organizations, community groups, or like-minded individuals to expand your network and leverage collective strength.\n\n" +
-                        "5. Engage in Outreach: Actively reach out to students, faculty, and the broader community to raise awareness and garner support for your cause.\n\n" +
-                        "6. Advocacy and Lobbying: Develop advocacy skills to engage with policymakers, administrators, and relevant authorities to influence change.\n\n" +
-                        "7. Resource Mobilization: Secure funding and resources through various means, such as grants, donations, or crowdfunding, to sustain your movement's activities.\n\n" +
-                        "8. Effective Communication: Craft compelling messages and utilize multiple communication channels, including social media and traditional media, to amplify your message.\n\n" +
-                        "9. Strategic Nonviolent Action: Employ nonviolent strategies and tactics that align with your goals, such as protests, demonstrations, or awareness campaigns.\n\n" +
-                        "10. Evaluation and Adaptation: Continuously assess your progress, adapt to changing circumstances, and refine your approach based on lessons learned.\n\n",
+                "In the age of digital empowerment, 'Online Petitions and Campaigns for Civic Engagement' emerge as a formidable force, bridging the gap between citizens and social change. Harnessing the power of digital platforms, these online initiatives propel individuals to actively shape the future of their communities and nations\n\n" +
+                        "1. Identify the Cause: Begin by clearly defining the civic or social issue you want to address with your online petition or campaign. A well-defined cause is essential to rally support.\n\n" +
+                        "2. Set Clear Objectives: Establish specific and achievable goals for your online campaign, whether it's gathering a certain number of signatures, raising funds, or influencing policy changes.\n\n" +
+                        "3. Choose the Right Platform: Select a suitable online platform for hosting your petition or campaign. Platforms like Change.org, Avaaz, or dedicated campaign websites offer user-friendly tools for creating and sharing petitions.\n\n" +
+                        "4. Craft Compelling Content: Create a persuasive and emotionally resonant message that highlights the urgency and significance of your cause. Use compelling visuals, videos, and storytelling to engage your audience.\n\n" +
+                        "5. Target Your Audience: Identify the key demographic or interest groups that are most likely to support your cause. Tailor your campaign's messaging to resonate with these specific audiences.\n\n" +
+                        "6. Leverage Social Media: Promote your online petition or campaign on social media platforms to maximize visibility. Utilize relevant hashtags and encourage supporters to share your content.\n\n" +
+                        "7. Build a Coalition: Collaborate with like-minded organizations, influencers, or activists who can amplify your message and broaden your reach. Coalition-building strengthens your campaign's impact.\n\n" +
+                        "8. Engage Supporters: Maintain open communication with your supporters. Keep them informed about campaign updates, milestones, and the impact of their involvement.\n\n" +
+                        "9. Monitor Progress: Regularly track the performance of your online petition or campaign. Analyze metrics such as the number of signatures, shares, and engagement to assess its effectiveness.\n\n" +
+                        "10. Take Offline Action: While your campaign is online, remember that real-world actions often drive change. Organize events, meetings, or advocacy efforts that complement your online efforts and translate support into tangible results.\n\n",
 
 
-                R.drawable.img_124,
-                "https://www.samuelcohn.net/development-1/everything-you-need-to-know-about-how-to-create-a-successful-student-led-social-movement",
-                "https://1cms-img.imgix.net/Students-rally1.jpg")
+                R.drawable.img_142,
+                "https://www.pewresearch.org/internet/2013/04/25/civic-engagement-in-the-digital-age/",
+                "https://149519988.v2.pressablecdn.com/wp-content/uploads/IMG_5330-crop-800.jpg")
         )
         dataList.add(
             DataItem("Data Privacy in Civic Engagement",
-                "In our ever-changing world, where challenges like poverty, injustice, and environmental crises abound, the demand for a fresh breed of leaders is crystal clear. Here, we dive into how colleges play a crucial role in shaping these leaders by fostering students' integrative leadership, a powerful blend of teamwork, civic involvement, and cross-cultural understanding, to take on these global issues head-on.\n\n" +
-                        "1. Compile Emergency Contact Information: Gather essential contact numbers, including fire, police, ambulance, and medical professionals, and store them in your cell phone and near your home phone.\n\n" +
-                        "2. Designate Family Meeting Places: Identify both local and out-of-town meeting places for your family to gather in case you're separated during a disaster or can't return home.\n\n" +
-                        "3. Set Up 'I.C.E.' Contacts: Program 'In Case of Emergency' (I.C.E.) numbers in your phone and your family members' phones to provide crucial information to emergency responders.\n\n" +
-                        "4. Create a Family Contact Sheet: Develop a comprehensive contact sheet with names, addresses, and phone numbers of important contacts, including an out-of-town contact for times when local communication is disrupted.\n\n" +
-                        "5. Prepare Contact Cards: Create contact cards for each family member containing emergency contact information, an out-of-town contact, a designated meeting place, and other vital details. Keep these cards in accessible places like purses, wallets, or backpacks.\n\n" +
-                        "6. Ensure Every Family Member Has a Phone: Ensure that all family members have access to a mobile phone or a way to communicate during emergencies.\n\n" +
-                        "7. Teach 911 Protocol: Educate children on when and how to call 911 for assistance in emergencies.\n\n" +
-                        "8. Familiarize with Text Messaging: Ensure that everyone in your family knows how to send text messages, which can be more reliable during network disruptions than phone calls.\n\n" +
-                        "9. Subscribe to Alert Services: Sign up for local alert services that send text messages and emails with crucial information during disasters.\n\n" +
-                        "10. Prioritize Communication Methods: In times of crisis, use phone calls sparingly for life-threatening emergencies and rely on text messages, email, and social media for non-emergency communication to prevent network congestion.\n\n",
-                R.drawable.img_126,
-                "https://journalofleadershiped.org/jole_articles/strengthening-college-students-integrative-leadership-orientation-by-building-a-foundation-for-civic-engagement-and-multicultural-competence/",
-                "https://www.waldenu.edu/media/4894/seo-1354-bs-volunteering-problem-cheerful-243564697-1200x675")
+                "As communities increasingly rely on online platforms to interact with governments and organizations, safeguarding the confidentiality of personal information becomes not just a preference but a vital necessity for ensuring the security and trustworthiness of these digital interactions.\n\n" +
+                        "1. Clear Privacy Policies: Develop and prominently display transparent privacy policies that detail how personal data is collected, used, stored, and shared during civic engagement activities.\n\n" +
+                        "2. Data Encryption: Implement strong data encryption protocols to protect sensitive information from unauthorized access or interception.\n\n" +
+                        "3. Access Control: Utilize access controls to ensure that only authorized individuals have access to personal data, reducing the risk of data breaches.\n\n" +
+                        "4. Anonymous Participation: Offer options for anonymous or pseudonymous participation to provide community members with a sense of security and privacy.\n\n" +
+                        "5. Verification Process: Implement a verification process for community members to enhance accountability and trust within the engagement platform.\n\n" +
+                        "6. User Permissions: Utilize user permissions and access management systems to control who can view, edit, or manage sensitive data, minimizing the risk of unauthorized leaks.\n\n" +
+                        "7. Data Minimization: Collect only necessary and relevant data to limit the amount of personal information stored, reducing exposure to potential breaches.\n\n" +
+                        "8. Regular Audits: Conduct regular audits of data handling processes and security measures to identify and rectify vulnerabilities proactively.\n\n" +
+                        "9. User Education: Educate community members about data privacy practices, their rights, and how to report concerns regarding their personal information.\n\n" +
+                        "10. Responsive Support: Establish channels for community members to ask questions, voice concerns, and request modifications or deletion of their personal data, ensuring their privacy preferences are respected.\n\n",
+                R.drawable.img_144,
+                "https://www.socialpinpoint.com/data-protection-and-privacy-in-communityengagement/",
+                "https://venturebeat.com/wp-content/uploads/2021/03/business-meeting.GettyImages-607477465.jpg?fit=2114%2C1207&strip=all")
         )
 
         dataList.add(
             DataItem("Digital Civic Platforms and Apps",
-                "\"In a world of unprecedented challenges, college students stand at the threshold of making their voices heard. Discover how these young changemakers are turning their passion into powerful civic action, fueling a wave of transformation on campuses and beyond.\"\n\n" +
-                        "1. Identify Your Passion: Reflect on the issues or causes that ignite your passion and resonate with you personally.\n\n" +
-                        "2. Educate Yourself: Dive deep into research, news, and resources related to your chosen cause to gain a comprehensive understanding of the topic.\n\n" +
-                        "3. Connect with Like-Minded Peers: Seek out student organizations, clubs, or online communities that share your passion and values.\n\n" +
-                        "4. Engage in Dialogue: Participate in open discussions, debates, or forums to exchange ideas, learn from others, and refine your perspective.\n\n" +
-                        "5. Set Clear Goals: Define specific, measurable, and achievable goals for the change you want to create in your community or on campus.\n\n" +
-                        "6. Plan and Organize: Create a strategic plan that outlines the steps, actions, and resources required to achieve your goals.\n\n" +
-                        "7. Leverage Technology: Utilize social media, online platforms, and digital tools to raise awareness, mobilize support, and amplify your message.\n\n" +
-                        "8. Collaborate and Network: Build partnerships with local organizations, activists, and influencers who can support your cause and expand your reach.\n\n" +
-                        "9. Take Action: Execute your plan, organize events, campaigns, or initiatives, and actively work toward your goals.\n\n" +
-                        "10. Measure Impact and Adapt: Continuously assess the impact of your actions, gather feedback, and be open to adapting your strategies for greater effectiveness.\n\n",
+                "\"In the era of Digital Civic Platforms and Apps, technology empowers citizens to be active participants in shaping the future of their communities and addressing pressing environmental concerns. Explore how these innovative digital tools are revolutionizing civic engagement and environmental protection.\"\n\n" +
+                        "1. Research and Choose the Right Platform: Begin by researching and selecting a digital civic platform or app that aligns with your community engagement goals and environmental initiatives.\n\n" +
+                        "2. User-Friendly Interface: Ensure the chosen platform offers a user-friendly interface to maximize accessibility for citizens of all backgrounds and ages.\n\n" +
+                        "3. Define Clear Objectives: Establish clear and specific objectives for your engagement project, whether it's addressing environmental issues, gathering feedback, or promoting community involvement.\n\n" +
+                        "4. Engage Stakeholders: Collaborate with key stakeholders, including local government agencies, environmental organizations, and community members, to build a supportive network for your digital engagement efforts.\n\n" +
+                        "5. Data Privacy and Security: Prioritize data protection and security measures to safeguard users' personal information and maintain their trust in the platform.\n\n" +
+                        "6. Training and Support: Provide training and support for users to ensure they can effectively navigate and utilize the platform to participate in civic and environmental activities.\n\n" +
+                        "7. Feedback Mechanisms: Implement feedback mechanisms that allow citizens to report environmental concerns, suggest improvements, and communicate directly with relevant authorities.\n\n" +
+                        "8. Data Analytics: Utilize data analytics tools within the platform to gather insights, track progress, and make informed decisions based on community input.\n\n" +
+                        "9. Promote Transparency: Maintain transparency by sharing information about the platform's operations, including its environmental impact and the actions taken based on citizen input.\n\n" +
+                        "10. Continuous Improvement: Continuously assess the platform's effectiveness, gather user feedback, and adapt your strategies to enhance civic engagement and environmental protection efforts.\n\n",
 
 
 
-                R.drawable.img_127,
-                "https://www.gse.harvard.edu/ideas/news/20/09/turning-passion-civic-action",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rappler.com%2Fmoveph%2Fhow-communities-join-hands-crisis-duterte-year-4%2F&psig=AOvVaw3oThZo02gCRpuVdAUblEj_&ust=1696594679394000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOCFh-zx3oEDFQAAAAAdAAAAABAE")
+                R.drawable.img_145,
+                "https://en.reset.org/what-is-civic-tech/",
+                "https://en.reset.org/app/uploads/2021/09/Civic-Tech-1536x1024.jpg")
         )
 
         dataList.add(
             DataItem("Cybersecurity for Activists",
-                "In the dynamic world of higher education, college students are increasingly driven by a passion for community service that goes beyond the pursuit of knowledge in the classroom. This Study delves into the pivotal role of high-impact volunteer opportunities tailored for college students, offering not only personal growth but also a chance to actively contribute to the betterment of society.\n\n" +
+                "\"In the age of digital activism and civic engagement, safeguarding your mission against cyber threats is paramount. Explore the essential guide to 'Cybersecurity for Activists,' where we unveil the vital practices that will protect your digital initiatives and fortify your impact.\"\n\n" +
 
-                        "1. Self-Reflection: Begin by reflecting on your passions, interests, and the causes that resonate with you. Consider what kind of impact you want to make in your community or beyond.\n\n" +
-                        "2. Research: Investigate local nonprofit organizations, community groups, and volunteer programs that align with your interests. Explore their missions, volunteer needs, and the impact they create.\n\n" +
-                        "3. Evaluate Commitment: Assess your availability and commitment level. Determine whether you can volunteer regularly, for specific events, or remotely, depending on your schedule and preferences.\n\n" +
-                        "4. Skills Assessment: Identify your strengths and skills that could benefit volunteer organizations. This includes both hard skills (e.g., web design, teaching) and soft skills (e.g., communication, teamwork).\n\n" +
-                        "5. Connect with Peers: Discuss your intentions with fellow students who share similar interests. They may have insights, recommendations, or even want to join you in your volunteer efforts.\n\n" +
-                        "6. Contact Organizations: Reach out to the organizations or programs you're interested in. Inquire about volunteer opportunities, application processes, and any training or orientation required.\n\n" +
-                        "7. Attend Info Sessions: Attend information sessions or orientations offered by volunteer organizations. These sessions can provide deeper insights into their work and help you make an informed decision.\n\n" +
-                        "8. Set Goals: Define clear goals for your volunteer experience. Determine what you hope to achieve personally and how you aim to contribute to the organization's mission.\n\n" +
-                        "9. Begin Volunteering: Start your volunteer work with enthusiasm and dedication. Whether it's mentoring, organizing events, or providing essential services, give your best effort.\n\n" +
-                        "10. Reflect and Adapt: Regularly reflect on your volunteer experiences. Assess the impact you've made, evaluate your goals, and adapt your volunteer efforts as needed. This ongoing process ensures your service remains high-impact and meaningful.\n\n",
-                R.drawable.img_128,
-                "https://www.indeed.com/career-advice/career-development/community-service-ideas-college-students",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pna.gov.ph%2Farticles%2F1122889&psig=AOvVaw2jhQJiVZsIXFYNj-8vl54k&ust=1696595824391000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPi-jo723oEDFQAAAAAdAAAAABAE")
+                        "1. Conduct Threat Assessments: Regularly evaluate the potential threats and risks to your digital assets, including data breaches, phishing attacks, and surveillance attempts.\n\n" +
+                        "2. Implement Strong Passwords: Use complex, unique passwords for each online account, and consider using a trusted password manager to generate and store them securely.\n\n" +
+                        "3. Enable Two-Factor Authentication (2FA): Activate 2FA wherever possible to add an extra layer of security to your online accounts, making it more challenging for unauthorized access.\n\n" +
+                        "4. Keep Software Updated: Ensure that all your devices and software applications are regularly updated with the latest security patches and fixes.\n\n" +
+                        "5. Encrypt Your Devices: Encrypt your mobile devices and computers to protect sensitive data from unauthorized access in case of theft or loss.\n\n" +
+                        "6. Use Secure Messaging Apps: Communicate using encrypted messaging apps like Signal to keep your conversations private and protected from eavesdropping.\n\n" +
+                        "7. Secure Public Wi-Fi Usage: When using public Wi-Fi networks, employ a Virtual Private Network (VPN) to encrypt your internet traffic and protect against potential data interception.\n\n" +
+                        "8. Educate Your Team: Train your team or fellow activists on cybersecurity best practices to create a collective security culture.\n\n" +
+                        "9. Regular Backups: Backup important data and documents regularly to prevent data loss in case of ransomware or other cyberattacks.\n\n" +
+                        "10. Stay Informed: Keep up-to-date with cybersecurity news and emerging threats to adapt your security practices accordingly.\n\n",
+                R.drawable.img_146,
+                "https://activisthandbook.org/tools/security",
+                "https://www.arabnews.com/sites/default/files/styles/n_670_395/public/main-image/2018/11/17/1371496-492058900.jpg?itok=jSFLUFlz")
         )
 
         val adapter = DataAdapter(dataList)
