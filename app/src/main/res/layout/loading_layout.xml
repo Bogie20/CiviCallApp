@@ -1,27 +1,43 @@
-<LinearLayout
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/dialog_frame_flat"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="260dp"
-    android:layout_height="170dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@android:color/transparent"
-    android:orientation="vertical"
-    android:elevation="100dp"
-    android:padding="16dp">
+    android:gravity="center">
 
-<ProgressBar
-android:id="@+id/progressBar"
-android:layout_width="match_parent"
-android:layout_height="70dp"
-android:layout_gravity="center"
-android:indeterminate="true" android:layout_marginTop="10dp"
-android:indeterminateTint="@color/colorAccent" />
-<TextView
-android:id="@+id/messageTextView"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_gravity="center"
-android:layout_marginTop="16dp"
-android:text="Please wait..."
-android:textSize="20sp"
-android:textColor="@android:color/black" />
-    </LinearLayout>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/dialog_layout_flat"
+        android:layout_width="@dimen/popup_width"
+        android:layout_height="272dp"
+        android:layout_gravity="center"
+        android:background="@drawable/border_design"
+        android:gravity="center_horizontal"
+        android:minWidth="@dimen/popup_width"
+        android:minHeight="@dimen/popup_height"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="90dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/messageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="Please wait..."
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</FrameLayout>

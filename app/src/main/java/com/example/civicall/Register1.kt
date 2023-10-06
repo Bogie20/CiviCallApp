@@ -5,6 +5,8 @@ import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputFilter
@@ -367,6 +369,7 @@ class Register1 : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please wait...")
+        progressDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         progressDialog.setCanceledOnTouchOutside(false)
 
         val backbtn: ImageView = findViewById(R.id.back)
@@ -605,8 +608,7 @@ class Register1 : AppCompatActivity() {
         }
 
         if (!validateContactNumber()) {
-            activityRegister1Binding.contactNumberTextInputLayout.error =
-                "Please enter a valid contact number"
+            activityRegister1Binding.contactNumberTextInputLayout.error = "Please enter a valid contact number"
         }
 
         if (!validateContactEme()) {
@@ -672,13 +674,19 @@ class Register1 : AppCompatActivity() {
     private fun showCustomPopup(message: String) {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
-        val dialogView = inflater.inflate(R.layout.custom_popup, null)
-        dialogBuilder.setView(dialogView)
+        val dialogView = inflater.inflate(R.layout.dialog_flat, null)
 
+        dialogBuilder.setView(dialogView)
         val alertDialog = dialogBuilder.create()
 
-        val messageTextView = dialogView.findViewById<TextView>(R.id.popupMessageTextView)
-        val okButton = dialogView.findViewById<Button>(R.id.popupOkButton)
+        // Set the animation style
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        // Set the background to be transparent
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message_flat)
+        val okButton = dialogView.findViewById<Button>(R.id.btn_action_flat)
 
         messageTextView.text = message
 
@@ -688,6 +696,32 @@ class Register1 : AppCompatActivity() {
 
         alertDialog.show()
     }
+    private fun showCustomPopupError(message: String) {
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.dialog_error, null)
+
+        dialogBuilder.setView(dialogView)
+        val alertDialog = dialogBuilder.create()
+
+        // Set the animation style
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        // Set the background to be transparent
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message_flat)
+        val okButton = dialogView.findViewById<Button>(R.id.btn_action_flat)
+
+        messageTextView.text = message
+
+        okButton.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
+    }
+
 
     private fun createUserAccount() {
         val dialogBuilder = AlertDialog.Builder(this)
@@ -699,6 +733,8 @@ class Register1 : AppCompatActivity() {
         val accountCreationDialog = dialogBuilder.create()
         val progressMessage = dialogView.findViewById<TextView>(R.id.messageTextView)
         progressMessage.text = "Creating Account..." // Set the initial message
+        dialogView.setBackgroundColor(Color.TRANSPARENT) // Set the background of the TextView to be transparent
+
 
         accountCreationDialog.show()
 
@@ -716,7 +752,7 @@ class Register1 : AppCompatActivity() {
                 } else {
                     // Account creation failed
                     val errorMessage = task.exception?.message ?: "Unknown error occurred."
-                    showCustomPopup("Failed Creating Account due to $errorMessage")
+                    showCustomPopupError("Failed Creating Account due to $errorMessage")
                 }
             }
     }
@@ -725,12 +761,19 @@ class Register1 : AppCompatActivity() {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.loading_layout, null)
+
+        // Set the background of userInfoUpdateDialog to be transparent
+        val userInfoUpdateDialog = dialogBuilder.create()
+        userInfoUpdateDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
         dialogBuilder.setView(dialogView)
         dialogBuilder.setCancelable(false) // Prevent users from dismissing the dialog
 
-        val userInfoUpdateDialog = dialogBuilder.create()
         val progressMessage = dialogView.findViewById<TextView>(R.id.messageTextView)
         progressMessage.text = "Saving User Info..." // Set the initial message
+
+        // Set the background of progressMessage TextView to be transparent
+        dialogView.setBackgroundColor(Color.TRANSPARENT)
 
         userInfoUpdateDialog.show()
 
@@ -771,7 +814,7 @@ class Register1 : AppCompatActivity() {
             }
             .addOnFailureListener { e ->
                 userInfoUpdateDialog.dismiss()
-                showCustomPopup("Failed Saving User's Info due to ${e.message}")
+                showCustomPopupError("Failed Saving User's Info due to ${e.message}")
             }
     }
 }

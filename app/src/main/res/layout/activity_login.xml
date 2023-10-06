@@ -80,8 +80,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             app:hintTextColor="@color/DarkGray"
-            app:counterEnabled="true"
-            app:counterMaxLength="320"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -93,6 +92,10 @@
                 android:hint="Email"
                 android:lines="1"
                 android:inputType="text"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:maxLength="128"
                 app:hintTextColor="@color/DarkGray"
                 android:paddingRight="42dp"
                 android:paddingLeft="20dp"
@@ -109,9 +112,8 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             app:passwordToggleEnabled="true"
-            app:hintTextColor="@color/DarkGray"
-            app:counterEnabled="true"
-            app:counterMaxLength="128">
+
+            app:hintTextColor="@color/DarkGray">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordText"
@@ -121,9 +123,14 @@
                 android:drawablePadding="15dp"
                 android:hint="Password"
                 android:lines="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:maxLength="320"
+                android:paddingRight="40dp"
                 android:inputType="textPassword"
-                android:paddingRight="42dp"
-                android:paddingLeft="20dp" />
+                android:paddingEnd="42dp"
+                android:paddingStart="20dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -140,7 +147,7 @@
         android:layout_width="400dp"
         android:layout_height="60dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="525dp"
+        android:layout_marginTop="500dp"
         android:layout_marginRight="30dp"
         android:textAllCaps="false"
         android:background="@drawable/button_shape"
@@ -155,7 +162,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="575dp"
         android:text="Forgot Password?"
         android:textColor="@color/blue"
         >
@@ -169,7 +176,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="140dp"
-        android:layout_marginTop="625dp"
+        android:layout_marginTop="605dp"
         android:text="----- or Sign in with -----"
         android:textColor="@color/DarkGray"
         android:textSize="18dp">

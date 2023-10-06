@@ -92,6 +92,8 @@
                         android:drawablePadding="15dp"
                         android:hint="First Name"
                         android:lines="1"
+                        android:ellipsize="end"
+                        android:maxLines="1"
                         android:inputType="text"
                         app:hintTextColor="@color/DarkGray"
                         android:paddingEnd="30dp"
@@ -121,6 +123,9 @@
                     android:inputType="text"
                     app:hintTextColor="@color/DarkGray"
                     android:paddingEnd="30dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:maxLines="1"
                     android:paddingStart="20dp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -147,6 +152,9 @@
                     android:inputType="text"
                     app:hintTextColor="@color/DarkGray"
                     android:paddingEnd="30dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:maxLines="1"
                     android:paddingStart="20dp"
                     />
 
@@ -169,6 +177,8 @@
                     android:drawablePadding="15dp"
                     android:hint="Mobile Number"
                     android:lines="1"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     app:hintTextColor="@color/DarkGray"
                     android:paddingEnd="30dp"
                     android:paddingStart="20dp"/>
@@ -195,6 +205,8 @@
                     android:hint="No. In Case of Emergency "
                     app:hintTextColor="@color/DarkGray"
                     android:paddingEnd="30dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:paddingStart="20dp"
                    />
 
@@ -276,6 +288,9 @@
                     android:hint="Email"
                     android:lines="1"
                     android:inputType="text"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     app:hintTextColor="@color/DarkGray"
                     android:paddingEnd="30dp"
                     android:paddingStart="20dp"
@@ -304,6 +319,9 @@
                     android:lines="1"
                     android:inputType="textPassword"
                     android:paddingEnd="30dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:maxLines="1"
                     android:paddingStart="20dp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -327,6 +345,9 @@
                     android:hint="Confirm Password"
                     android:inputType="textPassword"
                     android:paddingEnd="30dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:paddingStart="20dp"/>
             </com.google.android.material.textfield.TextInputLayout>
 

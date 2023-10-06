@@ -4,6 +4,8 @@ import android.app.Dialog
 import android.content.Intent
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
@@ -31,6 +33,7 @@ class Login : AppCompatActivity() {
     private var email = ""
     private var password = ""
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -44,7 +47,7 @@ class Login : AppCompatActivity() {
 
         if (showSuccessPopup) {
             // Display the "Account Created Successfully!" popup
-            showCustomPopup("Account Created Successfully!")
+            showCustomPopupSuccess("Account Created Successfully!")
         }
 
         val forgotPasswordTextView = findViewById<TextView>(R.id.forgotpassword)
@@ -87,26 +90,28 @@ class Login : AppCompatActivity() {
         }
     }
 
-    private fun showCustomPopup(message: String) {
+    private fun showCustomPopupSuccess(message: String) {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
-        val dialogView = inflater.inflate(R.layout.custom_popup, null)
-
-        val popupMessageTextView = dialogView.findViewById<TextView>(R.id.popupMessageTextView)
-        popupMessageTextView.text = message
+        val dialogView = inflater.inflate(R.layout.dialog_success, null)
 
         dialogBuilder.setView(dialogView)
-
         val alertDialog = dialogBuilder.create()
 
-        val okButton = dialogView.findViewById<Button>(R.id.popupOkButton)
+        // Set the animation style
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        // Set the background to be transparent
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message_flat)
+        val okButton = dialogView.findViewById<Button>(R.id.btn_action_flat)
+
+        messageTextView.text = message
+
         okButton.setOnClickListener {
             alertDialog.dismiss()
         }
-
-        alertDialog.setOnDismissListener(DialogInterface.OnDismissListener {
-            // Handle dismiss event if needed
-        })
 
         alertDialog.show()
     }
@@ -114,16 +119,25 @@ class Login : AppCompatActivity() {
     private fun validateData() {
         email = binding.emailLogin.text.toString().trim()
         password = binding.passwordText.text.toString().trim()
+
+        val emailMaxLength = 320
+        val passwordMaxLength = 128
+
         if (email.isEmpty()) {
             binding.emailLogin.setError("Please Input your Email")
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             binding.emailLogin.setError("Invalid Email")
+        } else if (email.length > emailMaxLength) {
+            binding.emailLogin.setError("Email is too long (max $emailMaxLength characters)")
         } else if (password.isEmpty()) {
             binding.passwordText.setError("Please Enter Password")
+        } else if (password.length > passwordMaxLength) {
+            binding.passwordText.setError("Password is too long (max $passwordMaxLength characters)")
         } else {
             loginUser()
         }
     }
+
 
     private fun loginUser() {
         val messageTextView = progressDialog.findViewById<TextView>(R.id.messageTextView)
@@ -139,74 +153,72 @@ class Login : AppCompatActivity() {
             }
             .addOnFailureListener { e ->
                 progressDialog.dismiss()
-
                 if (e.message == "The email address is badly formatted.") {
                     // Handle invalid email format error
                     binding.emailLogin.setError("Invalid Email")
                 } else if (e.message == "There is no user record corresponding to this identifier. The user may have been deleted.") {
-                    // User does not exist in the database, show the custom popup
-                    showUserNotExistPopup()
-                } else if (e.message == "The password is invalid or the user does not have a password.") {
-                    // Incorrect password, show a custom popup
-                    showIncorrectPasswordPopup()
+                    // User does not exist in the database, show the custom popup with an error message
+                    showCustomPopupError("Account Not Found")
                 } else {
-                    // Handle other login errors
-                    Toast.makeText(this, "Login Failed due to ${e.message}", Toast.LENGTH_LONG)
-                        .show()
+                    // Show "Incorrect Password" for other login errors
+                    showCustomPopupIncorrectPass("Incorrect Password")
                 }
             }
     }
 
-    private fun showUserNotExistPopup() {
-        // Use the custom popup code you provided earlier
+    private fun showCustomPopupError(message: String) {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
-        val dialogView = inflater.inflate(R.layout.custom_popup, null)
-
-        val popupMessageTextView = dialogView.findViewById<TextView>(R.id.popupMessageTextView)
-        popupMessageTextView.text = "Account Not Found"
+        val dialogView = inflater.inflate(R.layout.dialog_error, null)
 
         dialogBuilder.setView(dialogView)
-
         val alertDialog = dialogBuilder.create()
 
-        val okButton = dialogView.findViewById<Button>(R.id.popupOkButton)
+        // Set the animation style
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        // Set the background to be transparent
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message_flat)
+        val okButton = dialogView.findViewById<Button>(R.id.btn_action_flat)
+
+        messageTextView.text = message
+
         okButton.setOnClickListener {
             alertDialog.dismiss()
         }
 
-        alertDialog.setOnDismissListener(DialogInterface.OnDismissListener {
-            // Handle dismiss event if needed
-        })
-
         alertDialog.show()
     }
 
-    private fun showIncorrectPasswordPopup() {
-        // Use the custom popup code you provided earlier
+
+    private fun showCustomPopupIncorrectPass(message: String) {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
-        val dialogView = inflater.inflate(R.layout.custom_popup, null)
-
-        // Update the message text for the incorrect password
-        val popupMessageTextView = dialogView.findViewById<TextView>(R.id.popupMessageTextView)
-        popupMessageTextView.text = "Incorrect Password"
+        val dialogView = inflater.inflate(R.layout.dialog_flat, null)
 
         dialogBuilder.setView(dialogView)
-
         val alertDialog = dialogBuilder.create()
 
-        val okButton = dialogView.findViewById<Button>(R.id.popupOkButton)
+        // Set the animation style
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        // Set the background to be transparent
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message_flat)
+        val okButton = dialogView.findViewById<Button>(R.id.btn_action_flat)
+
+        messageTextView.text = message
+
         okButton.setOnClickListener {
             alertDialog.dismiss()
         }
 
-        alertDialog.setOnDismissListener(DialogInterface.OnDismissListener {
-            // Handle dismiss event if needed
-        })
-
         alertDialog.show()
     }
+
 
     private fun checkUser() {
         val messageTextView = progressDialog.findViewById<TextView>(R.id.messageTextView)
@@ -224,7 +236,7 @@ class Login : AppCompatActivity() {
 
                     if (isNewAccount) {
                         // User has just created an account, show the success message here
-                        showCustomPopup("Account Created Successfully!")
+                        showCustomPopupSuccess("Account Created Successfully!")
                     }
                 }
 
