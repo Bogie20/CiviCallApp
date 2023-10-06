@@ -27,6 +27,7 @@ class Login : AppCompatActivity() {
     private lateinit var emailEditText: TextInputEditText
     private lateinit var passwordEditText: TextInputEditText
 
+    private var isNewAccount = false
     private var email = ""
     private var password = ""
 
@@ -39,10 +40,13 @@ class Login : AppCompatActivity() {
         progressDialog.setContentView(R.layout.loading_layout)
         progressDialog.setCancelable(false)
 
-        val successMessage = intent.getStringExtra("successMessage")
-        if (!successMessage.isNullOrEmpty()) {
-            showCustomPopup(successMessage)
+        val showSuccessPopup = intent.getBooleanExtra("showSuccessPopup", false)
+
+        if (showSuccessPopup) {
+            // Display the "Account Created Successfully!" popup
+            showCustomPopup("Account Created Successfully!")
         }
+
         val forgotPasswordTextView = findViewById<TextView>(R.id.forgotpassword)
         // Initialize your email and password EditText fields
         emailEditText = binding.emailLogin
@@ -214,12 +218,14 @@ class Login : AppCompatActivity() {
         ref.child(firebaseUser.uid)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    // User has been successfully logged in, show the success message here
-                    showCustomPopup("Account Created Successfully!")
-
                     // Proceed to the Dashboard or any other desired activity
                     startActivity(Intent(this@Login, Dashboard::class.java))
                     finish()
+
+                    if (isNewAccount) {
+                        // User has just created an account, show the success message here
+                        showCustomPopup("Account Created Successfully!")
+                    }
                 }
 
                 override fun onCancelled(error: DatabaseError) {

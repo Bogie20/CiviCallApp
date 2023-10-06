@@ -708,8 +708,11 @@ class Register1 : AppCompatActivity() {
 
                 if (task.isSuccessful) {
                     // Account creation success
-                    progressMessage.text = ("Account Created Successfully!")
-                    updateUserInfo()
+                    // Pass a flag to indicate success
+                    val intent = Intent(this, Login::class.java)
+                    intent.putExtra("showSuccessPopup", true) // Set the flag to true
+                    startActivity(intent)
+                    finish()
                 } else {
                     // Account creation failed
                     val errorMessage = task.exception?.message ?: "Unknown error occurred."
@@ -762,10 +765,9 @@ class Register1 : AppCompatActivity() {
             .addOnSuccessListener {
                 userInfoUpdateDialog.dismiss()
                 val intent = Intent(this, Login::class.java)
-                intent.putExtra("successMessage", "Account Created Successfully!")
+                intent.putExtra("showSuccessPopup", true) // Set the flag to true
                 startActivity(intent)
                 finish()
-
             }
             .addOnFailureListener { e ->
                 userInfoUpdateDialog.dismiss()
@@ -773,3 +775,4 @@ class Register1 : AppCompatActivity() {
             }
     }
 }
+
