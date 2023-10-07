@@ -758,7 +758,10 @@ class Register1 : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Account creation success
-                    // Pass a flag to indicate success
+                    // Call updateUserInfo to save user info after creating the account
+                    updateUserInfo()
+
+                    // Now, navigate to the Login activity
                     val intent = Intent(this, Login::class.java)
                     intent.putExtra("showSuccessPopup", true) // Set the flag to true
                     startActivity(intent)
@@ -770,6 +773,7 @@ class Register1 : AppCompatActivity() {
                 }
             }
     }
+
 
     private fun updateUserInfo() {
         showCustomProgressBar("Saving User Info...", 2000)

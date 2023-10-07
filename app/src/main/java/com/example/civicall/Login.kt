@@ -9,6 +9,9 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.Editable
+import android.text.TextUtils
+import android.text.TextWatcher
 import android.util.Patterns
 import android.view.View
 import android.widget.Button
@@ -18,6 +21,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.civicall.databinding.ActivityLoginBinding
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -30,11 +34,33 @@ class Login : AppCompatActivity() {
     private lateinit var progressDialog: Dialog
     private lateinit var emailEditText: TextInputEditText
     private lateinit var passwordEditText: TextInputEditText
-
+    private lateinit var emailTextInputLayout: TextInputLayout
+    private lateinit var passwordTextInputLayout: TextInputLayout
     private var isNewAccount = false
     private var email = ""
     private var password = ""
+    private fun validateEmail() {
+        val emailText = emailEditText.text.toString().trim()
 
+        if (TextUtils.isEmpty(emailText)) {
+            emailTextInputLayout.error = "Please Input Valid Email"
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
+            emailTextInputLayout.error = "Invalid Email"
+        } else {
+            emailTextInputLayout.error = null
+        }
+    }
+
+    // Function to validate password
+    private fun validatePassword() {
+        val passwordText = passwordEditText.text.toString().trim()
+
+        if (TextUtils.isEmpty(passwordText)) {
+            passwordTextInputLayout.error = "Please enter your password"
+        } else {
+            passwordTextInputLayout.error = null
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,24 +92,65 @@ class Login : AppCompatActivity() {
         }
         // Set a focus change listener for the email EditText
         // Set a focus change listener for the email EditText
-        emailEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+        emailTextInputLayout = binding.emailTextInputLayout
+        passwordTextInputLayout = binding.passwordTextInputLayout
+
+        emailEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                validateEmail()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+
+        passwordEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                validatePassword()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+
+        // Set a focus change listener for the email TextInputLayout
+        emailTextInputLayout.editText?.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                email = emailEditText.text.toString().trim()
-            } else {
-                // When email field gains focus, restore the entire password
-                passwordEditText.setText(password)
+                val emailText = emailTextInputLayout.editText?.text.toString().trim()
+                if (emailText.isEmpty()) {
+                    emailTextInputLayout.error = "Please Input your email"
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
+                    emailTextInputLayout.error = "Invalid Email"
+                } else {
+                    emailTextInputLayout.error = null
+                }
             }
         }
 
-// Set a focus change listener for the password EditText
-        passwordEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+
+        // Set a focus change listener for the password TextInputLayout
+        passwordTextInputLayout.editText?.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
-                password = passwordEditText.text.toString().trim()
-            } else {
-                // When password field gains focus, restore the entire email
-                emailEditText.setText(email)
+                val passwordText = passwordTextInputLayout.editText?.text.toString().trim()
+                if (passwordText.isEmpty()) {
+                    passwordTextInputLayout.error = "Please Enter your password"
+                } else {
+                    passwordTextInputLayout.error = null
+                }
             }
         }
+
+
+
         // Create an Intent to open the ForgotPassword activity
         forgotPasswordTextView.setOnClickListener {
             // Create an Intent to open the ForgotPassword activity
@@ -117,6 +184,7 @@ class Login : AppCompatActivity() {
 
         alertDialog.show()
     }
+
     private fun showCustomProgressBar(message: String, durationMillis: Long) {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
@@ -144,22 +212,22 @@ class Login : AppCompatActivity() {
 
 
     private fun validateData() {
-        email = binding.emailLogin.text.toString().trim()
-        password = binding.passwordText.text.toString().trim()
+        email = emailTextInputLayout.editText?.text.toString().trim()
+        password = passwordTextInputLayout.editText?.text.toString().trim()
 
         val emailMaxLength = 320
         val passwordMaxLength = 128
 
         if (email.isEmpty()) {
-            binding.emailLogin.setError("Please Input your Email")
+            emailTextInputLayout.error = "Please input your email"
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            binding.emailLogin.setError("Invalid Email")
+            emailTextInputLayout.error = "Invalid Email"
         } else if (email.length > emailMaxLength) {
-            binding.emailLogin.setError("Email is too long (max $emailMaxLength characters)")
+            emailTextInputLayout.error = "Email is too long (max $emailMaxLength characters)"
         } else if (password.isEmpty()) {
-            binding.passwordText.setError("Please Enter Password")
+            passwordTextInputLayout.error = "Please enter your password"
         } else if (password.length > passwordMaxLength) {
-            binding.passwordText.setError("Password is too long (max $passwordMaxLength characters)")
+            passwordTextInputLayout.error = "Password is too long (max $passwordMaxLength characters)"
         } else {
             loginUser()
         }
@@ -167,7 +235,7 @@ class Login : AppCompatActivity() {
 
 
     private fun loginUser() {
-        showCustomProgressBar("Logging In...", 2000)
+        showCustomProgressBar("Logging In...", 1500)
 
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnSuccessListener {
@@ -179,16 +247,21 @@ class Login : AppCompatActivity() {
 
                 if (e.message == "The email address is badly formatted.") {
                     // Handle invalid email format error
-                    binding.emailLogin.setError("Invalid Email")
+                    emailTextInputLayout.error = "Invalid Email"
+                    passwordTextInputLayout.error = null // Clear password error
                 } else if (e.message == "There is no user record corresponding to this identifier. The user may have been deleted.") {
                     // User does not exist in the database, show the custom popup with an error message
                     showCustomPopupError("Account Not Found")
                 } else {
                     // Show "Incorrect Password" for other login errors
+                    passwordTextInputLayout.error = "Incorrect Password"
+                    emailTextInputLayout.error = null // Clear email error
+                    // Call showCustomPopupIncorrectPass for incorrect password error
                     showCustomPopupIncorrectPass("Incorrect Password")
                 }
             }
     }
+
     private fun dismissCustomProgressBar() {
         // Dismiss the progress bar here
         progressDialog.dismiss()

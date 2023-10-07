@@ -80,7 +80,6 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             app:hintTextColor="@color/DarkGray"
-            android:layout_marginBottom="10dp"
             android:layout_marginTop="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -112,7 +111,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             app:passwordToggleEnabled="true"
-
+            android:layout_marginTop="5dp"
             app:hintTextColor="@color/DarkGray">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -146,12 +145,13 @@
         android:id="@+id/btnlogin"
         android:layout_width="400dp"
         android:layout_height="60dp"
+        android:layout_below="@+id/img"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="215dp"
         android:layout_marginRight="30dp"
-        android:textAllCaps="false"
         android:background="@drawable/button_shape"
         android:text="Login"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="25dp">
 
@@ -161,11 +161,11 @@
         android:id="@+id/forgotpassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/img"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="575dp"
+        android:layout_marginTop="285dp"
         android:text="Forgot Password?"
-        android:textColor="@color/blue"
-        >
+        android:textColor="@color/blue">
 
 
     </TextView>
@@ -174,9 +174,10 @@
         android:id="@+id/registers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/img"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="140dp"
-        android:layout_marginTop="605dp"
+        android:layout_marginTop="315dp"
         android:text="----- or Sign in with -----"
         android:textColor="@color/DarkGray"
         android:textSize="18dp">
@@ -220,8 +221,9 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/img"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="635dp"
+        android:layout_marginTop="330dp"
         android:orientation="horizontal">
 
 
