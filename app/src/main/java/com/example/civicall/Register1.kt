@@ -8,6 +8,8 @@ import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.InputFilter
 import android.text.InputType
@@ -608,7 +610,8 @@ class Register1 : AppCompatActivity() {
         }
 
         if (!validateContactNumber()) {
-            activityRegister1Binding.contactNumberTextInputLayout.error = "Please enter a valid contact number"
+            activityRegister1Binding.contactNumberTextInputLayout.error =
+                "Please enter a valid contact number"
         }
 
         if (!validateContactEme()) {
@@ -696,6 +699,7 @@ class Register1 : AppCompatActivity() {
 
         alertDialog.show()
     }
+
     private fun showCustomPopupError(message: String) {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
@@ -722,26 +726,37 @@ class Register1 : AppCompatActivity() {
         alertDialog.show()
     }
 
-
-    private fun createUserAccount() {
+    private fun showCustomProgressBar(message: String, durationMillis: Long) {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.loading_layout, null)
+
         dialogBuilder.setView(dialogView)
-        dialogBuilder.setCancelable(false) // Prevent users from dismissing the dialog
+        val alertDialog = dialogBuilder.create()
 
-        val accountCreationDialog = dialogBuilder.create()
-        val progressMessage = dialogView.findViewById<TextView>(R.id.messageTextView)
-        progressMessage.text = "Creating Account..." // Set the initial message
-        dialogView.setBackgroundColor(Color.TRANSPARENT) // Set the background of the TextView to be transparent
+        // Set the animation style
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideLeft
+
+        // Set the background to be transparent
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val messageTextView = dialogView.findViewById<TextView>(R.id.messageTextView)
+        messageTextView.text = message
+
+        // Dismiss the dialog after the specified duration
+        Handler(Looper.getMainLooper()).postDelayed({
+            alertDialog.dismiss()
+        }, durationMillis)
+
+        alertDialog.show()
+    }
 
 
-        accountCreationDialog.show()
+    private fun createUserAccount() {
+        showCustomProgressBar("Creating Account...", 2000)
 
         firebaseAuth.createUserWithEmailAndPassword(email, pass)
             .addOnCompleteListener { task ->
-                accountCreationDialog.dismiss()
-
                 if (task.isSuccessful) {
                     // Account creation success
                     // Pass a flag to indicate success
@@ -758,24 +773,7 @@ class Register1 : AppCompatActivity() {
     }
 
     private fun updateUserInfo() {
-        val dialogBuilder = AlertDialog.Builder(this)
-        val inflater = layoutInflater
-        val dialogView = inflater.inflate(R.layout.loading_layout, null)
-
-        // Set the background of userInfoUpdateDialog to be transparent
-        val userInfoUpdateDialog = dialogBuilder.create()
-        userInfoUpdateDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        dialogBuilder.setView(dialogView)
-        dialogBuilder.setCancelable(false) // Prevent users from dismissing the dialog
-
-        val progressMessage = dialogView.findViewById<TextView>(R.id.messageTextView)
-        progressMessage.text = "Saving User Info..." // Set the initial message
-
-        // Set the background of progressMessage TextView to be transparent
-        dialogView.setBackgroundColor(Color.TRANSPARENT)
-
-        userInfoUpdateDialog.show()
+        showCustomProgressBar("Saving User Info...", 2000)
 
         val searchFragment = CivicPostFragment()
         val args = Bundle()
@@ -806,16 +804,13 @@ class Register1 : AppCompatActivity() {
         ref.child(uid!!)
             .setValue(hashMap)
             .addOnSuccessListener {
-                userInfoUpdateDialog.dismiss()
                 val intent = Intent(this, Login::class.java)
                 intent.putExtra("showSuccessPopup", true) // Set the flag to true
                 startActivity(intent)
                 finish()
             }
             .addOnFailureListener { e ->
-                userInfoUpdateDialog.dismiss()
                 showCustomPopupError("Failed Saving User's Info due to ${e.message}")
             }
     }
 }
-

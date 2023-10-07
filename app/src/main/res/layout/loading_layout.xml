@@ -10,13 +10,13 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/dialog_layout_flat"
-        android:layout_width="@dimen/popup_width"
-        android:layout_height="272dp"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
         android:layout_gravity="center"
-        android:background="@drawable/border_design"
         android:gravity="center_horizontal"
         android:minWidth="@dimen/popup_width"
         android:minHeight="@dimen/popup_height"
+        android:background="@drawable/rounded_white_bg"
         android:orientation="vertical">
 
         <ProgressBar
@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:layout_gravity="center"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="25dp"
             android:indeterminate="true"
             android:indeterminateTint="@color/colorAccent" />
 

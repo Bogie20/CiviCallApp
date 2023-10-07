@@ -7,6 +7,8 @@ import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Patterns
 import android.view.View
 import android.widget.Button
@@ -115,6 +117,31 @@ class Login : AppCompatActivity() {
 
         alertDialog.show()
     }
+    private fun showCustomProgressBar(message: String, durationMillis: Long) {
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.loading_layout, null)
+
+        dialogBuilder.setView(dialogView)
+        val alertDialog = dialogBuilder.create()
+
+        // Set the animation style
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideUp
+
+        // Set the background to be transparent
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val messageTextView = dialogView.findViewById<TextView>(R.id.messageTextView)
+        messageTextView.text = message
+
+        // Dismiss the dialog after the specified duration
+        Handler(Looper.getMainLooper()).postDelayed({
+            alertDialog.dismiss()
+        }, durationMillis)
+
+        alertDialog.show()
+    }
+
 
     private fun validateData() {
         email = binding.emailLogin.text.toString().trim()
@@ -140,19 +167,16 @@ class Login : AppCompatActivity() {
 
 
     private fun loginUser() {
-        val messageTextView = progressDialog.findViewById<TextView>(R.id.messageTextView)
-        val progressBar = progressDialog.findViewById<ProgressBar>(R.id.progressBar)
-        messageTextView.text = "Logging In..."
-        progressBar.visibility = ProgressBar.VISIBLE
-
-        progressDialog.show()
+        showCustomProgressBar("Logging In...", 2000)
 
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnSuccessListener {
                 checkUser()
             }
             .addOnFailureListener { e ->
-                progressDialog.dismiss()
+                // Dismiss the progress bar when there's an error
+                dismissCustomProgressBar()
+
                 if (e.message == "The email address is badly formatted.") {
                     // Handle invalid email format error
                     binding.emailLogin.setError("Invalid Email")
@@ -165,6 +189,11 @@ class Login : AppCompatActivity() {
                 }
             }
     }
+    private fun dismissCustomProgressBar() {
+        // Dismiss the progress bar here
+        progressDialog.dismiss()
+    }
+
 
     private fun showCustomPopupError(message: String) {
         val dialogBuilder = AlertDialog.Builder(this)
