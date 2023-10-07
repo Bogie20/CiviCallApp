@@ -371,7 +371,6 @@ class Register1 : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Please wait...")
-        progressDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         progressDialog.setCanceledOnTouchOutside(false)
 
         val backbtn: ImageView = findViewById(R.id.back)

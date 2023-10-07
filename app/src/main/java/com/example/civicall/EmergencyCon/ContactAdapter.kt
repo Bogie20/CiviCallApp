@@ -16,6 +16,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import android.Manifest
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import com.example.civicall.R
@@ -60,15 +62,21 @@ class ContactAdapter(
         val builder = AlertDialog.Builder(context)
         builder.setView(dialogView)
 
-        val dialog = builder.create()
+        val alertDialog = builder.create()
+
+        // Set window animations
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        // Set the background to be transparent
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         optionListView.setOnItemClickListener { _, _, which, _ ->
             val selectedPhoneNumber = optionsArray[which]
             makePhoneCall(context, selectedPhoneNumber)
-            dialog.dismiss()
+            alertDialog.dismiss()
         }
 
-        dialog.show()
+        alertDialog.show()
     }
 
 
