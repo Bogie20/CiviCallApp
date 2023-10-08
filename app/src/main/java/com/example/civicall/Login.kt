@@ -165,7 +165,24 @@ class Login : AppCompatActivity() {
             }
         }
 
+        emailEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                email = emailEditText.text.toString().trim()
+            } else {
+                // When email field gains focus, restore the entire password
+                passwordEditText.setText(password)
+            }
+        }
 
+// Set a focus change listener for the password EditText
+        passwordEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                password = passwordEditText.text.toString().trim()
+            } else {
+                // When password field gains focus, restore the entire email
+                emailEditText.setText(email)
+            }
+        }
 
         // Create an Intent to open the ForgotPassword activity
         forgotPasswordTextView.setOnClickListener {
