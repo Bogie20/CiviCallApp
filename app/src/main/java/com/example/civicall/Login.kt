@@ -1,12 +1,15 @@
 package com.example.civicall
 
-import android.app.Dialog
-import android.content.Intent
 import android.app.AlertDialog
-import android.content.DialogInterface
+import android.app.Dialog
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Bundle
+
 import android.os.Handler
 import android.os.Looper
 import android.text.Editable
@@ -15,9 +18,7 @@ import android.text.TextWatcher
 import android.util.Patterns
 import android.view.View
 import android.widget.Button
-import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.civicall.databinding.ActivityLoginBinding
 import com.google.android.material.textfield.TextInputEditText
@@ -25,6 +26,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
@@ -35,10 +37,12 @@ class Login : AppCompatActivity() {
     private lateinit var emailEditText: TextInputEditText
     private lateinit var passwordEditText: TextInputEditText
     private lateinit var emailTextInputLayout: TextInputLayout
+    private lateinit var databaseReference: DatabaseReference
     private lateinit var passwordTextInputLayout: TextInputLayout
     private var isNewAccount = false
     private var email = ""
     private var password = ""
+    private var isPopupShowing = false
     private fun validateEmail() {
         val emailText = emailEditText.text.toString().trim()
 
@@ -70,6 +74,7 @@ class Login : AppCompatActivity() {
         progressDialog = Dialog(this)
         progressDialog.setContentView(R.layout.loading_layout)
         progressDialog.setCancelable(false)
+        databaseReference = FirebaseDatabase.getInstance().getReference("connection_status")
 
         val showSuccessPopup = intent.getBooleanExtra("showSuccessPopup", false)
 
@@ -77,6 +82,17 @@ class Login : AppCompatActivity() {
             // Display the "Account Created Successfully!" popup
             showCustomPopupSuccess("Account Created Successfully!")
         }
+        binding.btnlogin.setOnClickListener {
+            // Check network connectivity before attempting to log in
+            if (isNetworkAvailable(this)) {
+                validateData()
+            } else {
+                showCustomPopupError("No internet connection. Please check your network settings.")
+            }
+        }
+
+
+
 
         val forgotPasswordTextView = findViewById<TextView>(R.id.forgotpassword)
         // Initialize your email and password EditText fields
@@ -160,6 +176,11 @@ class Login : AppCompatActivity() {
     }
 
     private fun showCustomPopupSuccess(message: String) {
+        // Check if the pop-up is already showing, and if so, return early
+        if (isPopupShowing) {
+            return
+        }
+
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_success, null)
@@ -180,12 +201,25 @@ class Login : AppCompatActivity() {
 
         okButton.setOnClickListener {
             alertDialog.dismiss()
+            isPopupShowing = false // Set the variable to false when the pop-up is dismissed
         }
 
         alertDialog.show()
+        isPopupShowing = true // Set the variable to true when the pop-up is displayed
     }
-
+    private fun isNetworkAvailable(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
+    }
+    private var isProgressBarShowing = false
     private fun showCustomProgressBar(message: String, durationMillis: Long) {
+        // Check if the progress bar is already showing
+        if (isProgressBarShowing) {
+            return
+        }
+
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.loading_layout, null)
@@ -202,15 +236,18 @@ class Login : AppCompatActivity() {
         val messageTextView = dialogView.findViewById<TextView>(R.id.messageTextView)
         messageTextView.text = message
 
+        alertDialog.show()
+
+        // Set the variable to true to indicate that the progress bar is showing
+        isProgressBarShowing = true
+
         // Dismiss the dialog after the specified duration
         Handler(Looper.getMainLooper()).postDelayed({
             alertDialog.dismiss()
+            // Set the variable to false when the progress bar is dismissed
+            isProgressBarShowing = false
         }, durationMillis)
-
-        alertDialog.show()
     }
-
-
     private fun validateData() {
         email = emailTextInputLayout.editText?.text.toString().trim()
         password = passwordTextInputLayout.editText?.text.toString().trim()
@@ -235,6 +272,11 @@ class Login : AppCompatActivity() {
 
 
     private fun loginUser() {
+        if (!isNetworkAvailable(this)) {
+            showCustomPopupError("No internet connection. Please check your network settings.")
+            return
+        }
+
         showCustomProgressBar("Logging In...", 1500)
 
         firebaseAuth.signInWithEmailAndPassword(email, password)
@@ -269,6 +311,11 @@ class Login : AppCompatActivity() {
 
 
     private fun showCustomPopupError(message: String) {
+        // Check if the pop-up is already showing, and if so, return early
+        if (isPopupShowing) {
+            return
+        }
+
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_error, null)
@@ -289,13 +336,20 @@ class Login : AppCompatActivity() {
 
         okButton.setOnClickListener {
             alertDialog.dismiss()
+            isPopupShowing = false // Set the variable to false when the pop-up is dismissed
         }
 
         alertDialog.show()
+        isPopupShowing = true // Set the variable to true when the pop-up is displayed
     }
 
 
     private fun showCustomPopupIncorrectPass(message: String) {
+        // Check if the pop-up is already showing, and if so, return early
+        if (isPopupShowing) {
+            return
+        }
+
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_flat, null)
@@ -316,9 +370,11 @@ class Login : AppCompatActivity() {
 
         okButton.setOnClickListener {
             alertDialog.dismiss()
+            isPopupShowing = false // Set the variable to false when the pop-up is dismissed
         }
 
         alertDialog.show()
+        isPopupShowing = true // Set the variable to true when the pop-up is displayed
     }
 
 

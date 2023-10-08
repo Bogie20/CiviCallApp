@@ -1,5 +1,7 @@
 package com.example.civicall
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
@@ -43,6 +45,7 @@ class Register1 : AppCompatActivity() {
     private var initialContactEme = ""
     private var initialAddress = ""
     private var initialBirthday = ""
+    private var isPopupShowing = false
     private fun validateFirstName(): Boolean {
         val lastName = activityRegister1Binding.fname.text.toString().trim()
         val regex = "^[a-zA-Z.\\s-]+$"
@@ -232,6 +235,12 @@ class Register1 : AppCompatActivity() {
         }
     }
 
+    private fun isNetworkAvailable(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -586,7 +595,10 @@ class Register1 : AppCompatActivity() {
             activityRegister1Binding.genderTextInputLayout.error = null
         }
 
-
+        if (!isNetworkAvailable(this)) {
+            showCustomPopupError("No internet connection. Please check your network settings.")
+            return
+        }
         if (!validateFirstName()) {
             activityRegister1Binding.fnameTextInputLayout.error = "Please enter a valid first name"
         }
@@ -674,6 +686,11 @@ class Register1 : AppCompatActivity() {
 
 
     private fun showCustomPopup(message: String) {
+        // Check if the pop-up is already showing, and if so, return early
+        if (isPopupShowing) {
+            return
+        }
+
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_flat, null)
@@ -694,12 +711,19 @@ class Register1 : AppCompatActivity() {
 
         okButton.setOnClickListener {
             alertDialog.dismiss()
+            isPopupShowing = false // Set the variable to false when the pop-up is dismissed
         }
 
         alertDialog.show()
+        isPopupShowing = true // Set the variable to true when the pop-up is displayed
     }
 
     private fun showCustomPopupError(message: String) {
+        // Check if the pop-up is already showing, and if so, return early
+        if (isPopupShowing) {
+            return
+        }
+
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_error, null)
@@ -720,12 +744,19 @@ class Register1 : AppCompatActivity() {
 
         okButton.setOnClickListener {
             alertDialog.dismiss()
+            isPopupShowing = false // Set the variable to false when the pop-up is dismissed
         }
 
         alertDialog.show()
+        isPopupShowing = true // Set the variable to true when the pop-up is displayed
     }
-
+    private var isProgressBarShowing = false
     private fun showCustomProgressBar(message: String, durationMillis: Long) {
+        // Check if the progress bar is already showing
+        if (isProgressBarShowing) {
+            return
+        }
+
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.loading_layout, null)
@@ -734,7 +765,7 @@ class Register1 : AppCompatActivity() {
         val alertDialog = dialogBuilder.create()
 
         // Set the animation style
-        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideLeft
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideUp
 
         // Set the background to be transparent
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -742,15 +773,18 @@ class Register1 : AppCompatActivity() {
         val messageTextView = dialogView.findViewById<TextView>(R.id.messageTextView)
         messageTextView.text = message
 
+        alertDialog.show()
+
+        // Set the variable to true to indicate that the progress bar is showing
+        isProgressBarShowing = true
+
         // Dismiss the dialog after the specified duration
         Handler(Looper.getMainLooper()).postDelayed({
             alertDialog.dismiss()
+            // Set the variable to false when the progress bar is dismissed
+            isProgressBarShowing = false
         }, durationMillis)
-
-        alertDialog.show()
     }
-
-
     private fun createUserAccount() {
         showCustomProgressBar("Creating Account...", 2000)
 
