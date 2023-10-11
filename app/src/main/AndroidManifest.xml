@@ -22,7 +22,43 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
-        <!-- Posting Civic Engagement Start -->
+
+        <!-- Survival Tips -->
+
+        <activity
+            android:name=".SurvivalTipsInfo.NavigatingMountainInfo"
+            android:exported="true" />
+        <activity
+            android:name=".SurvivalTipsInfo.SurvivalMenu"
+            android:exported="true" />
+        <activity
+            android:name=".SurvivalTipsInfo.CoastalSurvivalInfo"
+            android:exported="true" />
+        <activity
+            android:name=".SurvivalTipsInfo.SurvivalPsychologyInfo"
+            android:exported="true" />
+        <activity
+            android:name=".SurvivalTipsInfo.IslandSurvivalInfo"
+            android:exported="true" />
+
+        <activity
+            android:name=".SurvivalTipsInfo.JunglerInfo"
+            android:exported="true" />
+        <activity
+            android:name=".SurvivalTipsInfo.ElNinoInfo"
+            android:exported="true" />
+        <activity
+            android:name=".SurvivalTipsInfo.TyphoonInfo"
+            android:exported="true" />
+        <activity
+            android:name=".SurvivalTipsInfo.TsunamiInfo"
+            android:exported="true" />
+        <activity
+            android:name=".SurvivalTipsInfo.VolcanicEruptionInfo"
+            android:exported="true" />
+        <activity
+            android:name=".SurvivalTipsInfo.EarthquakesInfo"
+            android:exported="true" /> <!-- Survival Tips  End -->
         <activity
             android:name=".CivicEngagementPost.Update_engagement"
             android:exported="true" />
@@ -31,65 +67,52 @@
             android:exported="true" />
         <activity
             android:name=".CivicEngagementPost.Upload_engagement"
-            android:exported="true" />
-        <!-- Posting Civic Engagement End -->
+            android:exported="true" /> <!-- Posting Civic Engagement End -->
         <!-- Educational Start -->
         <!-- Civic Engagement Start -->
         <activity
+            android:name=".CivicEngagementInfo.TechforGoodsinfo"
+            android:exported="true" />
+        <activity
             android:name=".CivicEngagementInfo.CivicAdvocacyStrategiesInfo"
             android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".CivicEngagementInfo.GlobalCitizenshipInfo"
             android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".CivicEngagementInfo.DigitalToolsforCivicEngagementInfo"
             android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
-
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".CivicEngagementInfo.ChampionsofSocialJusticeInfo"
             android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".CivicEngagementInfo.AmplifyingStudentVoicesInfo"
             android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".CivicEngagementInfo.StudentLeadershipInfo"
             android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".CivicEngagementInfo.Civic"
             android:exported="true"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
-            android:name=".CivicEngagementInfo.TechforGoodInfo"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
-        <activity
             android:name=".CivicEngagementInfo.SkillsandOpportunitiesinfo"
             android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".CivicEngagementInfo.SustainabilityInitiativesInfo"
             android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            />
-
-
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".CivicEngagementInfo.CivicParticipationInfo"
             android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
-
-
-        <activity
-            android:name=".CivicEngagementInfo.CivicAdvocacyStrategiesInfo"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
-        <!--  Civic Engagement End -->
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" /> <!-- Civic Engagement End -->
         <!-- Disaster Response Start -->
         <activity
             android:name=".DisasterResponseInfo.CommunicationAndInformationInfo"
@@ -97,11 +120,11 @@
         <activity
             android:name=".DisasterResponseInfo.EmergencyPreparednessInfo"
             android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".DisasterResponseInfo.DisasterResponseMenu"
             android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".DisasterResponseInfo.FireSafetyInfo"
             android:exported="true" />
@@ -125,9 +148,7 @@
             android:exported="true" />
         <activity
             android:name=".DisasterResponseInfo.VolunteerandDonationsManagementInfo"
-            android:exported="true" />
-
-        <!-- Disaster Response End -->
+            android:exported="true" /> <!-- Disaster Response End -->
         <!-- Educational End -->
         <!-- Emergency Contact Start -->
         <activity
@@ -248,7 +269,6 @@
             android:name=".Register1"
             android:exported="true"
             android:screenOrientation="portrait" />
-
 
         <meta-data
             android:name="preloaded_fonts"

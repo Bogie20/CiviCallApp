@@ -23,99 +23,99 @@ class CivicParticipationInfo : AppCompatActivity() {
 
         dataList.add(
             DataItem(
-                "Importance of College Voter Engagement",
-                "In the realm of youth activism, the profound impact on student leaders is undeniable. This exploration delves into how the fervor of youth activism molds and empowers the next generation of student leaders, igniting their passion for change and driving them to become influential forces in society.\"Comprehensive Disaster Preparedness Kits: A Guide to Effective Disaster Response\" and equip yourself with the knowledge to safeguard your community and ensure a brighter, more resilient future.\"\"\n\n" +
-                        "1. Youth Activism Awareness Campaigns: Organize awareness campaigns within educational institutions to highlight the significance of youth activism, inspiring students to engage in meaningful causes.\n\n" +
-                        "2. Student Activist Networks: Establish student activist networks or clubs that provide a platform for students to learn about and actively participate in youth activism efforts.\n\n" +
-                        "3. Guest Speaker Series: Invite youth activists to share their experiences and insights with students, emphasizing the transformative power of activism.\n\n" +
-                        "4. Leadership Workshops: Conduct workshops that focus on leadership skills and ethical activism, equipping student leaders with the tools needed to drive change responsibly.\n\n" +
-                        "5. Collaborative Projects: Encourage student-led initiatives that collaborate with youth activists, allowing students to work alongside experienced change-makers on real-world issues.\n\n" +
-                        "6. Community Engagement: Facilitate opportunities for student leaders to engage with their local communities, enabling them to witness firsthand the impact of activism.\n\n" +
-                        "7. Advocacy Training: Offer training programs that equip students with effective advocacy skills, teaching them how to raise awareness, mobilize support, and drive change.\n\n" +
-                        "8. Mentorship Programs: Create mentorship programs where youth activists can guide and inspire student leaders, nurturing their passion for activism.\n\n" +
-                        "9. Leadership Recognition: Acknowledge and celebrate student leaders who actively engage in youth activism, reinforcing the idea that their efforts can make a significant impact.\n\n" +
-                        "10. Youth-Led Initiatives: Encourage student leaders to initiate their own youth-led projects, allowing them to apply their activism knowledge and drive positive change in their communities.\n\n",
+                "IMPORTANCE OF COLLEGE VOTER ENGAGEMENT",
+                "\"Discover the Student's Guide to Civic Participation: Empowering Your Voice\" and explore the pivotal role of college voter engagement in shaping tomorrow's civic leaders. Unleash your potential to drive change and strengthen democracy on campus and beyond.\"Comprehensive Disaster Preparedness Kits: A Guide to Effective Disaster Response\" and equip yourself with the knowledge to safeguard your community and ensure a brighter, more resilient future.\"\"\n\n" +
+                        "1. ASSESS YOUR CIVIC AWARENESS: Start by evaluating your current knowledge of civic issues and your level of engagement. Identify areas where you'd like to make a difference.\n\n" +
+                        "2. EXPLORE CAMPUS RESOURCES: Research the resources available on your college campus for civic engagement, including clubs, organizations, and events related to voter registration and political activism.\n\n" +
+                        "3. REGISTER TO VOTE: If you're eligible to vote, register to vote in local, state, and national elections. Familiarize yourself with voter registration deadlines and requirements in your state.\n\n" +
+                        "4. GET INFORMED: Stay updated on current events, policies, and candidates. Read newspapers, follow reputable news sources, and attend campus discussions or lectures on civic topics.\n\n" +
+                        "5. ENGAGE IN POLITICAL DISCUSSIONS: Participate in discussions and debates on campus to better understand different perspectives and develop your own informed opinions.\n\n" +
+                        "6. JOIN CIVIC CLUBS: Join student clubs or organizations focused on civic engagement and voter participation. These groups often organize voter registration drives and events.\n\n" +
+                        "7. VOLUNTEER: Contribute to community service projects or political campaigns that align with your values. Volunteer work can provide hands-on experience and connections in the field.\n\n" +
+                        "8. ADVOCATE FOR ISSUES: Identify key issues that matter to you and your community. Write letters to elected officials, attend town hall meetings, and advocate for policy changes.\n\n" +
+                        "9. EDUCATE OTHERS: Share your knowledge and passion for civic engagement with fellow students. Host workshops or informational sessions to educate others about the importance of voting and civic participation.\n\n" +
+                        "10. PARTICIPATE IN ELECTIONS: Encourage voter turnout among your peers by organizing on-campus election events, promoting early voting, and assisting with absentee ballot requests. Your involvement can have a significant impact on the democratic process.\n\n",
 
-                R.drawable.img_125,
-                "https://www.rappler.com/moveph/27023-youth-activism-organized-action/",
-                "https://cms-image-bucket-production-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/8/6/8/0/31910868-3-eng-GB/Cropped-1611220222R20210121%20University%20of%20the%20Philippines%20protest.JPG"
+                R.drawable.img_159,
+                "https://www.forbes.com/sites/civicnation/2022/11/01/community-colleges-are-key-to-promote-voter-engagement/?sh=505452ee31ff/",
+                "https://media.philstar.com/images/articles/gen17-barangay-sk-polls_2018-07-08_21-40-54.jpg"
             )
         )
         dataList.add(
-            DataItem("Election Preparedness for Students",
-                "In the realm of student-led movements, understanding the keys to success is vital. This exploration delves into the core principles that empower student leaders and drive tangible results in civic engagement.\n\n" +
-                        "1. Focus on Clear Objectives: Define specific, achievable goals for your movement, ensuring clarity of purpose and direction.\n\n" +
-                        "2. Effective Organizational Structure: Establish a well-structured organization with defined roles, responsibilities, and leadership positions.\n\n" +
-                        "3. Strategic Planning: Develop a strategic plan that outlines the steps, timeline, and resources required to achieve your objectives.\n\n" +
-                        "4. Building Alliances: Collaborate with other student organizations, community groups, or like-minded individuals to expand your network and leverage collective strength.\n\n" +
-                        "5. Engage in Outreach: Actively reach out to students, faculty, and the broader community to raise awareness and garner support for your cause.\n\n" +
-                        "6. Advocacy and Lobbying: Develop advocacy skills to engage with policymakers, administrators, and relevant authorities to influence change.\n\n" +
-                        "7. Resource Mobilization: Secure funding and resources through various means, such as grants, donations, or crowdfunding, to sustain your movement's activities.\n\n" +
-                        "8. Effective Communication: Craft compelling messages and utilize multiple communication channels, including social media and traditional media, to amplify your message.\n\n" +
-                        "9. Strategic Nonviolent Action: Employ nonviolent strategies and tactics that align with your goals, such as protests, demonstrations, or awareness campaigns.\n\n" +
-                        "10. Evaluation and Adaptation: Continuously assess your progress, adapt to changing circumstances, and refine your approach based on lessons learned.\n\n",
+            DataItem("ELECTION PREPAREDNESS FOR STUDENTS",
+                "Prepare for the future of democracy with \"Election Preparedness for Students.\" Explore how civic education and values can empower the next generation of voters, fostering a society where leadership is the norm, not the exception.\n\n" +
+                        "1. CIVIC EDUCATION INTEGRATION: Advocate for the integration of comprehensive civic education into school curricula, emphasizing democratic values, responsibilities, and the importance of informed voting.\n\n" +
+                        "2. VOTER REGISTRATION DRIVES: Organize voter registration drives within educational institutions to ensure students are registered and eligible to vote when the time comes.\n\n" +
+                        "3. YOUTH-LED CIVIC CLUBS: Establish student-led civic clubs or organizations that promote active participation in the democratic process and provide a platform for discussion.\n\n" +
+                        "4. CIVIC VALUES CURRICULUM: Develop a curriculum that instills civic values, critical thinking, and open dialogue to encourage students to engage in constructive political discourse.\n\n" +
+                        "5. DEMOCRACY WORKSHOPS: Conduct workshops that educate students about the electoral process, candidates, and the impact of their votes on local and national issues.\n\n" +
+                        "6. ACTIVE CITIZENSHIP PROJECTS: Encourage students to initiate projects that address community issues, allowing them to experience the positive impact of civic engagement.\n\n" +
+                        "7. COLLABORATE WITH CIVIL SOCIETY: Partner with civil society organizations to provide resources and expertise in voter education and civic engagement initiatives.\n\n" +
+                        "8. YOUTH-LED CAMPAIGNS: Empower students to create and lead nonpartisan voter awareness campaigns targeting their peers, emphasizing the importance of informed voting.\n\n" +
+                        "9. DEBATE AND DISCUSSION FORUMS: Organize regular debates and discussion forums where students can exchange ideas, challenge perspectives, and refine their understanding of civic issues.\n\n" +
+                        "10. MENTORSHIP PROGRAMS: Establish mentorship programs that connect experienced civic-minded individuals with students, offering guidance and inspiration for active citizenship.\n\n",
 
 
-                R.drawable.img_124,
+                R.drawable.img_160,
                 "https://www.samuelcohn.net/development-1/everything-you-need-to-know-about-how-to-create-a-successful-student-led-social-movement",
                 "https://1cms-img.imgix.net/Students-rally1.jpg")
         )
         dataList.add(
-            DataItem("Political Activism and Youth",
-                "In our ever-changing world, where challenges like poverty, injustice, and environmental crises abound, the demand for a fresh breed of leaders is crystal clear. Here, we dive into how colleges play a crucial role in shaping these leaders by fostering students' integrative leadership, a powerful blend of teamwork, civic involvement, and cross-cultural understanding, to take on these global issues head-on.\n\n" +
-                        "1. Compile Emergency Contact Information: Gather essential contact numbers, including fire, police, ambulance, and medical professionals, and store them in your cell phone and near your home phone.\n\n" +
-                        "2. Designate Family Meeting Places: Identify both local and out-of-town meeting places for your family to gather in case you're separated during a disaster or can't return home.\n\n" +
-                        "3. Set Up 'I.C.E.' Contacts: Program 'In Case of Emergency' (I.C.E.) numbers in your phone and your family members' phones to provide crucial information to emergency responders.\n\n" +
-                        "4. Create a Family Contact Sheet: Develop a comprehensive contact sheet with names, addresses, and phone numbers of important contacts, including an out-of-town contact for times when local communication is disrupted.\n\n" +
-                        "5. Prepare Contact Cards: Create contact cards for each family member containing emergency contact information, an out-of-town contact, a designated meeting place, and other vital details. Keep these cards in accessible places like purses, wallets, or backpacks.\n\n" +
-                        "6. Ensure Every Family Member Has a Phone: Ensure that all family members have access to a mobile phone or a way to communicate during emergencies.\n\n" +
-                        "7. Teach 911 Protocol: Educate children on when and how to call 911 for assistance in emergencies.\n\n" +
-                        "8. Familiarize with Text Messaging: Ensure that everyone in your family knows how to send text messages, which can be more reliable during network disruptions than phone calls.\n\n" +
-                        "9. Subscribe to Alert Services: Sign up for local alert services that send text messages and emails with crucial information during disasters.\n\n" +
-                        "10. Prioritize Communication Methods: In times of crisis, use phone calls sparingly for life-threatening emergencies and rely on text messages, email, and social media for non-emergency communication to prevent network congestion.\n\n",
-                R.drawable.img_126,
-                "https://journalofleadershiped.org/jole_articles/strengthening-college-students-integrative-leadership-orientation-by-building-a-foundation-for-civic-engagement-and-multicultural-competence/",
-                "https://www.waldenu.edu/media/4894/seo-1354-bs-volunteering-problem-cheerful-243564697-1200x675")
+            DataItem("POLITICAL ACTIVISM AND YOUTH",
+                "\"Empowering Tomorrow's Leaders: Political Activism and Youth\" unveils the transformative role young minds play in shaping our political landscape. Dive into their passion for change, driving a brighter future for all.\n\n" +
+                        "1. YOUTH-LED INITIATIVES: Encourage and support young people in initiating their own community projects and campaigns focused on pressing global and local issues.\n\n" +
+                        "2. CIVIC EDUCATION ENHANCEMENT: Advocate for comprehensive civic education in schools, emphasizing global issues, critical thinking, and active participation in democratic processes.\n\n" +
+                        "3. INTERCONNECTED LEARNING: Foster intercultural understanding and cooperation by providing opportunities for students to engage with different cultures, both locally and globally.\n\n" +
+                        "4. GLOBAL-MINDED CURRICULUM: Develop curricula that target the competencies required for effective global citizenship, including empathy, responsibility, and a sense of duty to the planet and humanity.\n\n" +
+                        "5. CIVIC AND POLITICAL COMPETENCE: Promote competences such as critical thinking, communication skills, and civic-mindedness to empower young people to engage effectively in political and civic action.\n\n" +
+                        "6. ENCOURAGE INTERCULTURAL CONTACT: Create platforms for meaningful intercultural contact, cooperation, and dialogue among young individuals, enhancing tolerance and appreciation of cultural diversity.\n\n" +
+                        "7. SUPPORT FOR CIVIC AND POLITICAL PARTICIPATION: Establish organizations and platforms that provide resources, guidance, and opportunities for young people to participate in civic and political activities.\n\n" +
+                        "8. PARENTAL AND COMMUNITY INVOLVEMENT: Encourage parents and communities to engage in civic and political actions, setting positive examples for young individuals.\n\n" +
+                        "9. PEER ENGAGEMENT: Cultivate a sense of solidarity among peers, promoting commitment to civic and political goals and values within school and community settings.\n\n" +
+                        "10. GLOBAL AWARENESS: Inspire young people to explore and critically understand global issues, allowing them to channel their passions into global citizenship activities.\n\n",
+                R.drawable.img_161,
+                "https://www.un.org/en/chronicle/article/young-peoples-civic-and-political-engagement-and-global-citizenship",
+                "https://www.mei.edu/sites/default/files/styles/featured_image_article/public/People%2520Power.jpg?itok=NL96_RZI")
         )
 
         dataList.add(
-            DataItem("Advocating for Voting Rights",
+            DataItem("ADVOCATING FOR VOTING RIGHTS",
                 "\"In a world of unprecedented challenges, college students stand at the threshold of making their voices heard. Discover how these young changemakers are turning their passion into powerful civic action, fueling a wave of transformation on campuses and beyond.\"\n\n" +
-                        "1. Identify Your Passion: Reflect on the issues or causes that ignite your passion and resonate with you personally.\n\n" +
-                        "2. Educate Yourself: Dive deep into research, news, and resources related to your chosen cause to gain a comprehensive understanding of the topic.\n\n" +
-                        "3. Connect with Like-Minded Peers: Seek out student organizations, clubs, or online communities that share your passion and values.\n\n" +
-                        "4. Engage in Dialogue: Participate in open discussions, debates, or forums to exchange ideas, learn from others, and refine your perspective.\n\n" +
-                        "5. Set Clear Goals: Define specific, measurable, and achievable goals for the change you want to create in your community or on campus.\n\n" +
-                        "6. Plan and Organize: Create a strategic plan that outlines the steps, actions, and resources required to achieve your goals.\n\n" +
-                        "7. Leverage Technology: Utilize social media, online platforms, and digital tools to raise awareness, mobilize support, and amplify your message.\n\n" +
-                        "8. Collaborate and Network: Build partnerships with local organizations, activists, and influencers who can support your cause and expand your reach.\n\n" +
-                        "9. Take Action: Execute your plan, organize events, campaigns, or initiatives, and actively work toward your goals.\n\n" +
-                        "10. Measure Impact and Adapt: Continuously assess the impact of your actions, gather feedback, and be open to adapting your strategies for greater effectiveness.\n\n",
+                        "1. FACULTY-LED INITIATIVES: Encourage professors to actively promote voter registration within their classrooms, fostering civic responsibility among students.\n\n" +
+                        "2. STUDENT-LED ENGAGEMENT: Empower student leaders to spearhead voter registration efforts, creating a relatable and engaging experience for their peers.\n\n" +
+                        "3. REGISTRATION PRESENTATIONS: Implement concise and impactful voter registration presentations during classes, simplifying the registration process for students.\n\n" +
+                        "4. UTILIZE NORMS: Harness the influence of peer norms to make voter registration a common practice among college students.\n\n" +
+                        "5. COMPLIANCE WITH LEGAL OBLIGATIONS: Ensure universities comply with legal requirements for voter registration to safeguard federal student-aid funds.\n\n" +
+                        "6. TAILORED MESSAGING: Customize registration messages to address the unique challenges and motivations of college students.\n\n" +
+                        "7. OVERCOME PSYCHOLOGICAL HURDLES: Address psychological barriers that may deter college students from participating in electoral politics.\n\n" +
+                        "8. DATA-DRIVEN APPROACH: Utilize data and voter information to monitor registration rates and voter turnout, allowing institutions to measure their impact.\n\n" +
+                        "9. EFFICIENT CLASSROOM OUTREACH: Develop efficient methods for classroom-based voter registration presentations, optimizing time and engagement.\n\n" +
+                        "10. WIDESPREAD ADOPTION: Encourage more universities to adopt these strategies, transforming the legal mandate into a successful program for engaging students in the electoral process.\n\n",
 
 
 
-                R.drawable.img_127,
-                "https://www.gse.harvard.edu/ideas/news/20/09/turning-passion-civic-action",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rappler.com%2Fmoveph%2Fhow-communities-join-hands-crisis-duterte-year-4%2F&psig=AOvVaw3oThZo02gCRpuVdAUblEj_&ust=1696594679394000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOCFh-zx3oEDFQAAAAAdAAAAABAE")
+                R.drawable.img_162,
+                "https://www.cambridge.org/core/journals/ps-political-science-and-politics/article/i-will-register-and-vote-if-you-teach-me-how-a-field-experiment-testing-voter-registration-in-college-classrooms/2752048B2D7F6E703553306C5EF8AB4D",
+                "https://files01.pna.gov.ph/ograph/2023/01/11/comelec-seminars-registration-in-schoolscomelec-photo.jpg")
         )
 
         dataList.add(
-            DataItem("Civic Education on Elections",
-                "In the dynamic world of higher education, college students are increasingly driven by a passion for community service that goes beyond the pursuit of knowledge in the classroom. This Study delves into the pivotal role of high-impact volunteer opportunities tailored for college students, offering not only personal growth but also a chance to actively contribute to the betterment of society.\n\n" +
+            DataItem("FOSTERING CIVIC ENGAGEMENT CLASSROOM VOTER REGISTRATION INITIATIVES",
+                "\"As the midterm elections draw near, the spotlight on voter engagement intensifies, but one crucial demographic often overlooked is the youth vote. In a world of growing political apathy accusations, schools emerge as the frontline for cultivating informed, enthusiastic young voters.\"\n\n" +
 
-                        "1. Self-Reflection: Begin by reflecting on your passions, interests, and the causes that resonate with you. Consider what kind of impact you want to make in your community or beyond.\n\n" +
-                        "2. Research: Investigate local nonprofit organizations, community groups, and volunteer programs that align with your interests. Explore their missions, volunteer needs, and the impact they create.\n\n" +
-                        "3. Evaluate Commitment: Assess your availability and commitment level. Determine whether you can volunteer regularly, for specific events, or remotely, depending on your schedule and preferences.\n\n" +
-                        "4. Skills Assessment: Identify your strengths and skills that could benefit volunteer organizations. This includes both hard skills (e.g., web design, teaching) and soft skills (e.g., communication, teamwork).\n\n" +
-                        "5. Connect with Peers: Discuss your intentions with fellow students who share similar interests. They may have insights, recommendations, or even want to join you in your volunteer efforts.\n\n" +
-                        "6. Contact Organizations: Reach out to the organizations or programs you're interested in. Inquire about volunteer opportunities, application processes, and any training or orientation required.\n\n" +
-                        "7. Attend Info Sessions: Attend information sessions or orientations offered by volunteer organizations. These sessions can provide deeper insights into their work and help you make an informed decision.\n\n" +
-                        "8. Set Goals: Define clear goals for your volunteer experience. Determine what you hope to achieve personally and how you aim to contribute to the organization's mission.\n\n" +
-                        "9. Begin Volunteering: Start your volunteer work with enthusiasm and dedication. Whether it's mentoring, organizing events, or providing essential services, give your best effort.\n\n" +
-                        "10. Reflect and Adapt: Regularly reflect on your volunteer experiences. Assess the impact you've made, evaluate your goals, and adapt your volunteer efforts as needed. This ongoing process ensures your service remains high-impact and meaningful.\n\n",
-                R.drawable.img_128,
-                "https://www.indeed.com/career-advice/career-development/community-service-ideas-college-students",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pna.gov.ph%2Farticles%2F1122889&psig=AOvVaw2jhQJiVZsIXFYNj-8vl54k&ust=1696595824391000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPi-jo723oEDFQAAAAAdAAAAABAE")
+                        "1. EARLY CIVIC EDUCATION: Start civic education early, incorporating 'everyday civics' concepts even in elementary grades. Create a democratic school environment that encourages students to voice their opinions and participate in decision-making.\n\n" +
+                        "2. CULTIVATE A CULTURE OF PARTICIPATION: In middle and high school, establish more formal structures for participation, such as student governance and mock elections. Encourage students to get involved in these activities to develop their leadership and civic engagement skills.\n\n" +
+                        "3. COMPREHENSIVE CIVICS CURRICULUM: Ensure that the civics curriculum goes beyond U.S. history and government. Include discussions on social issues, the workings of democratic processes, taking informed action to address concerns, and news media literacy.\n\n" +
+                        "4. EDUCATING FOR AMERICAN DEMOCRACY (EAD): Utilize resources like the Educating for American Democracy Roadmap, a cross-ideological initiative designed to enhance civics and history education. It provides guides and resources that educators can adapt to fit their specific needs.\n\n" +
+                        "5. INCORPORATE CIVIC LEARNING ACROSS SUBJECTS: Infuse civic learning throughout various subjects to provide students with multiple opportunities to learn about elections and democracy in different contexts.\n\n" +
+                        "6. INVOLVE THE WHOLE COMMUNITY: Recognize that civic education shouldn't be limited to the classroom. Collaborate with community organizations, parents, and young people to create a comprehensive civic education ecosystem. Work with local elections offices, grassroots organizations, libraries, and museums to offer diverse civic education experiences.\n\n" +
+                        "7. FORMAL AND INFORMAL PARTNERSHIPS: Establish formal or informal partnerships with elections offices to facilitate voter registration initiatives or youth involvement as poll workers. Collaborate with local organizations working on issues that students care about.\n\n" +
+                        "8. STUDENT INVOLVEMENT: Involve students in the process by seeking their input on what they want and need to learn about elections and voting. Encourage them to participate actively in civic education initiatives.\n\n" +
+                        "9. ASSESS AND MAP EXISTING ASSETS: Use tools like the CIRCLE Growing Voters report's asset mapping guide to assess existing resources, capacities, and relationships within the school and community that can support civic education and voter registration efforts.\n\n" +
+                        "10. SUSTAINED COMMITMENT: Recognize that fostering civic engagement and voter registration initiatives is an ongoing process. Maintain a sustained commitment to civic education and continue to adapt and expand initiatives to meet the evolving needs of students and the community.\n\n",
+                R.drawable.img_163,
+                "https://www.nationalcivicleague.org/ncr-article/growing-voters-in-the-classroom-and-beyond/",
+                "https://assets2.rappler.com/186BBB6087E243DAA2BBC782442E45D0/img/838349FD3FF44BD2B3D16FA39E01813C/Voters_registration_in_Quezon_City-Sept-25-2018-01.jpg")
         )
 
         val adapter = DataAdapter(dataList)

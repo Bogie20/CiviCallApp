@@ -24,7 +24,7 @@ class SkillsandOpportunitiesinfo : AppCompatActivity() {
         // Create a SpannableString with a larger text size for the specific portion
         dataList.add(
             DataItem(
-                "Leadership Skills for College Students",
+                "LEADERSHIP SKILLS FOR COLLEGE STUDENTS",
                 "Join us on a journey as we delve into the uncharted territory where leadership skills for college students converge with the transformative power of civic involvement, illuminating new horizons for personal growth and societal impact.\"\"\n\n" +
                         "1. Curriculum Integration: Seamlessly integrate leadership principles into academic courses, infusing civic engagement themes to nurture socially responsible leaders.\n\n" +
                         "2. Experiential Learning: Provide immersive, hands-on experiences that allow students to apply leadership concepts in real-world civic contexts, promoting active learning and skill development.\n\n" +
@@ -43,7 +43,7 @@ class SkillsandOpportunitiesinfo : AppCompatActivity() {
             )
         )
         dataList.add(
-            DataItem("Becoming a Campus Change Agent",
+            DataItem("BECOMING A CAMPUS CHANGE AGENT",
                 "\"Empowering Tomorrow's Change Agents: Unleashing the Civic Force on Campus. Join us on a journey to mold students into passionate and effective advocates for societal change, as we explore the dynamic world of campus activism.\"\n\n" +
                         "1. Focus on Clear Objectives: Define specific, achievable goals for your movement, ensuring clarity of purpose and direction.\n\n" +
                         "2. Effective Organizational Structure: Establish a well-structured organization with defined roles, responsibilities, and leadership positions.\n\n" +
@@ -62,7 +62,7 @@ class SkillsandOpportunitiesinfo : AppCompatActivity() {
                 "https://ecowebph.org/wp-content/uploads/2019/10/IMG_4694-scaled.jpg")
         )
         dataList.add(
-            DataItem("Mentorship and Civic Growth",
+            DataItem("MENTORSHIP AND CIVIC GROWTH",
                 "\"Unlocking the Full Potential of Civic Engagement: Embrace the Power of Mentorship. Dive into a transformative journey where mentorship paves the way for students to not only participate in civic activities but also foster their personal and civic growth.\"\n\n" +
                         "1. Needs Assessment: Begin by conducting a comprehensive needs assessment to understand the specific civic engagement inclinations and goals of your student body.\n\n" +
                         "2. Building a Coalition: Assemble a formal coalition of civic engagement programs that span both academic and co-curricular environments to create a unified approach.\n\n" +
@@ -80,7 +80,7 @@ class SkillsandOpportunitiesinfo : AppCompatActivity() {
         )
 
         dataList.add(
-            DataItem("Empowering Student Leaders",
+            DataItem("EMPOWERING STUDENT LEADERS",
                 "\"\"Unlocking the Potential: Nurturing Tomorrow's Civic Leaders Today. In the world of education, the journey to empower student leaders for civic engagement begins with building essential qualities and providing transformative experiences.\"\"\n\n" +
                         "1. Leadership Workshops: Conduct workshops that focus on building leadership skills, emphasizing qualities like accountability, responsibility, and effective communication.\n\n" +
                         "2. Self-Advocacy Development: Encourage students to develop self-advocacy skills through proposal writing. This can start as early as elementary school and empower students to voice their ideas and concerns.\n\n" +
@@ -101,7 +101,7 @@ class SkillsandOpportunitiesinfo : AppCompatActivity() {
         )
 
         dataList.add(
-            DataItem("Leadership Development Workshops",
+            DataItem("LEADERSHIP DEVELOPMENT WORKSHOPS",
                 "In the realm of civic engagement, effective leadership development programs serve as the catalysts for transformative change. Explore the science-backed strategies and practical insights that drive the success of leadership development workshops, shaping the leaders of today and tomorrow for a brighter civic future.\n\n" +
 
                         "1. Needs Analysis: Begin by conducting a thorough needs analysis to identify the specific leadership skills and competencies required for effective civic engagement in your community or organization.\n\n" +

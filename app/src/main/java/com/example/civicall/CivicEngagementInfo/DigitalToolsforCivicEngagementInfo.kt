@@ -21,7 +21,7 @@ class DigitalToolsforCivicEngagementInfo : AppCompatActivity() {
 
         dataList.add(
             DataItem(
-                "Social Media Activism",
+                "SOCIAL MEDIA ACTIVISM",
                 "\"Social media activism fuels global movements, connecting virtual and physical worlds for change. Explore 'Comprehensive Disaster Preparedness Kits' to empower your community and build resilience.\"" +
                         "1. Identify Your Cause: Begin by clearly defining the social or civic issue you want to address. Whether it's environmental conservation, human rights, or local community development, a well-defined cause is essential.\n\n" +
                         "2. Set Clear Goals: Establish specific, measurable, achievable, relevant, and time-bound (SMART) goals for your activism campaign. These goals will help you stay focused and track your progress.\n\n" +
@@ -40,7 +40,7 @@ class DigitalToolsforCivicEngagementInfo : AppCompatActivity() {
             )
         )
         dataList.add(
-            DataItem("Online Petitions and Campaigns",
+            DataItem("ONLINE PETITIONS AND CAMPAIGNS",
                 "In the age of digital empowerment, 'Online Petitions and Campaigns for Civic Engagement' emerge as a formidable force, bridging the gap between citizens and social change. Harnessing the power of digital platforms, these online initiatives propel individuals to actively shape the future of their communities and nations\n\n" +
                         "1. Identify the Cause: Begin by clearly defining the civic or social issue you want to address with your online petition or campaign. A well-defined cause is essential to rally support.\n\n" +
                         "2. Set Clear Objectives: Establish specific and achievable goals for your online campaign, whether it's gathering a certain number of signatures, raising funds, or influencing policy changes.\n\n" +
@@ -59,7 +59,7 @@ class DigitalToolsforCivicEngagementInfo : AppCompatActivity() {
                 "https://149519988.v2.pressablecdn.com/wp-content/uploads/IMG_5330-crop-800.jpg")
         )
         dataList.add(
-            DataItem("Data Privacy in Civic Engagement",
+            DataItem("DATA PRIVACY IN CIVIC ENGAGEMENT",
                 "As communities increasingly rely on online platforms to interact with governments and organizations, safeguarding the confidentiality of personal information becomes not just a preference but a vital necessity for ensuring the security and trustworthiness of these digital interactions.\n\n" +
                         "1. Clear Privacy Policies: Develop and prominently display transparent privacy policies that detail how personal data is collected, used, stored, and shared during civic engagement activities.\n\n" +
                         "2. Data Encryption: Implement strong data encryption protocols to protect sensitive information from unauthorized access or interception.\n\n" +
@@ -77,7 +77,7 @@ class DigitalToolsforCivicEngagementInfo : AppCompatActivity() {
         )
 
         dataList.add(
-            DataItem("Digital Civic Platforms and Apps",
+            DataItem("DIGITAL CIVIC PLATFORMS AND APPS",
                 "\"In the era of Digital Civic Platforms and Apps, technology empowers citizens to be active participants in shaping the future of their communities and addressing pressing environmental concerns. Explore how these innovative digital tools are revolutionizing civic engagement and environmental protection.\"\n\n" +
                         "1. Research and Choose the Right Platform: Begin by researching and selecting a digital civic platform or app that aligns with your community engagement goals and environmental initiatives.\n\n" +
                         "2. User-Friendly Interface: Ensure the chosen platform offers a user-friendly interface to maximize accessibility for citizens of all backgrounds and ages.\n\n" +
@@ -98,7 +98,7 @@ class DigitalToolsforCivicEngagementInfo : AppCompatActivity() {
         )
 
         dataList.add(
-            DataItem("Cybersecurity for Activists",
+            DataItem("CYBERSECURITY FOR ACTIVISTS",
                 "\"In the age of digital activism and civic engagement, safeguarding your mission against cyber threats is paramount. Explore the essential guide to 'Cybersecurity for Activists,' where we unveil the vital practices that will protect your digital initiatives and fortify your impact.\"\n\n" +
 
                         "1. Conduct Threat Assessments: Regularly evaluate the potential threats and risks to your digital assets, including data breaches, phishing attacks, and surveillance attempts.\n\n" +

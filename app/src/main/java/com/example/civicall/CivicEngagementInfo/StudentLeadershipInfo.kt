@@ -22,7 +22,7 @@ class StudentLeadershipInfo : AppCompatActivity() {
 
         dataList.add(
             DataItem(
-                "Youth Activism's Influence on Student Leaders",
+                "YOUTH ACTIVISM'S INFLUENCE ON STUDENT LEADERS",
                 "In the realm of youth activism, the profound impact on student leaders is undeniable. This exploration delves into how the fervor of youth activism molds and empowers the next generation of student leaders, igniting their passion for change and driving them to become influential forces in society.\"Comprehensive Disaster Preparedness Kits: A Guide to Effective Disaster Response\" and equip yourself with the knowledge to safeguard your community and ensure a brighter, more resilient future.\"\"\n\n" +
                         "1. Youth Activism Awareness Campaigns: Organize awareness campaigns within educational institutions to highlight the significance of youth activism, inspiring students to engage in meaningful causes.\n\n" +
                         "2. Student Activist Networks: Establish student activist networks or clubs that provide a platform for students to learn about and actively participate in youth activism efforts.\n\n" +

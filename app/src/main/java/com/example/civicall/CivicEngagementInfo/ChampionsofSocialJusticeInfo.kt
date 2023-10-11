@@ -23,99 +23,100 @@ class ChampionsofSocialJusticeInfo : AppCompatActivity() {
         // Create a SpannableString with a larger text size for the specific portion
         dataList.add(
             DataItem(
-                "Fighting for Racial Equality",
-                "In the realm of youth activism, the profound impact on student leaders is undeniable. This exploration delves into how the fervor of youth activism molds and empowers the next generation of student leaders, igniting their passion for change and driving them to become influential forces in society.\"Comprehensive Disaster Preparedness Kits: A Guide to Effective Disaster Response\" and equip yourself with the knowledge to safeguard your community and ensure a brighter, more resilient future.\"\"\n\n" +
-                        "1. Youth Activism Awareness Campaigns: Organize awareness campaigns within educational institutions to highlight the significance of youth activism, inspiring students to engage in meaningful causes.\n\n" +
-                        "2. Student Activist Networks: Establish student activist networks or clubs that provide a platform for students to learn about and actively participate in youth activism efforts.\n\n" +
-                        "3. Guest Speaker Series: Invite youth activists to share their experiences and insights with students, emphasizing the transformative power of activism.\n\n" +
-                        "4. Leadership Workshops: Conduct workshops that focus on leadership skills and ethical activism, equipping student leaders with the tools needed to drive change responsibly.\n\n" +
-                        "5. Collaborative Projects: Encourage student-led initiatives that collaborate with youth activists, allowing students to work alongside experienced change-makers on real-world issues.\n\n" +
-                        "6. Community Engagement: Facilitate opportunities for student leaders to engage with their local communities, enabling them to witness firsthand the impact of activism.\n\n" +
-                        "7. Advocacy Training: Offer training programs that equip students with effective advocacy skills, teaching them how to raise awareness, mobilize support, and drive change.\n\n" +
-                        "8. Mentorship Programs: Create mentorship programs where youth activists can guide and inspire student leaders, nurturing their passion for activism.\n\n" +
-                        "9. Leadership Recognition: Acknowledge and celebrate student leaders who actively engage in youth activism, reinforcing the idea that their efforts can make a significant impact.\n\n" +
-                        "10. Youth-Led Initiatives: Encourage student leaders to initiate their own youth-led projects, allowing them to apply their activism knowledge and drive positive change in their communities.\n\n",
+                "FIGHTING FOR RACIAL EQUALITY",
+                "Join us on a journey to explore the vital topic of racial equality in the realm of college student civic engagement. In this enlightening discussion, we delve into the significance of advocating for racial equality and why it's a cause that resonates deeply with students.\"\n\n" +
+                        "1. EDUCATE YOURSELF: Start by gaining a comprehensive understanding of racial equality issues, including their historical context and current manifestations. Read books, articles, and watch documentaries to deepen your knowledge.\n\n" +
+                        "2. PARTICIPATE IN CAMPUS DISCUSSIONS: Engage in open and respectful dialogues about racial equality on your college campus. Attend seminars, workshops, and forums to exchange ideas and perspectives with your peers.\n\n" +
+                        "3. JOIN STUDENT ORGANIZATIONS: Become a member of or support student groups dedicated to promoting racial equality and social justice. These organizations often lead initiatives and events on campus.\n\n" +
+                        "4. ADVOCATE FOR INCLUSIVE POLICIES: Collaborate with student government or relevant authorities to advocate for policies that foster diversity and inclusion in academic settings. This may involve proposing reforms or supporting existing efforts.\n\n" +
+                        "5. ATTEND DIVERSITY TRAINING: Participate in diversity and inclusion training programs to develop cultural competence and enhance your ability to address racial equality issues effectively.\n\n" +
+                        "6. ORGANIZE AWARENESS CAMPAIGNS: Plan and execute awareness campaigns, events, and rallies that highlight racial equality concerns. Use creative approaches to educate and engage the broader student community.\n\n" +
+                        "7. SUPPORT MINORITY COMMUNITIES: Stand in solidarity with minority communities on and off-campus. Attend their events, amplify their voices, and be an ally in the fight against racial discrimination.\n\n" +
+                        "8. PROMOTE INCLUSIVE CURRICULUM: Advocate for a more diverse and inclusive curriculum that reflects a variety of perspectives and experiences. Work with faculty and administrators to integrate these changes.\n\n" +
+                        "9. VOTE AND MOBILIZE: Encourage voter registration and participation among your peers. Mobilize students to support political candidates and policies that prioritize racial equality.\n\n" +
+                        "10. CONTINUOUS SELF-REFLECTION: Regularly reflect on your own biases, privileges, and contributions to racial equality efforts. Stay committed to lifelong learning and improvement in this important cause.\n\n",
 
-                R.drawable.img_125,
-                "https://www.rappler.com/moveph/27023-youth-activism-organized-action/",
-                "https://cms-image-bucket-production-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/8/6/8/0/31910868-3-eng-GB/Cropped-1611220222R20210121%20University%20of%20the%20Philippines%20protest.JPG"
+                R.drawable.img_170,
+                "https://www.kaplanpathways.com/blog/why-is-racial-equality-important/",
+                "https://media.philstar.com/images/articles/lgbt-_2018-10-18_20-34-04.jpg"
             )
         )
         dataList.add(
-            DataItem("Gender Equality and Activism",
-                "In the realm of student-led movements, understanding the keys to success is vital. This exploration delves into the core principles that empower student leaders and drive tangible results in civic engagement.\n\n" +
-                        "1. Focus on Clear Objectives: Define specific, achievable goals for your movement, ensuring clarity of purpose and direction.\n\n" +
-                        "2. Effective Organizational Structure: Establish a well-structured organization with defined roles, responsibilities, and leadership positions.\n\n" +
-                        "3. Strategic Planning: Develop a strategic plan that outlines the steps, timeline, and resources required to achieve your objectives.\n\n" +
-                        "4. Building Alliances: Collaborate with other student organizations, community groups, or like-minded individuals to expand your network and leverage collective strength.\n\n" +
-                        "5. Engage in Outreach: Actively reach out to students, faculty, and the broader community to raise awareness and garner support for your cause.\n\n" +
-                        "6. Advocacy and Lobbying: Develop advocacy skills to engage with policymakers, administrators, and relevant authorities to influence change.\n\n" +
-                        "7. Resource Mobilization: Secure funding and resources through various means, such as grants, donations, or crowdfunding, to sustain your movement's activities.\n\n" +
-                        "8. Effective Communication: Craft compelling messages and utilize multiple communication channels, including social media and traditional media, to amplify your message.\n\n" +
-                        "9. Strategic Nonviolent Action: Employ nonviolent strategies and tactics that align with your goals, such as protests, demonstrations, or awareness campaigns.\n\n" +
-                        "10. Evaluation and Adaptation: Continuously assess your progress, adapt to changing circumstances, and refine your approach based on lessons learned.\n\n",
+            DataItem("GENDER EQUALITY AND ACTIVISM",
+                "\"Unlocking the Power of Gender Equality: Empowering Youth Activism in Civic Engagement. Delve into the intricate tapestry of gender dynamics as we explore how youth worldwide are shaping the future of civic engagement, dissecting gender differences in activism, and redefining the path to equality.\"\n\n" +
+                        "1. EDUCATE AND RAISE AWARENESS: Organize workshops, seminars, and awareness campaigns to educate young people about gender equality issues and their role in activism.\n\n" +
+                        "2. FOSTER INCLUSIVE LEADERSHIP: Encourage and support young leaders of all genders to take on leadership roles in civic and community initiatives.\n\n" +
+                        "3. AMPLIFY DIVERSE VOICES: Create platforms for marginalized and underrepresented voices, allowing them to share their experiences and perspectives.\n\n" +
+                        "4. PROMOTE INTERSECTIONALITY: Emphasize the intersectionality of gender with other identities (e.g., race, ethnicity, sexuality) to address the unique challenges faced by individuals.\n\n" +
+                        "5. ONLINE ACTIVISM: Harness the power of digital platforms for activism, ensuring that online spaces are inclusive, safe, and accessible to all.\n\n" +
+                        "6. ADVOCATE FOR POLICY CHANGE: Mobilize youth to advocate for policies that promote gender equality, both at the local and national levels.\n\n" +
+                        "7. MENTORSHIP PROGRAMS: Establish mentorship programs that connect experienced activists with young individuals, providing guidance and support.\n\n" +
+                        "8. COMMUNITY ENGAGEMENT: Encourage youth to actively engage with their local communities, addressing gender-based issues and collaborating on solutions.\n\n" +
+                        "9. DATA-DRIVEN INITIATIVES: Collect and analyze data on gender disparities and activism impact to guide evidence-based strategies.\n\n" +
+                        "10. CELEBRATE ACHIEVEMENTS: Recognize and celebrate the achievements of youth activists working towards gender equality, inspiring others to join the cause.\n\n",
 
 
-                R.drawable.img_124,
-                "https://www.samuelcohn.net/development-1/everything-you-need-to-know-about-how-to-create-a-successful-student-led-social-movement",
-                "https://1cms-img.imgix.net/Students-rally1.jpg")
+                R.drawable.img_171,
+                "https://spb.psychopen.eu/index.php/spb/article/view/3887/3887.html",
+                "https://media.philstar.com/photos/2021/09/28/0001mo4g7800xjpeg_2021-09-28_16-59-27.jpg")
         )
-        dataList.add(
-            DataItem("LGBTQ+ Rights on Campus",
-                "In our ever-changing world, where challenges like poverty, injustice, and environmental crises abound, the demand for a fresh breed of leaders is crystal clear. Here, we dive into how colleges play a crucial role in shaping these leaders by fostering students' integrative leadership, a powerful blend of teamwork, civic involvement, and cross-cultural understanding, to take on these global issues head-on.\n\n" +
-                        "1. Compile Emergency Contact Information: Gather essential contact numbers, including fire, police, ambulance, and medical professionals, and store them in your cell phone and near your home phone.\n\n" +
-                        "2. Designate Family Meeting Places: Identify both local and out-of-town meeting places for your family to gather in case you're separated during a disaster or can't return home.\n\n" +
-                        "3. Set Up 'I.C.E.' Contacts: Program 'In Case of Emergency' (I.C.E.) numbers in your phone and your family members' phones to provide crucial information to emergency responders.\n\n" +
-                        "4. Create a Family Contact Sheet: Develop a comprehensive contact sheet with names, addresses, and phone numbers of important contacts, including an out-of-town contact for times when local communication is disrupted.\n\n" +
-                        "5. Prepare Contact Cards: Create contact cards for each family member containing emergency contact information, an out-of-town contact, a designated meeting place, and other vital details. Keep these cards in accessible places like purses, wallets, or backpacks.\n\n" +
-                        "6. Ensure Every Family Member Has a Phone: Ensure that all family members have access to a mobile phone or a way to communicate during emergencies.\n\n" +
-                        "7. Teach 911 Protocol: Educate children on when and how to call 911 for assistance in emergencies.\n\n" +
-                        "8. Familiarize with Text Messaging: Ensure that everyone in your family knows how to send text messages, which can be more reliable during network disruptions than phone calls.\n\n" +
-                        "9. Subscribe to Alert Services: Sign up for local alert services that send text messages and emails with crucial information during disasters.\n\n" +
-                        "10. Prioritize Communication Methods: In times of crisis, use phone calls sparingly for life-threatening emergencies and rely on text messages, email, and social media for non-emergency communication to prevent network congestion.\n\n",
-                R.drawable.img_126,
-                "https://journalofleadershiped.org/jole_articles/strengthening-college-students-integrative-leadership-orientation-by-building-a-foundation-for-civic-engagement-and-multicultural-competence/",
-                "https://www.waldenu.edu/media/4894/seo-1354-bs-volunteering-problem-cheerful-243564697-1200x675")
-        )
+            dataList.add(
+                DataItem("PROMOTING INDIGENOUS RIGHTS AND CULTURAL INCLUSIVITY ON CAMPUS",
+                    "In the Philippines, a cultural revolution is unfolding within the education system. The Department of Education is leading the charge, empowering Indigenous Peoples through culture-based learning, fostering inclusivity, and igniting a renewed sense of heritage on campuses.\n\n" +
+                            "1. ASSESS CAMPUS NEEDS: Begin by conducting a thorough assessment of your campus to identify the specific needs and challenges related to indigenous rights and cultural inclusivity.\n\n" +
+                    "2. ENGAGE WITH INDIGENOUS COMMUNITIES: Establish sustained dialogue and collaboration with Indigenous Peoples (IP) communities in your region. This could involve meetings with IP elders, leaders, culture bearers, and community representatives to understand their perspectives and aspirations.\n\n" +
+                    "3. CURRICULUM CONTEXTUALIZATION: Work on adapting the existing curriculum to be more culture-sensitive and inclusive. Develop indigenized lesson plans that reflect the cultural heritage and knowledge of IP communities.\n\n" +
+                    "4. CAPACITY BUILDING: Organize training and retooling sessions for teachers, school heads, and other personnel involved in IP education. Ensure they have the necessary skills to engage effectively with IP communities and implement the contextualized curriculum.\n\n" +
+                    "5. CULTURAL WORKSHOPS: Conduct consultative and curriculum development workshops with key IP elders, leaders, and culture bearers. This will help in gathering insights and validating the content of the curriculum.\n\n" +
+                    "6. QUALITY ASSURANCE: Ensure that all learning materials and content are duly validated by concerned IP communities and have undergone quality assurance processes.\n\n" +
+                    "7. ALLOCATE RESOURCES: Establish a budget for supporting these initiatives. Allocate resources for curriculum development, training, and workshops.\n\n" +
+                    "8. REGIONAL SUPPORT: Implement a system of providing support to regional and school division offices through an Indigenous Peoples Education Program Support Fund (PSF). This fund should be used for activities that align with the goals of IP education.\n\n" +
+                    "9. COMMUNITY ENGAGEMENT: Organize sessions on community engagement and partnership-building for IP education. Encourage collaboration between schools and local IP communities.\n\n" +
+                    "10. MONITORING AND EVALUATION: Continuously monitor the progress of your initiatives. Collect feedback from IP communities, students, and educators to assess the impact of your efforts. Adjust your programs and strategies as needed to ensure they remain effective.\n\n",
 
-        dataList.add(
-            DataItem("Dismantling Inequality through Education",
-                "\"In a world of unprecedented challenges, college students stand at the threshold of making their voices heard. Discover how these young changemakers are turning their passion into powerful civic action, fueling a wave of transformation on campuses and beyond.\"\n\n" +
-                        "1. Identify Your Passion: Reflect on the issues or causes that ignite your passion and resonate with you personally.\n\n" +
-                        "2. Educate Yourself: Dive deep into research, news, and resources related to your chosen cause to gain a comprehensive understanding of the topic.\n\n" +
-                        "3. Connect with Like-Minded Peers: Seek out student organizations, clubs, or online communities that share your passion and values.\n\n" +
-                        "4. Engage in Dialogue: Participate in open discussions, debates, or forums to exchange ideas, learn from others, and refine your perspective.\n\n" +
-                        "5. Set Clear Goals: Define specific, measurable, and achievable goals for the change you want to create in your community or on campus.\n\n" +
-                        "6. Plan and Organize: Create a strategic plan that outlines the steps, actions, and resources required to achieve your goals.\n\n" +
-                        "7. Leverage Technology: Utilize social media, online platforms, and digital tools to raise awareness, mobilize support, and amplify your message.\n\n" +
-                        "8. Collaborate and Network: Build partnerships with local organizations, activists, and influencers who can support your cause and expand your reach.\n\n" +
-                        "9. Take Action: Execute your plan, organize events, campaigns, or initiatives, and actively work toward your goals.\n\n" +
-                        "10. Measure Impact and Adapt: Continuously assess the impact of your actions, gather feedback, and be open to adapting your strategies for greater effectiveness.\n\n",
-
-
-
-                R.drawable.img_127,
-                "https://www.gse.harvard.edu/ideas/news/20/09/turning-passion-civic-action",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rappler.com%2Fmoveph%2Fhow-communities-join-hands-crisis-duterte-year-4%2F&psig=AOvVaw3oThZo02gCRpuVdAUblEj_&ust=1696594679394000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOCFh-zx3oEDFQAAAAAdAAAAABAE")
+                            R.drawable.img_174,
+                "https://www.deped.gov.ph/2017/01/31/deped-sustains-support-for-culture-based-education-for-ip-learners/",
+                "https://www.britishcouncil.ph/sites/default/files/ph_ipse_03.jpg")
         )
 
         dataList.add(
-            DataItem("Inclusive Campus Initiatives",
-                "In the dynamic world of higher education, college students are increasingly driven by a passion for community service that goes beyond the pursuit of knowledge in the classroom. This Study delves into the pivotal role of high-impact volunteer opportunities tailored for college students, offering not only personal growth but also a chance to actively contribute to the betterment of society.\n\n" +
+            DataItem("DISMANTLING INEQUALITY THROUGH EDUCATION",
+                "Unlock the Power of Education: Bridging the Divide Against Inequality. Join us on a journey to explore how education can be a powerful force in dismantling deep-seated inequalities, equipping students with the tools to challenge injustice and pave the way for a more equitable society.\n\n" +
+                        "1. EQUITY-CENTERED CURRICULUM: Develop and implement curricula that actively address issues of inequality, diversity, and social justice, ensuring that students learn about the root causes of inequity.\n\n" +
+                        "2. INCLUSIVE CLASSROOM PRACTICES: Create inclusive learning environments where all students feel valued, heard, and represented, regardless of their background, identity, or abilities.\n\n" +
+                        "3. CULTIVATE CRITICAL THINKING: Foster critical thinking skills that enable students to analyze and challenge biased information, stereotypes, and systemic inequalities.\n\n" +
+                        "4. EMPOWER STUDENT VOICES: Encourage students to express their opinions, share their experiences, and engage in discussions about societal issues, empowering them to be active participants in civic discourse.\n\n" +
+                        "5. COMMUNITY ENGAGEMENT: Promote community service and engagement projects that enable students to work directly on issues related to inequality, connecting classroom learning to real-world action.\n\n" +
+                        "6. DIVERSE PERSPECTIVES: Incorporate diverse voices, authors, and perspectives into the curriculum, exposing students to a wide range of viewpoints and experiences.\n\n" +
+                        "7. ANTI-BIAS EDUCATION: Implement anti-bias education programs that help students recognize and challenge bias, prejudice, and discrimination in themselves and others.\n\n" +
+                        "8. TEACHER TRAINING: Provide professional development for educators on equity-focused teaching strategies, cultural competence, and inclusive classroom management.\n\n" +
+                        "9. ASSESSMENT FOR EQUITY: Develop assessment methods that measure students' understanding of and engagement with equity issues, ensuring that these topics are prioritized.\n\n" +
+                        "10. COLLABORATIVE INITIATIVES: Encourage collaboration between schools, parents, communities, and policymakers to address systemic inequalities and advocate for educational policies that promote equity.\n\n",
 
-                        "1. Self-Reflection: Begin by reflecting on your passions, interests, and the causes that resonate with you. Consider what kind of impact you want to make in your community or beyond.\n\n" +
-                        "2. Research: Investigate local nonprofit organizations, community groups, and volunteer programs that align with your interests. Explore their missions, volunteer needs, and the impact they create.\n\n" +
-                        "3. Evaluate Commitment: Assess your availability and commitment level. Determine whether you can volunteer regularly, for specific events, or remotely, depending on your schedule and preferences.\n\n" +
-                        "4. Skills Assessment: Identify your strengths and skills that could benefit volunteer organizations. This includes both hard skills (e.g., web design, teaching) and soft skills (e.g., communication, teamwork).\n\n" +
-                        "5. Connect with Peers: Discuss your intentions with fellow students who share similar interests. They may have insights, recommendations, or even want to join you in your volunteer efforts.\n\n" +
-                        "6. Contact Organizations: Reach out to the organizations or programs you're interested in. Inquire about volunteer opportunities, application processes, and any training or orientation required.\n\n" +
-                        "7. Attend Info Sessions: Attend information sessions or orientations offered by volunteer organizations. These sessions can provide deeper insights into their work and help you make an informed decision.\n\n" +
-                        "8. Set Goals: Define clear goals for your volunteer experience. Determine what you hope to achieve personally and how you aim to contribute to the organization's mission.\n\n" +
-                        "9. Begin Volunteering: Start your volunteer work with enthusiasm and dedication. Whether it's mentoring, organizing events, or providing essential services, give your best effort.\n\n" +
-                        "10. Reflect and Adapt: Regularly reflect on your volunteer experiences. Assess the impact you've made, evaluate your goals, and adapt your volunteer efforts as needed. This ongoing process ensures your service remains high-impact and meaningful.\n\n",
-                R.drawable.img_128,
-                "https://www.indeed.com/career-advice/career-development/community-service-ideas-college-students",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pna.gov.ph%2Farticles%2F1122889&psig=AOvVaw2jhQJiVZsIXFYNj-8vl54k&ust=1696595824391000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPi-jo723oEDFQAAAAAdAAAAABAE")
+
+
+                R.drawable.img_173,
+                "https://www.youtube.com/watch?v=Q5oXE3TZiZQ&ab_channel=ISTE",
+                "https://www.youtube.com/watch?v=Q5oXE3TZiZQ&t=13s&pp=ygUcaHR0cHM6Ly95b3V0dS5iZS9RNW9YRTNUWmlaUQ%3D%3D")
+        )
+
+        dataList.add(
+            DataItem("INCLUSIVE CAMPUS INITIATIVES",
+                "Unlocking Equal Opportunities: Pioneering INCLUSIVE CAMPUS INITIATIVES for Civic Engagement. Join us on a journey to explore how our campuses are becoming bastions of inclusivity, where every student's voice is heard, every talent is nurtured, and every individual is empowered to engage actively in shaping a more equitable society.\n\n" +
+
+                        "1. DIVERSITY AND INCLUSION TRAINING: Implement mandatory diversity and inclusion training programs for all students, faculty, and staff to foster a more inclusive campus culture.\n\n" +
+                        "2. ACCESSIBLE FACILITIES: Ensure that all campus facilities are wheelchair accessible and equipped with necessary accommodations for students with disabilities.\n\n" +
+                        "3. INCLUSIVE CURRICULUM: Review and update the curriculum to include diverse perspectives, voices, and experiences, reflecting the richness of the student body.\n\n" +
+                        "4. STUDENT-LED INCLUSIVITY CLUBS: Support the formation of student-led clubs and organizations focused on promoting inclusivity, diversity, and social justice on campus.\n\n" +
+                        "5. MENTORSHIP PROGRAMS: Establish mentorship programs that pair incoming students with experienced peers, fostering a sense of belonging and support.\n\n" +
+                        "6. ACCESSIBLE RESOURCES: Provide accessible learning materials and resources, such as captioned videos, screen readers, and alternative formats for students with disabilities.\n\n" +
+                        "7. CULTURAL COMPETENCY TRAINING: Offer workshops and training sessions on cultural competency and sensitivity for faculty and staff to create a more welcoming environment.\n\n" +
+                        "8. INCLUSIVE EVENTS: Organize campus events and activities that celebrate different cultures, identities, and backgrounds, promoting cross-cultural understanding.\n\n" +
+                        "9. BIAS REPORTING SYSTEM: Implement a confidential reporting system for incidents of bias, discrimination, or harassment and take proactive measures to address such issues.\n\n" +
+                        "10. COLLABORATIVE DIALOGUE: Encourage open and respectful dialogue among students, faculty, and staff, fostering a campus culture where diverse viewpoints are valued and heard.\n\n",
+                R.drawable.img_175,
+                "https://www.teacherph.com/inclusive-education-philippines/#:~:text=Making%20Inclusive%20Education%20a%20Reality%20in%20the%20Philippines,-The%20Philippines%20is&text=This%20includes%20having%20ramps%20and,deaf%20or%20hard%20of%20hearing.",
+                "https://linguistics.upd.edu.ph/wp-content/uploads/2021/10/UP-Pride_1819.jpeg")
         )
 
         val adapter = DataAdapter(dataList)

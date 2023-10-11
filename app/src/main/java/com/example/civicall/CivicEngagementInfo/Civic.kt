@@ -82,7 +82,7 @@ class Civic : AppCompatActivity() {
 
                 8 -> {
                     // Handle click for Item 8
-                    val intent = Intent(this, TechforGoodInfo::class.java)
+                    val intent = Intent(this, TechforGoodsinfo::class.java)
                     startActivity(intent)
                 }
 

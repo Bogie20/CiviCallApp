@@ -23,99 +23,98 @@ class SustainabilityInitiativesInfo : AppCompatActivity() {
         // Create a SpannableString with a larger text size for the specific portion
         dataList.add(
             DataItem(
-                "Environmental Activism on Campus",
-                "In the realm of youth activism, the profound impact on student leaders is undeniable. This exploration delves into how the fervor of youth activism molds and empowers the next generation of student leaders, igniting their passion for change and driving them to become influential forces in society.\"Comprehensive Disaster Preparedness Kits: A Guide to Effective Disaster Response\" and equip yourself with the knowledge to safeguard your community and ensure a brighter, more resilient future.\"\"\n\n" +
-                        "1. Youth Activism Awareness Campaigns: Organize awareness campaigns within educational institutions to highlight the significance of youth activism, inspiring students to engage in meaningful causes.\n\n" +
-                        "2. Student Activist Networks: Establish student activist networks or clubs that provide a platform for students to learn about and actively participate in youth activism efforts.\n\n" +
-                        "3. Guest Speaker Series: Invite youth activists to share their experiences and insights with students, emphasizing the transformative power of activism.\n\n" +
-                        "4. Leadership Workshops: Conduct workshops that focus on leadership skills and ethical activism, equipping student leaders with the tools needed to drive change responsibly.\n\n" +
-                        "5. Collaborative Projects: Encourage student-led initiatives that collaborate with youth activists, allowing students to work alongside experienced change-makers on real-world issues.\n\n" +
-                        "6. Community Engagement: Facilitate opportunities for student leaders to engage with their local communities, enabling them to witness firsthand the impact of activism.\n\n" +
-                        "7. Advocacy Training: Offer training programs that equip students with effective advocacy skills, teaching them how to raise awareness, mobilize support, and drive change.\n\n" +
-                        "8. Mentorship Programs: Create mentorship programs where youth activists can guide and inspire student leaders, nurturing their passion for activism.\n\n" +
-                        "9. Leadership Recognition: Acknowledge and celebrate student leaders who actively engage in youth activism, reinforcing the idea that their efforts can make a significant impact.\n\n" +
-                        "10. Youth-Led Initiatives: Encourage student leaders to initiate their own youth-led projects, allowing them to apply their activism knowledge and drive positive change in their communities.\n\n",
+                "ENVIRONMENTAL ACTIVISM ON CAMPUS",
+                "\"Amidst the bustling academic corridors of college campuses, a silent but potent revolution is brewing—the rise of environmental activism. Driven by passion, experience, and an unwavering commitment to sustainability, college students are emerging as the vanguards of change, propelling us towards a greener, more conscious future.\"\"Comprehensive Disaster Preparedness Kits: A Guide to Effective Disaster Response\" and equip yourself with the knowledge to safeguard your community and ensure a brighter, more resilient future.\"\"\n\n" +
+                        "1. IDENTIFY ENVIRONMENTAL CHAMPIONS: Seek out students who are passionate about environmental causes and willing to take a leadership role in campus activism.\n\n" +
+                        "2. Create Environmental Awareness: Organize awareness campaigns, workshops, and seminars to educate students about pressing environmental issues, their impact, and the importance of activism.\n\n" +
+                        "3. ESTABLISH STUDENT-LED ENVIRONMENTAL GROUPS: Encourage the formation of student-led environmental organizations or clubs where like-minded individuals can collaborate on projects and initiatives.\n\n" +
+                        "4. PROVIDE RESOURCES: Ensure access to resources like meeting spaces, funding, and materials to support environmental activism efforts.\n\n" +
+                        "5. COLLABORATE WITH FACULTY: Engage faculty members who are experts in environmental fields to mentor and guide student activists, enhancing the academic dimension of activism.\n\n" +
+                        "6. ADVOCATE FOR SUSTAINABLE CAMPUS POLICIES: Work with university administration to implement eco-friendly policies, such as reducing single-use plastics, promoting renewable energy sources, and sustainable waste management.\n\n" +
+                        "7. COMMUNITY OUTREACH: Extend environmental initiatives to the local community, fostering collaboration and creating a broader impact beyond the campus.\n\n" +
+                        "8. ENGAGE IN PRACTICAL PROJECTS: Encourage hands-on projects like tree planting, campus cleanups, and sustainability audits that demonstrate tangible results and motivate more students to get involved.\n\n" +
+                        "9. LEVERAGE TECHNOLOGY: Utilize social media, websites, and digital platforms to connect with a wider audience, share information, and mobilize support for environmental causes.\n\n" +
+                        "10. CELEBRATE ACHIEVEMENTS: Recognize and celebrate the achievements of student activists and their contributions to environmental sustainability through awards, events, and acknowledgments.\n\n",
 
-                R.drawable.img_125,
-                "https://www.rappler.com/moveph/27023-youth-activism-organized-action/",
-                "https://cms-image-bucket-production-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/8/6/8/0/31910868-3-eng-GB/Cropped-1611220222R20210121%20University%20of%20the%20Philippines%20protest.JPG"
+                R.drawable.img_164,
+                "https://www.mdpi.com/2076-0760/6/4/134",
+                "https://samoaconservationsociety.files.wordpress.com/2017/07/rse-workers.jpg?w=820"
             )
         )
         dataList.add(
-            DataItem("Green Initiatives for Students",
-                "In the realm of student-led movements, understanding the keys to success is vital. This exploration delves into the core principles that empower student leaders and drive tangible results in civic engagement.\n\n" +
-                        "1. Focus on Clear Objectives: Define specific, achievable goals for your movement, ensuring clarity of purpose and direction.\n\n" +
-                        "2. Effective Organizational Structure: Establish a well-structured organization with defined roles, responsibilities, and leadership positions.\n\n" +
-                        "3. Strategic Planning: Develop a strategic plan that outlines the steps, timeline, and resources required to achieve your objectives.\n\n" +
-                        "4. Building Alliances: Collaborate with other student organizations, community groups, or like-minded individuals to expand your network and leverage collective strength.\n\n" +
-                        "5. Engage in Outreach: Actively reach out to students, faculty, and the broader community to raise awareness and garner support for your cause.\n\n" +
-                        "6. Advocacy and Lobbying: Develop advocacy skills to engage with policymakers, administrators, and relevant authorities to influence change.\n\n" +
-                        "7. Resource Mobilization: Secure funding and resources through various means, such as grants, donations, or crowdfunding, to sustain your movement's activities.\n\n" +
-                        "8. Effective Communication: Craft compelling messages and utilize multiple communication channels, including social media and traditional media, to amplify your message.\n\n" +
-                        "9. Strategic Nonviolent Action: Employ nonviolent strategies and tactics that align with your goals, such as protests, demonstrations, or awareness campaigns.\n\n" +
-                        "10. Evaluation and Adaptation: Continuously assess your progress, adapt to changing circumstances, and refine your approach based on lessons learned.\n\n",
+            DataItem("GREEN INITIATIVES FOR STUDENTS: CATALYSTS OF CIVIC ENGAGEMENT",
+                "\"Welcome to the forefront of change! In the dynamic landscape of academia, 'Green Initiatives for Students: Catalysts of Civic Engagement' embarks on an inspiring journey, illuminating how students are driving environmental action, igniting a passion for sustainability, and redefining the future of our planet through active civic engagement.\"\n\n" +
+                        "1. CATALYST FOR CHANGE: Green initiatives empower students to be catalysts for positive environmental change in their communities.\n\n" +
+                        "2. LEADERSHIP DEVELOPMENT: Engaging in environmental activism fosters leadership skills, allowing students to take charge and make a difference.\n\n" +
+                        "3. GLOBAL PERSPECTIVE: Students gain a broader understanding of global environmental issues and the interconnectedness of the world.\n\n" +
+                        "4. COMMUNITY ENGAGEMENT: Green initiatives promote active involvement in the local community, strengthening bonds and creating a sense of responsibility.\n\n" +
+                        "5. SUSTAINABLE MINDSET: Students develop a sustainable mindset that influences their lifestyle choices and career paths.\n\n" +
+                        "6. ADVOCACY SKILLS: Engaging in environmental activism hones advocacy and communication skills, enabling students to effectively convey their message.\n\n" +
+                        "7. NETWORKING OPPORTUNITIES: Green initiatives provide opportunities to connect with like-minded individuals, organizations, and experts in the field.\n\n" +
+                        "8. POSITIVE IMPACT: Students witness the tangible impact of their actions, reinforcing the belief that collective efforts can bring about positive change.\n\n" +
+                        "9. ENVIRONMENTAL STEWARDSHIP: By participating in green initiatives, students become stewards of the environment, responsible for its protection and preservation.\n\n" +
+                        "10. FUTURE LEADERS: Students involved in environmental activism are poised to become future leaders committed to sustainability and civic engagement.\n\n",
 
 
-                R.drawable.img_124,
-                "https://www.samuelcohn.net/development-1/everything-you-need-to-know-about-how-to-create-a-successful-student-led-social-movement",
-                "https://1cms-img.imgix.net/Students-rally1.jpg")
+                R.drawable.img_165,
+                "https://www.ilo.org/global/about-the-ilo/history/centenary/WCMS_467270/lang--en/index.htm",
+                "https://www.licas.news/wp-content/uploads/2020/03/2018.04.21-Eco-Walk-For-the-Environment-JC-1.jpg")
         )
         dataList.add(
-            DataItem("Sustainability in Education",
-                "In our ever-changing world, where challenges like poverty, injustice, and environmental crises abound, the demand for a fresh breed of leaders is crystal clear. Here, we dive into how colleges play a crucial role in shaping these leaders by fostering students' integrative leadership, a powerful blend of teamwork, civic involvement, and cross-cultural understanding, to take on these global issues head-on.\n\n" +
-                        "1. Compile Emergency Contact Information: Gather essential contact numbers, including fire, police, ambulance, and medical professionals, and store them in your cell phone and near your home phone.\n\n" +
-                        "2. Designate Family Meeting Places: Identify both local and out-of-town meeting places for your family to gather in case you're separated during a disaster or can't return home.\n\n" +
-                        "3. Set Up 'I.C.E.' Contacts: Program 'In Case of Emergency' (I.C.E.) numbers in your phone and your family members' phones to provide crucial information to emergency responders.\n\n" +
-                        "4. Create a Family Contact Sheet: Develop a comprehensive contact sheet with names, addresses, and phone numbers of important contacts, including an out-of-town contact for times when local communication is disrupted.\n\n" +
-                        "5. Prepare Contact Cards: Create contact cards for each family member containing emergency contact information, an out-of-town contact, a designated meeting place, and other vital details. Keep these cards in accessible places like purses, wallets, or backpacks.\n\n" +
-                        "6. Ensure Every Family Member Has a Phone: Ensure that all family members have access to a mobile phone or a way to communicate during emergencies.\n\n" +
-                        "7. Teach 911 Protocol: Educate children on when and how to call 911 for assistance in emergencies.\n\n" +
-                        "8. Familiarize with Text Messaging: Ensure that everyone in your family knows how to send text messages, which can be more reliable during network disruptions than phone calls.\n\n" +
-                        "9. Subscribe to Alert Services: Sign up for local alert services that send text messages and emails with crucial information during disasters.\n\n" +
-                        "10. Prioritize Communication Methods: In times of crisis, use phone calls sparingly for life-threatening emergencies and rely on text messages, email, and social media for non-emergency communication to prevent network congestion.\n\n",
-                R.drawable.img_126,
-                "https://journalofleadershiped.org/jole_articles/strengthening-college-students-integrative-leadership-orientation-by-building-a-foundation-for-civic-engagement-and-multicultural-competence/",
-                "https://www.waldenu.edu/media/4894/seo-1354-bs-volunteering-problem-cheerful-243564697-1200x675")
-        )
-
-        dataList.add(
-            DataItem("Creating Eco-Friendly Communities",
-                "\"In a world of unprecedented challenges, college students stand at the threshold of making their voices heard. Discover how these young changemakers are turning their passion into powerful civic action, fueling a wave of transformation on campuses and beyond.\"\n\n" +
-                        "1. Identify Your Passion: Reflect on the issues or causes that ignite your passion and resonate with you personally.\n\n" +
-                        "2. Educate Yourself: Dive deep into research, news, and resources related to your chosen cause to gain a comprehensive understanding of the topic.\n\n" +
-                        "3. Connect with Like-Minded Peers: Seek out student organizations, clubs, or online communities that share your passion and values.\n\n" +
-                        "4. Engage in Dialogue: Participate in open discussions, debates, or forums to exchange ideas, learn from others, and refine your perspective.\n\n" +
-                        "5. Set Clear Goals: Define specific, measurable, and achievable goals for the change you want to create in your community or on campus.\n\n" +
-                        "6. Plan and Organize: Create a strategic plan that outlines the steps, actions, and resources required to achieve your goals.\n\n" +
-                        "7. Leverage Technology: Utilize social media, online platforms, and digital tools to raise awareness, mobilize support, and amplify your message.\n\n" +
-                        "8. Collaborate and Network: Build partnerships with local organizations, activists, and influencers who can support your cause and expand your reach.\n\n" +
-                        "9. Take Action: Execute your plan, organize events, campaigns, or initiatives, and actively work toward your goals.\n\n" +
-                        "10. Measure Impact and Adapt: Continuously assess the impact of your actions, gather feedback, and be open to adapting your strategies for greater effectiveness.\n\n",
-
-
-
-                R.drawable.img_127,
-                "https://www.gse.harvard.edu/ideas/news/20/09/turning-passion-civic-action",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rappler.com%2Fmoveph%2Fhow-communities-join-hands-crisis-duterte-year-4%2F&psig=AOvVaw3oThZo02gCRpuVdAUblEj_&ust=1696594679394000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOCFh-zx3oEDFQAAAAAdAAAAABAE")
+            DataItem("SUSTAINABILITY IN EDUCATION",
+                "\"Unlocking a Sustainable Future: Empowering Minds Through Education and Civic Engagement in Asia. Join us on a transformative journey where civic engagement meets sustainability, illuminating the path to a brighter, more environmentally conscious tomorrow.\"\n\n\n" +
+                        "1. EMPOWERING CURRICULAR INNOVATION: Integrate sustainability principles into educational curricula, promoting an environmentally conscious mindset from an early age.\n\n" +
+                        "2. CULTIVATING ECO-CITIZENS: Encourage students to become active eco-citizens by participating in local environmental initiatives and projects.\n\n" +
+                        "3. TEACHER TRAINING AND DEVELOPMENT: Provide educators with training and resources to effectively teach sustainability concepts and practices.\n\n" +
+                        "4. CROSS-DISCIPLINARY COLLABORATION: Promote collaboration between different academic disciplines to address complex sustainability challenges comprehensively.\n\n" +
+                        "5. COMMUNITY ENGAGEMENT: Facilitate partnerships between educational institutions and local communities to work together on sustainability projects.\n\n" +
+                        "6. STUDENT-LED INITIATIVES: Empower students to take the lead in designing and implementing sustainability initiatives within their schools and communities.\n\n" +
+                        "7. CIVIC EDUCATION: Incorporate civic education components into sustainability programs, teaching students the importance of active citizenship in shaping a sustainable future.\n\n" +
+                        "8. RESOURCE OPTIMIZATION: Implement sustainable practices within educational institutions, such as energy conservation, waste reduction, and eco-friendly campus designs.\n\n" +
+                        "9. RESEARCH AND INNOVATION: Encourage research on sustainability issues and support innovative solutions developed by students and faculty.\n\n" +
+                        "10. GLOBAL COLLABORATION: Foster international partnerships and exchanges to share knowledge and best practices in sustainability education and civic engagement.\n\n",
+                R.drawable.img_166,
+                "https://www.apn-gcr.org/bulletin/article/venturing-sustainability-political-lessons-from-civic-engagement-and-transformative-learning-in-asia/",
+                "https://tciurbanhealth.org/wp-content/uploads/2020/11/MYE_TeenTrail-1_resized.jpg")
         )
 
         dataList.add(
-            DataItem("Careers in Environmental Advocacy",
-                "In the dynamic world of higher education, college students are increasingly driven by a passion for community service that goes beyond the pursuit of knowledge in the classroom. This Study delves into the pivotal role of high-impact volunteer opportunities tailored for college students, offering not only personal growth but also a chance to actively contribute to the betterment of society.\n\n" +
+            DataItem("CREATING ECO-FRIENDLY COMMUNITIES",
+                "\"Embark on a journey of transformation and community empowerment as we delve into the heart of eco-friendly civic engagement. Discover how dedicated individuals and organizations are paving the way for sustainable, eco-conscious communities in the Philippines and beyond.\"\"\n\n" +
+                        "1. COMMUNITY NEEDS ASSESSMENT: Start by conducting a thorough assessment of the community's environmental needs and challenges to identify areas where eco-friendly initiatives can make the most impact.\n\n" +
+                        "2. ENGAGE LOCAL LEADERS: Collaborate with local government officials, community leaders, and influencers to gain their support and involvement in eco-friendly projects.\n\n" +
+                        "3. RAISE ENVIRONMENTAL AWARENESS: Organize awareness campaigns and educational programs within the community to inform residents about the importance of eco-friendly practices and their benefits.\n\n" +
+                        "4. ESTABLISH RECYCLING PROGRAMS: Set up recycling initiatives, including collection points and education on proper waste separation, to reduce landfill waste and promote recycling.\n\n" +
+                        "5. GREEN INFRASTRUCTURE DEVELOPMENT: Advocate for and participate in the creation of green spaces, parks, and sustainable infrastructure projects that enhance the community's eco-friendliness.\n\n" +
+                        "6. PROMOTE RENEWABLE ENERGY: Explore renewable energy options such as solar panels and wind turbines, and work to implement these technologies within the community.\n\n" +
+                        "7. ENCOURAGE SUSTAINABLE TRANSPORTATION: Promote biking, walking, and carpooling as eco-friendly transportation alternatives, and advocate for bike lanes and pedestrian-friendly infrastructure.\n\n" +
+                        "8. COMMUNITY GARDENS: Establish community gardens and urban farming projects to promote locally sourced, sustainable food production.\n\n" +
+                        "9. WASTE REDUCTION INITIATIVES: Implement strategies to reduce single-use plastics and packaging within the community, such as promoting reusable bags and containers.\n\n" +
+                        "10. MEASURE AND CELEBRATE PROGRESS: Continuously monitor and measure the environmental impact of your initiatives, and celebrate milestones and successes to inspire further engagement and commitment.\n\n",
 
-                        "1. Self-Reflection: Begin by reflecting on your passions, interests, and the causes that resonate with you. Consider what kind of impact you want to make in your community or beyond.\n\n" +
-                        "2. Research: Investigate local nonprofit organizations, community groups, and volunteer programs that align with your interests. Explore their missions, volunteer needs, and the impact they create.\n\n" +
-                        "3. Evaluate Commitment: Assess your availability and commitment level. Determine whether you can volunteer regularly, for specific events, or remotely, depending on your schedule and preferences.\n\n" +
-                        "4. Skills Assessment: Identify your strengths and skills that could benefit volunteer organizations. This includes both hard skills (e.g., web design, teaching) and soft skills (e.g., communication, teamwork).\n\n" +
-                        "5. Connect with Peers: Discuss your intentions with fellow students who share similar interests. They may have insights, recommendations, or even want to join you in your volunteer efforts.\n\n" +
-                        "6. Contact Organizations: Reach out to the organizations or programs you're interested in. Inquire about volunteer opportunities, application processes, and any training or orientation required.\n\n" +
-                        "7. Attend Info Sessions: Attend information sessions or orientations offered by volunteer organizations. These sessions can provide deeper insights into their work and help you make an informed decision.\n\n" +
-                        "8. Set Goals: Define clear goals for your volunteer experience. Determine what you hope to achieve personally and how you aim to contribute to the organization's mission.\n\n" +
-                        "9. Begin Volunteering: Start your volunteer work with enthusiasm and dedication. Whether it's mentoring, organizing events, or providing essential services, give your best effort.\n\n" +
-                        "10. Reflect and Adapt: Regularly reflect on your volunteer experiences. Assess the impact you've made, evaluate your goals, and adapt your volunteer efforts as needed. This ongoing process ensures your service remains high-impact and meaningful.\n\n",
-                R.drawable.img_128,
-                "https://www.indeed.com/career-advice/career-development/community-service-ideas-college-students",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pna.gov.ph%2Farticles%2F1122889&psig=AOvVaw2jhQJiVZsIXFYNj-8vl54k&ust=1696595824391000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPi-jo723oEDFQAAAAAdAAAAABAE")
+
+
+                R.drawable.img_168,
+                "https://www.peopleandthesea.org/community-engagement-philippines/",
+                "https://ik.imagekit.io/tvlk/blog/2019/01/Greenpeace-Philippines.jpg")
+        )
+
+        dataList.add(
+            DataItem("CAREERS IN ENVIRONMENTAL ADVOCACY",
+                "Explore exciting career opportunities in environmental advocacy! Dive into seven impactful fields, from environmental law to wildlife conservation, and be part of the solution for a sustainable future.\n\n" +
+                        "1. SELF-REFLECTION: Begin by reflecting on your passions, interests, and the causes that resonate with you. Consider what kind of impact you want to make in your community or beyond.\n\n" +
+                        "2. RESEARCH: Investigate local nonprofit organizations, community groups, and volunteer programs that align with your interests. Explore their missions, volunteer needs, and the impact they create.\n\n" +
+                        "3. EVALUATE COMMITMENT: Assess your availability and commitment level. Determine whether you can volunteer regularly, for specific events, or remotely, depending on your schedule and preferences.\n\n" +
+                        "4. SKILLS ASSESSMENT: Identify your strengths and skills that could benefit volunteer organizations. This includes both hard skills (e.g., web design, teaching) and soft skills (e.g., communication, teamwork).\n\n" +
+                        "5. CONNECT WITH PEERS: Discuss your intentions with fellow students who share similar interests. They may have insights, recommendations, or even want to join you in your volunteer efforts.\n\n" +
+                        "6. CONTACT ORGANIZATIONS: Reach out to the organizations or programs you're interested in. Inquire about volunteer opportunities, application processes, and any training or orientation required.\n\n" +
+                        "7. ATTEND INFO SESSIONS: Attend information sessions or orientations offered by volunteer organizations. These sessions can provide deeper insights into their work and help you make an informed decision.\n\n" +
+                        "8. SET GOALS: Define clear goals for your volunteer experience. Determine what you hope to achieve personally and how you aim to contribute to the organization's mission.\n\n" +
+                        "9. BEGIN VOLUNTEERING: Start your volunteer work with enthusiasm and dedication. Whether it's mentoring, organizing events, or providing essential services, give your best effort.\n\n" +
+                        "10. REFLECT AND ADAPT: Regularly reflect on your volunteer experiences. Assess the impact you've made, evaluate your goals, and adapt your volunteer efforts as needed. This ongoing process ensures your service remains high-impact and meaningful.\n\n",
+                R.drawable.img_169,
+                "https://www.idealist.org/en/careers/environment-advocate-7-ways",
+                "https://jobs.naaee.org/sites/default/files/styles/hero_wide/public/eepro/careers/images/science-symposium.jpg?h=a1e1a043&itok=uRp3bS3A")
         )
 
         val adapter = DataAdapter(dataList)

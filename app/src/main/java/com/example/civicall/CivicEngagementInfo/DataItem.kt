@@ -5,5 +5,6 @@ data class DataItem(
     val paragraph: String,
     val imageResourceId: Int,
     val link: String,
-    val imageLink: String
+    val imageLink: String,
+    var scaleFactor: Float = 1.0f
 )
