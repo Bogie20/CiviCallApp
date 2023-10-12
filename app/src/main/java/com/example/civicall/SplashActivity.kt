@@ -3,6 +3,7 @@ package com.example.civicall
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import androidx.lifecycle.lifecycleScope
 import com.example.civicall.databinding.ActivitySplashactivityBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -22,6 +23,12 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashactivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Load the animation
+        val anim = AnimationUtils.loadAnimation(this, R.anim.animate_fade_enter)
+
+        // Apply the animation to the root view
+        binding.root.startAnimation(anim)
 
         firebaseAuth = FirebaseAuth.getInstance()
         lifecycleScope.launch {

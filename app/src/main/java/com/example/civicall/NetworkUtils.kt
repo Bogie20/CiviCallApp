@@ -2,6 +2,8 @@ package com.example.civicall
 
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
@@ -10,6 +12,8 @@ import android.os.Handler
 import android.os.Looper
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -18,7 +22,7 @@ class NetworkUtils(private val context: Context) {
     private var alertDialog: AlertDialog? = null
     private var retryButton: Button? = null
     private var isNetworkAvailable = true // Add this variable
-
+    private var isPopupShowing = false
     init {
         isNetworkAvailable = isNetworkAvailable()
         if (!isNetworkAvailable) {
@@ -59,19 +63,23 @@ class NetworkUtils(private val context: Context) {
             showInternetRestoredCustomToast("Internet Restored")
         }
     }
+
     private fun showInternetRestoredCustomToast(message: String) {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val layout = inflater.inflate(R.layout.dialog_connectify_success, null)
+        val customToastView = inflater.inflate(R.layout.dialog_connectify_success, null)
 
-        val text = layout.findViewById<TextView>(R.id.text_message_connectify_success)
+        val text = customToastView.findViewById<TextView>(R.id.text_message_connectify_success)
         text.text = message
 
         val toast = Toast(context)
+        toast.view = customToastView
+        toast.setGravity(Gravity.TOP or Gravity.FILL_HORIZONTAL, 0, 0) // Set the gravity to TOP and expand horizontally
         toast.duration = Toast.LENGTH_LONG
-        toast.view = layout
-        toast.setGravity(Gravity.TOP, 0, 0) // Set the gravity to TOP
         toast.show()
     }
+
+
+
 
     private fun isNetworkAvailable(): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
