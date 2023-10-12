@@ -48,9 +48,21 @@ class lolo : AppCompatActivity() {
         val editProfileCardView:TextView= findViewById(R.id.editprofile)
 
         logout.setOnClickListener {
-            // Handle click for menu item 1
-            val intent = Intent(this, Login::class.java)
-            startActivity(intent)
+            // Display a confirmation dialog before logging out
+            AlertDialog.Builder(this)
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to log out?")
+                .setPositiveButton("Yes") { _, _ ->
+                    // Handle click for the "Yes" button
+                    firebaseAuth.signOut()
+                    val intent = Intent(this, Login::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                .setNegativeButton("No") { _, _ ->
+
+                }
+                .show()
         }
 
         verification1.setOnClickListener {

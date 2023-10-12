@@ -10,7 +10,6 @@ import android.os.Handler
 import android.os.Looper
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -73,6 +72,7 @@ class NetworkUtils(private val context: Context) {
         toast.setGravity(Gravity.TOP, 0, 0) // Set the gravity to TOP
         toast.show()
     }
+
     private fun isNetworkAvailable(): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
