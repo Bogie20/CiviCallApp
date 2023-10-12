@@ -7,9 +7,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.os.Bundle
-
 import android.os.Handler
 import android.os.Looper
 import android.text.Editable
@@ -18,6 +16,7 @@ import android.text.TextWatcher
 import android.util.Patterns
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.civicall.databinding.ActivityLoginBinding
@@ -39,6 +38,7 @@ class Login : AppCompatActivity() {
     private lateinit var emailTextInputLayout: TextInputLayout
     private lateinit var databaseReference: DatabaseReference
     private lateinit var passwordTextInputLayout: TextInputLayout
+    private lateinit var networkUtils: NetworkUtils
     private var isNewAccount = false
     private var email = ""
     private var password = ""
@@ -75,6 +75,7 @@ class Login : AppCompatActivity() {
         progressDialog.setContentView(R.layout.loading_layout)
         progressDialog.setCancelable(false)
         databaseReference = FirebaseDatabase.getInstance().getReference("connection_status")
+        networkUtils = NetworkUtils(this)
 
         val showSuccessPopup = intent.getBooleanExtra("showSuccessPopup", false)
 
@@ -82,19 +83,7 @@ class Login : AppCompatActivity() {
             // Display the "Account Created Successfully!" popup
             showCustomPopupSuccess("Account Created Successfully!")
         }
-        binding.btnlogin.setOnClickListener {
-            // Check network connectivity before attempting to log in
-            if (isNetworkAvailable(this)) {
-                validateData()
-            } else {
-                showCustomPopupError("No internet connection. Please check your network settings.")
-            }
-        }
 
-
-
-
-        val forgotPasswordTextView = findViewById<TextView>(R.id.forgotpassword)
         // Initialize your email and password EditText fields
         emailEditText = binding.emailLogin
         passwordEditText = binding.passwordText
@@ -138,32 +127,34 @@ class Login : AppCompatActivity() {
             }
         })
 
-        // Set a focus change listener for the email TextInputLayout
-        emailTextInputLayout.editText?.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                val emailText = emailTextInputLayout.editText?.text.toString().trim()
-                if (emailText.isEmpty()) {
-                    emailTextInputLayout.error = "Please Input your email"
-                } else if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
-                    emailTextInputLayout.error = "Invalid Email"
-                } else {
-                    emailTextInputLayout.error = null
+
+        emailTextInputLayout.editText?.onFocusChangeListener =
+            View.OnFocusChangeListener { _, hasFocus ->
+                if (!hasFocus) {
+                    val emailText = emailTextInputLayout.editText?.text.toString().trim()
+                    if (emailText.isEmpty()) {
+                        emailTextInputLayout.error = "Please Input your email"
+                    } else if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
+                        emailTextInputLayout.error = "Invalid Email"
+                    } else {
+                        emailTextInputLayout.error = null
+                    }
                 }
             }
-        }
 
 
         // Set a focus change listener for the password TextInputLayout
-        passwordTextInputLayout.editText?.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                val passwordText = passwordTextInputLayout.editText?.text.toString().trim()
-                if (passwordText.isEmpty()) {
-                    passwordTextInputLayout.error = "Please Enter your password"
-                } else {
-                    passwordTextInputLayout.error = null
+        passwordTextInputLayout.editText?.onFocusChangeListener =
+            View.OnFocusChangeListener { _, hasFocus ->
+                if (!hasFocus) {
+                    val passwordText = passwordTextInputLayout.editText?.text.toString().trim()
+                    if (passwordText.isEmpty()) {
+                        passwordTextInputLayout.error = "Please Enter your password"
+                    } else {
+                        passwordTextInputLayout.error = null
+                    }
                 }
             }
-        }
 
         emailEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
@@ -184,14 +175,49 @@ class Login : AppCompatActivity() {
             }
         }
 
-        // Create an Intent to open the ForgotPassword activity
-        forgotPasswordTextView.setOnClickListener {
-            // Create an Intent to open the ForgotPassword activity
-            val intent = Intent(this, ForgotPassword::class.java)
-            startActivity(intent)
+        binding.forgotpassword.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            val view = layoutInflater.inflate(R.layout.dialog_forgotpass, null)
+            val userEmail = view.findViewById<EditText>(R.id.email)
+
+            builder.setView(view)
+            val dialog = builder.create()
+
+            view.findViewById<Button>(R.id.resetbtn).setOnClickListener {
+                compareEmail(userEmail, dialog)
+            }
+            view.findViewById<Button>(R.id.cancelbtn).setOnClickListener {
+                dialog.dismiss()
+            }
+            if (dialog.window != null) {
+                dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+            }
+            dialog.show()
         }
     }
+    private fun compareEmail(email: EditText, dialog: Dialog) {
+        val emailText = email.text.toString().trim()
 
+        if (emailText.isEmpty()) {
+            email.error = "Input Your Email First"
+            return
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
+            email.error = "Invalid Email"
+            return
+        }
+
+        firebaseAuth.sendPasswordResetEmail(emailText).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                showCustomChangedPassMessage("Check Your Email to change the Password", 3000, R.layout.dialog_happyface)
+
+                dialog.dismiss()
+            } else {
+                showCustomChangedPassMessage("Check for typos or your internet connection", 3000, R.layout.dialog_sadface)
+            }
+        }
+    }
     private fun showCustomPopupSuccess(message: String) {
         // Check if the pop-up is already showing, and if so, return early
         if (isPopupShowing) {
@@ -223,12 +249,6 @@ class Login : AppCompatActivity() {
 
         alertDialog.show()
         isPopupShowing = true // Set the variable to true when the pop-up is displayed
-    }
-    private fun isNetworkAvailable(context: Context): Boolean {
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetworkInfo = connectivityManager.activeNetworkInfo
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
     private var isProgressBarShowing = false
     private fun showCustomProgressBar(message: String, durationMillis: Long) {
@@ -265,6 +285,42 @@ class Login : AppCompatActivity() {
             isProgressBarShowing = false
         }, durationMillis)
     }
+    private var isProgressShowing = false
+    private fun showCustomChangedPassMessage(message: String, durationMillis: Long, dialogLayout: Int) {
+        // Check if a dialog is already showing
+        if (isProgressShowing) {
+            return
+        }
+
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(dialogLayout, null)
+
+        dialogBuilder.setView(dialogView)
+        val alertDialog = dialogBuilder.create()
+
+        // Set the animation style
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideLeft
+
+        // Set the background to be transparent
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message)
+        messageTextView.text = message
+
+        alertDialog.show()
+
+        // Set the variable to true to indicate that a dialog is showing
+        isProgressShowing = true
+
+        // Dismiss the dialog after the specified duration
+        Handler(Looper.getMainLooper()).postDelayed({
+            alertDialog.dismiss()
+            // Set the variable to false when the dialog is dismissed
+            isProgressShowing = false
+        }, durationMillis)
+    }
+
     private fun validateData() {
         email = emailTextInputLayout.editText?.text.toString().trim()
         password = passwordTextInputLayout.editText?.text.toString().trim()
@@ -289,11 +345,6 @@ class Login : AppCompatActivity() {
 
 
     private fun loginUser() {
-        if (!isNetworkAvailable(this)) {
-            showCustomPopupError("No internet connection. Please check your network settings.")
-            return
-        }
-
         showCustomProgressBar("Logging In...", 1500)
 
         firebaseAuth.signInWithEmailAndPassword(email, password)

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:background="@color/dialog_error">
+    android:background="@color/dialog_success">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/dialog_icon_rainbow"

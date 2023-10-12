@@ -1,7 +1,5 @@
 package com.example.civicall
 
-import android.content.Context
-import android.net.ConnectivityManager
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
@@ -35,7 +33,6 @@ class Register1 : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var progressDialog: ProgressDialog
     private var selectedCampus = ""
-
     private var initialFirstName = ""
     private var initialLastName = ""
     private var initialEmail = ""
@@ -46,6 +43,8 @@ class Register1 : AppCompatActivity() {
     private var initialAddress = ""
     private var initialBirthday = ""
     private var isPopupShowing = false
+    private lateinit var networkUtils: NetworkUtils
+
     private fun validateFirstName(): Boolean {
         val lastName = activityRegister1Binding.fname.text.toString().trim()
         val regex = "^[a-zA-Z.\\s-]+$"
@@ -235,12 +234,6 @@ class Register1 : AppCompatActivity() {
         }
     }
 
-    private fun isNetworkAvailable(context: Context): Boolean {
-        val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetworkInfo = connectivityManager.activeNetworkInfo
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -258,6 +251,8 @@ class Register1 : AppCompatActivity() {
         initialContactEme = activityRegister1Binding.ContactEme.text.toString().trim()
         initialAddress = activityRegister1Binding.address.text.toString().trim()
         initialBirthday = activityRegister1Binding.birthdate.text.toString().trim()
+
+        networkUtils = NetworkUtils(this)
 
         val contactNumber = activityRegister1Binding.Contactline
         val contactEme = activityRegister1Binding.ContactEme
@@ -572,7 +567,6 @@ class Register1 : AppCompatActivity() {
 
         val checkBox = findViewById<CheckBox>(R.id.checkedTextView)
         val errorMessages = mutableListOf<String>()
-
         if (!validateFirstName() || !validateLastName() || !validateAddress() || !validateBirthday() ||
             !validatePasswordMatch() || !validateEmail() || !validatePassword() || !validateConfirmPassword() || !validateContactNumber() && !validateContactEme()
         ) {
@@ -595,10 +589,6 @@ class Register1 : AppCompatActivity() {
             activityRegister1Binding.genderTextInputLayout.error = null
         }
 
-        if (!isNetworkAvailable(this)) {
-            showCustomPopupError("No internet connection. Please check your network settings.")
-            return
-        }
         if (!validateFirstName()) {
             activityRegister1Binding.fnameTextInputLayout.error = "Please enter a valid first name"
         }
