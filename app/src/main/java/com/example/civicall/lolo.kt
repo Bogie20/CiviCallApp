@@ -55,6 +55,7 @@ class lolo : AppCompatActivity() {
                 .setView(dialogView)
             val dialog = dialogBuilder.create()
 
+            dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
             val yesButton = dialogView.findViewById<Button>(R.id.logoutBtn)

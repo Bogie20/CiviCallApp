@@ -151,4 +151,6 @@
     <string name="success">Success</string>
     <string name="makingthemost">Making the Most of your Civic Engagement Experience</string>
     <string name="agreement">I have read and agree to the Terms of Service and Privacy Policy.</string>
+
+    <string name="default_web_client_id">AIzaSyCooH32tJpCHorztlJK3uYtoK687ZiCDlw</string>
 </resources>

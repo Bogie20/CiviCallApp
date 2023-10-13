@@ -2,17 +2,13 @@ package com.example.civicall
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.net.ConnectivityManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.text.Editable
 import android.text.TextUtils
-import android.text.TextWatcher
 import android.util.Patterns
 import android.view.View
 import android.widget.Button
@@ -43,6 +39,7 @@ class Login : AppCompatActivity() {
     private var email = ""
     private var password = ""
     private var isPopupShowing = false
+
     private fun validateEmail() {
         val emailText = emailEditText.text.toString().trim()
 
@@ -77,7 +74,6 @@ class Login : AppCompatActivity() {
         databaseReference = FirebaseDatabase.getInstance().getReference("connection_status")
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
-
         val showSuccessPopup = intent.getBooleanExtra("showSuccessPopup", false)
 
         if (showSuccessPopup) {
@@ -152,9 +148,11 @@ class Login : AppCompatActivity() {
             val builder = AlertDialog.Builder(this)
             val view = layoutInflater.inflate(R.layout.dialog_forgotpass, null)
             val userEmail = view.findViewById<EditText>(R.id.email)
-
             builder.setView(view)
             val dialog = builder.create()
+
+            // Set the animation after creating the dialog
+            dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
 
             view.findViewById<Button>(R.id.resetbtn).setOnClickListener {
                 compareEmail(userEmail, dialog)
@@ -162,11 +160,16 @@ class Login : AppCompatActivity() {
             view.findViewById<Button>(R.id.cancelbtn).setOnClickListener {
                 dialog.dismiss()
             }
+
             if (dialog.window != null) {
+                // Set the background drawable here if needed
                 dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
             }
+
             dialog.show()
         }
+
+
         binding.btnlogin.setOnClickListener {
             if (networkUtils.isOnline) {
                 validateData()

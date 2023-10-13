@@ -6,8 +6,6 @@
     android:layout_width="match_parent"
     tools:context=".Login">
 
-
-
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
         android:layout_width="match_parent"
@@ -181,14 +179,16 @@
             android:id="@+id/google_login_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone" />
+            android:visibility="gone"
+            />
 
         <Button
             android:id="@+id/new_googlebtn"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/white"
+            app:cornerRadius="8dp"
+            android:backgroundTint="#eeeeee"
             android:text="Sign in With google"
             android:textColor="@color/black"
             app:icon="@drawable/googleg_standard_color_18"
