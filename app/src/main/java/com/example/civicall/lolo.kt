@@ -3,6 +3,7 @@ package com.example.civicall
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -48,22 +49,35 @@ class lolo : AppCompatActivity() {
         val editProfileCardView:TextView= findViewById(R.id.editprofile)
 
         logout.setOnClickListener {
-            // Display a confirmation dialog before logging out
-            AlertDialog.Builder(this)
-                .setTitle("Logout")
-                .setMessage("Are you sure you want to log out?")
-                .setPositiveButton("Yes") { _, _ ->
-                    // Handle click for the "Yes" button
-                    firebaseAuth.signOut()
-                    val intent = Intent(this, Login::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-                .setNegativeButton("No") { _, _ ->
+            // Create a custom logout confirmation dialog
+            val dialogView = layoutInflater.inflate(R.layout.dialog_logout, null)
+            val dialogBuilder = AlertDialog.Builder(this)
+                .setView(dialogView)
+            val dialog = dialogBuilder.create()
 
-                }
-                .show()
+            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+            val yesButton = dialogView.findViewById<Button>(R.id.logoutBtn)
+            val cancelButton = dialogView.findViewById<Button>(R.id.cancelBtn)
+
+            yesButton.setOnClickListener {
+                // Handle click for the "Yes, Logout" button
+                firebaseAuth.signOut()
+                val intent = Intent(this, Login::class.java)
+                startActivity(intent)
+                finish()
+                dialog.dismiss()
+            }
+
+            cancelButton.setOnClickListener {
+                // Handle click for the "Cancel" button
+                dialog.dismiss()
+            }
+
+            dialog.show()
         }
+
+
 
         verification1.setOnClickListener {
             // Handle click for menu item 2

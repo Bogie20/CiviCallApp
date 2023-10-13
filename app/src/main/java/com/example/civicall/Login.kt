@@ -47,11 +47,11 @@ class Login : AppCompatActivity() {
         val emailText = emailEditText.text.toString().trim()
 
         if (TextUtils.isEmpty(emailText)) {
-            emailTextInputLayout.error = "Please Input Valid Email"
+            emailEditText.error = "Please Input Valid Email"
         } else if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
-            emailTextInputLayout.error = "Invalid Email"
+            emailEditText.error = "Invalid Email"
         } else {
-            emailTextInputLayout.error = null
+            emailEditText.error = null
         }
     }
 
@@ -60,9 +60,9 @@ class Login : AppCompatActivity() {
         val passwordText = passwordEditText.text.toString().trim()
 
         if (TextUtils.isEmpty(passwordText)) {
-            passwordTextInputLayout.error = "Please enter your password"
+            passwordEditText.error = "Please enter your password"
         } else {
-            passwordTextInputLayout.error = null
+            passwordEditText.error = null
         }
     }
 
@@ -88,44 +88,16 @@ class Login : AppCompatActivity() {
         emailEditText = binding.emailLogin
         passwordEditText = binding.passwordText
 
-        binding.signUpTextView.setOnClickListener {
+        binding.signUpTV.setOnClickListener {
             startActivity(Intent(this, Register1::class.java))
         }
 
         binding.btnlogin.setOnClickListener {
             validateData()
         }
-        // Set a focus change listener for the email EditText
-        // Set a focus change listener for the email EditText
         emailTextInputLayout = binding.emailTextInputLayout
         passwordTextInputLayout = binding.passwordTextInputLayout
 
-        emailEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                validateEmail()
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-        })
-
-        passwordEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                validatePassword()
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-        })
 
 
         emailTextInputLayout.editText?.onFocusChangeListener =
@@ -133,11 +105,11 @@ class Login : AppCompatActivity() {
                 if (!hasFocus) {
                     val emailText = emailTextInputLayout.editText?.text.toString().trim()
                     if (emailText.isEmpty()) {
-                        emailTextInputLayout.error = "Please Input your email"
+                        emailEditText.error = "Please Input your email"
                     } else if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
-                        emailTextInputLayout.error = "Invalid Email"
+                        emailEditText.error = "Invalid Email"
                     } else {
-                        emailTextInputLayout.error = null
+                        emailEditText.error = null
                     }
                 }
             }
@@ -149,9 +121,9 @@ class Login : AppCompatActivity() {
                 if (!hasFocus) {
                     val passwordText = passwordTextInputLayout.editText?.text.toString().trim()
                     if (passwordText.isEmpty()) {
-                        passwordTextInputLayout.error = "Please Enter your password"
+                        passwordEditText.error = "Please Enter your password"
                     } else {
-                        passwordTextInputLayout.error = null
+                        passwordEditText.error = null
                     }
                 }
             }
@@ -175,7 +147,7 @@ class Login : AppCompatActivity() {
             }
         }
 
-        binding.forgotpassword.setOnClickListener {
+        binding.forgotPassword.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             val view = layoutInflater.inflate(R.layout.dialog_forgotpass, null)
             val userEmail = view.findViewById<EditText>(R.id.email)
@@ -329,15 +301,15 @@ class Login : AppCompatActivity() {
         val passwordMaxLength = 128
 
         if (email.isEmpty()) {
-            emailTextInputLayout.error = "Please input your email"
+            emailEditText.error = "Please input your email"
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailTextInputLayout.error = "Invalid Email"
+            emailEditText.error = "Invalid Email"
         } else if (email.length > emailMaxLength) {
-            emailTextInputLayout.error = "Email is too long (max $emailMaxLength characters)"
+            emailEditText.error = "Email is too long (max $emailMaxLength characters)"
         } else if (password.isEmpty()) {
-            passwordTextInputLayout.error = "Please enter your password"
+            passwordEditText.error = "Please enter your password"
         } else if (password.length > passwordMaxLength) {
-            passwordTextInputLayout.error = "Password is too long (max $passwordMaxLength characters)"
+            passwordEditText.error = "Password is too long (max $passwordMaxLength characters)"
         } else {
             loginUser()
         }
@@ -357,14 +329,14 @@ class Login : AppCompatActivity() {
 
                 if (e.message == "The email address is badly formatted.") {
                     // Handle invalid email format error
-                    emailTextInputLayout.error = "Invalid Email"
-                    passwordTextInputLayout.error = null // Clear password error
+                    emailEditText.error = "Invalid Email"
+                    passwordEditText.error = null // Clear password error
                 } else if (e.message == "There is no user record corresponding to this identifier. The user may have been deleted.") {
                     // User does not exist in the database, show the custom popup with an error message
                     showCustomPopupError("Account Not Found")
                 } else {
                     // Show "Incorrect Password" for other login errors
-                    passwordTextInputLayout.error = "Incorrect Password"
+                    passwordEditText.error = "Incorrect Password"
                     emailTextInputLayout.error = null // Clear email error
                     // Call showCustomPopupIncorrectPass for incorrect password error
                     showCustomPopupIncorrectPass("Incorrect Password")

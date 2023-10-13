@@ -16,13 +16,14 @@ import kotlinx.coroutines.launch
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
-
+    private lateinit var networkUtils: NetworkUtils
     private lateinit var binding: ActivitySplashactivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashactivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        networkUtils = NetworkUtils(this)
 
         // Load the animation
         val anim = AnimationUtils.loadAnimation(this, R.anim.animate_fade_enter)

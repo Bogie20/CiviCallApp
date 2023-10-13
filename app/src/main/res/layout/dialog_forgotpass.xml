@@ -22,10 +22,12 @@
             android:id="@+id/dialog_title_flat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="FORGOT PASSWORD"
+            android:text="RESET YOUR PASSWORD HERE"
             android:layout_marginTop="25dp"
             android:textStyle="bold"
-            android:textSize="25sp"
+            android:textColor="@color/DarkGray"
+            android:fontFamily="@font/oleo_script"
+            android:textSize="23sp"
             android:layout_marginBottom="10dp"/>
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/dialog_icon_flat"
@@ -86,6 +88,7 @@
                 android:layout_marginStart="10dp"
                 android:background="@drawable/btn_red_selector"
                 android:gravity="center"
+                android:backgroundTint="@color/redpink"
                 android:orientation="horizontal"
                 android:clickable="true"
                 android:text="RESET"
@@ -102,6 +105,7 @@
                 android:layout_marginEnd="10dp"
                 android:orientation="horizontal"
                 android:clickable="true"
+                android:backgroundTint="@color/background"
                 android:text="CANCEL"
                 android:textColor="@color/md_white_1000"
                 android:focusable="true"/>
