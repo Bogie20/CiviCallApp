@@ -1,146 +1,68 @@
 package com.example.civicall
 
-import android.app.AlertDialog
+import android.app.Activity
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import android.os.Handler
 import android.os.Looper
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.view.animation.AnimationUtils
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import com.google.android.material.snackbar.Snackbar
 
 class NetworkUtils(private val context: Context) {
-    private var alertDialog: AlertDialog? = null
-    private var retryButton: Button? = null
-    private var isNetworkAvailable = true // Add this variable
-    private var isPopupShowing = false
-    init {
-        isNetworkAvailable = isNetworkAvailable()
-        if (!isNetworkAvailable) {
-            showCustomPopupInternet()
-        }
-        registerNetworkCallback()
-    }
 
-    private fun registerNetworkCallback() {
+    var isOnline = true
+    private var connectivityCallback: ConnectivityManager.NetworkCallback? = null
+    private val uiHandler = Handler(Looper.getMainLooper())
+
+    fun initialize() {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val builder = NetworkRequest.Builder()
+        val networkRequest = NetworkRequest.Builder()
+            .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+            .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
+            .build()
 
-        connectivityManager.registerNetworkCallback(
-            builder.build(),
-            object : ConnectivityManager.NetworkCallback() {
-                override fun onAvailable(network: Network) {
-                    super.onAvailable(network)
-                    if (!isNetworkAvailable) {
-                        isNetworkAvailable = true
-                        showInternetRestoredToast()
-                        // Internet is restored, dismiss the popup
-                        dismissCustomPopup()
-                    }
-                }
-
-                override fun onLost(network: Network) {
-                    super.onLost(network)
-                    isNetworkAvailable = false
-                    showCustomPopupInternet()
+        val callback = object : ConnectivityManager.NetworkCallback() {
+            override fun onAvailable(network: Network) {
+                super.onAvailable(network)
+                if (!isOnline) {
+                    // Internet Restored
+                    isOnline = true
+                    showMessage("Internet Restored")
                 }
             }
-        )
-    }
 
-
-    private fun showInternetRestoredToast() {
-        Handler(Looper.getMainLooper()).post {
-            showInternetRestoredCustomToast("Internet Restored")
-        }
-    }
-
-    private fun showInternetRestoredCustomToast(message: String) {
-        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val customToastView = inflater.inflate(R.layout.dialog_connectify_success, null)
-
-        val text = customToastView.findViewById<TextView>(R.id.text_message_connectify_success)
-        text.text = message
-
-        val toast = Toast(context)
-        toast.view = customToastView
-        toast.setGravity(Gravity.TOP or Gravity.FILL_HORIZONTAL, 0, 0) // Set the gravity to TOP and expand horizontally
-        toast.duration = Toast.LENGTH_LONG
-        toast.show()
-    }
-
-
-
-
-    private fun isNetworkAvailable(): Boolean {
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-        return capabilities != null && (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) || capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR))
-    }
-
-
-    private fun showCustomPopupInternet() {
-        if (alertDialog == null) {
-            val dialogBuilder = AlertDialog.Builder(context)
-            val inflater = LayoutInflater.from(context)
-            val dialogView = inflater.inflate(R.layout.dialog_network, null)
-
-
-            dialogBuilder.setView(dialogView)
-            alertDialog = dialogBuilder.create()
-
-
-            alertDialog?.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
-            alertDialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
-
-
-            // Set the dialog to non-cancelable (back button and outside click won't close it)
-            alertDialog?.setCancelable(false)
-
-
-            retryButton = dialogView.findViewById(R.id.retrybtn)
-            retryButton?.setOnClickListener {
-                // Dismiss the dialog to simulate a reload
-                dismissCustomPopup()
-                Handler(Looper.getMainLooper()).postDelayed({
-                    // Check the network status again
-                    val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-                    val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-
-                    if (capabilities != null && (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) || capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR))) {
-                        // Internet is restored, dismiss the popup
-                        dismissCustomPopup()
-                    } else {
-                        // Internet is still not available, show the popup again
-                        showCustomPopupInternet()
-                    }
-                }, 100) // Delay in milliseconds, change as needed
-            }
-
-            alertDialog?.setOnDismissListener {
-                alertDialog = null
-                retryButton = null
+            override fun onLost(network: Network) {
+                super.onLost(network)
+                if (isOnline) {
+                    // No Internet Connection
+                    isOnline = false
+                    showMessage("No Internet Connection")
+                }
             }
         }
 
-
-        alertDialog?.show()
+        connectivityManager.registerNetworkCallback(networkRequest, callback)
+        connectivityCallback = callback
     }
 
 
-
-
-    private fun dismissCustomPopup() {
-        // Dismiss the custom popup if it is showing
-        alertDialog?.dismiss()
+    private fun showMessage(message: String) {
+        uiHandler.post {
+            val rootView = (context as Activity).findViewById<View>(android.R.id.content)
+            val snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG)
+            snackbar.show()
+        }
     }
+
+    fun cleanup() {
+        connectivityCallback?.let { callback ->
+            val connectivityManager =
+                context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            connectivityManager.unregisterNetworkCallback(callback)
+        }
+    }
+
 }

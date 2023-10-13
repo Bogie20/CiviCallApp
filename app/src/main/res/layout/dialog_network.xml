@@ -51,14 +51,14 @@
             android:ellipsize="end"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/retrybtn"
+            android:id="@+id/okbtns"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:background="@drawable/rounded_border_white"
             android:gravity="center"
             android:orientation="horizontal"
             android:clickable="true"
-            android:text="Retry"
+            android:text="OK"
             android:textColor="@color/md_white_1000"
             android:focusable="true"/>
 

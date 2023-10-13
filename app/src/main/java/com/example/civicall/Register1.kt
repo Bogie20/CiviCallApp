@@ -149,9 +149,11 @@ class Register1 : AppCompatActivity() {
 
         return if (sanitizedNumber.startsWith("+63")) {
             sanitizedNumber.length == 13
+        } else if (sanitizedNumber.startsWith("63")) {
+            sanitizedNumber.length == 12
         } else if (sanitizedNumber.startsWith("09")) {
             sanitizedNumber.length == 11
-        } else {
+        }else {
             false
         }
     }
@@ -177,9 +179,11 @@ class Register1 : AppCompatActivity() {
 
         return if (sanitizedNum.startsWith("+63")) {
             sanitizedNum.length == 13
+        } else if (sanitizedNum.startsWith("63")) {
+            sanitizedNum.length == 12
         } else if (sanitizedNum.startsWith("09")) {
             sanitizedNum.length == 11
-        } else {
+        }else {
             false
         }
     }
@@ -209,11 +213,36 @@ class Register1 : AppCompatActivity() {
             birthdateTextInputLayout.helperText = "*required"
             return false
         } else {
+            val dobParts = birthday.split(" / ")
+            if (dobParts.size == 3) {
+                val day = dobParts[0].toInt()
+                val month = dobParts[1].toInt()
+                val year = dobParts[2].toInt()
+
+                val calendar = Calendar.getInstance()
+                val currentYear = calendar.get(Calendar.YEAR)
+                val currentMonth = calendar.get(Calendar.MONTH) + 1
+                val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+
+                val age =
+                    currentYear - year - if (currentMonth < month || (currentMonth == month && currentDay < day)) 1 else 0
+
+                if (age < 18) {
+                    activityRegister1Binding.birthdateTextInputLayout.error =
+                        "You must be at least 18 years old to register"
+                    return false
+                }
+            } else {
+                activityRegister1Binding.birthdateTextInputLayout.error =
+                    "Invalid Date of Birth format"
+                return false
+            }
+
+            // Clear the error message when valid input is provided
             activityRegister1Binding.birthdateTextInputLayout.error = null
             return true
         }
     }
-
 
     private fun validatePasswordMatch(): Boolean {
         val password = activityRegister1Binding.pass.text.toString().trim()
@@ -384,8 +413,13 @@ class Register1 : AppCompatActivity() {
         }
         val regbtn: Button = findViewById(R.id.Reg)
         regbtn.setOnClickListener {
-            validateData()
+            if (networkUtils.isOnline) {
+                validateData()
+            } else {
+                showNoInternetPopup()
+            }
         }
+
 
         val birthday = activityRegister1Binding.birthdate
         val cal = Calendar.getInstance()
@@ -635,30 +669,6 @@ class Register1 : AppCompatActivity() {
             activityRegister1Binding.birthdateTextInputLayout.error = "Select Date of Birth"
         }
 
-        if (birtdate.isNotEmpty()) {
-            val dobParts = birtdate.split(" / ")
-            if (dobParts.size == 3) {
-                val day = dobParts[0].toInt()
-                val month = dobParts[1].toInt()
-                val year = dobParts[2].toInt()
-
-                val calendar = Calendar.getInstance()
-                val currentYear = calendar.get(Calendar.YEAR)
-                val currentMonth = calendar.get(Calendar.MONTH) + 1
-                val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
-
-                val age =
-                    currentYear - year - if (currentMonth < month || (currentMonth == month && currentDay < day)) 1 else 0
-
-                if (age < 18) {
-                    activityRegister1Binding.birthdateTextInputLayout.error =
-                        "You must be at least 18 years old to register"
-                }
-            } else {
-                activityRegister1Binding.birthdateTextInputLayout.error =
-                    "Invalid Date of Birth format"
-            }
-        }
 
 
         validatePasswordMatch()
@@ -706,6 +716,24 @@ class Register1 : AppCompatActivity() {
 
         alertDialog.show()
         isPopupShowing = true // Set the variable to true when the pop-up is displayed
+    }
+    private fun showNoInternetPopup() {
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        view.findViewById<Button>(R.id.okbtns).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+
+        dialog.show()
     }
 
     private fun showCustomPopupError(message: String) {
@@ -784,7 +812,7 @@ class Register1 : AppCompatActivity() {
                     // Account creation success
                     // Call updateUserInfo to save user info after creating the account
                     updateUserInfo()
-
+                    firebaseAuth.signOut()
                     // Now, navigate to the Login activity
                     val intent = Intent(this, Login::class.java)
                     intent.putExtra("showSuccessPopup", true) // Set the flag to true

@@ -76,6 +76,7 @@ class Login : AppCompatActivity() {
         progressDialog.setCancelable(false)
         databaseReference = FirebaseDatabase.getInstance().getReference("connection_status")
         networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
 
         val showSuccessPopup = intent.getBooleanExtra("showSuccessPopup", false)
 
@@ -165,6 +166,13 @@ class Login : AppCompatActivity() {
                 dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
             }
             dialog.show()
+        }
+        binding.btnlogin.setOnClickListener {
+            if (networkUtils.isOnline) {
+                validateData()
+            } else {
+                showNoInternetPopup()
+            }
         }
     }
     private fun compareEmail(email: EditText, dialog: Dialog) {
@@ -382,6 +390,24 @@ class Login : AppCompatActivity() {
         alertDialog.show()
         isPopupShowing = true // Set the variable to true when the pop-up is displayed
     }
+    private fun showNoInternetPopup() {
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        view.findViewById<Button>(R.id.okbtns).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+
+        dialog.show()
+    }
 
 
     private fun showCustomPopupIncorrectPass(message: String) {
@@ -443,7 +469,14 @@ class Login : AppCompatActivity() {
                 }
             })
     }
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // Cleanup to unregister the network callback
+        networkUtils.cleanup()
+    }
 }
+
 
 
 

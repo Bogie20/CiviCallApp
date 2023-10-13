@@ -240,4 +240,8 @@
         <item name="android:textSize">14sp</item>
         <item name="fontFamily">@font/montserrat_medium</item>
     </style>
+    <style name="GreenSnackbarText">
+        <item name="android:textColor">@android:color/holo_green_dark</item>
+    </style>
+
 </resources>
