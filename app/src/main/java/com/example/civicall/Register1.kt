@@ -282,6 +282,7 @@ class Register1 : AppCompatActivity() {
         initialBirthday = activityRegister1Binding.birthdate.text.toString().trim()
 
         networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
 
         val contactNumber = activityRegister1Binding.Contactline
         val contactEme = activityRegister1Binding.ContactEme
@@ -418,6 +419,7 @@ class Register1 : AppCompatActivity() {
             } else {
                 showNoInternetPopup()
             }
+            dismissCustomDialog()
         }
 
 
@@ -690,7 +692,7 @@ class Register1 : AppCompatActivity() {
         if (isPopupShowing) {
             return
         }
-
+        dismissCustomDialog()
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_flat, null)
@@ -721,6 +723,8 @@ class Register1 : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         val view = layoutInflater.inflate(R.layout.dialog_network, null)
 
+        dismissCustomDialog()
+
         builder.setView(view)
         val dialog = builder.create()
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
@@ -741,7 +745,7 @@ class Register1 : AppCompatActivity() {
         if (isPopupShowing) {
             return
         }
-
+dismissCustomDialog()
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_error, null)
@@ -774,6 +778,7 @@ class Register1 : AppCompatActivity() {
         if (isProgressBarShowing) {
             return
         }
+        dismissCustomDialog()
 
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
@@ -802,6 +807,28 @@ class Register1 : AppCompatActivity() {
             // Set the variable to false when the progress bar is dismissed
             isProgressBarShowing = false
         }, durationMillis)
+    }
+    private fun dismissCustomDialog() {
+        if (isPopupShowing) {
+            // Dismiss the custom popup dialog
+            // For example:
+            // alertDialog.dismiss()
+            isPopupShowing = false
+        }
+
+        if (isProgressBarShowing) {
+            // Dismiss the progress dialog
+            // For example:
+            // progressDialog.dismiss()
+            isProgressBarShowing = false
+        }
+
+//        if (isProgressShowing) {
+//            // Dismiss the progress dialog
+//            // For example:
+//            // progressAlertDialog.dismiss()
+//            isProgressShowing = false
+//        }
     }
     private fun createUserAccount() {
         showCustomProgressBar("Creating Account...", 2000)
@@ -867,5 +894,9 @@ class Register1 : AppCompatActivity() {
             .addOnFailureListener { e ->
                 showCustomPopupError("Failed Saving User's Info due to ${e.message}")
             }
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup() // Clean up when the activity is destroyed
     }
 }

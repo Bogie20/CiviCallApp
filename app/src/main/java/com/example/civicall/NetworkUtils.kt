@@ -44,10 +44,16 @@ class NetworkUtils(private val context: Context) {
             }
         }
 
+        // Check the initial network state
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+        if (activeNetworkInfo == null || !activeNetworkInfo.isConnected) {
+            isOnline = false
+            showMessage("No Internet Connection")
+        }
+
         connectivityManager.registerNetworkCallback(networkRequest, callback)
         connectivityCallback = callback
     }
-
 
     private fun showMessage(message: String) {
         uiHandler.post {
@@ -64,5 +70,4 @@ class NetworkUtils(private val context: Context) {
             connectivityManager.unregisterNetworkCallback(callback)
         }
     }
-
 }

@@ -24,6 +24,7 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashactivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
 
         // Load the animation
         val anim = AnimationUtils.loadAnimation(this, R.anim.animate_fade_enter)
@@ -47,7 +48,7 @@ class SplashActivity : AppCompatActivity() {
         } else {
             val ref = FirebaseDatabase.getInstance().getReference("Users")
 
-            ref.child(firebaseUser!!.uid)
+            ref.child(firebaseUser.uid)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         if (snapshot.exists()) {
@@ -66,5 +67,10 @@ class SplashActivity : AppCompatActivity() {
                     }
                 })
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup() // Clean up when the activity is destroyed
     }
 }

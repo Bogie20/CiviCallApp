@@ -150,7 +150,7 @@ class Login : AppCompatActivity() {
             val userEmail = view.findViewById<EditText>(R.id.email)
             builder.setView(view)
             val dialog = builder.create()
-
+            dismissCustomDialog()
             // Set the animation after creating the dialog
             dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
 
@@ -176,6 +176,7 @@ class Login : AppCompatActivity() {
             } else {
                 showNoInternetPopup()
             }
+            dismissCustomDialog()
         }
     }
     private fun compareEmail(email: EditText, dialog: Dialog) {
@@ -201,6 +202,29 @@ class Login : AppCompatActivity() {
             }
         }
     }
+    private fun dismissCustomDialog() {
+        if (isPopupShowing) {
+            // Dismiss the custom popup dialog
+            // For example:
+            // alertDialog.dismiss()
+            isPopupShowing = false
+        }
+
+        if (isProgressBarShowing) {
+            // Dismiss the progress dialog
+            // For example:
+            // progressDialog.dismiss()
+            isProgressBarShowing = false
+        }
+
+        if (isProgressShowing) {
+            // Dismiss the progress dialog
+            // For example:
+            // progressAlertDialog.dismiss()
+            isProgressShowing = false
+        }
+    }
+
     private fun showCustomPopupSuccess(message: String) {
         // Check if the pop-up is already showing, and if so, return early
         if (isPopupShowing) {
@@ -229,6 +253,7 @@ class Login : AppCompatActivity() {
             alertDialog.dismiss()
             isPopupShowing = false // Set the variable to false when the pop-up is dismissed
         }
+        dismissCustomDialog()
 
         alertDialog.show()
         isPopupShowing = true // Set the variable to true when the pop-up is displayed
@@ -239,6 +264,8 @@ class Login : AppCompatActivity() {
         if (isProgressBarShowing) {
             return
         }
+
+        dismissCustomDialog()
 
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
@@ -274,6 +301,7 @@ class Login : AppCompatActivity() {
         if (isProgressShowing) {
             return
         }
+        dismissCustomDialog()
 
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
@@ -345,15 +373,18 @@ class Login : AppCompatActivity() {
                 } else if (e.message == "There is no user record corresponding to this identifier. The user may have been deleted.") {
                     // User does not exist in the database, show the custom popup with an error message
                     showCustomPopupError("Account Not Found")
-                } else {
-                    // Show "Incorrect Password" for other login errors
+                } else if (e.message == "The password is invalid or the user does not have a password.") {
+                    // Handle incorrect password error
                     passwordEditText.error = "Incorrect Password"
                     emailTextInputLayout.error = null // Clear email error
                     // Call showCustomPopupIncorrectPass for incorrect password error
-                    showCustomPopupIncorrectPass("Incorrect Password")
+                } else {
+                    // Handle other errors, such as network issues or server problems
+                    showCustomPopupError("Login Failed. Please try again later.")
                 }
             }
     }
+
 
     private fun dismissCustomProgressBar() {
         // Dismiss the progress bar here
@@ -396,7 +427,7 @@ class Login : AppCompatActivity() {
     private fun showNoInternetPopup() {
         val builder = AlertDialog.Builder(this)
         val view = layoutInflater.inflate(R.layout.dialog_network, null)
-
+        dismissCustomDialog()
         builder.setView(view)
         val dialog = builder.create()
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
@@ -411,41 +442,6 @@ class Login : AppCompatActivity() {
 
         dialog.show()
     }
-
-
-    private fun showCustomPopupIncorrectPass(message: String) {
-        // Check if the pop-up is already showing, and if so, return early
-        if (isPopupShowing) {
-            return
-        }
-
-        val dialogBuilder = AlertDialog.Builder(this)
-        val inflater = layoutInflater
-        val dialogView = inflater.inflate(R.layout.dialog_flat, null)
-
-        dialogBuilder.setView(dialogView)
-        val alertDialog = dialogBuilder.create()
-
-        // Set the animation style
-        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
-
-        // Set the background to be transparent
-        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message_flat)
-        val okButton = dialogView.findViewById<Button>(R.id.btn_action_flat)
-
-        messageTextView.text = message
-
-        okButton.setOnClickListener {
-            alertDialog.dismiss()
-            isPopupShowing = false // Set the variable to false when the pop-up is dismissed
-        }
-
-        alertDialog.show()
-        isPopupShowing = true // Set the variable to true when the pop-up is displayed
-    }
-
 
     private fun checkUser() {
         val messageTextView = progressDialog.findViewById<TextView>(R.id.messageTextView)

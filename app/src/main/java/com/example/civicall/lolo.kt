@@ -22,7 +22,7 @@ class lolo : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var binding: ActivityLoloBinding
-
+    private var isLogoutDialogShown = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoloBinding.inflate(layoutInflater)
@@ -49,33 +49,40 @@ class lolo : AppCompatActivity() {
         val editProfileCardView:TextView= findViewById(R.id.editprofile)
 
         logout.setOnClickListener {
-            // Create a custom logout confirmation dialog
-            val dialogView = layoutInflater.inflate(R.layout.dialog_logout, null)
-            val dialogBuilder = AlertDialog.Builder(this)
-                .setView(dialogView)
-            val dialog = dialogBuilder.create()
+            if (!isLogoutDialogShown) { // Check if the dialog is not already shown
+                isLogoutDialogShown = true // Set the flag to true
+                // Create a custom logout confirmation dialog
+                val dialogView = layoutInflater.inflate(R.layout.dialog_logout, null)
+                val dialogBuilder = AlertDialog.Builder(this)
+                    .setView(dialogView)
+                val dialog = dialogBuilder.create()
 
-            dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
-            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+                dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+                dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-            val yesButton = dialogView.findViewById<Button>(R.id.logoutBtn)
-            val cancelButton = dialogView.findViewById<Button>(R.id.cancelBtn)
+                val yesButton = dialogView.findViewById<Button>(R.id.logoutBtn)
+                val cancelButton = dialogView.findViewById<Button>(R.id.cancelBtn)
 
-            yesButton.setOnClickListener {
-                // Handle click for the "Yes, Logout" button
-                firebaseAuth.signOut()
-                val intent = Intent(this, Login::class.java)
-                startActivity(intent)
-                finish()
-                dialog.dismiss()
+                yesButton.setOnClickListener {
+                    // Handle click for the "Yes, Logout" button
+                    firebaseAuth.signOut()
+                    val intent = Intent(this, Login::class.java)
+                    startActivity(intent)
+                    finish()
+                    dialog.dismiss()
+                }
+
+                cancelButton.setOnClickListener {
+                    // Handle click for the "Cancel" button
+                    dialog.dismiss()
+                }
+
+                dialog.setOnDismissListener {
+                    isLogoutDialogShown = false // Reset the flag when the dialog is dismissed
+                }
+
+                dialog.show()
             }
-
-            cancelButton.setOnClickListener {
-                // Handle click for the "Cancel" button
-                dialog.dismiss()
-            }
-
-            dialog.show()
         }
 
 
