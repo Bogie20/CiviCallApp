@@ -823,12 +823,6 @@ dismissCustomDialog()
             isProgressBarShowing = false
         }
 
-//        if (isProgressShowing) {
-//            // Dismiss the progress dialog
-//            // For example:
-//            // progressAlertDialog.dismiss()
-//            isProgressShowing = false
-//        }
     }
     private fun createUserAccount() {
         showCustomProgressBar("Creating Account...", 2000)

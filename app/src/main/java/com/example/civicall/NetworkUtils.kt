@@ -12,10 +12,12 @@ import android.view.View
 import com.google.android.material.snackbar.Snackbar
 
 class NetworkUtils(private val context: Context) {
-
     var isOnline = true
     private var connectivityCallback: ConnectivityManager.NetworkCallback? = null
     private val uiHandler = Handler(Looper.getMainLooper())
+    private var isStableOnline = false
+    private val stableOnlineThreshold = 5000
+    private var lastLostTime: Long = 0 // Initialize lastLostTime
 
     fun initialize() {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -28,19 +30,30 @@ class NetworkUtils(private val context: Context) {
             override fun onAvailable(network: Network) {
                 super.onAvailable(network)
                 if (!isOnline) {
-                    // Internet Restored
                     isOnline = true
-                    showMessage("Internet Restored")
+                    if (!isStableOnline) {
+                        if (isNetworkStable()) {
+                            showMessage("Internet Restored")
+                            isStableOnline = true
+                        }
+                    }
                 }
             }
 
             override fun onLost(network: Network) {
                 super.onLost(network)
                 if (isOnline) {
-                    // No Internet Connection
                     isOnline = false
+                    isStableOnline = false
+                    lastLostTime = System.currentTimeMillis() // Update lastLostTime
                     showMessage("No Internet Connection")
                 }
+            }
+
+            private fun isNetworkStable(): Boolean {
+                val currentTime = System.currentTimeMillis()
+                val timeSinceLastLost = currentTime - lastLostTime
+                return timeSinceLastLost > stableOnlineThreshold
             }
         }
 

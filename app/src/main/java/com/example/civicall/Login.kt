@@ -143,31 +143,38 @@ class Login : AppCompatActivity() {
                 emailEditText.setText(email)
             }
         }
+        var isDialogVisible = false // Add this flag
 
         binding.forgotPassword.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-            val view = layoutInflater.inflate(R.layout.dialog_forgotpass, null)
-            val userEmail = view.findViewById<EditText>(R.id.email)
-            builder.setView(view)
-            val dialog = builder.create()
-            dismissCustomDialog()
-            // Set the animation after creating the dialog
-            dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+            if (!isDialogVisible) { // Check if the dialog is not already visible
+                isDialogVisible = true // Set the flag to true
+                val builder = AlertDialog.Builder(this)
+                val view = layoutInflater.inflate(R.layout.dialog_forgotpass, null)
+                val userEmail = view.findViewById<EditText>(R.id.email)
+                builder.setView(view)
+                val dialog = builder.create()
 
-            view.findViewById<Button>(R.id.resetbtn).setOnClickListener {
-                compareEmail(userEmail, dialog)
-            }
-            view.findViewById<Button>(R.id.cancelbtn).setOnClickListener {
-                dialog.dismiss()
-            }
+                // Set the animation after creating the dialog
+                dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
 
-            if (dialog.window != null) {
-                // Set the background drawable here if needed
-                dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
-            }
+                view.findViewById<Button>(R.id.resetbtn).setOnClickListener {
+                    compareEmail(userEmail, dialog)
+                    isDialogVisible = false // Reset the flag when the dialog is dismissed
+                }
+                view.findViewById<Button>(R.id.cancelbtn).setOnClickListener {
+                    dialog.dismiss()
+                    isDialogVisible = false // Reset the flag when the dialog is dismissed
+                }
 
-            dialog.show()
+                if (dialog.window != null) {
+                    // Set the background drawable here if needed
+                    dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+                }
+
+                dialog.show()
+            }
         }
+
 
 
         binding.btnlogin.setOnClickListener {
