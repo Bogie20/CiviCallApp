@@ -855,7 +855,6 @@ dismissCustomDialog()
 
 
     private fun updateUserInfo() {
-        showCustomProgressBar("Saving User Info...", 2000)
 
         val searchFragment = CivicPostFragment()
         val args = Bundle()
