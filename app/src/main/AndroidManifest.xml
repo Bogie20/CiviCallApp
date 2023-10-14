@@ -23,8 +23,43 @@
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
 
-        <!-- Survival Tips -->
+        <!-- Civic rights -->
+        <activity
+            android:name=".CivicRightsAndResponsibility.GlobalCitizenshipandCivicResponsibilityInfo"
+            android:exported="true" />
+        <activity
+            android:name=".CivicRightsAndResponsibility.CivicResponsibilityandEducationinfo"
+            android:exported="true" />
+        <activity
+            android:name=".CivicRightsAndResponsibility.CivicResponsibilityinTimesofCrisisInfo"
+            android:exported="true" />
+        <activity
+            android:name=".CivicRightsAndResponsibility.GenderEqualityandCivicResponsibilityInfo"
+            android:exported="true" />
+        <activity
+            android:name=".CivicRightsAndResponsibility.CivicRightsinaDigitalWorldInfo"
+            android:exported="true" />
+        <activity
+            android:name=".CivicRightsAndResponsibility.CivicResponsibilityandtheRuleofLawInfo"
+            android:exported="true" />
+        <activity
+            android:name=".CivicRightsAndResponsibility.EnvironmentalCivicResponsibilityinfo"
+            android:exported="true" />
+        <activity
+            android:name=".CivicRightsAndResponsibility.RighttoProtestandFreeSpeechInfo"
+            android:exported="true" />
+        <activity
+            android:name=".CivicRightsAndResponsibility.CivicResponsibilityInfo"
+            android:exported="true" />
+        <activity
+            android:name=".CivicRightsAndResponsibility.UnderstandingCivicRightsInfo"
+            android:exported="true" />
+        <activity
+            android:name=".CivicRightsAndResponsibility.CivicRightsAndResponsibilityMenu"
+            android:exported="true" />
+        <!-- Civic rights end -->
 
+        <!-- Survival Tips start here -->
         <activity
             android:name=".SurvivalTipsInfo.NavigatingMountainInfo"
             android:exported="true" />
@@ -40,7 +75,6 @@
         <activity
             android:name=".SurvivalTipsInfo.IslandSurvivalInfo"
             android:exported="true" />
-
         <activity
             android:name=".SurvivalTipsInfo.JunglerInfo"
             android:exported="true" />
