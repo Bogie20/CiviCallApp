@@ -20,7 +20,6 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.civicall.CivicEngagementPost.CivicPostFragment
 import com.example.civicall.databinding.ActivityRegister1Binding
@@ -32,32 +31,50 @@ class Register1 : AppCompatActivity() {
     private lateinit var activityRegister1Binding: ActivityRegister1Binding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var progressDialog: ProgressDialog
-    private var selectedCampus = ""
     private var initialFirstName = ""
     private var initialLastName = ""
     private var initialEmail = ""
     private var initialPassword = ""
     private var initialConfirmPassword = ""
     private var initialContactNumber = ""
-    private var initialContactEme = ""
+    private var initialMiddleName = ""
     private var initialAddress = ""
     private var initialBirthday = ""
+    private var initialCampus = ""
+    private var initialGender = ""
+    private var initialUserCategory = ""
     private var isPopupShowing = false
     private lateinit var networkUtils: NetworkUtils
 
     private fun validateFirstName(): Boolean {
-        val lastName = activityRegister1Binding.fname.text.toString().trim()
+        val firstName = activityRegister1Binding.fname.text.toString().trim()
         val regex = "^[a-zA-Z.\\s-]+$"
 
-        if (lastName.isEmpty()) {
+        if (firstName.isEmpty()) {
             activityRegister1Binding.fnameTextInputLayout.error = "Required"
             return false
-        } else if (!lastName.matches(regex.toRegex())) {
+        } else if (!firstName.matches(regex.toRegex())) {
             activityRegister1Binding.fnameTextInputLayout.error =
                 "Only letters and symbols (, . -) are allowed"
             return false
         } else {
             activityRegister1Binding.fnameTextInputLayout.error = null
+            return true
+        }
+    }
+    private fun validateMiddleName(): Boolean {
+        val middleName = activityRegister1Binding.Mname.text.toString().trim()
+        val regex = "^[a-zA-Z.\\s-]+$"
+
+        if (middleName.isEmpty()) {
+            activityRegister1Binding.MiddleNameTextInputLayout.error = "Required"
+            return false
+        } else if (!middleName.matches(regex.toRegex())) {
+            activityRegister1Binding.MiddleNameTextInputLayout.error =
+                "Only letters and symbols (, . -) are allowed"
+            return false
+        } else {
+            activityRegister1Binding.MiddleNameTextInputLayout.error = null
             return true
         }
     }
@@ -158,36 +175,6 @@ class Register1 : AppCompatActivity() {
         }
     }
 
-    private fun validateContactEme(): Boolean {
-        val contactNum = activityRegister1Binding.ContactEme.text.toString().trim()
-
-        if (contactNum.isEmpty()) {
-            activityRegister1Binding.contactEmeNum.error = "Please enter Contact Person"
-            return false
-        } else if (!isValidPhoneEme(contactNum)) {
-            activityRegister1Binding.contactEmeNum.error = "Invalid Contact Person"
-            return false
-        } else {
-            activityRegister1Binding.contactEmeNum.error = null
-            return true
-        }
-    }
-
-
-    private fun isValidPhoneEme(contactNum: String): Boolean {
-        val sanitizedNum = contactNum.replace("\\s".toRegex(), "")
-
-        return if (sanitizedNum.startsWith("+63")) {
-            sanitizedNum.length == 13
-        } else if (sanitizedNum.startsWith("63")) {
-            sanitizedNum.length == 12
-        } else if (sanitizedNum.startsWith("09")) {
-            sanitizedNum.length == 11
-        }else {
-            false
-        }
-    }
-
     private fun validateAddress(): Boolean {
         val address = activityRegister1Binding.address.text.toString().trim()
 
@@ -243,7 +230,40 @@ class Register1 : AppCompatActivity() {
             return true
         }
     }
+    private fun validateCampus(): Boolean {
+        val campus = activityRegister1Binding.usercategory.text.toString().trim()
 
+        if (campus.isEmpty()) {
+            activityRegister1Binding.campusTextInputLayout.error = "Please select a user category"
+            return false
+        } else {
+            activityRegister1Binding.campusTextInputLayout.error = null
+            return true
+        }
+    }
+    private fun validateUserCategory(): Boolean {
+        val userCategory = activityRegister1Binding.usercategory.text.toString().trim()
+
+        if (userCategory.isEmpty()) {
+            activityRegister1Binding.usercateTextInputLayout.error = "Please select a user category"
+            return false
+        } else {
+            activityRegister1Binding.usercateTextInputLayout.error = null
+            return true
+        }
+    }
+
+    private fun validateGender(): Boolean {
+        val gender = activityRegister1Binding.spinnerSex.text.toString().trim()
+
+        if (gender.isEmpty()) {
+            activityRegister1Binding.genderTextInputLayout.error = "Select a Gender"
+            return false
+        } else {
+            activityRegister1Binding.genderTextInputLayout.error = null
+            return true
+        }
+    }
     private fun validatePasswordMatch(): Boolean {
         val password = activityRegister1Binding.pass.text.toString().trim()
         val confirmPassword = activityRegister1Binding.confirmPass.text.toString().trim()
@@ -273,19 +293,21 @@ class Register1 : AppCompatActivity() {
 
         initialFirstName = activityRegister1Binding.fname.text.toString().trim()
         initialLastName = activityRegister1Binding.Lname.text.toString().trim()
+        initialMiddleName = activityRegister1Binding.Mname.text.toString().trim()
         initialEmail = activityRegister1Binding.Emailline.text.toString().trim()
         initialPassword = activityRegister1Binding.pass.text.toString().trim()
         initialConfirmPassword = activityRegister1Binding.confirmPass.text.toString().trim()
         initialContactNumber = activityRegister1Binding.Contactline.text.toString().trim()
-        initialContactEme = activityRegister1Binding.ContactEme.text.toString().trim()
         initialAddress = activityRegister1Binding.address.text.toString().trim()
         initialBirthday = activityRegister1Binding.birthdate.text.toString().trim()
+        initialCampus = activityRegister1Binding.campus.text.toString().trim()
+        initialGender = activityRegister1Binding.spinnerSex.text.toString().trim()
+        initialUserCategory = activityRegister1Binding.usercategory.text.toString().trim()
 
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
 
         val contactNumber = activityRegister1Binding.Contactline
-        val contactEme = activityRegister1Binding.ContactEme
 
         val maxLength = 80
         val maxEmailLength = 320
@@ -298,11 +320,20 @@ class Register1 : AppCompatActivity() {
 
         val campusAdapter = ArrayAdapter(
             this,
-            R.layout.dropdown_item,
+             R.layout.dropdown_item,
             campusOptions
-        ) // Create an ArrayAdapter with your options
-        campusAutoCompleteTextView.setAdapter(campusAdapter) // Set the adapter for the AutoCompleteTextView
+        )
+        campusAutoCompleteTextView.setAdapter(campusAdapter)
+        // Set the adapter for the AutoCompleteTextView
+        val usercategoryAutoCompleteTextView = activityRegister1Binding.usercategory
+        val usercatOptions = resources.getStringArray(R.array.user_category)
 
+        val usercategoryAdapter = ArrayAdapter(
+            this,
+            R.layout.dropdown_item,
+            usercatOptions
+        )
+        usercategoryAutoCompleteTextView.setAdapter(usercategoryAdapter)
 // For the "Gender" field
         val spinnerSexAutoCompleteTextView = activityRegister1Binding.spinnerSex
         val sexOptions = resources.getStringArray(R.array.gender_array)
@@ -314,13 +345,14 @@ class Register1 : AppCompatActivity() {
         ) // Create an ArrayAdapter with your options
         spinnerSexAutoCompleteTextView.setAdapter(sexAdapter) // Set the adapter for the AutoCompleteTextView
 
+
         val firstNameEditText = activityRegister1Binding.fname
+        val middleNameEditText = activityRegister1Binding.Mname
         val lastNameEditText = activityRegister1Binding.Lname
         val filters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxLength))
         val emailEditText = activityRegister1Binding.Emailline
         val emailFilters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxEmailLength))
         val contactNumberEditText = activityRegister1Binding.Contactline
-        val contactEmeEditText = activityRegister1Binding.ContactEme
         val contactFilters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxContactLength))
         val addressEditText = activityRegister1Binding.address
         val addressFilters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxAddressLength))
@@ -331,14 +363,16 @@ class Register1 : AppCompatActivity() {
         confirmPasswordEditText.filters = passwordFilters
         addressEditText.filters = addressFilters
         contactNumberEditText.filters = contactFilters
-        contactEmeEditText.filters = contactFilters
         emailEditText.filters = emailFilters
         firstNameEditText.filters = filters
+        middleNameEditText.filters = filters
         lastNameEditText.filters = filters
         contactNumber.inputType = InputType.TYPE_CLASS_PHONE
-        contactEme.inputType = InputType.TYPE_CLASS_PHONE
 
         val birthdayEditText = activityRegister1Binding.birthdate
+        val campusEditText = activityRegister1Binding.campus
+        val usercategoryEditText = activityRegister1Binding.usercategory
+        val genderEditText = activityRegister1Binding.spinnerSex
         val confirmpassword = activityRegister1Binding.confirmPass
 
         firstNameEditText.setOnFocusChangeListener { _, hasFocus ->
@@ -346,6 +380,13 @@ class Register1 : AppCompatActivity() {
                 validateFirstName()
                 // Set selection to initial input length
                 firstNameEditText.setSelection(initialFirstName.length)
+            }
+        }
+        middleNameEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                validateMiddleName()
+                // Set selection to initial input length
+                middleNameEditText.setSelection(initialMiddleName.length)
             }
         }
 
@@ -382,12 +423,6 @@ class Register1 : AppCompatActivity() {
                 contactNumberEditText.setSelection(initialContactNumber.length)
             }
         }
-        contactEmeEditText.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                validateContactEme()
-                contactEmeEditText.setSelection(initialContactEme.length)
-            }
-        }
 
         addressEditText.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
@@ -400,6 +435,24 @@ class Register1 : AppCompatActivity() {
             if (!hasFocus) {
                 validateBirthday()
                 birthdayEditText.setSelection(initialBirthday.length)
+            }
+        }
+        campusEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                validateCampus()
+                campusEditText.setSelection(initialCampus.length)
+            }
+        }
+        genderEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                validateGender()
+                genderEditText.setSelection(initialGender.length)
+            }
+        }
+        usercategoryEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                validateUserCategory()
+                usercategoryEditText.setSelection(initialUserCategory.length)
             }
         }
         firebaseAuth = FirebaseAuth.getInstance()
@@ -447,6 +500,19 @@ class Register1 : AppCompatActivity() {
         firstNameEditText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 validateFirstName()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+        })
+        middleNameEditText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                validateMiddleName()
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -523,19 +589,6 @@ class Register1 : AppCompatActivity() {
                 // Handle text changed
             }
         })
-        contactEmeEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                validateContactEme()
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // Handle before text changed
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                // Handle text changed
-            }
-        })
         addressEditText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 validateAddress()
@@ -549,7 +602,6 @@ class Register1 : AppCompatActivity() {
 
             }
         })
-
         birthdayEditText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 // Clear the error message when valid input is provided
@@ -566,48 +618,53 @@ class Register1 : AppCompatActivity() {
         })
 
     }
-
     private var fname = ""
+    private var Mname = ""
     private var lname = ""
     private var email = ""
     private var pass = ""
     private var confirmPass = ""
     private var phoneno = ""
-    private var phoneEme = ""
     private var address = ""
     private var birtdate = ""
+    private var selectedCampus = ""
+    private var userCategory = ""
     private var spinnerSex = ""
 
     private fun validateData() {
         fname = activityRegister1Binding.fname.text.toString().trim()
+        Mname = activityRegister1Binding.Mname.text.toString().trim()
         lname = activityRegister1Binding.Lname.text.toString().trim()
         email = activityRegister1Binding.Emailline.text.toString().trim()
         pass = activityRegister1Binding.pass.text.toString().trim()
         confirmPass = activityRegister1Binding.confirmPass.text.toString().trim()
         phoneno = activityRegister1Binding.Contactline.text.toString().trim()
-        phoneEme = activityRegister1Binding.ContactEme.text.toString().trim()
         address = activityRegister1Binding.address.text.toString().trim()
         birtdate = activityRegister1Binding.birthdate.text.toString().trim()
         spinnerSex = activityRegister1Binding.spinnerSex.text.toString()
+        userCategory = activityRegister1Binding.usercategory.text.toString()
         selectedCampus = activityRegister1Binding.campus.text.toString()
 
 
         activityRegister1Binding.fnameTextInputLayout.error = null
+        activityRegister1Binding.MiddleNameTextInputLayout.error = null
         activityRegister1Binding.lastNameTextInputLayout.error = null
         activityRegister1Binding.emailTextInputLayout.error = null
         activityRegister1Binding.passwordTextInputLayout.error = null
         activityRegister1Binding.confirmPassword.error = null
         activityRegister1Binding.contactNumberTextInputLayout.error = null
-        activityRegister1Binding.contactEmeNum.error = null
         activityRegister1Binding.addressTextInputLayout.error = null
+        activityRegister1Binding.birthdateTextInputLayout.error = null
+        activityRegister1Binding.campusTextInputLayout.error = null
+        activityRegister1Binding.usercateTextInputLayout.error = null
+        activityRegister1Binding.spinnerSex.error = null
 
         val checkBox = findViewById<CheckBox>(R.id.checkedTextView)
         val errorMessages = mutableListOf<String>()
-        if (!validateFirstName() || !validateLastName() || !validateAddress() || !validateBirthday() ||
-            !validatePasswordMatch() || !validateEmail() || !validatePassword() || !validateConfirmPassword() || !validateContactNumber() && !validateContactEme()
-        ) {
+        if (!validateFirstName() || !validateMiddleName() || !validateUserCategory() || !validateLastName() || !validateCampus() || !validateGender() || !validateAddress() || !validateBirthday() || !validatePasswordMatch() || !validateEmail() || !validatePassword() || !validateConfirmPassword() || !validateContactNumber()) {
             errorMessages.add("Please provide valid information for the following fields.")
-        } else if (!checkBox.isChecked()) {
+        }
+        else if (!checkBox.isChecked()) {
             errorMessages.add("Please Accept the terms and Condition")
         }
 
@@ -618,6 +675,12 @@ class Register1 : AppCompatActivity() {
             activityRegister1Binding.campusTextInputLayout.error = null
         }
 
+        val usercategoryAutoCompleteTextView = activityRegister1Binding.usercategory
+
+        usercategoryAutoCompleteTextView.setOnItemClickListener { _, _, _, _ ->
+            // Clear the error message when a valid selection is made
+            activityRegister1Binding.usercateTextInputLayout.error = null
+        }
         val spinnerSexAutoCompleteTextView = activityRegister1Binding.spinnerSex
 
         spinnerSexAutoCompleteTextView.setOnItemClickListener { _, _, _, _ ->
@@ -627,6 +690,9 @@ class Register1 : AppCompatActivity() {
 
         if (!validateFirstName()) {
             activityRegister1Binding.fnameTextInputLayout.error = "Please enter a valid first name"
+        }
+        if (!validateMiddleName()) {
+            activityRegister1Binding.MiddleNameTextInputLayout.error = "Please enter a valid middle name"
         }
 
         if (!validateLastName()) {
@@ -649,10 +715,6 @@ class Register1 : AppCompatActivity() {
         if (!validateContactNumber()) {
             activityRegister1Binding.contactNumberTextInputLayout.error =
                 "Please enter a valid contact number"
-        }
-
-        if (!validateContactEme()) {
-            activityRegister1Binding.contactEmeNum.error = "Please enter a valid contact person"
         }
 
         if (!validateAddress()) {
@@ -859,16 +921,17 @@ dismissCustomDialog()
 
         val hashMap: HashMap<String, Any?> = HashMap()
         hashMap["uid"] = uid
+        hashMap["Role"] = userCategory
         hashMap["firstname"] = fname
+        hashMap["middlename"] = Mname
         hashMap["lastname"] = lname
         hashMap["email"] = email
         hashMap["phoneno"] = phoneno
-        hashMap["ContactEme"] = phoneEme
         hashMap["address"] = address
         hashMap["birthday"] = birtdate
         hashMap["gender"] = spinnerSex
         hashMap["ImageProfile"] = ""
-        hashMap["userType"] = "Student"
+        hashMap["userType"] = "BatStateU"
         hashMap["timestamp"] = timestamp
         hashMap["campus"] = selectedCampus
 

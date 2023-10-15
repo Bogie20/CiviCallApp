@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".lolo"
+    tools:context=".Menu"
     tools:layout_editor_absoluteX="-40dp"
     tools:layout_editor_absoluteY="9dp">
 
@@ -47,7 +47,7 @@
             android:text="Edit Profile"
             android:textColor="@color/white"
 
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.859"

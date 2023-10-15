@@ -3,7 +3,15 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
-
+        <string-array name="user_category">
+            <item>Undergraduate Student</item>
+            <item>Post-graduate Student</item>
+            <item>Alumni</item>
+            <item>Faculty</item>
+            <item>Administration</item>
+            <item>Stakeholder</item>
+            <item>Non-teaching Staff</item>
+        </string-array>
     <string-array name="allowed_campuses">
         <item>ARASOF Nasugbu Campus</item>
         <item>Balayan Campus</item>

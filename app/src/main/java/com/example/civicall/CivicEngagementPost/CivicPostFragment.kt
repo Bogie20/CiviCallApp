@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -32,6 +33,7 @@ class CivicPostFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_civic_post, container, false)
 
@@ -39,12 +41,15 @@ class CivicPostFragment : Fragment() {
         searchView = rootView.findViewById(R.id.search)
         searchView.clearFocus()
 
+        val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+
+        rootView.startAnimation(anim)
+
         val gridLayoutManager = GridLayoutManager(requireContext(), 1)
         recyclerView.layoutManager = gridLayoutManager
 
         val builder = AlertDialog.Builder(requireContext())
         builder.setCancelable(false)
-        builder.setView(R.layout.loading_layout)
         val dialog = builder.create()
         dialog.show()
 

@@ -16,7 +16,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
 
-class lolo : AppCompatActivity() {
+class Menu : AppCompatActivity() {
 
     private lateinit var BackClick: ImageView
     private lateinit var firebaseAuth: FirebaseAuth
@@ -35,11 +35,12 @@ class lolo : AppCompatActivity() {
         BackClick = findViewById(R.id.back1)
 
         BackClick.setOnClickListener {
-            // Open the "Menu" activity/form
-
             val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
+
+
         val setting: TextView = findViewById(R.id.Setting)
         val calendar: TextView = findViewById(R.id.calendar)
         val logout: TextView = findViewById(R.id.logout)
@@ -116,10 +117,9 @@ class lolo : AppCompatActivity() {
         }
         editProfileCardView.setOnClickListener {
             // Open the "Edit Profile" activity/form
-            val intent = Intent(this, myprofile1::class.java)
+            val intent = Intent(this, Myprofile::class.java)
             startActivity(intent)
         }
-
 
     }
 
@@ -148,8 +148,7 @@ class lolo : AppCompatActivity() {
                     val imageProfile = it.child("ImageProfile").value
                     // Add space between first name and last name
 
-
-
+                    binding.firstName.text = fname.toString()
                     binding.firstName.text = fname.toString()
                     binding.lastName.text = lname.toString()
                     binding.email1.text = email.toString()
@@ -160,7 +159,6 @@ class lolo : AppCompatActivity() {
                     if (imageProfile != null && imageProfile.toString().isNotEmpty()) {
                         Picasso.get().load(imageProfile.toString()).into(profileImage)
                     }
-                    Toast.makeText(this, "Successfully Retrieved", Toast.LENGTH_LONG).show()
                 } else {
                     Toast.makeText(this, "User Not existed", Toast.LENGTH_LONG).show()
                 }
@@ -169,6 +167,10 @@ class lolo : AppCompatActivity() {
             }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+    }
 
     }
 

@@ -190,7 +190,7 @@
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".lolo"
+            android:name=".Menu"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity

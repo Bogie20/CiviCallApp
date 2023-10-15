@@ -40,28 +40,6 @@ class Login : AppCompatActivity() {
     private var password = ""
     private var isPopupShowing = false
 
-    private fun validateEmail() {
-        val emailText = emailEditText.text.toString().trim()
-
-        if (TextUtils.isEmpty(emailText)) {
-            emailEditText.error = "Please Input Valid Email"
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
-            emailEditText.error = "Invalid Email"
-        } else {
-            emailEditText.error = null
-        }
-    }
-
-    // Function to validate password
-    private fun validatePassword() {
-        val passwordText = passwordEditText.text.toString().trim()
-
-        if (TextUtils.isEmpty(passwordText)) {
-            passwordEditText.error = "Please enter your password"
-        } else {
-            passwordEditText.error = null
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

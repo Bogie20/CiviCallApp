@@ -27,7 +27,7 @@ class SplashActivity : AppCompatActivity() {
         networkUtils.initialize()
 
         // Load the animation
-        val anim = AnimationUtils.loadAnimation(this, R.anim.animate_fade_enter)
+        val anim = AnimationUtils.loadAnimation(this, R.anim.animate_splash)
 
         // Apply the animation to the root view
         binding.root.startAnimation(anim)

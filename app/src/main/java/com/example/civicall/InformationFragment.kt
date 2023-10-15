@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.cardview.widget.CardView
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
@@ -21,6 +22,11 @@ class InformationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_information, container, false)
+
+        val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.animate_fade_enter)
+
+
+        view.startAnimation(anim)
 
         val cardview1 = view.findViewById<CardView>(R.id.cardview1)
         val cardview2 = view.findViewById<CardView>(R.id.cardview2)
