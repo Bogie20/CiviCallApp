@@ -231,10 +231,10 @@ class Register1 : AppCompatActivity() {
         }
     }
     private fun validateCampus(): Boolean {
-        val campus = activityRegister1Binding.usercategory.text.toString().trim()
+        val campus = activityRegister1Binding.campus.text.toString().trim()
 
         if (campus.isEmpty()) {
-            activityRegister1Binding.campusTextInputLayout.error = "Please select a user category"
+            activityRegister1Binding.campusTextInputLayout.error = "Please select your campus"
             return false
         } else {
             activityRegister1Binding.campusTextInputLayout.error = null
@@ -895,7 +895,6 @@ dismissCustomDialog()
                     // Account creation success
                     // Call updateUserInfo to save user info after creating the account
                     updateUserInfo()
-                    firebaseAuth.signOut()
                     // Now, navigate to the Login activity
                     val intent = Intent(this, Login::class.java)
                     intent.putExtra("showSuccessPopup", true) // Set the flag to true
@@ -921,7 +920,6 @@ dismissCustomDialog()
 
         val hashMap: HashMap<String, Any?> = HashMap()
         hashMap["uid"] = uid
-        hashMap["Role"] = userCategory
         hashMap["firstname"] = fname
         hashMap["middlename"] = Mname
         hashMap["lastname"] = lname
@@ -931,7 +929,7 @@ dismissCustomDialog()
         hashMap["birthday"] = birtdate
         hashMap["gender"] = spinnerSex
         hashMap["ImageProfile"] = ""
-        hashMap["userType"] = "BatStateU"
+        hashMap["userType"] = userCategory
         hashMap["timestamp"] = timestamp
         hashMap["campus"] = selectedCampus
 
