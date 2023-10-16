@@ -22,8 +22,54 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
-
-        <!-- Civic rights -->
+        <activity
+            android:name=".EnvironmentalandSocialIssueInfo.InvisibleLaborInfo"
+            android:exported="false" />
+        <activity
+            android:name=".EnvironmentalandSocialIssueInfo.CommunitiesinPerilInfo"
+            android:exported="false" />
+        <activity
+            android:name=".EnvironmentalandSocialIssueInfo.TheSilentCrisisInfo"
+            android:exported="false" />
+        <activity
+            android:name=".EnvironmentalandSocialIssueInfo.IslandsofInequalityInfo"
+            android:exported="false" />
+        <activity
+            android:name=".EnvironmentalandSocialIssueInfo.BreakingtheChainsInfo"
+            android:exported="false" />
+        <activity
+            android:name=".EnvironmentalandSocialIssueInfo.FromDisastertoResilienceInfo"
+            android:exported="false" />
+        <activity
+            android:name=".EnvironmentalandSocialIssueInfo.EnergyforAllInfo"
+            android:exported="false" />
+        <activity
+            android:name=".EnvironmentalandSocialIssueInfo.PlasticPerilInfo"
+            android:exported="false" />
+        <activity
+            android:name=".EnvironmentalandSocialIssueInfo.MiningforControversyInfo"
+            android:exported="false" />
+        <activity
+            android:name=".EnvironmentalandSocialIssueInfo.SeedsofChangeInfo"
+            android:exported="false" />
+        <activity
+            android:name=".EnvironmentalandSocialIssueInfo.WaterWoesandWinsInfo"
+            android:exported="false" />
+        <activity
+            android:name=".EnvironmentalandSocialIssueInfo.GreenGoldRushInfo"
+            android:exported="false" />
+        <activity
+            android:name=".EnvironmentalandSocialIssueInfo.DirtyAirBrightSolutionsInfo"
+            android:exported="false" />
+        <activity
+            android:name=".EnvironmentalandSocialIssueInfo.IslandsofBiodiversityInfo"
+            android:exported="false" />
+        <activity
+            android:name=".EnvironmentalandSocialIssueInfo.RisingTidesInfo"
+            android:exported="false" />
+        <activity
+            android:name=".EnvironmentalandSocialIssueInfo.EnvironmentalAndSocialIssuesMenu"
+            android:exported="false" /> <!-- Civic rights -->
         <activity
             android:name=".CivicRightsAndResponsibility.GlobalCitizenshipandCivicResponsibilityInfo"
             android:exported="true" />
@@ -56,9 +102,7 @@
             android:exported="true" />
         <activity
             android:name=".CivicRightsAndResponsibility.CivicRightsAndResponsibilityMenu"
-            android:exported="true" />
-        <!-- Civic rights end -->
-
+            android:exported="true" /> <!-- Civic rights end -->
         <!-- Survival Tips start here -->
         <activity
             android:name=".SurvivalTipsInfo.NavigatingMountainInfo"
