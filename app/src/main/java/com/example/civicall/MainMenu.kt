@@ -9,23 +9,22 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
-import com.example.civicall.databinding.ActivityLoloBinding
+import com.example.civicall.databinding.ActivityMainmenuBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.squareup.picasso.Picasso
 
-class Menu : AppCompatActivity() {
+class MainMenu : AppCompatActivity() {
 
     private lateinit var BackClick: ImageView
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
-    private lateinit var binding: ActivityLoloBinding
+    private lateinit var binding: ActivityMainmenuBinding
     private var isLogoutDialogShown = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoloBinding.inflate(layoutInflater)
+        binding = ActivityMainmenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
@@ -117,7 +116,7 @@ class Menu : AppCompatActivity() {
         }
         editProfileCardView.setOnClickListener {
             // Open the "Edit Profile" activity/form
-            val intent = Intent(this, Myprofile::class.java)
+            val intent = Intent(this, ProfileDetails::class.java)
             startActivity(intent)
         }
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:background="@color/background"
     android:layout_height="match_parent"
-    tools:context=".Myprofile">
+    tools:context=".EditProfile">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/card"
@@ -23,8 +23,6 @@
             android:layout_marginTop="12dp"
             android:fontFamily="@font/lexend_bold"
             android:textSize="18sp"
-
-
             android:text="Save"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -202,7 +200,7 @@
                     android:id="@+id/fname"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:background="@color/white"
+                    android:background="@drawable/rounded_edittext_background"
                     android:drawableStart="@drawable/baseline_person_24"
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
@@ -212,33 +210,6 @@
                     android:maxLines="1"
                     android:paddingStart="20dp"
                     android:paddingEnd="30dp"
-                    app:hintTextColor="@color/DarkGray" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/lastNameTextInputLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:hintTextColor="@color/DarkGray">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/Lname"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:background="@color/white"
-                    android:drawableStart="@drawable/baseline_person_24"
-                    android:drawablePadding="15dp"
-                    android:ellipsize="end"
-                    android:hint="Last Name"
-                    android:inputType="text"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="30dp"
-                    android:singleLine="true"
                     app:hintTextColor="@color/DarkGray" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -256,7 +227,7 @@
                     android:id="@+id/mname"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:background="@color/white"
+                    android:background="@drawable/rounded_edittext_background"
                     android:drawableStart="@drawable/baseline_person_24"
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
@@ -270,26 +241,28 @@
 
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Srcodetextview"
+                android:id="@+id/lastNameTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                app:hintTextColor="@color/white">
+                app:hintTextColor="@color/DarkGray">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/SrCode"
+                    android:id="@+id/Lname"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:background="@color/white"
-                    android:drawableStart="@drawable/baseline_perm_contact_calendar_24"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:drawableStart="@drawable/baseline_person_24"
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
-                    android:hint="SR-CODE"
+                    android:hint="Last Name"
+                    android:inputType="text"
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingStart="20dp"
                     android:paddingEnd="30dp"
+                    android:singleLine="true"
                     app:hintTextColor="@color/DarkGray" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -306,7 +279,7 @@
                     android:id="@+id/address"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:background="@color/white"
+                    android:background="@drawable/rounded_edittext_background"
                     android:drawableStart="@drawable/sharelocation"
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
@@ -321,6 +294,7 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/contactNumberTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -333,11 +307,114 @@
                     android:id="@+id/Contactline"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:background="@color/white"
+                    android:background="@drawable/rounded_edittext_background"
                     android:drawableStart="@drawable/baseline_perm_contact_calendar_24"
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
                     android:hint="Mobile Number"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="30dp"
+                    app:hintTextColor="@color/DarkGray" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/campusTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Campus"
+                app:helperTextTextColor="@color/red"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <AutoCompleteTextView
+                    android:id="@+id/campus"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:editable="false" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/usercateTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="User Category"
+                app:helperTextTextColor="@color/red"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toTopOf="parent">
+                <AutoCompleteTextView
+                    android:id="@+id/usercategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:editable="false"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/birthdateTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:hint="Date of Birth"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/birthdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:background="@drawable/rounded_edittext_background"
+                        android:editable="false"
+                        android:lines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/genderTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Gender"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/spinnerSex"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:background="@drawable/rounded_edittext_background"
+                        android:editable="false"
+                        android:lines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/Srcodetextview"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:hintTextColor="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/SrCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:drawableStart="@drawable/baseline_perm_contact_calendar_24"
+                    android:drawablePadding="15dp"
+                    android:ellipsize="end"
+                    android:hint="SR-CODE"
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingStart="20dp"
@@ -359,7 +436,7 @@
                     android:id="@+id/ContactEme"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:background="@color/white"
+                    android:background="@drawable/rounded_edittext_background"
                     android:drawableStart="@drawable/baseline_perm_contact_calendar_24"
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
@@ -372,88 +449,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/campusTextInputLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="Campus"
-                app:helperTextTextColor="@color/red"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <AutoCompleteTextView
-                    android:id="@+id/campus"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:background="@color/white"
-                    android:editable="false" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/birthdateTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
-                    android:hint="Date of Birth"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/birthdate"
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:background="@color/white"
-                        android:editable="false"
-                        android:lines="1" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/genderTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Gender"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/spinnerSex"
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:background="@color/white"
-                        android:editable="false"
-                        android:lines="1" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/NationalityTextInputLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="Nationality"
-                app:helperTextTextColor="@color/red"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <AutoCompleteTextView
-                    android:id="@+id/nationality"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:background="@color/white"
-                    android:editable="false" />
-            </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/NstpTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -469,7 +464,7 @@
                     android:id="@+id/nstp"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:background="@color/white"
+                    android:background="@drawable/rounded_edittext_background"
                     android:editable="false" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
@@ -487,7 +482,7 @@
                     android:id="@+id/collegedept"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:background="@color/white"
+                    android:background="@drawable/rounded_edittext_background"
                     android:editable="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -511,7 +506,5 @@
     </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 

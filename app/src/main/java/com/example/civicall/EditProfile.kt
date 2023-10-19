@@ -1,12 +1,11 @@
-package com.example.civicall.Profile
+package com.example.civicall
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.civicall.R
 
-class Profile : AppCompatActivity() {
+class EditProfile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profiledetails)
+        setContentView(R.layout.activity_edit_profile)
     }
 }

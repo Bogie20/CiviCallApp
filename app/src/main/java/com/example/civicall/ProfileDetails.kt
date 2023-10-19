@@ -4,25 +4,25 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.civicall.databinding.ActivityMyprofile1Binding
+import com.example.civicall.databinding.ActivityProfiledetailsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.squareup.picasso.Picasso // Import Picasso for image loading
+import com.squareup.picasso.Picasso
 
-class Myprofile : AppCompatActivity() {
-    private lateinit var binding: ActivityMyprofile1Binding
+class ProfileDetails : AppCompatActivity() {
+    private lateinit var binding: ActivityProfiledetailsBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Initialize binding before setting the content view
-        binding = ActivityMyprofile1Binding.inflate(layoutInflater)
+        binding = ActivityProfiledetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.Edit.setOnClickListener {
-            startActivity(Intent(this, Myprofile::class.java))
+        binding.edit.setOnClickListener {
+            startActivity(Intent(this, EditProfile::class.java))
 
         }
 
@@ -35,7 +35,7 @@ class Myprofile : AppCompatActivity() {
         // Set up click listeners for UI elements
 
 
-        binding.back100.setOnClickListener {
+        binding.back1.setOnClickListener {
             val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)        }
 
@@ -56,34 +56,36 @@ class Myprofile : AppCompatActivity() {
         }
     }
 
-    // Function to fetch and display user data from Firebase
     private fun readData(uid: String) {
         database = FirebaseDatabase.getInstance().getReference("Users")
         database.child(uid).get().addOnSuccessListener { snapshot ->
             if (snapshot.exists()) {
-                val firstName1 = snapshot.child("firstname").value
-                val lastName2 = snapshot.child("lastname").value
+                val firstName = snapshot.child("firstname").value
+                val middleName = snapshot.child("middlename").value
+                val lastName = snapshot.child("lastname").value
+                val email = snapshot.child("email").value
+                val contact = snapshot.child("phoneno").value
                 val address = snapshot.child("address").value
-                val email2 = snapshot.child("email").value
                 val birthday = snapshot.child("birthday").value
                 val gender = snapshot.child("gender").value
-                val contact = snapshot.child("contactno").value
                 val imageProfile = snapshot.child("ImageProfile").value
+                val usertype = snapshot.child("userType").value
                 val campus = snapshot.child("campus").value
-                val emergencyContact = snapshot.child("emergencyContact").value
 
-                // Set the fetched data to respective TextViews
-                binding.FirstName1.text = firstName1.toString()
-                binding.LastName2.text = lastName2.toString()
-                binding.ContactNum.text = contact.toString()
-                binding.useraddress.text = address.toString()
-                binding.Email2.text = email2.toString()
-                binding.userbday.text = birthday.toString()
-                binding.usergender.text = gender.toString()
-                binding.Campus1.text = campus.toString()
-                binding.EmergencyContact.text = emergencyContact.toString()
+                binding.firstName.text = firstName.toString()
+                binding.fnametxt.text = firstName.toString()
+                binding.mnametxt.text = middleName.toString()
+                binding.lastName.text = lastName.toString()
+                binding.lnametxt.text = lastName.toString()
+                binding.email1.text = email.toString()
+                binding.mobilenumtxt.text = contact.toString()
+                binding.addresstxt.text = address.toString()
+                binding.dateofbirthtxt.text = birthday.toString()
+                binding.gendertxt.text = gender.toString()
+                binding.usertypetxt.text = usertype.toString()
+                binding.campustxt.text = campus.toString()
                 val profileImage =
-                    binding.profileImage // Replace with your ImageView ID in the layout
+                    binding.userPhoto // Replace with your ImageView ID in the layout
                 // Load the profile image using Picasso library
                 if (imageProfile != null && imageProfile.toString().isNotEmpty()) {
                     Picasso.get().load(imageProfile.toString()).into(profileImage)

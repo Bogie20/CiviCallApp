@@ -7,9 +7,11 @@
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Camera permission -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- Feature requirement for camera -->
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -23,7 +25,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
-        <!-- Posting Civic Engagement Start -->
+        <activity
+            android:name=".ProfileDetails"
+            android:exported="false" />
+        <activity
+            android:name=".EditProfile"
+            android:exported="false" /> <!-- Posting Civic Engagement Start -->
         <activity
             android:name=".CivicEngagementPost.Update_engagement"
             android:exported="true" />
@@ -32,8 +39,7 @@
             android:exported="true" />
         <activity
             android:name=".CivicEngagementPost.Upload_engagement"
-            android:exported="true" />
-        <!-- Posting Civic Engagement End -->
+            android:exported="true" /> <!-- Posting Civic Engagement End -->
         <!-- Educational Start -->
         <!-- Civic Engagement Start -->
         <activity
@@ -68,8 +74,7 @@
             android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.YouthEmpowerment"
-            android:exported="true" />
-        <!--  Civic Engagement End -->
+            android:exported="true" /> <!-- Civic Engagement End -->
         <!-- Disaster Response Start -->
         <activity
             android:name=".DisasterResponseInfo.CommunicationAndInformationInfo"
@@ -100,9 +105,7 @@
             android:exported="true" />
         <activity
             android:name=".DisasterResponseInfo.VolunteerandDonationsManagementInfo"
-            android:exported="true" />
-
-        <!-- Disaster Response End -->
+            android:exported="true" /> <!-- Disaster Response End -->
         <!-- Educational End -->
         <!-- Emergency Contact Start -->
         <activity
@@ -190,7 +193,7 @@
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Menu"
+            android:name=".MainMenu"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
@@ -215,10 +218,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
+
 </manifest>
-
-
-
-

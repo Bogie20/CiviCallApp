@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -76,7 +75,7 @@ class Dashboard : AppCompatActivity() {
         })
 
         binding.profileburger.setOnClickListener {
-            val intent = Intent(this, Menu::class.java)
+            val intent = Intent(this, MainMenu::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
