@@ -168,7 +168,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="250dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -185,15 +185,25 @@
             android:orientation="vertical"
             android:paddingHorizontal="1dp">
 
+            <TextView
+                android:id="@+id/label1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="First Name:"
+                android:textSize="20sp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/white_70"
+                android:textStyle="bold"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/fnameTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:autofillHints="name"
                 android:elevation="80dp"
+                android:layout_marginBottom="10dp"
                 app:hintTextColor="@color/DarkGray">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -213,12 +223,23 @@
                     app:hintTextColor="@color/DarkGray" />
 
             </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/label2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Middle Name:"
+                android:textSize="20sp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/white_70"
+                android:textStyle="bold"
+                />
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/middlenameTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+              android:layout_marginBottom="10dp"
                 android:autofillHints="name"
                 android:elevation="80dp"
                 app:hintTextColor="@color/DarkGray">
@@ -240,12 +261,23 @@
                     app:hintTextColor="@color/DarkGray" />
 
             </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/label3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last Name:"
+                android:textSize="20sp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/white_70"
+                android:textStyle="bold"
+                />
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/lastNameTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
                 app:hintTextColor="@color/DarkGray">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -266,12 +298,23 @@
                     app:hintTextColor="@color/DarkGray" />
 
             </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/label4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address:"
+                android:textSize="20sp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/white_70"
+                android:textStyle="bold"
+                />
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/addressTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
                 android:elevation="50dp"
                 app:hintTextColor="@color/DarkGray">
 
@@ -294,13 +337,23 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
+            <TextView
+                android:id="@+id/label5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mobile Number:"
+                android:textSize="20sp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/white_70"
+                android:textStyle="bold"
+                />
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/contactNumberTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
                 app:hintTextColor="@color/DarkGray">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -319,12 +372,23 @@
                     app:hintTextColor="@color/DarkGray" />
 
             </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/label6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Campus:"
+                android:textSize="20sp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/white_70"
+                android:textStyle="bold"
+                />
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/campusTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
                 android:hint="Campus"
                 app:helperTextTextColor="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -337,6 +401,17 @@
                     android:background="@drawable/rounded_edittext_background"
                     android:editable="false" />
             </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/label7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User Type:"
+                android:textSize="20sp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/white_70"
+                android:textStyle="bold"
+                />
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/usercateTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -345,7 +420,6 @@
                 android:hint="User Category"
                 app:helperTextTextColor="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="10dp"
                 app:layout_constraintTop_toTopOf="parent">
                 <AutoCompleteTextView
                     android:id="@+id/usercategory"
@@ -357,53 +431,104 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/birthdateTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="200dp"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
-                    android:hint="Date of Birth"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                    <AutoCompleteTextView
-                        android:id="@+id/birthdate"
+                    <TextView
+                        android:id="@+id/label8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date of Birth:"
+                        android:textSize="20sp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/white_70"
+                        android:textStyle="bold"
+                        />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/birthdateTextInputLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:background="@drawable/rounded_edittext_background"
-                        android:editable="false"
-                        android:lines="1" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:hint="Date of Birth"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/genderTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
+                        <AutoCompleteTextView
+                            android:id="@+id/birthdate"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:background="@drawable/rounded_edittext_background"
+                            android:editable="false"
+                            android:lines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="Gender"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                    <AutoCompleteTextView
-                        android:id="@+id/spinnerSex"
+                    <TextView
+                        android:id="@+id/label9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gender:"
+                        android:textSize="20sp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/white_70"
+                        android:textStyle="bold"
+                        />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/genderTextInputLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:background="@drawable/rounded_edittext_background"
-                        android:editable="false"
-                        android:lines="1" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_height="wrap_content"
+                        android:hint="Gender"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
+                        <AutoCompleteTextView
+                            android:id="@+id/spinnerSex"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:background="@drawable/rounded_edittext_background"
+                            android:editable="false"
+                            android:lines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
             </LinearLayout>
+            <TextView
+                android:id="@+id/label10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SR Code:"
+                android:textSize="20sp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white_70"
+                android:textStyle="bold"
+                />
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Srcodetextview"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
                 app:hintTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -422,14 +547,23 @@
                     app:hintTextColor="@color/DarkGray" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
-
+            <TextView
+                android:id="@+id/label11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No. in Case of Emergency:"
+                android:textSize="20sp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/white_70"
+                android:textStyle="bold"
+                />
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/contactEmeNum"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
                 app:hintTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -448,13 +582,23 @@
                     app:hintTextColor="@color/DarkGray" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
+            <TextView
+                android:id="@+id/label12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NSTP Program:"
+                android:textSize="20sp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/white_70"
+                android:textStyle="bold"
+                />
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/NstpTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
                 android:hint="NSTP Program"
                 app:helperTextTextColor="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -467,12 +611,23 @@
                     android:background="@drawable/rounded_edittext_background"
                     android:editable="false" />
             </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/label13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="College Department:"
+                android:textSize="20sp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/white_70"
+                android:textStyle="bold"
+                />
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/collegedeptTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginBottom="300dp"
                 android:hint="College Department"
                 app:helperTextTextColor="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -486,21 +641,7 @@
                     android:editable="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/savedbtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="35dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginBottom="600dp"
-                android:background="@drawable/button_shape"
-                android:backgroundTint="@color/redpink"
-                android:text="Save"
-                android:textColor="@color/white"
-                android:textSize="25sp">
 
-            </Button>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
