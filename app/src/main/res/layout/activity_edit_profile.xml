@@ -23,6 +23,7 @@
             android:layout_marginTop="12dp"
             android:fontFamily="@font/lexend_bold"
             android:textSize="18sp"
+            android:id="@+id/savebtn"
             android:text="Save"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +38,6 @@
             android:fontFamily="@font/lexend_bold"
             android:text="My Profile"
             android:textColor="@color/white"
-
             android:textSize="25sp"
             app:layout_constraintBottom_toTopOf="@+id/frameLayout"
             app:layout_constraintEnd_toEndOf="parent"
@@ -214,13 +214,11 @@
                     android:drawableStart="@drawable/baseline_person_24"
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
-                    android:hint="First Name"
                     android:inputType="text"
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingStart="20dp"
-                    android:paddingEnd="30dp"
-                    app:hintTextColor="@color/DarkGray" />
+                    android:paddingEnd="30dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
             <TextView
@@ -241,8 +239,7 @@
                 android:layout_height="wrap_content"
               android:layout_marginBottom="10dp"
                 android:autofillHints="name"
-                android:elevation="80dp"
-                app:hintTextColor="@color/DarkGray">
+                android:elevation="80dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/mname"
@@ -252,13 +249,11 @@
                     android:drawableStart="@drawable/baseline_person_24"
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
-                    android:hint="Middle Name"
                     android:inputType="text"
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingStart="20dp"
-                    android:paddingEnd="30dp"
-                    app:hintTextColor="@color/DarkGray" />
+                    android:paddingEnd="30dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
             <TextView
@@ -277,8 +272,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                app:hintTextColor="@color/DarkGray">
+                android:layout_marginBottom="10dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Lname"
@@ -288,14 +282,12 @@
                     android:drawableStart="@drawable/baseline_person_24"
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
-                    android:hint="Last Name"
                     android:inputType="text"
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingStart="20dp"
                     android:paddingEnd="30dp"
-                    android:singleLine="true"
-                    app:hintTextColor="@color/DarkGray" />
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
             <TextView
@@ -315,8 +307,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:elevation="50dp"
-                app:hintTextColor="@color/DarkGray">
+                android:elevation="50dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/address"
@@ -326,14 +317,12 @@
                     android:drawableStart="@drawable/sharelocation"
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
-                    android:hint="Address"
                     android:inputType="text"
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingStart="20dp"
                     android:paddingEnd="30dp"
-                    android:singleLine="true"
-                    app:hintTextColor="@color/DarkGray" />
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -353,8 +342,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                app:hintTextColor="@color/DarkGray">
+                android:layout_marginBottom="10dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Contactline"
@@ -364,12 +352,10 @@
                     android:drawableStart="@drawable/baseline_perm_contact_calendar_24"
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
-                    android:hint="Mobile Number"
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingStart="20dp"
-                    android:paddingEnd="30dp"
-                    app:hintTextColor="@color/DarkGray" />
+                    android:paddingEnd="30dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
             <TextView
@@ -389,8 +375,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="Campus"
-                app:helperTextTextColor="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -405,7 +389,7 @@
                 android:id="@+id/label7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="User Type:"
+                android:text="Current Status:"
                 android:textSize="20sp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
@@ -417,8 +401,6 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="User Category"
-                app:helperTextTextColor="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
                 <AutoCompleteTextView
@@ -432,6 +414,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp">
 
                 <LinearLayout
@@ -459,7 +442,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="5dp"
-                        android:hint="Date of Birth"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -497,7 +479,6 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Gender"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -511,42 +492,6 @@
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
             </LinearLayout>
-            <TextView
-                android:id="@+id/label10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SR Code:"
-                android:textSize="20sp"
-                android:layout_marginStart="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="10dp"
-                android:textColor="@color/white_70"
-                android:textStyle="bold"
-                />
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Srcodetextview"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                app:hintTextColor="@color/white">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/SrCode"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:background="@drawable/rounded_edittext_background"
-                    android:drawableStart="@drawable/baseline_perm_contact_calendar_24"
-                    android:drawablePadding="15dp"
-                    android:ellipsize="end"
-                    android:hint="SR-CODE"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="30dp"
-                    app:hintTextColor="@color/DarkGray" />
-
-            </com.google.android.material.textfield.TextInputLayout>
             <TextView
                 android:id="@+id/label11"
                 android:layout_width="wrap_content"
@@ -563,8 +508,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                app:hintTextColor="@color/white">
+                android:layout_marginBottom="10dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ContactEme"
@@ -574,12 +518,10 @@
                     android:drawableStart="@drawable/baseline_perm_contact_calendar_24"
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
-                    android:hint="No. In Case of Emergency "
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingStart="20dp"
-                    android:paddingEnd="30dp"
-                    app:hintTextColor="@color/DarkGray" />
+                    android:paddingEnd="30dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
             <TextView
@@ -599,8 +541,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="NSTP Program"
-                app:helperTextTextColor="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -628,8 +568,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="300dp"
-                android:hint="College Department"
-                app:helperTextTextColor="@color/red"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 

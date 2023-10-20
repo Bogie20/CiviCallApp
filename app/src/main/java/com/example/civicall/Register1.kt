@@ -18,6 +18,7 @@ import android.util.Patterns
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -197,7 +198,7 @@ class Register1 : AppCompatActivity() {
 
         if (birthday.isEmpty()) {
             birthdateTextInputLayout.error = null
-            birthdateTextInputLayout.helperText = "*required"
+            activityRegister1Binding.birthdateTextInputLayout.error = "Date of Birth is Required"
             return false
         } else {
             val dobParts = birthday.split(" / ")
@@ -320,7 +321,7 @@ class Register1 : AppCompatActivity() {
 
         val campusAdapter = ArrayAdapter(
             this,
-             R.layout.dropdown_item,
+            R.layout.dropdown_item,
             campusOptions
         )
         campusAutoCompleteTextView.setAdapter(campusAdapter)
@@ -497,126 +498,36 @@ class Register1 : AppCompatActivity() {
         }
 
         // Ang ginagawa nito is habang nag tatype ka nawawala na agad yung error
-        firstNameEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                validateFirstName()
+        fun addTextChangeListenerWithDelay(editText: EditText, validationFunction: () -> Unit, delayMillis: Long) {
+            val handler = Handler(Looper.getMainLooper())
+
+            val textWatcher = object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {
+                    handler.removeCallbacksAndMessages(null) // Remove previous callbacks
+                    handler.postDelayed({
+                        validationFunction()
+                    }, delayMillis)
+                }
+
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-        })
-        middleNameEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                validateMiddleName()
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-        })
-        lastNameEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                validateLastName()
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-        })
-        emailEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                validateEmail()
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-        })
-        passwordEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                validatePassword()
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-        })
-        confirmPasswordEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                validateConfirmPassword()
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-        })
-
-
-        contactNumberEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                validateContactNumber()
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // Handle before text changed
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                // Handle text changed
-            }
-        })
-        addressEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                validateAddress()
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-        })
-        birthdayEditText.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                // Clear the error message when valid input is provided
-                activityRegister1Binding.birthdateTextInputLayout.error = null
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-        })
-
+            editText.addTextChangedListener(textWatcher)
+        }
+        addTextChangeListenerWithDelay(firstNameEditText, { validateFirstName() }, 500) // Delay of 500 milliseconds
+        addTextChangeListenerWithDelay(middleNameEditText, { validateMiddleName() }, 500)
+        addTextChangeListenerWithDelay(lastNameEditText, { validateLastName() }, 500)
+        addTextChangeListenerWithDelay(emailEditText, { validateEmail() }, 1000)
+        addTextChangeListenerWithDelay(passwordEditText, { validatePassword() }, 1000)
+        addTextChangeListenerWithDelay(confirmPasswordEditText, { validateConfirmPassword() }, 500)
+        addTextChangeListenerWithDelay(contactNumberEditText, { validateContactNumber() }, 1000)
+        addTextChangeListenerWithDelay(addressEditText, { validateAddress() }, 500)
+        addTextChangeListenerWithDelay(birthdayEditText, {
+            // Clear the error message when valid input is provided
+            activityRegister1Binding.birthdateTextInputLayout.error = null
+        }, 500)
     }
     private var fname = ""
     private var Mname = ""
@@ -724,6 +635,9 @@ class Register1 : AppCompatActivity() {
 
         if (selectedCampus.isEmpty()) {
             activityRegister1Binding.campusTextInputLayout.error = "Please select a campus"
+        }
+        if (userCategory.isEmpty()) {
+            activityRegister1Binding.usercateTextInputLayout.error = "Please select a category"
         }
 
         if (spinnerSex.isEmpty()) {
