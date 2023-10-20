@@ -61,7 +61,6 @@ class ProfileDetails : AppCompatActivity() {
         database.child(uid).get().addOnSuccessListener { snapshot ->
             if (snapshot.exists()) {
                 val firstName = snapshot.child("firstname").value
-                val middleName = snapshot.child("middlename").value
                 val lastName = snapshot.child("lastname").value
                 val email = snapshot.child("email").value
                 val contact = snapshot.child("phoneno").value
@@ -73,10 +72,7 @@ class ProfileDetails : AppCompatActivity() {
                 val campus = snapshot.child("campus").value
 
                 binding.firstName.text = firstName.toString()
-                binding.fnametxt.text = firstName.toString()
-                binding.mnametxt.text = middleName.toString()
                 binding.lastName.text = lastName.toString()
-                binding.lnametxt.text = lastName.toString()
                 binding.email1.text = email.toString()
                 binding.mobilenumtxt.text = contact.toString()
                 binding.addresstxt.text = address.toString()
