@@ -81,7 +81,7 @@ class ProfileDetails : AppCompatActivity() {
                 binding.usertypetxt.text = usertype.toString()
                 binding.campustxt.text = campus.toString()
                 val profileImage =
-                    binding.userPhoto // Replace with your ImageView ID in the layout
+                    binding.profileImage // Replace with your ImageView ID in the layout
                 // Load the profile image using Picasso library
                 if (imageProfile != null && imageProfile.toString().isNotEmpty()) {
                     Picasso.get().load(imageProfile.toString()).into(profileImage)
