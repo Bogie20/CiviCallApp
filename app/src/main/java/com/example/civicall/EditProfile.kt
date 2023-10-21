@@ -1,16 +1,18 @@
 package com.example.civicall
 
+
+import android.Manifest
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.os.Bundle
 import android.net.Uri
+import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
-import android.widget.Toast
-import android.Manifest
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -26,14 +28,20 @@ import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
 import java.util.UUID
+
+
 class EditProfile : AppCompatActivity() {
     private lateinit var binding: ActivityEditProfileBinding
-    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var storage: FirebaseStorage
     private lateinit var imageRef: StorageReference
     private var selectedImageUri: Uri? = null
     private val REQUEST_CAMERA_PERMISSION = 1
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var progressDialog: ProgressDialog
+
+
+
 
     private val takePictureLauncher: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -46,6 +54,7 @@ class EditProfile : AppCompatActivity() {
             }
         }
 
+
     private val selectImageLauncher: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -54,28 +63,37 @@ class EditProfile : AppCompatActivity() {
             }
         }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         firebaseAuth = FirebaseAuth.getInstance()
         storage = FirebaseStorage.getInstance()
         imageRef = storage.reference.child("profileImages")
 
+
         checkUser()
+
+
+
 
         binding.savebtn.setOnClickListener {
             updateProfile()
         }
+
 
         binding.back1.setOnClickListener {
             val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)
         }
 
+
         binding.profileImage.setOnClickListener {
             showImageDialog()
+
 
             checkAndRequestPermissions()
         }
@@ -102,6 +120,7 @@ class EditProfile : AppCompatActivity() {
         }
     }
 
+
     private fun readData() {
         database.get().addOnSuccessListener { snapshot ->
             if (snapshot.exists()) {
@@ -117,6 +136,7 @@ class EditProfile : AppCompatActivity() {
         }
     }
 
+
     private fun displayUserData(user: User) {
         binding.email1.text = user.email
         binding.fname.text = Editable.Factory.getInstance().newEditable(user.firstname)
@@ -129,16 +149,19 @@ class EditProfile : AppCompatActivity() {
         binding.birthdate.text = Editable.Factory.getInstance().newEditable(user.birthday)
         binding.spinnerSex.text = Editable.Factory.getInstance().newEditable(user.gender)
 
+
         if (!user.ImageProfile.isNullOrEmpty()) {
             Picasso.get().load(user.ImageProfile).into(binding.profileImage)
         }
     }
+
 
     private fun updateProfile() {
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser != null) {
             val uid = firebaseUser.uid
             database = FirebaseDatabase.getInstance().reference.child("Users").child(uid)
+
 
             // Your code to update the user's profile data
             val updatedFirstName = binding.fname.text.toString()
@@ -150,6 +173,19 @@ class EditProfile : AppCompatActivity() {
             val updatedUserType = binding.usercategory.text.toString()
             val updatedBirthday = binding.birthdate.text.toString()
             val updatedGender = binding.spinnerSex.text.toString()
+
+            if (updatedFirstName.isEmpty() || updatedMiddleName.isEmpty() || updatedLastName.isEmpty()) {
+                Toast.makeText(this, "Part of your Name cannot be empty", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            if (!isValidName(updatedFirstName) || !isValidName(updatedMiddleName) || !isValidName(updatedLastName)) {
+                // Display an error message to the user
+                Toast.makeText(this, "Invalid Name. It should only contain alphabets, '.', ',', and '-'", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+
 
             val updateData = mapOf(
                 "firstname" to updatedFirstName,
@@ -163,6 +199,7 @@ class EditProfile : AppCompatActivity() {
                 "gender" to updatedGender
             )
 
+
             database.updateChildren(updateData)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Profile updated successfully", Toast.LENGTH_SHORT).show()
@@ -171,12 +208,18 @@ class EditProfile : AppCompatActivity() {
                     Toast.makeText(this, "Failed to update profile", Toast.LENGTH_SHORT).show()
                 }
 
+
             if (selectedImageUri != null) {
                 uploadProfileImage(selectedImageUri!!)
             }
         }
     }
 
+    private fun isValidName(name: String): Boolean {
+        // Define a regex pattern for valid names
+        val regexPattern = "^[A-Za-z.,\\-]+\$"
+        return name.matches(Regex(regexPattern))
+    }
     private fun showImageDialog() {
         val items = arrayOf("Take a photo", "Choose from gallery")
         val builder = AlertDialog.Builder(this)
@@ -189,16 +232,19 @@ class EditProfile : AppCompatActivity() {
         builder.show()
     }
 
+
     private fun takePicture() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         takePictureLauncher.launch(intent)
     }
+
 
     private fun chooseFromGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         selectImageLauncher.launch(intent)
     }
+
 
     private fun getImageUri(inImage: Bitmap): Uri {
         val bytes = ByteArrayOutputStream()
@@ -207,12 +253,14 @@ class EditProfile : AppCompatActivity() {
         return Uri.parse(path)
     }
 
+
     private fun uploadProfileImage(imageUri: Uri) {
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser != null) {
             val uid = firebaseUser.uid
             val imageFileName = UUID.randomUUID().toString()
             val userImageRef = imageRef.child("$uid/$imageFileName.jpg")
+
 
             userImageRef.putFile(imageUri)
                 .addOnSuccessListener {
@@ -227,6 +275,7 @@ class EditProfile : AppCompatActivity() {
         }
     }
 
+
     private fun updateProfileImage(imageUrl: String) {
         database.child("ImageProfile").setValue(imageUrl)
             .addOnSuccessListener {
@@ -237,6 +286,7 @@ class EditProfile : AppCompatActivity() {
             }
     }
 }
+
 
 data class User(
     val firstname: String = "",
