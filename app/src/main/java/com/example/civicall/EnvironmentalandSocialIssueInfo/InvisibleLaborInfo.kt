@@ -25,94 +25,95 @@ class InvisibleLaborInfo : AppCompatActivity() {
 
         dataList.add(
             DataItem(
-                "DEFORESTATION IN THE PHILIPPINES",
-                "In the Philippines, deforestation remains a pressing environmental concern, with significant forest loss despite conservation efforts. This article delves into the ongoing challenges of deforestation in the country, its consequences, and the need for comprehensive policies to address this critical issue.\"\n\n" +
-                        "1. PERSISTENT DEFORESTATION: Despite efforts, deforestation rates remain alarming in the Philippines, posing a significant threat to the nation's ecosystems.\n\n" +
-                        "2. FOREST COVER DECLINE: The country's forest cover has dramatically decreased from its historical levels, raising concerns about biodiversity and climate impacts.\n\n" +
-                        "3. HISTORICAL LAND CONVERSION: Land conversion for agriculture and settlements has been a major driver of deforestation, transforming natural landscapes.\n\n" +
-                        "4. ENVIRONMENTAL CONSEQUENCES: Massive floods and ecological crises have been attributed to deforestation, impacting communities and wildlife.\n\n" +
-                        "5. BIODIVERSITY LOSS: Iconic species, such as the tamaraw and Mindoro bleeding-heart pigeons, face habitat loss and endangerment.\n\n" +
-                        "6. REFORESTATION EFFORTS: Despite reforestation programs, challenges persist, and criticisms arise regarding their effectiveness.\n\n" +
-                        "7. DEFORESTATION RATE: Recent years, particularly during the Duterte administration, have seen a peak in primary forest loss, surpassing previous figures.\n\n" +
-                        "8. IMPACT ON CLIMATE CHANGE: The exclusion of forest mitigation from the Paris Agreement commitments raises questions about the Philippines' role in addressing climate change.\n\n" +
-                        "9. PENDING LEGISLATION: Urgent 'green bills,' including the National Land Use Act and Sustainable Forest Management Act, are needed to address legal gaps.\n\n" +
-                        "10. POLICY FRAMEWORK: Experts emphasize the necessity of comprehensive forest management policies to safeguard the Philippines' invaluable but endangered forests.\n",
-                R.drawable.img_296,
-                "https://www.rappler.com/environment/hectares-land-philippines-forested//",
-                "https://www.rappler.com/tachyon/2021/05/deforestation-carousel.jpg?resize=1280%2C720&zoom=1"
+                "GENDER DISPARITIES IN THE WORKPLACE AND SOCIETY",
+                "Despite its reputation for gender equality, the Philippines grapples with a persistent issue – the gender wage gap. Women in the country earn only 78% of what men earn, revealing a significant pay disparity that requires urgent attention.\"\n\n" +
+                        "1. GENDER WAGE GAP: Women in the Philippines earn only 78% of what men earn, indicating a significant pay disparity.\n\n" +
+                        "2. REGIONAL DISPARITIES: The gender wage gap is more pronounced in rural areas, where women earn just 43% of men's earnings.\n\n" +
+                        "3. ECONOMIC INEQUALITY: This wage gap highlights unequal societal valuations of women's labor compared to men.\n\n" +
+                        "4. GENDER-BASED VIOLENCE: The Philippines reports over 76,000 cases of gender-based violence, affecting women's physical and mental health.\n\n" +
+                        "5. MULTIPLE FORMS OF VIOLENCE: Gender-based violence includes physical, sexual, and emotional abuse, with severe consequences.\n\n" +
+                        "6. SUPPORT FOR SURVIVORS: Addressing this issue necessitates providing support for survivors, including counseling services and legal aid.\n\n" +
+                        "7. PREVENTION STRATEGIES: Preventing violence against women requires comprehensive sex education and awareness campaigns.\n\n" +
+                        "8. UNDERREPRESENTATION IN POLITICS: Only 28% of elected officials in the Philippines are female, highlighting barriers to leadership positions.\n\n" +
+                        "9. SYSTEMIC CHALLENGES: Systemic barriers prevent women from accessing leadership roles and demand affirmative action.\n\n" +
+                        "10. COMPREHENSIVE APPROACH: Addressing gender issues in the Philippines requires a comprehensive approach involving government, civil society, and the private sector.\n",
+                R.drawable.img_326,
+                "https://www.linkedin.com/pulse/persistent-challenge-gender-wage-gap-philippines-janvie-amido#:~:text=One%20of%20the%20most%20pressing,%25%20of%20men's%20earnings%5E3.",
+                "https://media.licdn.com/dms/image/D5612AQFw0NqviBHYhg/article-cover_image-shrink_720_1280/0/1676875770147?e=2147483647&v=beta&t=2F1Yp-1UsNPdvabaIOX16pd_U1MUF91UR8jWptRJ1pU"
             )
         )
         dataList.add(
-            DataItem("BALANCING CONSERVATION AND ECONOMIC REALITIES IN SOUTHEAST ASIA",
-                "In the Philippines, indigenous territories grapple with biodiversity loss. Explore the challenges they face in preserving their unique natural heritage.\n\n" +
-                        "1. SOUTHEAST ASIAN NATIONS AND 30X30 PLEDGE: Only Cambodia from Southeast Asia has embraced the 30x30 conservation goal, highlighting the need for greater regional commitment to safeguarding biodiversity.\n" +
-                        "2. MEGADIVERSE SOUTHEAST ASIA: Despite covering only 3% of the Earth's surface, Southeast Asia hosts three of the world's \"megadiverse\" countries—Indonesia, Malaysia, and the Philippines, known for their extraordinary species richness.\n" +
-                        "3. BIODIVERSITY IN PERIL: High deforestation rates in countries like Indonesia, Malaysia, Laos, and Cambodia threaten the biodiversity of mangrove forests, coral reefs, and numerous plant and animal species.\n" +
-                        "4. GLOBAL CONSERVATION TREATY: The 30x30 goal is integral to a forthcoming global treaty for the protection of the planet's ecosystems and biodiversity.\n" +
-                        "5. COVID-19 AND CONSERVATION: Southeast Asian nations have faced the challenge of balancing nature conservation with pandemic response, with intact ecosystems crucial for preventing future infectious disease outbreaks.\n" +
-                        "6. ECONOMIC BENEFITS OF CONSERVATION: Investing in nature and adopting green recovery policies could generate millions of jobs and trillions in business opportunities by 2030, yet many Southeast Asian leaders remain unconvinced of these benefits.\n" +
-                        "7. ECONOMIC IMPLICATIONS: ASEAN countries are cautious about the economic repercussions of the 30x30 pledge, primarily when they rely on natural resources for poverty reduction and development.\n" +
-                        "8. SECURING FUNDING: Delayed support from Southeast Asian nations for the 30x30 target may be a strategic move to secure additional funding from wealthier countries.\n" +
-                        "9. INDIGENOUS RIGHTS AND CONSERVATION: Respecting the rights of indigenous groups in protected areas is a vital aspect of the 30x30 pledge, acknowledging their crucial role in conservation efforts.\n" +
-                        "10. GREEN GRABBING CONCERNS: While addressing biodiversity loss is essential, care must be taken not to displace indigenous communities through initiatives like 30x30 and overlook sustainable coexistence with nature.\n",
-                R.drawable.img_297,
-                "https://news.abs-cbn.com/spotlight/06/30/21/philippines-among-southeast-asian-nations-missing-from-push-to-protect-30-of-planet",
-                "https://sa.kapamilya.com/absnews/abscbnnews/media/2021/reuters/06/30/philippines-environment-river.jpg")
+            DataItem("WOMEN'S RIGHTS MOVEMENTS AND ADVOCACY",
+                "In the Philippines, the feminist movement has undergone significant transformations and challenges in its pursuit of gender equality and social justice. From mobilizing youth through social media to addressing the impact of political changes, the feminist movement remains resilient and dynamic.\n\n" +
+                        "1. EQUAL ECONOMIC OPPORTUNITIES: Women have the right to equal economic opportunities, including fair wages and access to higher-paying jobs.\n" +
+                        "2. PROTECTION FROM GENDER-BASED VIOLENCE: Women have the right to be protected from all forms of gender-based violence, including physical, sexual, and emotional abuse.\n" +
+                        "3. REPRODUCTIVE HEALTH SERVICES: Women have the right to access comprehensive reproductive health services and information.\n" +
+                        "4. GENDER EQUALITY IN POLITICS: Women have the right to equal representation and participation in political leadership.\n" +
+                        "5. FREEDOM FROM MISOGYNY: Women have the right to live free from misogynistic language and actions in public and private life.\n" +
+                        "6. RIGHTS OF VULNERABLE SECTORS: Women, especially those from vulnerable sectors, have the right to protection, support, and empowerment.\n" +
+                        "7. YOUTH INVOLVEMENT: Young women have the right to be engaged in feminist causes and social justice.\n" +
+                        "8. RECOGNITION OF INTERSECTIONALITY: Women have the right to recognition of their diverse experiences, acknowledging the intersection of gender with other identities.\n" +
+                        "9. HUMAN RIGHTS ADVOCACY: Women have the right to advocate for human rights, including the right to life, dignity, and justice.\n" +
+                        "10. TRUTH AND DEMOCRACY: Women have the right to pursue truth and demand change based on facts and logic for a flourishing democracy.",
+                R.drawable.img_327,
+                "https://asia.fes.de/news/feminism-and-the-womens-movement-in-the-philippines",
+                "https://asia.fes.de/fileadmin/_processed_/9/e/csm_Philippines_91403162f1.jpg")
         )
         dataList.add(
-            DataItem("SUSTAINABLE FOREST MANAGEMENT IN THE PHILIPPINES",
-                "In the pursuit of sustainable forest management, the Philippines has undertaken a transformative journey. Through its National Greening Program, the nation is rejuvenating degraded forests, expanding forest cover, and fostering environmental resilience.\"\n\n" +
-                        "1. PROGRAM OBJECTIVES: The National Greening Program aims to expand forest cover, mitigate climate change impacts, conserve biodiversity, alleviate poverty, and promote inclusive growth while adhering to principles of good governance.\n" +
-                        "2. PROGRAM EXTENSION: The program's extension until 2028 aligns with the Philippine Master Plan for Forestry Development and the National Development Plan.\n" +
-                        "3. IMPRESSIVE ACHIEVEMENTS: The success of the program has already led to the rehabilitation of 1.8 million hectares of forests in seven years.\n" +
-                        "4. COMMUNITY INVOLVEMENT: Over 600,000 people from upland communities have found employment through the program, emphasizing the role of local communities in sustainable forest management.\n" +
-                        "5. FOREST COVER INCREASE: Forest cover has increased from 23% to 28%, demonstrating substantial progress in the rejuvenation of forested areas.\n" +
-                        "6. RESILIENCE AND EMPOWERMENT: The program results in more resilient, empowered, and productive citizens, contributing to both environmental and social well-being.\n" +
-                        "7. UN STRATEGIC PLAN FOR FORESTS 2030: The Philippines commits to aligning its efforts with the United Nations Strategic Plan for Forests 2030, emphasizing sustainable forest management and integrated development policies.\n" +
-                        "8. GOOD GOVERNANCE: Strict adherence to good governance principles and inclusive growth is pivotal to the success of the country's forest management programs.\n" +
-                        "9. UN FORUM ON FORESTS: The Philippines' participation in the UN Forum on Forests highlights its dedication to global cooperation and the pursuit of sustainable forest management.\n" +
-                        "10. COMMITMENT TO SUSTAINABILITY: The Philippines remains committed to promoting sustainable forest management, reflecting its dedication to environmental conservation and responsible governance.",
-                R.drawable.img_298,
-                "https://forestry.denr.gov.ph/index.php/ph-affirms-commitment-to-promote-sustainable-forest-managment",
-                "https://goharibon.files.wordpress.com/2015/09/frb-main-img.jpg")
-        )
+            DataItem("ADVANCING GENDER EQUALITY INITIATIVES IN THE PHILIPPINES",
+                "In the pursuit of gender equality in the Philippines, government policies play a pivotal role. This article delves into the progress and challenges of implementing policies that empower women and promote gender parity.\"\n\n" +
+                        "1. THE IMPERATIVE OF GENDER EQUALITY: Achieving gender equality is essential for addressing historical injustices and promoting development effectiveness.\n" +
+                        "2. ECONOMIC BENEFITS OF WOMEN'S EQUALITY: Advancing women's equality could add trillions to the global GDP and make economies more resilient.\n" +
+                        "3. UNPAID CARE WORK: Lockdowns during the COVID-19 pandemic highlighted the disproportionate burden of unpaid care and domestic work on women.\n" +
+                        "4. UNDERREPRESENTATION IN COVID-19 RESPONSE: Women's representation in COVID-19 task forces remains low, especially in conflict-affected countries.\n" +
+                        "5. EXCLUSION IN PEACE PROCESSES: Women's voices have been systematically excluded from peace negotiations and mediations for decades.\n" +
+                        "6. GROWTH OF GENDER PROVISIONS IN PEACE AGREEMENTS: The proportion of peace agreements with gender equality provisions has increased, but aid dedicated to gender equality has decreased.\n" +
+                        "7. EMPOWERING WOMEN IN LEADERSHIP: Initiatives empower women in leadership, strengthening democratic processes and promoting inclusive governance.\n" +
+                        "8. WOMEN-FRIENDLY SPACES: Providing safe spaces for women, including survivors of gender-based violence, with psycho-social support and human rights education.\n" +
+                        "9. WOMEN MEDIATORS: Community-based women mediators aim to change attitudes, resolve conflicts peacefully, and enhance women's leadership in peace processes.\n" +
 
-        dataList.add(
-            DataItem("INDIGENOUS LAND RIGHTS AND PRESERVATION",
-                "The Indigenous Peoples Rights Act of 1997, Republic Act No. 8371, is a pivotal piece of legislation that recognizes and safeguards the land rights of Indigenous Cultural Communities/Indigenous Peoples (ICCs/IPs) in the Philippines. This act ensures equal rights, cultural integrity, and the preservation of indigenous ancestral domains.\"\n" +
-
-                        "1. LEGAL RECOGNITION OF INDIGENOUS RIGHTS: The act recognizes and promotes the rights of ICCs/IPs in the Philippines.\n" +
-                        "2. PRESERVATION OF CULTURE: It aims to preserve the rich cultures, traditions, and institutions of ICCs/IPs.\n" +
-                        "3. DEFINITION OF ANCESTRAL DOMAINS: It defines 'ancestral domain' and 'ancestral land,' providing a legal basis for land and resource claims by ICCs/IPs.\n" +
-                        "4. CERTIFICATE OF ANCESTRAL DOMAIN TITLE: Once ancestral domains are delineated, the communities receive a certificate of ancestral domain title (CADT) that confirms their ownership and control.\n" +
-                        "5. COMPREHENSIVE RIGHTS: ICCs/IPs are granted various rights, including ownership, resource management, the right to stay in their territories, and the right to clean air and water.\n" +
-                        "6. RESETTLEMENT RIGHTS: The act safeguards the right of resettlement for ICCs/IPs in case of displacement from their ancestral lands.\n" +
-                        "7. REGULATION OF IMMIGRATION: ICCs/IPs have the authority to regulate the entry of immigrants into their territories.\n" +
-                        "8. LAND CONFLICT RESOLUTION: The act allows for the resolution of land conflicts based on customary laws within the community, promoting traditional conflict resolution.\n" +
-                        "9. NATIONAL COMMISSION ON INDIGENOUS PEOPLES (NCIP): The NCIP serves as the primary government agency to assist ICCs/IPs, implementing policies, and issuing ancestral land/domain titles.\n" +
-                        "10. ANCESTRAL DOMAINS FUND: The creation of the Ancestral Domains Fund covers compensation, delineation, and development of ancestral domains, ensuring communities' economic well-being.\n",
-                R.drawable.img_299,
-                "https://www.fao.org/faolex/results/details/en/c/LEX-FAOC013930/#:~:text=Philippines-,Indigenous%20Peoples%20Rights%20Act%201997%20(Republic%20Act%20No.,therefor%2C%20and%20for%20other%20purposes.",
-                "https://theowp.org/wp-content/uploads/2021/08/PHIL2770a.jpg")
+                        "10. DISENGAGEMENT OF CHILDREN FROM ARMED GROUPS: Women played a crucial role in disengaging children from non-state armed groups in the region, promoting their reintegration.",
+                    R.drawable.img_328,
+                "https://news.abs-cbn.com/blogs/opinions/03/20/21/gender-equalityour-unfinished-business",
+                "https://external-preview.redd.it/wJxzxiVFmEWNY36ujMB5oKZjfuruZJ6hxYDl8Kcrexk.jpg?auto=webp&s=1918f07cefd56b5f1d16ca9c341f47de7a068450")
         )
 
         dataList.add(
-            DataItem("UNLOCKING THE ECONOMIC POTENTIAL OF RAINFORESTS",
-                "In the world's tropical rainforests, a crucial resource for economic growth is at risk. With deforestation and degradation threatening these ecosystems, the global community must recognize the economic value of rainforests and take action to restore and protect them.\n\n\n" +
+            DataItem("THE ROLE OF WOMEN IN SUSTAINABLE DEVELOPMENT",
+                "In the realm of sustainable development, women are powerful catalysts of change, driving progress and promoting gender equality. Their contributions in the Philippines and globally underscore the vital role of women in shaping a more sustainable and equitable future.\"\n" +
 
-                        "1. ENVIRONMENTAL STEWARDSHIP: This study fosters a sense of environmental responsibility among students, empowering them to actively participate in preserving vital watersheds.\n" +
-                        "2. LEGAL LITERACY: Students gain insights into Philippine environmental laws and the need for clear-cut policies, enhancing their legal literacy for informed citizenship.\n" +
-                        "3. COMMUNITY ENGAGEMENT: It inspires students to engage in community-level advocacy, helping protect their local watersheds and fostering a sense of civic responsibility.\n" +
-                        "4. POLICY ADVOCACY: The study equips students with the knowledge and skills needed to advocate for improved environmental policies, promoting effective civic engagement.\n" +
-                        "5. SOCIAL JUSTICE: Students understand the impact of watershed protection on indigenous communities, encouraging them to stand up for social and environmental justice.\n" +
-                        "6. CONSERVATION AWARENESS: It raises awareness about the value of watersheds and their crucial role in sustaining ecosystems, cultivating a culture of conservation.\n" +
-                        "7. LOBBYING AND ADVOCACY: Students learn about effective lobbying and advocacy techniques, preparing them to influence policy changes and protect natural resources.\n" +
-                        "8. ECONOMIC AND ENVIRONMENTAL BALANCE: The study highlights the delicate balance between economic development and environmental preservation, encouraging students to explore sustainable solutions.\n" +
-                        "9. PUBLIC INVOLVEMENT: It emphasizes the significance of public participation in decision-making processes, fostering an understanding of civic advocacy in a democratic society.\n" +
-                        "10. ENVIRONMENTAL EDUCATION: This study promotes environmental education, making students more conscious of the broader issues related to environmental policies and civic advocacy.",
-                R.drawable.img_300,
-                "https://www.rappler.com/environment/234683-restore-tropical-rainforests-around-world-map/",
-                "https://www.rappler.com/tachyon/2023/03/rafflesia-propagation-group.jpg?fit=1024%2C1024")
+                        "1. PROGRESS IN GENDER EQUALITY: The Philippines has made significant strides in closing the gender gap and ranks high in global gender equality rankings.\n" +
+                        "2. ROLE OF WOMEN IN SUSTAINABLE DEVELOPMENT: Women play a crucial role in promoting sustainable development and inclusive growth.\n" +
+                        "3. GLOBAL SIGNIFICANCE OF INTERNATIONAL WOMEN'S DAY: International Women's Day is a global platform to celebrate and advocate for gender equality.\n" +
+                        "4. IMPACT OF GENDER EQUALITY ON GDP: Women's equal rights and participation can contribute trillions to the global GDP.\n" +
+                        "5. EMPOWERING WOMEN IN CLIMATE ACTION: Gender equality is essential in climate change adaptation and mitigation, recognizing women's vulnerability and leadership.\n" +
+                        "6. LOCALIZING SUSTAINABLE DEVELOPMENT GOALS: The Philippines is actively working to achieve the SDGs by monitoring indicators and fostering government cooperation.\n" +
+                        "7. NATIONAL WOMEN'S MONTH CELEBRATION: The National Women's Month in the Philippines acknowledges women's contributions and empowerment.\n" +
+                        "8. LEGISLATIVE SUPPORT FOR GENDER EQUALITY: Various laws and proclamations emphasize gender equality and women's rights in the Philippines.\n" +
+                        "9. CHALLENGES IN ACHIEVING FULL GENDER EQUALITY: While progress has been made, the Philippines still faces gender-related data gaps and work toward full equality.\n" +
+                        "10. SUSTAINABLE DEVELOPMENT AS A COLLECTIVE GOAL: Gender equality is integral to achieving sustainable development, emphasizing the need for global unity and transformation.\n",
+                R.drawable.img_329,
+                "https://www.cdp.org.ph/news-1/gender-equality-towards-sustainable-development",
+                "https://asiapacific.unwomen.org/sites/default/files/2022-11/ph-Philippines-weps-2022-1679px.jpg")
+        )
+
+        dataList.add(
+            DataItem("CHALLENGES AND PROGRESS IN ACHIEVING GENDER EQUALITY IN THE PHILIPPINES",
+                "In the Philippines, the journey toward gender equality has seen remarkable achievements and enduring challenges. While the nation ranks high in global gender equality, persistent barriers to women's participation in the labor force underscore the ongoing quest for full gender equality.\n\n\n" +
+
+                        "1. GENDER EQUALITY PROGRESS: The Philippines demonstrates commendable progress in achieving gender equality, ranking 17th globally in closing gender gaps.\n" +
+                        "2. PERSISTENT LABOR FORCE GENDER GAP: Despite its global gender ranking, the Philippines faces a significant gender gap in labor force participation, with only 49% of women engaged in the workforce.\n" +
+                        "3. ECONOMIC OPPORTUNITY MISSED: The low labor force participation of women represents a missed opportunity for economic growth, with potential GDP per capita increases by 2040 and 2050.\n" +
+                        "4. CHILDCARE AND GENDER NORMS: The report identifies childcare and traditional gender norms as significant barriers to women's participation in the labor market.\n" +
+                        "5. CONSTRAINTS ON SKILL DEVELOPMENT: Women in the Philippines are often concentrated in low-skill or high-skill positions, with limited opportunities for skill development.\n" +
+                        "6. WAGE DISPARITIES: Women in low-skill positions earn significantly less than men, contributing to income disparities within households.\n" +
+                        "7. CARE RESPONSIBILITIES IMPACT: Women's employment is reduced with an increasing number of children and young child-rearing responsibilities.\n" +
+                        "8. NORMS AND BELIEFS: Social attitudes and beliefs play a critical role in deterring women from participating in the labor market.\n" +
+                        "9. POLICY RECOMMENDATIONS: The article highlights policy recommendations, including providing alternatives to childcare, promoting flexible work arrangements, and addressing gendered social norms.\n" +
+                        "10. GLOBAL COMMITMENT TO GENDER EQUALITY: The World Bank reaffirms its commitment to supporting gender equality in the Philippines, emphasizing the importance of increasing women's access to paid labor.",
+                R.drawable.img_330,
+                "https://blogs.worldbank.org/eastasiapacific/overcoming-barriers-womens-work-philippines",
+                "https://blogs.worldbank.org/sites/default/files/styles/hero/public/2022-04/woman_cleans_handrail_at_a_mall_in_taguig_city_philippines_ezra_acayan_world_bank.jpg.webp?itok=M9_l2chZ")
         )
 
 

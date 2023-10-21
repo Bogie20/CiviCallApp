@@ -24,94 +24,94 @@ class IslandsofInequalityInfo : AppCompatActivity() {
 
         dataList.add(
             DataItem(
-                "DEFORESTATION IN THE PHILIPPINES",
-                "In the Philippines, deforestation remains a pressing environmental concern, with significant forest loss despite conservation efforts. This article delves into the ongoing challenges of deforestation in the country, its consequences, and the need for comprehensive policies to address this critical issue.\"\n\n" +
-                        "1. PERSISTENT DEFORESTATION: Despite efforts, deforestation rates remain alarming in the Philippines, posing a significant threat to the nation's ecosystems.\n\n" +
-                        "2. FOREST COVER DECLINE: The country's forest cover has dramatically decreased from its historical levels, raising concerns about biodiversity and climate impacts.\n\n" +
-                        "3. HISTORICAL LAND CONVERSION: Land conversion for agriculture and settlements has been a major driver of deforestation, transforming natural landscapes.\n\n" +
-                        "4. ENVIRONMENTAL CONSEQUENCES: Massive floods and ecological crises have been attributed to deforestation, impacting communities and wildlife.\n\n" +
-                        "5. BIODIVERSITY LOSS: Iconic species, such as the tamaraw and Mindoro bleeding-heart pigeons, face habitat loss and endangerment.\n\n" +
-                        "6. REFORESTATION EFFORTS: Despite reforestation programs, challenges persist, and criticisms arise regarding their effectiveness.\n\n" +
-                        "7. DEFORESTATION RATE: Recent years, particularly during the Duterte administration, have seen a peak in primary forest loss, surpassing previous figures.\n\n" +
-                        "8. IMPACT ON CLIMATE CHANGE: The exclusion of forest mitigation from the Paris Agreement commitments raises questions about the Philippines' role in addressing climate change.\n\n" +
-                        "9. PENDING LEGISLATION: Urgent 'green bills,' including the National Land Use Act and Sustainable Forest Management Act, are needed to address legal gaps.\n\n" +
-                        "10. POLICY FRAMEWORK: Experts emphasize the necessity of comprehensive forest management policies to safeguard the Philippines' invaluable but endangered forests.\n",
-                R.drawable.img_296,
-                "https://www.rappler.com/environment/hectares-land-philippines-forested//",
-                "https://www.rappler.com/tachyon/2021/05/deforestation-carousel.jpg?resize=1280%2C720&zoom=1"
+                "EDUCATIONAL DISPARITIES IN RURAL AND URBAN AREAS IN THE PHILIPPINES",
+                "In the diverse landscape of the Philippines, educational disparities persist, creating a stark divide between rural and urban areas. This article explores the multifaceted challenges and inequalities faced by students, shedding light on the urgent need for inclusive and equitable education across the nation.\"\n\n" +
+                        "1. HISTORICAL COLONIAL INFLUENCE ON EDUCATION: The Philippines' colonial history, particularly Spanish and American influence, has left lasting imprints on its education system.\n\n" +
+                        "2. POST-INDEPENDENCE EDUCATION REFORMS: Since gaining independence in 1946, the government has aimed to make education accessible to all Filipinos, irrespective of their socioeconomic status.\n\n" +
+                        "3. PERSISTENT ISSUE OF POVERTY: Poverty remains a pervasive issue, limiting access to education for many families, particularly in impoverished communities.\n\n" +
+                        "4. GOVERNMENT INITIATIVES TO ADDRESS POVERTY: The government has launched programs like Pantawid Pamilyang Pilipino Program (4Ps) to provide financial assistance to poor families for education-related expenses.\n\n" +
+                        "5. MULTI-DIMENSIONAL APPROACH TO POVERTY REDUCTION: Addressing poverty requires a multi-dimensional approach, including investment in education, healthcare, social services, job creation, and income growth.\n\n" +
+                        "6. ALTERNATIVE LEARNING SYSTEM (ALS): The ALS provides non-formal education for out-of-school youth and adults, helping those affected by armed conflict and those who cannot access formal education.\n\n" +
+                        "7. INTERNATIONAL AND GOVERNMENT PARTNERSHIPS: International organizations like UNICEF, the Global Partnership for Education (GPE), and the World Bank collaborate with the government to improve access to education, especially in conflict-affected areas.\n\n" +
+                        "8. LACK OF RESOURCES AND INFRASTRUCTURE: Many schools, especially in rural areas, lack basic amenities like electricity and potable water, affecting the quality of education.\n\n" +
+                        "9. GOVERNMENT INVESTMENT IN INFRASTRUCTURE: The government has initiated infrastructure projects and educational programs, like DepEd TV and DepEd Commons, to address resource and infrastructure challenges.\n\n" +
+                        "10. THE DIGITAL DIVIDE AND THE IMPACT OF COVID-19: The COVID-19 pandemic has exposed the digital divide, with many students lacking access to technology for online learning, highlighting disparities in education.",
+                R.drawable.img_311,
+                "https://pids.gov.ph/details/news/in-the-news/educational-challenges-in-the-philippines",
+                "https://media.philstar.com/photos/2021/02/17/school2020-08-0221-59-54_2021-02-17_19-06-21.jpg"
             )
         )
         dataList.add(
-            DataItem("BALANCING CONSERVATION AND ECONOMIC REALITIES IN SOUTHEAST ASIA",
-                "In the Philippines, indigenous territories grapple with biodiversity loss. Explore the challenges they face in preserving their unique natural heritage.\n\n" +
-                        "1. SOUTHEAST ASIAN NATIONS AND 30X30 PLEDGE: Only Cambodia from Southeast Asia has embraced the 30x30 conservation goal, highlighting the need for greater regional commitment to safeguarding biodiversity.\n" +
-                        "2. MEGADIVERSE SOUTHEAST ASIA: Despite covering only 3% of the Earth's surface, Southeast Asia hosts three of the world's \"megadiverse\" countries—Indonesia, Malaysia, and the Philippines, known for their extraordinary species richness.\n" +
-                        "3. BIODIVERSITY IN PERIL: High deforestation rates in countries like Indonesia, Malaysia, Laos, and Cambodia threaten the biodiversity of mangrove forests, coral reefs, and numerous plant and animal species.\n" +
-                        "4. GLOBAL CONSERVATION TREATY: The 30x30 goal is integral to a forthcoming global treaty for the protection of the planet's ecosystems and biodiversity.\n" +
-                        "5. COVID-19 AND CONSERVATION: Southeast Asian nations have faced the challenge of balancing nature conservation with pandemic response, with intact ecosystems crucial for preventing future infectious disease outbreaks.\n" +
-                        "6. ECONOMIC BENEFITS OF CONSERVATION: Investing in nature and adopting green recovery policies could generate millions of jobs and trillions in business opportunities by 2030, yet many Southeast Asian leaders remain unconvinced of these benefits.\n" +
-                        "7. ECONOMIC IMPLICATIONS: ASEAN countries are cautious about the economic repercussions of the 30x30 pledge, primarily when they rely on natural resources for poverty reduction and development.\n" +
-                        "8. SECURING FUNDING: Delayed support from Southeast Asian nations for the 30x30 target may be a strategic move to secure additional funding from wealthier countries.\n" +
-                        "9. INDIGENOUS RIGHTS AND CONSERVATION: Respecting the rights of indigenous groups in protected areas is a vital aspect of the 30x30 pledge, acknowledging their crucial role in conservation efforts.\n" +
-                        "10. GREEN GRABBING CONCERNS: While addressing biodiversity loss is essential, care must be taken not to displace indigenous communities through initiatives like 30x30 and overlook sustainable coexistence with nature.\n",
-                R.drawable.img_297,
-                "https://news.abs-cbn.com/spotlight/06/30/21/philippines-among-southeast-asian-nations-missing-from-push-to-protect-30-of-planet",
-                "https://sa.kapamilya.com/absnews/abscbnnews/media/2021/reuters/06/30/philippines-environment-river.jpg")
+            DataItem(" CRISIS AREAS IMPACTING QUALITY EDUCATION IN THE PHILIPPINES",
+                "Amidst the lush landscapes and rich culture of the Philippines, the pursuit of quality education faces daunting challenges. This report delves into the critical obstacles hindering educational excellence in the nation.\n\n" +
+                        "1. LEARNING CRISIS PERSISTS: The Philippines faces a significant learning crisis, with statistics revealing that 9 out of 10 children aged 10 years old are unable to read simple texts.\n" +
+                        "2. EQUITABLE ACCESS STRUGGLES: Despite constitutional mandates, equitable access to quality education remains elusive. Completion rates drop significantly as students progress through the education system.\n" +
+                        "3. EROSION OF HIGHER EDUCATION ENROLLMENT: While enrollment rates in Philippine higher education were on par with middle-income countries, they have stagnated, contrasting with rising enrollment in neighboring nations.\n" +
+                        "4. POOR PERFORMANCE IN INTERNATIONAL ASSESSMENTS: The Philippines ranks poorly in international assessments such as PISA, TIMSS, and SEA-PLM, indicating significant educational challenges.\n" +
+                        "5. STUNTING RATES AND COGNITIVE DEVELOPMENT: The nation struggles to improve stunting rates, impacting cognitive development in early childhood.\n" +
+                        "6. IMPACT OF COVID-19 PANDEMIC: The pandemic exacerbated existing challenges, leaving more learners behind and widening learning gaps across all levels of education.\n" +
+                        "7. ACCESS ISSUES: School closures and transition to blended learning left over a million students unable to enroll, raising concerns about access.\n" +
+                        "8. LEARNING CHALLENGES PERSIST: Despite efforts, a quarter of parents reported that their children are not learning adequately due to limited resources, poor learning environments, and insufficient teaching staff.\n" +
+                        "9. WORKFORCE IMPACTS: Beyond the education sector, the pandemic led to a significant increase in unemployment rates, affecting the country's workforce.\n" +
+                        "10. MASS PROMOTION AND LACK OF PROPER ASSESSMENT: The practice of mass promotion, driven by various factors, has contributed to poor student learning outcomes. Additionally, the lack of proper assessment hinders accurate measurement of student progress.\n",
+                R.drawable.img_312,
+                "https://www.pbed.ph/blogs/47/PBEd/State%20of%20Philippine%20Education%20Report%202023",
+                "https://files01.pna.gov.ph/ograph/2023/01/04/ybl8412.jpg")
         )
         dataList.add(
-            DataItem("SUSTAINABLE FOREST MANAGEMENT IN THE PHILIPPINES",
-                "In the pursuit of sustainable forest management, the Philippines has undertaken a transformative journey. Through its National Greening Program, the nation is rejuvenating degraded forests, expanding forest cover, and fostering environmental resilience.\"\n\n" +
-                        "1. PROGRAM OBJECTIVES: The National Greening Program aims to expand forest cover, mitigate climate change impacts, conserve biodiversity, alleviate poverty, and promote inclusive growth while adhering to principles of good governance.\n" +
-                        "2. PROGRAM EXTENSION: The program's extension until 2028 aligns with the Philippine Master Plan for Forestry Development and the National Development Plan.\n" +
-                        "3. IMPRESSIVE ACHIEVEMENTS: The success of the program has already led to the rehabilitation of 1.8 million hectares of forests in seven years.\n" +
-                        "4. COMMUNITY INVOLVEMENT: Over 600,000 people from upland communities have found employment through the program, emphasizing the role of local communities in sustainable forest management.\n" +
-                        "5. FOREST COVER INCREASE: Forest cover has increased from 23% to 28%, demonstrating substantial progress in the rejuvenation of forested areas.\n" +
-                        "6. RESILIENCE AND EMPOWERMENT: The program results in more resilient, empowered, and productive citizens, contributing to both environmental and social well-being.\n" +
-                        "7. UN STRATEGIC PLAN FOR FORESTS 2030: The Philippines commits to aligning its efforts with the United Nations Strategic Plan for Forests 2030, emphasizing sustainable forest management and integrated development policies.\n" +
-                        "8. GOOD GOVERNANCE: Strict adherence to good governance principles and inclusive growth is pivotal to the success of the country's forest management programs.\n" +
-                        "9. UN FORUM ON FORESTS: The Philippines' participation in the UN Forum on Forests highlights its dedication to global cooperation and the pursuit of sustainable forest management.\n" +
-                        "10. COMMITMENT TO SUSTAINABILITY: The Philippines remains committed to promoting sustainable forest management, reflecting its dedication to environmental conservation and responsible governance.",
-                R.drawable.img_298,
-                "https://forestry.denr.gov.ph/index.php/ph-affirms-commitment-to-promote-sustainable-forest-managment",
-                "https://goharibon.files.wordpress.com/2015/09/frb-main-img.jpg")
-        )
-
-        dataList.add(
-            DataItem("INDIGENOUS LAND RIGHTS AND PRESERVATION",
-                "The Indigenous Peoples Rights Act of 1997, Republic Act No. 8371, is a pivotal piece of legislation that recognizes and safeguards the land rights of Indigenous Cultural Communities/Indigenous Peoples (ICCs/IPs) in the Philippines. This act ensures equal rights, cultural integrity, and the preservation of indigenous ancestral domains.\"\n" +
-
-                        "1. LEGAL RECOGNITION OF INDIGENOUS RIGHTS: The act recognizes and promotes the rights of ICCs/IPs in the Philippines.\n" +
-                        "2. PRESERVATION OF CULTURE: It aims to preserve the rich cultures, traditions, and institutions of ICCs/IPs.\n" +
-                        "3. DEFINITION OF ANCESTRAL DOMAINS: It defines 'ancestral domain' and 'ancestral land,' providing a legal basis for land and resource claims by ICCs/IPs.\n" +
-                        "4. CERTIFICATE OF ANCESTRAL DOMAIN TITLE: Once ancestral domains are delineated, the communities receive a certificate of ancestral domain title (CADT) that confirms their ownership and control.\n" +
-                        "5. COMPREHENSIVE RIGHTS: ICCs/IPs are granted various rights, including ownership, resource management, the right to stay in their territories, and the right to clean air and water.\n" +
-                        "6. RESETTLEMENT RIGHTS: The act safeguards the right of resettlement for ICCs/IPs in case of displacement from their ancestral lands.\n" +
-                        "7. REGULATION OF IMMIGRATION: ICCs/IPs have the authority to regulate the entry of immigrants into their territories.\n" +
-                        "8. LAND CONFLICT RESOLUTION: The act allows for the resolution of land conflicts based on customary laws within the community, promoting traditional conflict resolution.\n" +
-                        "9. NATIONAL COMMISSION ON INDIGENOUS PEOPLES (NCIP): The NCIP serves as the primary government agency to assist ICCs/IPs, implementing policies, and issuing ancestral land/domain titles.\n" +
-                        "10. ANCESTRAL DOMAINS FUND: The creation of the Ancestral Domains Fund covers compensation, delineation, and development of ancestral domains, ensuring communities' economic well-being.\n",
-                R.drawable.img_299,
-                "https://www.fao.org/faolex/results/details/en/c/LEX-FAOC013930/#:~:text=Philippines-,Indigenous%20Peoples%20Rights%20Act%201997%20(Republic%20Act%20No.,therefor%2C%20and%20for%20other%20purposes.",
-                "https://theowp.org/wp-content/uploads/2021/08/PHIL2770a.jpg")
+            DataItem("GOVERNMENT INITIATIVES TO IMPROVE ACCESS TO EDUCATION IN THE PHILIPPINES",
+                "In response to the pressing need for education reform in the Philippines, the government is embarking on a transformative journey to improve access to quality education through a series of comprehensive initiatives.\"\n\n" +
+                        "1. CHALLENGES IN INFRASTRUCTURE: The Philippines faces significant challenges in building and maintaining education infrastructure, with a shortage of good condition school buildings, impacting over 28 million learners.\n" +
+                        "2. PROCUREMENT REFORMS: Efforts to improve procurement processes in the education sector are underway, aiming to enhance transparency and efficiency in the delivery of services.\n" +
+                        "3. ENROLLMENT DISPARITIES: Public schools have seen an increase in enrollment, while private schools have faced a decline, resulting in over 1,600 private schools closing down.\n" +
+                        "4. CURRICULUM REVIEW: The K-12 curriculum is under review to ensure relevance and practicality, with a focus on essential skills and competencies.\n" +
+                        "5. TEACHING METHODS: The review revealed the need for improved teaching methods, particularly in critical thinking and problem-solving skills.\n" +
+                        "6. LEARNING OUTCOMES: PISA results showed that a significant percentage of Filipino learners struggle with math, reading, and science, highlighting the need for improvement.\n" +
+                        "7. SCHOOL FACILITIES AND SERVICES ACCELERATION: A new School Infrastructure and Facilities Strand has been created to address long-standing issues and ensure better facilities and services.\n" +
+                        "8. INCLUSIVE EDUCATION: The government is committed to inclusive education and protecting learners from discrimination, including children with disabilities.\n" +
+                        "9. SUPPORT FOR TEACHERS: Teachers are recognized as essential to education quality, with a focus on providing professional development, reducing administrative burdens, and increasing compensation.\n" +
+                        "10. HOLISTIC EDUCATION AGENDA: The government's MATATAG Agenda outlines a comprehensive roadmap for improving access to quality education in the Philippines.",
+                R.drawable.img_313,
+                "https://ovp.gov.ph/post/basic-education-report-2023-speech",
+                "https://files01.pna.gov.ph/ograph/2022/08/18/053a0223.jpg")
         )
 
         dataList.add(
-            DataItem("UNLOCKING THE ECONOMIC POTENTIAL OF RAINFORESTS",
-                "In the world's tropical rainforests, a crucial resource for economic growth is at risk. With deforestation and degradation threatening these ecosystems, the global community must recognize the economic value of rainforests and take action to restore and protect them.\n\n\n" +
+            DataItem("ROLE OF TECHNOLOGY IN EDUCATION IN THE PHILIPPINES",
+                "In the Philippines, technology's transformative influence on education is a beacon of progress. With information and communications technology (ICT), the country is forging a brighter future for its learners, bridging gaps, and redefining the role of technology in education.\"\n" +
 
-                        "1. ENVIRONMENTAL STEWARDSHIP: This study fosters a sense of environmental responsibility among students, empowering them to actively participate in preserving vital watersheds.\n" +
-                        "2. LEGAL LITERACY: Students gain insights into Philippine environmental laws and the need for clear-cut policies, enhancing their legal literacy for informed citizenship.\n" +
-                        "3. COMMUNITY ENGAGEMENT: It inspires students to engage in community-level advocacy, helping protect their local watersheds and fostering a sense of civic responsibility.\n" +
-                        "4. POLICY ADVOCACY: The study equips students with the knowledge and skills needed to advocate for improved environmental policies, promoting effective civic engagement.\n" +
-                        "5. SOCIAL JUSTICE: Students understand the impact of watershed protection on indigenous communities, encouraging them to stand up for social and environmental justice.\n" +
-                        "6. CONSERVATION AWARENESS: It raises awareness about the value of watersheds and their crucial role in sustaining ecosystems, cultivating a culture of conservation.\n" +
-                        "7. LOBBYING AND ADVOCACY: Students learn about effective lobbying and advocacy techniques, preparing them to influence policy changes and protect natural resources.\n" +
-                        "8. ECONOMIC AND ENVIRONMENTAL BALANCE: The study highlights the delicate balance between economic development and environmental preservation, encouraging students to explore sustainable solutions.\n" +
-                        "9. PUBLIC INVOLVEMENT: It emphasizes the significance of public participation in decision-making processes, fostering an understanding of civic advocacy in a democratic society.\n" +
-                        "10. ENVIRONMENTAL EDUCATION: This study promotes environmental education, making students more conscious of the broader issues related to environmental policies and civic advocacy.",
-                R.drawable.img_300,
-                "https://www.rappler.com/environment/234683-restore-tropical-rainforests-around-world-map/",
-                "https://www.rappler.com/tachyon/2023/03/rafflesia-propagation-group.jpg?fit=1024%2C1024")
+                        "1. NATIONAL ICT MONTH CELEBRATES TECH'S IMPACT: National ICT Month in the Philippines honors the significant influence of technology on daily life.\n" +
+                        "2. THEME FOR 2023: This year's theme, 'Connecting Communities, Enriching Lives, Forging a Digital Future for the Philippines,' emphasizes the role of ICT in narrowing the digital divide and building a more prosperous future.\n" +
+                        "3. ICT'S PROFOUND IMPACT: ICT has positively affected the Philippines by enhancing access to education, healthcare, government services, boosting economic growth, and creating jobs.\n" +
+                        "4. ECONOMIC CONTRIBUTION: The ICT sector contributed 7.5% to the country's GDP in 2022, highlighting its economic significance.\n" +
+                        "5. EDUCATION TRANSFORMATION: ICT is revolutionizing education through online learning platforms, personalized learning, and improved assessment methods.\n" +
+                        "6. ENHANCED HEALTHCARE ACCESS: Telemedicine and mobile health apps provide improved healthcare access, even in remote areas, while electronic health records streamline patient care.\n" +
+                        "7. EFFICIENT GOVERNANCE: ICT is making government more efficient and accessible with online government services that enhance transparency and accountability.\n" +
+                        "8. BUSINESS GROWTH: ICT is driving economic growth in the Philippines by improving business operations, expanding market reach, and fostering innovation.\n" +
+                        "9. FUTURE ROLE OF ICT: The article emphasizes that ICT will continue to be vital in the Philippines, requiring investments in infrastructure and human capital.\n" +
+                        "10. CONNECTING COMMUNITIES AND ENRICHING LIVES: ICT connects communities through online platforms and enriches lives by offering educational opportunities and entertainment, ultimately forging a digital future for the Philippines.",
+                R.drawable.img_314,
+                "https://pia.gov.ph/features/2023/06/07/national-ict-month-2023-celebrating-technologys-power-to-change-lives#:~:text=ICT%20is%20revolutionizing%20education%20in,and%20to%20assess%20student%20progress.",
+                "https://mb.com.ph/wp-content/uploads/2021/07/19810.jpeg")
+        )
+
+        dataList.add(
+            DataItem("SOCIOECONOMIC FACTORS INFLUENCING EDUCATIONAL OPPORTUNITIES IN THE PHILIPPINES",
+                "In the Philippines, the intersection of education and socioeconomic factors plays a pivotal role in shaping educational opportunities. This analysis delves into the intricate relationship between socioeconomics and education, uncovering the challenges and disparities that impact learning in the country.\n\n\n" +
+
+                        "1. EDUCATION'S ECONOMIC SIGNIFICANCE: The article emphasizes how a nation's education and health status are essential indicators of its economic wealth and long-term growth potential.\n" +
+                        "2. THE COMPONENTS OF COUNTRY WEALTH: It identifies the four elements contributing to a country's wealth, emphasizing human capital as the most significant factor and linking it to education and health.\n" +
+                        "3. THE LEARNING POVERTY RATE: Highlighting a critical issue, it reveals that the Philippine Learning Poverty rate stands at a staggering 90.9%, signifying that more than nine out of ten Filipino children struggle with age-appropriate reading.\n" +
+                        "4. COMPARING ASEAN-5 COUNTRIES: The article draws comparisons with other ASEAN-5 nations, showcasing how the Philippines' learning poverty rate is considerably higher than countries like Malaysia, Indonesia, Thailand, and Vietnam.\n" +
+                        "5. EXAMINING EXPENDITURE: It discusses the impact of education expenditure, noting that while the Philippines spends less per child than other countries, this doesn't fully explain the learning poverty disparity.\n" +
+                        "6. HUMAN CAPITAL INDEX (HCI): The HCI is introduced, indicating that a child born today in the Philippines would only have 52% of the expected productivity due to incomplete education and health, with comparisons to other ASEAN-5 countries.\n" +
+                        "7. CHALLENGES IN INTERNATIONAL ASSESSMENTS: It highlights the Philippines' poor performance in international assessments like PISA and TIMSS, where it ranks the lowest among all countries assessed.\n" +
+                        "8. TERTIARY LEVEL LICENSING: The article raises concerns about professional licensure examinations, reporting that only 42% of applicants passed in 2019, impacting the country's future workforce.\n" +
+                        "9. DECLINE IN UNIVERSITY RANKINGS: The University of the Philippines' fall in world university rankings is noted, signaling challenges within the higher education system.\n" +
+                        "10. HEALTH STATUS AND UNDERNUTRITION: It addresses health concerns, highlighting the Philippines' high infant and child mortality rates, lower life expectancy, and prevalence of stunting, all of which are influenced by socioeconomic factors.",
+                R.drawable.img_315,
+                "https://www.rappler.com/voices/analysis-what-they-do-not-tell-you-about-education-health-systems-problems-philippines/",
+                "https://www.rappler.com/tachyon/2023/06/TL-What-they-dont-tell-Philippines-Education-Health-June-6-2023.jpg?resize=1280%2C720&zoom=1")
         )
 
 

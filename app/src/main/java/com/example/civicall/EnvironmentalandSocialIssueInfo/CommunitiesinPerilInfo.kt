@@ -25,94 +25,94 @@ class CommunitiesinPerilInfo : AppCompatActivity() {
 
         dataList.add(
             DataItem(
-                "DEFORESTATION IN THE PHILIPPINES",
-                "In the Philippines, deforestation remains a pressing environmental concern, with significant forest loss despite conservation efforts. This article delves into the ongoing challenges of deforestation in the country, its consequences, and the need for comprehensive policies to address this critical issue.\"\n\n" +
-                        "1. PERSISTENT DEFORESTATION: Despite efforts, deforestation rates remain alarming in the Philippines, posing a significant threat to the nation's ecosystems.\n\n" +
-                        "2. FOREST COVER DECLINE: The country's forest cover has dramatically decreased from its historical levels, raising concerns about biodiversity and climate impacts.\n\n" +
-                        "3. HISTORICAL LAND CONVERSION: Land conversion for agriculture and settlements has been a major driver of deforestation, transforming natural landscapes.\n\n" +
-                        "4. ENVIRONMENTAL CONSEQUENCES: Massive floods and ecological crises have been attributed to deforestation, impacting communities and wildlife.\n\n" +
-                        "5. BIODIVERSITY LOSS: Iconic species, such as the tamaraw and Mindoro bleeding-heart pigeons, face habitat loss and endangerment.\n\n" +
-                        "6. REFORESTATION EFFORTS: Despite reforestation programs, challenges persist, and criticisms arise regarding their effectiveness.\n\n" +
-                        "7. DEFORESTATION RATE: Recent years, particularly during the Duterte administration, have seen a peak in primary forest loss, surpassing previous figures.\n\n" +
-                        "8. IMPACT ON CLIMATE CHANGE: The exclusion of forest mitigation from the Paris Agreement commitments raises questions about the Philippines' role in addressing climate change.\n\n" +
-                        "9. PENDING LEGISLATION: Urgent 'green bills,' including the National Land Use Act and Sustainable Forest Management Act, are needed to address legal gaps.\n\n" +
-                        "10. POLICY FRAMEWORK: Experts emphasize the necessity of comprehensive forest management policies to safeguard the Philippines' invaluable but endangered forests.\n",
-                R.drawable.img_296,
-                "https://www.rappler.com/environment/hectares-land-philippines-forested//",
-                "https://www.rappler.com/tachyon/2021/05/deforestation-carousel.jpg?resize=1280%2C720&zoom=1"
+                "CAUSES OF DISPLACEMENT, INCLUDING NATURAL DISASTERS AND DEVELOPMENT PROJECTS",
+                "Amidst lingering agrarian reform delays and land rights struggles, land grabbing takes center stage in this special two-part edition of Focus Policy Review. Delve into the intricate landscape of land grabbing, driven by political, economic, and environmental factors, as it intersects with issues of displacement and development projects.\"\n\n" +
+                        "1. PROLONGED AGRARIAN REFORM: The Comprehensive Agrarian Reform Program (CARP) has taken 27 years to be implemented, causing frustration among farmers and advocates.\n\n" +
+                        "2. CARP vs. Landed Elite: Despite its noble intentions, CARP is seen as favoring the interests of the landed elite, leading to discrepancies in land distribution.\n\n" +
+                        "3. LAND GRABBING: Land grabbing is a significant issue affecting those targeted as agrarian reform beneficiaries and title holders. \n\n" +
+                        "4. THE POLITICAL DIMENSION: Land grabbing is inherently political, with economic motives at its core, emphasizing the influence of power dynamics. \n\n" +
+                        "5. BORACAY DEVELOPMENT: The case of Boracay's development for tourism serves as a striking example of land grabbing in action. \n\n" +
+                        "6. DISASTER CAPITALISM: After the devastation of Typhoon Yolanda/Haiyan, disaster capitalism complicated land issues for affected rural communities.\n\n" +
+                        "7. GOVERNMENT POLICIES: Government policies, including investment and public-private partnerships, have contributed to land grabbing issues. \n\n" +
+                        "8. GLOBAL AND REGIONAL DYNAMICS: Land grabbing isn't limited to the Philippines; it's influenced by international actors and regional contexts\n\n" +
+                        "9. LAND RIGHTS DEFINED: Understanding land grabbing involves grasping land rights, encompassing land ownership, control, and usage. \n\n" +
+                        "10. LEGAL TOOLS AND HUMAN RIGHTS: There are international human rights instruments and legal tools aimed at safeguarding land, forests, fisheries, and natural resources. \n",
+                R.drawable.img_321,
+                "https://focusweb.org/wp-content/uploads/2017/04/PolicyReview2015_Understanding-Land-Rights_Land-Grabbing_21stCentury.pdf",
+                "https://viacampesina.org/en/wp-content/uploads/sites/2/2014/03/solidarity%20missionscaled.jpg"
             )
         )
         dataList.add(
-            DataItem("BALANCING CONSERVATION AND ECONOMIC REALITIES IN SOUTHEAST ASIA",
-                "In the Philippines, indigenous territories grapple with biodiversity loss. Explore the challenges they face in preserving their unique natural heritage.\n\n" +
-                        "1. SOUTHEAST ASIAN NATIONS AND 30X30 PLEDGE: Only Cambodia from Southeast Asia has embraced the 30x30 conservation goal, highlighting the need for greater regional commitment to safeguarding biodiversity.\n" +
-                        "2. MEGADIVERSE SOUTHEAST ASIA: Despite covering only 3% of the Earth's surface, Southeast Asia hosts three of the world's \"megadiverse\" countries—Indonesia, Malaysia, and the Philippines, known for their extraordinary species richness.\n" +
-                        "3. BIODIVERSITY IN PERIL: High deforestation rates in countries like Indonesia, Malaysia, Laos, and Cambodia threaten the biodiversity of mangrove forests, coral reefs, and numerous plant and animal species.\n" +
-                        "4. GLOBAL CONSERVATION TREATY: The 30x30 goal is integral to a forthcoming global treaty for the protection of the planet's ecosystems and biodiversity.\n" +
-                        "5. COVID-19 AND CONSERVATION: Southeast Asian nations have faced the challenge of balancing nature conservation with pandemic response, with intact ecosystems crucial for preventing future infectious disease outbreaks.\n" +
-                        "6. ECONOMIC BENEFITS OF CONSERVATION: Investing in nature and adopting green recovery policies could generate millions of jobs and trillions in business opportunities by 2030, yet many Southeast Asian leaders remain unconvinced of these benefits.\n" +
-                        "7. ECONOMIC IMPLICATIONS: ASEAN countries are cautious about the economic repercussions of the 30x30 pledge, primarily when they rely on natural resources for poverty reduction and development.\n" +
-                        "8. SECURING FUNDING: Delayed support from Southeast Asian nations for the 30x30 target may be a strategic move to secure additional funding from wealthier countries.\n" +
-                        "9. INDIGENOUS RIGHTS AND CONSERVATION: Respecting the rights of indigenous groups in protected areas is a vital aspect of the 30x30 pledge, acknowledging their crucial role in conservation efforts.\n" +
-                        "10. GREEN GRABBING CONCERNS: While addressing biodiversity loss is essential, care must be taken not to displace indigenous communities through initiatives like 30x30 and overlook sustainable coexistence with nature.\n",
-                R.drawable.img_297,
-                "https://news.abs-cbn.com/spotlight/06/30/21/philippines-among-southeast-asian-nations-missing-from-push-to-protect-30-of-planet",
-                "https://sa.kapamilya.com/absnews/abscbnnews/media/2021/reuters/06/30/philippines-environment-river.jpg")
+            DataItem("CHALLENGES FACED BY INTERNALLY DISPLACED PEOPLE",
+                "In the Philippines, internally displaced people face a myriad of challenges. This article delves into the issues surrounding their displacement and the need for a rights-based approach to address them.\n\n" +
+                        "1. ABSENCE OF NATIONAL POLICY: Internally displaced people (IDPs) in the Philippines face challenges due to the absence of a national policy on internal displacement.\n" +
+                        "2. MARAWI CITY CONFLICT: The Marawi City conflict in 2017, which displaced around 360,000 people, serves as a specific example of IDP challenges..\n" +
+                        "3. LEGAL FRAMEWORK: The response to displacement is primarily governed by the Philippine Disaster Risk Reduction and Management Act of 2010 (PDRRMA), which lacks a strong rights-based foundation.\n" +
+                        "4. PROCUREMENT DELAYS: Government use of disaster funds often undergoes lengthy procurement and disbursement processes, delaying the provision of aid to IDPs.\n" +
+                        "5. RESTRICTIONS ON RELIEF GOODS: IDPs are sometimes forbidden from selling relief goods, even when the quality and variety of goods provided are limited, which contravenes international standards.\n" +
+                        "6. LACK OF LIVELIHOOD OPPORTUNITIES: Some displaced communities have limited access to livelihood opportunities, hindering their recovery.\n" +
+                        "7. GENDER-SENSITIVE ARRANGEMENTS: Women and girl IDPs are vulnerable to sexual harassment and trafficking due to the absence of gender-sensitive arrangements in evacuation areas.\n" +
+                        "8. CAMP COORDINATION CHALLENGES: Coordination mechanisms for IDP camps face issues due to confusion among government authorities and limited resources of local host governments.\n" +
+                        "9. MILITARIZED RESPONSE: The response to IDP issues is heavily militarized, with the Department of National Defense playing a central role.\n" +
+                        "10. RIGHTS-BASED APPROACH NEEDED: The absence of specific rights for IDPs hinders their ability to claim entitlements and engage in meaningful dialogue, highlighting the need for a more rights-based approach to internal displacement.\n",
+                R.drawable.img_322,
+                "https://chr.gov.ph/a-disaster-approach-to-displacement-idps-in-the-philippines/",
+                "https://www.peaceinsight.org/wp-content/uploads/2015/06/Philippines-IDPs.jpg")
         )
         dataList.add(
-            DataItem("SUSTAINABLE FOREST MANAGEMENT IN THE PHILIPPINES",
-                "In the pursuit of sustainable forest management, the Philippines has undertaken a transformative journey. Through its National Greening Program, the nation is rejuvenating degraded forests, expanding forest cover, and fostering environmental resilience.\"\n\n" +
-                        "1. PROGRAM OBJECTIVES: The National Greening Program aims to expand forest cover, mitigate climate change impacts, conserve biodiversity, alleviate poverty, and promote inclusive growth while adhering to principles of good governance.\n" +
-                        "2. PROGRAM EXTENSION: The program's extension until 2028 aligns with the Philippine Master Plan for Forestry Development and the National Development Plan.\n" +
-                        "3. IMPRESSIVE ACHIEVEMENTS: The success of the program has already led to the rehabilitation of 1.8 million hectares of forests in seven years.\n" +
-                        "4. COMMUNITY INVOLVEMENT: Over 600,000 people from upland communities have found employment through the program, emphasizing the role of local communities in sustainable forest management.\n" +
-                        "5. FOREST COVER INCREASE: Forest cover has increased from 23% to 28%, demonstrating substantial progress in the rejuvenation of forested areas.\n" +
-                        "6. RESILIENCE AND EMPOWERMENT: The program results in more resilient, empowered, and productive citizens, contributing to both environmental and social well-being.\n" +
-                        "7. UN STRATEGIC PLAN FOR FORESTS 2030: The Philippines commits to aligning its efforts with the United Nations Strategic Plan for Forests 2030, emphasizing sustainable forest management and integrated development policies.\n" +
-                        "8. GOOD GOVERNANCE: Strict adherence to good governance principles and inclusive growth is pivotal to the success of the country's forest management programs.\n" +
-                        "9. UN FORUM ON FORESTS: The Philippines' participation in the UN Forum on Forests highlights its dedication to global cooperation and the pursuit of sustainable forest management.\n" +
-                        "10. COMMITMENT TO SUSTAINABILITY: The Philippines remains committed to promoting sustainable forest management, reflecting its dedication to environmental conservation and responsible governance.",
-                R.drawable.img_298,
-                "https://forestry.denr.gov.ph/index.php/ph-affirms-commitment-to-promote-sustainable-forest-managment",
-                "https://goharibon.files.wordpress.com/2015/09/frb-main-img.jpg")
-        )
-
-        dataList.add(
-            DataItem("INDIGENOUS LAND RIGHTS AND PRESERVATION",
-                "The Indigenous Peoples Rights Act of 1997, Republic Act No. 8371, is a pivotal piece of legislation that recognizes and safeguards the land rights of Indigenous Cultural Communities/Indigenous Peoples (ICCs/IPs) in the Philippines. This act ensures equal rights, cultural integrity, and the preservation of indigenous ancestral domains.\"\n" +
-
-                        "1. LEGAL RECOGNITION OF INDIGENOUS RIGHTS: The act recognizes and promotes the rights of ICCs/IPs in the Philippines.\n" +
-                        "2. PRESERVATION OF CULTURE: It aims to preserve the rich cultures, traditions, and institutions of ICCs/IPs.\n" +
-                        "3. DEFINITION OF ANCESTRAL DOMAINS: It defines 'ancestral domain' and 'ancestral land,' providing a legal basis for land and resource claims by ICCs/IPs.\n" +
-                        "4. CERTIFICATE OF ANCESTRAL DOMAIN TITLE: Once ancestral domains are delineated, the communities receive a certificate of ancestral domain title (CADT) that confirms their ownership and control.\n" +
-                        "5. COMPREHENSIVE RIGHTS: ICCs/IPs are granted various rights, including ownership, resource management, the right to stay in their territories, and the right to clean air and water.\n" +
-                        "6. RESETTLEMENT RIGHTS: The act safeguards the right of resettlement for ICCs/IPs in case of displacement from their ancestral lands.\n" +
-                        "7. REGULATION OF IMMIGRATION: ICCs/IPs have the authority to regulate the entry of immigrants into their territories.\n" +
-                        "8. LAND CONFLICT RESOLUTION: The act allows for the resolution of land conflicts based on customary laws within the community, promoting traditional conflict resolution.\n" +
-                        "9. NATIONAL COMMISSION ON INDIGENOUS PEOPLES (NCIP): The NCIP serves as the primary government agency to assist ICCs/IPs, implementing policies, and issuing ancestral land/domain titles.\n" +
-                        "10. ANCESTRAL DOMAINS FUND: The creation of the Ancestral Domains Fund covers compensation, delineation, and development of ancestral domains, ensuring communities' economic well-being.\n",
-                R.drawable.img_299,
-                "https://www.fao.org/faolex/results/details/en/c/LEX-FAOC013930/#:~:text=Philippines-,Indigenous%20Peoples%20Rights%20Act%201997%20(Republic%20Act%20No.,therefor%2C%20and%20for%20other%20purposes.",
-                "https://theowp.org/wp-content/uploads/2021/08/PHIL2770a.jpg")
+            DataItem("RESETTLEMENT PROGRAMS AND THEIR EFFECTIVENESS",
+                "In the wake of natural disasters and climate change challenges, resettlement programs have gained attention as a strategy to mitigate displacement. However, the effectiveness of these programs is under scrutiny, with concerns about prolonged displacement and increased vulnerability.\"\n\n" +
+                        "1. COMPLEX RESETTLEMENT PROCESS: Resettling populations as a strategy to mitigate displacement from disasters is a complex process requiring substantial planning and resources.\n" +
+                        "2. RIGHTS OF DISPLACED POPULATIONS: Insufficient planning and safeguards can infringe on the legal and human rights of displaced persons, prolonging their displacement.\n" +
+                        "3. NATIONAL LEGAL FRAMEWORKS: Governments must have national legal frameworks in place to protect the rights of affected individuals in post-disaster resettlement.\n" +
+                        "4. INSTITUTIONAL ARRANGEMENTS: Establishing institutional arrangements with clear roles and responsibilities at various levels of government is crucial for effective resettlement.\n" +
+                        "5. PROTECTION STRATEGIES: International humanitarian agencies should implement transitional shelter and protection strategies during resettlement to safeguard internally displaced people.\n" +
+                        "6. COLLABORATION: Governments and humanitarian agencies must collaborate to develop inclusive, innovative, and flexible shelter and resettlement responses that go beyond simply relocating people to new areas.\n" +
+                        "7. AMBITIOUS GOVERNMENT PLAN: The Philippine government adopted an ambitious plan to resettle 200,000 households after Typhoon Haiyan to mitigate future displacement risks.\n" +
+                        "8. DISPLACEMENT CHALLENGES: Observations indicate that government-led resettlement can carry significant risks, potentially prolonging displacement and increasing vulnerability.\n" +
+                        "9. DISASTER RESPONSE: Humanitarian agencies play a crucial role in post-disaster resettlement, working alongside government counterparts and development agencies.\n" +
+                        "10. LESSONS LEARNED: The article's findings stress the importance of careful planning, legal safeguards, and collaboration to ensure the effectiveness of resettlement programs in disaster-prone regions.",
+                R.drawable.img_323,
+                "https://reliefweb.int/report/philippines/philippines-post-typhoon-resettlement-plan-carries-risks",
+                "https://www.jvejercito.com/wp-content/uploads/2018/07/30740556_1953317138011624_5043007353213943808_n-960x640.jpg")
         )
 
         dataList.add(
-            DataItem("UNLOCKING THE ECONOMIC POTENTIAL OF RAINFORESTS",
-                "In the world's tropical rainforests, a crucial resource for economic growth is at risk. With deforestation and degradation threatening these ecosystems, the global community must recognize the economic value of rainforests and take action to restore and protect them.\n\n\n" +
+            DataItem("LEGAL RIGHTS AND PROTECTION FOR DISPLACED COMMUNITIES",
+                "BARMM's proposed \"Rights of Internally Displaced Persons of the Bangsamoro Autonomous Region Act\" is a crucial step in safeguarding the rights and protection of displaced communities. This article delves into the importance of legal rights for those affected by displacement.\"\n" +
 
-                        "1. ENVIRONMENTAL STEWARDSHIP: This study fosters a sense of environmental responsibility among students, empowering them to actively participate in preserving vital watersheds.\n" +
-                        "2. LEGAL LITERACY: Students gain insights into Philippine environmental laws and the need for clear-cut policies, enhancing their legal literacy for informed citizenship.\n" +
-                        "3. COMMUNITY ENGAGEMENT: It inspires students to engage in community-level advocacy, helping protect their local watersheds and fostering a sense of civic responsibility.\n" +
-                        "4. POLICY ADVOCACY: The study equips students with the knowledge and skills needed to advocate for improved environmental policies, promoting effective civic engagement.\n" +
-                        "5. SOCIAL JUSTICE: Students understand the impact of watershed protection on indigenous communities, encouraging them to stand up for social and environmental justice.\n" +
-                        "6. CONSERVATION AWARENESS: It raises awareness about the value of watersheds and their crucial role in sustaining ecosystems, cultivating a culture of conservation.\n" +
-                        "7. LOBBYING AND ADVOCACY: Students learn about effective lobbying and advocacy techniques, preparing them to influence policy changes and protect natural resources.\n" +
-                        "8. ECONOMIC AND ENVIRONMENTAL BALANCE: The study highlights the delicate balance between economic development and environmental preservation, encouraging students to explore sustainable solutions.\n" +
-                        "9. PUBLIC INVOLVEMENT: It emphasizes the significance of public participation in decision-making processes, fostering an understanding of civic advocacy in a democratic society.\n" +
-                        "10. ENVIRONMENTAL EDUCATION: This study promotes environmental education, making students more conscious of the broader issues related to environmental policies and civic advocacy.",
-                R.drawable.img_300,
-                "https://www.rappler.com/environment/234683-restore-tropical-rainforests-around-world-map/",
-                "https://www.rappler.com/tachyon/2023/03/rafflesia-propagation-group.jpg?fit=1024%2C1024")
+                        "1.IDP INCREASE IN BARMM: The Bangsamoro Autonomous Region in Muslim Mindanao (BARMM) has witnessed a significant rise in the number of internally displaced persons (IDPs) in recent years, reaching 127,826 in 2022 due to natural disasters and armed conflicts.\n" +
+                        "2.PROPOSED REGIONAL LAW: BARMM introduces Bangsamoro Transition Authority (BTA) Bill No. 32, certifying it as a priority piece of legislation to protect the rights and welfare of both Muslim and non-Muslim IDPs within its jurisdiction.\n" +
+                        "3.AIMS OF THE PROPOSED LAW: The Rights of Internally Displaced Persons of the Bangsamoro Autonomous Region Act is designed to address safety, basic needs, healthcare, education, and livelihood concerns of IDPs.\n" +
+                        "4.COMMUNITY INVOLVEMENT: Public consultations were held in Marawi City and Cotabato City, giving IDPs, community leaders, and stakeholders a platform to express their opinions on the proposed law.\n" +
+                        "5.ALARMING STATISTICS: BARMM's Ministry of Social Services and Development presented concerning figures during the consultations, highlighting the pressing need to support IDPs. In 2022, 58,915 IDPs were displaced due to natural disasters, while 68,911 were affected by armed conflicts.\n" +
+                        "6.KEY PROVISIONS: The proposed law contains key provisions ensuring IDPs' access to basic needs, healthcare, education, freedom of movement, document recognition and replacement, and security and protection.\n" +
+                        "7.IMMEDIATE RELIEF AND HUMANITARIAN ASSISTANCE: The legislation aims to provide immediate relief and humanitarian assistance to IDPs, their families, and communities.\n" +
+                        "8.CONTINUED CONSULTATIONS: Additional consultations are scheduled in the provinces of Basilan, Sulu, and Tawi-Tawi, with a committee report expected in July.\n" +
+                        "9.SAMIRA GUTOC'S PERSPECTIVE: Marawi Rescue Team head Samira Gutoc, a former senatorial candidate and an IDP herself, emphasizes that the bill promotes an environment that protects conflict victims and fosters economic growth.\n" +
+                        "10.REGIONAL GOVERNMENT RESPONSIBILITY: The proposed legislation places significant responsibility on regional government bodies and local authorities to execute the mandate effectively in the absence of a national law addressing IDPs' rights in the Philippines.",
+                R.drawable.img_324,
+                "https://www.rappler.com/nation/mindanao/barmm-works-law-aid-residents-displaced-violence-disasters/",
+                "https://www.rappler.com/tachyon/2021/07/bukidnon-07162021-002.jpg")
+        )
+
+        dataList.add(
+            DataItem("ASSESSING PHILIPPINE RECLAMATION PROJECTS",
+                "In the Philippines, a surge in reclamation projects promises economic growth but raises concerns about long-term consequences for displaced populations and the environment. Explore the impacts and transparency issues surrounding these ventures.\n\n\n" +
+
+                        "1. RISING RECLAMATION PROJECTS: The Philippines witnesses a surge in reclamation projects, reaching over 180, promising economic development.\n" +
+                        "2. DATA AND TRANSPARENCY ISSUES: Lack of data and public transparency hinder efforts to assess the real socioeconomic impacts of these reclamation projects.\n" +
+                        "3. ENVIRONMENTAL AND SOCIAL CONCERNS: Scientists and environmentalists raise concerns about adverse and permanent effects, including displacements and food insecurity.\n" +
+                        "4. HISTORICAL CONTEXT: Reclamation dates back to Spanish and American colonial eras, affecting communities and the environment.\n" +
+                        "5. PAST CONTROVERSIES: Projects like the Cultural Center of the Philippines (CCP) Complex and Boulevard 2000 faced corruption scandals and environmental costs.\n" +
+                        "6. RECENT PROPOSALS: Despite controversies, reclamation projects continue to gain momentum, especially during President Duterte's administration.\n" +
+                        "7. IMPACT ON EMPLOYMENT: Questions are raised about the quality and security of jobs generated by reclamation projects.\n" +
+                        "8. TRANSPARENCY CHALLENGES: Transparency issues, lack of consultations, and diversion tactics complicate the debate over reclamation.\n" +
+                        "9. HOT SPOTS: Reclamation projects are concentrated in Visayas and Calabarzon regions, particularly Manila Bay.\n" +
+                        "10. LONG-TERM CONSEQUENCES: Reclamation's impact on urban decline and increased flooding highlights the need for careful, data-driven assessments.",
+                R.drawable.img_325,
+                "https://www.rappler.com/environment/reclamations-philippines-spreading-posing-dangers/",
+                "https://www.rappler.com/tachyon/2022/05/reclamation-watch-PH-May-27-2022.jpg?resize=1280%2C720&zoom=1")
         )
 
 
