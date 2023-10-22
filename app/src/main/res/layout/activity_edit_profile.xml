@@ -528,8 +528,6 @@
                     android:maxLines="1"
                     android:paddingStart="20dp"
                     android:paddingEnd="30dp" />
-
-
             </com.google.android.material.textfield.TextInputLayout>
             <TextView
                 android:id="@+id/label12"

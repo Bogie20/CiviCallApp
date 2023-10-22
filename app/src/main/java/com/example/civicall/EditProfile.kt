@@ -3,10 +3,13 @@ package com.example.civicall
 
 import android.Manifest
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -14,7 +17,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -30,6 +37,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
+import java.util.Calendar
 import java.util.UUID
 
 
@@ -47,7 +55,7 @@ class EditProfile : AppCompatActivity() {
     private var fullLname: String = ""
     private var fullAddress: String = ""
     private var fullMobileNumber: String = ""
-
+    private var isPopupShowing = false
 
 
     private val takePictureLauncher: ActivityResultLauncher<Intent> =
@@ -82,6 +90,42 @@ class EditProfile : AppCompatActivity() {
         imageRef = storage.reference.child("profileImages")
 
         checkUser()
+
+        val campusDropdown = binding.campus
+        val campusesArray = resources.getStringArray(R.array.allowed_campuses)
+        val adaptercampus = ArrayAdapter(this, R.layout.dropdown_item, campusesArray)
+        (campusDropdown as? AutoCompleteTextView)?.setAdapter(adaptercampus)
+
+        val usercategoryDropdown = binding.usercategory
+        val usercategoryArray = resources.getStringArray(R.array.user_category)
+        val adapterusertype = ArrayAdapter(this, R.layout.dropdown_item, usercategoryArray)
+        (usercategoryDropdown as? AutoCompleteTextView)?.setAdapter(adapterusertype)
+
+        val genderDropdown = binding.spinnerSex
+        val genderArray = resources.getStringArray(R.array.gender_array)
+        val adaptergender = ArrayAdapter(this, R.layout.dropdown_item, genderArray)
+        (genderDropdown as? AutoCompleteTextView)?.setAdapter(adaptergender)
+
+        val birthday = binding.birthdate
+        val cal = Calendar.getInstance()
+        val Myear = cal.get(Calendar.YEAR)
+        val Mmonth = cal.get(Calendar.MONTH)
+        val day = cal.get(Calendar.DAY_OF_MONTH)
+
+        birthday.setOnClickListener {
+            val datePickerDialog = DatePickerDialog(
+                this,
+                DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                    val dateString = "$dayOfMonth / ${month + 1} / $year"
+                    birthday.setText(dateString)
+                },
+                Myear,
+                Mmonth,
+                day
+            )
+            datePickerDialog.show()
+        }
+
         fullMname = binding.mname.text.toString()
         fullLname = binding.Lname.text.toString()
         fullAddress = binding.address.text.toString()
@@ -221,16 +265,18 @@ class EditProfile : AppCompatActivity() {
         binding.Lname.text = Editable.Factory.getInstance().newEditable(user.lastname)
         binding.address.text = Editable.Factory.getInstance().newEditable(user.address)
         binding.Contactline.text = Editable.Factory.getInstance().newEditable(user.phoneno)
-        binding.campus.text = Editable.Factory.getInstance().newEditable(user.campus)
-        binding.usercategory.text = Editable.Factory.getInstance().newEditable(user.userType)
-        binding.birthdate.text = Editable.Factory.getInstance().newEditable(user.birthday)
-        binding.spinnerSex.text = Editable.Factory.getInstance().newEditable(user.gender)
 
+        // Set the selected campus from the user data
+        binding.campus.setText(user.campus, false) // Use false to prevent the dropdown from opening
+        binding.usercategory.setText(user.userType, false)
+        binding.birthdate.setText(user.birthday, false)
+        binding.spinnerSex.setText(user.gender, false)
 
         if (!user.ImageProfile.isNullOrEmpty()) {
             Picasso.get().load(user.ImageProfile).into(binding.profileImage)
         }
     }
+
 
 
     private fun updateProfile() {
@@ -260,34 +306,28 @@ class EditProfile : AppCompatActivity() {
                 binding.address.error = "Address is short"
                 return
             }
-            if (updatedFirstName.isEmpty()) {
-                binding.fname.error = "FirstName is required"
-                return
+            if (!validateFirstName()) {
+                binding.fname.error = "Please enter a valid first name"
             }
-            if (updatedMiddleName.isEmpty()) {
-                binding.mname.error = "MiddleName is required"
-                return
+            if (!validateMiddleName()) {
+                binding.mname.error = "Please enter a valid middle name"
             }
-            if (updatedLastName.isEmpty()) {
-                binding.Lname.error = "LastName is required"
-                return
-            }
-            if (!isValidName(updatedFirstName) || !isValidName(updatedMiddleName) || !isValidName(updatedLastName)) {
-                // Display an error message to the user
-                Toast.makeText(this, "Invalid Name. It should only contain alphabets, '.', ',', and '-'", Toast.LENGTH_SHORT).show()
-                return
+
+            if (!validateLastName()) {
+                binding.Lname.error = "Please enter a valid last name"
             }
             if (updatedAddress.isEmpty() || updatedFirstName.isEmpty() || updatedMiddleName.isEmpty() || updatedLastName.isEmpty()) {
                 // Display a single error message
                 Toast.makeText(this, "Please fill in all required fields correctly.", Toast.LENGTH_SHORT).show()
                 return
             }
-
             if (!isValidPhoneNumber(updatedContact)) {
                 binding.Contactline.error = "Invalid contact number"
                 return
             }
-
+            if (!validateBirthday()) {
+                return
+            }
 
 
             val updateData = mapOf(
@@ -305,16 +345,130 @@ class EditProfile : AppCompatActivity() {
 
             database.updateChildren(updateData)
                 .addOnSuccessListener {
-                    Toast.makeText(this, "Profile updated successfully", Toast.LENGTH_SHORT).show()
+                    showCustomPopup("Profile updated successfully",)
                 }
                 .addOnFailureListener {
-                    Toast.makeText(this, "Failed to update profile", Toast.LENGTH_SHORT).show()
+                    showCustomPopup("Failed to update profile")
                 }
 
 
             if (selectedImageUri != null) {
                 uploadProfileImage(selectedImageUri!!)
             }
+        }
+    }
+    private fun showCustomPopup(message: String) {
+        // Check if the pop-up is already showing, and if so, return early
+        if (isPopupShowing) {
+            return
+        }
+        dismissCustomDialog()
+
+        // Set isPopupShowing to true before showing the popup
+        isPopupShowing = true
+
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.dialog_success, null)
+        dialogBuilder.setView(dialogView)
+        val alertDialog = dialogBuilder.create()
+
+        // Set the animation style
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        // Set the background to be transparent
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message_flat)
+        val okButton = dialogView.findViewById<Button>(R.id.btn_action_flat)
+
+        messageTextView.text = message
+
+        okButton.setOnClickListener {
+            alertDialog.dismiss()
+
+            // Set isPopupShowing to false when the pop-up is dismissed
+            isPopupShowing = false
+        }
+
+        alertDialog.show()
+    }
+
+    private fun showCustomPopupError(message: String) {
+        // Check if the pop-up is already showing, and if so, return early
+        if (isPopupShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.dialog_flat, null)
+        dialogBuilder.setView(dialogView)
+        val alertDialog = dialogBuilder.create()
+
+        // Set the animation style
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        // Set the background to be transparent
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message_flat)
+        val okButton = dialogView.findViewById<Button>(R.id.btn_action_flat)
+
+        messageTextView.text = message
+
+        okButton.setOnClickListener {
+            alertDialog.dismiss()
+            isPopupShowing = false // Set the variable to false when the pop-up is dismissed
+        }
+
+        alertDialog.show()
+        isPopupShowing = true // Set the variable to true when the pop-up is displayed
+    }
+    private fun dismissCustomDialog() {
+        if (isPopupShowing) {
+            // Dismiss the custom popup dialog
+            // For example:
+            // alertDialog.dismiss()
+            isPopupShowing = false
+        }
+    }
+    private fun validateBirthday(): Boolean {
+        val birthday = binding.birthdate.text.toString().trim()
+        val birthdateTextInputLayout = binding.birthdateTextInputLayout
+
+        if (birthday.isEmpty()) {
+            birthdateTextInputLayout.error = null
+            showCustomPopupError("Date of Birth is Required")
+            return false
+        } else {
+            val dobParts = birthday.split(" / ")
+            if (dobParts.size == 3) {
+                val day = dobParts[0].toInt()
+                val month = dobParts[1].toInt()
+                val year = dobParts[2].toInt()
+
+                val calendar = Calendar.getInstance()
+                val currentYear = calendar.get(Calendar.YEAR)
+                val currentMonth = calendar.get(Calendar.MONTH) + 1
+                val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+
+                val age =
+                    currentYear - year - if (currentMonth < month || (currentMonth == month && currentDay < day)) 1 else 0
+
+                if (age < 18) {
+                    showCustomPopupError( "You must be at least 18 years old")
+                    return false
+                }
+            } else {
+                showCustomPopupError("Invalid Date of Birth format")
+
+                return false
+            }
+
+            // Clear the error message when valid input is provided
+            binding.birthdateTextInputLayout.error = null
+            return true
         }
     }
     private fun isValidPhoneNumber(contactNumber: String): Boolean {
@@ -330,10 +484,68 @@ class EditProfile : AppCompatActivity() {
             false
         }
     }
-    private fun isValidName(name: String): Boolean {
-        // Define a regex pattern for valid names
-        val regexPattern = "^[A-Za-z.,\\-]+\$"
-        return name.matches(Regex(regexPattern))
+    private fun validateFirstName(): Boolean {
+        val firstName = binding.fname.text.toString().trim()
+        val regex = "^[a-zA-Z.\\s-]+$"
+
+        if (firstName.isEmpty()) {
+            binding.fname.error = "Required"
+            return false
+        } else if (!firstName.matches(regex.toRegex())) {
+            binding.fname.error =
+                "Only letters and symbols (, . -) are allowed"
+            return false
+        } else {
+            binding.fname.error = null
+            return true
+        }
+    }
+    private fun validateAddress(): Boolean {
+        val address = binding.address.text.toString().trim()
+
+        if (address.isEmpty()) {
+            binding.address.error = "Address is required"
+            return false
+        } else if (address.length < 5) {
+            binding.address.error = "Address is too short"
+            return false
+        } else {
+            binding.address.error = null
+            return true
+        }
+    }
+    private fun validateMiddleName(): Boolean {
+        val middleName = binding.mname.text.toString().trim()
+        val regex = "^[a-zA-Z.\\s-]+$"
+
+        if (middleName.isEmpty()) {
+            binding.mname.error = "Required"
+            return false
+        } else if (!middleName.matches(regex.toRegex())) {
+            binding.mname.error =
+                "Only letters and symbols (, . -) are allowed"
+            return false
+        } else {
+            binding.mname.error = null
+            return true
+        }
+    }
+
+    private fun validateLastName(): Boolean {
+        val lastName = binding.Lname.text.toString().trim()
+        val regex = "^[a-zA-Z.\\s-]+$"
+
+        if (lastName.isEmpty()) {
+            binding.Lname.error = "Required"
+            return false
+        } else if (!lastName.matches(regex.toRegex())) {
+            binding.Lname.error =
+                "Only letters and symbols (, . -) are allowed"
+            return false
+        } else {
+            binding.lastNameTextInputLayout.error = null
+            return true
+        }
     }
 
     private fun showImageDialog() {

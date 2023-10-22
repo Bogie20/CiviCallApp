@@ -324,6 +324,7 @@
                 app:passwordToggleEnabled="true"
                 app:hintTextColor="@color/DarkGray"
                 app:counterEnabled="true"
+                android:paddingRight="30dp"
                 android:layout_marginTop="10dp"
                 app:counterMaxLength="128">
 
@@ -335,8 +336,8 @@
                     android:drawablePadding="15dp"
                     android:hint="Password"
                     android:lines="1"
-                    android:inputType="textPassword"
                     android:paddingEnd="30dp"
+                    android:inputType="textPassword"
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:maxLines="1"
