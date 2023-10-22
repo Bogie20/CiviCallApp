@@ -23,6 +23,39 @@
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
         <activity
+            android:name=".PublicHealtAwarenessInfo.EvaluatingtheEffectivenessInfo"
+            android:exported="false" />
+        <activity
+            android:name=".PublicHealtAwarenessInfo.EnvironmentalHealthinthePhilippinesInfo"
+            android:exported="false" />
+        <activity
+            android:name=".PublicHealtAwarenessInfo.SocioeconomicFactorsandHealthInfo"
+            android:exported="false" />
+        <activity
+            android:name=".PublicHealtAwarenessInfo.GenderDisparitiesinPublicInfo"
+            android:exported="false" />
+        <activity
+            android:name=".PublicHealtAwarenessInfo.InnovationsinHealthcareInfo"
+            android:exported="false" />
+        <activity
+            android:name=".PublicHealtAwarenessInfo.TheImpactofPublicHealthAwarenessInfo"
+            android:exported="false" />
+        <activity
+            android:name=".PublicHealtAwarenessInfo.EmpoweringCommunitiesInfo"
+            android:exported="false" />
+        <activity
+            android:name=".PublicHealtAwarenessInfo.MentalHealthMattersInfo"
+            android:exported="false" />
+        <activity
+            android:name=".PublicHealtAwarenessInfo.RoleofNutritionEducationInfo"
+            android:exported="false" />
+        <activity
+            android:name=".PublicHealtAwarenessInfo.PreventiveHealthcare"
+            android:exported="false" />
+        <activity
+            android:name=".PublicHealtAwarenessInfo.healtawarenessinfoMenu"
+            android:exported="false" />
+        <activity
             android:name=".EnvironmentalandSocialIssueInfo.InvisibleLaborInfo"
             android:exported="false" />
         <activity
