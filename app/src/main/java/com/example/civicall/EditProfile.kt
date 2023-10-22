@@ -333,7 +333,7 @@ class EditProfile : AppCompatActivity() {
             !validateBirthday()
 
             if (!validateFirstName() || !validateMiddleName() || !validateLastName() || !validateAddress() || !validateBirthday() || !validateContactNumber() || !validateEmeContactNumber()) {
-                showCustomPopupError("Please provide valid information for the following fields.")
+                showCustomPopup("Please provide valid information for the following fields.")
                 return
             }
 
@@ -354,10 +354,10 @@ class EditProfile : AppCompatActivity() {
             // Continue with the update if no validation error
             database.updateChildren(updateData)
                 .addOnSuccessListener {
-                    showCustomPopup("Profile updated successfully")
+                    showCustomPopupSuccess("Profile updated successfully")
                 }
                 .addOnFailureListener {
-                    showCustomPopup("Failed to update profile")
+                    showCustomPopupError("Failed to update profile")
                 }
 
             if (selectedImageUri != null) {
@@ -404,7 +404,6 @@ class EditProfile : AppCompatActivity() {
         isSaveConfirmationDialogShowing =
             true // Set the flag to indicate that the dialog is showing
     }
-
     private fun showCustomPopup(message: String) {
         // Check if the pop-up is already showing, and if so, return early
         if (isPopupShowing) {
@@ -414,6 +413,38 @@ class EditProfile : AppCompatActivity() {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_flat, null)
+
+        dialogBuilder.setView(dialogView)
+        val alertDialog = dialogBuilder.create()
+
+        // Set the animation style
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        // Set the background to be transparent
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message_flat)
+        val okButton = dialogView.findViewById<Button>(R.id.btn_action_flat)
+
+        messageTextView.text = message
+
+        okButton.setOnClickListener {
+            alertDialog.dismiss()
+            isPopupShowing = false // Set the variable to false when the pop-up is dismissed
+        }
+
+        alertDialog.show()
+        isPopupShowing = true // Set the variable to true when the pop-up is displayed
+    }
+    private fun showCustomPopupSuccess(message: String) {
+        // Check if the pop-up is already showing, and if so, return early
+        if (isPopupShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.dialog_success, null)
 
         dialogBuilder.setView(dialogView)
         val alertDialog = dialogBuilder.create()
@@ -491,7 +522,7 @@ class EditProfile : AppCompatActivity() {
 
         if (birthday.isEmpty()) {
             birthdateTextInputLayout.error = null
-            showCustomPopupError("Date of Birth is Required")
+            showCustomPopup("Date of Birth is Required")
             return false
         } else {
             val dobParts = birthday.split(" / ")
@@ -509,7 +540,7 @@ class EditProfile : AppCompatActivity() {
                     currentYear - year - if (currentMonth < month || (currentMonth == month && currentDay < day)) 1 else 0
 
                 if (age < 18) {
-                    showCustomPopupError( "You must be at least 18 years old")
+                    showCustomPopup( "You must be at least 18 years old")
                     return false
                 }
             } else {
