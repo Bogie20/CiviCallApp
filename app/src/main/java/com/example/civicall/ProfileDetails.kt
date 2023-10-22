@@ -64,6 +64,7 @@ class ProfileDetails : AppCompatActivity() {
                 val lastName = snapshot.child("lastname").value
                 val email = snapshot.child("email").value
                 val contact = snapshot.child("phoneno").value
+                val Emecontact = snapshot.child("ContactEme").value
                 val address = snapshot.child("address").value
                 val birthday = snapshot.child("birthday").value
                 val gender = snapshot.child("gender").value
@@ -75,6 +76,7 @@ class ProfileDetails : AppCompatActivity() {
                 binding.lastName.text = lastName.toString()
                 binding.email1.text = email.toString()
                 binding.mobilenumtxt.text = contact.toString()
+                binding.emergencynumtxt.text = Emecontact.toString()
                 binding.addresstxt.text = address.toString()
                 binding.dateofbirthtxt.text = birthday.toString()
                 binding.gendertxt.text = gender.toString()

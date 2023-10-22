@@ -55,6 +55,7 @@ class EditProfile : AppCompatActivity() {
     private var fullLname: String = ""
     private var fullAddress: String = ""
     private var fullMobileNumber: String = ""
+    private var fullEmeMobileNumber: String = ""
     private var isPopupShowing = false
 
 
@@ -130,6 +131,7 @@ class EditProfile : AppCompatActivity() {
         fullLname = binding.Lname.text.toString()
         fullAddress = binding.address.text.toString()
         fullMobileNumber = binding.Contactline.text.toString()
+        fullEmeMobileNumber = binding.ContactEme.text.toString()
         fullFname = binding.fname.text.toString()
 
         val maxLength = 80 // Max character limit for name fields
@@ -142,7 +144,8 @@ class EditProfile : AppCompatActivity() {
             binding.mname to maxLength,
             binding.Lname to maxLength,
             binding.address to maxAddressLength,
-            binding.Contactline to maxContactLength
+            binding.Contactline to maxContactLength,
+            binding.ContactEme to maxContactLength
         )
 
         for ((editText, limit) in editTextsToLimit) {
@@ -176,6 +179,11 @@ class EditProfile : AppCompatActivity() {
         binding.Contactline.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 binding.Contactline.setSelection(fullMobileNumber.length)
+            }
+        }
+        binding.ContactEme.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                binding.ContactEme.setSelection(fullEmeMobileNumber.length)
             }
         }
 
@@ -265,9 +273,11 @@ class EditProfile : AppCompatActivity() {
         binding.Lname.text = Editable.Factory.getInstance().newEditable(user.lastname)
         binding.address.text = Editable.Factory.getInstance().newEditable(user.address)
         binding.Contactline.text = Editable.Factory.getInstance().newEditable(user.phoneno)
+        binding.ContactEme.text = Editable.Factory.getInstance().newEditable(user.ContactEme) // Set the ContactEme field
+        binding.nstp.text = Editable.Factory.getInstance().newEditable(user.nstp)             // Set the nstp field
+        binding.collegedept.text = Editable.Factory.getInstance().newEditable(user.collegedept) // Set the collegedept field
 
-        // Set the selected campus from the user data
-        binding.campus.setText(user.campus, false) // Use false to prevent the dropdown from opening
+        binding.campus.setText(user.campus, false)
         binding.usercategory.setText(user.userType, false)
         binding.birthdate.setText(user.birthday, false)
         binding.spinnerSex.setText(user.gender, false)
@@ -285,7 +295,6 @@ class EditProfile : AppCompatActivity() {
             val uid = firebaseUser.uid
             database = FirebaseDatabase.getInstance().reference.child("Users").child(uid)
 
-
             // Your code to update the user's profile data
             val updatedFirstName = binding.fname.text.toString()
             val updatedMiddleName = binding.mname.text.toString()
@@ -296,15 +305,15 @@ class EditProfile : AppCompatActivity() {
             val updatedUserType = binding.usercategory.text.toString()
             val updatedBirthday = binding.birthdate.text.toString()
             val updatedGender = binding.spinnerSex.text.toString()
+            val updatedContactEme = binding.ContactEme.text.toString() // Get the ContactEme field
+            val updatedNstp = binding.nstp.text.toString()             // Get the nstp field
+            val updatedCollegedept = binding.collegedept.text.toString() // Get the collegedept field
 
-            if (updatedAddress.isEmpty()) {
-                binding.address.error = "Address is required"
-                return
-            }
-            // Check if the address has a minimum length of 5 characters
-            if (updatedAddress.length < 5) {
-                binding.address.error = "Address is short"
-                return
+
+            // Add validation checks and return early if there is an error
+
+            if (!validateAddress()) {
+                binding.address.error = "Please enter a valid Address"
             }
             if (!validateFirstName()) {
                 binding.fname.error = "Please enter a valid first name"
@@ -312,23 +321,21 @@ class EditProfile : AppCompatActivity() {
             if (!validateMiddleName()) {
                 binding.mname.error = "Please enter a valid middle name"
             }
-
             if (!validateLastName()) {
                 binding.Lname.error = "Please enter a valid last name"
             }
-            if (updatedAddress.isEmpty() || updatedFirstName.isEmpty() || updatedMiddleName.isEmpty() || updatedLastName.isEmpty()) {
-                // Display a single error message
-                Toast.makeText(this, "Please fill in all required fields correctly.", Toast.LENGTH_SHORT).show()
-                return
-            }
-            if (!isValidPhoneNumber(updatedContact)) {
+            if (!validateContactNumber()) {
                 binding.Contactline.error = "Invalid contact number"
-                return
             }
-            if (!validateBirthday()) {
-                return
+            if (!validateEmeContactNumber()) {
+                binding.ContactEme.error = "Invalid contact number"
             }
+            !validateBirthday()
 
+            if (!validateFirstName() || !validateMiddleName() || !validateLastName() || !validateAddress() || !validateBirthday() || !validateContactNumber() || !validateEmeContactNumber()) {
+                showCustomPopupError("Please provide valid information for the following fields.")
+                return
+            }
 
             val updateData = mapOf(
                 "firstname" to updatedFirstName,
@@ -339,18 +346,20 @@ class EditProfile : AppCompatActivity() {
                 "campus" to updatedCampus,
                 "userType" to updatedUserType,
                 "birthday" to updatedBirthday,
-                "gender" to updatedGender
+                "gender" to updatedGender,
+                "ContactEme" to updatedContactEme, // Add the ContactEme field
+                "nstp" to updatedNstp,             // Add the nstp field
+                "collegedept" to updatedCollegedept  // Add the collegedept field
             )
 
-
+            // Continue with the update if no validation error
             database.updateChildren(updateData)
                 .addOnSuccessListener {
-                    showCustomPopup("Profile updated successfully",)
+                    showCustomPopup("Profile updated successfully")
                 }
                 .addOnFailureListener {
                     showCustomPopup("Failed to update profile")
                 }
-
 
             if (selectedImageUri != null) {
                 uploadProfileImage(selectedImageUri!!)
@@ -362,7 +371,6 @@ class EditProfile : AppCompatActivity() {
         if (isPopupShowing) {
             return
         }
-        dismissCustomDialog()
 
         // Set isPopupShowing to true before showing the popup
         isPopupShowing = true
@@ -399,7 +407,7 @@ class EditProfile : AppCompatActivity() {
         if (isPopupShowing) {
             return
         }
-        dismissCustomDialog()
+
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_flat, null)
@@ -471,7 +479,38 @@ class EditProfile : AppCompatActivity() {
             return true
         }
     }
+    private fun validateContactNumber(): Boolean {
+        val contactNumber = binding.Contactline.text.toString().trim()
+
+        if (contactNumber.isEmpty()) {
+            binding.Contactline.error =
+                "Please enter Contact Number"
+            return false
+        } else if (!isValidPhoneNumber(contactNumber)) {
+            binding.Contactline.error = "Invalid Contact Number"
+            return false
+        } else {
+            binding.Contactline.error = null
+            return true
+        }
+    }
+    private fun validateEmeContactNumber(): Boolean {
+        val emecontactNumber = binding.ContactEme.text.toString().trim()
+
+        if (emecontactNumber.isEmpty()) {
+            binding.ContactEme.error =
+                "Please enter Contact Number"
+            return false
+        } else if (!isValidPhoneNumber(emecontactNumber)) {
+            binding.ContactEme.error = "Invalid Contact Number"
+            return false
+        } else {
+            binding.ContactEme.error = null
+            return true
+        }
+    }
     private fun isValidPhoneNumber(contactNumber: String): Boolean {
+
         val sanitizedNumber = contactNumber.replace("\\s".toRegex(), "")
 
         return if (sanitizedNumber.startsWith("+63")) {
@@ -627,7 +666,10 @@ data class User(
     val birthday: String = "",
     val gender: String = "",
     val email: String = "",
-    val ImageProfile: String = ""
+    val ImageProfile: String = "",
+    val ContactEme: String = "",
+    val nstp: String = "",
+    val collegedept: String = ""
 )
 
 
