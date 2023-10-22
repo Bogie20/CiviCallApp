@@ -349,7 +349,8 @@
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingStart="20dp"
-                    android:paddingEnd="30dp" />
+                    android:paddingEnd="30dp"
+                    android:singleLine="true"/>
 
 
             </com.google.android.material.textfield.TextInputLayout>

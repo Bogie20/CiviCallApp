@@ -11,7 +11,10 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -39,7 +42,11 @@ class EditProfile : AppCompatActivity() {
     private val REQUEST_CAMERA_PERMISSION = 1
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var progressDialog: ProgressDialog
-
+    private var fullFname: String = ""
+    private var fullMname: String = ""
+    private var fullLname: String = ""
+    private var fullAddress: String = ""
+    private var fullMobileNumber: String = ""
 
 
 
@@ -74,8 +81,59 @@ class EditProfile : AppCompatActivity() {
         storage = FirebaseStorage.getInstance()
         imageRef = storage.reference.child("profileImages")
 
-
         checkUser()
+        fullMname = binding.mname.text.toString()
+        fullLname = binding.Lname.text.toString()
+        fullAddress = binding.address.text.toString()
+        fullMobileNumber = binding.Contactline.text.toString()
+        fullFname = binding.fname.text.toString()
+
+        val maxLength = 80 // Max character limit for name fields
+        val maxContactLength = 20 // Max character limit for contact field
+        val maxAddressLength = 255 // Max character limit for address field
+
+        // Create a map of EditText fields and their respective character limits
+        val editTextsToLimit = mapOf(
+            binding.fname to maxLength,
+            binding.mname to maxLength,
+            binding.Lname to maxLength,
+            binding.address to maxAddressLength,
+            binding.Contactline to maxContactLength
+        )
+
+        for ((editText, limit) in editTextsToLimit) {
+            addTextWatcher(editText, limit)
+        }
+        // Add a focus change listener to the fname field
+        binding.fname.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                // When focus is lost, set the cursor position to the end
+                binding.fname.setSelection(fullFname.length)
+            }
+        }
+        binding.mname.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                binding.mname.setSelection(fullMname.length)
+            }
+        }
+
+        binding.Lname.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                binding.Lname.setSelection(fullLname.length)
+            }
+        }
+
+        binding.address.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                binding.address.setSelection(fullAddress.length)
+            }
+        }
+
+        binding.Contactline.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                binding.Contactline.setSelection(fullMobileNumber.length)
+            }
+        }
 
 
 
@@ -97,6 +155,25 @@ class EditProfile : AppCompatActivity() {
 
             checkAndRequestPermissions()
         }
+    }
+    private fun addTextWatcher(editText: EditText, maxLength: Int) {
+        editText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Not used in this example
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Not used in this example
+            }
+
+            override fun afterTextChanged(editable: Editable?) {
+                val text = editable.toString()
+                if (text.length > maxLength) {
+                    editText.setText(text.substring(0, maxLength))
+                    editText.setSelection(maxLength)
+                }
+            }
+        })
     }
     private fun checkAndRequestPermissions() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
@@ -174,14 +251,40 @@ class EditProfile : AppCompatActivity() {
             val updatedBirthday = binding.birthdate.text.toString()
             val updatedGender = binding.spinnerSex.text.toString()
 
-            if (updatedFirstName.isEmpty() || updatedMiddleName.isEmpty() || updatedLastName.isEmpty()) {
-                Toast.makeText(this, "Part of your Name cannot be empty", Toast.LENGTH_SHORT).show()
+            if (updatedAddress.isEmpty()) {
+                binding.address.error = "Address is required"
                 return
             }
-
+            // Check if the address has a minimum length of 5 characters
+            if (updatedAddress.length < 5) {
+                binding.address.error = "Address is short"
+                return
+            }
+            if (updatedFirstName.isEmpty()) {
+                binding.fname.error = "FirstName is required"
+                return
+            }
+            if (updatedMiddleName.isEmpty()) {
+                binding.mname.error = "MiddleName is required"
+                return
+            }
+            if (updatedLastName.isEmpty()) {
+                binding.Lname.error = "LastName is required"
+                return
+            }
             if (!isValidName(updatedFirstName) || !isValidName(updatedMiddleName) || !isValidName(updatedLastName)) {
                 // Display an error message to the user
                 Toast.makeText(this, "Invalid Name. It should only contain alphabets, '.', ',', and '-'", Toast.LENGTH_SHORT).show()
+                return
+            }
+            if (updatedAddress.isEmpty() || updatedFirstName.isEmpty() || updatedMiddleName.isEmpty() || updatedLastName.isEmpty()) {
+                // Display a single error message
+                Toast.makeText(this, "Please fill in all required fields correctly.", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            if (!isValidPhoneNumber(updatedContact)) {
+                binding.Contactline.error = "Invalid contact number"
                 return
             }
 
@@ -214,12 +317,25 @@ class EditProfile : AppCompatActivity() {
             }
         }
     }
+    private fun isValidPhoneNumber(contactNumber: String): Boolean {
+        val sanitizedNumber = contactNumber.replace("\\s".toRegex(), "")
 
+        return if (sanitizedNumber.startsWith("+63")) {
+            sanitizedNumber.length == 13
+        } else if (sanitizedNumber.startsWith("63")) {
+            sanitizedNumber.length == 12
+        } else if (sanitizedNumber.startsWith("09")) {
+            sanitizedNumber.length == 11
+        } else {
+            false
+        }
+    }
     private fun isValidName(name: String): Boolean {
         // Define a regex pattern for valid names
         val regexPattern = "^[A-Za-z.,\\-]+\$"
         return name.matches(Regex(regexPattern))
     }
+
     private fun showImageDialog() {
         val items = arrayOf("Take a photo", "Choose from gallery")
         val builder = AlertDialog.Builder(this)
