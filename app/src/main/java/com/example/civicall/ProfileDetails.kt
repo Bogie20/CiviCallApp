@@ -71,6 +71,7 @@ class ProfileDetails : AppCompatActivity() {
                 val imageProfile = snapshot.child("ImageProfile").value
                 val usertype = snapshot.child("userType").value
                 val campus = snapshot.child("campus").value
+                val nstp = snapshot.child("nstp").value
 
                 binding.firstName.text = firstName.toString()
                 binding.lastName.text = lastName.toString()
@@ -82,6 +83,8 @@ class ProfileDetails : AppCompatActivity() {
                 binding.gendertxt.text = gender.toString()
                 binding.usertypetxt.text = usertype.toString()
                 binding.campustxt.text = campus.toString()
+                binding.nstpnumtxt.text = nstp.toString()
+
                 val profileImage =
                     binding.profileImage // Replace with your ImageView ID in the layout
                 // Load the profile image using Picasso library

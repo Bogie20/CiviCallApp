@@ -4,7 +4,6 @@ package com.example.civicall
 import android.Manifest
 import android.app.Activity
 import android.app.DatePickerDialog
-import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -49,7 +48,6 @@ class EditProfile : AppCompatActivity() {
     private var selectedImageUri: Uri? = null
     private val REQUEST_CAMERA_PERMISSION = 1
     private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var progressDialog: ProgressDialog
     private var fullFname: String = ""
     private var fullMname: String = ""
     private var fullLname: String = ""
@@ -70,7 +68,6 @@ class EditProfile : AppCompatActivity() {
             }
         }
 
-
     private val selectImageLauncher: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -84,7 +81,6 @@ class EditProfile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         firebaseAuth = FirebaseAuth.getInstance()
         storage = FirebaseStorage.getInstance()
@@ -106,6 +102,11 @@ class EditProfile : AppCompatActivity() {
         val genderArray = resources.getStringArray(R.array.gender_array)
         val adaptergender = ArrayAdapter(this, R.layout.dropdown_item, genderArray)
         (genderDropdown as? AutoCompleteTextView)?.setAdapter(adaptergender)
+
+        val nstpcategoryDropdown = binding.nstp
+        val nstpcategoryArray = resources.getStringArray(R.array.nstp_category)
+        val adapternstp = ArrayAdapter(this, R.layout.dropdown_item, nstpcategoryArray)
+        (nstpcategoryDropdown as? AutoCompleteTextView)?.setAdapter(adapternstp)
 
         val birthday = binding.birthdate
         val cal = Calendar.getInstance()
@@ -187,27 +188,21 @@ class EditProfile : AppCompatActivity() {
             }
         }
 
-
-
-
         binding.savebtn.setOnClickListener {
-            updateProfile()
+            showSaveConfirmationDialog()
         }
-
 
         binding.back1.setOnClickListener {
             val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)
         }
-
-
         binding.profileImage.setOnClickListener {
             showImageDialog()
-
 
             checkAndRequestPermissions()
         }
     }
+
     private fun addTextWatcher(editText: EditText, maxLength: Int) {
         editText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -227,9 +222,17 @@ class EditProfile : AppCompatActivity() {
             }
         })
     }
+
     private fun checkAndRequestPermissions() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
-            ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE),
@@ -237,6 +240,7 @@ class EditProfile : AppCompatActivity() {
             )
         }
     }
+
     private fun checkUser() {
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser == null) {
@@ -248,7 +252,6 @@ class EditProfile : AppCompatActivity() {
             readData()
         }
     }
-
 
     private fun readData() {
         database.get().addOnSuccessListener { snapshot ->
@@ -273,20 +276,18 @@ class EditProfile : AppCompatActivity() {
         binding.Lname.text = Editable.Factory.getInstance().newEditable(user.lastname)
         binding.address.text = Editable.Factory.getInstance().newEditable(user.address)
         binding.Contactline.text = Editable.Factory.getInstance().newEditable(user.phoneno)
-        binding.ContactEme.text = Editable.Factory.getInstance().newEditable(user.ContactEme) // Set the ContactEme field
-        binding.nstp.text = Editable.Factory.getInstance().newEditable(user.nstp)             // Set the nstp field
-        binding.collegedept.text = Editable.Factory.getInstance().newEditable(user.collegedept) // Set the collegedept field
-
+        binding.ContactEme.text =
+            Editable.Factory.getInstance().newEditable(user.ContactEme) // Set the ContactEme field
         binding.campus.setText(user.campus, false)
         binding.usercategory.setText(user.userType, false)
         binding.birthdate.setText(user.birthday, false)
+        binding.nstp.setText(user.nstp, false)
         binding.spinnerSex.setText(user.gender, false)
 
         if (!user.ImageProfile.isNullOrEmpty()) {
             Picasso.get().load(user.ImageProfile).into(binding.profileImage)
         }
     }
-
 
 
     private fun updateProfile() {
@@ -307,7 +308,6 @@ class EditProfile : AppCompatActivity() {
             val updatedGender = binding.spinnerSex.text.toString()
             val updatedContactEme = binding.ContactEme.text.toString() // Get the ContactEme field
             val updatedNstp = binding.nstp.text.toString()             // Get the nstp field
-            val updatedCollegedept = binding.collegedept.text.toString() // Get the collegedept field
 
 
             // Add validation checks and return early if there is an error
@@ -347,9 +347,8 @@ class EditProfile : AppCompatActivity() {
                 "userType" to updatedUserType,
                 "birthday" to updatedBirthday,
                 "gender" to updatedGender,
-                "ContactEme" to updatedContactEme, // Add the ContactEme field
-                "nstp" to updatedNstp,             // Add the nstp field
-                "collegedept" to updatedCollegedept  // Add the collegedept field
+                "ContactEme" to updatedContactEme,
+                "nstp" to updatedNstp,
             )
 
             // Continue with the update if no validation error
@@ -366,18 +365,56 @@ class EditProfile : AppCompatActivity() {
             }
         }
     }
+
+    private var isSaveConfirmationDialogShowing = false // Add this variable
+
+    private fun showSaveConfirmationDialog() {
+        if (isSaveConfirmationDialogShowing) {
+            return // Dialog is already showing, return early
+        }
+        dismissCustomDialog()
+        val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val saveButton = dialogView.findViewById<Button>(R.id.saveBtn)
+        val cancelButton = dialogView.findViewById<Button>(R.id.cancelBtn)
+
+        // Set the animation style
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        // Set the background to be transparent
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        saveButton.setOnClickListener {
+            alertDialog.dismiss()
+            dismissCustomDialog() // Reset the flag when the dialog is dismissed
+            // User clicked "Save," perform the save operation
+            updateProfile()
+        }
+
+        cancelButton.setOnClickListener {
+            isSaveConfirmationDialogShowing = false // Reset the flag
+            alertDialog.dismiss()
+            // User clicked "Cancel," do nothing or provide feedback
+        }
+
+        alertDialog.show()
+        isSaveConfirmationDialogShowing =
+            true // Set the flag to indicate that the dialog is showing
+    }
+
     private fun showCustomPopup(message: String) {
         // Check if the pop-up is already showing, and if so, return early
         if (isPopupShowing) {
             return
         }
-
-        // Set isPopupShowing to true before showing the popup
-        isPopupShowing = true
-
+        dismissCustomDialog()
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
-        val dialogView = inflater.inflate(R.layout.dialog_success, null)
+        val dialogView = inflater.inflate(R.layout.dialog_flat, null)
+
         dialogBuilder.setView(dialogView)
         val alertDialog = dialogBuilder.create()
 
@@ -394,23 +431,22 @@ class EditProfile : AppCompatActivity() {
 
         okButton.setOnClickListener {
             alertDialog.dismiss()
-
-            // Set isPopupShowing to false when the pop-up is dismissed
-            isPopupShowing = false
+            isPopupShowing = false // Set the variable to false when the pop-up is dismissed
         }
 
         alertDialog.show()
+        isPopupShowing = true // Set the variable to true when the pop-up is displayed
     }
-
     private fun showCustomPopupError(message: String) {
         // Check if the pop-up is already showing, and if so, return early
         if (isPopupShowing) {
             return
         }
-
+        dismissCustomDialog()
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
-        val dialogView = inflater.inflate(R.layout.dialog_flat, null)
+        val dialogView = inflater.inflate(R.layout.dialog_error, null)
+
         dialogBuilder.setView(dialogView)
         val alertDialog = dialogBuilder.create()
 
@@ -440,6 +476,14 @@ class EditProfile : AppCompatActivity() {
             // alertDialog.dismiss()
             isPopupShowing = false
         }
+
+        if (isSaveConfirmationDialogShowing) {
+            // Dismiss the progress dialog
+            // For example:
+            // progressDialog.dismiss()
+            isSaveConfirmationDialogShowing = false
+        }
+
     }
     private fun validateBirthday(): Boolean {
         val birthday = binding.birthdate.text.toString().trim()
@@ -483,8 +527,7 @@ class EditProfile : AppCompatActivity() {
         val contactNumber = binding.Contactline.text.toString().trim()
 
         if (contactNumber.isEmpty()) {
-            binding.Contactline.error =
-                "Please enter Contact Number"
+            binding.Contactline.error = "Please enter Contact Number"
             return false
         } else if (!isValidPhoneNumber(contactNumber)) {
             binding.Contactline.error = "Invalid Contact Number"
@@ -498,8 +541,7 @@ class EditProfile : AppCompatActivity() {
         val emecontactNumber = binding.ContactEme.text.toString().trim()
 
         if (emecontactNumber.isEmpty()) {
-            binding.ContactEme.error =
-                "Please enter Contact Number"
+            binding.ContactEme.error = "Please enter Contact Number"
             return false
         } else if (!isValidPhoneNumber(emecontactNumber)) {
             binding.ContactEme.error = "Invalid Contact Number"
@@ -668,8 +710,8 @@ data class User(
     val email: String = "",
     val ImageProfile: String = "",
     val ContactEme: String = "",
-    val nstp: String = "",
-    val collegedept: String = ""
+    val nstp: String = ""
+
 )
 
 
