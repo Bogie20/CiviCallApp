@@ -3,6 +3,7 @@ package com.example.civicall
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import com.example.civicall.databinding.ActivityProfiledetailsBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -14,18 +15,23 @@ class ProfileDetails : AppCompatActivity() {
     private lateinit var binding: ActivityProfiledetailsBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
+    private lateinit var networkUtils: NetworkUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Initialize binding before setting the content view
         binding = ActivityProfiledetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
+
 
         binding.edit.setOnClickListener {
-            startActivity(Intent(this, EditProfile::class.java))
+            val intent = Intent(this, EditProfile::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
 
         }
-
         // Initialize Firebase authentication instance
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -34,11 +40,11 @@ class ProfileDetails : AppCompatActivity() {
 
         // Set up click listeners for UI elements
 
-
         binding.back1.setOnClickListener {
-            val intent = Intent(this, Dashboard::class.java)
-            startActivity(intent)        }
-
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter,R.anim.animate_fade_exit)
+        }
 
     }
 
@@ -101,6 +107,12 @@ class ProfileDetails : AppCompatActivity() {
             // Show a toast if there's a failure in fetching data
             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
         }
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // Cleanup to unregister the network callback
+        networkUtils.cleanup()
     }
 }
 

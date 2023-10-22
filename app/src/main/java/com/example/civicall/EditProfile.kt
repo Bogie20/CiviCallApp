@@ -16,6 +16,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
@@ -55,6 +56,7 @@ class EditProfile : AppCompatActivity() {
     private var fullMobileNumber: String = ""
     private var fullEmeMobileNumber: String = ""
     private var isPopupShowing = false
+    private lateinit var networkUtils: NetworkUtils
 
 
     private val takePictureLauncher: ActivityResultLauncher<Intent> =
@@ -81,12 +83,14 @@ class EditProfile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         firebaseAuth = FirebaseAuth.getInstance()
         storage = FirebaseStorage.getInstance()
         imageRef = storage.reference.child("profileImages")
 
         checkUser()
+
 
         val campusDropdown = binding.campus
         val campusesArray = resources.getStringArray(R.array.allowed_campuses)
@@ -193,8 +197,9 @@ class EditProfile : AppCompatActivity() {
         }
 
         binding.back1.setOnClickListener {
-            val intent = Intent(this, Dashboard::class.java)
+            val intent = Intent(this, ProfileDetails::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter,R.anim.animate_fade_exit)
         }
         binding.profileImage.setOnClickListener {
             showImageDialog()
@@ -725,6 +730,12 @@ class EditProfile : AppCompatActivity() {
                 Toast.makeText(this, "Failed to update profile image", Toast.LENGTH_SHORT).show()
             }
     }
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // Cleanup to unregister the network callback
+        networkUtils.cleanup()
+    }
 }
 
 
@@ -744,5 +755,6 @@ data class User(
     val nstp: String = ""
 
 )
+
 
 

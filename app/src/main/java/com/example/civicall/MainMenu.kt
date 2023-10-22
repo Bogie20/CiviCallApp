@@ -3,6 +3,7 @@ package com.example.civicall
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -22,23 +23,26 @@ class MainMenu : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private lateinit var binding: ActivityMainmenuBinding
     private var isLogoutDialogShown = false
+    private lateinit var networkUtils: NetworkUtils
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainmenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
 
         firebaseAuth = FirebaseAuth.getInstance()
         checkUser()
 
         BackClick = findViewById(R.id.back1)
 
-        BackClick.setOnClickListener {
+        binding.back1.setOnClickListener {
             val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)
-            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            overridePendingTransition(R.anim.animate_fade_enter,R.anim.animate_fade_exit)
         }
-
 
         val setting: TextView = findViewById(R.id.Setting)
         val calendar: TextView = findViewById(R.id.calendar)
@@ -115,9 +119,9 @@ class MainMenu : AppCompatActivity() {
             startActivity(intent)
         }
         editProfileCardView.setOnClickListener {
-            // Open the "Edit Profile" activity/form
             val intent = Intent(this, ProfileDetails::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
 
     }
@@ -170,7 +174,12 @@ class MainMenu : AppCompatActivity() {
         super.onBackPressed()
         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
+    override fun onDestroy() {
+        super.onDestroy()
 
+        // Cleanup to unregister the network callback
+        networkUtils.cleanup()
+    }
     }
 
 

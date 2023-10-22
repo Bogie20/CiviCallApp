@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -23,20 +24,21 @@ class Dashboard : AppCompatActivity() {
     private lateinit var binding: ActivityDashboardBinding
     private lateinit var firebaseAuth: FirebaseAuth
     lateinit var userDataViewModel: UserDataViewModel
-
+    private lateinit var networkUtils: NetworkUtils
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         userDataViewModel = ViewModelProvider(this).get(UserDataViewModel::class.java)
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
         firebaseAuth = FirebaseAuth.getInstance()
         checkUser()
         replaceFragment(CivicPostFragment())
-
         binding.bottomBar.setOnTabSelectListener(object : AnimatedBottomBar.OnTabSelectListener {
             override fun onTabSelected(
                 lastIndex: Int,
@@ -134,5 +136,9 @@ class Dashboard : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment1, fragment)
             .commit()
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup() // Clean up when the activity is destroyed
     }
 }
