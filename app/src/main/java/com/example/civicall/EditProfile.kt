@@ -198,9 +198,11 @@ class EditProfile : AppCompatActivity() {
 
         binding.back1.setOnClickListener {
             val intent = Intent(this, ProfileDetails::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
-            overridePendingTransition(R.anim.animate_fade_enter,R.anim.animate_fade_exit)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
+
         binding.profileImage.setOnClickListener {
             showImageDialog()
 
