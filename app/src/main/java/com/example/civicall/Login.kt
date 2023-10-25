@@ -64,7 +64,10 @@ class Login : AppCompatActivity() {
         passwordEditText = binding.passwordText
 
         binding.signUpTV.setOnClickListener {
-            startActivity(Intent(this, Register1::class.java))
+            val intent = Intent(this, Register1::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
 
         binding.btnlogin.setOnClickListener {
@@ -142,6 +145,9 @@ class Login : AppCompatActivity() {
                 view.findViewById<Button>(R.id.cancelbtn).setOnClickListener {
                     dialog.dismiss()
                     isDialogVisible = false // Reset the flag when the dialog is dismissed
+                }
+                dialog.setOnDismissListener {
+                    isDialogVisible = false
                 }
 
                 if (dialog.window != null) {
@@ -308,7 +314,10 @@ class Login : AppCompatActivity() {
 
         // Set the variable to true to indicate that a dialog is showing
         isProgressShowing = true
-
+        alertDialog.setOnDismissListener {
+            // Reset the flag when dismissing the dialog
+            isProgressShowing = false
+        }
         // Dismiss the dialog after the specified duration
         Handler(Looper.getMainLooper()).postDelayed({
             alertDialog.dismiss()
@@ -452,6 +461,11 @@ class Login : AppCompatActivity() {
                     TODO("Not yet implemented")
                 }
             })
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
     override fun onDestroy() {
         super.onDestroy()

@@ -47,6 +47,7 @@ class ProfileDetails : AppCompatActivity() {
             overridePendingTransition(R.anim.animate_fade_enter,R.anim.animate_fade_exit)
         }
 
+
     }
 
     // Function to check if a user is logged in or not
@@ -108,6 +109,11 @@ class ProfileDetails : AppCompatActivity() {
             // Show a toast if there's a failure in fetching data
             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
         }
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
     override fun onDestroy() {
         super.onDestroy()

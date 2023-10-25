@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -406,6 +407,9 @@ class EditProfile : AppCompatActivity() {
             alertDialog.dismiss()
             // User clicked "Cancel," do nothing or provide feedback
         }
+        alertDialog.setOnDismissListener{
+            isSaveConfirmationDialogShowing = false
+        }
 
         alertDialog.show()
         isSaveConfirmationDialogShowing =
@@ -416,7 +420,7 @@ class EditProfile : AppCompatActivity() {
         if (isPopupShowing) {
             return
         }
-        dismissCustomDialog()
+
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_flat, null)
@@ -439,6 +443,10 @@ class EditProfile : AppCompatActivity() {
             alertDialog.dismiss()
             isPopupShowing = false // Set the variable to false when the pop-up is dismissed
         }
+        alertDialog.setOnDismissListener{
+            isPopupShowing = false
+        }
+
 
         alertDialog.show()
         isPopupShowing = true // Set the variable to true when the pop-up is displayed
@@ -470,6 +478,9 @@ class EditProfile : AppCompatActivity() {
         okButton.setOnClickListener {
             alertDialog.dismiss()
             isPopupShowing = false // Set the variable to false when the pop-up is dismissed
+        }
+        alertDialog.setOnDismissListener{
+            isPopupShowing = false
         }
 
         alertDialog.show()
@@ -503,25 +514,26 @@ class EditProfile : AppCompatActivity() {
             alertDialog.dismiss()
             isPopupShowing = false // Set the variable to false when the pop-up is dismissed
         }
+        alertDialog.setOnDismissListener{
+            isPopupShowing = false
+        }
+
 
         alertDialog.show()
         isPopupShowing = true // Set the variable to true when the pop-up is displayed
     }
     private fun dismissCustomDialog() {
         if (isPopupShowing) {
-            // Dismiss the custom popup dialog
-            // For example:
-            // alertDialog.dismiss()
+
             isPopupShowing = false
         }
-
         if (isSaveConfirmationDialogShowing) {
-            // Dismiss the progress dialog
-            // For example:
-            // progressDialog.dismiss()
+
             isSaveConfirmationDialogShowing = false
         }
-
+        if (isImageDialogShowing) {
+            isImageDialogShowing = false
+        }
     }
     private fun validateBirthday(): Boolean {
         val birthday = binding.birthdate.text.toString().trim()
@@ -667,17 +679,51 @@ class EditProfile : AppCompatActivity() {
         }
     }
 
+    private var isImageDialogShowing = false // Initialize the flag
+
     private fun showImageDialog() {
-        val items = arrayOf("Take a photo", "Choose from gallery")
-        val builder = AlertDialog.Builder(this)
-        builder.setItems(items) { _, which ->
-            when (which) {
-                0 -> takePicture()
-                1 -> chooseFromGallery()
-            }
+        // Check if the dialog is already showing, and if so, return early
+        if (isImageDialogShowing) {
+            return
         }
-        builder.show()
+      dismissCustomDialog()
+        val dialogView = layoutInflater.inflate(R.layout.profileedit_popup, null)
+        val lytCameraPick = dialogView.findViewById<LinearLayout>(R.id.lytCameraPick)
+        val lytGalleryPick = dialogView.findViewById<LinearLayout>(R.id.lytGalleryPick)
+
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        // Set the background to be transparent
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        lytCameraPick.setOnClickListener {
+            takePicture()
+            alertDialog.dismiss() // Close the dialog after clicking "Take a photo"
+            // Reset the flag when dismissing the dialog
+            isImageDialogShowing = false
+        }
+
+        lytGalleryPick.setOnClickListener {
+            chooseFromGallery()
+            alertDialog.dismiss() // Close the dialog after clicking "Choose from gallery"
+            // Reset the flag when dismissing the dialog
+            isImageDialogShowing = false
+        }
+
+        alertDialog.setOnDismissListener {
+            // Reset the flag when dismissing the dialog
+            isImageDialogShowing = false
+        }
+
+        alertDialog.show()
+        // Set the flag to true when the dialog is displayed
+        isImageDialogShowing = true
     }
+
+
 
 
     private fun takePicture() {
@@ -699,7 +745,11 @@ class EditProfile : AppCompatActivity() {
         val path = MediaStore.Images.Media.insertImage(contentResolver, inImage, "Title", null)
         return Uri.parse(path)
     }
-
+    override fun onBackPressed() {
+        super.onBackPressed()
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+    }
 
     private fun uploadProfileImage(imageUri: Uri) {
         val firebaseUser = firebaseAuth.currentUser

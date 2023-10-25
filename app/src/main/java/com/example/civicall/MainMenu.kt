@@ -172,6 +172,7 @@ class MainMenu : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
     override fun onDestroy() {

@@ -691,6 +691,10 @@ class Register1 : AppCompatActivity() {
             alertDialog.dismiss()
             isPopupShowing = false // Set the variable to false when the pop-up is dismissed
         }
+        alertDialog.setOnDismissListener {
+            // Reset the flag when dismissing the dialog
+            isPopupShowing = false
+        }
 
         alertDialog.show()
         isPopupShowing = true // Set the variable to true when the pop-up is displayed
@@ -744,7 +748,10 @@ dismissCustomDialog()
             alertDialog.dismiss()
             isPopupShowing = false // Set the variable to false when the pop-up is dismissed
         }
-
+        alertDialog.setOnDismissListener {
+            // Reset the flag when dismissing the dialog
+            isPopupShowing = false
+        }
         alertDialog.show()
         isPopupShowing = true // Set the variable to true when the pop-up is displayed
     }
@@ -776,6 +783,7 @@ dismissCustomDialog()
 
         // Set the variable to true to indicate that the progress bar is showing
         isProgressBarShowing = true
+
 
         // Dismiss the dialog after the specified duration
         Handler(Looper.getMainLooper()).postDelayed({
@@ -862,6 +870,11 @@ dismissCustomDialog()
             .addOnFailureListener { e ->
                 showCustomPopupError("Failed Saving User's Info due to ${e.message}")
             }
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
     override fun onDestroy() {
         super.onDestroy()
