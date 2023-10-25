@@ -461,10 +461,11 @@ class Register1 : AppCompatActivity() {
         progressDialog.setTitle("Please wait...")
         progressDialog.setCanceledOnTouchOutside(false)
 
-        val backbtn: ImageView = findViewById(R.id.back)
-
-        backbtn.setOnClickListener {
-            onBackPressed()
+        activityRegister1Binding.back.setOnClickListener {
+            val intent = Intent(this, Login::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter,R.anim.animate_fade_exit)
         }
         val regbtn: Button = findViewById(R.id.Reg)
         regbtn.setOnClickListener {
