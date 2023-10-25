@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.civicall.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.civicall.CivicEngagementInfo.CivicAdapterMain
 import com.example.civicall.CivicEngagementInfo.DataMain
 
 class DisasterResponseMenu : AppCompatActivity() {

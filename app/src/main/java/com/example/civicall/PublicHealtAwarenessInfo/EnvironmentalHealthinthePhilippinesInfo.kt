@@ -25,93 +25,93 @@ class EnvironmentalHealthinthePhilippinesInfo : AppCompatActivity() {
 
         dataList.add(
             DataItem(
-                "IMMUNIZATION PROGRAMS FOR PREVENTIVE HEALTHCARE IN THE PHILIPPINES",
-                "Immunization programs are the cornerstone of preventive healthcare in the Philippines, safeguarding children from life-threatening diseases. This vital public health initiative ensures a healthier future for the nation.\" delves into the historical foundations and legal intricacies that shape the cherished freedom of expression in the Philippines. \"\"\n\n" +
-                        "1. ROUTINE VACCINATION SCHEDULE: Children in the Philippines receive routine vaccines from birth to one year of age, with additional doses during supplementary or outbreak vaccination campaigns.\n\n" +
-                        "2. CRITICAL DISEASES PREVENTION: Vaccination programs protect children from life-threatening diseases, such as tuberculosis, hepatitis B, and poliovirus.\n\n" +
-                        "3. BCG VACCINE: Administered at birth, the BCG vaccine offers protection against tuberculosis, a prevalent and challenging disease in the Philippines.\n\n" +
-                        "4. HEPATITIS B IMMUNIZATION: Given at birth, the hepatitis B vaccine prevents chronic infections and complications that may arise later in life.\n\n" +
-                        "5. PENTAVALENT VACCINE: Administered at 6, 10, and 14 weeks, this vaccine guards against diphtheria, pertussis, tetanus, Haemophilus influenzae type b, and hepatitis B.\n\n" +
-                        "6. ORAL AND INACTIVATED POLIO VACCINES: These vaccines, given at specific intervals, protect against poliovirus, a virus that can cause paralysis and death.\n\n" +
-                        "7. PCV VACCINE: Administered at 6, 10, and 14 weeks, the PCV vaccine helps prevent pneumonia and meningitis in young children.\n\n" +
-                        "8. MMR VACCINE: Given at 9 months and 1 year old, the MMR vaccine safeguards against measles, mumps, and rubella, reducing the risk of serious complications.\n\n" +
-                        "9. ONGOING VACCINATION DURING THE PANDEMIC: Routine immunization remains an essential health service even during the COVID-19 pandemic, with measures in place to ensure safety.\n\n" +
-                        "10. HIGH COVERAGE TARGET: The government aims for routine immunization coverage among children to be at least 95%, and these vaccines are provided for free in public health centers and facilities to ensure accessibility for all.",
-                R.drawable.img_331,
-                "https://www.unicef.org/philippines/stories/routine-immunization-children-philippines",
-                "https://www.unicef.org/philippines/sites/unicef.org.philippines/files/styles/hero_extended/public/1000002294%20%286000%C3%974000%29.jpeg?itok=LE9RJ2vA"
+                "ENVIRONMENTAL HEALTH RISKS: NAVIGATING THE PERILS WE FACE",
+                "Amidst the breathtaking landscapes of the Philippines lies a pressing concern: environmental health risks. Discover how air pollution, plastic pollution, marine contamination, and sea level rise threaten the well-being of its people in 2023.\" delves into the historical foundations and legal intricacies that shape the cherished freedom of expression in the Philippines. \"\"\n\n" +
+                        "1. AIR POLLUTION CRISIS: The Philippines faces a severe air pollution crisis, with an annual mean of fine particulate matter far exceeding recommended levels, largely due to burning fossil fuels and vehicular emissions.\n" +
+                        "2. PLASTIC POLLUTION CHALLENGE: The country grapples with staggering plastic pollution, generating 2.7 million tons of plastic waste annually, primarily because of inefficient waste management and heavy reliance on single-use plastics.\n" +
+                        "3. MARINE POLLUTION CONUNDRUM: The Philippines is the third-largest contributor to marine plastic pollution globally, with 20% of its plastic waste ending up in the sea, endangering marine life and biodiversity.\n" +
+                        "4. SEA LEVEL RISE THREAT: Frequent floods in 2022, coupled with rising sea levels, pose a significant threat to coastal regions. The capital city, Manila, faces displacement by 2100 if current trends persist.\n" +
+                        "5. GOVERNMENT INITIATIVES: The Department of Environment and Natural Resources (DENR) is taking steps to combat air pollution spikes due to factors like increased vehicle traffic and firecracker use.\n" +
+                        "6. EXTENDED PRODUCER RESPONSIBILITY ACT (EPRA): In 2022, the government introduced EPRA, obligating companies to create programs for plastic waste reduction, with an 80% offset or recovery target by 2028.\n" +
+                        "7. EFFORTS TO CURB MARINE POLLUTION: The government partners with organizations like the World Wide Fund for Nature (WWF) to address marine pollution around ports and implement a National Plan of Action on Marine Litter.\n" +
+                        "8. INCOMPLETE SEA LEVEL RISE MITIGATION: While measures like seawalls have been taken, experts argue that more comprehensive strategies are needed to protect coastal regions from sea level rise.\n" +
+                        "9. PUBLIC AWARENESS AND COMMITMENT: Successful solutions to these environmental challenges require not only government actions but also the commitment and participation of the public.\n" +
+                        "10. COLLABORATIVE GLOBAL EFFORTS: The Philippines' environmental issues highlight the need for global cooperation to address climate change and environmental health risks.",
+                R.drawable.img_366,
+                "https://earth.org/environmental-issues-in-the-philippines/",
+                "https://u4d2z7k9.rocketcdn.me/wp-content/uploads/2022/11/11290331484_fd8538ba22_k-1536x908.jpg.webp"
             )
         )
         dataList.add(
-            DataItem("HEALTH SCREENINGS AND EARLY DETECTION IN THE CONTEXT OF PREVENTIVE HEALTHCARE",
-                "In the Philippines, advocates are sounding the alarm on the inadequate cancer screening rates, emphasizing that a significant portion of cancer cases can be prevented. The call for intensifying cancer screening efforts is gaining momentum, driven by the urgency to reduce cancer-related mortality.\n\n" +
-                        "1. LOW CANCER SCREENING RATES: The Philippines faces challenges with extremely low rates of breast and cervical cancer screenings, as highlighted in the article.\n" +
-                        "2. PREVENTABLE CANCER BURDEN: Health experts stress that a substantial portion of the country's cancer burden is preventable through effective screening programs and early detection.\n" +
-                        "3. EARLY DETECTION SIGNIFICANCE: Early cancer detection through screening is crucial for improving treatment outcomes and reducing mortality rates.\n" +
-                        "4. GLOBAL COMPARISONS: The Philippines lags behind countries with advanced healthcare systems in terms of cancer screening prevalence, including self-breast examinations, mammograms, and PAP smears.\n" +
-                        "5. BUDGETARY CHALLENGES: The article underscores the need for increased funding for the country's anti-cancer program, as the allocated budget is deemed insufficient to address the needs of cancer patients.\n" +
-                        "6. NATIONAL INTEGRATED CANCER CONTROL ACT: The Philippine government has allocated P1.56 billion for Filipino cancer patients under Republic Act No. 11215, emphasizing the importance of policy support for cancer care.\n" +
-                        "7. INSUFFICIENT FUNDING: Health advocates, including the Philippine General Hospital Cancer Institute Chairman, express concerns about the inadequacy of the allocated budget, particularly for breast and cervical cancer patients.\n" +
-                        "8. LIMITED PATIENT COVERAGE: The allocated budget is only capable of providing assistance to a fraction of cancer patients throughout their required treatment cycles, whether it be targeted therapy or chemotherapy.\n" +
-                        "9. TREATMENT COSTS: Chemotherapy costs about P5,000 per cycle, while targeted therapy costs around P30,000 per session, underlining the financial burden on cancer patients and the healthcare system.\n" +
-                        "10. CANCER MORTALITY IN THE PHILIPPINES: The Philippines faces the challenge of addressing cancer as a leading cause of mortality, with breast cancer cases alone reaching 27,163 in 2020, according to data from the World Health Organization.\n",
-                R.drawable.img_332,
-                "https://www.pids.gov.ph/details/news/in-the-news/advocates-seek-intensification-of-cancer-screening-in-ph",
-                "https://childhope.org.ph/wp-content/uploads/2022/06/childhope-philippines-health-program-e1656895068613.jpg")
+            DataItem("POLLUTION: THE LOOMING THREAT TO OUR ECOSYSTEM",
+                "Amidst the scenic beauty of the Philippines lies a looming threat to its ecosystem – pollution. From tainted air to contaminated waters and plastic waste, the country grapples with environmental challenges that demand urgent attention and action.\n\n" +
+                        "1. AIR POLLUTION IN THE PHILIPPINES: The Philippines faces significant air pollution problems, with air quality often exceeding recommended levels, leading to severe health impacts.\n" +
+                        "2. CONSEQUENCES OF FOSSIL FUEL USAGE: Air pollution, primarily caused by fossil fuel consumption, results in approximately 27,000 premature deaths annually, with an economic cost of 1.9% of GDP.\n" +
+                        "3. WATER POLLUTION IN PASIG RIVER: The Pasig River, a crucial water system in Metro Manila, has suffered from pollution, impacting its potential for fisheries, recreation, and manufacturing.\n" +
+                        "4. PLASTIC POLLUTION IN RIVERS: The Philippines, particularly the Pasig River, ranks as a major contributor to riverine plastic emissions into the ocean, affecting Laguna de Bay and Manila Bay.\n" +
+                        "5. CHALLENGES IN LAGUNA DE BAY: Laguna de Bay, a vital natural asset, faces issues such as eutrophication, harmful algal blooms, and pollution, impacting fishing, agriculture, and domestic supply.\n" +
+                        "6. SOLID WASTE MANAGEMENT ISSUES: The Philippines struggles with solid waste management, generating millions of tonnes of waste, leading to pollution in water bodies and urban areas.\n" +
+                        "7. PLASTIC POLLUTION CRISIS: The Philippines is a top global generator of plastic waste, contributing to ocean pollution, exacerbated by the surge in single-use plastics due to the COVID-19 pandemic.\n" +
+                        "8. HISTORICAL EVOLUTION OF POLLUTION POLICIES: The country has recognized pollution as a major issue, with policies dating back to 1964, leading to the formation of environmental agencies such as DENR.\n" +
+                        "9. KEY ENVIRONMENTAL LAWS: Laws like the Clean Air Act, Clean Water Act, and Ecological Solid Waste Management Act have been enacted to address pollution and environmental concerns.\n" +
+                        "10. CHALLENGES IN POLICY IMPLEMENTATION: Despite these policies, challenges persist in implementing pollution control measures due to enforcement issues, inadequate resources, and low public awareness.",
+                        R.drawable.img_367,
+                "https://dicf.unepgrid.ch/philippines/pollution#:~:text=Air%2C%20waste%20and%20water%20pollution,rapid%20development%2C%20industrialization%20and%20urbanization.",
+                "https://www.flipscience.ph/wp-content/uploads/2018/06/FS.Covers.Oct-Nov2018-2.jpg")
         )
         dataList.add(
-            DataItem("IMPROVING HEALTHCARE INFRASTRUCTURE FOR PREVENTIVE MEDICINE IN THE PHILIPPINES",
-                "In the face of global health challenges, the Philippines must revamp its healthcare infrastructure to fortify preventive medicine and bolster the nation's resilience in the wake of public health crises. The state of the Philippines' healthcare system, as discussed in this evaluation, unveils critical areas in need of improvement to support an effective preventive healthcare framework.\"\n\n" +
-                        "1. STEWARDSHIP AND ACCOUNTABILITY: Leadership and Governance Challenges - Assessing the state of governance and leadership in the Philippines' healthcare system, emphasizing the need for effective policy frameworks and accountability.\n" +
-                        "2. SHIFT TO PRIMARY CARE: UHC Law and the Paradigm Shift - Highlighting the Universal Health Care (UHC) Law as a milestone and its focus on transitioning to primary care.\n" +
-                        "3. GOVERNMENT RESPONSE TO COVID-19: Emergency Measures and Late Travel Ban - Discussing the government's response to the COVID-19 pandemic, including late travel restrictions and their impact.\n" +
-                        "4. RESOURCE DEVELOPMENT: Health Workforce and Neglect - Examining the status of the health workforce, information systems, and access to medical products, with a focus on the neglect of healthcare workers.\n" +
-                        "5. FUNDING CHALLENGES: Budget Mismanagement in Healthcare - Highlighting the availability of funds but the mismanagement of the budget, particularly in approving testing kits and the affordability of tests.\n" +
-                        "6. ADEQUACY OF FUNDS: Adequate Budget Allocation but Misuse - Discussing the government's significant allocation of funds for health services and the mismanagement of this budget.\n" +
-                        "7. ACCESS TO TESTING: Slow Approval of Testing Kits - Examining the slow approval of testing kit applications and the unaffordability of tests for many Filipinos.\n" +
-                        "8. VACCINATION CHALLENGES: Vaccine Distribution and Hurdles - Discussing the uneven distribution of vaccines across regions and the challenges in achieving vaccination goals due to a lack of health workers and accessible health centers.\n" +
-                        "9. EFFORTS FALLING SHORT: Missed Opportunities in Vaccine Administration - Addressing the slow pace of vaccine administration and the failure to capitalize on vaccine availability.\n" +
-                        "10. CALL FOR OVERHAUL: A Need for Systemic Improvements - Concluding with the call for a comprehensive overhaul of the Philippine healthcare system to address the shortcomings in the four crucial functions discussed.",
-                R.drawable.img_333,
-                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9201087/",
-                "https://www.bworldonline.com/wp-content/uploads/2023/01/Covid-19-patient.jpg")
-        )
-
-        dataList.add(
-            DataItem("RAISING PUBLIC AWARENESS FOR PREVENTIVE HEALTHCARE",
-                "In the Philippines, addressing stroke prevention and awareness is crucial as stroke remains a significant health challenge. This article presents a comprehensive strategy to raise public awareness for preventive healthcare, specifically in the context of stroke.\"\n" +
-
-                        "1. ELEVATED STROKE INCIDENCE: Stroke is a major cause of mortality and disability in the Philippines, especially among those in lower-income brackets.\n" +
-                        "2. COVID-19's IMPACT: The COVID-19 pandemic disrupted healthcare systems and posed challenges for stroke diagnosis and treatment, leading to delays in care.\n" +
-                        "3. DELAYED HOSPITAL CONSULTATION: The pandemic resulted in delayed hospital consultations for stroke, contributing to increased stroke severity.\n" +
-                        "4. CHALLENGES IN STROKE CARE: Gaps in the Philippine healthcare system regarding stroke care, including limitations in stroke awareness, are discussed.\n" +
-                        "5. COMPREHENSIVE STROKE PREVENTION: A two-pronged approach combining community-based prevention and targeted public awareness campaigns to address stroke's multifaceted challenge.\n" +
-                        "6. IDENTIFYING MODIFIABLE RISK FACTORS: Community-based stroke prevention involves personalized assessments of risk factors such as hypertension and smoking.\n" +
-                        "7. THE NEED FOR PUBLIC STROKE AWARENESS: Emphasizing the importance of public awareness campaigns for recognizing stroke symptoms and seeking prompt medical attention.\n" +
-                        "8. TAILORED STROKE AWARENESS CAMPAIGNS: Decentralized campaigns use culturally adapted materials, engagement with local stakeholders, and educational initiatives.\n" +
-                        "9. ENGAGING COMMUNITY HEALTH WORKERS: Community health workers play a crucial role in educating high-risk individuals about stroke risk factors and recognition.\n" +
-                        "10. COLLABORATIVE EFFORTS: Collaboration among national and local entities, including non-profit organizations and educational institutions, is vital for the success of stroke awareness campaigns.",
-                R.drawable.img_334,
-                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10502210/",
-                "https://pia.gov.ph/uploads/2023/04/aa3fb09e46d5e9379a4b6c3c1a321938.jpg")
+            DataItem("CLIMATE CHANGE IMPACT: ADAPTING TO A CHANGING WORLD",
+                "Amidst the growing threats of climate change, the Philippines finds itself on the frontline of environmental challenges, with rising sea levels and extreme weather events becoming increasingly disruptive. In this dynamic landscape, the nation must adapt to ensure its resilience and take bold steps towards mitigating the effects of a changing world.\"\n\n" +
+                        "1. WARNING ON RISING SEA LEVELS: The Philippines warns that rising sea levels pose a threat to its boundaries and coastal areas.\n" +
+                        "2. VULNERABILITY TO SEA LEVEL RISE: With over half of its cities and communities along coasts, the Philippines is highly vulnerable to sea level rise due to climate change.\n" +
+                        "3. OBSERVATIONS OF SEA LEVEL RISE: The Philippines has seen sea levels rise by 60 centimeters, significantly higher than the global average.\n" +
+                        "4. NATIONAL SECURITY IMPACT: Sea level rise endangers national security, affecting sovereignty, well-being, and the way of life, particularly for coastal communities.\n" +
+                        "5. PEOPLE-CENTERED APPROACH: Discussions on the implications of sea level rise on peace and security should prioritize people's well-being.\n" +
+                        "6. PREVENTING CONFLICT: Stability in boundaries is essential to prevent conflict, and a focus on certainty and predictability is crucial.\n" +
+                        "7. UN'S ROLE: The United Nations, including the Security Council, should consider the Intergovernmental Panel on Climate Change's findings and recommendations.\n" +
+                        "8. ACCELERATED GLOBAL SEA LEVEL RISE: Global sea levels have risen faster since 1900 than in the past 3,000 years, even with limited global warming.\n" +
+                        "9. RISK TO UN MEMBER STATES: Sea level rise poses a real risk to over two-thirds of UN member states, impacting maritime zones and resource access.\n" +
+                        "10. MASS DISPLACEMENT THREAT: Nearly 900 million people living in low-lying coastal zones face the risk of displacement, resource competition, and a potential mass exodus.",
+                R.drawable.img_368,
+                "https://www.philstar.com/headlines/2023/02/20/2246224/rising-sea-level-threatens-stability-boundaries-philippines-warns",
+                "https://icsc.ngo/wp-content/uploads/2020/03/AFP_manila-residents-flooding-storm.jpg")
         )
 
         dataList.add(
-            DataItem("ADDRESSING VACCINE HESITANCY IN THE PHILIPPINES",
+            DataItem("GREEN INITIATIVES: PAVING THE WAY FOR A SUSTAINABLE FUTURE",
+                "In the lush archipelago of the Philippines, a green revolution is underway. As the nation confronts the challenges of environmental sustainability, innovative green initiatives are paving the way for a more sustainable and eco-conscious future.\"\n" +
+
+                        "1. CLIMATE CHANGE'S VISIBLE IMPACT: The Philippines faces the stark reality of climate change, with rising sea levels, more frequent typhoons, and destructive storms making the effects increasingly visible.\n" +
+                        "2. ENVIRONMENTAL VULNERABILITY: Due to its geographical location, the Philippines is among the most vulnerable nations to climate change, posing threats to both human life and the economy.\n" +
+                        "3. BIODIVERSITY HOTSPOT: The country boasts a remarkable biodiversity, holding two-thirds of the world's species. It depends on this diverse ecosystem for essential resources and tourism-driven economic growth.\n" +
+                        "4. CLIMATE CHANGE LEGISLATION: The Philippine government enacted the Climate Change Act in 2009 to foster climate resilience, low-carbon growth, and global climate engagement.\n" +
+                        "5. RENEWABLE ENERGY CHALLENGES: While over 70% of the country's energy comes from fossil fuels, the Philippines aims to increase renewable energy's share to 35% by 2030, focusing on overcoming obstacles to adoption.\n" +
+                        "6. FOREIGN INVESTMENTS IN GREEN ENERGY: Foreign companies like GE and Arran Investment are partnering with local entities to promote renewable energy sources, including concentrated solar power and photovoltaic systems.\n" +
+                        "7. SUSTAINABLE TOURISM: The tourism sector, while a significant economic driver, poses environmental challenges. The Department of Tourism is working to rehabilitate tourist destinations with a focus on sustainability.\n" +
+                        "8. GRASSROOTS ENVIRONMENTAL INITIATIVES: Marginalized communities and NGOs are driving social enterprises that protect the environment, assist small-scale agricultural producers, and bolster communities against climate change.\n" +
+                        "9. YOUTH CLIMATE ACTIVISM: Filipino youth are taking up the mantle of climate activism, demanding climate justice and advocating for solutions to combat the climate crisis.\n" +
+                        "10. SUSTAINABLE DEVELOPMENT GOALS: The Philippines is actively working to improve its ranking in the United Nations Sustainable Development Report, aiming for a future where sustainability and environmental conservation thrive.",
+                R.drawable.img_369,
+                "https://priorityconsultants.com/blog/green-is-in-the-rise-of-environmental-sustainability-in-the-philippines/",
+                "http://new.priorityconsultants.com/wp-content/uploads/2021/05/PC-Green-blogpost4-1024x538.jpg")
+        )
+
+        dataList.add(
+            DataItem("ECO-AWARENESS: FOSTERING ENVIRONMENTAL CONSCIOUSNESS",
                 "In the face of the COVID-19 pandemic, addressing vaccine hesitancy in the Philippines is paramount. This article explores the challenges, historical concerns, and legal aspects surrounding vaccine hesitancy, emphasizing the need for transparent policy responses.\n\n\n" +
-                        "1. UNDERSTANDING VACCINE HESITANCY: Introduction to the concept of vaccine hesitancy and its relevance in the Philippines.\n" +
-                        "2. FILIPINO ATTITUDES TOWARDS COVID-19 VACCINATION: Highlights of survey data indicating hesitancy levels among Filipinos.\n" +
-                        "3. VACCINE HESITANCY AND MEASLES OUTBREAK: Discussing past instances where vaccine hesitancy contributed to health crises in the Philippines.\n" +
-                        "4. IMPACT OF DENGVAXIA SCARE: Exploring how the Dengvaxia controversy fueled vaccine hesitancy and its consequences.\n" +
-                        "5. OBSTACLES TO SUCCESSFUL IMMUNIZATION PROGRAMS: Discussing challenges faced in previous public immunization schemes and their impact.\n" +
-                        "6. VACCINE HESITANCY WORLDWIDE: Comparing vaccine hesitancy issues in the Philippines to those in other countries, such as the US.\n" +
-                        "7. CONCERNS OVER COVID-19 VACCINE SIDE EFFECTS: Addressing how reported side effects of COVID-19 vaccines have contributed to hesitancy.\n" +
-                        "8. MANDATORY VACCINATION AND CONSTITUTIONAL CONCERNS: Exploring the legality of mandatory vaccination and its implications on individual rights.\n" +
-                        "9. LEADERSHIP AND PUBLIC TRUST: Highlighting the importance of leadership in restoring public trust in vaccines.\n" +
-                        "10. FOSTERING VACCINE CONFIDENCE: Emphasizing the need for collective efforts, transparency, and civic engagement to combat vaccine hesitancy in the Philippines.",
-                R.drawable.img_335,
-                "https://www.rappler.com/voices/imho/analysis-exploring-vaccine-hesitancy-covid-19-pandemic/",
-                "https://www.rappler.com/tachyon/2021/04/imho-sq.jpg?resize=800%2C800&zoom=1")
+                        "1. BREEZE'S ECOPROJECT: Breeze's ongoing EcoProject campaign focuses on nurturing eco-awareness among young children.\n" +
+                        "2. ENVIRONMENTAL PROTECTION: The campaign aims to raise awareness about environmental protection, particularly in the Global South.\n" +
+                        "3. BEHAVIORAL CHANGE: Breeze recognizes the need for behavioral change in caring for the environment and believes that children play a key role in this transformation.\n" +
+                        "4. ECO-FRIENDLY FORMULATION: Breeze has introduced an eco-friendly formulation for its laundry powder, incorporating naturally derived stain removers and biodegradable ingredients.\n" +
+                        "5. REDUCTION IN CRUDE-OIL BASED INGREDIENTS: This formulation uses 25% less crude-oil based ingredients compared to the 2013 version of the product.\n" +
+                        "6. LEARNING THROUGH GETTING DIRTY: Breeze believes that children can learn and create a positive impact by getting involved in environmental activities, even if it means getting dirty.\n" +
+                        "7. EMPOWERING CHILDREN: The campaign empowers children to take action and feel they can make a difference when they see something wrong.\n" +
+                        "8. PARTNERSHIPS WITH KNOWLEDGE CHANNEL: Breeze collaborates with Knowledge Channel, Department of Education, and School District Officers to engage third graders in eco-missions.\n" +
+                        "9. ECODIARY AND PRIZES: Students participate in educational videos and eco-missions, documenting their experiences in EcoDiaries for a chance to win prizes.\n" +
+                        "10. ECOLLECT PROGRAM: Breeze's Ecollect program collects plastic waste from schools and upcycles it, reinforcing the message that small actions can make a significant impact on the environment.",
+                R.drawable.img_370,
+                "https://www.cnnphilippines.com/lifestyle/2022/12/12/getting-dirty-for-good-breeze-ecoproject.html",
+                "https://www.cnnphilippines.com/.imaging/default/dam/cnn/2022/12/12/ADVERTORIAL%20BREEZE%20ECOPROJECT/BREEZE-ECOPROJECT-1.png/jcr:content.png?width=750&height=450&crop:1:1,smart")
         )
 
 

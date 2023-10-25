@@ -25,93 +25,93 @@ class SocioeconomicFactorsandHealthInfo : AppCompatActivity() {
 
         dataList.add(
             DataItem(
-                "IMMUNIZATION PROGRAMS FOR PREVENTIVE HEALTHCARE IN THE PHILIPPINES",
-                "Immunization programs are the cornerstone of preventive healthcare in the Philippines, safeguarding children from life-threatening diseases. This vital public health initiative ensures a healthier future for the nation.\" delves into the historical foundations and legal intricacies that shape the cherished freedom of expression in the Philippines. \"\"\n\n" +
-                        "1. ROUTINE VACCINATION SCHEDULE: Children in the Philippines receive routine vaccines from birth to one year of age, with additional doses during supplementary or outbreak vaccination campaigns.\n\n" +
-                        "2. CRITICAL DISEASES PREVENTION: Vaccination programs protect children from life-threatening diseases, such as tuberculosis, hepatitis B, and poliovirus.\n\n" +
-                        "3. BCG VACCINE: Administered at birth, the BCG vaccine offers protection against tuberculosis, a prevalent and challenging disease in the Philippines.\n\n" +
-                        "4. HEPATITIS B IMMUNIZATION: Given at birth, the hepatitis B vaccine prevents chronic infections and complications that may arise later in life.\n\n" +
-                        "5. PENTAVALENT VACCINE: Administered at 6, 10, and 14 weeks, this vaccine guards against diphtheria, pertussis, tetanus, Haemophilus influenzae type b, and hepatitis B.\n\n" +
-                        "6. ORAL AND INACTIVATED POLIO VACCINES: These vaccines, given at specific intervals, protect against poliovirus, a virus that can cause paralysis and death.\n\n" +
-                        "7. PCV VACCINE: Administered at 6, 10, and 14 weeks, the PCV vaccine helps prevent pneumonia and meningitis in young children.\n\n" +
-                        "8. MMR VACCINE: Given at 9 months and 1 year old, the MMR vaccine safeguards against measles, mumps, and rubella, reducing the risk of serious complications.\n\n" +
-                        "9. ONGOING VACCINATION DURING THE PANDEMIC: Routine immunization remains an essential health service even during the COVID-19 pandemic, with measures in place to ensure safety.\n\n" +
-                        "10. HIGH COVERAGE TARGET: The government aims for routine immunization coverage among children to be at least 95%, and these vaccines are provided for free in public health centers and facilities to ensure accessibility for all.",
-                R.drawable.img_331,
-                "https://www.unicef.org/philippines/stories/routine-immunization-children-philippines",
-                "https://www.unicef.org/philippines/sites/unicef.org.philippines/files/styles/hero_extended/public/1000002294%20%286000%C3%974000%29.jpeg?itok=LE9RJ2vA"
+                "HEALTH INEQUITIES IN THE PHILIPPINES: UNMASKING THE SOCIOECONOMIC DIVIDE",
+                "In the Philippines, a growing concern revolves around health inequities, where socioeconomic disparities impact access to vital healthcare services and coverage. This study unveils the intricate web of health inequalities among older adults, shedding light on the underlying factors and their consequences.\" delves into the historical foundations and legal intricacies that shape the cherished freedom of expression in the Philippines. \"\"\n\n" +
+                        "1. GROWING AGING POPULATION: The Philippines is experiencing an aging population, with projections indicating that older adults will comprise 14% of the total population by 2050.\n\n" +
+                        "2. HEALTHCARE DEMAND: As the older population grows, there's an increasing demand for healthcare services, particularly to address complex health needs among older adults.\n\n" +
+                        "3. HEALTH POLICY EVOLUTION: The country has implemented various health policies, including the National Health Insurance Program (NHIP), to improve healthcare access and reduce inequities.\n\n" +
+                        "4. NATIONAL HEALTH INSURANCE PROGRAM (NHIP): NHIP aims to provide financial protection and enhance access to healthcare, covering diverse membership categories.\n\n" +
+                        "5. SOCIAL HEALTH INSURANCE: The NHIP functions as a form of social health insurance and was established in 1995 through Republic Act 7875, creating the Philippine Health Insurance Corporation (PhilHealth).\n\n" +
+                        "6. INCLUSION OF SENIOR CITIZENS: In 2014, older adults aged 60 and above were automatically enrolled in the NHIP, ensuring access to free inpatient healthcare at government hospitals.\n\n" +
+                        "7. SOCIOECONOMIC DISPARITIES: The Philippines grapples with socioeconomic disparities in healthcare access, with differences based on factors like wealth, geography, and rural or urban residence.\n\n" +
+                        "8. POLICY DEVELOPMENTS: Multiple policy developments, such as the 'No Balance Billing' and the 'Z Benefit Package,' aimed to improve access to quality healthcare.\n\n" +
+                        "9. REDUCTION IN INEQUALITIES: The study reveals that NHIP coverage and healthcare utilization among older adults improved from 2003 to 2017, reducing socioeconomic inequalities over time.\n\n" +
+                        "10. PUBLIC HEALTH CHALLENGE: Achieving universal health coverage and addressing health disparities among older adults remain important public health challenges in the Philippines.",
+                R.drawable.img_361,
+                "https://environhealthprevmed.biomedcentral.com/articles/10.1186/s12199-020-00854-9",
+                "https://media.philstar.com/photos/2019/02/23/gen3-maternity-hospital-kjrosales_2019-02-23_23-04-39.jpg"
             )
         )
         dataList.add(
-            DataItem("HEALTH SCREENINGS AND EARLY DETECTION IN THE CONTEXT OF PREVENTIVE HEALTHCARE",
-                "In the Philippines, advocates are sounding the alarm on the inadequate cancer screening rates, emphasizing that a significant portion of cancer cases can be prevented. The call for intensifying cancer screening efforts is gaining momentum, driven by the urgency to reduce cancer-related mortality.\n\n" +
-                        "1. LOW CANCER SCREENING RATES: The Philippines faces challenges with extremely low rates of breast and cervical cancer screenings, as highlighted in the article.\n" +
-                        "2. PREVENTABLE CANCER BURDEN: Health experts stress that a substantial portion of the country's cancer burden is preventable through effective screening programs and early detection.\n" +
-                        "3. EARLY DETECTION SIGNIFICANCE: Early cancer detection through screening is crucial for improving treatment outcomes and reducing mortality rates.\n" +
-                        "4. GLOBAL COMPARISONS: The Philippines lags behind countries with advanced healthcare systems in terms of cancer screening prevalence, including self-breast examinations, mammograms, and PAP smears.\n" +
-                        "5. BUDGETARY CHALLENGES: The article underscores the need for increased funding for the country's anti-cancer program, as the allocated budget is deemed insufficient to address the needs of cancer patients.\n" +
-                        "6. NATIONAL INTEGRATED CANCER CONTROL ACT: The Philippine government has allocated P1.56 billion for Filipino cancer patients under Republic Act No. 11215, emphasizing the importance of policy support for cancer care.\n" +
-                        "7. INSUFFICIENT FUNDING: Health advocates, including the Philippine General Hospital Cancer Institute Chairman, express concerns about the inadequacy of the allocated budget, particularly for breast and cervical cancer patients.\n" +
-                        "8. LIMITED PATIENT COVERAGE: The allocated budget is only capable of providing assistance to a fraction of cancer patients throughout their required treatment cycles, whether it be targeted therapy or chemotherapy.\n" +
-                        "9. TREATMENT COSTS: Chemotherapy costs about P5,000 per cycle, while targeted therapy costs around P30,000 per session, underlining the financial burden on cancer patients and the healthcare system.\n" +
-                        "10. CANCER MORTALITY IN THE PHILIPPINES: The Philippines faces the challenge of addressing cancer as a leading cause of mortality, with breast cancer cases alone reaching 27,163 in 2020, according to data from the World Health Organization.\n",
-                R.drawable.img_332,
-                "https://www.pids.gov.ph/details/news/in-the-news/advocates-seek-intensification-of-cancer-screening-in-ph",
-                "https://childhope.org.ph/wp-content/uploads/2022/06/childhope-philippines-health-program-e1656895068613.jpg")
+            DataItem("POVERTY'S TOLL ON HEALTH: UNDERSTANDING THE LINK",
+                "In the Philippines, the intersection of poverty and health is a pressing concern. This article delves into the challenges faced by farmers, shedding light on the intricate link between socioeconomic status and health consequences, ultimately seeking to understand how poverty takes its toll on well-being.\n\n" +
+                        "1. FARMERS STRUGGLE AMID ECONOMIC CHALLENGES: Farmers like Felipe Nazar in the Philippines face grueling work schedules and rising costs of farm inputs, impacting their livelihoods and contributing to poverty-related health concerns.\n" +
+                        "2. EXTERNAL FACTORS WORSEN THE SITUATION: External events like the COVID-19 pandemic, Russia's invasion of Ukraine, and climate disruptions further compound the challenges faced by Filipino farmers, raising concerns about increased hunger in the country.\n" +
+                        "3. INCREASING POVERTY AMONG FARMERS: Farmers and fisherfolk are among the poorest workers in the Philippines, with nearly one in three living below the poverty threshold, as input costs have doubled since 2020.\n" +
+                        "4. IMPACT ON HOUSEHOLD INCOMES: Traditional incomes for farmers have dwindled, leading to financial struggles, debt, and the inability to afford basic necessities, including education for their children.\n" +
+                        "5. REDUCED PROFITS IN FARMING: Despite the efforts of farmers and their families, many farms are not profitable, forcing them to sell their crops at low prices while consumers pay significantly more.\n" +
+                        "6. DEBT AS A COPING MECHANISM: Many farmers resort to borrowing from loan sharks to cover costs, plunging them into a cycle of debt due to the high interest rates.\n" +
+                        "7. HUNGER ON THE RISE: A significant portion of Filipinos faces hunger, with one in ten experiencing involuntary hunger, and the majority unable to afford a healthy diet.\n" +
+                        "8. RISING FOOD INFLATION: While the Philippines has a growing middle class and a young population, food inflation is high, with households spending over half their income on food.\n" +
+                        "9. REGIONAL DISPARITIES: Regional disparities persist, with some areas experiencing three to four times higher hunger levels than others, deepening the issue of poverty-related health concerns.\n" +
+                        "10. GOVERNMENT'S ROLE AND POTENTIAL SOLUTIONS: Experts suggest that government intervention, including support for local farmers and strategic import policies, could alleviate the challenges faced by farmers and reduce the impact of poverty on health.\n",
+                R.drawable.img_362,
+                "https://www.thenewhumanitarian.org/analysis/2023/07/27/Filipino-farmers-profits-hunger-looms",
+                "https://assets.thenewhumanitarian.org/s3fs-public/2023-07/Danilo%20Ramos%20Philippines%20farmer%20protest.jpg")
         )
         dataList.add(
-            DataItem("IMPROVING HEALTHCARE INFRASTRUCTURE FOR PREVENTIVE MEDICINE IN THE PHILIPPINES",
-                "In the face of global health challenges, the Philippines must revamp its healthcare infrastructure to fortify preventive medicine and bolster the nation's resilience in the wake of public health crises. The state of the Philippines' healthcare system, as discussed in this evaluation, unveils critical areas in need of improvement to support an effective preventive healthcare framework.\"\n\n" +
-                        "1. STEWARDSHIP AND ACCOUNTABILITY: Leadership and Governance Challenges - Assessing the state of governance and leadership in the Philippines' healthcare system, emphasizing the need for effective policy frameworks and accountability.\n" +
-                        "2. SHIFT TO PRIMARY CARE: UHC Law and the Paradigm Shift - Highlighting the Universal Health Care (UHC) Law as a milestone and its focus on transitioning to primary care.\n" +
-                        "3. GOVERNMENT RESPONSE TO COVID-19: Emergency Measures and Late Travel Ban - Discussing the government's response to the COVID-19 pandemic, including late travel restrictions and their impact.\n" +
-                        "4. RESOURCE DEVELOPMENT: Health Workforce and Neglect - Examining the status of the health workforce, information systems, and access to medical products, with a focus on the neglect of healthcare workers.\n" +
-                        "5. FUNDING CHALLENGES: Budget Mismanagement in Healthcare - Highlighting the availability of funds but the mismanagement of the budget, particularly in approving testing kits and the affordability of tests.\n" +
-                        "6. ADEQUACY OF FUNDS: Adequate Budget Allocation but Misuse - Discussing the government's significant allocation of funds for health services and the mismanagement of this budget.\n" +
-                        "7. ACCESS TO TESTING: Slow Approval of Testing Kits - Examining the slow approval of testing kit applications and the unaffordability of tests for many Filipinos.\n" +
-                        "8. VACCINATION CHALLENGES: Vaccine Distribution and Hurdles - Discussing the uneven distribution of vaccines across regions and the challenges in achieving vaccination goals due to a lack of health workers and accessible health centers.\n" +
-                        "9. EFFORTS FALLING SHORT: Missed Opportunities in Vaccine Administration - Addressing the slow pace of vaccine administration and the failure to capitalize on vaccine availability.\n" +
-                        "10. CALL FOR OVERHAUL: A Need for Systemic Improvements - Concluding with the call for a comprehensive overhaul of the Philippine healthcare system to address the shortcomings in the four crucial functions discussed.",
-                R.drawable.img_333,
-                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9201087/",
-                "https://www.bworldonline.com/wp-content/uploads/2023/01/Covid-19-patient.jpg")
-        )
-
-        dataList.add(
-            DataItem("RAISING PUBLIC AWARENESS FOR PREVENTIVE HEALTHCARE",
-                "In the Philippines, addressing stroke prevention and awareness is crucial as stroke remains a significant health challenge. This article presents a comprehensive strategy to raise public awareness for preventive healthcare, specifically in the context of stroke.\"\n" +
-
-                        "1. ELEVATED STROKE INCIDENCE: Stroke is a major cause of mortality and disability in the Philippines, especially among those in lower-income brackets.\n" +
-                        "2. COVID-19's IMPACT: The COVID-19 pandemic disrupted healthcare systems and posed challenges for stroke diagnosis and treatment, leading to delays in care.\n" +
-                        "3. DELAYED HOSPITAL CONSULTATION: The pandemic resulted in delayed hospital consultations for stroke, contributing to increased stroke severity.\n" +
-                        "4. CHALLENGES IN STROKE CARE: Gaps in the Philippine healthcare system regarding stroke care, including limitations in stroke awareness, are discussed.\n" +
-                        "5. COMPREHENSIVE STROKE PREVENTION: A two-pronged approach combining community-based prevention and targeted public awareness campaigns to address stroke's multifaceted challenge.\n" +
-                        "6. IDENTIFYING MODIFIABLE RISK FACTORS: Community-based stroke prevention involves personalized assessments of risk factors such as hypertension and smoking.\n" +
-                        "7. THE NEED FOR PUBLIC STROKE AWARENESS: Emphasizing the importance of public awareness campaigns for recognizing stroke symptoms and seeking prompt medical attention.\n" +
-                        "8. TAILORED STROKE AWARENESS CAMPAIGNS: Decentralized campaigns use culturally adapted materials, engagement with local stakeholders, and educational initiatives.\n" +
-                        "9. ENGAGING COMMUNITY HEALTH WORKERS: Community health workers play a crucial role in educating high-risk individuals about stroke risk factors and recognition.\n" +
-                        "10. COLLABORATIVE EFFORTS: Collaboration among national and local entities, including non-profit organizations and educational institutions, is vital for the success of stroke awareness campaigns.",
-                R.drawable.img_334,
-                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10502210/",
-                "https://pia.gov.ph/uploads/2023/04/aa3fb09e46d5e9379a4b6c3c1a321938.jpg")
+            DataItem("HEALTHCARE ACCESSIBILITY: BRIDGING THE GAP IN A DIVERSE LANDSCAPE",
+                "In a nation as geographically diverse as the Philippines, healthcare accessibility is a multifaceted challenge. This article explores the hurdles faced by underserved communities, shedding light on the urgent need to bridge the healthcare gap in this diverse landscape.\"\n\n" +
+                        "1. CHALLENGES IN JOMALIG'S REMOTE HEALTHCARE: The article investigates the struggles faced by the geographically isolated Jomalig Island in the Philippines, highlighting the difficulties in providing essential healthcare services.\n" +
+                        "2. DEFICIENT PUBLIC HEALTH FACILITIES: Jomalig Island grapples with inadequate public health facilities and services, creating obstacles to addressing the health needs of its population.\n" +
+                        "3. GEOGRAPHICAL DISADVANTAGE AND LIMITED ACCESS: Due to its remote location, Jomalig Island faces substantial challenges in delivering healthcare, with long travel times exacerbating the issue.\n" +
+                        "4. ECONOMIC AND SOCIAL SERVICE CHALLENGES: The geographical isolation results in deficiencies in basic public services, such as water, electricity, and roads, impacting the overall well-being of the community.\n" +
+                        "5. MORTALITY AND MORBIDITY RATES: Although not alarmingly high, mortality and morbidity rates reveal some health concerns on the island, including hypertension and diarrhea.\n" +
+                        "6. RELIANCE ON FAITH HEALERS: A significant portion of the population resorts to 'faith healers' over traditional healthcare services, contributing to health complications.\n" +
+                        "7. ECONOMIC HARDSHIPS AND LIMITED INCOME: The economic status of the population directly affects health outcomes, with malnutrition and financial constraints hindering access to healthcare.\n" +
+                        "8. GEOGRAPHICAL LOCATION AND TRANSPORTATION ISSUES: Limited access to better-equipped healthcare facilities due to distance and sea conditions adds to the healthcare challenges faced by residents.\n" +
+                        "9. ENVIRONMENTAL FACTORS: Unclean water sources, improper waste disposal, and unsanitary practices further compound public health problems in some communities.\n" +
+                        "10. RECOMMENDATIONS AND POLICY IMPLICATIONS: To improve healthcare accessibility in geographically isolated areas like Jomalig Island, the article suggests a range of solutions, including emergency boats, health education campaigns, and infrastructure improvements.",
+                R.drawable.img_363,
+                "https://www.joghr.org/article/11962-challenges-in-public-health-facilities-and-services-evidence-from-a-geographically-isolated-and-disadvantaged-area-in-the-philippines",
+                "https://www.borgenmagazine.com/wp-content/uploads/2023/08/51088900678_c6434f2e45_k.jpg")
         )
 
         dataList.add(
-            DataItem("ADDRESSING VACCINE HESITANCY IN THE PHILIPPINES",
-                "In the face of the COVID-19 pandemic, addressing vaccine hesitancy in the Philippines is paramount. This article explores the challenges, historical concerns, and legal aspects surrounding vaccine hesitancy, emphasizing the need for transparent policy responses.\n\n\n" +
-                        "1. UNDERSTANDING VACCINE HESITANCY: Introduction to the concept of vaccine hesitancy and its relevance in the Philippines.\n" +
-                        "2. FILIPINO ATTITUDES TOWARDS COVID-19 VACCINATION: Highlights of survey data indicating hesitancy levels among Filipinos.\n" +
-                        "3. VACCINE HESITANCY AND MEASLES OUTBREAK: Discussing past instances where vaccine hesitancy contributed to health crises in the Philippines.\n" +
-                        "4. IMPACT OF DENGVAXIA SCARE: Exploring how the Dengvaxia controversy fueled vaccine hesitancy and its consequences.\n" +
-                        "5. OBSTACLES TO SUCCESSFUL IMMUNIZATION PROGRAMS: Discussing challenges faced in previous public immunization schemes and their impact.\n" +
-                        "6. VACCINE HESITANCY WORLDWIDE: Comparing vaccine hesitancy issues in the Philippines to those in other countries, such as the US.\n" +
-                        "7. CONCERNS OVER COVID-19 VACCINE SIDE EFFECTS: Addressing how reported side effects of COVID-19 vaccines have contributed to hesitancy.\n" +
-                        "8. MANDATORY VACCINATION AND CONSTITUTIONAL CONCERNS: Exploring the legality of mandatory vaccination and its implications on individual rights.\n" +
-                        "9. LEADERSHIP AND PUBLIC TRUST: Highlighting the importance of leadership in restoring public trust in vaccines.\n" +
-                        "10. FOSTERING VACCINE CONFIDENCE: Emphasizing the need for collective efforts, transparency, and civic engagement to combat vaccine hesitancy in the Philippines.",
-                R.drawable.img_335,
-                "https://www.rappler.com/voices/imho/analysis-exploring-vaccine-hesitancy-covid-19-pandemic/",
-                "https://www.rappler.com/tachyon/2021/04/imho-sq.jpg?resize=800%2C800&zoom=1")
+            DataItem("SOCIAL DETERMINANTS OF HEALTH: SHAPING LIVES AND HEALTH OUTCOMES",
+                "In the intricate interplay of social determinants and health, the Philippines grapples with a significant challenge. This article delves into the complex web of factors that shape lives and health outcomes in the country\"\n" +
+
+                        "1. SOCIAL DETERMINANTS: The Silent Architects of Health - The article unveils the critical role of social determinants, such as education, income, and employment, in molding health outcomes and exacerbating health disparities.\n" +
+                        "2. PHILIPPINES' HEALTH CARE DISPARITIES - It sheds light on the Philippines' ongoing struggle with healthcare inequities, where the distribution of health professionals fails to meet World Health Organization standards.\n" +
+                        "3. DEFICIENCY IN HEALTH CARE WORKERS - The Philippines grapples with a severe shortage of healthcare professionals, with a ratio far below recommended levels, especially in regions with higher poverty rates.\n" +
+                        "4. WEALTH DISPARITY AND HEALTH NEEDS - It emphasizes the correlation between wealth inequality and health outcomes, highlighting how poorer regions with greater health needs face underdeveloped health services.\n" +
+                        "5. REGIONAL HEALTH CARE DISPARITIES - The data exposes disparities in health worker distribution, where more impoverished areas have fewer healthcare professionals, further limiting access to essential care.\n" +
+                        "6. THE ROLE OF PUBLIC HEALTH CARE - The article suggests that expanding the public health care system with a focus on poorer regions could significantly bridge the healthcare gap.\n" +
+                        "7. BUDGET ALLOCATION FOR HEALTH - It points out that the allocation of budgetary resources for public healthcare is a crucial political decision, but the current privatization of healthcare skews priorities.\n" +
+                        "8. HEALTH WORKERS' NEEDS NEGLECTED - The health system's failure to address the economic and social needs of healthcare workers is a critical issue, leading to a recruitment and retention crisis.\n" +
+                        "9. HEALTH WORKER MIGRATION - The Philippines experiences a significant outmigration of healthcare professionals due to inadequate salaries and benefits, pushing them to seek better opportunities abroad.\n" +
+                        "10. PREVENTABLE HEALTH DISPARITIES - The article underscores that a lack of healthcare professionals and inadequate services in poorer regions directly contributes to more sickness and death, ultimately worsening health outcomes and deepening health disparities.",
+                R.drawable.img_364,
+                "https://newsinfo.inquirer.net/1760779/ph-health-care-conundrum-fewer-health-professionals-where-people-are-poorest",
+                "https://newsinfo.inquirer.net/files/2023/04/HEALTH-WORKERS.jpeg")
+        )
+
+        dataList.add(
+            DataItem("HEALTH DISPARITIES: THE UNEQUAL BURDEN OF DISEASE",
+                "Structural racism in the Philippines perpetuates health disparities, with marginalized populations facing unequal access to vital healthcare services. This article explores these inequalities, highlighting the urgent need for interventions to address the unequal burden of disease\n\n\n" +
+                        "1. CHALLENGES IN HEALTHCARE ACCESSIBILITY: Uneven distribution of medical facilities and limited access to primary care services in the Philippines.\n" +
+                        "2. HEALTH DISPARITIES AMONG INDIGENOUS COMMUNITIES: Indigenous populations in the Philippines experience substantially lower health outcomes, including higher infant and maternal mortality rates.\n" +
+                        "3. STRUCTURAL RACISM AND HEALTH DISPARITIES: Structural racism compounds health disparities, as historically oppressed groups suffer from chronic discrimination, stress, and depression.\n" +
+                        "4. RACIAL AND SOCIOECONOMIC INEQUITIES: Ethnic identity and socioeconomic status play pivotal roles in shaping health outcomes, perpetuating health disparities.\n" +
+                        "5. LIMITED HEALTH INSURANCE COVERAGE: Indigenous populations often lack adequate health insurance coverage, leading to financially dependent children being underinsured.\n" +
+                        "6. COVID-19 VULNERABILITY: Indigenous children are particularly vulnerable to the health risks associated with the COVID-19 pandemic, highlighting the need for targeted interventions.\n" +
+                        "7. SOCIO-ECOLOGICAL MODEL FOR HEALTH: The Socio-Ecological Model underscores the complex interplay of societal and ecological influences on health-related behaviors.\n" +
+                        "8. SYSTEMIC FACTORS AND HEALTH DISPARITIES: Many causes of health disparities are rooted in systemic factors that require multi-level interventions for effective solutions.\n" +
+                        "9. IMPACT OF RESEARCH ON POPULATION HEALTH: Local evidence-based research and culturally congruent interventions are vital for improving public health in developing countries like the Philippines.\n" +
+                        "10. COLLABORATIVE APPROACH TO ADDRESSING HEALTH DISPARITIES: Healthcare providers, researchers, community leaders, and policymakers must collaborate to eliminate structural racism and reduce health disparities in the Philippines.",
+                R.drawable.img_365,
+                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10072864/",
+                "https://eon.com.ph/wp-content/uploads/2020/04/People-Wearing-Mask-Discussion.jpg")
         )
 
 

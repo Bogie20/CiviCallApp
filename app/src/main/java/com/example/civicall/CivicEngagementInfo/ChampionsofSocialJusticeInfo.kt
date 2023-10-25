@@ -36,9 +36,9 @@ class ChampionsofSocialJusticeInfo : AppCompatActivity() {
                         "9. VOTE AND MOBILIZE: Encourage voter registration and participation among your peers. Mobilize students to support political candidates and policies that prioritize racial equality.\n\n" +
                         "10. CONTINUOUS SELF-REFLECTION: Regularly reflect on your own biases, privileges, and contributions to racial equality efforts. Stay committed to lifelong learning and improvement in this important cause.\n\n",
 
-                R.drawable.img_170,
+                R.drawable.img_444,
                 "https://www.kaplanpathways.com/blog/why-is-racial-equality-important/",
-                "https://media.philstar.com/images/articles/lgbt-_2018-10-18_20-34-04.jpg"
+                "https://i.guim.co.uk/img/media/f76a3b0a63df5a9bd38da97f3e66b09e3a5b6ca9/0_3_6000_3602/master/6000.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=d70febd9b542e8b59de11529b64ece2f"
             )
         )
         dataList.add(
@@ -114,9 +114,9 @@ class ChampionsofSocialJusticeInfo : AppCompatActivity() {
                         "8. INCLUSIVE EVENTS: Organize campus events and activities that celebrate different cultures, identities, and backgrounds, promoting cross-cultural understanding.\n\n" +
                         "9. BIAS REPORTING SYSTEM: Implement a confidential reporting system for incidents of bias, discrimination, or harassment and take proactive measures to address such issues.\n\n" +
                         "10. COLLABORATIVE DIALOGUE: Encourage open and respectful dialogue among students, faculty, and staff, fostering a campus culture where diverse viewpoints are valued and heard.\n\n",
-                R.drawable.img_175,
+                R.drawable.img_445,
                 "https://www.teacherph.com/inclusive-education-philippines/#:~:text=Making%20Inclusive%20Education%20a%20Reality%20in%20the%20Philippines,-The%20Philippines%20is&text=This%20includes%20having%20ramps%20and,deaf%20or%20hard%20of%20hearing.",
-                "https://linguistics.upd.edu.ph/wp-content/uploads/2021/10/UP-Pride_1819.jpeg")
+                "https://www.teacherph.com/wp-content/uploads/2022/08/Inclusive-Education-in-the-Philippines.png")
         )
 
         val adapter = DataAdapter(dataList)

@@ -24,93 +24,93 @@ class EvaluatingtheEffectivenessInfo : AppCompatActivity() {
 
         dataList.add(
             DataItem(
-                "IMMUNIZATION PROGRAMS FOR PREVENTIVE HEALTHCARE IN THE PHILIPPINES",
-                "Immunization programs are the cornerstone of preventive healthcare in the Philippines, safeguarding children from life-threatening diseases. This vital public health initiative ensures a healthier future for the nation.\" delves into the historical foundations and legal intricacies that shape the cherished freedom of expression in the Philippines. \"\"\n\n" +
-                        "1. ROUTINE VACCINATION SCHEDULE: Children in the Philippines receive routine vaccines from birth to one year of age, with additional doses during supplementary or outbreak vaccination campaigns.\n\n" +
-                        "2. CRITICAL DISEASES PREVENTION: Vaccination programs protect children from life-threatening diseases, such as tuberculosis, hepatitis B, and poliovirus.\n\n" +
-                        "3. BCG VACCINE: Administered at birth, the BCG vaccine offers protection against tuberculosis, a prevalent and challenging disease in the Philippines.\n\n" +
-                        "4. HEPATITIS B IMMUNIZATION: Given at birth, the hepatitis B vaccine prevents chronic infections and complications that may arise later in life.\n\n" +
-                        "5. PENTAVALENT VACCINE: Administered at 6, 10, and 14 weeks, this vaccine guards against diphtheria, pertussis, tetanus, Haemophilus influenzae type b, and hepatitis B.\n\n" +
-                        "6. ORAL AND INACTIVATED POLIO VACCINES: These vaccines, given at specific intervals, protect against poliovirus, a virus that can cause paralysis and death.\n\n" +
-                        "7. PCV VACCINE: Administered at 6, 10, and 14 weeks, the PCV vaccine helps prevent pneumonia and meningitis in young children.\n\n" +
-                        "8. MMR VACCINE: Given at 9 months and 1 year old, the MMR vaccine safeguards against measles, mumps, and rubella, reducing the risk of serious complications.\n\n" +
-                        "9. ONGOING VACCINATION DURING THE PANDEMIC: Routine immunization remains an essential health service even during the COVID-19 pandemic, with measures in place to ensure safety.\n\n" +
-                        "10. HIGH COVERAGE TARGET: The government aims for routine immunization coverage among children to be at least 95%, and these vaccines are provided for free in public health centers and facilities to ensure accessibility for all.",
-                R.drawable.img_331,
-                "https://www.unicef.org/philippines/stories/routine-immunization-children-philippines",
-                "https://www.unicef.org/philippines/sites/unicef.org.philippines/files/styles/hero_extended/public/1000002294%20%286000%C3%974000%29.jpeg?itok=LE9RJ2vA"
+                    "HEALTH COMMUNICATION: THE POWER OF EFFECTIVE MESSAGING",
+                "In the realm of healthcare, the power of communication cannot be overstated. This article explores how effective messaging and communication strategies play a pivotal role in the health sector, promoting public health campaigns and disseminating vital information.\" delves into the historical foundations and legal intricacies that shape the cherished freedom of expression in the Philippines. \"\"\n\n" +
+                        "1. ENHANCING HEALTHCARE COMMUNICATION: The article emphasizes the critical role of communication in healthcare, particularly during the COVID-19 pandemic.\n\n" +
+                        "2. INFORMATION DELIVERY IN HEALTHCARE: Nurses, doctors, and hospital staff are pivotal in delivering accurate and factual information to patients and the public.\n\n" +
+                        "3. TRAINING FOR EFFECTIVE COMMUNICATION: The Zamboanga City Medical Center (ZCMC) recognizes the importance of staff training in communication to improve patient services.\n\n" +
+                        "4. COMBATTING FAKE NEWS: The ZCMC's training program aims to create 'social media warriors' who can combat fake news and disseminate reliable information.\n\n" +
+                        "5. THE KEY ROLE OF INFORMATION AND COMMUNICATION: Effective communication is seen as the key to creating understanding with the audience and clients, as noted by Dir. Noemi Edaga.\n\n" +
+                        "6. MEDIA SKILLS FOR HEALTHCARE PROFESSIONALS: The training program covers topics such as news writing, photo journalism, photo captioning, and crisis and social media management.\n\n" +
+                        "7. EAGER PARTICIPANTS: During the workshop, participants, including healthcare professionals, are eager to learn new communication skills.\n\n" +
+                        "8. EMPHASIZING MEDIA ETHICS: The importance of media ethics is highlighted in the training, with an emphasis on responsible journalism.\n\n" +
+                        "9. STRENGTHENING GOVERNMENT-PUBLIC RELATIONS: The project aims to strengthen government-public relations by sharing timely, accurate, and relevant information.\n\n" +
+                        "10. PARTNERSHIP FOR EFFECTIVE COMMUNICATION: A partnership between PIA and ZCMC is forged to enhance communication and information dissemination in the healthcare sector.",
+                R.drawable.img_371,
+                "https://pia.gov.ph/features/2022/08/23/the-role-of-communication-in-the-health-sector",
+                "https://pia.gov.ph/uploads/2022/08/c6deb12e6bea2f60352d4ff49909a4c7.jpg"
             )
         )
         dataList.add(
-            DataItem("HEALTH SCREENINGS AND EARLY DETECTION IN THE CONTEXT OF PREVENTIVE HEALTHCARE",
-                "In the Philippines, advocates are sounding the alarm on the inadequate cancer screening rates, emphasizing that a significant portion of cancer cases can be prevented. The call for intensifying cancer screening efforts is gaining momentum, driven by the urgency to reduce cancer-related mortality.\n\n" +
-                        "1. LOW CANCER SCREENING RATES: The Philippines faces challenges with extremely low rates of breast and cervical cancer screenings, as highlighted in the article.\n" +
-                        "2. PREVENTABLE CANCER BURDEN: Health experts stress that a substantial portion of the country's cancer burden is preventable through effective screening programs and early detection.\n" +
-                        "3. EARLY DETECTION SIGNIFICANCE: Early cancer detection through screening is crucial for improving treatment outcomes and reducing mortality rates.\n" +
-                        "4. GLOBAL COMPARISONS: The Philippines lags behind countries with advanced healthcare systems in terms of cancer screening prevalence, including self-breast examinations, mammograms, and PAP smears.\n" +
-                        "5. BUDGETARY CHALLENGES: The article underscores the need for increased funding for the country's anti-cancer program, as the allocated budget is deemed insufficient to address the needs of cancer patients.\n" +
-                        "6. NATIONAL INTEGRATED CANCER CONTROL ACT: The Philippine government has allocated P1.56 billion for Filipino cancer patients under Republic Act No. 11215, emphasizing the importance of policy support for cancer care.\n" +
-                        "7. INSUFFICIENT FUNDING: Health advocates, including the Philippine General Hospital Cancer Institute Chairman, express concerns about the inadequacy of the allocated budget, particularly for breast and cervical cancer patients.\n" +
-                        "8. LIMITED PATIENT COVERAGE: The allocated budget is only capable of providing assistance to a fraction of cancer patients throughout their required treatment cycles, whether it be targeted therapy or chemotherapy.\n" +
-                        "9. TREATMENT COSTS: Chemotherapy costs about P5,000 per cycle, while targeted therapy costs around P30,000 per session, underlining the financial burden on cancer patients and the healthcare system.\n" +
-                        "10. CANCER MORTALITY IN THE PHILIPPINES: The Philippines faces the challenge of addressing cancer as a leading cause of mortality, with breast cancer cases alone reaching 27,163 in 2020, according to data from the World Health Organization.\n",
-                R.drawable.img_332,
-                "https://www.pids.gov.ph/details/news/in-the-news/advocates-seek-intensification-of-cancer-screening-in-ph",
-                "https://childhope.org.ph/wp-content/uploads/2022/06/childhope-philippines-health-program-e1656895068613.jpg")
+            DataItem("CAMPAIGN EVALUATION: MEASURING THE IMPACT OF PUBLIC HEALTH INITIATIVES",
+                "In the realm of public health, evaluating the effectiveness of campaigns is paramount. Discover proven strategies to measure the impact of initiatives and assess behavioral changes in 'Campaign Evaluation: Measuring Public Health Impact.\n\n" +
+                        "1. PUBLIC HEALTH INITIATIVES EVALUATION: The article focuses on evaluating the effectiveness of public health campaigns to measure their impact.\n\n" +
+                        "2. IMPORTANCE OF OUTCOME MEASUREMENT: Measuring the outcomes of public health initiatives is crucial for assessing their success.\n\n" +
+                        "3. KW2'S EXPERTISE IN BEHAVIOR CHANGE MARKETING: KW2 specializes in behavior change marketing, contributing significantly to life-changing efforts.\n\n" +
+                        "4. CHALLENGES OF FUNDING CAMPAIGN EVALUATION: Budget constraints often limit the evaluation of public health campaigns.\n\n" +
+                        "5. QUESTIONS FOR PROVING EFFECTIVENESS: Effectiveness is determined by whether the campaign reaches the intended community, increases awareness, and induces positive behavioral changes.\n\n" +
+                        "6. GATHERING COMMUNITY INSIGHTS: Building relationships with community leaders and activists to gather insights and set benchmarks before, during, and after a campaign.\n\n" +
+                        "7. MESSAGE EXPOSURE STUDIES: Conducting surveys before and after a campaign to measure awareness and its impact.\n\n" +
+                        "8. MEDIA CAMPAIGN METRICS: Assessing the reach and frequency of traditional media campaigns for targeted audiences.\n\n" +
+                        "9. WEBSITE METRICS: Tracking website data, including sources, campaign-specific actions, content engagement, and visitor demographics.\n\n" +
+                        "10. SOCIAL LISTENING AND ANECDOTAL EVIDENCE: Monitoring online conversations and assessing anecdotal evidence to gauge the impact of public health campaigns.",
+                R.drawable.img_372,
+                "https://kw2marketing.com/articles/five-proven-strategies-public-health-campaigns",
+                "https://images.ctfassets.net/pdf29us7flmy/56FDHfKmc9l3Q1zavye3Dh/0277fb8041e8327a11c714a22c3437dd/5Cs-of-marketing_DE_Blog_Header_Images_03_.jpg?w=720&q=100&fm=jpg")
         )
         dataList.add(
-            DataItem("IMPROVING HEALTHCARE INFRASTRUCTURE FOR PREVENTIVE MEDICINE IN THE PHILIPPINES",
-                "In the face of global health challenges, the Philippines must revamp its healthcare infrastructure to fortify preventive medicine and bolster the nation's resilience in the wake of public health crises. The state of the Philippines' healthcare system, as discussed in this evaluation, unveils critical areas in need of improvement to support an effective preventive healthcare framework.\"\n\n" +
-                        "1. STEWARDSHIP AND ACCOUNTABILITY: Leadership and Governance Challenges - Assessing the state of governance and leadership in the Philippines' healthcare system, emphasizing the need for effective policy frameworks and accountability.\n" +
-                        "2. SHIFT TO PRIMARY CARE: UHC Law and the Paradigm Shift - Highlighting the Universal Health Care (UHC) Law as a milestone and its focus on transitioning to primary care.\n" +
-                        "3. GOVERNMENT RESPONSE TO COVID-19: Emergency Measures and Late Travel Ban - Discussing the government's response to the COVID-19 pandemic, including late travel restrictions and their impact.\n" +
-                        "4. RESOURCE DEVELOPMENT: Health Workforce and Neglect - Examining the status of the health workforce, information systems, and access to medical products, with a focus on the neglect of healthcare workers.\n" +
-                        "5. FUNDING CHALLENGES: Budget Mismanagement in Healthcare - Highlighting the availability of funds but the mismanagement of the budget, particularly in approving testing kits and the affordability of tests.\n" +
-                        "6. ADEQUACY OF FUNDS: Adequate Budget Allocation but Misuse - Discussing the government's significant allocation of funds for health services and the mismanagement of this budget.\n" +
-                        "7. ACCESS TO TESTING: Slow Approval of Testing Kits - Examining the slow approval of testing kit applications and the unaffordability of tests for many Filipinos.\n" +
-                        "8. VACCINATION CHALLENGES: Vaccine Distribution and Hurdles - Discussing the uneven distribution of vaccines across regions and the challenges in achieving vaccination goals due to a lack of health workers and accessible health centers.\n" +
-                        "9. EFFORTS FALLING SHORT: Missed Opportunities in Vaccine Administration - Addressing the slow pace of vaccine administration and the failure to capitalize on vaccine availability.\n" +
-                        "10. CALL FOR OVERHAUL: A Need for Systemic Improvements - Concluding with the call for a comprehensive overhaul of the Philippine healthcare system to address the shortcomings in the four crucial functions discussed.",
-                R.drawable.img_333,
-                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9201087/",
-                "https://www.bworldonline.com/wp-content/uploads/2023/01/Covid-19-patient.jpg")
-        )
-
-        dataList.add(
-            DataItem("RAISING PUBLIC AWARENESS FOR PREVENTIVE HEALTHCARE",
-                "In the Philippines, addressing stroke prevention and awareness is crucial as stroke remains a significant health challenge. This article presents a comprehensive strategy to raise public awareness for preventive healthcare, specifically in the context of stroke.\"\n" +
-
-                        "1. ELEVATED STROKE INCIDENCE: Stroke is a major cause of mortality and disability in the Philippines, especially among those in lower-income brackets.\n" +
-                        "2. COVID-19's IMPACT: The COVID-19 pandemic disrupted healthcare systems and posed challenges for stroke diagnosis and treatment, leading to delays in care.\n" +
-                        "3. DELAYED HOSPITAL CONSULTATION: The pandemic resulted in delayed hospital consultations for stroke, contributing to increased stroke severity.\n" +
-                        "4. CHALLENGES IN STROKE CARE: Gaps in the Philippine healthcare system regarding stroke care, including limitations in stroke awareness, are discussed.\n" +
-                        "5. COMPREHENSIVE STROKE PREVENTION: A two-pronged approach combining community-based prevention and targeted public awareness campaigns to address stroke's multifaceted challenge.\n" +
-                        "6. IDENTIFYING MODIFIABLE RISK FACTORS: Community-based stroke prevention involves personalized assessments of risk factors such as hypertension and smoking.\n" +
-                        "7. THE NEED FOR PUBLIC STROKE AWARENESS: Emphasizing the importance of public awareness campaigns for recognizing stroke symptoms and seeking prompt medical attention.\n" +
-                        "8. TAILORED STROKE AWARENESS CAMPAIGNS: Decentralized campaigns use culturally adapted materials, engagement with local stakeholders, and educational initiatives.\n" +
-                        "9. ENGAGING COMMUNITY HEALTH WORKERS: Community health workers play a crucial role in educating high-risk individuals about stroke risk factors and recognition.\n" +
-                        "10. COLLABORATIVE EFFORTS: Collaboration among national and local entities, including non-profit organizations and educational institutions, is vital for the success of stroke awareness campaigns.",
-                R.drawable.img_334,
-                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10502210/",
-                "https://pia.gov.ph/uploads/2023/04/aa3fb09e46d5e9379a4b6c3c1a321938.jpg")
+            DataItem("BEHAVIOR CHANGE: THE HEART OF PUBLIC HEALTH SUCCESS",
+                "In the realm of public health, achieving success often hinges on behavior change. Explore how the heart of public health triumph lies in understanding and influencing human behaviors.\"\n\n" +
+                        "1. CHALLENGES OF HUMAN RIGHTS COMMUNICATION: Human rights workers in the Philippines face difficulties in engaging the public due to disinformation, harassment, and conspiracy theories.\n" +
+                        "2. EROSION OF PUBLIC SUPPORT: Despite robust laws and institutions, public support for human rights has declined in recent years.\n" +
+                        "3. NEW TECHNOLOGY AND ATTACKS: Advances in technology have facilitated targeted attacks against human rights workers, making their work challenging and dangerous.\n" +
+                        "4. LACK OF SUPPORT FOR COMMUNICATIONS: Many human rights organizations lack dedicated communications teams and professional personnel.\n" +
+                        "5. THE NEED FOR SPECIFIC ADVOCACY: Engaging younger generations in human rights advocacy requires specific strategies and calls to action.\n" +
+                        "6. SOCIAL AND BEHAVIOR CHANGE (SBC) APPROACH: The Asia Foundation's Initiative for Advancing Community Transformation (I-ACT) uses SBC techniques to promote human rights advocacy.\n" +
+                        "7. ADAPTING TO ONLINE SPACES: Traditional tactics and tools used by older organizations may no longer be effective in the online spaces where younger Filipinos seek information.\n" +
+                        "8. SPECIFICITY IN CAMPAIGNS: SBC encourages organizations to understand their target audience and design campaigns to lower barriers to positive behaviors.\n" +
+                        "9. EXPERIMENTING WITH TIKTOK: Organizations like the Legal Rights and Natural Resources Center (LRC) are using TikTok to reach younger audiences and promote human rights.\n" +
+                        "10. SHARING KNOWLEDGE AND RESOURCES: I-ACT shares research findings and resources to help civil society organizations improve their campaigns and advocacy efforts.",
+                R.drawable.img_373,
+                "https://asiafoundation.org/2023/07/26/promoting-social-and-behavior-change-in-the-philippine-human-rights-sector/",
+                "https://asiafoundation.org/wp-content/uploads/2023/07/Andrei-Venal.jpg")
         )
 
         dataList.add(
-            DataItem("ADDRESSING VACCINE HESITANCY IN THE PHILIPPINES",
-                "In the face of the COVID-19 pandemic, addressing vaccine hesitancy in the Philippines is paramount. This article explores the challenges, historical concerns, and legal aspects surrounding vaccine hesitancy, emphasizing the need for transparent policy responses.\n\n\n" +
-                        "1. UNDERSTANDING VACCINE HESITANCY: Introduction to the concept of vaccine hesitancy and its relevance in the Philippines.\n" +
-                        "2. FILIPINO ATTITUDES TOWARDS COVID-19 VACCINATION: Highlights of survey data indicating hesitancy levels among Filipinos.\n" +
-                        "3. VACCINE HESITANCY AND MEASLES OUTBREAK: Discussing past instances where vaccine hesitancy contributed to health crises in the Philippines.\n" +
-                        "4. IMPACT OF DENGVAXIA SCARE: Exploring how the Dengvaxia controversy fueled vaccine hesitancy and its consequences.\n" +
-                        "5. OBSTACLES TO SUCCESSFUL IMMUNIZATION PROGRAMS: Discussing challenges faced in previous public immunization schemes and their impact.\n" +
-                        "6. VACCINE HESITANCY WORLDWIDE: Comparing vaccine hesitancy issues in the Philippines to those in other countries, such as the US.\n" +
-                        "7. CONCERNS OVER COVID-19 VACCINE SIDE EFFECTS: Addressing how reported side effects of COVID-19 vaccines have contributed to hesitancy.\n" +
-                        "8. MANDATORY VACCINATION AND CONSTITUTIONAL CONCERNS: Exploring the legality of mandatory vaccination and its implications on individual rights.\n" +
-                        "9. LEADERSHIP AND PUBLIC TRUST: Highlighting the importance of leadership in restoring public trust in vaccines.\n" +
-                        "10. FOSTERING VACCINE CONFIDENCE: Emphasizing the need for collective efforts, transparency, and civic engagement to combat vaccine hesitancy in the Philippines.",
-                R.drawable.img_335,
-                "https://www.rappler.com/voices/imho/analysis-exploring-vaccine-hesitancy-covid-19-pandemic/",
-                "https://www.rappler.com/tachyon/2021/04/imho-sq.jpg?resize=800%2C800&zoom=1")
+            DataItem("HEALTH EDUCATION: EMPOWERING INDIVIDUALS WITH KNOWLEDGE",
+                "In a world where health and well-being are paramount, knowledge is the key to empowerment. Explore how health education programs in the Philippines are equipping individuals with the knowledge to make informed decisions, prevent diseases, and take control of their well-being \"\n" +
+                        "1. EMPOWERING THROUGH EDUCATION: Health education programs in the Philippines aim to empower individuals with knowledge to make informed health decisions.\n" +
+                        "2. ADDRESSING MALNUTRITION: Health programs tackle issues such as malnutrition among Filipinos, particularly children.\n" +
+                        "3. GOVERNMENT INITIATIVES: The Department of Health collaborates with other government branches to provide free medical services and promote holistic health.\n" +
+                        "4. NATIONAL HEALTH GOALS: The National Objectives for Health 2017-2022 outlines strategic goals for improving national health, including affordability and accessibility.\n" +
+                        "5. SAFE MOTHERHOOD PROGRAM: Initiatives like the Safe Motherhood Program prioritize the welfare of mothers during pregnancy, offering safe deliveries, check-ups, and care visits.\n" +
+                        "6. REPRODUCTIVE HEALTH: Programs promote family planning and raise awareness about sexually transmitted diseases to address overpopulation.\n" +
+                        "7. CHILDREN'S HEALTH: Health programs include newborn screening, immunization, and feeding programs to improve children's health.\n" +
+                        "8. MENTAL HEALTH FOCUS: The Philippine Mental Health Act of 2017 safeguards the rights of patients dealing with mental health issues.\n" +
+                        "9. COVID-19 RESPONSE: The Philippines adapted health programs during the pandemic, leveraging telemedicine and promoting health awareness.\n" +
+                        "10. CHILDHOPE PHILIPPINES INITIATIVES: NGOs like Childhope Philippines run programs for street children, including KalyEskwela, psychosocial interventions, KliniKalye, and skills development.",
+
+                R.drawable.img_374,
+                "https://childhope.org.ph/health-programs-in-the-philippines/",
+                "https://childhope.org.ph/wp-content/uploads/2022/06/childhope-philippines-kalyeskwela-e1656894116674.jpg")
+        )
+
+        dataList.add(
+            DataItem("PUBLIC HEALTH STRATEGIES: CRAFTING EFFECTIVE CAMPAIGNS",
+                "In an era of changing climate and evolving public health challenges, crafting effective campaigns is vital. Explore the strategies and initiatives designed to safeguard public health against climate-related threats in our rapidly transforming world.\n\n\n" +
+                        "1. PROMOTING CLIMATE RESILIENCE: The CDC's BRACE framework equips health officials to anticipate climate impacts and vulnerabilities.\n" +
+                        "2. COMMUNITY HEALTH PREPAREDNESS: Strategies in the article demonstrate how communities can proactively address health threats arising from climate change.\n" +
+                        "3. EXTREME HEAT AWARENESS: Raising awareness about heat island risks is a critical first step in mitigating heat-related health issues.\n" +
+                        "4. INCENTIVES FOR ACTION: Governments and organizations can incentivize individuals to reduce heat islands, promoting public health.\n" +
+                        "5. URBAN FORESTRY PROGRAMS: Urban forestry and tree planting initiatives contribute to cooling urban areas, a key factor in public health.\n" +
+                        "6. RETROFITTING FOR COOL TECHNOLOGIES: Procuring cool technologies for public buildings is a fundamental step in heat island mitigation.\n" +
+                        "7. POLICY AND BUILDING STANDARDS: Building codes, green initiatives, and comprehensive plans influence public health adaptation efforts.\n" +
+                        "8. AIR QUALITY CONCERNS: Climate change's impact on air quality is a pressing public health issue.\n" +
+                        "9. ASSESSING VULNERABILITIES: Identifying vulnerable populations and locations is essential for effective climate-related public health strategies.\n" +
+                        "10. CDC's BRACE FRAMEWORK: The CDC's five-step process aids in developing resilient public health initiatives.",
+                R.drawable.img_375,
+                "https://www.epa.gov/arc-x/public-health-adaptation-strategies-climate-change",
+                "https://childhope.org.ph/wp-content/uploads/2021/03/childhope-philippines-advocacy-campaign-delivering-hope-1024x1024.jpg")
         )
 
 

@@ -6,19 +6,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.civicall.CivicEngagementInfo.CivicAdapterMain
 import com.example.civicall.CivicEngagementInfo.DataMain
 import com.example.civicall.R
-import com.example.civicall.SurvivalTipsInfo.CoastalSurvivalInfo
-import com.example.civicall.SurvivalTipsInfo.EarthquakesInfo
-import com.example.civicall.SurvivalTipsInfo.ElNinoInfo
-import com.example.civicall.SurvivalTipsInfo.IslandSurvivalInfo
-import com.example.civicall.SurvivalTipsInfo.JunglerInfo
-import com.example.civicall.SurvivalTipsInfo.NavigatingMountainInfo
-import com.example.civicall.SurvivalTipsInfo.SurvivalPsychologyInfo
-import com.example.civicall.SurvivalTipsInfo.TsunamiInfo
-import com.example.civicall.SurvivalTipsInfo.TyphoonInfo
-import com.example.civicall.SurvivalTipsInfo.VolcanicEruptionInfo
 
 class CivicRightsAndResponsibilityMenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +20,7 @@ class CivicRightsAndResponsibilityMenu : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val campusList = listOf(
-            DataMain("Understanding Civic Rights"),
+            DataMain(""),
             DataMain("Civic Responsibility in a Democratic Society"),
             DataMain("The Right to Protest and Free Speech"),
             DataMain("Environmental Civic Responsibility"),
