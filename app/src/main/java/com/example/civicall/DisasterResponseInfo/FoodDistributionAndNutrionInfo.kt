@@ -50,7 +50,7 @@ class FoodDistributionAndNutrionInfo : AppCompatActivity() {
 
                 R.drawable.img_74,
                 "https://www.fcs.uga.edu/extension/preparing-an-emergency-food-supply-short-term-food-storage",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863"
+                "https://cdn.shopify.com/s/files/1/1879/4189/files/food_stockpile.jpg?v=1619557978"
             )
         )
         dataList.add(
@@ -75,7 +75,7 @@ class FoodDistributionAndNutrionInfo : AppCompatActivity() {
 
                 R.drawable.img_75,
                 "https://reliefweb.int/report/philippines/local-ngos-and-community-volunteers-mobilise-deliver-emergency-food-relief",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.officialgazette.gov.ph/images/uploads/Photo2a-596x430.jpg")
         )
         dataList.add(
             DataItem("Safe and Inclusive Relief: Addressing Dietary Restrictions and Allergies in Disaster Response",
@@ -100,7 +100,7 @@ class FoodDistributionAndNutrionInfo : AppCompatActivity() {
 
                 R.drawable.img_76,
                 "https://www.claritin.com.ph/living-allergies/more-questions-about-allergies/common-food-allergies-philippines",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.earlystartgroup.com/wp-content/uploads/2022/05/Food-Allergy.png")
         )
         dataList.add(
             DataItem("Guarding Health at Every Bite: Ensuring Food Safety and Sanitation in Disaster Response",
@@ -132,7 +132,7 @@ class FoodDistributionAndNutrionInfo : AppCompatActivity() {
 
                 R.drawable.img_77,
                 "http://www.foodandnutritionjournal.org/volume9number1/defining-risk-in-food-safety-in-the-philippines/#:~:text=The%20food%20safety%20framework%20in,safety%20to%20the%20general%20public.",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.maggiesovenservices.co.uk/blog/wp-content/uploads/2016/12/food-safety-cover-image.png")
         )
         dataList.add(
             DataItem("Building Food Safety Heroes: Training Food Handling Personnel for Disaster Response",
@@ -160,7 +160,7 @@ class FoodDistributionAndNutrionInfo : AppCompatActivity() {
 
                 R.drawable.img_78,
                 "https://www.youtube.com/watch?v=b5DqFNH5c84",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://foodsafetystandard.files.wordpress.com/2022/08/level-3-supervising-food-safety-in-catering-1.png")
         )
         dataList.add(
             DataItem("Preserving Health and Quality: Monitoring Food in Disaster Response",
@@ -190,7 +190,7 @@ class FoodDistributionAndNutrionInfo : AppCompatActivity() {
 
                 R.drawable.img_79,
                 "https://log10.com/natural-disasters-impact-food-quality/",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.securitymagazine.com/ext/resources/secenews/2018/food-900.jpg?1525803381")
         )
         dataList.add(
             DataItem("Strengthening Partnerships: Collaborating with Food Banks and Suppliers in Disaster Response",
@@ -216,7 +216,7 @@ class FoodDistributionAndNutrionInfo : AppCompatActivity() {
 
                 R.drawable.img_80,
                 "https://www.youtube.com/watch?v=vkvvhWj6JTY&ab_channel=regionalfoodbank",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.abbott.com/content/dam/corp/abbott/en-us/hub/disaster-relief-packaging-960x430.jpg")
         )
 
 

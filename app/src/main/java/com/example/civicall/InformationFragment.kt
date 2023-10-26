@@ -9,11 +9,16 @@ import android.view.animation.AnimationUtils
 import androidx.cardview.widget.CardView
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
+import com.example.civicall.CampusGovernanceInfo.CampusGovernanceMenu
 import com.example.civicall.CivicEngagementInfo.Civic
+import com.example.civicall.CivicRightsAndResponsibility.CivicRightsAndResponsibilityMenu
 import com.example.civicall.DisasterResponseInfo.DisasterResponseMenu
 import com.example.civicall.EmergencyCon.MainEmergencyContact
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import nl.joery.animatedbottombar.AnimatedBottomBar
+import com.example.civicall.EnvironmentalandSocialIssueInfo.EnvironmentalAndSocialIssuesMenu
+import com.example.civicall.PublicHealtAwarenessInfo.healtawarenessinfoMenu
+import com.example.civicall.SurvivalTipsInfo.SurvivalMenu
 
 class InformationFragment : Fragment() {
 
@@ -48,23 +53,23 @@ class InformationFragment : Fragment() {
         }
 
         cardview3.setOnClickListener {
-            val intent = Intent(requireContext(), MainEmergencyContact::class.java)
+            val intent = Intent(requireContext(), SurvivalMenu::class.java)
             startActivity(intent)
         }
         cardview4.setOnClickListener {
-            val intent = Intent(requireContext(), MainEmergencyContact::class.java)
+            val intent = Intent(requireContext(), CivicRightsAndResponsibilityMenu::class.java)
             startActivity(intent)
         }
         cardview5.setOnClickListener {
-            val intent = Intent(requireContext(), MainEmergencyContact::class.java)
+            val intent = Intent(requireContext(), EnvironmentalAndSocialIssuesMenu::class.java)
             startActivity(intent)
         }
         cardview6.setOnClickListener {
-            val intent = Intent(requireContext(), MainEmergencyContact::class.java)
+            val intent = Intent(requireContext(), CampusGovernanceMenu::class.java)
             startActivity(intent)
         }
         cardview7.setOnClickListener {
-            val intent = Intent(requireContext(), MainEmergencyContact::class.java)
+            val intent = Intent(requireContext(), healtawarenessinfoMenu::class.java)
             startActivity(intent)
         }
         cardview8.setOnClickListener {

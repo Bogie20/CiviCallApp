@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".CivicEngagementInfo.Roadmap">
+    tools:context=".CivicEngagementInfo.CivicParticipationInfo">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -69,7 +69,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your Civic Journey: A Roadmap to Successfull Engagement"
+                    android:text="The Student's Guide to Civic Participation: Making Your Voice Heard"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -82,7 +82,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Embarking on your civic journey is like navigating a roadmap to becoming a successful and impactful civic participant. In a world that constantly evolves, civic engagement isn't just a right; it's a potent tool for shaping your community and society as a whole. This guide aims to provide you with invaluable key pointers to steer you toward effective and meaningful civic involvement.&quot;"
+                    android:text="&quot;Welcome to The Student's Guide to Civic Participation: Making Your Voice Heard. In this guide, we will explore the crucial role college students play in shaping their communities and the nation through topics such as the importance of college voter engagement, election preparedness, political activism, advocating for voting rights, and civic education on elections. Discover how you can actively participate in the democratic process and make a meaningful impact as a student.&quot;"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"

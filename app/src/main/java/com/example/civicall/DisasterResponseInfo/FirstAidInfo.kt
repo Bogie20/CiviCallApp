@@ -42,9 +42,9 @@ class FirstAidInfo : AppCompatActivity() {
                         "9. PEACE OF MIND: Knowing you have a properly stocked first aid kit provides peace of mind and promotes self-sufficiency in handling minor emergencies, enhancing your travel experience.\n\n" +
                         "10. SAFETY AND RESPONSIBILITY: Stocking basic first aid supplies reflects your commitment to personal safety and the well-being of fellow travelers, contributing to a safer and more responsible travel environment.\n\n",
 
-                R.drawable.love2,
+                R.drawable.img_94,
                 "https://www.youtube.com/watch?v=dYKdWsVtbaE&ab_channel=IndependenceBlueCross",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863"
+                "https://www.youtube.com/watch?v=dYKdWsVtbaE&pp=ygUmSG93IHRvIHN0b2NrIHRoZSBwZXJmZWN0IGZpcnN0IGFpZCBraXQ%3D"
             )
         )
         dataList.add(
@@ -63,9 +63,9 @@ class FirstAidInfo : AppCompatActivity() {
                         "10. COORDINATION WITH EMERGENCY SERVICES: The script highlights the importance of calling for emergency help (999/112) when necessary. This step ensures that professional medical assistance is on the way, and the responder can focus on immediate care until help arrives.\n\n",
 
 
-                R.drawable.love2,
+                R.drawable.img_95,
                 "https://www.youtube.com/watch?v=ea1RJUOiNfQ&ab_channel=StJohnAmbulance",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.youtube.com/watch?v=ea1RJUOiNfQ&pp=ygVFSG93IHRvIGRvIHRoZSBQcmltYXJ5IFN1cnZleSAtIEZpcnN0IEFpZCBUcmFpbmluZyAtIFN0IEpvaG4gQW1idWxhbmNl")
         )
         dataList.add(
             DataItem("Provide emergency medical contact info.",
@@ -81,9 +81,9 @@ class FirstAidInfo : AppCompatActivity() {
                         "9. SIMPLE AND QUICK PROCESS: The video demonstrates that the process of accessing emergency medical information on smartphones is straightforward and does not consume much time. It is a minimal effort that can yield substantial benefits in terms of patient care.\n\n" +
                         "10. PROMOTING AWARENESS: Encouraging the practice of checking for smartphone emergency medical ID activation should be an integral part of healthcare training and protocols. This awareness ensures that healthcare providers are prepared to utilize this valuable resource when needed.\n\n",
 
-                R.drawable.love2,
+                R.drawable.img_96,
                 "https://www.youtube.com/watch?v=SXwXjw1Q-88&ab_channel=URKesslerTrauma",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.youtube.com/watch?v=SXwXjw1Q-88&pp=ygUvU21hcnRwaG9uZSBFbWVyZ2VuY3kgTWVkaWNhbCBJRCBBY2Nlc3MgVHV0b3JpYWw%3D")
         )
         dataList.add(
                 DataItem("Maintain an AED (Automated External Defibrillator).",
@@ -110,9 +110,9 @@ class FirstAidInfo : AppCompatActivity() {
 
 
 
-                R.drawable.love2,
+                R.drawable.img_97,
                 "https://www.youtube.com/watch?v=UFvL7wTFzl0&ab_channel=StJohnAmbulance",
-                    "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                    "https://www.youtube.com/watch?v=UFvL7wTFzl0&pp=ygVJSG93IHRvIFVzZSBhIERlZmlicmlsbGF0b3IgKEFFRCkgLSBGaXJzdCBBaWQgVHJhaW5pbmcgLSBTdCBKb2huIEFtYnVsYW5jZQ%3D%3D")
         )
         dataList.add(
             DataItem("Establish triage and medical treatment areas.",
@@ -142,12 +142,12 @@ class FirstAidInfo : AppCompatActivity() {
 
 
 
-                R.drawable.love2,
+                R.drawable.img_98,
                 "https://www.youtube.com/watch?v=9QHDs10e-G0&ab_channel=UNMCHEROES",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.youtube.com/watch?v=9QHDs10e-G0&pp=ygUTU1RBUlQgVHJpYWdlIEJhc2ljcw%3D%3D")
         )
         dataList.add(
-            DataItem("Ambulance Services Standards and Guidelines  ",
+            DataItem("Ambulance Services Standards and Guidelines",
                 "In the Philippines, the provision of ambulance services is essential for ensuring the timely and effective care of individuals facing medical emergencies. The Philippine Red Cross has established comprehensive standards and guidelines for ambulance operations, as well as emergency dispatch procedures. This video serves as a reference and educational resource for ambulance crews and EMS providers, outlining the critical protocols that must be followed during medical emergencies and patient transport.\n\n" +
 
 
@@ -166,9 +166,9 @@ class FirstAidInfo : AppCompatActivity() {
 
 
 
-                R.drawable.love2,
+                R.drawable.img_99,
                 "https://www.youtube.com/watch?v=Xu9zdIwnJ0U&ab_channel=Etactics",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.youtube.com/watch?v=Xu9zdIwnJ0U&pp=ygVENSBSZWFsLVdvcmxkIEV4YW1wbGVzIG9mIE1lZGljYWwgQXBwb2ludG1lbnQgVHJhbnNwb3J0YXRpb24gU2VydmljZXM%3D")
         )
         dataList.add(
             DataItem("Coordinate with local healthcare providers.",
@@ -187,9 +187,9 @@ class FirstAidInfo : AppCompatActivity() {
                         "4. HUMAN RESOURCES: The healthcare system benefits from a diverse workforce of healthcare professionals, including nurses, doctors, and midwives, enhancing the capacity to address a wide range of health concerns.\n\n" +
                         "5. DATA-DRIVEN HEALTHCARE: The collection of health data and the adoption of telemedicine contribute to better disease monitoring, early detection of outbreaks, and improved healthcare delivery, which are crucial for public health and well-being.\n\n",
 
-                R.drawable.love2,
+                R.drawable.img_101,
                 "https://www.youtube.com/watch?v=J25bd7mpgr8&ab_channel=LakanCortezMD",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.youtube.com/watch?v=J25bd7mpgr8&pp=ygUyQSBCcmllZiBSZXZpZXcgb2YgdGhlIFBoaWxpcHBpbmUgSGVhbHRoY2FyZSBTeXN0ZW0%3D")
         )
         dataList.add(
             DataItem("Monitor public health during disasters.",
@@ -220,9 +220,9 @@ class FirstAidInfo : AppCompatActivity() {
 
 
 
-                R.drawable.love2,
+                R.drawable.img_102,
                 "https://www.youtube.com/watch?v=Lnoph21Je6I&ab_channel=JonathanNoel",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.youtube.com/watch?v=Lnoph21Je6I&pp=ygUvSW50cm8gdG8gUHVibGljIEhlYWx0aCAtIEVtZXJnZW5jeSBQcmVwYXJlZG5lc3M%3D")
         )
         dataList.add(
             DataItem("Ensure medication access and storage.",
@@ -248,7 +248,7 @@ class FirstAidInfo : AppCompatActivity() {
 
 
 
-                R.drawable.love2,
+                R.drawable.img_103,
                 "https://www.youtube.com/watch?v=iQozgr7XnoY&ab_channel=MedicalCentric",
                 "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
         )
@@ -277,9 +277,9 @@ class FirstAidInfo : AppCompatActivity() {
 
 
 
-                R.drawable.love2,
+                R.drawable.img_104,
                 "https://www.youtube.com/watch?v=U_J7UOy5euo&ab_channel=MidEssexHospitalServicesNHSTrust",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://i.ytimg.com/vi/U_J7UOy5euo/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAj_8zwFsp3HAaX1caOZTiCCNgUIw")
         )
 
 

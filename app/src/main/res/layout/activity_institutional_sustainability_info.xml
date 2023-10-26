@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CampusGovernanceInfo.InstitutionalSustainabilityInfo">
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/red"
+        android:elevation="4dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/profileburger"
+            android:layout_width="60dp"
+            android:paddingLeft="5dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center|left"
+            android:background="@android:color/transparent"
+            android:src="@drawable/menubutton"
+            android:contentDescription="Open Navigation Menu" />
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/lexend_bold"
+            android:text="DIGITAL AGE"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/relativeLayout"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:backgroundTint="@color/white"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:fontFamily="@font/lexend_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ENHANCING INSTITUTIONAL SUSTAINABILITY THROUGH COMPREHENSIVE GOVERNANCE AND MANAGEMENT"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp" />
+                <TextView
+
+                    android:id="@+id/info"
+                    android:fontFamily="@font/lexend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Unlock the secrets of campus governance models with our in-depth exploration. From shared to decentralized systems, discover how universities manage their affairs for institutional sustainability."
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="110dp"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="start"
+                    android:textAlignment="viewStart"
+                    />
+
+            </androidx.cardview.widget.CardView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="25dp"
+                />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

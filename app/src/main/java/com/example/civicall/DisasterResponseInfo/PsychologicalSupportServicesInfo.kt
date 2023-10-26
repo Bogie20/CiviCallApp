@@ -43,7 +43,7 @@ class PsychologicalSupportServicesInfo : AppCompatActivity() {
                         "10. RESILIENCE ENHANCEMENT: Help survivors and response workers enhance their resilience skills, empowering them to cope with the psychological impact of disasters effectively.\n\n",
                 R.drawable.img_48,
                 "https://www.apa.org/topics/disasters-response/disaster-mental-health-psychologists",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863"
+                "https://www.apa.org/images/disaster-mental-health-tile_tcm7-319090.jpg"
             )
         )
         dataList.add(
@@ -61,7 +61,7 @@ class PsychologicalSupportServicesInfo : AppCompatActivity() {
                         "10. CONTINUOUS TRAINING AND EVALUATION: Regularly update and assess trauma-informed care practices, incorporating the latest research and feedback from communities to enhance the quality of care provided.\n\n",
                 R.drawable.img_49,
                 "https://www.ruralhealthinfo.org/rural-monitor/trauma-informed-care",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.ruralhealthinfo.org/rural-monitor/wp-content/uploads/2019/04/gilmartin-bird.jpg")
         )
         dataList.add(
             DataItem("Building Resilience: Strengthening Crisis Counseling and Disaster Response",
@@ -80,7 +80,7 @@ class PsychologicalSupportServicesInfo : AppCompatActivity() {
 
                 R.drawable.img_50,
                 "https://www.samhsa.gov/dtac/disaster-response-template-toolkit/disaster-responder-stress-management",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.samhsa.gov/sites/default/files/dtac-banner.jpg")
         )
         dataList.add(
             DataItem("Building Resilience Through Community Unity: Lessons from Disaster Response.",
@@ -101,7 +101,7 @@ class PsychologicalSupportServicesInfo : AppCompatActivity() {
                         "5. WATERSHED RESILIENCE PROMOTION: Execute projects in critical watersheds to promote climate resilience, emphasizing green growth measures and ecosystem restoration.\n\n",
                 R.drawable.img_51,
                 "https://hazards.colorado.edu/news/research-counts/unity-is-strength-community-resilience-in-puerto-rico-after-hurricane-maria",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://hazards.colorado.edu/uploads/freeform/option1.jpeg")
         )
 
         dataList.add(
@@ -119,7 +119,7 @@ class PsychologicalSupportServicesInfo : AppCompatActivity() {
                         "10. CONTINUOUS EVALUATION AND RESEARCH: Continuously assess the effectiveness of mental health services, gather feedback from children and their families, and contribute to research on best practices for children's mental health in disaster response.\n\n",
                 R.drawable.img_52,
                 "https://www.samhsa.gov/dtac/disaster-survivors/children-and-disaster",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.unicef.org/sites/default/files/styles/two_column/public/UNI205414.jpg?itok=SmNvSV1n")
         )
         dataList.add(
             DataItem("Revitalizing Rescuers: Promoting Self-Care in Disaster Response.",
@@ -140,7 +140,7 @@ class PsychologicalSupportServicesInfo : AppCompatActivity() {
 
                 R.drawable.img_53,
                 "https://emergency.cdc.gov/coping/responders.asp",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.healthwheel.org/wp-content/uploads/2018/12/Slide6.jpg")
         )
         dataList.add(
             DataItem("Healing Beyond the Horizons: Addressing Post-Disaster Stressors in Response Efforts",
@@ -157,7 +157,7 @@ class PsychologicalSupportServicesInfo : AppCompatActivity() {
                         "10. PROMOTE MENTAL AND SOCIAL WELL-BEING: Prioritize strategies that promote mental and social well-being as integral components of disaster resilience.\n\n",
                 R.drawable.img_55,
                 "https://www.frontiersin.org/articles/10.3389/fpubh.2018.00373/full",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                    "https://www.ready.gov/sites/default/files/Coping%20with%20Disaster%201.7.4.0%20Tab%203%20of%204_0.jpg")
         )
 
 
