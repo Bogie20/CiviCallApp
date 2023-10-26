@@ -29,10 +29,10 @@ class SearchAndRescueinfo : AppCompatActivity() {
 
         dataList.add(
             DataItem(
-                "Procedure for Training Search and Rescue Teams",
-                "Search and Rescue Operations, or SAR, are a vital element of emergency response efforts. This guide offers a detailed overview of the key components involved in SAR, including team training, equipment maintenance, and coordination with local authorities. It serves as an essential resource for those dedicated to preserving lives and communities during crises.\"\"\n\n" +
+                " Comprehensive Training Framework for Disaster Response and Search and Rescue Teams",
+                "Joining the race against time, search and rescue teams leap into action after earthquakes strike urban areas, aiming to find survivors trapped beneath debris. In these critical moments, a comprehensive training framework for disaster response teams becomes vital to ensure their effectiveness in life-saving missions.\"\"\n\n" +
 
-                        "1. Needs Assessment: Begin by assessing the specific needs and requirements of your search and rescue team. Identify the types of disasters or emergencies they may encounter, the skills needed, and the available resources.\n\n" +
+                        "1. Risk Analysis and Evaluation: Begin by analyzing and evaluating the specific disaster risks in the region, considering factors like seismic activity, population density, and building structures. Identify the types of disasters or emergencies your search and rescue team may encounter and the resources required.\n\n" +
                         "2. Recruitment and Selection: Recruit individuals with relevant backgrounds, skills, and a commitment to the mission. Consider physical fitness, medical training, communication skills, and teamwork abilities during the selection process.\n\n" +
                         "3. Orientation and Induction: Provide a comprehensive orientation program to familiarize new team members with the organization's structure, goals, and operational procedures.\n\n" +
                         "4. Basic Training: Conduct foundational training that covers basic first aid, navigation, wilderness survival, and team coordination. This ensures that all team members have a fundamental skillset.\n\n" +
@@ -43,13 +43,13 @@ class SearchAndRescueinfo : AppCompatActivity() {
                         "9. Efficiency: Trained teams work more efficiently, reducing the time it takes to locate and assist individuals in need. This efficiency can save critical minutes during emergencies.\n\n" +
                         "10. Safety: Training ensures that SAR team members can operate safely in challenging environments, minimizing the risk to themselves and others during rescue missions.\n\n",
 
-                R.drawable.love2,
+                R.drawable.img_86,
                 "http://www.lifesafety.com/emergency-training/search-rescue-training/",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863"
+                "https://www.bjreview.com/Cover_Stories_Series_2011/2011-08/15/content_383682.htm"
             )
         )
         dataList.add(
-            DataItem("Maintain Necessary Equipment",
+            DataItem("Ensuring Equipment Readiness: Key Practices for Disaster Response",
                 "The maintenance of necessary equipment is a fundamental component of search and rescue (SAR) operations. Ensuring that equipment is in optimal condition is vital for the safety and effectiveness of SAR teams during emergencies. This guide outlines procedures for maintaining SAR equipment and highlights its critical importance in successful search and rescue missions.\n\n" +
                         "1. Regular Inspections: Conduct routine inspections of all SAR equipment to identify wear, damage, or defects. This includes ropes, harnesses, medical supplies, communication devices, and specialized tools.\n\n" +
                         "2. Scheduled Maintenance: Establish a maintenance schedule based on equipment manufacturer recommendations. Regularly service and repair equipment to prevent breakdowns during critical operations.\n\n" +
@@ -64,12 +64,12 @@ class SearchAndRescueinfo : AppCompatActivity() {
                         "10. Professionalism: A well-maintained and organized equipment inventory reflects professionalism and commitment, instilling confidence in team members and stakeholders during SAR missions.\n\n",
 
 
-                R.drawable.love2,
+                R.drawable.img_87,
                 "https://www.ukfrs.com/guidance/search/personal-protective-equipment-ppe-rescues",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.panaynews.net/do-lgus-have-disaster-response-equipment/")
         )
         dataList.add(
-            DataItem("Establish Search Protocols.",
+            DataItem("Effective Search Protocols: Enhancing Disaster Response Efficiency",
                 "Establishing search protocols is a critical foundation for effective search and rescue (SAR) operations. These protocols define the systematic procedures and guidelines that SAR teams follow when conducting searches. This guide outlines procedures for establishing search protocols and emphasizes their importance in achieving successful SAR outcomes.\n\n" +
                         "1. Risk Assessment: Begin by conducting a thorough risk assessment of the search area, considering factors like terrain, weather conditions, and potential hazards. This assessment helps determine the scope and approach of the search.\n\n" +
                         "2. Team Coordination: Establish clear lines of communication and coordination among SAR team members. Define roles and responsibilities for team leaders, searchers, navigators, and support personnel\n\n" +
@@ -82,41 +82,13 @@ class SearchAndRescueinfo : AppCompatActivity() {
                         "9. Coordination: Clear protocols improve coordination and communication among team members, ensuring a cohesive and effective response to the situation.\n\n" +
                         "10. Accountability: Protocols establish a framework for accountability, helping SAR teams document their actions, findings, and decisions throughout the search process, which can be essential for debriefing and analysis.\n\n",
 
-                R.drawable.love2,
+                R.drawable.img_88,
                 "https://safety4sea.com/emergency-procedures-how-search-and-rescue-works/",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://preparecenter.org/wp-content/uploads/2023/03/Early-warning-for-cyclone-preparedness-in-Bangladesh.jpg")
         )
+
         dataList.add(
-            DataItem("Coordinate with Local Authorities.",
-
-                "Effective coordination with local authorities is a fundamental aspect of successful search and rescue (SAR) operations. Collaboration between SAR teams and local government agencies is essential for optimizing resources, ensuring safety, and achieving efficient response to emergencies. This guide outlines procedures for coordinating with local authorities and underscores the importance of this partnership in SAR efforts.\n\n" +
-
-
-
-
-
-
-                        "1. Establish Contact: Initiate communication with local authorities as soon as a SAR operation is initiated. Identify the relevant agencies, such as law enforcement, fire departments, emergency management, and municipal or county government.\n\n" +
-                        "2. Share Information: Exchange critical information with local authorities, including the nature of the emergency, the search area, and any available details about missing persons or incident specifics.\n\n" +
-                        "3. Request Permissions: Seek necessary permissions or approvals from local authorities to access private property or restricted areas within the search area. Ensure compliance with local laws and regulations.\n" +
-                        "4. Resource Coordination: Collaborate with local authorities to coordinate resources, such as personnel, equipment, and transportation, to support SAR operations effectively.\n\n" +
-                        "5. Incident Command: Establish clear lines of incident command and communication protocols between SAR teams and local authorities. Define roles and responsibilities to ensure seamless coordination during the operation.\n\n" +
-                        "6. Resource Mobilization: Local authorities can provide additional resources and support, including manpower, specialized equipment, and logistical assistance, which are often crucial in SAR missions.\n\n" +
-                        "7. Legal and Regulatory Compliance: Coordinating with local authorities ensures compliance with legal and regulatory requirements, such as search and rescue jurisdiction and property access rights.\n\n" +
-                        "8. Safety: Collaboration with local authorities enhances safety by facilitating access to critical information, warnings about potential hazards, and guidance on safety protocols.\n\n" +
-                        "9. Efficiency: Coordinated efforts result in more efficient SAR operations, as resources are allocated strategically, reducing redundancy and optimizing response times.\n\n" +
-                        "10. Public Trust: Collaboration with local authorities fosters public trust by demonstrating a unified and organized response to emergencies, instilling confidence in the community's emergency response capabilities.\n\n",
-
-
-
-
-
-                R.drawable.love2,
-                "https://www.unisdr.org/campaign/resilientcities/home/article/essential-nine-ensure-effective-disaster-response.html",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
-        )
-        dataList.add(
-            DataItem("Assign Team Leaders.",
+            DataItem("Leadership in Disaster Response: Appointing Team Leaders for Success",
                 "Assigning team leaders is a crucial element in the organization and success of search and rescue (SAR) operations. Team leaders provide direction, coordination, and decision-making capabilities during emergencies. This guide outlines procedures for assigning team leaders and emphasizes their importance in ensuring effective SAR missions.\n\n" +
 
                         "1. Assess Leadership Skills: Identify team members with strong leadership qualities, including experience, communication skills, problem-solving abilities, and a calm demeanor under pressure.\n\n" +
@@ -134,36 +106,13 @@ class SearchAndRescueinfo : AppCompatActivity() {
 
 
 
-                R.drawable.love2,
+                R.drawable.img_92,
                 "https://www.nwcg.gov/ad-positions/srtl",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://crisisresponse.iom.int/sites/g/files/tmzbdl1481/files/styles/appeal_header_image_style/public/appeal/photos/philippines.JPG?h=144a81e2&itok=MNXFilkC")
         )
+
         dataList.add(
-            DataItem("Conduct Damage Assessments ",
-                "Conducting damage assessments is a critical step in the aftermath of disasters or emergencies. These assessments help evaluate the extent of damage to infrastructure, properties, and the environment, enabling authorities to make informed decisions regarding response and recovery efforts. This guide outlines procedures for conducting damage assessments and underscores the importance of this process in effective disaster management.\n\n" +
-
-
-                        "1. Safety First: Prioritize safety for assessment teams by ensuring they have the necessary personal protective equipment (PPE) and are aware of potential hazards in the affected area.\n\n" +
-                        "2. Assessment Team Formation: Assemble assessment teams comprising trained personnel with expertise in various fields, such as engineering, architecture, and environmental science\n\n" +
-                        "3. Pre-Assessment Planning: Develop an assessment plan that outlines the objectives, data collection methods, and assessment areas. Assign specific teams or individuals to assess different types of damage.\n" +
-                        "4. Field Data Collection: Deploy assessment teams to the affected areas to collect data on damage to buildings, infrastructure, utilities, and natural resources. Use standardized assessment forms to record findings.\n\n" +
-                        "5. Damage Classification: Categorize the extent of damage into predefined levels (e.g., minor, moderate, severe) for each type of asset or area, based on established criteria and guidelines.\n\n" +
-                        "6. Informed Decision-Making: Damage assessments provide accurate and timely information to decision-makers, allowing them to allocate resources and prioritize response efforts effectively.\n\n" +
-                        "7. Resource Allocation: By assessing the extent of damage, authorities can allocate resources such as search and rescue teams, medical personnel, and equipment to areas with the greatest need.\n\n" +
-                        "8. Rescue Prioritization: Damage assessments help prioritize rescue operations by identifying areas with the most significant structural damage or the highest concentration of affected individuals.\n\n" +
-                        "9. Infrastructure Restoration: Assessments guide the restoration and repair of critical infrastructure, ensuring that essential services like water, electricity, and transportation are restored as quickly as possible.\n\n" +
-                        "10. Resource Planning: Damage assessments aid in long-term resource planning for recovery and reconstruction efforts, including securing funding and support from government agencies and organizations.\n\n",
-
-
-
-
-
-                R.drawable.love2,
-                "https://slideplayer.com/slide/6949533/",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
-        )
-        dataList.add(
-            DataItem("Prioritize Life-Saving Operations",
+            DataItem("Saving Lives First: Prioritizing Operations in Disaster Response",
                 "Prioritizing life-saving operations is a fundamental principle in emergency management and search and rescue (SAR) efforts. When responding to disasters or crises, it is essential to focus on activities that directly save lives and protect individuals from immediate harm. This guide outlines procedures for prioritizing life-saving operations and highlights the critical importance of this approach in emergency response.\n\n" +
 
                         "1. Initial Assessment: Begin by conducting an initial assessment of the emergency situation to identify immediate threats to human life, such as trapped individuals, injuries, or those in imminent danger.\n\n" +
@@ -177,12 +126,12 @@ class SearchAndRescueinfo : AppCompatActivity() {
                         "9. Public Confidence: Demonstrating a commitment to saving lives in emergencies builds public trust and confidence in the capabilities of emergency responders and authorities.\n\n" +
                         "10. Humanitarian Imperative: Prioritizing life-saving operations aligns with the humanitarian imperative to protect and preserve human life during times of crisis, reflecting a moral and ethical duty.\n\n",
 
-                R.drawable.love2,
+                R.drawable.img_93,
                 "https://www.hobartcity.com.au/Council/News-publications-and-announcements/Latest-news/smoke-free-parks",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rcrc-resilience-southeastasia.org%2Fhealth%2Fcommunity-based-health-and-first-aid%2Ffirst-aid%2F&psig=AOvVaw2QU30hGPB9gHjsawRHz_IC&ust=1696427641351000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCNiBzamE2oEDFQAAAAAdAAAAABAD")
         )
         dataList.add(
-            DataItem("Share Information with the Public.",
+            DataItem("Informing the Public: Effective Communication in Disaster Response",
                 "Sharing information with the public is a fundamental component of effective emergency management and response. During crises, disseminating timely and accurate information to the public helps inform and guide individuals, enhances their safety, and builds trust in emergency response efforts. This guide outlines procedures for sharing information with the public and underscores the vital importance of transparent and accessible communication.\n\n" +
 
 
@@ -210,12 +159,12 @@ class SearchAndRescueinfo : AppCompatActivity() {
 
 
 
-                R.drawable.love2,
-                "https://www.sciencedirect.com/science/article/pii/S0925753520302927",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                R.drawable.img_89,
+                "https://www.samhsa.gov/dtac/disaster-response-template-toolkit/messaging-through-other-media",
+                "https://philippines.oxfam.org/latest/stories/salcedo-leader-urges-government-adopt-anticipatory-action-drrm ")
         )
         dataList.add(
-            DataItem("Consider K-9 units for Search Operations.",
+            DataItem("Paws for Help: Utilizing K-9 Units in Disaster Search Operations",
                 "Considering K-9 units for search operations is a valuable strategy in enhancing the effectiveness of search and rescue (SAR) efforts. Specially trained dogs and their handlers play a crucial role in locating missing persons, detecting survivors in disaster scenarios, and assisting SAR teams in a variety of environments. This guide outlines procedures for incorporating K-9 units into search operations and emphasizes the importance of their unique capabilities.\n\n" +
 
 
@@ -237,12 +186,12 @@ class SearchAndRescueinfo : AppCompatActivity() {
 
 
 
-                R.drawable.love2,
+                R.drawable.img_90,
                 "https://www.corinthiansgroup.com/importance-of-k-9-units-in-security/",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.rappler.com/tachyon/r3-assets/9BF98A19C9964319AAB2C026408A9D97/img/8E23BC282BF24B85B59668C763DB7F5D/Coast-Guard-K9s-20150625-01.jpg?resize=640%2C427&zoom=1")
         )
         dataList.add(
-            DataItem("Document and Report Findings.",
+            DataItem("Recording and Reporting Discoveries: Vital Steps in Disaster Response",
                 "Documenting and reporting findings is a crucial step in search and rescue (SAR) operations and emergency response efforts. Accurate and detailed documentation ensures that critical information about the operation, including discoveries, conditions, and actions taken, is preserved for analysis, decision-making, and future reference. This guide outlines procedures for documenting and reporting findings and underscores the importance of this process in effective SAR operations.\n\n" +
 
 
@@ -265,9 +214,9 @@ class SearchAndRescueinfo : AppCompatActivity() {
 
 
 
-                R.drawable.love2,
+                R.drawable.img_91,
                 "https://www.imo.org/en/OurWork/Safety/Pages/IMO-documents-relevant-to-SAR.aspx",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://psba.edu/wp-content/uploads/2018/08/MsIlas.jpg")
         )
 
 

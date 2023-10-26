@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".CivicEngagementInfo.YouthEmpowerment">
+    tools:context=".CivicEngagementInfo.CivicAdvocacyStrategiesInfo">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -33,8 +33,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Lasting Impact"
 
+            android:text="Civic Advocacy"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -69,7 +69,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Youth Empowerement in Civic Engagement: Shaping Tomorrow's Leaders"
+                    android:text="A Comprehensive Guide to Effective Civic Advocacy Strategies"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -82,7 +82,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Embarking on your college journey is not just about textbooks and lectures; it's a pivotal moment in your life when your voice can echo far beyond the classroom walls. 'Youth Empowerment in Civic Engagement: Shaping Tomorrow's Leaders' is your roadmap to becoming an empowered and impactful leader right now. In the dynamic world of college, where ideas flourish and passions ignite, this guide will help you harness your potential to create real change, leaving an indelible mark on your campus and the world beyond.&quot;"
+                    android:text="&quot;Master the art of civic advocacy with this comprehensive guide. Unlock the strategies to make your voice heard and drive change in your community.&quot;"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"

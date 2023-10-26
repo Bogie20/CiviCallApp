@@ -51,7 +51,7 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
 
                 R.drawable.img_56,
                 "https://blogs.worldbank.org/eastasiapacific/philippines-ready-rebuild-aftermath-typhoon-rai",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863"
+                "https://recovery.preventionweb.net/sites/default/files/styles/landscape_16_9/public/2021-12/PDNA%20Mini%20page_4.jpg?h=b555fb61&itok=JB2iN5X4"
             )
         )
         dataList.add(
@@ -77,7 +77,7 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
 
                 R.drawable.img_58,
                 "https://www.druva.com/glossary/what-is-a-disaster-recovery-plan-definition-and-related-faqs",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://recovery.preventionweb.net/sites/default/files/styles/landscape_16_9/public/2021-12/PDNA%20Mini%20page_4.jpg?h=b555fb61&itok=JB2iN5X4")
         )
         dataList.add(
             DataItem("Empowering Disaster Response: Securing Funding and Resources for Resilient Recovery",
@@ -101,7 +101,7 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
 
                 R.drawable.img_59,
                 "https://www.financialprotectionforum.org/third-party/microsite_1/subpage02.html",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.eaglenews.ph/wp-content/uploads/2015/06/DSWD.jpg")
         )
         dataList.add(
             DataItem("Synergizing Disaster Response: Collaborating with Government Agencies for Effective Coordination",
@@ -126,7 +126,7 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
 
                 R.drawable.img_60,
                 "https://blog.grahammedical.com/blog/agencies-involved-in-disaster-management-and-tools-to-help-them",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.pids.gov.ph/details/news/press-releases/pids-study-calls-for-a-more-bottom-up-approach-to-ph-s-drrm-landscape")
         )
         dataList.add(
             DataItem("Rebuilding the Foundation: Prioritizing Infrastructure Repairs in Disaster Response.",
@@ -145,7 +145,7 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
 
                 R.drawable.img_61,
                 "https://www.govpilot.com/blog/what-is-disaster-resilient-infrastructure-why-is-it-needed",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://tao-pilipinas.org/wp-content/uploads/2020/08/ruby-northern-samar.jpg")
         )
         dataList.add(
             DataItem("Fostering Resilient Communities: Promoting Community-Led Recovery in Disaster Response ",
@@ -168,7 +168,7 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
 
                 R.drawable.img_62,
                 "https://knowledge.aidr.org.au/resources/ajem-jan-2019-resilience-in-the-philippines-through-effective-community-engagement/",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.pdrf.org/wp-content/uploads/2021/03/What-We-Do-Community-Resilience.jpg")
         )
         dataList.add(
             DataItem("Sustaining Livelihoods: Support Initiatives in Disaster Response",
@@ -193,7 +193,7 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
 
                 R.drawable.img_63,
                 "https://www.lse.ac.uk/granthaminstitute/publication/disaster-impacts-and-financing-local-insights-from-the-philippines/",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.pdrf.org/wp-content/uploads/2021/03/What-We-Do-Community-Resilience.jpg")
         )
         dataList.add(
             DataItem("Rebuilding Homes and Hope: Providing Housing Assistance in Disaster Response",
@@ -225,7 +225,7 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
 
                 R.drawable.img_64,
                 "https://www.worldbank.org/en/topic/disasterriskmanagement/brief/global-program-for-resilient-housing",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://files01.pna.gov.ph/category-list/2022/03/12/galvez.jpeg")
         )
         dataList.add(
             DataItem("Nurturing Enduring Strength: Fostering Long-Term Resilience in Disaster Response",
@@ -251,7 +251,7 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
 
                 R.drawable.img_65,
                 "https://nap.nationalacademies.org/read/13457/chapter/2",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://static.timesofisrael.com/njjewishnews/uploads/2018/12/GOA-Nechama.jpg")
         )
         dataList.add(
             DataItem("Adaptive Preparedness: Continuously Evaluating and Refining Disaster Response Plans.",
@@ -280,7 +280,7 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
 
                 R.drawable.img_66,
                 "https://sbccimplementationkits.org/sbcc-in-emergencies/lessons/unit-9-monitoring-and-evaluation/",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://www.davaocity.gov.ph/wp-content/uploads/2019/07/CIO_3875.jpg")
         )
 
 

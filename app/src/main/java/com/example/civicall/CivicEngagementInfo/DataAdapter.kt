@@ -1,6 +1,7 @@
 package com.example.civicall.CivicEngagementInfo
 
 import android.view.LayoutInflater
+import android.view.ScaleGestureDetector
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -15,11 +16,8 @@ class DataAdapter(private val dataList: List<DataItem>) :
         fun onImageClick(position: Int)
     }
 
-
-    // Add a variable to hold the click listener
     private var itemClickListener: OnItemClickListener? = null
 
-    // Provide a method to set the click listener from outside the adapter
     fun setOnItemClickListener(listener: OnItemClickListener) {
         itemClickListener = listener
     }
@@ -29,15 +27,57 @@ class DataAdapter(private val dataList: List<DataItem>) :
         val paragraphTextView: TextView = itemView.findViewById(R.id.paragraphTextView)
         val imageView: ImageView = itemView.findViewById(R.id.feed_post_image)
         val referenceTextView: TextView = itemView.findViewById(R.id.reference)
+        val fontSizeTextView: TextView = itemView.findViewById(R.id.fontSizeTextView) // Add this TextView
+
+        var currentItem: DataItem? = null
+        private var scaleFactor = 1.0f
 
         init {
-            // Add a click listener to the referenceTextView
             referenceTextView.setOnClickListener {
-                itemClickListener?.onReferenceClick(adapterPosition)
+                itemClickListener?.onReferenceClick(bindingAdapterPosition)
             }
-            // Add a click listener to the imageView
+
             imageView.setOnClickListener {
-                itemClickListener?.onImageClick(adapterPosition)
+                itemClickListener?.onImageClick(bindingAdapterPosition)
+            }
+
+            val scaleGestureDetector = ScaleGestureDetector(itemView.context, object :
+                ScaleGestureDetector.OnScaleGestureListener {
+                override fun onScale(detector: ScaleGestureDetector): Boolean {
+                    scaleFactor *= detector.scaleFactor
+                    scaleFactor = scaleFactor.coerceIn(0.5f, 3.0f)
+
+                    titleTextView.textSize = 16 * scaleFactor
+                    paragraphTextView.textSize = 13 * scaleFactor
+
+                    return true
+                }
+
+                override fun onScaleBegin(detector: ScaleGestureDetector): Boolean {
+                    return true
+                }
+
+                override fun onScaleEnd(detector: ScaleGestureDetector) {
+                    // You can perform any necessary actions here when scaling ends
+                }
+            })
+
+            titleTextView.setOnTouchListener { _, event ->
+                scaleGestureDetector.onTouchEvent(event)
+                true
+            }
+
+            paragraphTextView.setOnTouchListener { _, event ->
+                scaleGestureDetector.onTouchEvent(event)
+                true
+            }
+
+            titleTextView.setOnClickListener {
+                it.performClick()
+            }
+
+            paragraphTextView.setOnClickListener {
+                it.performClick()
             }
         }
     }
@@ -50,6 +90,7 @@ class DataAdapter(private val dataList: List<DataItem>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = dataList[position]
+        holder.currentItem = currentItem
         holder.titleTextView.text = currentItem.title
         holder.paragraphTextView.text = currentItem.paragraph
         holder.imageView.setImageResource(currentItem.imageResourceId)

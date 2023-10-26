@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey"
     tools:context=".DisasterResponseInfo.PsychologicalSupportServicesInfo">
 
 
@@ -72,7 +73,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Resilience and Recovery: Psychological Support Services in Disaster Response"
+                    android:text="Resilience and Recovery Psychological Support Services in Disaster Response"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"

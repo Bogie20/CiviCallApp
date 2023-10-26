@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".CivicEngagementInfo.GettingStarted">
+    tools:context=".CivicEngagementInfo.SkillsandOpportunitiesinfo">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -32,9 +32,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:fontFamily="@font/lexend_bold"
 
-            android:text="Getting Started"
+            android:fontFamily="@font/lexend_bold"
+            android:text="Civic Skills"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -70,7 +70,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Civic Engagement 101: A Guide to Getting Started"
+                    android:text="Cultivating Civic Leadership: Skills and Opportunities for College Students"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -83,7 +83,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Ready to make a difference? Dive into Civic Engagement 101 and discover 10 powerful tips to kickstart your journey towards positive change!&quot;"
+                    android:text="&quot;This empowering resource explores the essential skills and boundless opportunities that pave the way for a brighter future through active engagement in their communities and society at large.&quot;"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"

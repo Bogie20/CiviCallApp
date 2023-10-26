@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".CivicEngagementInfo.Strategies">
+    tools:context=".CivicEngagementInfo.GlobalCitizenshipInfo">
 
 
     <RelativeLayout
@@ -71,7 +71,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Skills and Qualities of a successful community engagement leader"
+                    android:text="Global Citizenship: Exploring Civic Engagement on a Global Scale"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -84,11 +84,11 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Are you a student with a burning desire to make a positive impact on your community and beyond? Becoming a civic leader is a powerful way to channel your passion into meaningful engagement. In this guide, we'll explore ten essential tips to help you embark on your journey towards becoming a civic leader, creating lasting change, and inspiring others to do the same&quot;"
+                    android:text="Welcome to a world of boundless possibilities in Global Citizenship:Exploring Civic Engagement on a Global Scale. Delve into the heart of global issues and discover how individuals worldwide are shaping a better future through collective action and shared responsibility."
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="90dp"
                     android:layout_marginStart="13dp"
                     android:layout_marginEnd="16dp"
                     android:gravity="start"
