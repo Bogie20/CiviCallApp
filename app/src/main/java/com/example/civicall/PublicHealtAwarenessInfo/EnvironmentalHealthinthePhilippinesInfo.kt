@@ -8,14 +8,27 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
+import com.example.civicall.Dashboard
 import com.example.civicall.R
+import com.example.civicall.databinding.ActivityEmpoweringCommunitiesInfoBinding
 
 class EnvironmentalHealthinthePhilippinesInfo : AppCompatActivity() {
+
+    private lateinit var binding: ActivityEmpoweringCommunitiesInfoBinding  // De
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_environmental_healthinthe_philippines_info)
 
+        binding = ActivityEmpoweringCommunitiesInfoBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
+        // Now, you can use 'binding' to reference your views in the layout
+        binding.back1.setOnClickListener {
+            val intent = Intent(this, healtawarenessinfoMenu::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager

@@ -407,6 +407,7 @@
             android:name=".Settings"
             android:exported="true"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".Feedback"
             android:exported="true"
