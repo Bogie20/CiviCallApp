@@ -2,17 +2,14 @@ package com.example.civicall.PublicHealtAwarenessInfo
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
-import com.example.civicall.Dashboard
-import com.example.civicall.InformationFragment
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityEmpoweringCommunitiesInfoBinding
-import com.example.civicall.lolo
 
 
 class EmpoweringCommunitiesInfo : AppCompatActivity() {
