@@ -25,107 +25,83 @@
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CampusGovernanceInfo.ProgramsInBsuInfo"
             android:exported="true" />
 
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CampusGovernanceInfo.AdmissionBsuInfo"
             android:exported="true" />
         <activity
             android:name=".CampusGovernanceInfo.GlobalbsuInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CampusGovernanceInfo.SustainabilityBsuInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CampusGovernanceInfo.CampusesAboutInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CampusGovernanceInfo.StudentsBSUInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CampusGovernanceInfo.AdministrationInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CampusGovernanceInfo.AboutInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CampusGovernanceInfo.EmpoweringStudentInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CampusGovernanceInfo.InstitutionalSustainabilityInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CampusGovernanceInfo.CampusGovernanceMenu"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".PublicHealtAwarenessInfo.EvaluatingtheEffectivenessInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".PublicHealtAwarenessInfo.EnvironmentalHealthinthePhilippinesInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".PublicHealtAwarenessInfo.SocioeconomicFactorsandHealthInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".PublicHealtAwarenessInfo.GenderDisparitiesinPublicInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".PublicHealtAwarenessInfo.InnovationsinHealthcareInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".PublicHealtAwarenessInfo.TheImpactofPublicHealthAwarenessInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".PublicHealtAwarenessInfo.EmpoweringCommunitiesInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".PublicHealtAwarenessInfo.MentalHealthMattersInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".PublicHealtAwarenessInfo.RoleofNutritionEducationInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".PublicHealtAwarenessInfo.PreventiveHealthcare"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".PublicHealtAwarenessInfo.healtawarenessinfoMenu"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+
             android:name=".EnvironmentalandSocialIssueInfo.InvisibleLaborInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".EnvironmentalandSocialIssueInfo.CommunitiesinPerilInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".EnvironmentalandSocialIssueInfo.TheSilentCrisisInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".EnvironmentalandSocialIssueInfo.IslandsofInequalityInfo"
             android:exported="true" />
         <activity
@@ -135,198 +111,152 @@
             android:name=".EditProfile"
             android:exported="false" /> <!-- Posting Civic Engagement Start -->
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".EnvironmentalandSocialIssueInfo.BreakingtheChainsInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".EnvironmentalandSocialIssueInfo.WaterWoesandWinsInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".EnvironmentalandSocialIssueInfo.GreenGoldRushInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".EnvironmentalandSocialIssueInfo.DirtyAirBrightSolutionsInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".EnvironmentalandSocialIssueInfo.IslandsofBiodiversityInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".EnvironmentalandSocialIssueInfo.RisingTidesInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".EnvironmentalandSocialIssueInfo.EnvironmentalAndSocialIssuesMenu"
             android:exported="true" /> <!-- Civic rights -->
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CivicRightsAndResponsibility.GlobalCitizenshipandCivicResponsibilityInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CivicRightsAndResponsibility.CivicResponsibilityandEducationinfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CivicRightsAndResponsibility.CivicResponsibilityinTimesofCrisisInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CivicRightsAndResponsibility.GenderEqualityandCivicResponsibilityInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CivicRightsAndResponsibility.CivicRightsinaDigitalWorldInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CivicRightsAndResponsibility.CivicResponsibilityandtheRuleofLawInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CivicRightsAndResponsibility.EnvironmentalCivicResponsibilityinfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CivicRightsAndResponsibility.RighttoProtestandFreeSpeechInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CivicRightsAndResponsibility.CivicResponsibilityInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CivicRightsAndResponsibility.UnderstandingCivicRightsInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CivicRightsAndResponsibility.CivicRightsAndResponsibilityMenu"
             android:exported="true" /> <!-- Civic rights end -->
         <!-- Survival Tips start here -->
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".SurvivalTipsInfo.NavigatingMountainInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".SurvivalTipsInfo.SurvivalMenu"
             android:exported="true" />
+        <activity
             android:name=".CivicEngagementPost.Upload_engagement"
             android:exported="true" /> <!-- Posting Civic Engagement End -->
         <!-- Educational Start -->
         <!-- Civic Engagement Start -->
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".SurvivalTipsInfo.CoastalSurvivalInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".SurvivalTipsInfo.SurvivalPsychologyInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".SurvivalTipsInfo.IslandSurvivalInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".SurvivalTipsInfo.JunglerInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".SurvivalTipsInfo.ElNinoInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".SurvivalTipsInfo.TyphoonInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".SurvivalTipsInfo.TsunamiInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".SurvivalTipsInfo.VolcanicEruptionInfo"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".SurvivalTipsInfo.EarthquakesInfo"
             android:exported="true" /> <!-- Survival Tips  End -->
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CivicEngagementPost.Update_engagement"
             android:exported="true" />
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CivicEngagementPost.DetailPost"
             android:exported="true" />
-        <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
-            android:name=".CivicEngagementPost.Upload_engagement"
-            android:exported="true" /> <!-- Posting Civic Engagement End -->
+        <!-- Posting Civic Engagement End -->
         <!-- Educational Start -->
         <!-- Civic Engagement Start -->
         <activity
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             android:name=".CivicEngagementInfo.TechforGoodsinfo"
             android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.CivicAdvocacyStrategiesInfo"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.GlobalCitizenshipInfo"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.DigitalToolsforCivicEngagementInfo"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.ChampionsofSocialJusticeInfo"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.AmplifyingStudentVoicesInfo"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.StudentLeadershipInfo"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.Civic"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.SkillsandOpportunitiesinfo"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.SustainabilityInitiativesInfo"
             android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            />
         <activity
             android:name=".CivicEngagementInfo.CivicParticipationInfo"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" /> <!-- Civic Engagement End -->
-            android:name=".CivicEngagementInfo.YouthEmpowerment"
             android:exported="true" /> <!-- Civic Engagement End -->
+        <!-- Civic Engagement End -->
         <!-- Disaster Response Start -->
         <activity
             android:name=".DisasterResponseInfo.CommunicationAndInformationInfo"
             android:exported="true" />
         <activity
             android:name=".DisasterResponseInfo.EmergencyPreparednessInfo"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".DisasterResponseInfo.DisasterResponseMenu"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".DisasterResponseInfo.FireSafetyInfo"
             android:exported="true" />
@@ -415,10 +345,6 @@
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Civicengagement"
-            android:exported="true"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Eventcalendar"
             android:exported="true"
             android:screenOrientation="portrait" />
@@ -428,10 +354,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".AboutUs"
-            android:exported="true"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Myprofile"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
