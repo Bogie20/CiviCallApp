@@ -46,7 +46,7 @@
         android:padding="20dp"
         android:text="Introduction"
         android:layout_gravity="center"
-        android:id="@+id/detailIntro"
+        android:id="@+id/detailLocation"
         android:textSize="18sp"
         android:textColor="@color/red"/>
 
@@ -57,7 +57,7 @@
         android:padding="20dp"
         android:text="Description"
         android:layout_gravity="center"
-        android:id="@+id/detailDesc"
+        android:id="@+id/detailDateandTime"
         android:textSize="18sp"
         android:textColor="@color/red"/>
     <RelativeLayout

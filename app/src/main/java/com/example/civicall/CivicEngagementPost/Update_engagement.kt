@@ -31,12 +31,12 @@ class Update_engagement : AppCompatActivity() {
 
     private lateinit var updateImage: ImageView
     private lateinit var updateButton: Button
-    private lateinit var updateDesc: EditText
+    private lateinit var updateDateandTime: EditText
     private lateinit var updateTitle: EditText
-    private lateinit var updateIntro: EditText
+    private lateinit var updateLocation: EditText
     private lateinit var title: String
-    private lateinit var desc: String
-    private lateinit var intro: String
+    private lateinit var dateandtime: String
+    private lateinit var location: String
     private lateinit var imageUrl: String
     private lateinit var key: String
     private lateinit var oldImageURL: String
@@ -49,9 +49,9 @@ class Update_engagement : AppCompatActivity() {
         setContentView(R.layout.activity_update_engagement)
 
         updateButton = findViewById(R.id.updateButton)
-        updateDesc = findViewById(R.id.updateDesc)
+        updateDateandTime = findViewById(R.id.updateDateandTime)
         updateImage = findViewById(R.id.updateImage)
-        updateIntro = findViewById(R.id.updateIntro)
+        updateLocation = findViewById(R.id.updateLocation)
         updateTitle = findViewById(R.id.updateTitle)
 
         val activityResultLauncher =
@@ -70,8 +70,8 @@ class Update_engagement : AppCompatActivity() {
         if (bundle != null) {
             Glide.with(this@Update_engagement).load(bundle.getString("Image")).into(updateImage)
             updateTitle.setText(bundle.getString("Title"))
-            updateDesc.setText(bundle.getString("Description"))
-            updateIntro.setText(bundle.getString("Introduction"))
+            updateDateandTime.setText(bundle.getString("Date and Time"))
+            updateLocation.setText(bundle.getString("Location"))
             key = bundle.getString("Key")!!
             oldImageURL = bundle.getString("Image")!!
         }
@@ -92,7 +92,7 @@ class Update_engagement : AppCompatActivity() {
 
     private fun saveData() {
         storageReference =
-            FirebaseStorage.getInstance().getReference().child("Android Images")
+            FirebaseStorage.getInstance().getReference().child("Poster Civic Images")
                 .child(uri?.lastPathSegment!!)
 
         val builder = AlertDialog.Builder(this@Update_engagement)
@@ -116,10 +116,10 @@ class Update_engagement : AppCompatActivity() {
 
     private fun updateData() {
         title = updateTitle.text.toString().trim()
-        desc = updateDesc.text.toString().trim()
-        intro = updateIntro.text.toString()
+        dateandtime = updateDateandTime.text.toString().trim()
+        location = updateLocation.text.toString()
 
-        val dataClass = DataClass(title, desc, intro, imageUrl)
+        val dataClass = DataClass(title, dateandtime, location, imageUrl)
 
         databaseReference.setValue(dataClass)
             .addOnCompleteListener(OnCompleteListener<Void> { task ->

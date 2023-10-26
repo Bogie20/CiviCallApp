@@ -108,21 +108,21 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:id="@+id/uploadIntro"
+                android:id="@+id/uploadLocation"
                 android:background="@drawable/border_design"
                 android:layout_marginTop="20dp"
                 android:padding="16dp"
-                android:hint="Enter the Introduction"
+                android:hint="Enter the Location"
                 android:gravity="start|center_vertical"
                 android:textColor="@color/red"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:id="@+id/uploadDesc"
+                android:id="@+id/uploadDateandTime"
                 android:background="@drawable/border_design"
                 android:layout_marginTop="20dp"
                 android:padding="16dp"
-                android:hint="Enter a Description"
+                android:hint="Enter a Date and Time"
                 android:gravity="start|top"
                 android:textColor="@color/red"/>
             <TextView

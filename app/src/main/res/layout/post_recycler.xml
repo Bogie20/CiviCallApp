@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
-            android:id="@+id/recTitle"
+            android:id="@+id/civicTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/recImage"
@@ -39,7 +39,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="0dp"
-            android:layout_marginEnd="10dp"
+            android:gravity="start"
+            android:layout_marginEnd="15dp"
             android:textStyle="bold"
             android:layout_marginBottom="80dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +51,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/recIntro"
+            android:id="@+id/civicLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/recImage"
@@ -59,16 +60,17 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="15dp"
             android:layout_marginTop="30dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="15dp"
+            android:gravity="start"
             android:layout_marginBottom="50dp"
             android:text="Barangay Santiago Malvar Batangas"
             android:textColor="@color/DarkGray"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recTitle"
+            app:layout_constraintTop_toBottomOf="@+id/civicTitle"
             app:layout_constraintBottom_toBottomOf="parent"/>
         <TextView
-            android:id="@+id/recDesc"
+            android:id="@+id/civicDateandTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/recImage"
@@ -78,32 +80,33 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="20dp"
             android:layout_marginTop="60dp"
-            android:layout_marginEnd="10dp"
+            android:gravity="start"
+            android:layout_marginEnd="15dp"
             android:layout_marginBottom="28dp"
             android:text=" 09-12-2023, 5:30am to 10:00am"
             android:textColor="@color/DarkGray"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recIntro"
+            app:layout_constraintTop_toBottomOf="@+id/civicLocation"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
-            android:id="@+id/campus"
+            android:id="@+id/civicCampus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/recImage"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="190dp"
-            android:layout_marginTop="85dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="80dp"
+            android:gravity="end"
+            android:layout_marginEnd="15dp"
             android:layout_marginBottom="5dp"
             android:text="JPLPC-MALVAR CAMPUS"
             android:textColor="@color/DarkGray"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recDesc"
+            app:layout_constraintTop_toBottomOf="@+id/civicDateandTime"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </RelativeLayout>

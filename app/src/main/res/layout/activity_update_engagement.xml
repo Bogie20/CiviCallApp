@@ -108,21 +108,21 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:id="@+id/updateIntro"
+                    android:id="@+id/updateLocation"
                     android:background="@drawable/border_design"
                     android:layout_marginTop="20dp"
                     android:padding="16dp"
-                    android:hint="Change Introduction"
+                    android:hint="Change Location"
                     android:gravity="start|center_vertical"
                     android:textColor="@color/red"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:id="@+id/updateDesc"
+                    android:id="@+id/updateDateandTime"
                     android:background="@drawable/border_design"
                     android:layout_marginTop="20dp"
                     android:padding="16dp"
-                    android:hint="Update Description"
+                    android:hint="Update Date and Time"
                     android:gravity="start|top"
                     android:textColor="@color/red"/>
                 <TextView

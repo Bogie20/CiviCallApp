@@ -19,9 +19,9 @@ import com.google.firebase.storage.StorageReference
 
 class DetailPost : AppCompatActivity() {
 
-    private lateinit var detailDesc: TextView
+    private lateinit var detailDateandTime: TextView
     private lateinit var detailTitle: TextView
-    private lateinit var detailIntro: TextView
+    private lateinit var detailLocation: TextView
     private lateinit var detailImage: ImageView
     private lateinit var deleteButton: FloatingActionButton
     private lateinit var editButton: FloatingActionButton
@@ -32,23 +32,22 @@ class DetailPost : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_post)
 
-        detailDesc = findViewById(R.id.detailDesc)
+        detailDateandTime = findViewById(R.id.detailDateandTime)
         detailImage = findViewById(R.id.detailPoster)
         detailTitle = findViewById(R.id.detailTitle)
         deleteButton = findViewById(R.id.deleteButton)
         editButton = findViewById(R.id.editButton)
-        detailIntro = findViewById(R.id.detailIntro)
+        detailLocation = findViewById(R.id.detailLocation)
 
         val bundle = intent.extras
         bundle?.let {
-            detailDesc.text = it.getString("Description")
+            detailDateandTime.text = it.getString("Date and Time")
             detailTitle.text = it.getString("Title")
-            detailIntro.text = it.getString("Introduction")
+            detailLocation.text = it.getString("Location")
             key = it.getString("Key") ?: ""
             imageUrl = it.getString("Image") ?: ""
             Glide.with(this).load(it.getString("Image")).into(detailImage)
         }
-
         deleteButton.setOnClickListener {
             val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
             val storage: FirebaseStorage = FirebaseStorage.getInstance()
@@ -65,8 +64,8 @@ class DetailPost : AppCompatActivity() {
         editButton.setOnClickListener {
             val intent = Intent(this@DetailPost, Update_engagement::class.java)
                 .putExtra("Title", detailTitle.text.toString())
-                .putExtra("Description", detailDesc.text.toString())
-                .putExtra("Introduction", detailIntro.text.toString())
+                .putExtra("Date and Time", detailDateandTime.text.toString())
+                .putExtra("Location", detailLocation.text.toString())
                 .putExtra("Image", imageUrl)
                 .putExtra("Key", key)
             startActivity(intent)

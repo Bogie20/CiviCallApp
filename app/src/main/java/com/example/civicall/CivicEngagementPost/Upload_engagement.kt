@@ -22,8 +22,8 @@ class Upload_engagement : AppCompatActivity() {
     private lateinit var uploadImage: ImageView
     private lateinit var saveButton: Button
     private lateinit var uploadTitle: EditText
-    private lateinit var uploadDesc: EditText
-    private lateinit var uploadIntro: EditText
+    private lateinit var uploadDateandTime: EditText
+    private lateinit var uploadLocation: EditText
     private var imageURL: String? = null
     private var uri: Uri? = null
 
@@ -32,9 +32,9 @@ class Upload_engagement : AppCompatActivity() {
         setContentView(R.layout.activity_upload_engagement)
 
         uploadImage = findViewById(R.id.uploadImage)
-        uploadDesc = findViewById(R.id.uploadDesc)
+        uploadDateandTime = findViewById(R.id.uploadDateandTime)
         uploadTitle = findViewById(R.id.uploadTitle)
-        uploadIntro = findViewById(R.id.uploadIntro)
+        uploadLocation = findViewById(R.id.uploadLocation)
         saveButton = findViewById(R.id.saveButton)
 
         val activityResultLauncher = registerForActivityResult(
@@ -61,7 +61,7 @@ class Upload_engagement : AppCompatActivity() {
     }
 
     private fun saveData() {
-        val storageReference = FirebaseStorage.getInstance().getReference().child("Civic Posters")
+        val storageReference = FirebaseStorage.getInstance().getReference().child("Poster Civic Images")
             .child(uri?.lastPathSegment!!) // Use !! to assert that uri is not null
 
         val builder = AlertDialog.Builder(this@Upload_engagement)
@@ -86,8 +86,8 @@ class Upload_engagement : AppCompatActivity() {
 
     private fun uploadData() {
         val title = uploadTitle.text.toString()
-        val desc = uploadDesc.text.toString()
-        val intro = uploadIntro.text.toString()
+        val desc = uploadDateandTime.text.toString()
+        val intro = uploadLocation.text.toString()
 
         val dataClass = DataClass(title, desc, intro, imageURL!!)
 

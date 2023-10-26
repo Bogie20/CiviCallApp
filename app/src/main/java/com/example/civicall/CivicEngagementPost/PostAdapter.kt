@@ -24,17 +24,17 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
         val data = dataList[position]
 
         Glide.with(context).load(data.dataImage).into(holder.recImage)
-        holder.recTitle.text = data.dataTitle
-        holder.recDesc.text = data.dataDesc
-        holder.recIntro.text = data.dataIntro
+        holder.civicTitle.text = data.dataTitle
+        holder.civicDateandTime.text = data.dataDateandTime
+        holder.civicLocation.text = data.dataLocation
 
         holder.recCard.setOnClickListener {
             val intent = Intent(context, DetailPost::class.java).apply {
                 putExtra("Image", data.dataImage)
-                putExtra("Description", data.dataDesc)
+                putExtra("Date and Time", data.dataDateandTime)
                 putExtra("Title", data.dataTitle)
                 putExtra("Key", data.key)
-                putExtra("Introduction", data.dataIntro)
+                putExtra("Location", data.dataLocation)
             }
             context.startActivity(intent)
         }
@@ -53,7 +53,7 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
 class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val recImage: ImageView = itemView.findViewById(R.id.recImage)
     val recCard: CardView = itemView.findViewById(R.id.recCard)
-    val recDesc: TextView = itemView.findViewById(R.id.recDesc)
-    val recIntro: TextView = itemView.findViewById(R.id.recIntro)
-    val recTitle: TextView = itemView.findViewById(R.id.recTitle)
+    val civicTitle: TextView = itemView.findViewById(R.id.civicTitle)
+    val civicLocation: TextView = itemView.findViewById(R.id.civicLocation)
+    val civicDateandTime: TextView = itemView.findViewById(R.id.civicDateandTime)
 }
