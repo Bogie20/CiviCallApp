@@ -66,6 +66,8 @@
     <color name="yourCenterColor">#FF1744</color>
     <color name="yourEndColor">#D50000</color>
 
+    <color name="dialog_choose_icon_color">#757575</color>
+    <color name="dialog_choose_text_color">#757575</color>
 
     <color name="purple">#6200EE</color>
     <color name="purpleblue">#3700B3</color>
@@ -114,4 +116,18 @@
     <color name="ground">#AD7235</color>
     <color name="md_blue_100">#81D4fA</color>
     <color name="md_blue_200">#0091EA</color>
+
+    <color name="md_white_1000">#FFFFFF</color>
+    <color name="md_blue_grey_500">#607D8B</color>
+    <color name="dialog_error_darker">#E53935</color>
+    <color name="dialog_warning_darker">#F9A825</color>
+    <color name="dialog_success_darker">#43A047</color>
+    <color name="dialog_success">#48D865</color>
+    <color name="dialog_error">#FF6B5F</color>
+    <color name="dialog_warning">#FFC122</color>
+    <color name="red_connectify">#EB1F5D</color>
+    <color name="green_connectify">#61C730</color>
+    <color name="dark_background">#2F3032</color>
+    <color name="dialog_info">#3086EB</color>
+    <color name="dialog_info_darker">#1565C0</color>
 </resources>

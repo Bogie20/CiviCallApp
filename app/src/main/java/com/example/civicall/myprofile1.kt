@@ -22,7 +22,7 @@ class myprofile1 : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.Edit.setOnClickListener {
-            startActivity(Intent(this, Myprofile::class.java))
+            startActivity(Intent(this, ProfileDetails::class.java))
 
         }
 

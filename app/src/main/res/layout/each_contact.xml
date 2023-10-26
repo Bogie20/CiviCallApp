@@ -46,6 +46,7 @@
             app:layout_constraintRight_toLeftOf="@+id/cardView"
             app:layout_constraintLeft_toRightOf="@id/callButton"
             android:text="Respondent\n"
+            android:fontFamily="@font/roboto_medium_italic"
             android:textColor="@color/DarkGray"
             android:textSize="13sp"
             android:textStyle="bold"

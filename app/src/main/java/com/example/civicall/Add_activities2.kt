@@ -47,7 +47,7 @@ class Add_activities2 : AppCompatActivity() {
         val campusOptions = resources.getStringArray(R.array.allowed_campuses)
 
         val campusSpinner2 = findViewById<Spinner>(R.id.campusSpinner2) // Define the new spinner
-        val NSTPOptions = resources.getStringArray(R.array.NSTP)
+        val NSTPOptions = resources.getStringArray(R.array.nstp_category)
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, campusOptions)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 

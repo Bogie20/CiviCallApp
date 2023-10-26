@@ -2,24 +2,31 @@ package com.example.civicall
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.cardview.widget.CardView
+import androidx.core.widget.NestedScrollView
+import androidx.fragment.app.Fragment
 import com.example.civicall.CivicEngagementInfo.Civic
 import com.example.civicall.DisasterResponseInfo.DisasterResponseMenu
 import com.example.civicall.EmergencyCon.MainEmergencyContact
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import nl.joery.animatedbottombar.AnimatedBottomBar
 
 class InformationFragment : Fragment() {
-
-    // ... (other code)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_information, container, false)
+
+        val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.animate_fade_enter)
+
+
+        view.startAnimation(anim)
 
         val cardview1 = view.findViewById<CardView>(R.id.cardview1)
         val cardview2 = view.findViewById<CardView>(R.id.cardview2)
@@ -39,7 +46,6 @@ class InformationFragment : Fragment() {
             val intent = Intent(requireContext(), DisasterResponseMenu::class.java)
             startActivity(intent)
         }
-
 
         cardview3.setOnClickListener {
             val intent = Intent(requireContext(), MainEmergencyContact::class.java)
@@ -65,7 +71,33 @@ class InformationFragment : Fragment() {
             val intent = Intent(requireContext(), MainEmergencyContact::class.java)
             startActivity(intent)
         }
+
+        val nestedScrollView = view.findViewById<NestedScrollView>(R.id.nested) // Replace with your NestedScrollView ID
+        val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
+        val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
+
+        nestedScrollView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            if (scrollY > oldScrollY) {
+                // Scrolling down
+                if (animatedBottomBar.isShown) {
+                    animatedBottomBar.visibility = View.GONE
+                }
+                if (fab.isShown) {
+                    fab.hide()
+                }
+            } else if (scrollY < oldScrollY) {
+                // Scrolling up
+                if (!animatedBottomBar.isShown) {
+                    animatedBottomBar.visibility = View.VISIBLE
+                }
+                if (!fab.isShown) {
+                    fab.show()
+                }
+            }
+        }
+
         return view
     }
-
 }
+
+

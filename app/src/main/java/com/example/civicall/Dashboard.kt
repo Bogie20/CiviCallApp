@@ -4,19 +4,19 @@ package com.example.civicall
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import com.example.civicall.databinding.ActivityDashboardBinding
-import com.google.firebase.auth.FirebaseAuth
+import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.civicall.CivicEngagementPost.CivicPostFragment
 import com.example.civicall.CivicEngagementPost.Upload_engagement
+import com.example.civicall.databinding.ActivityDashboardBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import nl.joery.animatedbottombar.AnimatedBottomBar
-
 
 
 class Dashboard : AppCompatActivity() {
@@ -24,21 +24,21 @@ class Dashboard : AppCompatActivity() {
     private lateinit var binding: ActivityDashboardBinding
     private lateinit var firebaseAuth: FirebaseAuth
     lateinit var userDataViewModel: UserDataViewModel
-
+    private lateinit var networkUtils: NetworkUtils
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         userDataViewModel = ViewModelProvider(this).get(UserDataViewModel::class.java)
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
         firebaseAuth = FirebaseAuth.getInstance()
         checkUser()
         replaceFragment(CivicPostFragment())
-
         binding.bottomBar.setOnTabSelectListener(object : AnimatedBottomBar.OnTabSelectListener {
             override fun onTabSelected(
                 lastIndex: Int,
@@ -77,9 +77,9 @@ class Dashboard : AppCompatActivity() {
         })
 
         binding.profileburger.setOnClickListener {
-            val intent = Intent(this, lolo::class.java)
+            val intent = Intent(this, MainMenu::class.java)
             startActivity(intent)
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
         binding.fab.setOnClickListener {
             val intent = Intent(this, Upload_engagement::class.java)
@@ -112,7 +112,7 @@ class Dashboard : AppCompatActivity() {
                     userDataViewModel.uid = userId
                     userDataViewModel.fname = fname
                     userDataViewModel.lname = lname
-                    Toast.makeText(this, "Successfully Retrieved", Toast.LENGTH_LONG).show()
+                    userDataViewModel.email = email
                 } else {
                     Toast.makeText(this, "User Not Existed", Toast.LENGTH_LONG).show()
                 }
@@ -137,6 +137,8 @@ class Dashboard : AppCompatActivity() {
             .replace(R.id.fragment1, fragment)
             .commit()
     }
-
-
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup() // Clean up when the activity is destroyed
+    }
 }

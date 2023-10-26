@@ -2,9 +2,23 @@
     <string-array name="gender_array">
         <item>Male</item>
         <item>Female</item>
-        <item>Others</item>
     </string-array>
-
+    <string-array name="user_category">
+        <item>Undergraduate Student</item>
+        <item>Post-graduate Student</item>
+        <item>Alumni</item>
+        <item>Faculty</item>
+        <item>Administration</item>
+        <item>Stakeholder</item>
+        <item>Non-teaching Staff</item>
+        <item>External Volunteer</item>
+    </string-array>
+    <string-array name="nstp_category">
+        <item>Reserve Officers Training Corps (ROTC)</item>
+        <item>Civic Welfare Training Service (CWTS)</item>
+        <item>Literacy Training Service (LTS)</item>
+        <item>None</item>
+    </string-array>
     <string-array name="allowed_campuses">
         <item>ARASOF Nasugbu Campus</item>
         <item>Balayan Campus</item>
@@ -17,17 +31,7 @@
         <item>Pablo Borbon Campus II</item>
         <item>Rosario Campus</item>
         <item>San Juan Campus</item>
-        <!-- Add more campuses here -->
-    </string-array>
-    <string-array name="NSTP">
-        <item>CWTS</item>
-        <item>LTS</item>
-        <item>ROTC</item>
-        <item>ROTC&amp;CWTS</item>
-        <item>ROTC&amp;LTS</item>
-        <item>CWTS&amp;LTS</item>
-        <item>ALL</item>
-
+        <item>None</item>
         <!-- Add more campuses here -->
     </string-array>
     <string name="app_name">CiviCall</string>
@@ -149,6 +153,9 @@
     <string name="save">Save</string>
     <string name="title_activity_civic_engagement">CivicEngagementActivity</string>
     <string name="title_activity_participant_tips">ParticipantTips</string>
+    <string name="success">Success</string>
     <string name="makingthemost">Making the Most of your Civic Engagement Experience</string>
     <string name="agreement">I have read and agree to the Terms of Service and Privacy Policy.</string>
+
+    <string name="default_web_client_id">AIzaSyCooH32tJpCHorztlJK3uYtoK687ZiCDlw</string>
 </resources>

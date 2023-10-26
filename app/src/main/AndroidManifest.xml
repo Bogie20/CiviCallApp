@@ -7,11 +7,13 @@
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Camera permission -->
-    <uses-permission android:name="android.permission.CAMERA" /> <!-- Feature requirement for camera -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-feature android:name="android.hardware.camera" />
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- permissions -->
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -22,7 +24,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
-        <!-- Posting Civic Engagement Start -->
+        <activity
+            android:name=".ProfileDetails"
+            android:exported="false" />
+        <activity
+            android:name=".EditProfile"
+            android:exported="false" /> <!-- Posting Civic Engagement Start -->
         <activity
             android:name=".CivicEngagementPost.Update_engagement"
             android:exported="true" />
@@ -31,8 +38,7 @@
             android:exported="true" />
         <activity
             android:name=".CivicEngagementPost.Upload_engagement"
-            android:exported="true" />
-        <!-- Posting Civic Engagement End -->
+            android:exported="true" /> <!-- Posting Civic Engagement End -->
         <!-- Educational Start -->
         <!-- Civic Engagement Start -->
         <activity
@@ -67,8 +73,7 @@
             android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.YouthEmpowerment"
-            android:exported="true" />
-        <!--  Civic Engagement End -->
+            android:exported="true" /> <!-- Civic Engagement End -->
         <!-- Disaster Response Start -->
         <activity
             android:name=".DisasterResponseInfo.CommunicationAndInformationInfo"
@@ -99,59 +104,45 @@
             android:exported="true" />
         <activity
             android:name=".DisasterResponseInfo.VolunteerandDonationsManagementInfo"
-            android:exported="true" />
-
-        <!-- Disaster Response End -->
+            android:exported="true" /> <!-- Disaster Response End -->
         <!-- Educational End -->
         <!-- Emergency Contact Start -->
         <activity
             android:name=".EmergencyCon.MainEmergencyContact"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".EmergencyCon.SanJuanCont"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".EmergencyCon.RosarioCont"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".EmergencyCon.PabloBorbon2Cont"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".EmergencyCon.PabloBorbon1Cont"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".EmergencyCon.NasugbuCont"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".EmergencyCon.MalvarCont"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".EmergencyCon.MabiniCont"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".EmergencyCon.LoboCont"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".EmergencyCon.LipaCont"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".EmergencyCon.LemeryCont"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".EmergencyCon.BalayanCont"
-            android:exported="true"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" /> <!-- Emergency Contact End -->
+            android:exported="true" /> <!-- Emergency Contact End -->
         <activity
             android:name=".Add_activities2"
             android:exported="true" />
@@ -159,13 +150,7 @@
             android:name=".add_engagement"
             android:exported="true" />
         <activity
-            android:name=".ForgotPassword"
-            android:exported="true" />
-        <activity
-            android:name=".ForgotPass2"
-            android:exported="true" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
@@ -207,7 +192,7 @@
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".lolo"
+            android:name=".MainMenu"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
@@ -228,7 +213,6 @@
             android:name=".Register1"
             android:exported="true"
             android:screenOrientation="portrait" />
-
 
         <meta-data
             android:name="preloaded_fonts"
