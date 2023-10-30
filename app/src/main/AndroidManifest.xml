@@ -209,7 +209,7 @@
         <activity
             android:name=".CivicEngagementPost.DetailPost"
             android:exported="true" />
-        <!-- Posting Civic Engagement End -->
+    <!-- Posting Civic Engagement End -->
         <!-- Educational Start -->
         <!-- Civic Engagement Start -->
         <activity
@@ -246,7 +246,7 @@
         <activity
             android:name=".CivicEngagementInfo.CivicParticipationInfo"
             android:exported="true" /> <!-- Civic Engagement End -->
-        <!-- Civic Engagement End -->
+             <!-- Civic Engagement End -->
         <!-- Disaster Response Start -->
         <activity
             android:name=".DisasterResponseInfo.CommunicationAndInformationInfo"

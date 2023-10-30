@@ -79,27 +79,9 @@ class GenderEqualityandCivicResponsibilityInfo : AppCompatActivity() {
                         "8. LOCAL COUNCIL GENDER GAP: Even at the local level, a significant gender gap persists, with more male councilors compared to their female counterparts.\n" +
                         "9. VOTER TURNOUT: Women have maintained a slight lead in voter turnout compared to men in recent elections.\n" +
                         "10. GENDER EMPOWERMENT LAWS: The Philippines has enacted various laws to promote gender empowerment, but challenges in implementation and gender inequality issues remain.",
-                R.drawable.img_263,
+                R.drawable.img_475,
                 "https://www.rappler.com/moveph/124248-women-politics-governance/",
-                "https://www.rappler.com/tachyon/r3-assets/612F469A6EA84F6BAE882D2B94A4B421/img/8E94138A946B4C0D8B6DCB656DFE1184/women-ph-politics-20160301.jpg?resize=640%2C360&zoom=1")
-        )
-
-        dataList.add(
-            DataItem("GENDER-RESPONSIVE POLICIES IN CIVIC ADVOCACY IN THE PHILIPPINES",
-                "In the pursuit of gender equality and responsive civic advocacy, the Philippines grapples with the complexities of addressing gender-related issues and ensuring inclusivity.\"\n" +
-                        "1. SOCIAL GOOD SUMMIT DISCOURSE: Advocates at the 2019 Social Good Summit in the Philippines engaged in discussions about mainstreaming gender issues and the importance of gender equality.\n" +
-                        "2. INTERSECTIONALITY OF RIGHTS: The summit raised questions about where women's rights intersect with LGBTQ+ rights, emphasizing the interconnectedness of gender inequality and discrimination.\n" +
-                        "3. SUSTAINABLE DEVELOPMENT GOAL (SDG): The importance of the SDG on gender equality was highlighted, but concerns were raised about its limitation to women's rights, leaving a gap in addressing broader gender issues.\n" +
-                        "4. GENDER AND DEVELOPMENT (GAD) POLICY: The Philippines implements the Gender and Development budget policy, aiming to allocate 5% of local government revenue for gender development projects.\n" +
-                        "5. CHALLENGES IN GAD IMPLEMENTATION: Local government units struggle to maximize the GAD budget, often allocating funds to activities of limited relevance to gender issues.\n" +
-                        "6. GAD MISUSE: Audits revealed misallocation of GAD budget for non-related activities, highlighting the need for more effective implementation.\n" +
-                        "7. LGBTQ+ INCLUSION: Advocates push for the recognition of all genders within the GAD policy, emphasizing the LGBTQ+ community's struggles with discrimination.\n" +
-                        "8. SOGIE EQUALITY BILL: The LGBTQ+ community lobbied for a separate bill addressing gender issues specific to LGBTQ+ rights while intersecting with women's rights.\n" +
-                        "9. IMPORTANCE OF IMPLEMENTING RULES: Having implementing rules and regulations (IRR) for LGBTQ+ anti-discrimination ordinances is crucial to ensure effective policy enforcement.\n" +
-                        "10. EDUCATIONAL APPROACH: Advocates stress the importance of SOGIE education, a bottom-up approach, and the need for a mass cultural change to combat discrimination and close the gender gap.",
-                R.drawable.img_264,
-                "https://www.rappler.com/moveph/240707-2030-now-advocates-rethink-gender-development-philippines/",
-                "https://www.rappler.com/tachyon/r3-assets/85A405943BC64E228B82EE37E751D286/img/5B848761CC27451AA425F763C953543D/social-good-summit-gender-huddle-september-21-2019-008.jpg")
+                "https://nimd.org/wp-content/uploads/2022/04/Women-Political-Participation-social.jpg")
         )
 
         dataList.add(

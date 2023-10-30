@@ -32,7 +32,7 @@
 
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="VOLCANIC ERUPTION"
+            android:text="EL NINO TIPS "
             android:textColor="@color/white"
             android:textSize="18dp" />
 

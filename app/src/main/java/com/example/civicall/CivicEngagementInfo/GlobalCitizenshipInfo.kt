@@ -92,9 +92,9 @@ class GlobalCitizenshipInfo : AppCompatActivity() {
                         "10. Measure Impact: Regularly assess the impact of your advocacy efforts. Collect data, stories, and feedback to understand the positive changes you're contributing to on a global scale.",
 
 
-                R.drawable.img_150,
+                R.drawable.img_447,
                 "https://www.un.org/sustainabledevelopment/inequality/",
-                "https://www.humanrightscareers.com/wp-content/uploads/2020/11/end-racism.jpg")
+                "https://philippineembassy-dc.org/wp-content/uploads/2023/06/Picture1pid.jpg")
         )
 
         dataList.add(

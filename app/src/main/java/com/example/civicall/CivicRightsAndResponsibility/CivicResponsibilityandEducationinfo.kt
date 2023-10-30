@@ -47,9 +47,9 @@ class CivicResponsibilityandEducationinfo : AppCompatActivity() {
                         "   - Teachers encountered challenges in preparing materials and curriculum development, highlighting the importance of support and training.\n" +
                         "10. PARTNERSHIPS FOR IMPROVEMENT\n" +
                         "    - Building strong partnerships between schools and NGOs can help bridge the civic education gaps and enhance the delivery of programs.\n",
-                R.drawable.img_271,
+                R.drawable.img_476,
                 "https://www.pids.gov.ph/details/news/press-releases/civic-education-in-the-philippines-must-be-improved-dlsu-professor",
-                "https://www.pcced.org.ph/wp-content/uploads/2015/11/e24cd2_9f3a952752394fb5b9bcf20589113228.jpg"
+                "https://kabayanremit-8120.kxcdn.com/blog/wp-content/uploads/2021/04/A-guide-to-the-education-system-in-the-Philippines.jpg"
             )
         )
         dataList.add(
@@ -103,9 +103,9 @@ class CivicResponsibilityandEducationinfo : AppCompatActivity() {
                         "   - The COVID-19 pandemic saw Filipinos coming together to help those in need, showcasing the enduring spirit of bayanihan.\n" +
                         "10. BAYANIHAN TODAY\n" +
                         "    - This cultural tradition continues with initiatives like 'Angat Buhay' and individuals like Angel Locsin practicing and inspiring bayanihan for social good.\n",
-                R.drawable.img_273,
+                R.drawable.img_478,
                 "https://jefmenguin.com/bayanihan/",
-                "https://th-thumbnailer.cdn-si-edu.com/gPrK65JTlRJcxUuEEqWYrR-9NN4=/fit-in/1072x0/https://tf-cmsv2-photocontest-smithsonianmag-prod-approved.s3.amazonaws.com/c0557847304ebf529ad9db8c6a755064da88f494.jpg")
+                "https://cambridge.com.ph/wp-content/uploads/2017/04/ccdc-hq-teachers-training-2017_image02.jpg")
         )
 
         dataList.add(
@@ -121,27 +121,27 @@ class CivicResponsibilityandEducationinfo : AppCompatActivity() {
                         "8. Flexibility in Education (Private SHS Implementation): Private schools have the flexibility to offer Senior High School ahead of the official program rollout in 2016-2017.\n" +
                         "9. Government Support and Resources (Implementation and Transition Management): The government has constructed classrooms, hired teachers, and provided necessary resources to ensure a smooth transition and full implementation of the program.\n" +
                         "10. Long-Term Civic Benefits (Nurturing the Holistically Developed Filipino): K to 12 graduates are equipped with essential civic skills, helping them succeed in higher education, employment, and entrepreneurship, ultimately contributing to the betterment of the Philippines.",
-                R.drawable.img_274,
+                R.drawable.img_479,
                 "https://www.officialgazette.gov.ph/k-12/",
-                "https://storage.googleapis.com/mb-mkt-neo-prod-1-uploads/104581_9e7adc40b4/104581_9e7adc40b4.jpeg")
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/cte-2.jpg")
         )
 
         dataList.add(
             DataItem("CHALLENGES AND OPPORTUNITIES IN CIVIC EDUCATION",
                 "As the Philippines gears up for the 2022 elections, the importance of civic education is paramount. This article explores the challenges and opportunities in civic education, emphasizing the need for deeper civic competencies among citizens in a changing world.\n\n\n" +
-                        "1. IMPORTANCE OF VOTER EDUCATION PROGRAMS: Civic groups prepare for the 2022 elections with campaigns focused on encouraging voter registration and implementing voter education programs.\n" +
-                        "2. DEEPER CIVIC COMPETENCIES NEEDED: While basic voter education is crucial, it falls short in developing the deeper civic competencies required for active and responsible citizenship.\n" +
-                        "3. CIVIC ENGAGEMENT FOR INCLUSIVE SOCIETIES: Civic attitudes and behavior play a vital role in maintaining socially inclusive and secure democratic societies.\n" +
-                        "4. YOUTH CIVIC ENGAGEMENT CHALLENGES: A 2016 Civic Education study involving 94,000 students across 24 countries examined the challenges of educating youth in the context of evolving democracy and civic participation.\n" +
-                        "5. PROMOTING DEMOCRATIC VALUES: European countries emphasized the importance of promoting democratic values, fundamental rights, social inclusion, non-discrimination, and active citizenship among young people.\n" +
-                        "6. IMPACT OF CIVIC EDUCATION: The study found a strong link between civic education and increased interest and participation in democratic activities.\n" +
-                        "7. CIVIC EDUCATION IN THE PHILIPPINES: The K-to-12 Senior High School (SHS) curriculum in the Philippines includes a core subject, 'Understanding Culture, Society, and Politics,' which explores civic education.\n" +
-                        "8. SCOPE OF CIVIC EDUCATION TOPICS: Among the 31 topics in the core subject, only one discusses active citizen participation, while others cover various aspects of culture, society, and politics.\n" +
-                        "9. ENHANCING CIVIC LEARNING: Initiatives like 'Boto Mo Bukas Ko,' 'Sibika.ph,' and community immersion programs aim to enhance civic education and participation among students.\n" +
+                        "1. IMPORTANCE OF VOTER EDUCATION PROGRAMS: Civic groups prepare for the 2022 elections with campaigns focused on encouraging voter registration and implementing voter education programs.\n\n" +
+                        "2. DEEPER CIVIC COMPETENCIES NEEDED: While basic voter education is crucial, it falls short in developing the deeper civic competencies required for active and responsible citizenship.\n\n" +
+                        "3. CIVIC ENGAGEMENT FOR INCLUSIVE SOCIETIES: Civic attitudes and behavior play a vital role in maintaining socially inclusive and secure democratic societies.\n\n" +
+                        "4. YOUTH CIVIC ENGAGEMENT CHALLENGES: A 2016 Civic Education study involving 94,000 students across 24 countries examined the challenges of educating youth in the context of evolving democracy and civic participation.\n\n" +
+                        "5. PROMOTING DEMOCRATIC VALUES: European countries emphasized the importance of promoting democratic values, fundamental rights, social inclusion, non-discrimination, and active citizenship among young people.\n\n" +
+                        "6. IMPACT OF CIVIC EDUCATION: The study found a strong link between civic education and increased interest and participation in democratic activities.\n\n" +
+                        "7. CIVIC EDUCATION IN THE PHILIPPINES: The K-to-12 Senior High School (SHS) curriculum in the Philippines includes a core subject, 'Understanding Culture, Society, and Politics,' which explores civic education.\n\n" +
+                        "8. SCOPE OF CIVIC EDUCATION TOPICS: Among the 31 topics in the core subject, only one discusses active citizen participation, while others cover various aspects of culture, society, and politics.\n\n" +
+                        "9. ENHANCING CIVIC LEARNING: Initiatives like 'Boto Mo Bukas Ko,' 'Sibika.ph,' and community immersion programs aim to enhance civic education and participation among students.\n\n" +
                         "10. LONG-TERM VISION FOR CIVIC EDUCATION: The article emphasizes the need to integrate civic education, values, and democratic attitudes into the core education system to prepare future generations for responsible citizenship and leadership.",
-                R.drawable.img_275,
+                R.drawable.img_480,
                 "https://news.abs-cbn.com/focus/05/08/15/philippine-education-reform-program-faces-challenges",
-                "https://www.manilatimes.net/manilatimes/uploads/images/2022/07/30/93277.jpg")
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/cics-pic.jpg")
         )
 
 

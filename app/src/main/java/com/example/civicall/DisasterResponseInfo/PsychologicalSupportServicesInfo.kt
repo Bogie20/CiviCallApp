@@ -122,25 +122,25 @@ class PsychologicalSupportServicesInfo : AppCompatActivity() {
                 "https://www.unicef.org/sites/default/files/styles/two_column/public/UNI205414.jpg?itok=SmNvSV1n")
         )
         dataList.add(
-            DataItem("Revitalizing Rescuers: Promoting Self-Care in Disaster Response.",
+            DataItem("REVITALIZING RESCUERS: PROMOTING SELF-CARE IN DISASTER RESPONSE.",
                 "In the challenging realm of disaster response, the mental and emotional resilience of emergency responders is paramount. \"Revitalizing Rescuers: Promoting Self-Care in Disaster Response\" explores crucial self-care strategies to sustain the well-being and effectiveness of these dedicated professionals.\n\n" +
 
 
                         "1. PREPARATION AND ROLE CLARITY: Prior to deployment, ensure responders have a clear understanding of their roles and responsibilities, reducing uncertainty and stress during the mission.\n\n" +
                         "2. Effective Communication: Establish open channels for communication among responders, enabling them to share experiences, feelings, and concerns with peers, supervisors, and support networks.\n\n" +
-                        "3. Buddy System: Implement a buddy system where responders partner to monitor each other's stress levels, workload, and safety, providing emotional support and encouragement.\n\n" +
-                        "4. Scheduled Breaks: Enforce limited working hours with shifts no longer than 12 hours, ensuring responders have regular opportunities for rest and recuperation.\n\n" +
-                        "5. Journaling: Encourage responders to maintain a journal to process their experiences, thoughts, and emotions, offering an outlet for reflection and catharsis.\n\n" +
-                        "6. Social Support: Promote open conversations about feelings and experiences with family, friends, supervisors, and teammates, creating a network of emotional support.\n\n" +
-                        "7. Stress Management: Teach and practice stress reduction techniques, including deep breathing, relaxation exercises, and physical activity, to cope with high-pressure situations.\n\n" +
-                        "8. Balanced Lifestyle: Emphasize maintaining a balanced lifestyle with adequate sleep, nutrition, and exercise, supporting overall physical and mental health.\n\n" +
-                        "9. Setting Boundaries: Remind responders that it's acceptable to set boundaries and say 'no' when necessary, preventing burnout and exhaustion.\n\n" +
-                        "10. Caffeine and Alcohol Awareness: Advise responders to limit caffeine intake and avoid excessive alcohol use, as these substances can exacerbate stress and disrupt sleep patterns.\n\n",
+                        "3. BUDDY SYSTEM: Implement a buddy system where responders partner to monitor each other's stress levels, workload, and safety, providing emotional support and encouragement.\n\n" +
+                        "4. SCHEDULED BREAKS: Enforce limited working hours with shifts no longer than 12 hours, ensuring responders have regular opportunities for rest and recuperation.\n\n" +
+                        "5. JOURNALING: Encourage responders to maintain a journal to process their experiences, thoughts, and emotions, offering an outlet for reflection and catharsis.\n\n" +
+                        "6. SOCIAL SUPPORT: Promote open conversations about feelings and experiences with family, friends, supervisors, and teammates, creating a network of emotional support.\n\n" +
+                        "7. STRESS MANAGEMENT: Teach and practice stress reduction techniques, including deep breathing, relaxation exercises, and physical activity, to cope with high-pressure situations.\n\n" +
+                        "8. BALANCED LIFESTYLE: Emphasize maintaining a balanced lifestyle with adequate sleep, nutrition, and exercise, supporting overall physical and mental health.\n\n" +
+                        "9. SETTING BOUNDARIES: Remind responders that it's acceptable to set boundaries and say 'no' when necessary, preventing burnout and exhaustion.\n\n" +
+                        "10. CAFFEINE AND ALCOHOL AWARENESS: Advise responders to limit caffeine intake and avoid excessive alcohol use, as these substances can exacerbate stress and disrupt sleep patterns.\n\n",
 
 
-                R.drawable.img_53,
+                R.drawable.img_460,
                 "https://emergency.cdc.gov/coping/responders.asp",
-                "https://www.healthwheel.org/wp-content/uploads/2018/12/Slide6.jpg")
+                "https://www.sane.org/media/k2/items/cache/f8680441f99906edbba69bc4df69b57e_XL.jpg")
         )
         dataList.add(
             DataItem("Healing Beyond the Horizons: Addressing Post-Disaster Stressors in Response Efforts",

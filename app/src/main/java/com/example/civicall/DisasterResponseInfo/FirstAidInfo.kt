@@ -28,7 +28,7 @@ class FirstAidInfo : AppCompatActivity() {
 
         dataList.add(
             DataItem(
-                "Stock basic first aid supplies.",
+                "STOCK BASIC FIRST AID SUPPLIES.",
                 "\"Greetings, college comrades! Today, we're diving into a critical aspect of your academic journey—being prepared for unforeseen situations. As responsible scholars, it's vital to equip ourselves with the skills and resources we need. And in this session, we'll focus on a must-have: a customized first aid kit tailored to your unique college experiences.\n\n" +
 
                         "1. SELECTING ESSENTIAL SUPPLIES: Choose basic first aid supplies like bandages, gauze, antiseptics, and medications that are relevant to your travel plans and potential needs.\n\n" +
@@ -48,7 +48,7 @@ class FirstAidInfo : AppCompatActivity() {
             )
         )
         dataList.add(
-            DataItem("Train staff in first aid procedures.",
+            DataItem("TRAIN STAFF IN FIRST AID PROCEDURES.",
                 "In the context of workplace safety, staff training in first aid procedures is indispensable. Today, we'll focus on mastering the primary survey, following the DR ABC protocol, to ensure our team can respond effectively in situations where someone has collapsed, potentially saving lives and minimizing workplace medical incidents' impact.\n\n" +
                         "1. PRIMARY SURVEY (DR ABC): Staff should be trained in conducting the primary survey, following the DR ABC protocol outlined in the script. This involves assessing for Danger, checking for Response, ensuring an open Airway, monitoring Breathing, and evaluating Circulation, as described in the provided script.\n\n" +
                         "2. ASSESSING DANGER AND RESPONSE: Employees should learn to recognize potential dangers in emergency situations and ensure their safety before approaching the casualty, as emphasized in the script. They should also know how to communicate with an unresponsive casualty to elicit a response.\n\n" +
@@ -68,7 +68,7 @@ class FirstAidInfo : AppCompatActivity() {
                 "https://www.youtube.com/watch?v=ea1RJUOiNfQ&pp=ygVFSG93IHRvIGRvIHRoZSBQcmltYXJ5IFN1cnZleSAtIEZpcnN0IEFpZCBUcmFpbmluZyAtIFN0IEpvaG4gQW1idWxhbmNl")
         )
         dataList.add(
-            DataItem("Provide emergency medical contact info.",
+            DataItem("PROVIDE EMERGENCY MEDICAL CONTACT INFO.",
                 "Hey college students, in today's tech-savvy world, quick access to emergency medical info on smartphones is a game-changer. But it's not just for techies – healthcare pros and emergency responders, this one's for you too. Join us as we explore the vital skill of efficiently retrieving smartphone emergency medical ID info on both Android and Apple iPhones.\n\n" +
                         "1. EASY ACCESS FOR CRITICAL INFORMATION: accessing smartphone emergency medical id information is a straightforward process for both android and apple iphones, as demonstrated in the video. healthcare providers and responders can quickly retrieve essential medical details when needed.\n\n" +
                         "2. EDUCATIONAL OUTREACH: The Kessler Trauma Center's proactive educational program emphasizes the significance of utilizing smartphone emergency medical ID features. Healthcare providers with direct patient care responsibilities are encouraged to be well-versed in accessing this information in emergency situations.\n\n" +
@@ -81,7 +81,7 @@ class FirstAidInfo : AppCompatActivity() {
                         "9. SIMPLE AND QUICK PROCESS: The video demonstrates that the process of accessing emergency medical information on smartphones is straightforward and does not consume much time. It is a minimal effort that can yield substantial benefits in terms of patient care.\n\n" +
                         "10. PROMOTING AWARENESS: Encouraging the practice of checking for smartphone emergency medical ID activation should be an integral part of healthcare training and protocols. This awareness ensures that healthcare providers are prepared to utilize this valuable resource when needed.\n\n",
 
-                R.drawable.img_96,
+                R.drawable.img_457,
                 "https://www.youtube.com/watch?v=SXwXjw1Q-88&ab_channel=URKesslerTrauma",
                 "https://www.youtube.com/watch?v=SXwXjw1Q-88&pp=ygUvU21hcnRwaG9uZSBFbWVyZ2VuY3kgTWVkaWNhbCBJRCBBY2Nlc3MgVHV0b3JpYWw%3D")
         )
@@ -192,7 +192,7 @@ class FirstAidInfo : AppCompatActivity() {
                 "https://www.youtube.com/watch?v=J25bd7mpgr8&pp=ygUyQSBCcmllZiBSZXZpZXcgb2YgdGhlIFBoaWxpcHBpbmUgSGVhbHRoY2FyZSBTeXN0ZW0%3D")
         )
         dataList.add(
-            DataItem("Monitor public health during disasters.",
+            DataItem("MONITOR PUBLIC HEALTH DURING DISASTERS.",
                 " Welcome, college students, to the critical subject of public health emergency preparedness. In this discussion, we will delve into the essential procedures and significance of monitoring public health during disasters, whether they are natural or man-made. Join us as we explore the fundamental aspects of this field.\n\n" +
 
                         "1. PRE-PLANNING: Comprehensive preparation for a wide range of emergencies, from infectious disease outbreaks to natural disasters, including coordination among all relevant sectors and stakeholders.\n\n" +
@@ -220,12 +220,12 @@ class FirstAidInfo : AppCompatActivity() {
 
 
 
-                R.drawable.img_102,
+                R.drawable.img_458,
                 "https://www.youtube.com/watch?v=Lnoph21Je6I&ab_channel=JonathanNoel",
-                "https://www.youtube.com/watch?v=Lnoph21Je6I&pp=ygUvSW50cm8gdG8gUHVibGljIEhlYWx0aCAtIEVtZXJnZW5jeSBQcmVwYXJlZG5lc3M%3D")
+                "https://hazards.colorado.edu/uploads/freeform/Nurse.jpeg")
         )
         dataList.add(
-            DataItem("Ensure medication access and storage.",
+            DataItem("ENSURE MEDICATION ACCESS AND STORAGE.",
                 "College students, let's dive into the crucial realm of medication safety. Often, medications that are meant to heal can inadvertently harm us if mishandled. In this discussion, we'll explore key aspects of ensuring the safe use and storage of medications, a topic vital to everyone's well-being. Join us as we delve into everything you should know to keep your medication regimen safe and effective.\n\n" +
 
                         "1. CAREFUL LABEL READING: Always read medication labels thoroughly, focusing on essential details like the medicine's name, its intended recipient, purpose, and correct dosage. Additionally, check for any specific administration instructions.\n\n" +
@@ -248,12 +248,12 @@ class FirstAidInfo : AppCompatActivity() {
 
 
 
-                R.drawable.img_103,
+                R.drawable.img_459,
                 "https://www.youtube.com/watch?v=iQozgr7XnoY&ab_channel=MedicalCentric",
-                "https://www.facebook.com/photo/?fbid=202035005941846&set=a.111221511689863")
+                "https://pphealthcaresolutions.co.uk/wp-content/uploads/2023/04/A-Guide-to-the-Proper-Storage-of-Medication-in-Hospitals.jpg")
         )
         dataList.add(
-            DataItem("Set up infection control measures.",
+            DataItem("SET UP INFECTION CONTROL MEASURES.",
                 "Are you ready to dive into the world of infection prevention and control? In this enlightening video, we'll explore the critical aspects of this essential field, brought to you by the experts at the Mid and South Essex Hospital. Whether you're a curious college student or a healthcare enthusiast, understanding infection control is vital. So, let's embark on this educational journey together.\n\n" +
 
 

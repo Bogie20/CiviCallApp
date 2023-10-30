@@ -73,9 +73,9 @@ class SustainabilityInitiativesInfo : AppCompatActivity() {
                         "8. RESOURCE OPTIMIZATION: Implement sustainable practices within educational institutions, such as energy conservation, waste reduction, and eco-friendly campus designs.\n\n" +
                         "9. RESEARCH AND INNOVATION: Encourage research on sustainability issues and support innovative solutions developed by students and faculty.\n\n" +
                         "10. GLOBAL COLLABORATION: Foster international partnerships and exchanges to share knowledge and best practices in sustainability education and civic engagement.\n\n",
-                R.drawable.img_166,
+                R.drawable.img_455,
                 "https://www.apn-gcr.org/bulletin/article/venturing-sustainability-political-lessons-from-civic-engagement-and-transformative-learning-in-asia/",
-                "https://tciurbanhealth.org/wp-content/uploads/2020/11/MYE_TeenTrail-1_resized.jpg")
+                "https://sustainability.batstate-u.edu.ph/wp-content/uploads/slider4/SDGPhotoslide1.jpeg")
         )
 
         dataList.add(
