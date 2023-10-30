@@ -36,9 +36,9 @@ class UnderstandingCivicRightsInfo : AppCompatActivity() {
                         "8. PRESUMPTION OF INNOCENCE: This principle safeguards the rights of the accused, ensuring they are considered innocent until proven guilty.\n\n" +
                         "9. HABEAS CORPUS: This right prevents unlawful detention and protects against arbitrary imprisonment.\n\n" +
                         "10. LIMITATIONS ON GOVERNMENT POWER: The Bill of Rights acts as a check on government authority, preventing the abuse of power and protecting the rights of the people.\n\n",
-                        R.drawable.img_230,
+                        R.drawable.img_465,
                 "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-iii/#:~:text=No%20person%20shall%20be%20deprived,equal%20protection%20of%20the%20laws.",
-                "https://www.licas.news/wp-content/uploads/2020/02/20191210-Intl-Human-Rights-Day-Protest-JVC-6.jpg"
+                "https://asiapacific.unwomen.org/sites/default/files/Field%20Office%20ESEAsia/Images/2019/01/ph-IMG_0323-960px.jpg"
             )
         )
         dataList.add(
@@ -54,9 +54,9 @@ class UnderstandingCivicRightsInfo : AppCompatActivity() {
                         "8. CIVIC RESPONSIBILITY: Understand the importance of civic rights and the role of political activism, encouraging you to take your civic responsibilities seriously.\n" +
                         "9. CRITICAL THINKING: Sharpen your critical thinking skills by analyzing the context and impact of historical protests and assessing the consequences of political actions.\n" +
                         "10. GLOBAL CITIZENSHIP: Contribute to your development as a responsible global citizen by gaining insights into the challenges and triumphs of democracy in the Philippines, which can be relevant to similar movements worldwide.",
-                R.drawable.img_231,
+                R.drawable.img_466,
                 "https://www.officialgazette.gov.ph/edsa/the-ph-protest/",
-                "https://www.officialgazette.gov.ph/wp-content/themes/govph/assets/edsa_day/images/edsa-day-logo.png")
+                "https://upload.wikimedia.org/wikipedia/commons/7/71/PH3c-070416.jpg")
         )
         dataList.add(
             DataItem("INTERNATIONAL COMPARISON OF CIVIC RIGHTS:",
@@ -90,9 +90,9 @@ class UnderstandingCivicRightsInfo : AppCompatActivity() {
                         "8. CHALLENGES OF DEMOCRACY: The post-revolution challenges, such as coup attempts and political divisions, shed light on the complexities of establishing and maintaining democracy.\n\n" +
                         "9. MEMORY AND LEGACY: It highlights the importance of historical memory and the need to critically examine the legacy of civic rights movements.\n\n" +
                         "10. CONTEMPORARY RELEVANCE: Given the resurgence of authoritarianism in some regions, studying this revolution provides valuable insights into contemporary struggles for civic rights and democracy.\n",
-                R.drawable.img_233,
+                R.drawable.img_467,
                 "https://origins.osu.edu/milestones/people-power-revolution-philippines-1986?language_content_entity=en",
-                "https://josephscalice.com/assets/images/posts/2021/may.day.1971.march.a.png")
+                "https://manilatoday.net/wp-content/uploads/2016/11/untitled-91-1024x687.jpg")
         )
 
         dataList.add(

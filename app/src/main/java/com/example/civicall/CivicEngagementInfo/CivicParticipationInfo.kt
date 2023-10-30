@@ -73,9 +73,9 @@ class CivicParticipationInfo : AppCompatActivity() {
                         "8. PARENTAL AND COMMUNITY INVOLVEMENT: Encourage parents and communities to engage in civic and political actions, setting positive examples for young individuals.\n\n" +
                         "9. PEER ENGAGEMENT: Cultivate a sense of solidarity among peers, promoting commitment to civic and political goals and values within school and community settings.\n\n" +
                         "10. GLOBAL AWARENESS: Inspire young people to explore and critically understand global issues, allowing them to channel their passions into global citizenship activities.\n\n",
-                R.drawable.img_161,
+                R.drawable.img_452,
                 "https://www.un.org/en/chronicle/article/young-peoples-civic-and-political-engagement-and-global-citizenship",
-                "https://www.mei.edu/sites/default/files/styles/featured_image_article/public/People%2520Power.jpg?itok=NL96_RZI")
+                "https://eu.boell.org/sites/default/files/grid/2021/12/06/Young%20voices%20on%20the%20rise%201960x784px.jpg")
         )
 
         dataList.add(

@@ -39,9 +39,9 @@ class AmplifyingStudentVoicesInfo: AppCompatActivity() {
                         "9. HANDLE QUESTIONS AND OBJECTIONS: Be prepared to address questions, objections, or opposing viewpoints from the audience with poise and evidence-based responses.\n\n" +
                         "10. CALL TO ACTION: Conclude your speech with a compelling call to action, encouraging your audience to take concrete steps in support of your cause, whether it's signing a petition, volunteering, or spreading awareness.\n\n",
 
-                R.drawable.img_176,
+                R.drawable.img_446,
                 "https://courses.lumenlearning.com/wm-publicspeaking/chapter/speaking-as-civic-engagement/",
-                "https://www.scoutmag.ph/wp-content/uploads/2019/07/67316936_359192851431123_1617951357640114176_n-1080x620.jpg"
+                "https://www.ohchr.org/sites/default/files/styles/hero_5_image_desktop/public/2022-10/oxfid_youth_challenge.jpg?itok=B8Qrzsaz"
             )
         )
         dataList.add(

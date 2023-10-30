@@ -20,7 +20,7 @@ class CivicRightsAndResponsibilityMenu : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val campusList = listOf(
-            DataMain(""),
+            DataMain("Demystifying civic rights a comprehensive exploration"),
             DataMain("Civic Responsibility in a Democratic Society"),
             DataMain("The Right to Protest and Free Speech"),
             DataMain("Environmental Civic Responsibility"),

@@ -173,31 +173,6 @@ class CampusesAboutInfo : AppCompatActivity() {
         )
 
 
-        dataList.add(
-            DataItem(
-                "FIGHTING FOR RACIAL EQUALITY",
-                "Pablo Borbon is the oldest campus in the university and serves as the seat of the administration of the institution. It is located at Rizal Avenue, Batangas City, and has a land area of 5.96 hectares. Nestled at the heart of the city, its proximity to the Batangas International Port and convenient access to the Southern Tagalog Arterial Road (STAR), coupled with its strong program offerings in a 21st century environment, makes it an ideal academic destination for students and opens collaboration opportunities with national and international partners.\"\n\n",
-
-                R.drawable.img_170,
-                "https://www.kaplanpathways.com/blog/why-is-racial-equality-important/",
-                "https://media.philstar.com/images/articles/lgbt-_2018-10-18_20-34-04.jpg"
-            )
-        )
-
-
-        dataList.add(
-            DataItem(
-                "FIGHTING FOR RACIAL EQUALITY",
-                "Pablo Borbon is the oldest campus in the university and serves as the seat of the administration of the institution. It is located at Rizal Avenue, Batangas City, and has a land area of 5.96 hectares. Nestled at the heart of the city, its proximity to the Batangas International Port and convenient access to the Southern Tagalog Arterial Road (STAR), coupled with its strong program offerings in a 21st century environment, makes it an ideal academic destination for students and opens collaboration opportunities with national and international partners.\"\n\n",
-
-                R.drawable.img_170,
-                "https://www.kaplanpathways.com/blog/why-is-racial-equality-important/",
-                "https://media.philstar.com/images/articles/lgbt-_2018-10-18_20-34-04.jpg"
-            )
-        )
-
-
-
 
 
 

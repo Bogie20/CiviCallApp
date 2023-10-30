@@ -36,9 +36,9 @@ class RighttoProtestandFreeSpeechInfo : AppCompatActivity() {
                         "8. FACING CHALLENGES: As attacks on freedom of expression continue to rise, students learn the importance of resilience, unity, and teamwork in defending fundamental rights.\n\n" +
                         "9. CIVIC RESPONSIBILITY: This study emphasizes the civic responsibility of safeguarding constitutional freedoms, preparing students to be active participants in upholding these rights.\n\n" +
                         "10. INSPIRATION AND EMPOWERMENT: Maria Ressa's journey and achievements serve as an inspiration to students, empowering them to make informed decisions, speak their minds, and defend freedom of expression in their own lives and society.\n\n",
-                R.drawable.img_240,
+                R.drawable.img_472,
                 "https://www.rappler.com/world/global-affairs/nobel-peace-prize-maria-ressa-message-youth-freedom-expression/",
-                "https://www.rappler.com/tachyon/2021/12/maria-ressa-norway-press-conference-december-11-2021-reuters.jpg?resize=1800%2C1200&zoom=1"
+                "https://pia.gov.ph/uploads/2023/03/512d328e9368702c63357579fc55fefb.jpg"
             )
         )
         dataList.add(
@@ -117,9 +117,9 @@ class RighttoProtestandFreeSpeechInfo : AppCompatActivity() {
                         "8. INFORMATION LITERACY: Media literacy is emphasized, helping students critically assess the credibility and bias in news, equipping them to be discerning consumers of information.\n\n" +
                         "9. INSPIRING FUTURE JOURNALISTS: Aspiring journalists gain insight into the ethics and responsibilities of their future profession, preparing them for careers in media.\n\n" +
                         "10. DEFENDING DEMOCRACY: The study inspires students to defend press freedom and free speech as vital cornerstones of a just and democratic society.",
-                R.drawable.img_244,
+                R.drawable.img_473,
                 "https://mb.com.ph/2023/5/6/safeguarding-the-freedom-of-the-press-is-protecting-the-human-rights-of-all",
-                "https://mb.com.ph/media/E_CARTOON_MAY_7_2023_1_2d41aaeabd/E_CARTOON_MAY_7_2023_1_2d41aaeabd.jpg")
+                "https://images.csmonitor.com/csm/2022/07/0725%20PHILIPPINES_PRESS_FREEDOM.1.jpg?alias=standard_900x600")
         )
 
 

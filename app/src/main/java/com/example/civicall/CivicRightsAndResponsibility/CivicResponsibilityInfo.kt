@@ -43,9 +43,9 @@ class CivicResponsibilityInfo : AppCompatActivity() {
                         "8. BALANCING CHECKS AND BALANCES: Students explore the checks and balances within the legal framework that ensure fairness and impartiality, reinforcing democracy's core values.\n\n" +
                         "9. LEGAL REFORM FOR PROGRESS: This study presents the potential for legal reforms to catalyze significant positive changes in electoral systems and integrity, as demonstrated in various democracies.\n\n" +
                         "10. PRESERVING DEMOCRACY'S ESSENCE: Ultimately, this exploration reinforces the crucial role citizens play in preserving the essence of democracy, where voting is not just a right but a civic responsibility that shapes the future.\n\n",
-                R.drawable.img_235,
+                R.drawable.img_468,
                 "https://aceproject.org/main/english/ei/eic.htm",
-                "https://coe-psp.dap.edu.ph//wp-content/uploads/2019/07/gen8-philippine-elections_2018-12-08_21-52-33.jpg"
+                "https://pia.gov.ph/uploads/2021/07/22861e35df4176a09ca6c4c986cdaf62-800-1200.jpg"
             )
         )
         dataList.add(
@@ -123,9 +123,9 @@ class CivicResponsibilityInfo : AppCompatActivity() {
                         "8. NEGATIVE CAMPAIGNING: This research touches upon the prevalence of negative campaigning on social media and the potential consequences for political discourse, prompting students to consider the role of disinformation in modern politics.\n\n" +
                         "9. REGULATING ONLINE POLITICAL ADVOCACIES: It raises the question of whether more stringent regulations are needed to curb disinformation on social media, challenging students to explore the balance between free speech and responsible discourse.\n\n" +
                         "10. CITIZEN ENGAGEMENT: This study ultimately emphasizes the potential of social media to enhance civic involvement and democratic growth, prompting students to consider the future of political engagement in the digital era.",
-                R.drawable.img_239,
+                R.drawable.img_470,
                 "https://blogs.griffith.edu.au/asiainsights/social-media-and-democracy-in-the-philippines/",
-                "https://www.newmandala.org/wp-content/uploads/cache/2019/02/GettyImages-866157926/71809577.jpg")
+                "https://mb.com.ph/media/DSC_0554_9090e9a816/DSC_0554_9090e9a816.jpg")
         )
 
 

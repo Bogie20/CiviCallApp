@@ -160,9 +160,9 @@ class CivicResponsibilityandtheRuleofLawInfo : AppCompatActivity() {
                         "8. LEGAL EDUCATION: This study highlights the importance of legal education as it pertains to ethical conduct, thereby contributing to the development of ethical legal professionals.\n\n" +
                         "9. RESPECTING CONSTITUTIONAL RIGHTS: Students discover how lawyers are instrumental in preserving and respecting constitutional rights, which are the bedrock of civic responsibility.\n\n" +
                         "10. IMPROVING SOCIETY: Understanding legal ethics and civic responsibility empowers students to actively contribute to a just and equitable society by engaging with the law ethically and responsibly.",
-                R.drawable.img_254,
+                R.drawable.img_474,
                 "https://kanaans.se/what-is-legal-ethics-philippines/",
-                "https://www.counsellingtutor.com/wp-content/uploads/2013/08/ethics.jpg")
+                "https://www.peace-ed-campaign.org/wp-content/uploads/2018/05/teach-peace.jpg")
         )
 
 

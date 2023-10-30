@@ -24,7 +24,7 @@ class SurvivalMenu : AppCompatActivity() {
             DataMain("Surviving a Tsunami in the Philippines: Coastal Disaster Preparedness"),
             DataMain("College Student's Guide to Typhoon Preparedness in the Philippines"),
             DataMain("Coping with El Niño: Managing Drought and Water Scarcity"),
-            DataMain("La Niña Survival in the Philippines: Preparing for Flooding and Heavy Rains"),
+            DataMain("Philippine jungle survival: navigating the dense rainforests"),
             DataMain("Navigating Philippine Mountains: Survival in Rugged Terrain"),
             DataMain("Island Survival Strategies: Thriving in Remote Philippine Archipelagos"),
             DataMain("Survival Psychology in the Philippines: Mental Resilience Amidst Disasters"),

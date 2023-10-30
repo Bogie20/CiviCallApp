@@ -110,9 +110,9 @@ class NavigatingMountainInfo : AppCompatActivity() {
                         "8. SYMPTOM AWARENESS: Educate yourself on the early symptoms of altitude sickness, including headaches, nausea, and shortness of breath, to take timely action if they occur.\n\n" +
                         "9. WEATHER MONITORING: Keep a close watch on weather conditions, as extreme cold and storms can exacerbate altitude sickness; be prepared to seek shelter or descend.\n\n" +
                         "10. EMERGENCY PLAN: Develop a clear emergency plan and share it with your expedition team, including evacuation procedures in case of severe altitude sickness.",
-                R.drawable.img_214,
+                R.drawable.img_462,
                 "https://my.clevelandclinic.org/health/diseases/15111-altitude-sickness",
-                "https://media.worldnomads.com/Travel-Safety/altitude-sickness-trekkers.jpg")
+                "https://images.hive.blog/0x0/https://files.peakd.com/file/peakd-hive/ybanezkim26/EoyN8Q1tiM7CAVMpukq5eJci7PFYojv9KosCEcevFSDtccfbAw9xCGuiCZf2ANM7NhZ.jpg")
         )
 
 

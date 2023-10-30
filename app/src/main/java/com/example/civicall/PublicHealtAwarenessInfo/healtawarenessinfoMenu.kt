@@ -33,16 +33,16 @@ class healtawarenessinfoMenu : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val campusList = listOf(
-            DataMain("Understanding Civic Rights"),
-            DataMain("Civic Responsibility in a Democratic Society"),
-            DataMain("The Right to Protest and Free Speech"),
-            DataMain("Environmental Civic Responsibility"),
-            DataMain("Civic Responsibility and the Rule of Law"),
-            DataMain("Civic Rights in a Digital World"),
-            DataMain("Gender Equality and Civic Responsibility"),
-            DataMain("Civic Responsibility in Times of Crisis"),
-            DataMain("Civic Responsibility and Education"),
-            DataMain("Global Citizenship and Civic Responsibility")
+            DataMain("Empowering communities grassroots efforts in public health"),
+            DataMain("Environmental health in the philippines: awareness and action"),
+            DataMain("Evaluating the effectiveness of public health campaigns in the philippines"),
+            DataMain("Gender disparities in public health awareness and access"),
+            DataMain("Innovations in healthcare leveraging technology for awareness"),
+            DataMain("Mental health matters breaking the stigma in the philippines"),
+            DataMain("Preventive healthcare a key to a healthier philippines topic"),
+            DataMain("The role of nutrition education in public health awareness"),
+            DataMain("Socioeconomic factors and health inequities in the philippines"),
+            DataMain("The Impact of public health awareness on lifestyle diseases")
         )
 
         val adapter = CivicAdapterMain(campusList) { position ->
@@ -50,61 +50,61 @@ class healtawarenessinfoMenu : AppCompatActivity() {
             when (position) {
                 0 -> {
                     // Handle click for Item 0
-                    val intent = Intent(this, UnderstandingCivicRightsInfo::class.java)
+                    val intent = Intent(this, EmpoweringCommunitiesInfo::class.java)
                     startActivity(intent)
                 }
 
                 1 -> {
                     // Handle click for Item 1
-                    val intent = Intent(this, CivicResponsibilityInfo::class.java)
+                    val intent = Intent(this, EnvironmentalHealthinthePhilippinesInfo::class.java)
                     startActivity(intent)
                 }
 
                 2 -> {
                     // Handle click for Item 2
-                    val intent = Intent(this, RighttoProtestandFreeSpeechInfo::class.java)
+                    val intent = Intent(this, EvaluatingtheEffectivenessInfo::class.java)
                     startActivity(intent)
                 }
 
                 3 -> {
                     // Handle click for Item 3
-                    val intent = Intent(this, EnvironmentalCivicResponsibilityinfo::class.java)
+                    val intent = Intent(this, GenderDisparitiesinPublicInfo::class.java)
                     startActivity(intent)
                 }
 
                 4 -> {
                     // Handle click for Item 4
-                    val intent = Intent(this, CivicResponsibilityandtheRuleofLawInfo::class.java)
+                    val intent = Intent(this, InnovationsinHealthcareInfo::class.java)
                     startActivity(intent)
                 }
 
                 5 -> {
                     // Handle click for Item 5
-                    val intent = Intent(this, CivicRightsinaDigitalWorldInfo::class.java)
+                    val intent = Intent(this, MentalHealthMattersInfo::class.java)
                     startActivity(intent)
                 }
 
                 6 -> {
                     // Handle click for Item 6
-                    val intent = Intent(this, GenderEqualityandCivicResponsibilityInfo::class.java)
+                    val intent = Intent(this, PreventiveHealthcare::class.java)
                     startActivity(intent)
                 }
 
                 7 -> {
                     // Handle click for Item 7
-                    val intent = Intent(this, CivicResponsibilityinTimesofCrisisInfo::class.java)
+                    val intent = Intent(this, RoleofNutritionEducationInfo::class.java)
                     startActivity(intent)
                 }
 
                 8 -> {
                     // Handle click for Item 8
-                    val intent = Intent(this, CivicResponsibilityandEducationinfo::class.java)
+                    val intent = Intent(this, SocioeconomicFactorsandHealthInfo::class.java)
                     startActivity(intent)
                 }
 
                 9 -> {
                     // Handle click for Item 9
-                    val intent = Intent(this, GlobalCitizenshipandCivicResponsibilityInfo::class.java)
+                    val intent = Intent(this, TheImpactofPublicHealthAwarenessInfo::class.java)
                     startActivity(intent)
                 }
 

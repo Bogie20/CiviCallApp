@@ -77,9 +77,9 @@ class TsunamiInfo : AppCompatActivity() {
                         "8. EVACUATION ROUTES: Familiarize yourself with tsunami evacuation route signs and maps. Follow designated evacuation routes to reach safety.\n\n" +
                         "9. PET AND ANIMAL SAFETY: If you have pets, consider their safety too. Assemble a kit with pet supplies, and bring them with you if it won't delay your evacuation.\n\n" +
                         "10. POST-TSUNAMI CAUTION: After evacuating, do not return until an official all-clear message is given. Tsunami activity can persist for hours, and aftershocks may trigger more tsunami events.",
-                R.drawable.img_193,
+                R.drawable.img_461,
                 "https://www.civildefence.govt.nz/cdem-sector/consistent-messages/tsunami/response-what-to-do-during-a-tsunami/",
-                "https://c8.alamy.com/comp/2PD2TY7/filipino-villagers-climb-uphill-to-safer-ground-as-they-pass-by-a-sign-that-reads-tsunami-warning-area-designated-as-evacuation-site-during-the-first-ever-transpacific-tsunami-warning-drill-at-the-far-flung-coastal-village-of-buhatan-in-santo-domingo-town-in-albay-province-340-kilometers-210-miles-southeast-of-manila-early-wednesday-may-17-2006-the-philippines-is-among-more-than-two-dozen-countries-joining-an-unprecedented-drill-to-test-a-tsunami-warning-system-in-the-pacific-ocean-ap-photoaaron-favila-2PD2TY7.jpg")
+                "https://www.undrr.org/sites/default/files/styles/landscape_16_9/public/2022-11/wtad-mauirtius.jpg?h=f30a3440&itok=KiFJL1pg")
         )
 
         dataList.add(

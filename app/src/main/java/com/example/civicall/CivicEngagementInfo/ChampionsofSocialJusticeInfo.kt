@@ -42,7 +42,7 @@ class ChampionsofSocialJusticeInfo : AppCompatActivity() {
             )
         )
         dataList.add(
-            DataItem("GENDER EQUALITY AND ACTIVISM",
+            DataItem("GENDER EQUALITY ",
                 "\"Unlocking the Power of Gender Equality: Empowering Youth Activism in Civic Engagement. Delve into the intricate tapestry of gender dynamics as we explore how youth worldwide are shaping the future of civic engagement, dissecting gender differences in activism, and redefining the path to equality.\"\n\n" +
                         "1. EDUCATE AND RAISE AWARENESS: Organize workshops, seminars, and awareness campaigns to educate young people about gender equality issues and their role in activism.\n\n" +
                         "2. FOSTER INCLUSIVE LEADERSHIP: Encourage and support young leaders of all genders to take on leadership roles in civic and community initiatives.\n\n" +
@@ -56,9 +56,9 @@ class ChampionsofSocialJusticeInfo : AppCompatActivity() {
                         "10. CELEBRATE ACHIEVEMENTS: Recognize and celebrate the achievements of youth activists working towards gender equality, inspiring others to join the cause.\n\n",
 
 
-                R.drawable.img_171,
+                R.drawable.img_451,
                 "https://spb.psychopen.eu/index.php/spb/article/view/3887/3887.html",
-                "https://media.philstar.com/photos/2021/09/28/0001mo4g7800xjpeg_2021-09-28_16-59-27.jpg")
+                "https://knowlaw.in/wp-content/uploads/2021/06/Gender-Equality01.jpg")
         )
             dataList.add(
                 DataItem("PROMOTING INDIGENOUS RIGHTS AND CULTURAL INCLUSIVITY ON CAMPUS",

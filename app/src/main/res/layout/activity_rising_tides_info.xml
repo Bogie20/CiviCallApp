@@ -69,7 +69,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Rising Tides, Sinking Cities: Coastal Vulnerability in the Philippines"
+                    android:text="RISING TIDES, SINKING CITIES: COASTAL VULNERABILITY IN THE PHILIPPINES"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
