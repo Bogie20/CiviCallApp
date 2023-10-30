@@ -24,7 +24,8 @@ class TechforGoodsinfo : AppCompatActivity() {
         dataList.add(
             DataItem(
                 "TECH SOLUTIONS FOR CIVIC CHALLENGES",
-                "In the fast-paced world of college academics, mastering effective study strategies is the key to unlocking success. From setting precise goals to embracing active learning, this guide unveils ten proven procedures tailored to help college students conquer their academic challenges and excel in their studies.\"Comprehensive Disaster Preparedness Kits: A Guide to Effective Disaster Response\" and equip yourself with the knowledge to safeguard your community and ensure a brighter, more resilient future.\"\"\n\n" +
+                "In the fast-paced world of college academics, mastering effective study strategies is the key to unlocking success. From setting precise goals to embracing active learning, this guide unveils ten proven procedures tailored to help college students conquer their academic challenges and excel in their studies.\n\n\n" +
+
                         "1. PROBLEM IDENTIFICATION: Begin by clearly defining the civic challenge or problem that needs to be addressed. Understand the root causes and the specific needs of the community.\n\n" +
                         "2. COMMUNITY ENGAGEMENT: Involve citizens, community leaders, and stakeholders in the process. Gather their insights, feedback, and input to ensure that the solution is community-driven.\n\n" +
                         "3. NEEDS ASSESSMENT: Conduct a comprehensive needs assessment to determine the specific technology requirements for addressing the civic challenge. Consider factors like accessibility, scalability, and usability.\n\n" +

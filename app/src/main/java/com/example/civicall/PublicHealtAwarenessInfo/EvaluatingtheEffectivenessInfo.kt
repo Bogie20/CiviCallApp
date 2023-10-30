@@ -76,15 +76,15 @@ class EvaluatingtheEffectivenessInfo : AppCompatActivity() {
         dataList.add(
             DataItem("BEHAVIOR CHANGE: THE HEART OF PUBLIC HEALTH SUCCESS",
                 "In the realm of public health, achieving success often hinges on behavior change. Explore how the heart of public health triumph lies in understanding and influencing human behaviors.\"\n\n" +
-                        "1. CHALLENGES OF HUMAN RIGHTS COMMUNICATION: Human rights workers in the Philippines face difficulties in engaging the public due to disinformation, harassment, and conspiracy theories.\n" +
-                        "2. EROSION OF PUBLIC SUPPORT: Despite robust laws and institutions, public support for human rights has declined in recent years.\n" +
-                        "3. NEW TECHNOLOGY AND ATTACKS: Advances in technology have facilitated targeted attacks against human rights workers, making their work challenging and dangerous.\n" +
-                        "4. LACK OF SUPPORT FOR COMMUNICATIONS: Many human rights organizations lack dedicated communications teams and professional personnel.\n" +
-                        "5. THE NEED FOR SPECIFIC ADVOCACY: Engaging younger generations in human rights advocacy requires specific strategies and calls to action.\n" +
-                        "6. SOCIAL AND BEHAVIOR CHANGE (SBC) APPROACH: The Asia Foundation's Initiative for Advancing Community Transformation (I-ACT) uses SBC techniques to promote human rights advocacy.\n" +
-                        "7. ADAPTING TO ONLINE SPACES: Traditional tactics and tools used by older organizations may no longer be effective in the online spaces where younger Filipinos seek information.\n" +
-                        "8. SPECIFICITY IN CAMPAIGNS: SBC encourages organizations to understand their target audience and design campaigns to lower barriers to positive behaviors.\n" +
-                        "9. EXPERIMENTING WITH TIKTOK: Organizations like the Legal Rights and Natural Resources Center (LRC) are using TikTok to reach younger audiences and promote human rights.\n" +
+                        "1. CHALLENGES OF HUMAN RIGHTS COMMUNICATION: Human rights workers in the Philippines face difficulties in engaging the public due to disinformation, harassment, and conspiracy theories.\n\n" +
+                        "2. EROSION OF PUBLIC SUPPORT: Despite robust laws and institutions, public support for human rights has declined in recent years.\n\n" +
+                        "3. NEW TECHNOLOGY AND ATTACKS: Advances in technology have facilitated targeted attacks against human rights workers, making their work challenging and dangerous.\n\n" +
+                        "4. LACK OF SUPPORT FOR COMMUNICATIONS: Many human rights organizations lack dedicated communications teams and professional personnel.\n\n" +
+                        "5. THE NEED FOR SPECIFIC ADVOCACY: Engaging younger generations in human rights advocacy requires specific strategies and calls to action.\n\n" +
+                        "6. SOCIAL AND BEHAVIOR CHANGE (SBC) APPROACH: The Asia Foundation's Initiative for Advancing Community Transformation (I-ACT) uses SBC techniques to promote human rights advocacy.\n\n" +
+                        "7. ADAPTING TO ONLINE SPACES: Traditional tactics and tools used by older organizations may no longer be effective in the online spaces where younger Filipinos seek information.\n\n" +
+                        "8. SPECIFICITY IN CAMPAIGNS: SBC encourages organizations to understand their target audience and design campaigns to lower barriers to positive behaviors.\n\n" +
+                        "9. EXPERIMENTING WITH TIKTOK: Organizations like the Legal Rights and Natural Resources Center (LRC) are using TikTok to reach younger audiences and promote human rights.\n\n" +
                         "10. SHARING KNOWLEDGE AND RESOURCES: I-ACT shares research findings and resources to help civil society organizations improve their campaigns and advocacy efforts.",
                 R.drawable.img_373,
                 "https://asiafoundation.org/2023/07/26/promoting-social-and-behavior-change-in-the-philippine-human-rights-sector/",
@@ -94,15 +94,15 @@ class EvaluatingtheEffectivenessInfo : AppCompatActivity() {
         dataList.add(
             DataItem("HEALTH EDUCATION: EMPOWERING INDIVIDUALS WITH KNOWLEDGE",
                 "In a world where health and well-being are paramount, knowledge is the key to empowerment. Explore how health education programs in the Philippines are equipping individuals with the knowledge to make informed decisions, prevent diseases, and take control of their well-being \"\n" +
-                        "1. EMPOWERING THROUGH EDUCATION: Health education programs in the Philippines aim to empower individuals with knowledge to make informed health decisions.\n" +
-                        "2. ADDRESSING MALNUTRITION: Health programs tackle issues such as malnutrition among Filipinos, particularly children.\n" +
-                        "3. GOVERNMENT INITIATIVES: The Department of Health collaborates with other government branches to provide free medical services and promote holistic health.\n" +
-                        "4. NATIONAL HEALTH GOALS: The National Objectives for Health 2017-2022 outlines strategic goals for improving national health, including affordability and accessibility.\n" +
-                        "5. SAFE MOTHERHOOD PROGRAM: Initiatives like the Safe Motherhood Program prioritize the welfare of mothers during pregnancy, offering safe deliveries, check-ups, and care visits.\n" +
-                        "6. REPRODUCTIVE HEALTH: Programs promote family planning and raise awareness about sexually transmitted diseases to address overpopulation.\n" +
-                        "7. CHILDREN'S HEALTH: Health programs include newborn screening, immunization, and feeding programs to improve children's health.\n" +
-                        "8. MENTAL HEALTH FOCUS: The Philippine Mental Health Act of 2017 safeguards the rights of patients dealing with mental health issues.\n" +
-                        "9. COVID-19 RESPONSE: The Philippines adapted health programs during the pandemic, leveraging telemedicine and promoting health awareness.\n" +
+                        "1. EMPOWERING THROUGH EDUCATION: Health education programs in the Philippines aim to empower individuals with knowledge to make informed health decisions.\n\n" +
+                        "2. ADDRESSING MALNUTRITION: Health programs tackle issues such as malnutrition among Filipinos, particularly children.\n\n" +
+                        "3. GOVERNMENT INITIATIVES: The Department of Health collaborates with other government branches to provide free medical services and promote holistic health.\n\n" +
+                        "4. NATIONAL HEALTH GOALS: The National Objectives for Health 2017-2022 outlines strategic goals for improving national health, including affordability and accessibility.\n\n" +
+                        "5. SAFE MOTHERHOOD PROGRAM: Initiatives like the Safe Motherhood Program prioritize the welfare of mothers during pregnancy, offering safe deliveries, check-ups, and care visits.\n\n" +
+                        "6. REPRODUCTIVE HEALTH: Programs promote family planning and raise awareness about sexually transmitted diseases to address overpopulation.\n\n" +
+                        "7. CHILDREN'S HEALTH: Health programs include newborn screening, immunization, and feeding programs to improve children's health.\n\n" +
+                        "8. MENTAL HEALTH FOCUS: The Philippine Mental Health Act of 2017 safeguards the rights of patients dealing with mental health issues.\n\n" +
+                        "9. COVID-19 RESPONSE: The Philippines adapted health programs during the pandemic, leveraging telemedicine and promoting health awareness.\n\n" +
                         "10. CHILDHOPE PHILIPPINES INITIATIVES: NGOs like Childhope Philippines run programs for street children, including KalyEskwela, psychosocial interventions, KliniKalye, and skills development.",
 
                 R.drawable.img_374,
@@ -113,15 +113,15 @@ class EvaluatingtheEffectivenessInfo : AppCompatActivity() {
         dataList.add(
             DataItem("PUBLIC HEALTH STRATEGIES: CRAFTING EFFECTIVE CAMPAIGNS",
                 "In an era of changing climate and evolving public health challenges, crafting effective campaigns is vital. Explore the strategies and initiatives designed to safeguard public health against climate-related threats in our rapidly transforming world.\n\n\n" +
-                        "1. PROMOTING CLIMATE RESILIENCE: The CDC's BRACE framework equips health officials to anticipate climate impacts and vulnerabilities.\n" +
-                        "2. COMMUNITY HEALTH PREPAREDNESS: Strategies in the article demonstrate how communities can proactively address health threats arising from climate change.\n" +
-                        "3. EXTREME HEAT AWARENESS: Raising awareness about heat island risks is a critical first step in mitigating heat-related health issues.\n" +
-                        "4. INCENTIVES FOR ACTION: Governments and organizations can incentivize individuals to reduce heat islands, promoting public health.\n" +
-                        "5. URBAN FORESTRY PROGRAMS: Urban forestry and tree planting initiatives contribute to cooling urban areas, a key factor in public health.\n" +
-                        "6. RETROFITTING FOR COOL TECHNOLOGIES: Procuring cool technologies for public buildings is a fundamental step in heat island mitigation.\n" +
-                        "7. POLICY AND BUILDING STANDARDS: Building codes, green initiatives, and comprehensive plans influence public health adaptation efforts.\n" +
-                        "8. AIR QUALITY CONCERNS: Climate change's impact on air quality is a pressing public health issue.\n" +
-                        "9. ASSESSING VULNERABILITIES: Identifying vulnerable populations and locations is essential for effective climate-related public health strategies.\n" +
+                        "1. PROMOTING CLIMATE RESILIENCE: The CDC's BRACE framework equips health officials to anticipate climate impacts and vulnerabilities.\n\n" +
+                        "2. COMMUNITY HEALTH PREPAREDNESS: Strategies in the article demonstrate how communities can proactively address health threats arising from climate change.\n\n" +
+                        "3. EXTREME HEAT AWARENESS: Raising awareness about heat island risks is a critical first step in mitigating heat-related health issues.\n\n" +
+                        "4. INCENTIVES FOR ACTION: Governments and organizations can incentivize individuals to reduce heat islands, promoting public health.\n\n" +
+                        "5. URBAN FORESTRY PROGRAMS: Urban forestry and tree planting initiatives contribute to cooling urban areas, a key factor in public health.\n\n" +
+                        "6. RETROFITTING FOR COOL TECHNOLOGIES: Procuring cool technologies for public buildings is a fundamental step in heat island mitigation.\n\n" +
+                        "7. POLICY AND BUILDING STANDARDS: Building codes, green initiatives, and comprehensive plans influence public health adaptation efforts.\n\n" +
+                        "8. AIR QUALITY CONCERNS: Climate change's impact on air quality is a pressing public health issue.\n\n" +
+                        "9. ASSESSING VULNERABILITIES: Identifying vulnerable populations and locations is essential for effective climate-related public health strategies.\n\n" +
                         "10. CDC's BRACE FRAMEWORK: The CDC's five-step process aids in developing resilient public health initiatives.",
                 R.drawable.img_375,
                 "https://www.epa.gov/arc-x/public-health-adaptation-strategies-climate-change",

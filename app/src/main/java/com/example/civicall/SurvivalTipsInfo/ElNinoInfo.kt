@@ -100,15 +100,15 @@ class ElNinoInfo : AppCompatActivity() {
         dataList.add(
             DataItem("COMMUNITY EFFORTS TO COMBAT EL NIÑO EFFECTS",
                 "As El Niño looms over the Philippines, communities are uniting to combat its effects. Government agencies, led by the Department of Agriculture, are taking steps to secure the nation's food supply and enhance agricultural resilience.\"\n\n" +
-                        "1. ASSESSMENT OF VULNERABLE AREAS: Conduct an assessment to identify areas vulnerable to El Niño's impact, focusing on agriculture and fisheries.\n" +
-                        "2. INTER-AGENCY COLLABORATION: Establish inter-agency collaboration, involving key departments and organizations, to coordinate efforts to mitigate El Niño's effects.\n" +
-                        "3. RESOURCE ALLOCATION: Allocate essential resources such as seeds, fertilizers, and other commodities to support farming communities in preparation for El Niño.\n" +
-                        "4. INFORMATION DISSEMINATION: Develop and disseminate information, education, and communication materials to raise awareness about El Niño's potential impact and preventive measures.\n" +
-                        "5. WATER MANAGEMENT: Implement proper water management strategies to conserve and optimize water resources in anticipation of drought conditions.\n" +
-                        "6. RESOURCE PREPOSITIONING: Preposition necessary resources in areas likely to be severely affected by El Niño, ensuring swift response and relief.\n" +
-                        "7. CROP DIVERSIFICATION: Promote crop diversification to reduce the risk associated with dependence on specific crops affected by El Niño.\n" +
-                        "8. PLANTING CALENDAR ADJUSTMENT: Adjust planting calendars to align with expected El Niño conditions, optimizing crop growth.\n" +
-                        "9. INPUT BUFFER STOCKING: Establish a buffer stock of essential agricultural inputs to mitigate supply chain disruptions during El Niño.\n" +
+                        "1. ASSESSMENT OF VULNERABLE AREAS: Conduct an assessment to identify areas vulnerable to El Niño's impact, focusing on agriculture and fisheries.\n\n" +
+                        "2. INTER-AGENCY COLLABORATION: Establish inter-agency collaboration, involving key departments and organizations, to coordinate efforts to mitigate El Niño's effects.\n\n" +
+                        "3. RESOURCE ALLOCATION: Allocate essential resources such as seeds, fertilizers, and other commodities to support farming communities in preparation for El Niño.\n\n" +
+                        "4. INFORMATION DISSEMINATION: Develop and disseminate information, education, and communication materials to raise awareness about El Niño's potential impact and preventive measures.\n\n" +
+                        "5. WATER MANAGEMENT: Implement proper water management strategies to conserve and optimize water resources in anticipation of drought conditions.\n\n" +
+                        "6. RESOURCE PREPOSITIONING: Preposition necessary resources in areas likely to be severely affected by El Niño, ensuring swift response and relief.\n\n" +
+                        "7. CROP DIVERSIFICATION: Promote crop diversification to reduce the risk associated with dependence on specific crops affected by El Niño.\n\n" +
+                        "8. PLANTING CALENDAR ADJUSTMENT: Adjust planting calendars to align with expected El Niño conditions, optimizing crop growth.\n\n" +
+                        "9. INPUT BUFFER STOCKING: Establish a buffer stock of essential agricultural inputs to mitigate supply chain disruptions during El Niño.\n\n" +
                         "10. PROMOTION OF RESILIENT CROPS: Encourage the cultivation of short-cycle and drought-tolerant crops to enhance agricultural resilience during dry spells.\n",
                 R.drawable.img_205,
                 "https://www.pna.gov.ph/index.php/articles/1203047",

@@ -27,7 +27,7 @@ class AmplifyingStudentVoicesInfo: AppCompatActivity() {
         dataList.add(
             DataItem(
                 "PUBLIC SPEAKING AND CIVIC ENGAGEMENT",
-                "Unlocking the Power of the Spoken Word: Public Speaking as the Catalyst for Civic Engagement. In a world where voices shape the future, discover how the art of public speaking fuels advocacy, empowers change, and drives civic participation like never before.\"Comprehensive Disaster Preparedness Kits: A Guide to Effective Disaster Response\" and equip yourself with the knowledge to safeguard your community and ensure a brighter, more resilient future.\"\"\n\n" +
+                "Unlocking the Power of the Spoken Word: Public Speaking as the Catalyst for Civic Engagement. In a world where voices shape the future, discover how the art of public speaking fuels advocacy, empowers change, and drives civic participation like never before.\n\n\n" +
                         "1. IDENTIFY YOUR CAUSE: Begin by choosing a cause or issue that you are passionate about and want to advocate for through public speaking.\n\n" +
                         "2. RESEARCH AND KNOWLEDGE: Deepen your understanding of the chosen cause by conducting thorough research. Stay informed about relevant facts, statistics, and current events.\n\n" +
                         "3. CRAFT YOUR MESSAGE: Develop a clear and compelling message that conveys the importance of your cause and resonates with your target audience.\n\n" +

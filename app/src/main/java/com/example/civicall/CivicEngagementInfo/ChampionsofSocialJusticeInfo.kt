@@ -24,7 +24,7 @@ class ChampionsofSocialJusticeInfo : AppCompatActivity() {
         dataList.add(
             DataItem(
                 "FIGHTING FOR RACIAL EQUALITY",
-                "Join us on a journey to explore the vital topic of racial equality in the realm of college student civic engagement. In this enlightening discussion, we delve into the significance of advocating for racial equality and why it's a cause that resonates deeply with students.\"\n\n" +
+                "Join us on a journey to explore the vital topic of racial equality in the realm of college student civic engagement. In this enlightening discussion, we delve into the significance of advocating for racial equality and why it's a cause that resonates deeply with students.\"\n\n\n" +
                         "1. EDUCATE YOURSELF: Start by gaining a comprehensive understanding of racial equality issues, including their historical context and current manifestations. Read books, articles, and watch documentaries to deepen your knowledge.\n\n" +
                         "2. PARTICIPATE IN CAMPUS DISCUSSIONS: Engage in open and respectful dialogues about racial equality on your college campus. Attend seminars, workshops, and forums to exchange ideas and perspectives with your peers.\n\n" +
                         "3. JOIN STUDENT ORGANIZATIONS: Become a member of or support student groups dedicated to promoting racial equality and social justice. These organizations often lead initiatives and events on campus.\n\n" +
@@ -43,7 +43,7 @@ class ChampionsofSocialJusticeInfo : AppCompatActivity() {
         )
         dataList.add(
             DataItem("GENDER EQUALITY ",
-                "\"Unlocking the Power of Gender Equality: Empowering Youth Activism in Civic Engagement. Delve into the intricate tapestry of gender dynamics as we explore how youth worldwide are shaping the future of civic engagement, dissecting gender differences in activism, and redefining the path to equality.\"\n\n" +
+                "\"Unlocking the Power of Gender Equality: Empowering Youth Activism in Civic Engagement. Delve into the intricate tapestry of gender dynamics as we explore how youth worldwide are shaping the future of civic engagement, dissecting gender differences in activism, and redefining the path to equality.\"\n\n\n" +
                         "1. EDUCATE AND RAISE AWARENESS: Organize workshops, seminars, and awareness campaigns to educate young people about gender equality issues and their role in activism.\n\n" +
                         "2. FOSTER INCLUSIVE LEADERSHIP: Encourage and support young leaders of all genders to take on leadership roles in civic and community initiatives.\n\n" +
                         "3. AMPLIFY DIVERSE VOICES: Create platforms for marginalized and underrepresented voices, allowing them to share their experiences and perspectives.\n\n" +
@@ -80,24 +80,27 @@ class ChampionsofSocialJusticeInfo : AppCompatActivity() {
         )
 
         dataList.add(
-            DataItem("DISMANTLING INEQUALITY THROUGH EDUCATION",
+                DataItem("RESHAPING EDUCATION IN THE CITY",
                 "Unlock the Power of Education: Bridging the Divide Against Inequality. Join us on a journey to explore how education can be a powerful force in dismantling deep-seated inequalities, equipping students with the tools to challenge injustice and pave the way for a more equitable society.\n\n" +
-                        "1. EQUITY-CENTERED CURRICULUM: Develop and implement curricula that actively address issues of inequality, diversity, and social justice, ensuring that students learn about the root causes of inequity.\n\n" +
-                        "2. INCLUSIVE CLASSROOM PRACTICES: Create inclusive learning environments where all students feel valued, heard, and represented, regardless of their background, identity, or abilities.\n\n" +
-                        "3. CULTIVATE CRITICAL THINKING: Foster critical thinking skills that enable students to analyze and challenge biased information, stereotypes, and systemic inequalities.\n\n" +
-                        "4. EMPOWER STUDENT VOICES: Encourage students to express their opinions, share their experiences, and engage in discussions about societal issues, empowering them to be active participants in civic discourse.\n\n" +
-                        "5. COMMUNITY ENGAGEMENT: Promote community service and engagement projects that enable students to work directly on issues related to inequality, connecting classroom learning to real-world action.\n\n" +
-                        "6. DIVERSE PERSPECTIVES: Incorporate diverse voices, authors, and perspectives into the curriculum, exposing students to a wide range of viewpoints and experiences.\n\n" +
-                        "7. ANTI-BIAS EDUCATION: Implement anti-bias education programs that help students recognize and challenge bias, prejudice, and discrimination in themselves and others.\n\n" +
-                        "8. TEACHER TRAINING: Provide professional development for educators on equity-focused teaching strategies, cultural competence, and inclusive classroom management.\n\n" +
-                        "9. ASSESSMENT FOR EQUITY: Develop assessment methods that measure students' understanding of and engagement with equity issues, ensuring that these topics are prioritized.\n\n" +
-                        "10. COLLABORATIVE INITIATIVES: Encourage collaboration between schools, parents, communities, and policymakers to address systemic inequalities and advocate for educational policies that promote equity.\n\n",
 
 
 
-                R.drawable.img_173,
-                "https://www.youtube.com/watch?v=Q5oXE3TZiZQ&ab_channel=ISTE",
-                "https://www.youtube.com/watch?v=Q5oXE3TZiZQ&t=13s&pp=ygUcaHR0cHM6Ly95b3V0dS5iZS9RNW9YRTNUWmlaUQ%3D%3D")
+                        "1. EDUCATIONAL CHALLENGES IN METRO MANILA: Overcrowded classrooms, low teacher salaries, and inadequate facilities pose significant challenges to education in Metro Manila.\n\n" +
+                        "2. IMPACT OF COVID-19: The pandemic exacerbated educational issues, leading to a shift to online learning and leaving many students out of school.\n\n" +
+                        "3. LEARNING POVERTY: A World Bank study revealed that a large proportion of Filipino children suffer from 'learning poverty,' emphasizing the need for educational improvements.\n\n" +
+                        "4. COLLABORATION AND GOVERNANCE: Collaboration among different cities and good governance are essential to address educational challenges and share best practices.\n\n" +
+                        "5. INNOVATIONS IN REMOTE LEARNING: Initiatives like free Wi-Fi and providing gadgets for students have been adopted to facilitate remote learning during the pandemic.\n\n" +
+                        "6. SUPPORT FROM LOCAL GOVERNMENTS: Local government units partnered with private companies to enhance resources for remote learning.\n\n" +
+                        "7. QUALITY EDUCATION FOR URBAN POOR COMMUNITIES: Improving access to quality education for urban poor communities is a priority, including reducing overcrowding and enhancing resources.\n\n" +
+                        "8. GOVERNMENT INITIATIVES: Programs like the Universal Access to Quality Tertiary Education Act (UAQTEA) have been implemented to provide free tuition and additional support at universities and colleges.\n\n" +
+                        "9. PARTNERSHIPS AND COLLABORATION: Collaboration between public and private institutions, sharing resources like textbooks and facilities, promotes equal access to quality education.\n\n" +
+                        "10. HOLISTIC APPROACH: A holistic approach, considering social and economic factors, is crucial to reduce income inequality, promote inclusion, and drive sustainable development for a better quality of life in Metro Manila.",
+
+
+
+                    R.drawable.img_484,
+                "https://btf.rappler.com/161/scattered-flickers-of-light-the-education-outlook-of-the-megacity-of-metro-manila",
+                "https://btf.rappler.com/tachyon/sites/9/2023/01/327035535_566891875334320_3462293533200080570_n-1.jpg?resize=1080%2C810&zoom=1")
         )
 
         dataList.add(

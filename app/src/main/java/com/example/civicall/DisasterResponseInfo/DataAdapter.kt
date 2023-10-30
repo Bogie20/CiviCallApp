@@ -28,7 +28,6 @@ class DataAdapter(private val dataList: List<DataItem>) :
         val paragraphTextView: TextView = itemView.findViewById(R.id.paragraphTextView)
         val imageView: ImageView = itemView.findViewById(R.id.feed_post_image)
         val referenceTextView: TextView = itemView.findViewById(R.id.reference)
-        val fontSizeTextView: TextView = itemView.findViewById(R.id.fontSizeTextView) // Add this TextView
 
         var currentItem: DataItem? = null
         private var scaleFactor = 1.0f
