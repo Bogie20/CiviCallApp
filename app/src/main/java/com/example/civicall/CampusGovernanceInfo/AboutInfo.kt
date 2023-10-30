@@ -66,7 +66,6 @@ class AboutInfo : AppCompatActivity() {
 
                         "A BEACON OF EXCELLENCE\n\n" +
 
-
                         "With a diverse student body of over 61,000 students and a dedicated faculty and staff of 2,600, Batangas State University stands as a beacon of excellence in the Philippines. It offers a comprehensive range of engineering programs and has gained recognition for its sustainable practices and international impact.\n\n" +
 
                         "The university's commitment to sustainability is evident in its ranking as the 351st World's Most Sustainable University by UI GreenMetric World University Ranking. It has actively embraced sustainability through the establishment of the Center for Sustainable Development (CSD) and Sustainability Development Officers (SDOs) in every constituent campus.\n\n" +
@@ -74,34 +73,11 @@ class AboutInfo : AppCompatActivity() {
                         "As Batangas State University continues its journey towards becoming a premier national university, it remains devoted to developing leaders in the global knowledge economy, advancing engineering education, and promoting sustainable development, all while fostering innovation and excellence.\n\n" +
 
                         "Discovering the history of Batangas State University is not just a journey through time; it's a testament to the institution's enduring commitment to progress, innovation, and the betterment of society.\n\n",
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 R.drawable.img_392,
                 "https://batstate-u.edu.ph/about/",
                 "https://batstate-u.edu.ph/wp-content/uploads/2020/10/homepage-webslider-1.jpg"
             )
         )
-
-
         val adapter = DataAdapter(dataList)
 
         // Set an item click listener for the adapter to open the link when the reference TextView is clicked
@@ -124,7 +100,6 @@ class AboutInfo : AppCompatActivity() {
                 startActivity(intent)
             }
         })
-
 
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter

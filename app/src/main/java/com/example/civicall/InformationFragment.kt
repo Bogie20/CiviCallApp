@@ -29,10 +29,7 @@ class InformationFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_information, container, false)
 
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.animate_fade_enter)
-
-
         view.startAnimation(anim)
-
         val cardview1 = view.findViewById<CardView>(R.id.cardview1)
         val cardview2 = view.findViewById<CardView>(R.id.cardview2)
         val cardview3 = view.findViewById<CardView>(R.id.cardview3)
