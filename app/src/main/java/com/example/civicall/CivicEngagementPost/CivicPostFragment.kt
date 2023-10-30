@@ -41,6 +41,10 @@ class CivicPostFragment : Fragment() {
         searchView = rootView.findViewById(R.id.search)
         searchView.clearFocus()
 
+        val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+
+        rootView.startAnimation(anim)
+
         val gridLayoutManager = GridLayoutManager(requireContext(), 1)
         recyclerView.layoutManager = gridLayoutManager
 

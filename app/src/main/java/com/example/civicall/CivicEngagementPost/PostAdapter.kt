@@ -24,14 +24,14 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
         val data = dataList[position]
 
         Glide.with(context).load(data.dataImage).into(holder.recImage)
-        holder.civicTitle.text = data.dataTitle
-        holder.civicDateandTime.text = data.dataDateandTime
-        holder.civicLocation.text = data.dataLocation
+        holder.recTitle.text = data.dataTitle
+        holder.recDateandTime.text = data.dataDateandTime
+        holder.recLocation.text = data.dataLocation
 
         holder.recCard.setOnClickListener {
             val intent = Intent(context, DetailPost::class.java).apply {
                 putExtra("Image", data.dataImage)
-                putExtra("Date and Time", data.dataDateandTime)
+                putExtra("Date&Time", data.dataDateandTime)
                 putExtra("Title", data.dataTitle)
                 putExtra("Key", data.key)
                 putExtra("Location", data.dataLocation)
@@ -53,7 +53,7 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
 class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val recImage: ImageView = itemView.findViewById(R.id.recImage)
     val recCard: CardView = itemView.findViewById(R.id.recCard)
-    val civicTitle: TextView = itemView.findViewById(R.id.civicTitle)
-    val civicLocation: TextView = itemView.findViewById(R.id.civicLocation)
-    val civicDateandTime: TextView = itemView.findViewById(R.id.civicDateandTime)
+    val recDateandTime: TextView = itemView.findViewById(R.id.civicDateandTime)
+    val recLocation: TextView = itemView.findViewById(R.id.civicLocation)
+    val recTitle: TextView = itemView.findViewById(R.id.civicTitle)
 }

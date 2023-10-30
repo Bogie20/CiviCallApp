@@ -33,21 +33,22 @@ class DetailPost : AppCompatActivity() {
         setContentView(R.layout.activity_detail_post)
 
         detailDateandTime = findViewById(R.id.detailDateandTime)
-        detailImage = findViewById(R.id.detailPoster)
+        detailImage = findViewById(R.id.detailImage)
         detailTitle = findViewById(R.id.detailTitle)
         deleteButton = findViewById(R.id.deleteButton)
         editButton = findViewById(R.id.editButton)
-        detailLocation = findViewById(R.id.detailLocation)
+        detailLocation= findViewById(R.id.detailLocation)
 
         val bundle = intent.extras
         bundle?.let {
-            detailDateandTime.text = it.getString("Date and Time")
+            detailDateandTime.text = it.getString("Date&Time")
             detailTitle.text = it.getString("Title")
             detailLocation.text = it.getString("Location")
             key = it.getString("Key") ?: ""
             imageUrl = it.getString("Image") ?: ""
             Glide.with(this).load(it.getString("Image")).into(detailImage)
         }
+
         deleteButton.setOnClickListener {
             val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
             val storage: FirebaseStorage = FirebaseStorage.getInstance()
@@ -64,7 +65,7 @@ class DetailPost : AppCompatActivity() {
         editButton.setOnClickListener {
             val intent = Intent(this@DetailPost, Update_engagement::class.java)
                 .putExtra("Title", detailTitle.text.toString())
-                .putExtra("Date and Time", detailDateandTime.text.toString())
+                .putExtra("Date&Time", detailDateandTime.text.toString())
                 .putExtra("Location", detailLocation.text.toString())
                 .putExtra("Image", imageUrl)
                 .putExtra("Key", key)

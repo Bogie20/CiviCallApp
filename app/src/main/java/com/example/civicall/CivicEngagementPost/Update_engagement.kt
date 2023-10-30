@@ -1,6 +1,5 @@
 package com.example.civicall.CivicEngagementPost
 
-
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -27,19 +26,19 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 
-class Update_engagement : AppCompatActivity() {
+class Update_engagement: AppCompatActivity() {
 
     private lateinit var updateImage: ImageView
     private lateinit var updateButton: Button
     private lateinit var updateDateandTime: EditText
     private lateinit var updateTitle: EditText
     private lateinit var updateLocation: EditText
-    private lateinit var title: String
-    private lateinit var dateandtime: String
-    private lateinit var location: String
-    private lateinit var imageUrl: String
-    private lateinit var key: String
-    private lateinit var oldImageURL: String
+    private var title: String = ""
+    private var dateandtime: String = ""
+    private var location: String = ""
+    private var imageUrl: String = ""
+    private var key: String = ""
+    private var oldImageURL: String = ""
     private var uri: Uri? = null
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference
@@ -54,23 +53,23 @@ class Update_engagement : AppCompatActivity() {
         updateLocation = findViewById(R.id.updateLocation)
         updateTitle = findViewById(R.id.updateTitle)
 
-        val activityResultLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-                if (result.resultCode == Activity.RESULT_OK) {
-                    val data = result.data
-                    uri = data?.data
-                    updateImage.setImageURI(uri)
-                } else {
-                    Toast.makeText(this@Update_engagement, "No Image Selected", Toast.LENGTH_SHORT)
-                        .show()
-                }
+        val activityResultLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+                uri = data?.data
+                updateImage.setImageURI(uri)
+            } else {
+                Toast.makeText(this@Update_engagement, "No Image Selected", Toast.LENGTH_SHORT).show()
             }
+        }
 
         val bundle = intent.extras
         if (bundle != null) {
             Glide.with(this@Update_engagement).load(bundle.getString("Image")).into(updateImage)
             updateTitle.setText(bundle.getString("Title"))
-            updateDateandTime.setText(bundle.getString("Date and Time"))
+            updateDateandTime.setText(bundle.getString("Date&Time"))
             updateLocation.setText(bundle.getString("Location"))
             key = bundle.getString("Key")!!
             oldImageURL = bundle.getString("Image")!!
@@ -91,9 +90,8 @@ class Update_engagement : AppCompatActivity() {
     }
 
     private fun saveData() {
-        storageReference =
-            FirebaseStorage.getInstance().getReference().child("Poster Civic Images")
-                .child(uri?.lastPathSegment!!)
+        storageReference = FirebaseStorage.getInstance().reference.child("Poster Civic Images")
+            .child(uri?.lastPathSegment!!)
 
         val builder = AlertDialog.Builder(this@Update_engagement)
         builder.setCancelable(false)
@@ -101,17 +99,16 @@ class Update_engagement : AppCompatActivity() {
         val dialog = builder.create()
         dialog.show()
 
-        storageReference.putFile(uri!!)
-            .addOnSuccessListener(OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
-                val uriTask = taskSnapshot.storage.downloadUrl
-                while (!uriTask.isComplete);
-                val urlImage = uriTask.result
-                imageUrl = urlImage.toString()
-                updateData()
-                dialog.dismiss()
-            }).addOnFailureListener(OnFailureListener { e ->
-                dialog.dismiss()
-            })
+        storageReference.putFile(uri!!).addOnSuccessListener { taskSnapshot ->
+            val uriTask = taskSnapshot.storage.downloadUrl
+            while (!uriTask.isComplete);
+            val urlImage = uriTask.result
+            imageUrl = urlImage.toString()
+            updateData()
+            dialog.dismiss()
+        }.addOnFailureListener { e ->
+            dialog.dismiss()
+        }
     }
 
     private fun updateData() {
@@ -122,16 +119,15 @@ class Update_engagement : AppCompatActivity() {
         val dataClass = DataClass(title, dateandtime, location, imageUrl)
 
         databaseReference.setValue(dataClass)
-            .addOnCompleteListener(OnCompleteListener<Void> { task ->
+            .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val reference = FirebaseStorage.getInstance().getReferenceFromUrl(oldImageURL)
                     reference.delete()
                     Toast.makeText(this@Update_engagement, "Updated", Toast.LENGTH_SHORT).show()
                     finish()
                 }
-            }).addOnFailureListener(OnFailureListener { e ->
-                Toast.makeText(this@Update_engagement, e.message.toString(), Toast.LENGTH_SHORT)
-                    .show()
-            })
+            }.addOnFailureListener { e ->
+                Toast.makeText(this@Update_engagement, e.message.toString(), Toast.LENGTH_SHORT).show()
+            }
     }
 }

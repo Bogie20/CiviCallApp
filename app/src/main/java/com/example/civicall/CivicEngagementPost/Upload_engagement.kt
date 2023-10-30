@@ -35,7 +35,7 @@ class Upload_engagement : AppCompatActivity() {
         uploadDateandTime = findViewById(R.id.uploadDateandTime)
         uploadTitle = findViewById(R.id.uploadTitle)
         uploadLocation = findViewById(R.id.uploadLocation)
-        saveButton = findViewById(R.id.saveButton)
+        saveButton = findViewById(R.id.updateButton)
 
         val activityResultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -86,10 +86,10 @@ class Upload_engagement : AppCompatActivity() {
 
     private fun uploadData() {
         val title = uploadTitle.text.toString()
-        val desc = uploadDateandTime.text.toString()
-        val intro = uploadLocation.text.toString()
+        val dateandtime = uploadDateandTime.text.toString()
+        val location = uploadLocation.text.toString()
 
-        val dataClass = DataClass(title, desc, intro, imageURL!!)
+        val dataClass = DataClass(title, dateandtime, location, imageURL!!)
 
         val currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().time)
 
