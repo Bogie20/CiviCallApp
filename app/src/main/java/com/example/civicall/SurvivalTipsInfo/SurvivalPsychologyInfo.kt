@@ -39,9 +39,10 @@ class SurvivalPsychologyInfo : AppCompatActivity() {
                         "8. CRISIS RESPONSE WORKSHOPS: Conduct workshops on crisis management, equipping survivors with coping skills and strategies to deal with ongoing challenges.\n\n" +
                         "9. REINTEGRATION AND COMMUNITY SUPPORT: Assist survivors in reintegrating into their communities and provide information on local support resources.\n\n" +
                         "10. MONITORING AND FOLLOW-UP: Maintain contact with survivors over time to ensure their ongoing well-being and provide additional support as needed.",
-                R.drawable.img_220,
-                "https://www.samhsa.gov/find-help/disaster-distress-helpline/coping-tips",
-                "https://go.rappler.com/images/typhoon-yolanda-red-cross-volunteers-20131126-001.jpg"
+
+                "https://go.rappler.com/images/typhoon-yolanda-red-cross-volunteers-20131126-001.jpg",
+                "https://www.samhsa.gov/find-help/disaster-distress-helpline/coping-tips"
+
             )
         )
         dataList.add(
@@ -57,9 +58,10 @@ class SurvivalPsychologyInfo : AppCompatActivity() {
                         "8. SACRED MEDICINAL PLANT KNOWLEDGE: Share knowledge of sacred plants and their use in Indigenous rituals and healing practices, emphasizing the holistic benefits for mental and physical health.\n\n" +
                         "9. COMMUNITY BUILDING THROUGH RITUALS: Encourage the practice of communal rituals and ceremonies that strengthen social bonds and provide emotional support during challenging times.\n\n" +
                         "10. RESILIENCE ASSESSMENT: Develop culturally sensitive tools for assessing the impact of Indigenous rituals and resilience traditions on the well-being of individuals and communities, allowing for continuous improvement and adaptation.",
-                R.drawable.img_221,
-                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2956755/",
-                "https://www.yesmagazine.org/wp-content/uploads/2020/04/1.-healing-the-soul-indigenous-leaders-resilience.jpg")
+
+                "https://www.yesmagazine.org/wp-content/uploads/2020/04/1.-healing-the-soul-indigenous-leaders-resilience.jpg",
+                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2956755/"
+              )
         )
         dataList.add(
             DataItem("COMMUNITY SUPPORT SYSTEMS",
@@ -74,9 +76,10 @@ class SurvivalPsychologyInfo : AppCompatActivity() {
                         "8. COMMUNICATION AND REPORTING: Develop a communication strategy to facilitate swift information dissemination during emergencies and ensure the reporting of incidents.\n\n" +
                         "9. PARTNERSHIP BUILDING: Forge partnerships with local organizations, businesses, and NGOs to enhance support systems for disaster preparedness.\n\n" +
                         "10. RECOVERY AND REHABILITATION PLANS: Develop post-disaster recovery and rehabilitation plans that focus on rebuilding a resilient community.\n\n",
-                R.drawable.img_222,
-                "https://www.scirp.org/journal/paperinformation.aspx?paperid=77520",
-                "https://tvird.com.ph/wp-content/uploads/AMVI-Disaster-Preparedness-Training_1.jpg")
+
+                "https://tvird.com.ph/wp-content/uploads/AMVI-Disaster-Preparedness-Training_1.jpg",
+                "https://www.scirp.org/journal/paperinformation.aspx?paperid=77520"
+              )
         )
 
         dataList.add(
@@ -92,9 +95,10 @@ class SurvivalPsychologyInfo : AppCompatActivity() {
                         "8. ARCHIVING AND DOCUMENTATION: Store the collected oral histories in a secure and organized manner, making them easily accessible for researchers, historians, and future generations.\n\n" +
                         "9. NARRATIVE SHARING: Share these narratives through various channels, such as local publications, community meetings, online platforms, and social media, in line with the narrator's preferences and consent.\n\n" +
                         "10. COMMUNITY ENGAGEMENT: Engage the community in discussions and storytelling events, where narratives of survival can be shared and discussed to promote comfort and unity among community members.\n",
-                R.drawable.img_223,
-                "https://www.jacksonville.com/story/news/2013/12/01/relatives-share-typhoon-survival-stories-philippines/15807393007/",
-                "https://peace.gov.ph/wp-content/uploads/2016/11/Agusan-Storytelling-2.jpg")
+
+                "https://peace.gov.ph/wp-content/uploads/2016/11/Agusan-Storytelling-2.jpg",
+                "https://www.jacksonville.com/story/news/2013/12/01/relatives-share-typhoon-survival-stories-philippines/15807393007/"
+            )
         )
 
         dataList.add(
@@ -110,9 +114,10 @@ class SurvivalPsychologyInfo : AppCompatActivity() {
                         "8. PSYCHOLOGICAL ANALYSIS: Collaborate with psychologists and experts in mental health to delve into the psychological mechanisms through which faith influences emotional and spiritual well-being.\n\n" +
                         "9. COMMUNITY INITIATIVES: Investigate faith-based community initiatives, such as support groups and counseling services, that play a role in enhancing emotional and spiritual health.\n\n" +
                         "10. RECOMMENDATIONS: Conclude the study with recommendations for promoting the positive impact of faith and belief systems on emotional and spiritual well-being, while addressing potential challenges or conflicts.",
-                R.drawable.img_224,
-                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7989222/",
-                "https://images.squarespace-cdn.com/content/v1/596c0cd63e00beb869b40668/1554918484818-OEE5YTVDQWM5OJT030SG/ben-white-139141-unsplash.jpg?format=1500w")
+
+                "https://images.squarespace-cdn.com/content/v1/596c0cd63e00beb869b40668/1554918484818-OEE5YTVDQWM5OJT030SG/ben-white-139141-unsplash.jpg?format=1500w",
+                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7989222/"
+              )
         )
 
 

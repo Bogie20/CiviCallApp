@@ -41,9 +41,10 @@ class WaterWoesandWinsInfo : AppCompatActivity() {
                         "8. EXTERNAL FACTORS: The construction of a police camp near Tagbak has further strained water resources as pumps draw water from the village's pipelines.\n\n" +
                         "9. COMMUNITY SUPPORT: Retired Army major general Johnny Macanas offers assistance to the villagers by transporting their water containers to the impounding dike.\n\n" +
                         "10. HEALTH IMPLICATIONS: Lack of clean water sources can lead to poor personal hygiene and increased vulnerability to diseases, including COVID-19, emphasizing the urgency of addressing this challenge.\n\n",
-                R.drawable.img_301,
-                "https://www.rappler.com/nation/takbag-village-bukidnon-relies-unsafe-water-sources-survival/",
-                "https://www.rappler.com/tachyon/2022/04/Bukidnon-water1-scaled.jpg?resize=2560%2C1748&zoom=1"
+
+                "https://www.rappler.com/tachyon/2022/04/Bukidnon-water1-scaled.jpg?resize=2560%2C1748&zoom=1",
+                "https://www.rappler.com/nation/takbag-village-bukidnon-relies-unsafe-water-sources-survival/"
+
             )
         )
         dataList.add(
@@ -59,9 +60,10 @@ class WaterWoesandWinsInfo : AppCompatActivity() {
                         "8. SAFE WATER ASSURANCE BY MANILA WATER: Manila Water assures 7.4 million consumers of safe and potable water round the clock, maintaining stringent water quality standards.\n\n" +
                         "9. CLIMATE ACTION AND ADAPTATION: Manila Water contributes to the United Nations Sustainable Development Goals on Climate Action through climate-resilient infrastructure and nature-based solutions.\n\n" +
                         "10. HIGH CDP RATINGS: Manila Water receives B ratings in CDP's Climate Change and Water Security Disclosures, exemplifying strengthened climate actions and a commitment to 24/7 water services.\n\n",
-                R.drawable.img_302,
-                "https://www.pna.gov.ph/articles/1191389",
-                "https://media.philstar.com/photos/2021/07/29/water2020-09-1521-49-24_2021-07-29_22-50-29.jpg")
+
+                "https://media.philstar.com/photos/2021/07/29/water2020-09-1521-49-24_2021-07-29_22-50-29.jpg",
+                "https://www.pna.gov.ph/articles/1191389"
+             )
         )
         dataList.add(
             DataItem("COMMUNITY-BASED SOLUTIONS FOR WATER ACCESS (PHILIPPINES)",
@@ -76,9 +78,10 @@ class WaterWoesandWinsInfo : AppCompatActivity() {
                         "8. ACKNOWLEDGMENT OF FUNDERS: Climate-tech accelerator Elemental Excelerator funded the grant, and the American and Philippine governments support the initiative.\n\n" +
                         "9. IMPACTFUL RENEWABLE SOLUTIONS: SOURCE Hydropanels excel in remote locations where access to clean water is challenging, addressing a pressing need for the Palawan community.\n\n" +
                         "10. SUSTAINABLE WATER ACCESS IN THE PHILIPPINES: The adoption of hydropanels as a community-based solution showcases a sustainable approach to ensuring water access for remote and underserved populations in the Philippines.\n\n",
-                R.drawable.img_303,
-                "https://www.rappler.com/technology/innovations/source-hydropanels-conservation-international-bintat-karis-palawan/",
-                "https://www.rappler.com/tachyon/2020/10/hydropanels-1.jpg?resize=1019%2C573&zoom=1")
+
+                "https://www.rappler.com/tachyon/2020/10/hydropanels-1.jpg?resize=1019%2C573&zoom=1",
+                "https://www.rappler.com/technology/innovations/source-hydropanels-conservation-international-bintat-karis-palawan/"
+              )
         )
 
         dataList.add(
@@ -95,9 +98,10 @@ class WaterWoesandWinsInfo : AppCompatActivity() {
                         "8. ASIAN PLASTIC POLLUTION: Asian rivers, including the Philippines' rivers like the Pasig River, contribute to 81% of global plastic pollution in oceans.\n\n" +
                         "9. GOVERNMENT INITIATIVES: The government aims to achieve 60% plastic reuse by 2030 and is encouraging private sector involvement in managing plastic waste.\n\n" +
                         "10. RESTORATION EFFORTS: Initiatives are underway to address pollution and restore water bodies like the Pasig River and Manila Bay, aiming to improve water quality and ecosystem health.\n\n",
-                R.drawable.img_304,
-                "https://www.developmentaid.org/news-stream/post/155108/water-pollution-in-the-philippines",
-                "https://cloudfront-us-east-2.images.arcpublishing.com/reuters/ZRWS6SFZ7FPVVL4WFZOF7EIBUU.jpg")
+
+                "https://cloudfront-us-east-2.images.arcpublishing.com/reuters/ZRWS6SFZ7FPVVL4WFZOF7EIBUU.jpg",
+                "https://www.developmentaid.org/news-stream/post/155108/water-pollution-in-the-philippines"
+             )
         )
 
         dataList.add(
@@ -113,9 +117,10 @@ class WaterWoesandWinsInfo : AppCompatActivity() {
                         "8. ROLE OF CUSTOMARY LAW AND RELIGIOUS BELIEFS: Customary law and religious beliefs, guided by the inayan and lawa concepts, play a significant role in preserving natural resources, emphasizing respect for nature, morality, and harmony.\n\n" +
                         "9. NAKINBAEY AND WATER BELIEFS: Water is seen as life itself and is believed to be produced by the nakinbaey, a supernatural being inhabiting water sources. Respecting these sources is essential to ensure a continuous water supply.\n\n" +
                         "10. SHARED WATER OWNERSHIP: Water is considered a shared resource, and water rights are tied to land ownership. The Kankanaey employ a cooperative dumapat water management system to ensure equitable access to and distribution of water.",
-                R.drawable.img_305,
-                "https://www.culturalsurvival.org/publications/cultural-survival-quarterly/traditional-water-management-practices-kankanaey",
-                "https://www.adb.org/sites/default/files/content-media/6623-philippines-improving-community-water-supplies-feature-01.jpg")
+
+                "https://www.adb.org/sites/default/files/content-media/6623-philippines-improving-community-water-supplies-feature-01.jpg",
+                "https://www.culturalsurvival.org/publications/cultural-survival-quarterly/traditional-water-management-practices-kankanaey"
+               )
         )
 
 

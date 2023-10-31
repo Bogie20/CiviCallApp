@@ -42,8 +42,7 @@ class FirstAidInfo : AppCompatActivity() {
                         "9. PEACE OF MIND: Knowing you have a properly stocked first aid kit provides peace of mind and promotes self-sufficiency in handling minor emergencies, enhancing your travel experience.\n\n" +
                         "10. SAFETY AND RESPONSIBILITY: Stocking basic first aid supplies reflects your commitment to personal safety and the well-being of fellow travelers, contributing to a safer and more responsible travel environment.\n\n",
 
-                R.drawable.img_94,
-                "https://www.youtube.com/watch?v=dYKdWsVtbaE&ab_channel=IndependenceBlueCross",
+                "https://assets-global.website-files.com/647888ca92d03e3fca3f1ea0/647888ca92d03e3fca3f23a9_First%20aid%20kit%20box%20with%20medical%20equipment%20and%20medications%20for%20emergency.jpg",
                 "https://www.youtube.com/watch?v=dYKdWsVtbaE&pp=ygUmSG93IHRvIHN0b2NrIHRoZSBwZXJmZWN0IGZpcnN0IGFpZCBraXQ%3D"
             )
         )
@@ -59,13 +58,10 @@ class FirstAidInfo : AppCompatActivity() {
                         "7. INCREASED SURVIVAL RATES: Training in the primary survey empowers individuals to recognize and respond to medical emergencies effectively. This can significantly increase the chances of survival for the casualty, especially in situations like cardiac arrest or severe bleeding.\n\n" +
                         "8. MINIMIZING COMPLICATIONS: By following the DR ABC protocol, responders can identify and manage potential complications early. For example, opening the airway and ensuring normal breathing can prevent oxygen deprivation and brain damage.\n\n" +
                         "9. EFFECTIVE COMMUNICATION: The script emphasizes the importance of introducing oneself and asking questions to elicit a response from the casualty. Effective communication not only aids in assessing the casualty's condition but also provides reassurance and support during a stressful situation.\n\n" +
-
                         "10. COORDINATION WITH EMERGENCY SERVICES: The script highlights the importance of calling for emergency help (999/112) when necessary. This step ensures that professional medical assistance is on the way, and the responder can focus on immediate care until help arrives.\n\n",
 
-
-                R.drawable.img_95,
-                "https://www.youtube.com/watch?v=ea1RJUOiNfQ&ab_channel=StJohnAmbulance",
-                "https://www.youtube.com/watch?v=ea1RJUOiNfQ&pp=ygVFSG93IHRvIGRvIHRoZSBQcmltYXJ5IFN1cnZleSAtIEZpcnN0IEFpZCBUcmFpbmluZyAtIFN0IEpvaG4gQW1idWxhbmNl")
+                "https://techskillsau.com.au/webroot/img/uploads/media/10/1603700270_AdobeStock_195068547-min.jpeg",
+                "https://www.youtube.com/watch?v=ea1RJUOiNfQ&ab_channel=StJohnAmbulance")
         )
         dataList.add(
             DataItem("PROVIDE EMERGENCY MEDICAL CONTACT INFO.",
@@ -81,19 +77,13 @@ class FirstAidInfo : AppCompatActivity() {
                         "9. SIMPLE AND QUICK PROCESS: The video demonstrates that the process of accessing emergency medical information on smartphones is straightforward and does not consume much time. It is a minimal effort that can yield substantial benefits in terms of patient care.\n\n" +
                         "10. PROMOTING AWARENESS: Encouraging the practice of checking for smartphone emergency medical ID activation should be an integral part of healthcare training and protocols. This awareness ensures that healthcare providers are prepared to utilize this valuable resource when needed.\n\n",
 
-                R.drawable.img_457,
-                "https://www.youtube.com/watch?v=SXwXjw1Q-88&ab_channel=URKesslerTrauma",
-                "https://www.youtube.com/watch?v=SXwXjw1Q-88&pp=ygUvU21hcnRwaG9uZSBFbWVyZ2VuY3kgTWVkaWNhbCBJRCBBY2Nlc3MgVHV0b3JpYWw%3D")
+                "https://media.istockphoto.com/id/458722171/photo/dialing-emergency-call.jpg?s=612x612&w=0&k=20&c=5qKuVFDCRnETepBmry5A6RXXL2W4cA3NVnNaKGnc6UM=",
+                "https://www.youtube.com/watch?v=SXwXjw1Q-88&ab_channel=URKesslerTrauma")
         )
         dataList.add(
                 DataItem("Maintain an AED (Automated External Defibrillator).",
 
                 "For all you college students out there, ever wondered how a life-saving device can restart a stopped heart? Well, here's the scoop on Automated External Defibrillators, or AEDs. But, hey, healthcare pros and emergency responders, this one's for you too. Join us as we dive into the world of AEDs, learning not only how to use them but also how to keep them primed for action.\n\n" +
-
-
-
-
-
 
                         "1. EMERGENCY CALL: In the event of an unresponsive individual not breathing normally, the first step is to call 999 or 112 for emergency assistance and request an AED if available.\n\n" +
                         "2. CPR INITIATION: If alone, immediately initiate CPR with chest compressions while waiting for the AED to arrive. It's crucial not to leave the casualty to search for the AED at this stage.\n\n" +
@@ -107,12 +97,8 @@ class FirstAidInfo : AppCompatActivity() {
                         "10. INCREASED SURVIVAL RATES: The use of AEDs, as demonstrated in the video, contributes significantly to increasing the chances of survival during cardiac arrest incidents, emphasizing their critical role in saving lives.\n\n",
 
 
-
-
-
-                R.drawable.img_97,
-                "https://www.youtube.com/watch?v=UFvL7wTFzl0&ab_channel=StJohnAmbulance",
-                    "https://www.youtube.com/watch?v=UFvL7wTFzl0&pp=ygVJSG93IHRvIFVzZSBhIERlZmlicmlsbGF0b3IgKEFFRCkgLSBGaXJzdCBBaWQgVHJhaW5pbmcgLSBTdCBKb2huIEFtYnVsYW5jZQ%3D%3D")
+                "https://www.researchgate.net/profile/Arthur-Nazarian-2/publication/323336872/figure/fig2/AS:596763413053445@1519290893886/Automated-External-Defibrillator-device.png",
+                    "https://www.youtube.com/watch?v=UFvL7wTFzl0&ab_channel=StJohnAmbulance")
         )
         dataList.add(
             DataItem("Establish triage and medical treatment areas.",
@@ -128,10 +114,6 @@ class FirstAidInfo : AppCompatActivity() {
                         "5. Triage Steps: Follow these essential triage steps:\n\n" +
                         "Step 1 - AIRWAY AND BREATHING: Open the airway and check for breathing. Over 30 breaths per minute indicate shock, requiring immediate tagging and shock treatment.\n\n" +
                         "step 2 - CIRCULATION AND BLEEDING: check circulation using the blanch test. if color takes more than two seconds to return, tag the victim as immediate. control severe bleeding promptly.\n\n" +
-
-
-
-
                         "6. RESOURCE OPTIMIZATION: Triage and medical treatment areas ensure that limited resources are allocated efficiently, maximizing the impact of available medical assistance.\n\n" +
                         "7. CLEAR COMMUNICATION: Effective triage allows responders to communicate their roles clearly, reducing confusion and enhancing coordination.\n\n" +
                         "8. PRIORITIZING CARE: The triage process prioritizes care based on the severity of injuries, ensuring that immediate attention is given to those in critical condition.\n\n" +
@@ -139,11 +121,7 @@ class FirstAidInfo : AppCompatActivity() {
                         "10. ADAPTABILITY: Triage protocols, as demonstrated in the video, provide a flexible framework that can be adjusted based on the unique characteristics of each emergency event and the available resources, ensuring an efficient response to mass casualties.\n\n",
 
 
-
-
-
-                R.drawable.img_98,
-                "https://www.youtube.com/watch?v=9QHDs10e-G0&ab_channel=UNMCHEROES",
+                "https://ausmed-images.s3.amazonaws.com/ausmed.com/ausmed-lecture/AUSLEC1905v1.jpg",
                 "https://www.youtube.com/watch?v=9QHDs10e-G0&pp=ygUTU1RBUlQgVHJpYWdlIEJhc2ljcw%3D%3D")
         )
         dataList.add(
@@ -163,12 +141,8 @@ class FirstAidInfo : AppCompatActivity() {
                         "10. TARGET AUDIENCE: These standards and guidelines primarily serve EMS providers and ambulance teams within the Philippine Red Cross, helping them deliver high-quality pre-hospital care and medical transportation services in compliance with established protocols and regulatory standards.\n\n",
 
 
-
-
-
-                R.drawable.img_99,
-                "https://www.youtube.com/watch?v=Xu9zdIwnJ0U&ab_channel=Etactics",
-                "https://www.youtube.com/watch?v=Xu9zdIwnJ0U&pp=ygVENSBSZWFsLVdvcmxkIEV4YW1wbGVzIG9mIE1lZGljYWwgQXBwb2ludG1lbnQgVHJhbnNwb3J0YXRpb24gU2VydmljZXM%3D")
+                "https://i.ytimg.com/vi/Xu9zdIwnJ0U/maxresdefault.jpg",
+                "https://www.youtube.com/watch?v=Xu9zdIwnJ0U&ab_channel=Etactics")
         )
         dataList.add(
             DataItem("Coordinate with local healthcare providers.",
@@ -187,9 +161,8 @@ class FirstAidInfo : AppCompatActivity() {
                         "4. HUMAN RESOURCES: The healthcare system benefits from a diverse workforce of healthcare professionals, including nurses, doctors, and midwives, enhancing the capacity to address a wide range of health concerns.\n\n" +
                         "5. DATA-DRIVEN HEALTHCARE: The collection of health data and the adoption of telemedicine contribute to better disease monitoring, early detection of outbreaks, and improved healthcare delivery, which are crucial for public health and well-being.\n\n",
 
-                R.drawable.img_101,
-                "https://www.youtube.com/watch?v=J25bd7mpgr8&ab_channel=LakanCortezMD",
-                "https://www.youtube.com/watch?v=J25bd7mpgr8&pp=ygUyQSBCcmllZiBSZXZpZXcgb2YgdGhlIFBoaWxpcHBpbmUgSGVhbHRoY2FyZSBTeXN0ZW0%3D")
+                "https://i.ytimg.com/vi/YbYi87t8T1A/maxresdefault.jpg",
+            "https://www.youtube.com/watch?v=J25bd7mpgr8&ab_channel=LakanCortezMD")
         )
         dataList.add(
             DataItem("MONITOR PUBLIC HEALTH DURING DISASTERS.",
@@ -208,21 +181,9 @@ class FirstAidInfo : AppCompatActivity() {
                         "4. SKILLED WORKFORCE: Having a trained and expert workforce familiar with emergency preparedness procedures ensures effective decision-making and response, even in high-stress situations.\n\n" +
                         "5. ACCOUNTABILITY: Regular testing, measurement, and evaluation of emergency response systems and expenditures to ensure they are effective, efficient, and focused on public health priorities during crises.\n\n",
 
-
-
-
-
-
-
-
-
-
-
-
-
-                R.drawable.img_458,
-                "https://www.youtube.com/watch?v=Lnoph21Je6I&ab_channel=JonathanNoel",
-                "https://hazards.colorado.edu/uploads/freeform/Nurse.jpeg")
+                "https://hazards.colorado.edu/uploads/freeform/Nurse.jpeg",
+                "https://www.youtube.com/watch?v=Lnoph21Je6I&ab_channel=JonathanNoel"
+             )
         )
         dataList.add(
             DataItem("ENSURE MEDICATION ACCESS AND STORAGE.",
@@ -241,23 +202,13 @@ class FirstAidInfo : AppCompatActivity() {
                         "4. SAFE CHILD MEDICATION USE: Implementing child safety measures safeguards young ones from accidental medication ingestion, which can have severe consequences.\n\n" +
                         "5. ENVIRONMENTAL RESPONSIBILITY: Proper disposal of expired medications helps protect the environment and prevents these substances from entering water supplies or ecosystems.\n\n",
 
-
-
-
-
-
-
-
-                R.drawable.img_459,
-                "https://www.youtube.com/watch?v=iQozgr7XnoY&ab_channel=MedicalCentric",
-                "https://pphealthcaresolutions.co.uk/wp-content/uploads/2023/04/A-Guide-to-the-Proper-Storage-of-Medication-in-Hospitals.jpg")
+                "https://pphealthcaresolutions.co.uk/wp-content/uploads/2023/04/A-Guide-to-the-Proper-Storage-of-Medication-in-Hospitals.jpg",
+                "https://www.youtube.com/watch?v=iQozgr7XnoY&ab_channel=MedicalCentric"
+         )
         )
         dataList.add(
             DataItem("SET UP INFECTION CONTROL MEASURES.",
                 "Are you ready to dive into the world of infection prevention and control? In this enlightening video, we'll explore the critical aspects of this essential field, brought to you by the experts at the Mid and South Essex Hospital. Whether you're a curious college student or a healthcare enthusiast, understanding infection control is vital. So, let's embark on this educational journey together.\n\n" +
-
-
-
 
                         "1. CHAIN OF INFECTION: Explore the six stages of the chain of infection, from infectious agents to susceptible hosts, to understand how germs spread and how to break the cycle.\n\n" +
                         "2. PREVENTING HEALTHCARE-ASSOCIATED INFECTIONS (HAIS): Discover the legal duty of healthcare providers to protect patients, staff, and visitors from HAIs, and learn how to reduce the risk through consistent prevention practices.\n\n" +
@@ -273,15 +224,10 @@ class FirstAidInfo : AppCompatActivity() {
                         "5. ENVIRONMENTAL RESPONSIBILITY: Proper disposal of expired medications helps protect the environment and prevents these substances from entering water supplies or ecosystems.\n\n",
 
 
-
-
-
-
-                R.drawable.img_104,
-                "https://www.youtube.com/watch?v=U_J7UOy5euo&ab_channel=MidEssexHospitalServicesNHSTrust",
-                "https://i.ytimg.com/vi/U_J7UOy5euo/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAj_8zwFsp3HAaX1caOZTiCCNgUIw")
+                "https://media.post.rvohealth.io/wp-content/uploads/2020/05/Close-up-of-woman-washing-her-hands-with-soap-732x549-thumbnail.jpg",
+            "https://www.youtube.com/watch?v=U_J7UOy5euo&ab_channel=MidEssexHospitalServicesNHSTrust"
+            )
         )
-
 
         val adapter = DataAdapter(dataList)
 

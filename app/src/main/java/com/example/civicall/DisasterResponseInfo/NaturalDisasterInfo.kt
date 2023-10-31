@@ -38,9 +38,10 @@ class NaturalDisasterInfo : AppCompatActivity() {
                         "8. GIS-BASED CLIMATE RISK ATLAS: Develop a GIS-based climate risk atlas to better understand and prepare for the impact of extreme weather events.\n\n" +
                         "9. INTEGRATED ADAPTATION PLANS: Create integrated adaptation and climate risk management plans for watersheds to enhance resilience and disaster response.\n\n" +
                         "10. CLIMATE-PROOFING INFRASTRUCTURE: Climate-proof essential infrastructure, including transport, irrigation, energy, and tourism facilities, to withstand the impact of typhoons and other natural disasters.\n\n",
-                R.drawable.img_67,
-                "https://www.adb.org/features/mitigating-natural-risks-philippines-adbs-take",
-                "https://www.google.com/search?q=nytimes.com+super+typhoon&sca_esv=570303733&rlz=1C1CHBF_enPH1063PH1064&tbm=isch&source=lnms&sa=X&ved=2ahUKEwje0oD20dmBAxW4zTgGHT_aAHcQ_AUoAnoECAEQBA&biw=1396&bih=650&dpr=1.38#imgrc=L_F4VnMBXwJ6pM"
+
+                "https://static01.nyt.com/images/2021/12/16/multimedia/16Philippines-typhoon-01/16Philippines-typhoon-01-superJumbo.jpg",
+                "https://www.adb.org/features/mitigating-natural-risks-philippines-adbs-take"
+
             )
         )
 
@@ -59,9 +60,10 @@ class NaturalDisasterInfo : AppCompatActivity() {
                         "8. CONFINED SPACE AWARENESS: Maintain awareness of confined spaces within the collapsed structure and follow safety protocols for entering such spaces.\n\n" +
                         "9. PREVENTION OF SECONDARY COLLAPSE: Take precautions to prevent secondary collapses due to aftershocks, vibrations, or explosions.\n\n" +
                         "10. ENVIRONMENTAL CONSIDERATIONS: Be mindful of environmental conditions, such as adverse weather, noise, and the potential for workplace violence, when carrying out response and recovery operations.\n\n",
-                R.drawable.img_68,
-                "https://www.osha.gov/earthquakes/response-recovery",
-                "https://www.jkgeography.com/uploads/1/0/8/4/108433405/826272548.jpg"
+
+                "https://www.jkgeography.com/uploads/1/0/8/4/108433405/826272548.jpg",
+                "https://www.osha.gov/earthquakes/response-recovery"
+
             )
         )
 
@@ -80,9 +82,10 @@ class NaturalDisasterInfo : AppCompatActivity() {
                         "8. LIVELIHOOD RESTORATION: Implement livelihood restoration programs to help affected communities regain economic stability after relocation.\n\n" +
                         "9. DATA-DRIVEN DECISION-MAKING: Continuously collect gender-disaggregated data and conduct surveys to inform project adjustments and ensure inclusivity.\n\n" +
                         "10. COMMUNITY ENGAGEMENT: Foster community engagement and awareness, involving residents in flood risk reduction efforts and disaster response planning.\n\n",
-                R.drawable.img_69,
-                "https://www.preventionweb.net/news/philippines-managing-floods-inclusive-and-resilient-development-metro-manila",
-                "https://www.lowyinstitute.org/sites/default/files/styles/interpreter_article_image/public/GettyImages-1231252210%20copy.jpg?itok=W6n44WAq"
+
+                "https://www.mindanews.com/wp-content/uploads/2022/12/27flood4web.jpg",
+                "https://www.preventionweb.net/news/philippines-managing-floods-inclusive-and-resilient-development-metro-manila"
+
             )
         )
 
@@ -109,9 +112,10 @@ class NaturalDisasterInfo : AppCompatActivity() {
                         "9. PUBLIC INFORMATION AND COMMUNICATION: Establish effective communication channels to disseminate information, updates, and instructions to the public, keeping them informed and engaged in the disaster response process.\n\n" +
 
                         "10. INTERNATIONAL COOPERATION: Foster international cooperation and partnerships with organizations and countries experienced in volcanic disaster management to exchange knowledge, resources, and best practices for enhanced disaster preparedness and response.\n\n",
-                R.drawable.img_70,
-                "https://www.preventionweb.net/news/philippines-preparing-volcanoes",
-                "https://ndmd.kn/wp-content/uploads/2017/04/Volcano-2.jpg   ")
+
+                "https://ndmd.kn/wp-content/uploads/2017/04/Volcano-2.jpg",
+                "https://www.preventionweb.net/news/philippines-preparing-volcanoes"
+          )
         )
 
         dataList.add(
@@ -130,14 +134,8 @@ class NaturalDisasterInfo : AppCompatActivity() {
                         "9. CLIMATE-RESILIENT AGRICULTURE: Promote climate-resilient agricultural practices to safeguard food security and livelihoods in storm-prone regions.\n\n" +
                         "10. INTERNATIONAL COLLABORATION: Foster international partnerships for knowledge exchange, resource sharing, and joint research on climate change adaptation and tropical storm management.\n\n",
 
-
-
-
-
-
-                R.drawable.img_71,
                 "https://www.pagasa.dost.gov.ph/information/climate-change-in-the-philippines",
-                "https://www.unicef.org/philippines/sites/unicef.org.philippines/files/styles/press_release_feature/public/UN0358918.jpg?itok=Y8XGhoNA")
+                "https://www.cnnphilippines.com/.imaging/default/dam/cnn/2023/3/23/SWS-Climate-Change_CNNPH.jpg/jcr:content.jpg?width=750&height=450&crop:1:1,smart")
         )
         dataList.add(
             DataItem("Disaster Risk Reduction in Coastal Communities: A Focus on the Philippines  ",
@@ -155,15 +153,9 @@ class NaturalDisasterInfo : AppCompatActivity() {
                         "9. GOVERNMENT CAPACITY BUILDING: Governments develop the capacity to respond efficiently to disasters and emergencies, ensuring a coordinated and effective response.\n\n" +
                         "10. LONG-TERM SUSTAINABILITY: By reducing disaster risks, DRR measures contribute to the long-term sustainability and resilience of coastal communities, protecting both current and future generations.\n\n",
 
-
-
-
-
-
-
-                R.drawable.img_72,
-                "https://climate-laws.org/document/philippine-disaster-reduction-and-management-act-ra-10121_eda4",
-                "https://climateadaptationplatform.com/wp-content/uploads/2019/11/disaster-management-philippines.jpg")
+                "https://climateadaptationplatform.com/wp-content/uploads/2019/11/disaster-management-philippines.jpg",
+                "https://climate-laws.org/document/philippine-disaster-reduction-and-management-act-ra-10121_eda4"
+             )
         )
         dataList.add(
             DataItem("The Role of Technology in Disaster Response and Recovery in the Philippines",
@@ -181,11 +173,9 @@ class NaturalDisasterInfo : AppCompatActivity() {
                         "9. COMMUNITY ENGAGEMENT PLATFORMS: Establish online platforms for community engagement, where citizens can access disaster preparedness resources, share local knowledge, and participate in disaster risk reduction initiatives.\n\n" +
                         "10. DATA ANALYTICS FOR DECISION-MAKING: Utilize data analytics and artificial intelligence to process large datasets from various sources, enabling informed decision-making and resource optimization during disaster response and recovery.\n\n",
 
-
-
-                R.drawable.img_73,
-                "https://www.ictworks.org/philippines-ict4d-solutions-disaster-risk-reduction/#:~:text=ICT4D%20can%20play%20a%20vital,and%20mapping%20of%20affected%20areas%2C",
-                "https://www.pdc.org/wp-content/uploads/AHACentre-DisasterAWARE-2.jpg")
+                "https://www.pdc.org/wp-content/uploads/AHACentre-DisasterAWARE-2.jpg",
+                "https://www.ictworks.org/philippines-ict4d-solutions-disaster-risk-reduction/#:~:text=ICT4D%20can%20play%20a%20vital,and%20mapping%20of%20affected%20areas%2C"
+          )
         )
 
 

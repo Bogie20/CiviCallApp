@@ -40,9 +40,9 @@ class FireSafetyInfo : AppCompatActivity() {
                         "9. PROHIBITED ITEMS: Avoid bringing banned items into your living quarters.\n\n" +
                         "10. REPORTING MATTERS: Report guideline violations to campus authorities promptly.\n\n",
 
-                R.drawable.img_112,
-                "https://www.facebook.com/watch/live/?ref=watch_permalink&v=1110126603163215",
-                "https://villaflorhospital.com.ph/wp-content/uploads/2019/02/FireBrigade-1024x683.jpg"
+                "https://villaflorhospital.com.ph/wp-content/uploads/2019/02/FireBrigade-1024x683.jpg",
+                "https://www.facebook.com/watch/live/?ref=watch_permalink&v=1110126603163215"
+
             )
         )
         dataList.add(
@@ -60,10 +60,9 @@ class FireSafetyInfo : AppCompatActivity() {
 
                     "10. REPORTING CONCERNS: If you have concerns about the effectiveness of the evacuation plan or notice any obstacles along the evacuation routes, report them to campus authorities to ensure a safer environment for all residents.\n\n",
 
-
-                R.drawable.img_107,
-            "https://issuu.com/hofstra/docs/living-factor-calendar_32413209ada772/s/16589034",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fm.indiamart.com%2Fproddetail%2Ffire-protection-equipment-21907048762.html&psig=AOvVaw3JLmiFGP6j5n5WIM-dFX7v&ust=1696470647809000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMC9juuj24EDFQAAAAAdAAAAABAZ")
+                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fm.indiamart.com%2Fproddetail%2Ffire-protection-equipment-21907048762.html&psig=AOvVaw3JLmiFGP6j5n5WIM-dFX7v&ust=1696470647809000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMC9juuj24EDFQAAAAAdAAAAABAZ",
+            "https://issuu.com/hofstra/docs/living-factor-calendar_32413209ada772/s/16589034"
+              )
         )
         dataList.add(
             DataItem("Thoroughly Navigating Your Dormitory's Fire Evacuation Plan",
@@ -79,19 +78,14 @@ class FireSafetyInfo : AppCompatActivity() {
                         "9. Immediate Evacuation: Always treat a fire alarm as a real emergency and evacuate promptly. Avoid using elevators during evacuations.\n\n" +
                         "10. Reporting Concerns: Report any concerns about the effectiveness of the evacuation plan or obstacles along evacuation routes to campus authorities for improvement.\n\n",
 
-            R.drawable.img_108,
-            "https://www.firesafe.org.uk/fire-emergency-evacuation-plan-or-fire-procedure/",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.alertmedia.com%2Fblog%2Ffire-evacuation-plan-for-your-business%2F&psig=AOvVaw05AWtlksUFTVjPJ8ip5L1g&ust=1696470967487000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCNCCu4Sl24EDFQAAAAAdAAAAABAI")
+                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.alertmedia.com%2Fblog%2Ffire-evacuation-plan-for-your-business%2F&psig=AOvVaw05AWtlksUFTVjPJ8ip5L1g&ust=1696470967487000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCNCCu4Sl24EDFQAAAAAdAAAAABAI",
+            "https://www.firesafe.org.uk/fire-emergency-evacuation-plan-or-fire-procedure/"
+              )
         )
         dataList.add(
             DataItem("Culinary Fire Safety: A Recipe for Dormitory Security",
 
             "Spice up your dorm life without the drama! 'Culinary Fire Safety: A Recipe for Dormitory Security' is your go-to guide for safe and delicious cooking in shared spaces. Discover the recipe for kitchen peace of mind in these pages.\n\n" +
-
-
-
-
-
 
                     "1. COOKING VIGILANCE: Never leave cooking appliances unattended, as uncontrolled heat sources can lead to fires.\"PASS\" technique (Pull, Aim, Squeeze, Sweep).\n\n" +
                     "2. FLAMMABLE MATERIALS: Keep flammable materials like kitchen towels and curtains far away from stoves, hotplates, and open flames.\n\n" +
@@ -104,13 +98,9 @@ class FireSafetyInfo : AppCompatActivity() {
                     "9. EMERGENCY RESPONSE: Familiarize yourself with the location of fire extinguishers and fire blankets in communal kitchens.\n\n" +
                     "10. EDUCATE ROOMMATES: Communicate fire safety practices with your roommates to ensure collective awareness and adherence.\n\n",
 
-
-
-
-
-            R.drawable.img_109,
-            "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies/fire.html#:~:text=Top%20Tips%20for%20Fire%20Safety,the%20plan%20twice%20a%20year.",
-                "https://i.ytimg.com/vi/JAzFIpET9mg/mqdefault.jpg")
+                "https://i.ytimg.com/vi/JAzFIpET9mg/mqdefault.jpg",
+            "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies/fire.html#:~:text=Top%20Tips%20for%20Fire%20Safety,the%20plan%20twice%20a%20year."
+             )
         )
         dataList.add(
             DataItem("Navigating the Current: Safeguarding Against Electrical Fires",
@@ -127,13 +117,9 @@ class FireSafetyInfo : AppCompatActivity() {
                     "9. Emergency Procedures: Familiarize yourself with the location of fire extinguishers and emergency shutdowns in case of electrical fires.\n\n" +
                     "10. Roommates' Awareness: Educate your roommates about electrical safety practices to promote collective safety and responsibility.\n\n",
 
-
-
-
-
-            R.drawable.img_110,
-            "https://fens.sabanciuniv.edu/tr/laboratory-safety/general-laboratory-safety/preventing-electrical-hazards",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.thehortongroup.com%2Fresources%2Felectrical-safety%2F&psig=AOvVaw3r4Rt6nvs5VWOOkPR5P0R2&ust=1696471759533000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLjwovin24EDFQAAAAAdAAAAABAQ")
+                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.thehortongroup.com%2Fresources%2Felectrical-safety%2F&psig=AOvVaw3r4Rt6nvs5VWOOkPR5P0R2&ust=1696471759533000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLjwovin24EDFQAAAAAdAAAAABAQ",
+            "https://fens.sabanciuniv.edu/tr/laboratory-safety/general-laboratory-safety/preventing-electrical-hazards"
+               )
         )
         dataList.add(
             DataItem("The Flame and the Forbidden: Candle and Open Flame Safety",
@@ -151,13 +137,9 @@ class FireSafetyInfo : AppCompatActivity() {
                     "9. Educate Roommates: Communicate candle and open flame safety practices with your roommates to ensure collective awareness.\n\n" +
                     "10. Emergency Response: Know the location of fire alarms and evacuation procedures, and act swiftly if a fire does occur.\n\n",
 
-
-
-
-
-            R.drawable.img_111,
-            "https://www.hamilton.edu/offices/epss/open-flame-candle-safety",
-                "https://www.townandcountry-ins.com/wp-content/uploads/sites/155/2020/12/Candle-Safety-Blog.png")
+                "https://www.townandcountry-ins.com/wp-content/uploads/sites/155/2020/12/Candle-Safety-Blog.png",
+            "https://www.hamilton.edu/offices/epss/open-flame-candle-safety"
+          )
         )
           dataList.add(
             DataItem("Mastery of Fire Extinguisher Use: The PASS to Safety",
@@ -175,22 +157,8 @@ class FireSafetyInfo : AppCompatActivity() {
                     "9. Emergency Alert: Always alert others about the fire, activate the building's fire alarm system, and call emergency services before attempting to use a fire extinguisher.\n\n" +
                     "10. Regular Inspection: Periodically check the pressure gauge on the extinguisher to ensure it is in the green \"ready\" zone and ready for use. Report any issues to maintenance.\n\n",
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-            R.drawable.img_105,
-            "https://www.sc.edu/ehs/training/Fire/08_howto.htm",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Flpubatangas.edu.ph%2Flpu-batangas-conducts-fire-drills-in-all-campuses%2F&psig=AOvVaw133PXCvlsXgc484Vzp0-Kk&ust=1696468634352000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCNDI3Kic24EDFQAAAAAdAAAAABAY")
+                "https://www.emssafetyservices.com/wp-content/uploads/2019/10/How-to-use-a-fire-extinguisher-header.jpg",
+                "https://www.sc.edu/ehs/training/Fire/08_howto.htm")
         )
 
 

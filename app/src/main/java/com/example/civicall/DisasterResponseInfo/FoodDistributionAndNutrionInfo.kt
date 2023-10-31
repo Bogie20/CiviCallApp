@@ -31,11 +31,6 @@ class FoodDistributionAndNutrionInfo : AppCompatActivity() {
                 "Safeguarding Sustenance: Stockpiling Emergency Food Supplies for Disaster Response",
                 "\"In times of crisis, having access to a reliable emergency food supply can make a significant difference in ensuring the well-being and survival of individuals and families. Preparing for emergencies and natural disasters should include careful planning for food storage.\n\n" +
 
-
-
-
-
-
                         "1. ASSESS HOUSEHOLD NEEDS: Begin by evaluating the specific needs of your household, including the number of family members, dietary restrictions, and any health considerations.\n\n" +
                         "2. SELECT NON-PERISHABLE FOODS: Choose non-perishable foods that can be stored safely at room temperature. These should include items that require little or no cooking and minimal water for preparation.\n\n" +
                         "3. GATHER ESSENTIAL SUPPLIES: Alongside food, assemble other emergency essentials such as water, personal hygiene items, flashlights, blankets, and any necessary cooking equipment.\n\n" +
@@ -47,10 +42,8 @@ class FoodDistributionAndNutrionInfo : AppCompatActivity() {
                         "9. MONITOR AND ROTATE SUPPLIES: Keep a list of dates for food items to be inspected and potentially rotated (used and replaced). Regularly review and update your emergency food supply to maintain freshness.\n\n" +
                         "10. STORE FOOD SAFELY: Keep your emergency food supply in a cool, dry location. If possible, store it in airtight containers to prevent exposure to moisture and pests.\n\n",
 
-
-                R.drawable.img_74,
-                "https://www.fcs.uga.edu/extension/preparing-an-emergency-food-supply-short-term-food-storage",
-                "https://cdn.shopify.com/s/files/1/1879/4189/files/food_stockpile.jpg?v=1619557978"
+                "https://www.theinstantpottable.com/wp-content/uploads/2023/06/71acafab-4caa-4ac0-9fbd-c944f09ba935.png",
+                "https://www.fcs.uga.edu/extension/preparing-an-emergency-food-supply-short-term-food-storage"
             )
         )
         dataList.add(
@@ -69,13 +62,9 @@ class FoodDistributionAndNutrionInfo : AppCompatActivity() {
                         "9. LONG-TERM RESILIENCE BUILDING: Integrate strategies for long-term resilience building in vulnerable communities, such as skill development and income-generation programs.\n\n" +
                         "10. COMMUNICATION AND PUBLIC OUTREACH: Utilize social media and other communication channels to maintain transparency, mobilize volunteers, and secure additional support.\n\n",
 
-
-
-
-
-                R.drawable.img_75,
-                "https://reliefweb.int/report/philippines/local-ngos-and-community-volunteers-mobilise-deliver-emergency-food-relief",
-                "https://www.officialgazette.gov.ph/images/uploads/Photo2a-596x430.jpg")
+                "https://www.officialgazette.gov.ph/images/uploads/Photo2a-596x430.jpg",
+                "https://reliefweb.int/report/philippines/local-ngos-and-community-volunteers-mobilise-deliver-emergency-food-relief"
+            )
         )
         dataList.add(
             DataItem("Safe and Inclusive Relief: Addressing Dietary Restrictions and Allergies in Disaster Response",
@@ -93,24 +82,14 @@ class FoodDistributionAndNutrionInfo : AppCompatActivity() {
                         "9. COLLABORATION WITH HEALTHCARE PROVIDERS: Collaborate with local healthcare providers and organizations that specialize in food allergies to ensure a coordinated approach to managing food-related health concerns during disasters.\n\n" +
                         "10. EMERGENCY CONTACT INFORMATION: Maintain updated contact information for medical facilities and professionals who can provide assistance in cases of severe allergic reactions.\n\n",
 
-
-
-
-
-
-                R.drawable.img_76,
-                "https://www.claritin.com.ph/living-allergies/more-questions-about-allergies/common-food-allergies-philippines",
-                "https://www.earlystartgroup.com/wp-content/uploads/2022/05/Food-Allergy.png")
+                "https://www.earlystartgroup.com/wp-content/uploads/2022/05/Food-Allergy.png",
+                "https://www.claritin.com.ph/living-allergies/more-questions-about-allergies/common-food-allergies-philippines"
+              )
         )
         dataList.add(
             DataItem("Guarding Health at Every Bite: Ensuring Food Safety and Sanitation in Disaster Response",
 
                 "Food safety is a paramount concern in the modern world, influenced by factors like global food production shifts, public expectations, and international trade policies. As a member of the World Trade Organization (WTO), the Philippines adheres to agreements such as the Uruguay Round, the Sanitary and Phytosanitary Agreement, and Technical Barriers to Trade.\n\n" +
-
-
-
-
-
 
                         "1. REVIEW OF FOOD SAFETY CHALLENGES: Conduct a comprehensive review of existing food safety challenges, considering geographic, atmospheric, demographic, and economic factors that contribute to these challenges\n\n" +
                         "2. ANALYSIS OF FOOD LAWS: Scrutinize food laws, regulations, and policies in the Philippines to understand the legal framework governing food safety.\n\n" +
@@ -123,16 +102,9 @@ class FoodDistributionAndNutrionInfo : AppCompatActivity() {
                         "9. RISK PROFILING: Investigate the process of defining food safety risks through risk profiling and its role in preliminary risk management.\n\n" +
                         "10. RECOMMENDATIONS: Develop recommendations based on the findings to enhance the Philippine food safety framework, particularly in terms of risk analysis and consumer protection.\n\n",
 
-
-
-
-
-
-
-
-                R.drawable.img_77,
-                "http://www.foodandnutritionjournal.org/volume9number1/defining-risk-in-food-safety-in-the-philippines/#:~:text=The%20food%20safety%20framework%20in,safety%20to%20the%20general%20public.",
-                "https://www.maggiesovenservices.co.uk/blog/wp-content/uploads/2016/12/food-safety-cover-image.png")
+                "https://www.maggiesovenservices.co.uk/blog/wp-content/uploads/2016/12/food-safety-cover-image.png",
+                "http://www.foodandnutritionjournal.org/volume9number1/defining-risk-in-food-safety-in-the-philippines/#:~:text=The%20food%20safety%20framework%20in,safety%20to%20the%20general%20public."
+               )
         )
         dataList.add(
             DataItem("Building Food Safety Heroes: Training Food Handling Personnel for Disaster Response",
@@ -151,22 +123,13 @@ class FoodDistributionAndNutrionInfo : AppCompatActivity() {
                         "9. RISK PROFILING: Investigate the process of defining food safety risks through risk profiling and its role in preliminary risk management.\n\n" +
                         "10. RECOMMENDATIONS: Develop recommendations based on the findings to enhance the Philippine food safety framework, particularly in terms of risk analysis and consumer protection.\n\n",
 
-
-
-
-
-
-
-
-                R.drawable.img_78,
-                "https://www.youtube.com/watch?v=b5DqFNH5c84",
-                "https://foodsafetystandard.files.wordpress.com/2022/08/level-3-supervising-food-safety-in-catering-1.png")
+                "https://foodsafetystandard.files.wordpress.com/2022/08/level-3-supervising-food-safety-in-catering-1.png",
+                "https://www.youtube.com/watch?v=b5DqFNH5c84"
+              )
         )
         dataList.add(
             DataItem("Preserving Health and Quality: Monitoring Food in Disaster Response",
                 "In the wake of natural disasters like hurricanes, floods, wildfires, and earthquakes, ensuring food safety becomes crucial. These calamities can disrupt food systems, risking foodborne illnesses and contamination. Monitoring and maintaining food quality during disaster response is not only vital for public health but also for the resilience of affected regions.\n\n" +
-
-
 
                         "1. ASSESS DAMAGE AND INVENTORY: Immediately assess the extent of damage to food production facilities, storage areas, and transportation infrastructure. Take inventory of available food supplies and identify any compromised or contaminated items.\n\n" +
                         "2. ENHANCED LABELING AND STORAGE: Implement a robust labeling system to identify the source, date of receipt, and condition of food ingredients and products. Properly segregate and store food items, especially those from different sources, to prevent cross-contamination.\n\n" +
@@ -179,24 +142,13 @@ class FoodDistributionAndNutrionInfo : AppCompatActivity() {
                         "9. SUPPLY CHAIN RESILIENCE: Strengthen supply chain resilience by identifying alternative transportation routes and storage facilities. Establish communication channels with suppliers and logistics partners to ensure the timely delivery of safe food resources.\n\n" +
                         "10. REGULAR INSPECTIONS: Conduct frequent inspections of food production and distribution points throughout the disaster response efforts. Ensure that safety protocols are maintained, and any deviations are promptly addressed.\n\n",
 
-
-
-
-
-
-
-
-
-
-                R.drawable.img_79,
-                "https://log10.com/natural-disasters-impact-food-quality/",
-                "https://www.securitymagazine.com/ext/resources/secenews/2018/food-900.jpg?1525803381")
+                "https://shpbeds.org/wp-content/uploads/2023/03/naatural-disaster-assistance.png",
+                "https://log10.com/natural-disasters-impact-food-quality/"
+             )
         )
         dataList.add(
             DataItem("Strengthening Partnerships: Collaborating with Food Banks and Suppliers in Disaster Response",
                 "To all you college students out there, ever wondered how to navigate the chaos of unexpected disasters? Well, in this presentation, we'll unravel the secrets of disaster readiness. In the process, we'll also walk through the formal steps of crafting a comprehensive disaster response plan, with a special spotlight on the crucial role that food banks play in disaster relief efforts.\n\n" +
-
-
 
                         "1. IDENTIFY POTENTIAL DISASTERS: Begin by identifying the types of disasters that your community may face. This knowledge is essential for tailoring your response plan to specific scenarios.\n\n" +
                         "2. BUILD A CONTACT SHEET: Develop a comprehensive contact sheet that includes contact information for staff, board members, key volunteers, and community officials. Ensure that this contact information is regularly updated and readily accessible.\n\n" +
@@ -209,14 +161,9 @@ class FoodDistributionAndNutrionInfo : AppCompatActivity() {
                         "9. FOLLOW THE PHASES OF DISASTER RESPONSE: Recognize the three phases of disaster response: initial response, sustained response, and long-term recovery. Tailor your actions and resources to each phase's specific needs.\n\n" +
                         "10. RECRUIT AND ORGANIZE VOLUNTEERS: Be prepared to recruit and organize volunteers as needed, especially in the aftermath of a disaster. Volunteers play a crucial role in providing assistance to affected communities.\n\n",
 
-
-
-
-
-
-                R.drawable.img_80,
-                "https://www.youtube.com/watch?v=vkvvhWj6JTY&ab_channel=regionalfoodbank",
-                "https://www.abbott.com/content/dam/corp/abbott/en-us/hub/disaster-relief-packaging-960x430.jpg")
+                "https://www.abbott.com/content/dam/corp/abbott/en-us/hub/disaster-relief-packaging-960x430.jpg",
+                "https://www.youtube.com/watch?v=vkvvhWj6JTY&ab_channel=regionalfoodbank"
+           )
         )
 
 

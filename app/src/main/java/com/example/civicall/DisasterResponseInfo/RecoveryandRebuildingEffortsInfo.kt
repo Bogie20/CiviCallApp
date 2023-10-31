@@ -43,15 +43,11 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
                         "• Local pre-disaster baseline data, aiding in rapid damage and needs assessment post-disaster.\n\n" +
                         "• Local disaster risk financing strategy, guiding the funding of recovery efforts.\n\n" +
                         "• Local pre-disaster recovery plan, with components ready for swift implementation based on disaster impacts.\n\n" +
-
-
-
                         "10. IMPLEMENTATION AND MONITORING: When disaster strikes, execute the recovery plan promptly, closely monitoring progress, and making necessary adaptations to ensure a swift and efficient recovery process.\n\n",
 
+                "https://recovery.preventionweb.net/sites/default/files/styles/landscape_16_9/public/2021-12/PDNA%20Mini%20page_4.jpg?h=b555fb61&itok=JB2iN5X4",
+                "https://blogs.worldbank.org/eastasiapacific/philippines-ready-rebuild-aftermath-typhoon-rai"
 
-                R.drawable.img_56,
-                "https://blogs.worldbank.org/eastasiapacific/philippines-ready-rebuild-aftermath-typhoon-rai",
-                "https://recovery.preventionweb.net/sites/default/files/styles/landscape_16_9/public/2021-12/PDNA%20Mini%20page_4.jpg?h=b555fb61&itok=JB2iN5X4"
             )
         )
         dataList.add(
@@ -70,14 +66,9 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
                         "9. TESTING AND REVISION:Regularly test the DRP based on predefined criteria and procedures. Conduct various types of tests, such as checklist tests, full interruption tests, parallel tests, and simulation tests. Revise the plan as needed to ensure its effectiveness.\n\n" +
                         "10. DOCUMENTATION AND MAINTENANCE:Maintain up-to-date documentation of the DRP, ensuring that it reflects the organization's evolving needs, IT infrastructure changes, and the latest best practices in disaster recovery.\n\n" ,
 
-
-
-
-
-
-                R.drawable.img_58,
-                "https://www.druva.com/glossary/what-is-a-disaster-recovery-plan-definition-and-related-faqs",
-                "https://recovery.preventionweb.net/sites/default/files/styles/landscape_16_9/public/2021-12/PDNA%20Mini%20page_4.jpg?h=b555fb61&itok=JB2iN5X4")
+                "https://recovery.preventionweb.net/sites/default/files/styles/landscape_16_9/public/2021-12/PDNA%20Mini%20page_4.jpg?h=b555fb61&itok=JB2iN5X4",
+                "https://www.druva.com/glossary/what-is-a-disaster-recovery-plan-definition-and-related-faqs"
+              )
         )
         dataList.add(
             DataItem("Empowering Disaster Response: Securing Funding and Resources for Resilient Recovery",
@@ -96,20 +87,14 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
                         "9. MONITORING AND EVALUATION: Implement robust monitoring and evaluation mechanisms to track the utilization of funds, measure the impact of risk reduction initiatives, and ensure transparency and accountability.\n\n" +
                         "10. RISK COMMUNICATION: Continuously engage with the public and stakeholders to communicate the importance of securing funding for disaster risk management and financial protection, fostering a culture of resilience and preparedness.\n\n" ,
 
-
-
-
-                R.drawable.img_59,
-                "https://www.financialprotectionforum.org/third-party/microsite_1/subpage02.html",
-                "https://www.eaglenews.ph/wp-content/uploads/2015/06/DSWD.jpg")
+                "https://www.eaglenews.ph/wp-content/uploads/2015/06/DSWD.jpg",
+                "https://www.financialprotectionforum.org/third-party/microsite_1/subpage02.html"
+             )
         )
         dataList.add(
             DataItem("Synergizing Disaster Response: Collaborating with Government Agencies for Effective Coordination",
 
                 "Effective disaster response, whether natural or man-made, relies on well-coordinated efforts with government agencies. In this guide, we'll delve into the importance of aligning your disaster preparedness initiatives with these agencies and provide a comprehensive roadmap for seamless coordination.\n\n" +
-
-
-
 
                         "1. ESTABLISH A LOCAL COORDINATION TEAM: Create a dedicated local coordination team within your organization responsible for liaising with local government agencies and emergency services.\n\n" +
                         "2. FAMILIARIZE WITH LOCAL EMERGENCY PLANS: Thoroughly review and understand the local government's emergency management plans, protocols, and contact information.\n\n" +
@@ -122,11 +107,10 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
                         "9. TRAINING AND CAPACITY BUILDING: Offer training and capacity-building opportunities to local government agencies to enhance their disaster response capabilities, including the use of specialized equipment or tools.\n\n" +
                         "10. TEST COMMUNICATION CHANNELS: Regularly test communication channels and procedures with government agencies to verify their effectiveness and address any issues that may arise.\n\n" ,
 
+                "https://pidswebs.pids.gov.ph/CDN/featured-image/PR_DP2021-03.JPG",
+                "https://www.pids.gov.ph/details/news/press-releases/pids-study-calls-for-a-more-bottom-up-approach-to-ph-s-drrm-landscape"
 
-
-                R.drawable.img_60,
-                "https://blog.grahammedical.com/blog/agencies-involved-in-disaster-management-and-tools-to-help-them",
-                "https://www.pids.gov.ph/details/news/press-releases/pids-study-calls-for-a-more-bottom-up-approach-to-ph-s-drrm-landscape")
+           )
         )
         dataList.add(
             DataItem("Rebuilding the Foundation: Prioritizing Infrastructure Repairs in Disaster Response.",
@@ -143,9 +127,9 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
                         "9. COMMUNITY IMPACT: Consider the broader impact of infrastructure repairs on the community's well-being, economic stability, and quality of life. Projects that benefit the majority should be prioritized.\n\n" +
                         "10. REGULAR UPDATES: Continuously update and revise the prioritization plan based on changing risks, emerging threats, and lessons learned from previous disasters. Flexibility and adaptability are key in disaster response planning.\n\n" ,
 
-                R.drawable.img_61,
-                "https://www.govpilot.com/blog/what-is-disaster-resilient-infrastructure-why-is-it-needed",
-                "https://tao-pilipinas.org/wp-content/uploads/2020/08/ruby-northern-samar.jpg")
+                "https://tao-pilipinas.org/wp-content/uploads/2020/08/ruby-northern-samar.jpg",
+                "https://www.govpilot.com/blog/what-is-disaster-resilient-infrastructure-why-is-it-needed"
+          )
         )
         dataList.add(
             DataItem("Fostering Resilient Communities: Promoting Community-Led Recovery in Disaster Response ",
@@ -163,12 +147,9 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
                         "9. POLICY ADVOCACY: Advocate for policies that prioritize community-led disaster response and recovery, promoting stronger government support and leadership.\n\n" +
                         "10. CONTINUOUS EVALUATION: Regularly assess the effectiveness of disaster response initiatives, making adjustments based on community feedback and evolving needs.\n\n" ,
 
-
-
-
-                R.drawable.img_62,
-                "https://knowledge.aidr.org.au/resources/ajem-jan-2019-resilience-in-the-philippines-through-effective-community-engagement/",
-                "https://www.pdrf.org/wp-content/uploads/2021/03/What-We-Do-Community-Resilience.jpg")
+                "https://www.pdrf.org/wp-content/uploads/2021/03/What-We-Do-Community-Resilience.jpg",
+                "https://knowledge.aidr.org.au/resources/ajem-jan-2019-resilience-in-the-philippines-through-effective-community-engagement/"
+            )
         )
         dataList.add(
             DataItem("Sustaining Livelihoods: Support Initiatives in Disaster Response",
@@ -185,15 +166,9 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
                         "9. PROMOTE RESILIENCE: Promote the concept of resilience-building as a long-term strategy to minimize the potential damage to lives and livelihoods from future typhoons.\n\n" +
                         "10. COMMUNITY ENGAGEMENT: Actively involve local communities in disaster preparedness efforts. Ensure they have access to information and resources to enhance their resilience.\n\n" ,
 
-
-
-
-
-
-
-                R.drawable.img_63,
-                "https://www.lse.ac.uk/granthaminstitute/publication/disaster-impacts-and-financing-local-insights-from-the-philippines/",
-                "https://www.pdrf.org/wp-content/uploads/2021/03/What-We-Do-Community-Resilience.jpg")
+                "https://www.pdrf.org/wp-content/uploads/2021/03/What-We-Do-Community-Resilience.jpg",
+                "https://www.lse.ac.uk/granthaminstitute/publication/disaster-impacts-and-financing-local-insights-from-the-philippines/"
+           )
         )
         dataList.add(
             DataItem("Rebuilding Homes and Hope: Providing Housing Assistance in Disaster Response",
@@ -211,21 +186,9 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
                         "9. HOMEOWNER INCENTIVES: Encourage homeowners and the private sector to invest in home improvement programs.\n\n" +
                         "10. INSURANCE ACCESS: Facilitate the sharing of housing information to help insurers extend coverage, enabling private lenders to offer loans for home improvements.\n\n" ,
 
-
-
-
-
-
-
-
-
-
-
-
-
-                R.drawable.img_64,
-                "https://www.worldbank.org/en/topic/disasterriskmanagement/brief/global-program-for-resilient-housing",
-                "https://files01.pna.gov.ph/category-list/2022/03/12/galvez.jpeg")
+                "https://files01.pna.gov.ph/category-list/2022/03/12/galvez.jpeg",
+                "https://www.worldbank.org/en/topic/disasterriskmanagement/brief/global-program-for-resilient-housing"
+              )
         )
         dataList.add(
             DataItem("Nurturing Enduring Strength: Fostering Long-Term Resilience in Disaster Response",
@@ -243,22 +206,13 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
                         "9. RESEARCH AND TECHNOLOGY: Support research, science, and technology policies to improve hazard detection, monitoring, and understanding.\n\n" +
                         "10. LONG-TERM SHIFTS: Encourage long-term shifts in both physical and cultural approaches to resilience, fostering systemic strength within communities.\n\n" ,
 
-
-
-
-
-
-
-                R.drawable.img_65,
-                "https://nap.nationalacademies.org/read/13457/chapter/2",
-                "https://static.timesofisrael.com/njjewishnews/uploads/2018/12/GOA-Nechama.jpg")
+                "https://static.timesofisrael.com/njjewishnews/uploads/2018/12/GOA-Nechama.jpg",
+                "https://nap.nationalacademies.org/read/13457/chapter/2"
+              )
         )
         dataList.add(
             DataItem("Adaptive Preparedness: Continuously Evaluating and Refining Disaster Response Plans.",
                 "Monitoring and evaluation (M&E) involve establishing systems to consistently review the progress of an emergency communication response. This process assesses what needs improvement and whether program goals are being achieved.\n\n" +
-
-
-
 
                         "1. SET CLEAR OBJECTIVES: Begin by defining clear and specific objectives for your emergency communication response, including what you aim to achieve and how success will be measured.\n\n" +
                         "2. DEVELOP KEY PERFORMANCE INDICATORS (KPIS): Identify relevant KPIs that will help track progress and assess the effectiveness of your communication activities.\n\n" +
@@ -271,16 +225,9 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
                         "9. DOCUMENT LESSONS LEARNED: Keep a record of lessons learned throughout the emergency response. Document what worked well and what could be improved for future reference.\n\n" +
                         "10. POST-EMERGENCY EVALUATION: After the crisis has been resolved, conduct a comprehensive post-emergency evaluation. Assess the overall effectiveness of the communication response, gather feedback from stakeholders, and identify areas for improvement in future responses.\n\n" ,
 
-
-
-
-
-
-
-
-                R.drawable.img_66,
-                "https://sbccimplementationkits.org/sbcc-in-emergencies/lessons/unit-9-monitoring-and-evaluation/",
-                "https://www.davaocity.gov.ph/wp-content/uploads/2019/07/CIO_3875.jpg")
+                "https://www.davaocity.gov.ph/wp-content/uploads/2019/07/CIO_3875.jpg",
+                "https://sbccimplementationkits.org/sbcc-in-emergencies/lessons/unit-9-monitoring-and-evaluation/"
+           )
         )
 
 

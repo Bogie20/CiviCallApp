@@ -39,9 +39,9 @@ class TyphoonInfo : AppCompatActivity() {
                         "9. SECURE OUTDOOR ITEMS: Bring in or secure outdoor furniture, decorations, and loose objects that can become dangerous projectiles during a typhoon.\n\n" +
                         "10. BOAT AND HIGH-RISE BUILDING PREPARATIONS: Determine how to secure boats and, if residing in a high-rise building, be prepared to seek shelter on or below the 10th floor in case of severe weather.\n\n",
 
-                R.drawable.img_196,
-                "http://typhoonmanila.weebly.com/typhoon-preparedness.html",
-                "https://www.worldbank.org/content/dam/photos/780x439/2016/may-26/vn-communitybased-disasterrisk-780x439.jpg"
+                "https://www.worldbank.org/content/dam/photos/780x439/2016/may-26/vn-communitybased-disasterrisk-780x439.jpg",
+                "http://typhoonmanila.weebly.com/typhoon-preparedness.html"
+
             )
         )
         dataList.add(
@@ -57,9 +57,10 @@ class TyphoonInfo : AppCompatActivity() {
                         "8. FACE MASKS: Include protective face masks, which are not only vital during a pandemic but also useful for filtering contaminated air in the event of fires or poor air quality.\n\n" +
                         "9. WHISTLE: Equip your kit with a whistle to signal for help or alert rescuers to your location with a sound that can carry in adverse conditions.\n\n" +
                         "10. PLASTIC SHEETING AND DUCT TAPE: Prepare plastic sheeting and duct tape to create makeshift shelters or address leaks, ensuring your family's safety and comfort during typhoon-related evacuations or incidents.\n\n",
-                R.drawable.img_197,
-                "https://www.lumina.com.ph/news-and-blogs/blogs/typhoon-ready-tools-to-include-in-your-emergency-kit/",
-                "https://japantoday-asset.scdn3.secure.raxcdn.com/img/store/ad/d9/7f9182505a60ccea40d04dbdfc7de7e99115/dk-18/_w850.png")
+
+                "https://japantoday-asset.scdn3.secure.raxcdn.com/img/store/ad/d9/7f9182505a60ccea40d04dbdfc7de7e99115/dk-18/_w850.png",
+                "https://www.lumina.com.ph/news-and-blogs/blogs/typhoon-ready-tools-to-include-in-your-emergency-kit/"
+               )
         )
         dataList.add(
             DataItem("EVACUATION STRATEGIES AND SAFE ZONES DURING TYPHOONS",
@@ -74,9 +75,10 @@ class TyphoonInfo : AppCompatActivity() {
                         "8. KEEP COMMUNICATION DEVICES CHARGED: Ensure your mobile phones and other communication devices are fully charged before evacuating. Consider bringing portable chargers.\n\n" +
                         "9. STAY CALM AND INFORMED: While in a safe zone, stay updated on typhoon developments through battery-operated radios or mobile apps. Stay calm and follow instructions from authorities.\n\n" +
                         "10. ASSIST OTHERS: Look out for neighbors, especially the elderly, disabled, or those with special needs, and offer assistance in evacuating to ensure the safety of your community.",
-                R.drawable.img_198,
-                "https://www.moneymax.ph/lifestyle/articles/typhoon-in-the-philippines#:~:text=Evacuate%20immediately%20and%20calmly%E2%80%94if,your%20family%20during%20a%20typhoon.",
-                "https://www.rappler.com/tachyon/2022/07/evacuation-center-tanauan-city-taal.jpg")
+
+                "https://www.rappler.com/tachyon/2022/07/evacuation-center-tanauan-city-taal.jpg",
+                "https://www.moneymax.ph/lifestyle/articles/typhoon-in-the-philippines#:~:text=Evacuate%20immediately%20and%20calmly%E2%80%94if,your%20family%20during%20a%20typhoon."
+            )
         )
 
         dataList.add(
@@ -93,9 +95,9 @@ class TyphoonInfo : AppCompatActivity() {
                         "9. COMMUNITY MOBILIZATION: Encourage affected communities to actively participate in the recovery process, fostering a sense of ownership and empowerment.\n\n" +
                         "10. PREPAREDNESS FOR THE FUTURE: Educate communities on disaster preparedness, including creating emergency plans, assembling disaster kits, and understanding early warning systems to enhance resilience for future typhoon seasons.",
 
-                R.drawable.img_199,
-                "https://reliefweb.int/report/philippines/after-philippines-typhoon-clean-brings-recovery",
-                "https://reliefweb.int/sites/default/files/styles/large/public/images/reports/f1/65/f1655928-79de-30d0-a0db-5308bb534939.jpg.webp")
+                "https://reliefweb.int/sites/default/files/styles/large/public/images/reports/f1/65/f1655928-79de-30d0-a0db-5308bb534939.jpg.webp",
+                "https://reliefweb.int/report/philippines/after-philippines-typhoon-clean-brings-recovery"
+              )
         )
 
         dataList.add(
@@ -111,12 +113,11 @@ class TyphoonInfo : AppCompatActivity() {
                         "8. VULNERABLE GROUPS INCLUSION: Pay special attention to the needs of vulnerable groups such as senior citizens, widowers, and children, providing them with tailored training and assistance.\n" +
                         "9. CAPACITY BUILDING: Continuously enhance the skills and knowledge of community members to cope with various types of disasters, including tsunamis, earthquakes, and fires.\n" +
                         "10. EMERGENCY PAILS: Encourage households to maintain fully equipped emergency pails, which contain essential items for survival and can be vital during emergencies, such as typhoons and their aftermath.\n",
-                R.drawable.img_200,
-                "https://reliefweb.int/report/philippines/value-disaster-preparedness",
-                "https://static.wixstatic.com/media/cb2848_1b465fe4ebf3412c91ea6c0396b63002~mv2.jpg/v1/fit/w_2500,h_1330,al_c/cb2848_1b465fe4ebf3412c91ea6c0396b63002~mv2.jpg")
+
+                "https://static.wixstatic.com/media/cb2848_1b465fe4ebf3412c91ea6c0396b63002~mv2.jpg/v1/fit/w_2500,h_1330,al_c/cb2848_1b465fe4ebf3412c91ea6c0396b63002~mv2.jpg",
+                "https://reliefweb.int/report/philippines/value-disaster-preparedness"
+          )
         )
-
-
         val adapter = DataAdapter(dataList)
 
         // Set an item click listener for the adapter to open the link when the reference TextView is clicked
@@ -129,7 +130,6 @@ class TyphoonInfo : AppCompatActivity() {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
                 startActivity(intent)
             }
-
             override fun onImageClick(position: Int) {
                 val clickedItem = dataList[position]
                 val imageLink = clickedItem.imageLink
@@ -139,19 +139,8 @@ class TyphoonInfo : AppCompatActivity() {
                 startActivity(intent)
             }
         })
-
-
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
-
-
-
-
-
-
-
-
-
 
     }
 }

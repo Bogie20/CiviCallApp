@@ -1,23 +1,14 @@
 package com.example.civicall.EnvironmentalandSocialIssueInfo
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataMain
-import com.example.civicall.CivicRightsAndResponsibility.CivicResponsibilityInfo
-import com.example.civicall.CivicRightsAndResponsibility.CivicResponsibilityandEducationinfo
-import com.example.civicall.CivicRightsAndResponsibility.CivicResponsibilityandtheRuleofLawInfo
-import com.example.civicall.CivicRightsAndResponsibility.CivicResponsibilityinTimesofCrisisInfo
-import com.example.civicall.CivicRightsAndResponsibility.CivicRightsinaDigitalWorldInfo
-import com.example.civicall.CivicRightsAndResponsibility.EnvironmentalCivicResponsibilityinfo
-import com.example.civicall.CivicRightsAndResponsibility.GenderEqualityandCivicResponsibilityInfo
-import com.example.civicall.CivicRightsAndResponsibility.GlobalCitizenshipandCivicResponsibilityInfo
-import com.example.civicall.CivicRightsAndResponsibility.RighttoProtestandFreeSpeechInfo
-import com.example.civicall.CivicRightsAndResponsibility.UnderstandingCivicRightsInfo
 import com.example.civicall.R
+import com.example.civicall.CivicEngagementInfo.CivicAdapterMain
 
 class EnvironmentalAndSocialIssuesMenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

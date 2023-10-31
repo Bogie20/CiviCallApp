@@ -38,17 +38,6 @@ class SustainabilityBsuInfo : AppCompatActivity() {
                         "\n" +
                         "The Batangas State University as the National Engineering University through the Center for Sustainable Development strongly commits to facilitate sustainability efforts in order to achieve the Global Goals 2030.\n\n" +
 
-
-
-
-
-
-
-
-
-
-
-
                         "The Office of Student Affairs and Services (OSAS) aims to mold globally competent and value-laden citizens by striving to enrich students through a holistic approach in providing Student Welfare and Development Programs and Services in consonance with the vision, mission, goals and objectives of Batangas State University and the mandates of the Commission on Higher Education (CHED). These basic services and programs   ensure and promote student well-being and are designed to explore, enhance and     develop the student’s full    potential in leadership and social responsibility through various institutional and student–initiated activities that upholds the core values of the university. \n\n"+
 
                         "UNIVERSITY VISION\n\n"+
@@ -98,31 +87,6 @@ class SustainabilityBsuInfo : AppCompatActivity() {
                         "5. To contribute to the sustainable development of the country through collaborations and dialogue, aiming to realize a mo resilient society\n\n",
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        R.drawable.img_425,
                 "https://sustainability.batstate-u.edu.ph/about/",
                 "https://sustainability.batstate-u.edu.ph/about/"
             )

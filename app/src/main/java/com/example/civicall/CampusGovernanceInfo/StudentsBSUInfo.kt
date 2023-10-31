@@ -47,32 +47,6 @@ class StudentsBSUInfo : AppCompatActivity() {
                         "Telephone: (043) 980-0385 loc. 1134 \n\n" +
                         "Email address: osas.central@g.batstate-u.edu.ph\n\n",
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                R.drawable.img_408,
                 "https://batstate-u.edu.ph/student-affairs-and-services/#",
                 "https://batstate-u.edu.ph/student-affairs-and-services/"
             )
@@ -96,9 +70,10 @@ class StudentsBSUInfo : AppCompatActivity() {
 
                         "Telephone: (043) 980-0385 loc. 1134 \n\n" +
                         "Email address: osas.central@g.batstate-u.edu.ph\n\n",
-                        R.drawable.img_410,
-                "https://batstate-u.edu.ph/student-affairs-and-services/#",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/11/Nursing-ND-1.jpg"
+
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/11/Nursing-ND-1.jpg",
+                "https://batstate-u.edu.ph/student-affairs-and-services/#"
+
             )
         )
 
@@ -115,9 +90,9 @@ class StudentsBSUInfo : AppCompatActivity() {
 
                         "Telephone:(043) 980-0385 loc. 1134 \n\n",
 
-                R.drawable.img_411,
-                "https://batstate-u.edu.ph/student-affairs-and-services/#",
-                "https://batstate-u.edu.ph/wp-content/uploads/2023/01/lemery-student-multi-faith-ministry.jpg"
+                "https://batstate-u.edu.ph/wp-content/uploads/2023/01/lemery-student-multi-faith-ministry.jpg",
+                "https://batstate-u.edu.ph/student-affairs-and-services/#"
+
             )
         )
         dataList.add(
@@ -254,10 +229,9 @@ class StudentsBSUInfo : AppCompatActivity() {
                         "Facebook Page: http://facebook.com/BatStateUNSTP\n\n"+
                         "Email Address: nstp.main@g.batstate-u.edu.ph\n\n",
 
+                "https://i.ytimg.com/vi/cJT0kuUz0u0/maxresdefault.jpg",
+                "https://batstate-u.edu.ph/student-affairs-and-services/#"
 
-                R.drawable.img_412,
-                "https://batstate-u.edu.ph/student-affairs-and-services/#",
-                "https://i.ytimg.com/vi/cJT0kuUz0u0/maxresdefault.jpg"
             )
         )
 

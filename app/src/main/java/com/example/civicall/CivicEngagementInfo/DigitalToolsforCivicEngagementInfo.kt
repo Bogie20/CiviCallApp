@@ -34,9 +34,9 @@ class DigitalToolsforCivicEngagementInfo : AppCompatActivity() {
                         "9. Measure Impact: Use analytics tools provided by social media platforms to track the reach, engagement, and impact of your campaigns. Adjust your strategies based on data insights.\n\n" +
                         "10. Advocate Offline: While social media is a potent tool, remember that real-world action is often essential for change. Encourage your online community to participate in offline activities like rallies, volunteering, or contacting policymakers.\n\n",
 
-                R.drawable.img_141,
-                "https://su.edu.ph/2008-social-media-activism/",
-                "https://assets2.rappler.com/2020/07/1595408971-collage_CE09D7C6348A49BE93CC55CFD81382D3-1.jpg"
+                "https://assets2.rappler.com/2020/07/1595408971-collage_CE09D7C6348A49BE93CC55CFD81382D3-1.jpg",
+                "https://su.edu.ph/2008-social-media-activism/"
+
             )
         )
         dataList.add(
@@ -53,10 +53,8 @@ class DigitalToolsforCivicEngagementInfo : AppCompatActivity() {
                         "9. Monitor Progress: Regularly track the performance of your online petition or campaign. Analyze metrics such as the number of signatures, shares, and engagement to assess its effectiveness.\n\n" +
                         "10. Take Offline Action: While your campaign is online, remember that real-world actions often drive change. Organize events, meetings, or advocacy efforts that complement your online efforts and translate support into tangible results.\n\n",
 
-
-                R.drawable.img_142,
-                "https://www.pewresearch.org/internet/2013/04/25/civic-engagement-in-the-digital-age/",
-                "https://149519988.v2.pressablecdn.com/wp-content/uploads/IMG_5330-crop-800.jpg")
+                "https://149519988.v2.pressablecdn.com/wp-content/uploads/IMG_5330-crop-800.jpg",
+                "https://www.pewresearch.org/internet/2013/04/25/civic-engagement-in-the-digital-age/")
         )
         dataList.add(
             DataItem("DATA PRIVACY IN CIVIC ENGAGEMENT",
@@ -71,11 +69,11 @@ class DigitalToolsforCivicEngagementInfo : AppCompatActivity() {
                         "8. Regular Audits: Conduct regular audits of data handling processes and security measures to identify and rectify vulnerabilities proactively.\n\n" +
                         "9. User Education: Educate community members about data privacy practices, their rights, and how to report concerns regarding their personal information.\n\n" +
                         "10. Responsive Support: Establish channels for community members to ask questions, voice concerns, and request modifications or deletion of their personal data, ensuring their privacy preferences are respected.\n\n",
-                R.drawable.img_144,
-                "https://www.socialpinpoint.com/data-protection-and-privacy-in-communityengagement/",
-                "https://venturebeat.com/wp-content/uploads/2021/03/business-meeting.GettyImages-607477465.jpg?fit=2114%2C1207&strip=all")
-        )
 
+                "https://venturebeat.com/wp-content/uploads/2021/03/business-meeting.GettyImages-607477465.jpg?fit=2114%2C1207&strip=all",
+                "https://www.socialpinpoint.com/data-protection-and-privacy-in-communityengagement/"
+            )
+        )
         dataList.add(
             DataItem("DIGITAL CIVIC PLATFORMS AND APPS",
                 "\"In the era of Digital Civic Platforms and Apps, technology empowers citizens to be active participants in shaping the future of their communities and addressing pressing environmental concerns. Explore how these innovative digital tools are revolutionizing civic engagement and environmental protection.\"\n\n" +
@@ -90,11 +88,9 @@ class DigitalToolsforCivicEngagementInfo : AppCompatActivity() {
                         "9. Promote Transparency: Maintain transparency by sharing information about the platform's operations, including its environmental impact and the actions taken based on citizen input.\n\n" +
                         "10. Continuous Improvement: Continuously assess the platform's effectiveness, gather user feedback, and adapt your strategies to enhance civic engagement and environmental protection efforts.\n\n",
 
-
-
-                R.drawable.img_145,
-                "https://en.reset.org/what-is-civic-tech/",
-                "https://en.reset.org/app/uploads/2021/09/Civic-Tech-1536x1024.jpg")
+                "https://en.reset.org/app/uploads/2021/09/Civic-Tech-1536x1024.jpg",
+                "https://en.reset.org/what-is-civic-tech/"
+                )
         )
 
         dataList.add(
@@ -111,9 +107,10 @@ class DigitalToolsforCivicEngagementInfo : AppCompatActivity() {
                         "8. Educate Your Team: Train your team or fellow activists on cybersecurity best practices to create a collective security culture.\n\n" +
                         "9. Regular Backups: Backup important data and documents regularly to prevent data loss in case of ransomware or other cyberattacks.\n\n" +
                         "10. Stay Informed: Keep up-to-date with cybersecurity news and emerging threats to adapt your security practices accordingly.\n\n",
-                R.drawable.img_146,
-                "https://activisthandbook.org/tools/security",
-                "https://www.arabnews.com/sites/default/files/styles/n_670_395/public/main-image/2018/11/17/1371496-492058900.jpg?itok=jSFLUFlz")
+
+                "https://www.arabnews.com/sites/default/files/styles/n_670_395/public/main-image/2018/11/17/1371496-492058900.jpg?itok=jSFLUFlz",
+                "https://activisthandbook.org/tools/security"
+                )
         )
 
         val adapter = DataAdapter(dataList)

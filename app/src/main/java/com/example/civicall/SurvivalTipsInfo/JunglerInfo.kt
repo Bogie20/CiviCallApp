@@ -40,9 +40,9 @@ class JunglerInfo : AppCompatActivity() {
                         "9. STAY INFORMED ABOUT WEATHER: Stay informed about local weather patterns, as rainforests can experience heavy rainfall and high humidity. Adjust your navigation and gear accordingly.\n\n" +
                         "10. EXERCISE CAUTION AND PATIENCE: Exercise caution, patience, and vigilance when navigating the challenging and unpredictable Philippine rainforests. Always be prepared for unexpected encounters with wildlife or challenging terrain.\n\n",
 
-                R.drawable.img_206,
-                "https://www.survivaliq.com/navigation/navigation-in-different-types-of-terrain_par3.htm",
-                "https://www.mountainsafety.org.nz/assets/Uploads/Hunter-in-High-vis-Kerry-Adams__FillMaxWzEyMDAsNjMwXQ.jpg"
+                "https://www.mountainsafety.org.nz/assets/Uploads/Hunter-in-High-vis-Kerry-Adams__FillMaxWzEyMDAsNjMwXQ.jpg",
+                "https://www.survivaliq.com/navigation/navigation-in-different-types-of-terrain_par3.htm"
+
             )
         )
         dataList.add(
@@ -58,9 +58,10 @@ class JunglerInfo : AppCompatActivity() {
                         "8. NAVIGATION: Learn to navigate the jungle terrain using natural signs and landmarks. Developing your sense of direction can help prevent getting lost.\n\n" +
                         "9. FIRST AID AND HERBAL MEDICINES: Familiarize yourself with jungle first aid and herbal remedies. Knowing how to treat injuries and illnesses with local flora is vital.\n\n" +
                         "10. RESPECT FOR NATURE: Cultivate a profound respect for the environment. Leave no trace, practice sustainable foraging, and ensure that your presence in the jungle has a minimal impact on the delicate ecosystem.\n\n",
-                R.drawable.img_207,
-                "https://discoveringalifejourney.wordpress.com/2015/12/11/jungle-survival-in-subic-zambales-philippines/",
-                "https://discoveringalifejourney.files.wordpress.com/2015/12/12208488_10156209104380553_8796861032418703206_n.jpg")
+
+                "https://discoveringalifejourney.files.wordpress.com/2015/12/12208488_10156209104380553_8796861032418703206_n.jpg",
+                "https://discoveringalifejourney.wordpress.com/2015/12/11/jungle-survival-in-subic-zambales-philippines/"
+              )
         )
         dataList.add(
             DataItem("MEDICINAL PLANTS AND FIRST AID IN THE JUNGLE",
@@ -75,9 +76,10 @@ class JunglerInfo : AppCompatActivity() {
                         "8. WOUND CARE: Master techniques for treating wounds, ulcers, and infections using herbal treatments from the jungle.\n\n" +
                         "9. KNOWLEDGE TRANSFER: Explore how the Manobo tribe passes down knowledge of medicinal plants to younger generations to ensure continuity of this ancient tradition.\n\n" +
                         "10. CONSERVATION EFFORTS: Understand the importance of preserving these medicinal plants, contributing to the conservation of the Manobo Indigenous group's lands and heritage.",
-                R.drawable.img_208,
-                "https://news.mongabay.com/2020/10/a-philippine-tribes-plant-based-medical-tradition-gets-its-moment/",
-                "https://imgs.mongabay.com/wp-content/uploads/sites/20/2020/10/02070440/herbal6-1200x800.jpg")
+
+                "https://imgs.mongabay.com/wp-content/uploads/sites/20/2020/10/02070440/herbal6-1200x800.jpg",
+                "https://news.mongabay.com/2020/10/a-philippine-tribes-plant-based-medical-tradition-gets-its-moment/"
+             )
         )
 
         dataList.add(
@@ -94,9 +96,9 @@ class JunglerInfo : AppCompatActivity() {
                         "9. HEALTH AND NUTRITION: Delve into the nutritional aspects of wild ingredients and how they contribute to the well-being of Negrito communities, understanding the profound connection between food and health.\n\n" +
                         "10. CULINARY RESILIENCE: Embrace the spirit of resilience as you leave with a deeper appreciation for the Negrito's enduring food traditions, a testament to the strength of indigenous cultures in preserving their culinary heritage.",
 
-                R.drawable.img_209,
-                "https://www.peopleandplants.org/traditional-foodways/the-philippines",
-                "https://images.squarespace-cdn.com/content/v1/5ca2d827aadd343de55a408b/d8afdefd-e1bf-4127-8231-647f29d2042e/_10A0032.jpg?format=1500w")
+                "https://images.squarespace-cdn.com/content/v1/5ca2d827aadd343de55a408b/d8afdefd-e1bf-4127-8231-647f29d2042e/_10A0032.jpg?format=1500w",
+                "https://www.peopleandplants.org/traditional-foodways/the-philippines"
+            )
         )
 
         dataList.add(
@@ -112,9 +114,10 @@ class JunglerInfo : AppCompatActivity() {
                         "8. FOREST RITUALS: Indigenous rituals and ceremonies are intertwined with jungle conservation, reinforcing the belief in the interconnectedness of all living things.\n\n" +
                         "9. ORAL TRADITIONS: Indigenous wisdom is passed down through oral traditions, ensuring the preservation of cultural practices and ecological knowledge.\n\n" +
                         "10. ELDERS' GUIDANCE: Indigenous elders serve as repositories of traditional wisdom, offering guidance on jungle conservation and sustainability.\n\n",
-                R.drawable.img_210,
-                "https://www.tandfonline.com/doi/full/10.1080/21513732.2015.1124453",
-                "https://businessmirror.com.ph/wp-content/uploads/2019/01/bio01-011418.jpg")
+
+                "https://businessmirror.com.ph/wp-content/uploads/2019/01/bio01-011418.jpg",
+                "https://www.tandfonline.com/doi/full/10.1080/21513732.2015.1124453"
+          )
         )
 
 

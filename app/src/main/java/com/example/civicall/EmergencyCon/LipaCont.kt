@@ -1,20 +1,15 @@
 package com.example.civicall.EmergencyCon
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.ImageView
-import android.Manifest
-import android.net.Uri
 import android.widget.Toast
-import android.content.Intent
-import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
-import androidx.core.content.ContextCompat
-import java.util.*
+import java.util.Locale
 
 class LipaCont : AppCompatActivity() {
 
@@ -107,24 +102,6 @@ class LipaCont : AppCompatActivity() {
         mList.add(ContactData("MARY MEDIATRIX \n"+"MEDICAL CENTER", R.drawable.lipamediatrix))
         mList.add(ContactData("METRO LIPA \n"+ "MEDICAL CENTER", R.drawable.lipametro))
         mList.add(ContactData("PHILIPPINE RED CROSS\n"+ "DISTRICT 4 & 6 (LIPA)", R.drawable.redcross))
-    }
-
-    private fun makePhoneCall(phoneNumber: String) {
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.CALL_PHONE
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:$phoneNumber"))
-            startActivity(intent)
-        } else {
-            // Request the CALL_PHONE permission
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.CALL_PHONE),
-                REQUEST_PHONE_PERMISSION
-            )
-        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

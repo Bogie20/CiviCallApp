@@ -42,9 +42,9 @@ class TsunamiInfo : AppCompatActivity() {
                         "9. EARLY WARNING SYSTEMS: Familiarize yourself with the early warning systems in your area. Know how to access and interpret alerts from these systems.\n\n" +
                         "10. LEARN FROM HISTORY: Study past tsunami incidents in the Philippines, such as the 1976 Cotabato Trench tsunami. Understanding historical events can provide valuable insights into preparedness.\n\n",
 
-                R.drawable.img_191,
-                "https://www.preventionweb.net/news/philippines-heed-natures-tsunami-warnings-expert#:~:text=Ground%20shaking%20due%20to%20tsunami,and%20Seismology%20(Phivolcs)%20science%20research",
-                "https://go.rappler.com/images/tsunami-warning-system01-carousel-20131030.jpg"
+                "https://go.rappler.com/images/tsunami-warning-system01-carousel-20131030.jpg",
+                "https://www.preventionweb.net/news/philippines-heed-natures-tsunami-warnings-expert#:~:text=Ground%20shaking%20due%20to%20tsunami,and%20Seismology%20(Phivolcs)%20science%20research"
+
             )
         )
         dataList.add(
@@ -60,9 +60,10 @@ class TsunamiInfo : AppCompatActivity() {
                         "8. ENGAGE LOCAL AUTHORITIES: Collaborate with local government and community leaders to enhance disaster response capabilities. Ensure efficient coordination and communication channels are in place.\n\n" +
                         "9. GIS TOOLS: Utilize Geographic Information System (GIS) tools to map out hazard-prone areas and safe zones. Use technology to facilitate disaster risk reduction strategies.\n\n" +
                         "10. PREPARE FOR THE FUTURE: Recognize that climate change can alter hazard patterns. Plan for the long term by considering potential shifts in risk and the effects of increased population density on vulnerability.\n\n",
-                R.drawable.img_192,
-                "https://dims.apnews.com/dims4/default/9fd69be/2147483647/strip/false/crop/3000x1688+0+157/resize/1200x675!/quality/90/?url=https%3A%2F%2Fstorage.googleapis.com%2Fafs-prod%2Fmedia%2Fffbb49222e6f487fb0fab44283e8a8c1%2F3000.jpeg",
-                "https://i.ytimg.com/vi/qR3C6nJeYOs/maxresdefault.jpg")
+
+                "https://i.ytimg.com/vi/qR3C6nJeYOs/maxresdefault.jpg",
+                "https://dims.apnews.com/dims4/default/9fd69be/2147483647/strip/false/crop/3000x1688+0+157/resize/1200x675!/quality/90/?url=https%3A%2F%2Fstorage.googleapis.com%2Fafs-prod%2Fmedia%2Fffbb49222e6f487fb0fab44283e8a8c1%2F3000.jpeg"
+            )
         )
         dataList.add(
             DataItem("IMMEDIATE TSUNAMI RESPONSE",
@@ -77,9 +78,10 @@ class TsunamiInfo : AppCompatActivity() {
                         "8. EVACUATION ROUTES: Familiarize yourself with tsunami evacuation route signs and maps. Follow designated evacuation routes to reach safety.\n\n" +
                         "9. PET AND ANIMAL SAFETY: If you have pets, consider their safety too. Assemble a kit with pet supplies, and bring them with you if it won't delay your evacuation.\n\n" +
                         "10. POST-TSUNAMI CAUTION: After evacuating, do not return until an official all-clear message is given. Tsunami activity can persist for hours, and aftershocks may trigger more tsunami events.",
-                R.drawable.img_461,
-                "https://www.civildefence.govt.nz/cdem-sector/consistent-messages/tsunami/response-what-to-do-during-a-tsunami/",
-                "https://www.undrr.org/sites/default/files/styles/landscape_16_9/public/2022-11/wtad-mauirtius.jpg?h=f30a3440&itok=KiFJL1pg")
+
+                "https://www.undrr.org/sites/default/files/styles/landscape_16_9/public/2022-11/wtad-mauirtius.jpg?h=f30a3440&itok=KiFJL1pg",
+                "https://www.civildefence.govt.nz/cdem-sector/consistent-messages/tsunami/response-what-to-do-during-a-tsunami/"
+            )
         )
 
         dataList.add(
@@ -96,9 +98,9 @@ class TsunamiInfo : AppCompatActivity() {
                         "9. LAND USE PLANNING: Implement land-use planning, limiting new development in tsunami hazard zones, and adopting building codes that consider tsunamis.\n\n" +
                         "10. INFRASTRUCTURE PROTECTION: Strengthen critical infrastructure and existing structures that, if damaged, could hinder response and recovery efforts.",
 
-                R.drawable.img_194,
-                "https://www.noaa.gov/jetstream/prep-com",
-                "https://reliefweb.int/sites/default/files/styles/large/public/images/reports/c4/0f/c40f567d-96bc-3734-a39c-ee0ee7a45973.jpg")
+                "https://reliefweb.int/sites/default/files/styles/large/public/images/reports/c4/0f/c40f567d-96bc-3734-a39c-ee0ee7a45973.jpg",
+                "https://www.noaa.gov/jetstream/prep-com"
+              )
         )
 
         dataList.add(
@@ -114,11 +116,11 @@ class TsunamiInfo : AppCompatActivity() {
                         "8. MITIGATION STRUCTURES: Collaborate with local volunteers and organizations to build mitigation structures like seawalls and evacuation centers.\n\n" +
                         "9. MULTI-PURPOSE PROJECTS: Explore multi-purpose projects that combine disaster mitigation efforts with other community needs like housing, agriculture, and healthcare.\n\n" +
                         "10. LOCAL LEADERSHIP: Identify natural leaders within the community who can facilitate disaster mitigation projects, utilizing local knowledge and resources for cost-effective solutions.\n\n",
-                R.drawable.img_195,
-                "http://courses.washington.edu/larescue/precedents/prevention.htm",
-                "https://www.thoughtco.com/thmb/YlnCWVQv4dYRcq2lVjOfhUYh_Fk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/tsunami-525540464-57afba9d3df78cd39c4d7a56.jpg")
-        )
 
+                "https://www.thoughtco.com/thmb/YlnCWVQv4dYRcq2lVjOfhUYh_Fk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/tsunami-525540464-57afba9d3df78cd39c4d7a56.jpg",
+                "http://courses.washington.edu/larescue/precedents/prevention.htm"
+               )
+        )
 
         val adapter = DataAdapter(dataList)
 
@@ -146,16 +148,6 @@ class TsunamiInfo : AppCompatActivity() {
 
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
-
-
-
-
-
-
-
-
-
-
 
     }
 }

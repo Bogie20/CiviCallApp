@@ -49,9 +49,10 @@ class GenderDisparitiesinPublicInfo : AppCompatActivity() {
                         "8. ENHANCED DATA COLLECTION: Improving gender-specific data collection within health services is essential to monitor progress and adapt policies and programs effectively.\n\n" +
                         "9. GENDER-SENSITIVE HEALTHCARE: A gender-sensitive approach is crucial in healthcare service provision to ensure equitable health benefits for all, transcending the constraints of traditional gender norms and roles.\n\n" +
                         "10. IMPACT OF SOCIAL, CULTURAL, AND ECONOMIC FACTORS: Investigate the disparities in health outcomes between genders, including the impact of social, cultural, and economic factors.",
-                R.drawable.img_356,
-                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10446658/",
-                "https://www.rappler.com/tachyon/2022/03/jabs-in-job-sites-makati-covid-19-vaccination-march-8-2022-002.jpg"
+
+                "https://www.rappler.com/tachyon/2022/03/jabs-in-job-sites-makati-covid-19-vaccination-march-8-2022-002.jpg",
+                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10446658/"
+
             )
         )
         dataList.add(
@@ -67,9 +68,10 @@ class GenderDisparitiesinPublicInfo : AppCompatActivity() {
                         "8. ADVOCACY FOR CHANGE: Advocacy groups and legislators are pushing for new bills to prevent teen pregnancies and provide social protection to young mothers.\n\n" +
                         "9. LEGAL CHALLENGES: The 2014 Supreme Court ruling that struck down a provision allowing birth control access for minors without parental consent is being reconsidered by the Philippine Legislators’ Committee on Population and Development.\n\n" +
                         "10. PREVENTIVE FOCUS: Advocates emphasize the importance of educating young people on safe practices to prevent unplanned pregnancies and sexually transmitted infections.\n\n",
-                R.drawable.img_357,
-                "https://www.rappler.com/nation/teen-pregnancy-most-important-problem-women-today-philippines-sws-survey-november-2020/",
-                "https://www.rappler.com/tachyon/2022/07/teen-pregnancy-20170930.jpg?resize=640%2C360&zoom=1")
+
+                "https://www.rappler.com/tachyon/2022/07/teen-pregnancy-20170930.jpg?resize=640%2C360&zoom=1",
+                "https://www.rappler.com/nation/teen-pregnancy-most-important-problem-women-today-philippines-sws-survey-november-2020/"
+               )
         )
         dataList.add(
             DataItem("REPRODUCTIVE HEALTH: EMPOWERING WOMEN'S HEALTH AND CHOICES",
@@ -84,9 +86,10 @@ class GenderDisparitiesinPublicInfo : AppCompatActivity() {
                         "8. UNDERSTANDING ENDOMETRIOSIS: The Impact of Endometriosis - Shedding light on the painful gynecological disease, endometriosis, and its wide-ranging effects on women.\n\n" +
                         "9. OPEN CONVERSATIONS: Say Tioco's Advocacy - Stressing the importance of open conversations about contraception, women's health concerns, and the need to dispel myths and stigma.\n\n" +
                         "10. CHAMPIONING WOMEN'S HEALTH: Bayer's Initiatives - Summarizing Bayer's efforts in championing women's health through various initiatives, including webinars, chatbots, and community outreach.",
-                R.drawable.img_358,
-                "https://philstarlife.com/self/774890-bayer-empowers-filipino-women-reproductive-health?page=2",
-                "https://media.philstar.com/images/articles/gen9-family-planning_2018-07-11_22-15-03.jpg")
+
+                "https://media.philstar.com/images/articles/gen9-family-planning_2018-07-11_22-15-03.jpg",
+                "https://philstarlife.com/self/774890-bayer-empowers-filipino-women-reproductive-health?page=2"
+       )
         )
 
         dataList.add(
@@ -103,9 +106,10 @@ class GenderDisparitiesinPublicInfo : AppCompatActivity() {
                         "8. GROWING CONCERN: Access to appropriate healthcare services is the top research priority for PWDs, including those in rural regions.\n\n" +
                         "9. UNIVERSAL HEALTH COVERAGE: The United Nations' Sustainable Development Goal 3 underscores the importance of universal health coverage, quality health access, and equity.\n\n" +
                         "10. POLICY AND PRACTICE IMPLICATIONS: The review aims to inform health policies, enhance clinical practices, and expand knowledge about PHC access for PWDs in rural areas on a global scale.",
-                R.drawable.img_359,
-                "https://ghrp.biomedcentral.com/articles/10.1186/s41256-018-0091-x",
-                "https://media.philstar.com/images/articles/met1-hospital-patients_2018-08-12_20-11-43.jpg")
+
+                "https://media.philstar.com/images/articles/met1-hospital-patients_2018-08-12_20-11-43.jpg",
+                "https://ghrp.biomedcentral.com/articles/10.1186/s41256-018-0091-x"
+            )
         )
 
         dataList.add(
@@ -121,9 +125,10 @@ class GenderDisparitiesinPublicInfo : AppCompatActivity() {
                         "8. RGADC INNOVATION: RGADCs demonstrate innovation in gender mainstreaming, showcasing dedication to addressing gender disparities at the local level.\n" +
                         "9. RGADC'S DEDICATION: RGADCs are commended for their unwavering commitment to protect women's rights, eliminate discrimination, and promote gender equality in public health programs.\n" +
                         "10. INSPIRATION AND DEDICATION: The 3rd RGADC Summit inspires participants to intensify gender advocacy, furthering the cause of inclusive public health through innovative approaches and collaboration.",
-                R.drawable.img_360,
-                "https://pia.gov.ph/press-releases/2023/06/26/pcw-recognizes-excellent-regional-gender-responsive-programs",
-                "https://pia.gov.ph/uploads/2023/06/908e26caf9af2c0b74f6fbdc9116447d.jpg")
+
+                "https://pia.gov.ph/uploads/2023/06/908e26caf9af2c0b74f6fbdc9116447d.jpg",
+                "https://pia.gov.ph/press-releases/2023/06/26/pcw-recognizes-excellent-regional-gender-responsive-programs"
+               )
         )
 
 

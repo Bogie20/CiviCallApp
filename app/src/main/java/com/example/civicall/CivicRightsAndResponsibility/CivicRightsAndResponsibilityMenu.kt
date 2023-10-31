@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataMain
+import com.example.civicall.CivicEngagementInfo.CivicAdapterMain
 import com.example.civicall.R
 
 class CivicRightsAndResponsibilityMenu : AppCompatActivity() {

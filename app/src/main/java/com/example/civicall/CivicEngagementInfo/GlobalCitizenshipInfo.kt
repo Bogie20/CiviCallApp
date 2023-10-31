@@ -36,9 +36,8 @@ class GlobalCitizenshipInfo : AppCompatActivity() {
                         "9. Raise Awareness: Use your voice and influence to raise awareness about global issues among your peers, community, and policymakers.\n\n" +
                         "10. Take Informed Action: Take informed and responsible actions to address global challenges, including participating in civic activities, volunteering, and supporting initiatives that contribute to positive change on a global scale.\n\n",
 
-                R.drawable.img_147,
-                "https://www.theglobalcitizensinitiative.org/the-rights-and-responsibilities-of-global-citizenship/",
-                "https://www.worldbank.org/content/dam/photos/1440x600/2021/jun/Cambodia__Social_Accountability__1440x600.jpg"
+                "https://www.worldbank.org/content/dam/photos/1440x600/2021/jun/Cambodia__Social_Accountability__1440x600.jpg",
+                "https://www.theglobalcitizensinitiative.org/the-rights-and-responsibilities-of-global-citizenship/"
             )
         )
         dataList.add(
@@ -55,9 +54,9 @@ class GlobalCitizenshipInfo : AppCompatActivity() {
                         "9. Engage Actively: During your volunteering placement, actively engage with the local community and project objectives. Collaborate with fellow volunteers and community members to maximize your impact.\n\n" +
                         "10. Reflect and Share: After your volunteering experience, take time to reflect on your journey and the impact you've made. Share your experiences with your home community to inspire others to engage in international civic service.\n\n",
 
-                R.drawable.img_148,
-                "https://www.newamerica.org/political-reform/co-governance-project/civic-engagement/volunteering-civic-engagement-home-and-abroad/",
-                "https://d1y8sb8igg2f8e.cloudfront.net/images/shutterstock_636225116.width-800.jpg")
+                "https://d1y8sb8igg2f8e.cloudfront.net/images/shutterstock_636225116.width-800.jpg",
+                "https://www.newamerica.org/political-reform/co-governance-project/civic-engagement/volunteering-civic-engagement-home-and-abroad/"
+                )
         )
         dataList.add(
             DataItem("BUILDING CROSS-CULTURAL BRIDGES",
@@ -72,9 +71,10 @@ class GlobalCitizenshipInfo : AppCompatActivity() {
                         "8. Celebrating Diversity: Encourage the celebration of diversity through cultural events, festivals, and community gatherings that promote understanding and appreciation of different cultures.\n\n" +
                         "9. Cross-Cultural Collaboration: Facilitate cross-cultural collaboration and partnerships, both locally and internationally, to leverage cultural insights for innovation and growth.\n\n" +
                         "10. Promoting Civic Engagement: Use effective cross-cultural communication as a tool for promoting civic engagement by breaking down barriers, enhancing trust, and empowering communities to drive positive change.\n\n",
-                R.drawable.img_149,
-                "https://www.linkedin.com/pulse/building-bridges-exploring-cross-cultural-training-workplace-bitar/",
-                "https://media.licdn.com/dms/image/D4D12AQGSbNkqnqAdrw/article-cover_image-shrink_600_2000/0/1687874888995?e=1701907200&v=beta&t=kxoyU2M1Tn9bBlVzgYC_fKo3DvyS4u2WUl-kJ71E7g4")
+
+                "https://media.licdn.com/dms/image/D4D12AQGSbNkqnqAdrw/article-cover_image-shrink_600_2000/0/1687874888995?e=1701907200&v=beta&t=kxoyU2M1Tn9bBlVzgYC_fKo3DvyS4u2WUl-kJ71E7g4",
+                "https://www.linkedin.com/pulse/building-bridges-exploring-cross-cultural-training-workplace-bitar/"
+                )
         )
 
         dataList.add(
@@ -91,10 +91,9 @@ class GlobalCitizenshipInfo : AppCompatActivity() {
                         "9. Support Grassroots Movements: Offer support to grassroots movements and organizations working on the front lines of global equality issues. Volunteer your time, skills, or resources.\n\n" +
                         "10. Measure Impact: Regularly assess the impact of your advocacy efforts. Collect data, stories, and feedback to understand the positive changes you're contributing to on a global scale.",
 
-
-                R.drawable.img_447,
-                "https://www.un.org/sustainabledevelopment/inequality/",
-                "https://philippineembassy-dc.org/wp-content/uploads/2023/06/Picture1pid.jpg")
+                "https://philippineembassy-dc.org/wp-content/uploads/2023/06/Picture1pid.jpg",
+                "https://www.un.org/sustainabledevelopment/inequality/"
+                )
         )
 
         dataList.add(
@@ -111,9 +110,10 @@ class GlobalCitizenshipInfo : AppCompatActivity() {
                         "8. Participate in Local Initiatives: Join or support local civic organizations, community groups, or NGOs that address social and environmental issues in your host country.\n\n" +
                         "9. Reflect and Apply: Regularly reflect on your experiences and how they have shaped your civic perspective. Consider how you can apply your newfound insights and skills to create positive change.\n\n" +
                         "10. Share Your Story: After returning home, share your study abroad experiences and insights with your local community. Raise awareness about global issues and inspire others to engage in civic activities.\n\n",
-                R.drawable.img_151,
-                "https://news.uchicago.edu/story/students-who-study-abroad-are-more-civically-engaged",
-                "https://news.uchicago.edu/sites/default/files/styles/full_width/public/images/2023-01/shutterstock_374240509.jpg?itok=yAWygw_E")
+
+                "https://news.uchicago.edu/sites/default/files/styles/full_width/public/images/2023-01/shutterstock_374240509.jpg?itok=yAWygw_E",
+                "https://news.uchicago.edu/story/students-who-study-abroad-are-more-civically-engaged"
+                )
         )
 
         val adapter = DataAdapter(dataList)

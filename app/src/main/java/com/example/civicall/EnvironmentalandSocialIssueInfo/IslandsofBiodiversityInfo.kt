@@ -15,9 +15,6 @@ class IslandsofBiodiversityInfo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_islandsof_biodiversity_info)
 
-
-
-
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
@@ -39,9 +36,10 @@ class IslandsofBiodiversityInfo : AppCompatActivity() {
                         "8. ECOSYSTEM SERVICES: Natural capital provides crucial services such as energy, water supply, and flood control.\n\n" +
                         "9. CONSERVATION EFFORTS: Initiatives like the U.S. Forest Service program focus on sustainable forest management.\n\n" +
                         "10. BIODIVERSITY PROTECTION: Programs like 'Protect Wildlife' aim to safeguard the country's rich biodiversity.\n\n",
-                R.drawable.img_286,
-                "https://www.usaid.gov/philippines/environment#:~:text=The%20Philippines'%20rich%20biodiversity%20is,fishing%20and%20illicit%20wildlife%20trade.",
-                "https://owt-thephilippines.weebly.com/uploads/2/4/5/9/24599948/807291_orig.jpg"
+
+                "https://owt-thephilippines.weebly.com/uploads/2/4/5/9/24599948/807291_orig.jpg",
+                "https://www.usaid.gov/philippines/environment#:~:text=The%20Philippines'%20rich%20biodiversity%20is,fishing%20and%20illicit%20wildlife%20trade."
+
             )
         )
         dataList.add(
@@ -67,9 +65,10 @@ class IslandsofBiodiversityInfo : AppCompatActivity() {
                         "   - Effective biodiversity management can create revenue to further support conservation efforts.\n\n" +
                         "10. URGENT NEED FOR INCREASED BIODIVERSITY SPENDING\n" +
                         "    - The article calls for increased government spending on biodiversity, securement of remaining biodiversity pockets, and incentives for research and development in genetic biodiversity areas.\n\n",
-                R.drawable.img_287,
-                "https://www.rappler.com/voices/thought-leaders/133722-investing-biodiversity-future-undp/",
-                "http://static.rappler.com/images/greenseaturtle-20120120.jpg")
+
+                "http://static.rappler.com/images/greenseaturtle-20120120.jpg",
+                "https://www.rappler.com/voices/thought-leaders/133722-investing-biodiversity-future-undp/"
+             )
         )
         dataList.add(
             DataItem("THE ROLE OF INDIGENOUS COMMUNITIES IN BIODIVERSITY CONSERVATION",
@@ -84,9 +83,10 @@ class IslandsofBiodiversityInfo : AppCompatActivity() {
                         "8. HYBRID CROP COMPETITION: High-yield hybrid crops and herbicides hinder traditional farming.\n\n" +
                         "9. PRESERVING INDIGENOUS KNOWLEDGE: The focus is on restoring not just crops but also indigenous practices.\n\n" +
                         "10. CULTURAL CELEBRATIONS: Festivals like the Pinipig Festival help revive lost traditions and knowledge.\n\n",
-                R.drawable.img_288,
-                "https://www.rappler.com/nation/mindanao/tboli-indigenous-crops-methods-soccsksargen-august-2023/",
-                "https://www.rappler.com/tachyon/2023/08/Tboli-farmers.jpeg?resize=1632%2C1224&zoom=1")
+
+                "https://www.rappler.com/tachyon/2023/08/Tboli-farmers.jpeg?resize=1632%2C1224&zoom=1",
+                "https://www.rappler.com/nation/mindanao/tboli-indigenous-crops-methods-soccsksargen-august-2023/"
+              )
         )
 
         dataList.add(
@@ -102,9 +102,10 @@ class IslandsofBiodiversityInfo : AppCompatActivity() {
                         "8. REGULATING BUSINESS GROWTH: Efforts include enforcing building restrictions near shorelines to prevent pollution.\n\n" +
                         "9. SEWAGE MANAGEMENT: The implementation of septage management and centralized sewage treatment aims to improve water quality.\n\n" +
                         "10. PLANNING FOR SUSTAINABLE GROWTH: Authorities are working on urban masterplans and land reclassification to ensure the responsible development of ecotourism.\n\n",
-                R.drawable.img_289,
-                "https://www.rappler.com/environment/194936-el-nido-tourism-environment-management/",
-                "https://www.rappler.com/tachyon/r3-assets/612F469A6EA84F6BAE882D2B94A4B421/img/F90DF594A5DB4FDE8AA72C8E5C7D79F1/20130727-el-nido-01.jpg")
+
+                "https://www.rappler.com/tachyon/r3-assets/612F469A6EA84F6BAE882D2B94A4B421/img/F90DF594A5DB4FDE8AA72C8E5C7D79F1/20130727-el-nido-01.jpg",
+                "https://www.rappler.com/environment/194936-el-nido-tourism-environment-management/"
+             )
         )
 
         dataList.add(
@@ -120,9 +121,10 @@ class IslandsofBiodiversityInfo : AppCompatActivity() {
                         "8. LOCAL GOVERNMENT CAPACITY: Outcome 2 empowers LGUs across 1.6 million hectares in critical regions to incorporate sustainable management into decentralized government structures.\n\n" +
                         "9. LANDSCAPE-LEVEL CONSERVATION: Outcome 3 promotes the application of systems, policies, and capacities for landscape-level biodiversity conservation across eight pilot sites covering 700,000 hectares.\n\n" +
                         "10. MULTI-STAKEHOLDER ENGAGEMENT: The project involves collaboration between the Biodiversity Management Bureau, national and local government agencies, NGOs, indigenous communities, and various stakeholders, highlighting international cooperation for biodiversity preservation in the Philippines.",
-                R.drawable.img_290,
-                "https://www.philchm.ph/partnerships-for-biodiversity-conservation-biodiversity-partnerships-project-bpp/",
-                "https://2017-2020.usaid.gov/sites/default/files/pressreleases/Protect_Wildlife_Launch_1-1.jpg")
+
+                "https://2017-2020.usaid.gov/sites/default/files/pressreleases/Protect_Wildlife_Launch_1-1.jpg",
+                "https://www.philchm.ph/partnerships-for-biodiversity-conservation-biodiversity-partnerships-project-bpp/"
+             )
         )
 
 

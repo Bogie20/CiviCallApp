@@ -38,9 +38,9 @@ class CivicRightsinaDigitalWorldInfo : AppCompatActivity() {
                         "8. PRACTICAL KNOWLEDGE: Learning about practical issues encountered when crafting privacy notices offers real-world insights for students.\n" +
                         "9. GLOBAL ALIGNMENT: Exploring the alignment between Philippine data privacy laws and international regulations like the GDPR fosters a global perspective.\n" +
                         "10. EMPOWERMENT: Ultimately, this study empowers students by providing tools for individuals to exercise control over their personal data, making them advocates of data privacy and protection.\n",
-                R.drawable.img_255,
-                "https://www.rappler.com/technology/features/221542-things-to-know-about-data-privacy-notices/#:~:text=To%20prevent%20or%20at%20least,NPC)%20overseeing%20its%20proper%20implementation.",
-                "https://www.rappler.com/tachyon/r3-assets/D7D3D4E51FF74DA8872FA0AF5D7293BC/img/5B7ECB48DD284DDDA5F143C8C0662D01/data-privacy-act-notices.jpg?resize=800%2C450&zoom=1"
+
+                "https://www.rappler.com/tachyon/r3-assets/D7D3D4E51FF74DA8872FA0AF5D7293BC/img/5B7ECB48DD284DDDA5F143C8C0662D01/data-privacy-act-notices.jpg?resize=800%2C450&zoom=1",
+                "https://www.rappler.com/technology/features/221542-things-to-know-about-data-privacy-notices/#:~:text=To%20prevent%20or%20at%20least,NPC)%20overseeing%20its%20proper%20implementation."
             )
         )
         dataList.add(
@@ -56,9 +56,10 @@ class CivicRightsinaDigitalWorldInfo : AppCompatActivity() {
                         "8. BUSINESS AND PERSONAL PROTECTION: Address the importance of cybersecurity for businesses and individuals alike, as students gain insights into safeguarding their data and online activities.\n" +
                         "9. PREVENTING CYBER THREATS: Encourage proactive cybersecurity measures, emphasizing that preventing threats is just as important as responding to them.\n" +
                         "10. CIVIC ADVOCACY FOR CYBERSECURITY: Empower students to become advocates for cybersecurity awareness, contributing to a safer digital society and fulfilling their civic responsibility.",
-                R.drawable.img_256,
-                "https://www.rappler.com/newsbreak/in-depth/130883-state-cybersecurity-philippines/",
-                "https://www.rappler.com/tachyon/r3-assets/612F469A6EA84F6BAE882D2B94A4B421/img/83383681AAEE490C9EC13D05C1519960/cybersecurity-philippines-20160426.jpg?resize=640%2C360&zoom=1")
+
+                "https://www.rappler.com/tachyon/r3-assets/612F469A6EA84F6BAE882D2B94A4B421/img/83383681AAEE490C9EC13D05C1519960/cybersecurity-philippines-20160426.jpg?resize=640%2C360&zoom=1",
+                "https://www.rappler.com/newsbreak/in-depth/130883-state-cybersecurity-philippines/"
+            )
         )
         dataList.add(
             DataItem("DIGITAL CITIZENSHIP AND MEDIA LITERACYS",
@@ -75,9 +76,10 @@ class CivicRightsinaDigitalWorldInfo : AppCompatActivity() {
                         "8. EMPATHY AND CONNECTION: The study promotes empathy in online interactions, building meaningful connections in the digital realm that transcend surface-level engagement.\n" +
                         "9. INFORMATION ACCESSIBILITY: Students learn the significance of making accurate information accessible to all, fostering a more informed and equitable digital society.\n" +
                         "10. DIGITAL LEADERSHIP: Empowering students to become digital opinion leaders within their circles, inspiring responsible online behavior and influencing others positively.",
-                R.drawable.img_258,
-                "https://www.rappler.com/moveph/understanding-role-citizen-journalism-digital-world-factsfirstph-learning-series-july-2023/",
-                "https://www.rappler.com/tachyon/2023/07/Screen-Shot-2023-07-20-at-4.10.17-PM.png?resize=840%2C629&zoom=1.5")
+
+                "https://www.rappler.com/tachyon/2023/07/Screen-Shot-2023-07-20-at-4.10.17-PM.png?resize=840%2C629&zoom=1.5",
+                "https://www.rappler.com/moveph/understanding-role-citizen-journalism-digital-world-factsfirstph-learning-series-july-2023/"
+              )
         )
 
         dataList.add(
@@ -93,9 +95,10 @@ class CivicRightsinaDigitalWorldInfo : AppCompatActivity() {
                         "8. SOCIAL MEDIA AUTHENTICITY: The importance of authenticity for influencers underscores the need for students to maintain authenticity in their own digital lives.\n" +
                         "9. ACCOUNTABILITY: Students will learn about the accountability of influencers and the consequences of ethical lapses in the digital sphere.\n" +
                         "10. MEDIA ETHICS: This study introduces students to principles of media ethics, inspiring them to reject 'greed-hoarding impulses' and promote ethical practices in the digital age.",
-                R.drawable.img_259,
-                "https://www.rappler.com/voices/thought-leaders/opinion-social-media-influencers-ethical-responsibility/",
-                "https://www.rappler.com/tachyon/2021/09/tl-influencers-1.jpg?resize=1280%2C720&zoom=1")
+
+                "https://www.rappler.com/tachyon/2021/09/tl-influencers-1.jpg?resize=1280%2C720&zoom=1",
+                "https://www.rappler.com/voices/thought-leaders/opinion-social-media-influencers-ethical-responsibility/"
+               )
         )
 
         dataList.add(
@@ -111,11 +114,11 @@ class CivicRightsinaDigitalWorldInfo : AppCompatActivity() {
                         "8. SOCIAL MEDIA PRIVACY SETTINGS: The study emphasizes the importance of configuring privacy settings on social media platforms, helping students keep their online profiles secure.\n\n" +
                         "9. SAFE ONLINE PRACTICES: Students will learn safe online practices, such as refraining from participating in dubious quizzes and being mindful of what they download and install.\n\n" +
                         "10. DATA DETOX: The study introduces the concept of a 'Data Detox,' providing students with a practical guide to reduce their digital footprint and protect their personal information.",
-                R.drawable.img_260,
-                "https://www.rappler.com/newsbreak/iq/198603-data-privacy-personal-information-protection-tips/",
-                "https://www.rappler.com/tachyon/r3-assets/612F469A6EA84F6BAE882D2B94A4B421/img/C1C1F37CF68C40039C6E5EFF93C3A446/location-social-media-march-20-2018.jpg?resize=640%2C360&zoom=1")
-        )
 
+                "https://www.rappler.com/tachyon/r3-assets/612F469A6EA84F6BAE882D2B94A4B421/img/C1C1F37CF68C40039C6E5EFF93C3A446/location-social-media-march-20-2018.jpg?resize=640%2C360&zoom=1",
+                "https://www.rappler.com/newsbreak/iq/198603-data-privacy-personal-information-protection-tips/"
+              )
+        )
 
         val adapter = DataAdapter(dataList)
 

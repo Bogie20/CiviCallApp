@@ -69,7 +69,7 @@
 
             <ImageView
                android:layout_gravity="center"
-                android:background="@drawable/jhe"
+                android:background="@drawable/img"
                 android:layout_width="300dp"
                 android:layout_height="200dp"
                 android:layout_below="@+id/cardView"

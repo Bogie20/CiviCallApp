@@ -37,9 +37,8 @@ class TechforGoodsinfo : AppCompatActivity() {
                         "9. COMMUNITY EDUCATION: Provide training and education to community members on how to use and benefit from the technology solutions. Empower them to become active users and advocates.\n\n" +
                         "10. SUSTAINABILITY AND SCALABILITY: Develop a plan for the long-term sustainability of the technology solutions. Consider how to scale the solutions to other communities facing similar challenges.\n\n",
 
-                R.drawable.img_152,
-                "https://www.govtech.com/dc/articles/4-cities-jumpstart-civic-tech-solutions-with-citycamp.html",
-                "https://1.bp.blogspot.com/-tPl2KNcLous/X1sGyC1IFRI/AAAAAAAAABc/gzo4lnVhtO0R5dp46BaprPmsFP3xd5dLQCLcBGAsYHQ/s640/headway-5QgIuuBxKwM-unsplash.jpg"
+                "https://1.bp.blogspot.com/-tPl2KNcLous/X1sGyC1IFRI/AAAAAAAAABc/gzo4lnVhtO0R5dp46BaprPmsFP3xd5dLQCLcBGAsYHQ/s640/headway-5QgIuuBxKwM-unsplash.jpg",
+                "https://www.govtech.com/dc/articles/4-cities-jumpstart-civic-tech-solutions-with-citycamp.html"
             )
         )
         dataList.add(
@@ -56,9 +55,8 @@ class TechforGoodsinfo : AppCompatActivity() {
                         "9. SUSTAINABLE IMPACT: Ensure the sustainability of your coding initiatives by considering long-term plans and scalability.\n\n" +
                         "10. MEASURE IMPACT: Continuously measure and evaluate the impact of coding solutions on addressing social challenges, adapting strategies as needed.\n\n",
 
-                R.drawable.img_153,
-                "https://medium.com/@vishalsuthar264/the-role-of-coding-in-creating-social-change-and-impact-4b8e333d634a",
-                "https://miro.medium.com/v2/resize:fit:828/format:webp/0*oVdO0Mm4gJRKkCc8.jpg")
+                "https://miro.medium.com/v2/resize:fit:828/format:webp/0*oVdO0Mm4gJRKkCc8.jpg",
+                "https://medium.com/@vishalsuthar264/the-role-of-coding-in-creating-social-change-and-impact-4b8e333d634a")
         )
         dataList.add(
             DataItem("STARTUPS WITH A PURPOSE",
@@ -73,9 +71,9 @@ class TechforGoodsinfo : AppCompatActivity() {
                         "8. ONLINE CIVIC ENGAGEMENT PLATFORM: Develop an online civic engagement platform for citizens to participate in local government decisions and improve transparency.\n\n" +
                         "9. NONPROFIT MANAGEMENT SYSTEM: Create a comprehensive nonprofit management system to streamline operations, from donor management to impact measurement.\n\n" +
                         "10. PUBLIC HEALTH DATA ANALYTICS DASHBOARD: Design a public health data analytics dashboard to visualize disease trends and inform policymaking and healthcare decisions.",
-                R.drawable.img_154,
-                "https://www.govtech.com/civic/tech-startup-tries-to-boost-civic-engagement-in-california.html",
-                "https://startup.info/wp-content/uploads/2023/06/594090.jpg")
+
+                "https://startup.info/wp-content/uploads/2023/06/594090.jpg",
+                "https://www.govtech.com/civic/tech-startup-tries-to-boost-civic-engagement-in-california.html")
         )
 
         dataList.add(
@@ -92,11 +90,8 @@ class TechforGoodsinfo : AppCompatActivity() {
                         "9. TECH COMMUNITY ENGAGEMENT: Actively engage with the local tech community to encourage their involvement in civic innovation and civic hackathons.\n\n" +
                         "10. ECONOMIC AND SOCIAL IMPACT: Recognize the economic and social impact of civic tech initiatives, emphasizing how they create opportunities, improve quality of life, and benefit the community as a whole.",
 
-
-
-                R.drawable.img_156,
-                "https://www.govtech.com/archive/inside-the-civic-hacking-movement.html",
-                "https://miro.medium.com/v2/resize:fit:1400/1*xXup-KWLsXCV9ad8La_TlA.jpeg")
+                "https://miro.medium.com/v2/resize:fit:1400/1*xXup-KWLsXCV9ad8La_TlA.jpeg",
+                "https://www.govtech.com/archive/inside-the-civic-hacking-movement.html")
         )
 
         dataList.add(
@@ -112,9 +107,10 @@ class TechforGoodsinfo : AppCompatActivity() {
                         "8. ADVOCACY AND FEEDBACK: Use the platform to advocate for specific causes or provide feedback to local governments or organizations, amplifying your civic voice.\n\n" +
                         "9. GAMIFIED ENGAGEMENT: Explore gamification features within the platform, earning rewards or recognition for your contributions to encourage ongoing involvement.\n\n" +
                         "10. MOBILE ACCESSIBILITY: Download the native mobile app for added convenience, allowing you to engage with your community and campaigns while on the go.\n\n",
-                R.drawable.img_158,
-                "https://www.govtech.com/civic/civic-tech-platform-turns-social-media-time-into-advocacy.html",
-                "https://ctb.ku.edu/sites/default/files/chapter_files/using_social_media_for_digital_advocacy.jpg")
+
+                "https://ctb.ku.edu/sites/default/files/chapter_files/using_social_media_for_digital_advocacy.jpg",
+                "https://www.govtech.com/civic/civic-tech-platform-turns-social-media-time-into-advocacy.html"
+                )
         )
 
 

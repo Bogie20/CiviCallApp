@@ -50,9 +50,10 @@ class CivicResponsibilityinTimesofCrisisInfo : AppCompatActivity() {
                         "   - Strengthening civic organizations doesn't absolve the national government from its disaster response duties.\n" +
                         "10. ADDRESSING THE CLIMATE CRISIS\n" +
                         "    - The need to hold elites accountable for the climate crisis is emphasized, moving beyond disaster preparedness to root causes.\n",
-                R.drawable.img_266,
-                "https://www.rappler.com/nation/youth-groups-say-government-must-strengthen-sangguniang-kabataan-civilian-role-disaster-response/",
-                "https://www.rappler.com/tachyon/2022/10/paeng-aftermath-kawit-cavite-october-30-2022-001.jpg?resize=1400%2C933&zoom=1"
+
+                "https://www.rappler.com/tachyon/2022/10/paeng-aftermath-kawit-cavite-october-30-2022-001.jpg?resize=1400%2C933&zoom=1",
+                "https://www.rappler.com/nation/youth-groups-say-government-must-strengthen-sangguniang-kabataan-civilian-role-disaster-response/"
+
             )
         )
         dataList.add(
@@ -78,9 +79,10 @@ class CivicResponsibilityinTimesofCrisisInfo : AppCompatActivity() {
                         "   - Agos conducts training and workshops for government agencies and civil society groups to improve preparedness.\n" +
                         "10. SUPPORT FROM THE AUSTRALIAN GOVERNMENT\n" +
                         "   - Agos launched the campaign 'Make #ZeroCasualty a reality' with support from the Australian Government, connecting a network of experts and civic leaders for disaster management.\n",
-                R.drawable.img_267,
-                "https://www.rappler.com/environment/disasters/174836-174836-about-agos-ebayanihan-disasters-community-action/",
-                "https://blogs.adb.org/sites/blogs/files/phi-smokey-mountain-06-1.jpg")
+
+                "https://blogs.adb.org/sites/blogs/files/phi-smokey-mountain-06-1.jpg",
+                "https://www.rappler.com/environment/disasters/174836-174836-about-agos-ebayanihan-disasters-community-action/"
+          )
         )
         dataList.add(
             DataItem("COMMUNITY RESILIENCE IN CIVIC ENGAGEMENT",
@@ -106,9 +108,10 @@ class CivicResponsibilityinTimesofCrisisInfo : AppCompatActivity() {
                         "   - Social media can be a valuable tool for disaster response, provided that information shared is accurate.\n" +
                         "10. EXAMPLES OF EFFECTIVE RESPONSE\n" +
                         "    - Albay province's evacuation measures and grassroots initiatives like the Linao Self Help Group are cited as examples of effective disaster response and recovery efforts.\n",
-                R.drawable.img_268,
-                "https://www.rappler.com/nation/communities-families-heart-zero-casualty-disaster-response/",
-                "https://www.rappler.com/tachyon/2023/07/move-ph-zero-casualty-forum-july-28-2023.png?resize=2878%2C1540&zoom=0.5")
+
+                "https://www.rappler.com/tachyon/2023/07/move-ph-zero-casualty-forum-july-28-2023.png?resize=2878%2C1540&zoom=0.5",
+                "https://www.rappler.com/nation/communities-families-heart-zero-casualty-disaster-response/"
+              )
         )
 
         dataList.add(
@@ -134,9 +137,10 @@ class CivicResponsibilityinTimesofCrisisInfo : AppCompatActivity() {
                         "   - General Virgilio Garcia discussed the role of the military and reserve components, emphasizing the need to review laws governing reserve forces.\n" +
                         "10. ENHANCING VOLUNTEERISM\n" +
                         "   - The article highlighted the importance of volunteers learning to navigate the politics of relief operations and collaborating with neutral institutions for more effective disaster response.\n",
-                R.drawable.img_269,
-                "https://www.rappler.com/moveph/52797-yolanda-recovery-civic-engagement/",
-                "https://www.rappler.com/tachyon/r3-assets/8FFDE3A183F7465DBE80D208ACB9843E/img/2E5DAE21839B478EB72C52C584C205A1/tatalon-evacuation-flooding-habagat-august-11-2018-004.jpg")
+
+                "https://www.rappler.com/tachyon/r3-assets/8FFDE3A183F7465DBE80D208ACB9843E/img/2E5DAE21839B478EB72C52C584C205A1/tatalon-evacuation-flooding-habagat-august-11-2018-004.jpg",
+                "https://www.rappler.com/moveph/52797-yolanda-recovery-civic-engagement/"
+             )
         )
 
         dataList.add(
@@ -162,9 +166,10 @@ class CivicResponsibilityinTimesofCrisisInfo : AppCompatActivity() {
                         "   - Effective disaster policies depend on the local implementation and enforcement of mandates, highlighting the role of Local Government Units (LGUs).\n" +
                         "10. RECOMMENDATIONS FOR IMPROVED POLICY\n" +
                         "   - Civic deliberation led to recommendations for better policy consistency, implementation, and local adaptation in disaster response efforts.",
-                R.drawable.img_270,
-                "https://onlinelibrary.wiley.com/doi/full/10.1002/app5.378",
-                "https://asia.fes.de/fileadmin/_processed_/e/6/csm_Youth_4_Just_Transition_Twitter_Link_Preview_76611cd9b1.png")
+
+                "https://asia.fes.de/fileadmin/_processed_/e/6/csm_Youth_4_Just_Transition_Twitter_Link_Preview_76611cd9b1.png",
+                "https://onlinelibrary.wiley.com/doi/full/10.1002/app5.378"
+          )
         )
 
 

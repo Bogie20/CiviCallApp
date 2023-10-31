@@ -50,9 +50,10 @@ class EnvironmentalHealthinthePhilippinesInfo : AppCompatActivity() {
                         "8. INCOMPLETE SEA LEVEL RISE MITIGATION: While measures like seawalls have been taken, experts argue that more comprehensive strategies are needed to protect coastal regions from sea level rise.\n\n" +
                         "9. PUBLIC AWARENESS AND COMMITMENT: Successful solutions to these environmental challenges require not only government actions but also the commitment and participation of the public.\n\n" +
                         "10. COLLABORATIVE GLOBAL EFFORTS: The Philippines' environmental issues highlight the need for global cooperation to address climate change and environmental health risks.",
-                R.drawable.img_366,
-                "https://earth.org/environmental-issues-in-the-philippines/",
-                "https://u4d2z7k9.rocketcdn.me/wp-content/uploads/2022/11/11290331484_fd8538ba22_k-1536x908.jpg.webp"
+
+                "https://u4d2z7k9.rocketcdn.me/wp-content/uploads/2022/11/11290331484_fd8538ba22_k-1536x908.jpg.webp",
+                "https://earth.org/environmental-issues-in-the-philippines/"
+
             )
         )
         dataList.add(
@@ -68,9 +69,10 @@ class EnvironmentalHealthinthePhilippinesInfo : AppCompatActivity() {
                         "8. HISTORICAL EVOLUTION OF POLLUTION POLICIES: The country has recognized pollution as a major issue, with policies dating back to 1964, leading to the formation of environmental agencies such as DENR.\n\n" +
                         "9. KEY ENVIRONMENTAL LAWS: Laws like the Clean Air Act, Clean Water Act, and Ecological Solid Waste Management Act have been enacted to address pollution and environmental concerns.\n\n" +
                         "10. CHALLENGES IN POLICY IMPLEMENTATION: Despite these policies, challenges persist in implementing pollution control measures due to enforcement issues, inadequate resources, and low public awareness.",
-                        R.drawable.img_367,
-                "https://dicf.unepgrid.ch/philippines/pollution#:~:text=Air%2C%20waste%20and%20water%20pollution,rapid%20development%2C%20industrialization%20and%20urbanization.",
-                "https://www.flipscience.ph/wp-content/uploads/2018/06/FS.Covers.Oct-Nov2018-2.jpg")
+
+                "https://www.flipscience.ph/wp-content/uploads/2018/06/FS.Covers.Oct-Nov2018-2.jpg",
+                "https://dicf.unepgrid.ch/philippines/pollution#:~:text=Air%2C%20waste%20and%20water%20pollution,rapid%20development%2C%20industrialization%20and%20urbanization."
+              )
         )
         dataList.add(
             DataItem("CLIMATE CHANGE IMPACT: ADAPTING TO A CHANGING WORLD",
@@ -85,9 +87,10 @@ class EnvironmentalHealthinthePhilippinesInfo : AppCompatActivity() {
                         "8. ACCELERATED GLOBAL SEA LEVEL RISE: Global sea levels have risen faster since 1900 than in the past 3,000 years, even with limited global warming.\n\n" +
                         "9. RISK TO UN MEMBER STATES: Sea level rise poses a real risk to over two-thirds of UN member states, impacting maritime zones and resource access.\n\n" +
                         "10. MASS DISPLACEMENT THREAT: Nearly 900 million people living in low-lying coastal zones face the risk of displacement, resource competition, and a potential mass exodus.",
-                R.drawable.img_368,
-                "https://www.philstar.com/headlines/2023/02/20/2246224/rising-sea-level-threatens-stability-boundaries-philippines-warns",
-                "https://icsc.ngo/wp-content/uploads/2020/03/AFP_manila-residents-flooding-storm.jpg")
+
+                "https://icsc.ngo/wp-content/uploads/2020/03/AFP_manila-residents-flooding-storm.jpg",
+                "https://www.philstar.com/headlines/2023/02/20/2246224/rising-sea-level-threatens-stability-boundaries-philippines-warns"
+              )
         )
 
         dataList.add(
@@ -104,9 +107,10 @@ class EnvironmentalHealthinthePhilippinesInfo : AppCompatActivity() {
                         "8. GRASSROOTS ENVIRONMENTAL INITIATIVES: Marginalized communities and NGOs are driving social enterprises that protect the environment, assist small-scale agricultural producers, and bolster communities against climate change.\n\n" +
                         "9. YOUTH CLIMATE ACTIVISM: Filipino youth are taking up the mantle of climate activism, demanding climate justice and advocating for solutions to combat the climate crisis.\n\n" +
                         "10. SUSTAINABLE DEVELOPMENT GOALS: The Philippines is actively working to improve its ranking in the United Nations Sustainable Development Report, aiming for a future where sustainability and environmental conservation thrive.",
-                R.drawable.img_369,
-                "https://priorityconsultants.com/blog/green-is-in-the-rise-of-environmental-sustainability-in-the-philippines/",
-                "http://new.priorityconsultants.com/wp-content/uploads/2021/05/PC-Green-blogpost4-1024x538.jpg")
+
+                "http://new.priorityconsultants.com/wp-content/uploads/2021/05/PC-Green-blogpost4-1024x538.jpg",
+                "https://priorityconsultants.com/blog/green-is-in-the-rise-of-environmental-sustainability-in-the-philippines/"
+             )
         )
 
         dataList.add(
@@ -122,9 +126,10 @@ class EnvironmentalHealthinthePhilippinesInfo : AppCompatActivity() {
                         "8. PARTNERSHIPS WITH KNOWLEDGE CHANNEL: Breeze collaborates with Knowledge Channel, Department of Education, and School District Officers to engage third graders in eco-missions.\n\n" +
                         "9. ECODIARY AND PRIZES: Students participate in educational videos and eco-missions, documenting their experiences in EcoDiaries for a chance to win prizes.\n\n" +
                         "10. ECOLLECT PROGRAM: Breeze's Ecollect program collects plastic waste from schools and upcycles it, reinforcing the message that small actions can make a significant impact on the environment.",
-                R.drawable.img_370,
-                "https://www.cnnphilippines.com/lifestyle/2022/12/12/getting-dirty-for-good-breeze-ecoproject.html",
-                "https://www.cnnphilippines.com/.imaging/default/dam/cnn/2022/12/12/ADVERTORIAL%20BREEZE%20ECOPROJECT/BREEZE-ECOPROJECT-1.png/jcr:content.png?width=750&height=450&crop:1:1,smart")
+
+                "https://www.cnnphilippines.com/.imaging/default/dam/cnn/2022/12/12/ADVERTORIAL%20BREEZE%20ECOPROJECT/BREEZE-ECOPROJECT-1.png/jcr:content.png?width=750&height=450&crop:1:1,smart",
+                "https://www.cnnphilippines.com/lifestyle/2022/12/12/getting-dirty-for-good-breeze-ecoproject.html"
+        )
         )
 
 

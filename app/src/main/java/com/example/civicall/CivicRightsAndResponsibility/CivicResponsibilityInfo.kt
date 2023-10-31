@@ -43,9 +43,10 @@ class CivicResponsibilityInfo : AppCompatActivity() {
                         "8. BALANCING CHECKS AND BALANCES: Students explore the checks and balances within the legal framework that ensure fairness and impartiality, reinforcing democracy's core values.\n\n" +
                         "9. LEGAL REFORM FOR PROGRESS: This study presents the potential for legal reforms to catalyze significant positive changes in electoral systems and integrity, as demonstrated in various democracies.\n\n" +
                         "10. PRESERVING DEMOCRACY'S ESSENCE: Ultimately, this exploration reinforces the crucial role citizens play in preserving the essence of democracy, where voting is not just a right but a civic responsibility that shapes the future.\n\n",
-                R.drawable.img_468,
-                "https://aceproject.org/main/english/ei/eic.htm",
-                "https://pia.gov.ph/uploads/2021/07/22861e35df4176a09ca6c4c986cdaf62-800-1200.jpg"
+
+                "https://pia.gov.ph/uploads/2021/07/22861e35df4176a09ca6c4c986cdaf62-800-1200.jpg",
+                "https://aceproject.org/main/english/ei/eic.htm"
+
             )
         )
         dataList.add(
@@ -61,9 +62,10 @@ class CivicResponsibilityInfo : AppCompatActivity() {
                         "8. LEADERSHIP AND GOVERNANCE: The importance of effective leadership and good governance in driving community engagement is a lesson that can be applied to various fields and situations.\n" +
                         "9. INTERDISCIPLINARY LEARNING: Students from various disciplines can find value in this study, as it touches on environmental science, social science, governance, and community development.\n" +
                         "10. CRITICAL THINKING: This study encourages critical thinking by presenting challenges and recommendations, inspiring students to think about solutions to real-world problems.\n" ,
-                        R.drawable.img_236,
-                "https://knowledge.aidr.org.au/resources/ajem-jan-2019-resilience-in-the-philippines-through-effective-community-engagement/",
-                "https://i0.wp.com/www.skills.com.ph/wp-content/uploads/2019/07/Skills_Be_a_Community_Engagement_Partner.jpg?fit=951%2C637&ssl=1")
+
+                "https://i0.wp.com/www.skills.com.ph/wp-content/uploads/2019/07/Skills_Be_a_Community_Engagement_Partner.jpg?fit=951%2C637&ssl=1",
+                "https://knowledge.aidr.org.au/resources/ajem-jan-2019-resilience-in-the-philippines-through-effective-community-engagement/"
+            )
         )
         dataList.add(
             DataItem("THE SIGNIFICANCE OF CIVIC ENGAGEMENT",
@@ -78,9 +80,10 @@ class CivicResponsibilityInfo : AppCompatActivity() {
                         "8. ACADEMIC AND PERSONAL GROWTH: Engaging in civic activities enhances academic performance and fosters social-emotional well-being, providing students with valuable skills and networks.\n\n" +
                         "9. ECONOMIC MOBILITY: Civic engagement equips young people with skills and networks that are highly valued in the workplace, offering a pathway to economic mobility.\n\n" +
                         "10. PROMOTING EQUITY: By focusing on youth civic engagement, this study contributes to the vital work of promoting a more just and equitable society by addressing opportunity gaps and inequities.\n\n",
-                R.drawable.img_237,
-                "https://circle.tufts.edu/understanding-youth-civic-engagement/why-it-important",
-                "https://3blaws.s3.amazonaws.com/styles/carousel_2x/s3/images/Children_International_Youth.jpg")
+
+                "https://3blaws.s3.amazonaws.com/styles/carousel_2x/s3/images/Children_International_Youth.jpg",
+                "https://circle.tufts.edu/understanding-youth-civic-engagement/why-it-important"
+        )
         )
 
         dataList.add(
@@ -105,9 +108,10 @@ class CivicResponsibilityInfo : AppCompatActivity() {
                         "9. ATENEO GRADUATES' UNIQUE ROLE: Ateneo graduates, with their exceptional education, have an added civic duty to question, analyze, and act on their convictions for the betterment of society.\n\n" +
 
                         "10. REJECTING DEAD IDEAS: This study encourages citizens to challenge outdated concepts and practices (Dead Ideas) that hinder progress and to embrace innovative solutions that can drive the nation forward.\n",
-                R.drawable.img_238,
-                "https://news.abs-cbn.com/views-and-analysis/03/25/09/know-your-civic-duties-justice-antonio-t-carpio",
-                "https://pagcor.ph/images/news/PAGCOR-reaches-out-to-Bicol-communities-hit-by-super-typhoon-Rolly-1.jpg")
+
+                "https://pagcor.ph/images/news/PAGCOR-reaches-out-to-Bicol-communities-hit-by-super-typhoon-Rolly-1.jpg",
+                "https://news.abs-cbn.com/views-and-analysis/03/25/09/know-your-civic-duties-justice-antonio-t-carpio"
+               )
         )
 
         dataList.add(
@@ -123,9 +127,10 @@ class CivicResponsibilityInfo : AppCompatActivity() {
                         "8. NEGATIVE CAMPAIGNING: This research touches upon the prevalence of negative campaigning on social media and the potential consequences for political discourse, prompting students to consider the role of disinformation in modern politics.\n\n" +
                         "9. REGULATING ONLINE POLITICAL ADVOCACIES: It raises the question of whether more stringent regulations are needed to curb disinformation on social media, challenging students to explore the balance between free speech and responsible discourse.\n\n" +
                         "10. CITIZEN ENGAGEMENT: This study ultimately emphasizes the potential of social media to enhance civic involvement and democratic growth, prompting students to consider the future of political engagement in the digital era.",
-                R.drawable.img_470,
-                "https://blogs.griffith.edu.au/asiainsights/social-media-and-democracy-in-the-philippines/",
-                "https://mb.com.ph/media/DSC_0554_9090e9a816/DSC_0554_9090e9a816.jpg")
+
+                "https://mb.com.ph/media/DSC_0554_9090e9a816/DSC_0554_9090e9a816.jpg",
+                "https://blogs.griffith.edu.au/asiainsights/social-media-and-democracy-in-the-philippines/"
+             )
         )
 
 

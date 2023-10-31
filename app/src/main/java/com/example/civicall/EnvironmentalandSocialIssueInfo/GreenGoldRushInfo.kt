@@ -41,9 +41,10 @@ class GreenGoldRushInfo : AppCompatActivity() {
                         "8. IMPACT ON CLIMATE CHANGE: The exclusion of forest mitigation from the Paris Agreement commitments raises questions about the Philippines' role in addressing climate change.\n\n" +
                         "9. PENDING LEGISLATION: Urgent 'green bills,' including the National Land Use Act and Sustainable Forest Management Act, are needed to address legal gaps.\n\n" +
                         "10. POLICY FRAMEWORK: Experts emphasize the necessity of comprehensive forest management policies to safeguard the Philippines' invaluable but endangered forests.\n",
-                        R.drawable.img_296,
-                "https://www.rappler.com/environment/hectares-land-philippines-forested//",
-                "https://www.rappler.com/tachyon/2021/05/deforestation-carousel.jpg?resize=1280%2C720&zoom=1"
+
+                "https://www.rappler.com/tachyon/2021/05/deforestation-carousel.jpg?resize=1280%2C720&zoom=1",
+                "https://www.rappler.com/environment/hectares-land-philippines-forested//"
+
             )
         )
         dataList.add(
@@ -59,9 +60,10 @@ class GreenGoldRushInfo : AppCompatActivity() {
                         "8. SECURING FUNDING: Delayed support from Southeast Asian nations for the 30x30 target may be a strategic move to secure additional funding from wealthier countries.\n\n" +
                         "9. INDIGENOUS RIGHTS AND CONSERVATION: Respecting the rights of indigenous groups in protected areas is a vital aspect of the 30x30 pledge, acknowledging their crucial role in conservation efforts.\n\n" +
                         "10. GREEN GRABBING CONCERNS: While addressing biodiversity loss is essential, care must be taken not to displace indigenous communities through initiatives like 30x30 and overlook sustainable coexistence with nature.\n\n",
-                R.drawable.img_297,
-                "https://news.abs-cbn.com/spotlight/06/30/21/philippines-among-southeast-asian-nations-missing-from-push-to-protect-30-of-planet",
-                "https://sa.kapamilya.com/absnews/abscbnnews/media/2021/reuters/06/30/philippines-environment-river.jpg")
+
+                "https://sa.kapamilya.com/absnews/abscbnnews/media/2021/reuters/06/30/philippines-environment-river.jpg",
+                "https://news.abs-cbn.com/spotlight/06/30/21/philippines-among-southeast-asian-nations-missing-from-push-to-protect-30-of-planet"
+              )
         )
         dataList.add(
             DataItem("SUSTAINABLE FOREST MANAGEMENT IN THE PHILIPPINES",
@@ -76,9 +78,10 @@ class GreenGoldRushInfo : AppCompatActivity() {
                         "8. GOOD GOVERNANCE: Strict adherence to good governance principles and inclusive growth is pivotal to the success of the country's forest management programs.\n\n" +
                         "9. UN FORUM ON FORESTS: The Philippines' participation in the UN Forum on Forests highlights its dedication to global cooperation and the pursuit of sustainable forest management.\n\n" +
                         "10. COMMITMENT TO SUSTAINABILITY: The Philippines remains committed to promoting sustainable forest management, reflecting its dedication to environmental conservation and responsible governance.",
-                R.drawable.img_298,
-                "https://forestry.denr.gov.ph/index.php/ph-affirms-commitment-to-promote-sustainable-forest-managment",
-                "https://goharibon.files.wordpress.com/2015/09/frb-main-img.jpg")
+
+                "https://goharibon.files.wordpress.com/2015/09/frb-main-img.jpg",
+                "https://forestry.denr.gov.ph/index.php/ph-affirms-commitment-to-promote-sustainable-forest-managment"
+           )
         )
 
         dataList.add(
@@ -95,9 +98,10 @@ class GreenGoldRushInfo : AppCompatActivity() {
                         "8. LAND CONFLICT RESOLUTION: The act allows for the resolution of land conflicts based on customary laws within the community, promoting traditional conflict resolution.\n\n" +
                         "9. NATIONAL COMMISSION ON INDIGENOUS PEOPLES (NCIP): The NCIP serves as the primary government agency to assist ICCs/IPs, implementing policies, and issuing ancestral land/domain titles.\n\n" +
                         "10. ANCESTRAL DOMAINS FUND: The creation of the Ancestral Domains Fund covers compensation, delineation, and development of ancestral domains, ensuring communities' economic well-being.\n\n",
-                R.drawable.img_299,
-                "https://www.fao.org/faolex/results/details/en/c/LEX-FAOC013930/#:~:text=Philippines-,Indigenous%20Peoples%20Rights%20Act%201997%20(Republic%20Act%20No.,therefor%2C%20and%20for%20other%20purposes.",
-                "https://theowp.org/wp-content/uploads/2021/08/PHIL2770a.jpg")
+
+                "https://theowp.org/wp-content/uploads/2021/08/PHIL2770a.jpg",
+                "https://www.fao.org/faolex/results/details/en/c/LEX-FAOC013930/#:~:text=Philippines-,Indigenous%20Peoples%20Rights%20Act%201997%20(Republic%20Act%20No.,therefor%2C%20and%20for%20other%20purposes."
+           )
         )
 
         dataList.add(
@@ -114,9 +118,10 @@ class GreenGoldRushInfo : AppCompatActivity() {
                         "8. ECONOMIC AND ENVIRONMENTAL BALANCE: The study highlights the delicate balance between economic development and environmental preservation, encouraging students to explore sustainable solutions.\n\n" +
                         "9. PUBLIC INVOLVEMENT: It emphasizes the significance of public participation in decision-making processes, fostering an understanding of civic advocacy in a democratic society.\n\n" +
                         "10. ENVIRONMENTAL EDUCATION: This study promotes environmental education, making students more conscious of the broader issues related to environmental policies and civic advocacy.",
-                R.drawable.img_300,
-                "https://www.rappler.com/environment/234683-restore-tropical-rainforests-around-world-map/",
-                "https://www.rappler.com/tachyon/2023/03/rafflesia-propagation-group.jpg?fit=1024%2C1024")
+
+                "https://www.rappler.com/tachyon/2023/03/rafflesia-propagation-group.jpg?fit=1024%2C1024",
+                "https://www.rappler.com/environment/234683-restore-tropical-rainforests-around-world-map/"
+             )
         )
 
 

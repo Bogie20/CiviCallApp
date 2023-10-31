@@ -40,9 +40,9 @@ class EmergencyPreparednessInfo : AppCompatActivity() {
                         "9. Resource Allocation: Plan for resource allocation and allocation of staff roles in advance, ensuring that critical resources are distributed efficiently during emergencies.\n\n" +
                         "10. Leadership Commitment: Secure commitment from healthcare facility leadership to prioritize disaster preparedness efforts and allocate necessary resources to maintain operations and provide crucial care during and after a disaster.\n\n",
 
-                R.drawable.img_113,
                 "https://www.corporatewellnessmagazine.com/article/5-key-components-effective-disaster-preparedness",
                 "https://www.corporatewellnessmagazine.com/article/5-key-components-effective-disaster-preparedness"
+
             )
         )
         dataList.add(
@@ -59,10 +59,9 @@ class EmergencyPreparednessInfo : AppCompatActivity() {
                         "9. Maintain Adequate Fuel: Keep your vehicle's gas tank at least half full to ensure you can evacuate on short notice.\n\n" +
                         "10. Plan for Those Without Transportation: If you don't have a car, arrange transportation with friends, family, neighbors, or local authorities.\n\n",
 
-
-                R.drawable.img_114,
-                "https://www.habitat.org/our-work/disaster-response/disaster-preparedness-homeowners/family-evacuation-plan",
-                "https://cachevalleyfamilymagazine.com/wp-content/uploads/2022/02/AdobeStock_446004809-scaled.jpeg")
+                "https://cachevalleyfamilymagazine.com/wp-content/uploads/2022/02/AdobeStock_446004809-scaled.jpeg",
+                "https://www.habitat.org/our-work/disaster-response/disaster-preparedness-homeowners/family-evacuation-plan"
+           )
         )
         dataList.add(
             DataItem("Emergency Family Communication Strategies",
@@ -77,9 +76,10 @@ class EmergencyPreparednessInfo : AppCompatActivity() {
                         "8. Familiarize with Text Messaging: Ensure that everyone in your family knows how to send text messages, which can be more reliable during network disruptions than phone calls.\n\n" +
                         "9. Subscribe to Alert Services: Sign up for local alert services that send text messages and emails with crucial information during disasters.\n\n" +
                         "10. Prioritize Communication Methods: In times of crisis, use phone calls sparingly for life-threatening emergencies and rely on text messages, email, and social media for non-emergency communication to prevent network congestion.\n\n",
-                R.drawable.img_115,
-                "https://www.habitat.org/our-work/disaster-response/disaster-preparedness-homeowners/family-communications-plan#:~:text=Prepare%20a%20family%20contact%20sheet,distance%20calls%20than%20local%20calls./",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.arnolditkin.com%2Fblog%2Fmaritime%2Fhow-offshore-workers-communicate-with-loved-ones%2F&psig=AOvVaw1d6keuZcwGoHajTShRhI6e&ust=1696484194397000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCND5oaHW24EDFQAAAAAdAAAAABAE")
+
+                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.arnolditkin.com%2Fblog%2Fmaritime%2Fhow-offshore-workers-communicate-with-loved-ones%2F&psig=AOvVaw1d6keuZcwGoHajTShRhI6e&ust=1696484194397000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCND5oaHW24EDFQAAAAAdAAAAABAE",
+                "https://www.habitat.org/our-work/disaster-response/disaster-preparedness-homeowners/family-communications-plan#:~:text=Prepare%20a%20family%20contact%20sheet,distance%20calls%20than%20local%20calls./"
+              )
         )
 
         dataList.add(
@@ -96,11 +96,9 @@ class EmergencyPreparednessInfo : AppCompatActivity() {
                         "9. Use Electricity Safely: If you notice an electrical appliance smoking or smelling unusual, unplug it immediately and have it serviced. Replace damaged electrical cords and avoid overloading extension cords.\n\n" +
                         "10. Crawl Low Under Smoke: During a fire, smoke rises, and the air near the floor is cleaner. If you must escape through smoke, crawl on your hands and knees to the nearest exit.\n\n",
 
-
-
-                R.drawable.img_116,
-                "https://www.nwcg.gov/ad-positions/srtl",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Faiefire.com%2Fimportant-fire-prevention-safety-measures-in-buildings%2F&psig=AOvVaw1a8SC1TlB3-CH7uP1_XsH7&ust=1696484774291000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIjdi7bY24EDFQAAAAAdAAAAABAE")
+                "https://www.google.com/url?sa=i&url=https%3A%2F%2Faiefire.com%2Fimportant-fire-prevention-safety-measures-in-buildings%2F&psig=AOvVaw1a8SC1TlB3-CH7uP1_XsH7&ust=1696484774291000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIjdi7bY24EDFQAAAAAdAAAAABAE",
+                "https://www.nwcg.gov/ad-positions/srtl"
+             )
         )
 
         dataList.add(
@@ -117,9 +115,10 @@ class EmergencyPreparednessInfo : AppCompatActivity() {
                         "8. Invest Wisely: Diversify your investments to minimize risk and potentially grow your wealth over time. Consult with financial advisors to create an investment portfolio aligned with your long-term financial goals.\n\n" +
                         "9. Budgeting: Create a budget that outlines your income, expenses, and savings goals. Stick to this budget to maintain financial discipline and allocate funds for emergencies.\n\n" +
                         "10. Regular Review: Periodically review and update your financial plan, insurance coverage, and investment strategies to adapt to changing circumstances. Stay proactive in safeguarding your financial well-being.\n\n",
-                R.drawable.img_117,
-                "https://singlife.com.ph/about/blog/5-ways-to-safeguard-your-finances/#:~:text=Insurance%20is%20a%20way%20of,in%20the%20worst%20case%2C%20death.",
-                "https://6rt99wqv.media.zestyio.com/CMS---June-2021-Blogs_Blog-4-boost.png")
+
+                "https://6rt99wqv.media.zestyio.com/CMS---June-2021-Blogs_Blog-4-boost.png",
+                "https://singlife.com.ph/about/blog/5-ways-to-safeguard-your-finances/#:~:text=Insurance%20is%20a%20way%20of,in%20the%20worst%20case%2C%20death."
+           )
         )
             val adapter = DataAdapter(dataList)
 
@@ -128,12 +127,10 @@ class EmergencyPreparednessInfo : AppCompatActivity() {
             override fun onReferenceClick(position: Int) {
                 val clickedItem = dataList[position]
                 val link = clickedItem.link
-
                 // Open the link in a web browser
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
                 startActivity(intent)
             }
-
             override fun onImageClick(position: Int) {
                 val clickedItem = dataList[position]
                 val imageLink = clickedItem.imageLink

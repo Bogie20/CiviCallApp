@@ -41,9 +41,10 @@ class PsychologicalSupportServicesInfo : AppCompatActivity() {
                         "8. EXPERTISE FOR MEDIA: Serve as an expert for local media, providing insights into the psychological aspects of disasters and their impact on communities.\n\n" +
                         "9. RESOURCE DEVELOPMENT: Collaborate with state or territorial psychological associations to develop resources on disaster preparedness and trauma coping strategies.\n\n" +
                         "10. RESILIENCE ENHANCEMENT: Help survivors and response workers enhance their resilience skills, empowering them to cope with the psychological impact of disasters effectively.\n\n",
-                R.drawable.img_48,
-                "https://www.apa.org/topics/disasters-response/disaster-mental-health-psychologists",
-                "https://www.apa.org/images/disaster-mental-health-tile_tcm7-319090.jpg"
+
+                "https://www.apa.org/images/disaster-mental-health-tile_tcm7-319090.jpg",
+                "https://www.apa.org/topics/disasters-response/disaster-mental-health-psychologists"
+
             )
         )
         dataList.add(
@@ -59,9 +60,10 @@ class PsychologicalSupportServicesInfo : AppCompatActivity() {
                         "8. TRAUMA-INFORMED LAW ENFORCEMENT: Collaborate with law enforcement agencies to implement trauma-informed policing practices, including \"Handle With Care\" initiatives to support children exposed to trauma.\n\n" +
                         "9. SELF-CARE FOR HEALTHCARE PROVIDERS: Develop self-care programs and support mechanisms for healthcare providers to prevent burnout and secondary trauma, ensuring they can continue to offer trauma-informed care effectively.\n\n" +
                         "10. CONTINUOUS TRAINING AND EVALUATION: Regularly update and assess trauma-informed care practices, incorporating the latest research and feedback from communities to enhance the quality of care provided.\n\n",
-                R.drawable.img_49,
-                "https://www.ruralhealthinfo.org/rural-monitor/trauma-informed-care",
-                "https://www.ruralhealthinfo.org/rural-monitor/wp-content/uploads/2019/04/gilmartin-bird.jpg")
+
+                "https://www.ruralhealthinfo.org/rural-monitor/wp-content/uploads/2019/04/gilmartin-bird.jpg",
+                "https://www.ruralhealthinfo.org/rural-monitor/trauma-informed-care"
+              )
         )
         dataList.add(
             DataItem("Building Resilience: Strengthening Crisis Counseling and Disaster Response",
@@ -76,11 +78,9 @@ class PsychologicalSupportServicesInfo : AppCompatActivity() {
                         "8. COMMUNITY OUTREACH AND EDUCATION: Launch community outreach and education campaigns to reduce stigma associated with seeking help, raising awareness about available crisis counseling services, and promoting mental well-being.\n\n" +
                         "9. SUPERVISION AND SELF-CARE: Provide ongoing supervision and support for crisis counselors, emphasizing self-care practices to prevent burnout and compassion fatigue, ensuring their sustained effectiveness.\n\n" +
                         "10. CONTINUOUS EVALUATION AND IMPROVEMENT: Establish mechanisms for continuous evaluation and improvement of crisis counseling and disaster response efforts, incorporating feedback from survivors and communities to enhance the quality of services provided.\n\n",
-
-
-                R.drawable.img_50,
-                "https://www.samhsa.gov/dtac/disaster-response-template-toolkit/disaster-responder-stress-management",
-                "https://www.samhsa.gov/sites/default/files/dtac-banner.jpg")
+                "https://www.samhsa.gov/sites/default/files/dtac-banner.jpg",
+                "https://www.samhsa.gov/dtac/disaster-response-template-toolkit/disaster-responder-stress-management"
+            )
         )
         dataList.add(
             DataItem("Building Resilience Through Community Unity: Lessons from Disaster Response.",
@@ -99,9 +99,10 @@ class PsychologicalSupportServicesInfo : AppCompatActivity() {
                         "3. DISASTER-RESILIENT INITIATIVES: Implement disaster-resilient initiatives in urban areas, addressing institutional and investment gaps in disaster preparedness and response.\n\n" +
                         "4. CLIMATE RESILIENCE INTEGRATION: Develop and implement strategies to integrate climate resilience into national and regional development planning, aligning policies with disaster risk reduction.\n\n" +
                         "5. WATERSHED RESILIENCE PROMOTION: Execute projects in critical watersheds to promote climate resilience, emphasizing green growth measures and ecosystem restoration.\n\n",
-                R.drawable.img_51,
-                "https://hazards.colorado.edu/news/research-counts/unity-is-strength-community-resilience-in-puerto-rico-after-hurricane-maria",
-                "https://hazards.colorado.edu/uploads/freeform/option1.jpeg")
+
+                "https://hazards.colorado.edu/uploads/freeform/option1.jpeg",
+                "https://hazards.colorado.edu/news/research-counts/unity-is-strength-community-resilience-in-puerto-rico-after-hurricane-maria"
+              )
         )
 
         dataList.add(
@@ -117,9 +118,10 @@ class PsychologicalSupportServicesInfo : AppCompatActivity() {
                         "8. COMMUNITY OUTREACH: Collaborate with community organizations and schools to reach children who may not have immediate access to mental health services and offer support within their familiar environments.\n\n" +
                         "9. PEER SUPPORT GROUPS: Facilitate peer support groups to allow children and adolescents to connect with their peers, share experiences, and learn from one another in a supportive setting.\n\n" +
                         "10. CONTINUOUS EVALUATION AND RESEARCH: Continuously assess the effectiveness of mental health services, gather feedback from children and their families, and contribute to research on best practices for children's mental health in disaster response.\n\n",
-                R.drawable.img_52,
-                "https://www.samhsa.gov/dtac/disaster-survivors/children-and-disaster",
-                "https://www.unicef.org/sites/default/files/styles/two_column/public/UNI205414.jpg?itok=SmNvSV1n")
+
+                "https://www.unicef.org/drcongo/sites/unicef.org.drcongo/files/styles/hero_tablet/public/PETRONIE%202.jpg?itok=RNbl1uS7",
+                "https://www.samhsa.gov/dtac/disaster-survivors/children-and-disaster"
+            )
         )
         dataList.add(
             DataItem("REVITALIZING RESCUERS: PROMOTING SELF-CARE IN DISASTER RESPONSE.",
@@ -137,10 +139,9 @@ class PsychologicalSupportServicesInfo : AppCompatActivity() {
                         "9. SETTING BOUNDARIES: Remind responders that it's acceptable to set boundaries and say 'no' when necessary, preventing burnout and exhaustion.\n\n" +
                         "10. CAFFEINE AND ALCOHOL AWARENESS: Advise responders to limit caffeine intake and avoid excessive alcohol use, as these substances can exacerbate stress and disrupt sleep patterns.\n\n",
 
-
-                R.drawable.img_460,
-                "https://emergency.cdc.gov/coping/responders.asp",
-                "https://www.sane.org/media/k2/items/cache/f8680441f99906edbba69bc4df69b57e_XL.jpg")
+                "https://www.sane.org/media/k2/items/cache/f8680441f99906edbba69bc4df69b57e_XL.jpg",
+                "https://emergency.cdc.gov/coping/responders.asp"
+              )
         )
         dataList.add(
             DataItem("Healing Beyond the Horizons: Addressing Post-Disaster Stressors in Response Efforts",
@@ -155,9 +156,10 @@ class PsychologicalSupportServicesInfo : AppCompatActivity() {
                         "8. COMMUNITY PARTICIPATION: Foster community participation in developing equitable processes for damage assessments, litigation, payments, and housing in the pre-disaster phase.\n\n" +
                         "9. MONITOR HEALTH INDICATORS: Implement ongoing monitoring of relevant health indicators to assess recovery and resilience-building progress.\n\n" +
                         "10. PROMOTE MENTAL AND SOCIAL WELL-BEING: Prioritize strategies that promote mental and social well-being as integral components of disaster resilience.\n\n",
-                R.drawable.img_55,
-                "https://www.frontiersin.org/articles/10.3389/fpubh.2018.00373/full",
-                    "https://www.ready.gov/sites/default/files/Coping%20with%20Disaster%201.7.4.0%20Tab%203%20of%204_0.jpg")
+
+                "https://www.ready.gov/sites/default/files/Coping%20with%20Disaster%201.7.4.0%20Tab%203%20of%204_0.jpg",
+                "https://www.frontiersin.org/articles/10.3389/fpubh.2018.00373/full"
+               )
         )
 
 

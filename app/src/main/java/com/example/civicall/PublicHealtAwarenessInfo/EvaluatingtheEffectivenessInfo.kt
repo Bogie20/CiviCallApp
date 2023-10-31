@@ -51,9 +51,10 @@ class EvaluatingtheEffectivenessInfo : AppCompatActivity() {
                         "8. EMPHASIZING MEDIA ETHICS: The importance of media ethics is highlighted in the training, with an emphasis on responsible journalism.\n\n" +
                         "9. STRENGTHENING GOVERNMENT-PUBLIC RELATIONS: The project aims to strengthen government-public relations by sharing timely, accurate, and relevant information.\n\n" +
                         "10. PARTNERSHIP FOR EFFECTIVE COMMUNICATION: A partnership between PIA and ZCMC is forged to enhance communication and information dissemination in the healthcare sector.",
-                R.drawable.img_371,
-                "https://pia.gov.ph/features/2022/08/23/the-role-of-communication-in-the-health-sector",
-                "https://pia.gov.ph/uploads/2022/08/c6deb12e6bea2f60352d4ff49909a4c7.jpg"
+
+                "https://pia.gov.ph/uploads/2022/08/c6deb12e6bea2f60352d4ff49909a4c7.jpg",
+                "https://pia.gov.ph/features/2022/08/23/the-role-of-communication-in-the-health-sector"
+
             )
         )
         dataList.add(
@@ -69,9 +70,10 @@ class EvaluatingtheEffectivenessInfo : AppCompatActivity() {
                         "8. MEDIA CAMPAIGN METRICS: Assessing the reach and frequency of traditional media campaigns for targeted audiences.\n\n" +
                         "9. WEBSITE METRICS: Tracking website data, including sources, campaign-specific actions, content engagement, and visitor demographics.\n\n" +
                         "10. SOCIAL LISTENING AND ANECDOTAL EVIDENCE: Monitoring online conversations and assessing anecdotal evidence to gauge the impact of public health campaigns.",
-                R.drawable.img_372,
-                "https://kw2marketing.com/articles/five-proven-strategies-public-health-campaigns",
-                "https://images.ctfassets.net/pdf29us7flmy/56FDHfKmc9l3Q1zavye3Dh/0277fb8041e8327a11c714a22c3437dd/5Cs-of-marketing_DE_Blog_Header_Images_03_.jpg?w=720&q=100&fm=jpg")
+
+                "https://images.ctfassets.net/pdf29us7flmy/56FDHfKmc9l3Q1zavye3Dh/0277fb8041e8327a11c714a22c3437dd/5Cs-of-marketing_DE_Blog_Header_Images_03_.jpg?w=720&q=100&fm=jpg",
+                "https://kw2marketing.com/articles/five-proven-strategies-public-health-campaigns"
+             )
         )
         dataList.add(
             DataItem("BEHAVIOR CHANGE: THE HEART OF PUBLIC HEALTH SUCCESS",
@@ -86,9 +88,10 @@ class EvaluatingtheEffectivenessInfo : AppCompatActivity() {
                         "8. SPECIFICITY IN CAMPAIGNS: SBC encourages organizations to understand their target audience and design campaigns to lower barriers to positive behaviors.\n\n" +
                         "9. EXPERIMENTING WITH TIKTOK: Organizations like the Legal Rights and Natural Resources Center (LRC) are using TikTok to reach younger audiences and promote human rights.\n\n" +
                         "10. SHARING KNOWLEDGE AND RESOURCES: I-ACT shares research findings and resources to help civil society organizations improve their campaigns and advocacy efforts.",
-                R.drawable.img_373,
-                "https://asiafoundation.org/2023/07/26/promoting-social-and-behavior-change-in-the-philippine-human-rights-sector/",
-                "https://asiafoundation.org/wp-content/uploads/2023/07/Andrei-Venal.jpg")
+
+                "https://asiafoundation.org/wp-content/uploads/2023/07/Andrei-Venal.jpg",
+                "https://asiafoundation.org/2023/07/26/promoting-social-and-behavior-change-in-the-philippine-human-rights-sector/"
+             )
         )
 
         dataList.add(
@@ -105,9 +108,10 @@ class EvaluatingtheEffectivenessInfo : AppCompatActivity() {
                         "9. COVID-19 RESPONSE: The Philippines adapted health programs during the pandemic, leveraging telemedicine and promoting health awareness.\n\n" +
                         "10. CHILDHOPE PHILIPPINES INITIATIVES: NGOs like Childhope Philippines run programs for street children, including KalyEskwela, psychosocial interventions, KliniKalye, and skills development.",
 
-                R.drawable.img_374,
-                "https://childhope.org.ph/health-programs-in-the-philippines/",
-                "https://childhope.org.ph/wp-content/uploads/2022/06/childhope-philippines-kalyeskwela-e1656894116674.jpg")
+
+                "https://childhope.org.ph/wp-content/uploads/2022/06/childhope-philippines-kalyeskwela-e1656894116674.jpg",
+                "https://childhope.org.ph/health-programs-in-the-philippines/"
+            )
         )
 
         dataList.add(
@@ -123,9 +127,10 @@ class EvaluatingtheEffectivenessInfo : AppCompatActivity() {
                         "8. AIR QUALITY CONCERNS: Climate change's impact on air quality is a pressing public health issue.\n\n" +
                         "9. ASSESSING VULNERABILITIES: Identifying vulnerable populations and locations is essential for effective climate-related public health strategies.\n\n" +
                         "10. CDC's BRACE FRAMEWORK: The CDC's five-step process aids in developing resilient public health initiatives.",
-                R.drawable.img_375,
-                "https://www.epa.gov/arc-x/public-health-adaptation-strategies-climate-change",
-                "https://childhope.org.ph/wp-content/uploads/2021/03/childhope-philippines-advocacy-campaign-delivering-hope-1024x1024.jpg")
+
+                "https://childhope.org.ph/wp-content/uploads/2021/03/childhope-philippines-advocacy-campaign-delivering-hope-1024x1024.jpg",
+                "https://www.epa.gov/arc-x/public-health-adaptation-strategies-climate-change"
+           )
         )
 
 

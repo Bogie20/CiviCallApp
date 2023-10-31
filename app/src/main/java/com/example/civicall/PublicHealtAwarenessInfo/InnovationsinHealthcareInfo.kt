@@ -53,9 +53,10 @@ class InnovationsinHealthcareInfo : AppCompatActivity() {
                         "8. CIRCULARITY FOR SUSTAINABILITY: Sustainable healthcare models and circular practices can reduce waste, cut costs, and lower emissions.\n\n" +
                         "9. DECARBONIZING THE INDUSTRY: Healthcare leaders are taking steps to reduce their carbon footprint through energy-efficient technology and responsible sourcing.\n\n" +
                         "10. ENVIRONMENTAL HEALTH: Awareness is growing about the impact of environmental factors on human health, driving health systems to address broader environmental impacts.",
-                R.drawable.img_351,
-                "https://www.philips.com.ph/a-w/about/news/archive/standard/news/articles/2023/20230116-10-healthcare-technology-trends-for-2023.html",
-                "https://www.philips.com.ph/c-dam/corporate/newscenter/global/standard/resources/healthcare/2023/10-healthcare-technology-trends-for-2023/9-decarbonizing.jpg"
+
+                "https://www.philips.com.ph/c-dam/corporate/newscenter/global/standard/resources/healthcare/2023/10-healthcare-technology-trends-for-2023/9-decarbonizing.jpg",
+                "https://www.philips.com.ph/a-w/about/news/archive/standard/news/articles/2023/20230116-10-healthcare-technology-trends-for-2023.html"
+
             )
         )
         dataList.add(
@@ -71,9 +72,10 @@ class InnovationsinHealthcareInfo : AppCompatActivity() {
                         "8. IMPACT ON MEDICATION MANAGEMENT: Mobile apps can provide detailed medication histories, reducing the risk of drug interactions.\n\n" +
                         "9. BOOST TO REMOTE PATIENT MONITORING: The Center for Medicare and Medicaid Services (CMS) now covers remote patient monitoring, creating new revenue streams for healthcare organizations.\n\n" +
                         "10. COORDINATION OF CARE: Mobile health solutions like Clinical Event Notifications improve care transitions and coordination across healthcare settings.",
-                R.drawable.img_352,
-                "https://blog.cureatr.com/benefits-of-mobile-health-technology",
-                "https://cdn2.hubspot.net/hubfs/4184981/images/blog/Cureatr-Blog-Sep%202019-3.jpg")
+
+                "https://cdn2.hubspot.net/hubfs/4184981/images/blog/Cureatr-Blog-Sep%202019-3.jpg",
+                "https://blog.cureatr.com/benefits-of-mobile-health-technology"
+                )
         )
         dataList.add(
             DataItem("EHEALTH: BRIDGING THE DIGITAL DIVIDE IN HEALTHCARE",
@@ -88,9 +90,10 @@ class InnovationsinHealthcareInfo : AppCompatActivity() {
                         "8. DISEASE MANAGEMENT: Technology is aiding in the management and even curing of previously incurable diseases.\n\n" +
                         "9. DRONES IN HEALTHCARE: Remote areas benefit from drone deliveries of medicines and health accessories.\n\n" +
                         "10. THE DIGITAL HEALTHCARE DIVIDE: The Philippines must embrace eHealth and ensure its benefits outweigh the costs to bridge healthcare disparities.",
-                R.drawable.img_353,
-                "https://www.pwc.com/ph/en/publications/ph-columns/pwc-needles-in-a-haystack/embracing-new-healthcare-technologies-that-empower-Filipinos.html",
-                "https://lh4.googleusercontent.com/PWk6JpQnZ2V5hDd4Br-LeJYGdRH17zxY15Cda6AiCwc9P3MN7ojvZAoy_iWP94Zv3WCgtqsKliH3ilwicx5WKnkaL85hWL1UIOffRFiHV9UPFo9Q6QHDE4xMAeW8oyGdFkBOJt9Z")
+
+                "https://lh4.googleusercontent.com/PWk6JpQnZ2V5hDd4Br-LeJYGdRH17zxY15Cda6AiCwc9P3MN7ojvZAoy_iWP94Zv3WCgtqsKliH3ilwicx5WKnkaL85hWL1UIOffRFiHV9UPFo9Q6QHDE4xMAeW8oyGdFkBOJt9Z",
+                "https://www.pwc.com/ph/en/publications/ph-columns/pwc-needles-in-a-haystack/embracing-new-healthcare-technologies-that-empower-Filipinos.html"
+            )
         )
 
         dataList.add(
@@ -107,11 +110,11 @@ class InnovationsinHealthcareInfo : AppCompatActivity() {
                         "8. AIDE: AIDE offers robust telehealth services, including laboratory testing and nursing care, in addition to online consultations.\n\n" +
                         "9. DOCTOR ANYWHERE: Doctor Anywhere's app provides online video consultations with licensed doctors for various medical specialties.\n\n" +
                         "10. GENERIKA LIBRENG TELEKONSULTA: Generika Drugstore offers free medical consultations over the phone to cater to Filipinos' healthcare needs.",
-                R.drawable.img_354,
-                "https://www.moneymax.ph/lifestyle/articles/telehealth-online-medical-consultation",
-                "https://25174313.fs1.hubspotusercontent-eu1.net/hub/25174313/hubfs/assets_moneymax/woman-in-a-video-call-with-a-covid-19-patient-4031710.jpg?width=1013&height=674&name=woman-in-a-video-call-with-a-covid-19-patient-4031710.jpg")
-        )
 
+                "https://25174313.fs1.hubspotusercontent-eu1.net/hub/25174313/hubfs/assets_moneymax/woman-in-a-video-call-with-a-covid-19-patient-4031710.jpg?width=1013&height=674&name=woman-in-a-video-call-with-a-covid-19-patient-4031710.jpg",
+                "https://www.moneymax.ph/lifestyle/articles/telehealth-online-medical-consultation"
+              )
+        )
         dataList.add(
             DataItem("DIGITAL HEALTH SOLUTIONS: TRANSFORMING THE PATIENT EXPERIENCE",
                 "Unlocking the Future of Healthcare: Digital solutions are revolutionizing the patient experience in the Philippines. Explore how technology and innovation are enhancing patient engagement and reshaping the healthcare landscape.\n\n\n" +
@@ -125,9 +128,10 @@ class InnovationsinHealthcareInfo : AppCompatActivity() {
                         "8. RESEARCH AND DEVELOPMENT (R&D): R&D in digital health is multifaceted, involving policies, services, and interventions to improve the healthcare system.\n\n" +
                         "9. ADOPTION OF DIGITAL TECHNOLOGIES: Adapting and integrating digital healthcare technologies is crucial for advancing healthcare in the country.\n\n" +
                         "10. DIGITAL HEALTHCARE ECOSYSTEM: A comprehensive approach, combining internet accessibility, innovation, inclusion, and a robust R&D backbone, will shape the future of healthcare in the Philippines.",
-                R.drawable.img_355,
-                "https://www.pchrd.dost.gov.ph/news_and_updates/what-the-future-of-digital-healthcare-would-look-like-in-the-philippines/",
-                "https://www.pchrd.dost.gov.ph/wp-content/uploads/2023/03/RJC03428.jpg")
+
+                "https://www.pchrd.dost.gov.ph/wp-content/uploads/2023/03/RJC03428.jpg",
+                "https://www.pchrd.dost.gov.ph/news_and_updates/what-the-future-of-digital-healthcare-would-look-like-in-the-philippines/"
+            )
         )
 
 

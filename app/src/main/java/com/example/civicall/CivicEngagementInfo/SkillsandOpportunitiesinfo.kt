@@ -37,9 +37,8 @@ class SkillsandOpportunitiesinfo : AppCompatActivity() {
                         "9. Leadership Assessment: Utilize leadership assessment tools to help students identify their strengths and areas for growth, empowering them to become more effective civic leaders.\n\n" +
                         "10. Civic Leadership Capstone: Culminate the educational journey with a civic leadership capstone project, where students design and execute initiatives that address pressing societal challenges, solidifying their leadership and civic engagement skills.",
 
-                R.drawable.img_135,
-                "https://journalofleadershiped.org/jole_articles/the-role-of-civic-engagement-in-undergraduate-leadership-courses/",
-                "https://pwc.edu.ph/wp-content/uploads/2017/12/image053.jpg"
+                "https://pwc.edu.ph/wp-content/uploads/2017/12/image053.jpg",
+                "https://journalofleadershiped.org/jole_articles/the-role-of-civic-engagement-in-undergraduate-leadership-courses/"
             )
         )
         dataList.add(
@@ -56,10 +55,9 @@ class SkillsandOpportunitiesinfo : AppCompatActivity() {
                         "9. Strategic Nonviolent Action: Employ nonviolent strategies and tactics that align with your goals, such as protests, demonstrations, or awareness campaigns.\n\n" +
                         "10. Evaluation and Adaptation: Continuously assess your progress, adapt to changing circumstances, and refine your approach based on lessons learned.\n\n",
 
-
-                R.drawable.img_136,
-                "https://www.ascd.org/blogs/empowering-students-as-change-agents",
-                "https://ecowebph.org/wp-content/uploads/2019/10/IMG_4694-scaled.jpg")
+                "https://ecowebph.org/wp-content/uploads/2019/10/IMG_4694-scaled.jpg",
+                "https://www.ascd.org/blogs/empowering-students-as-change-agents"
+             )
         )
         dataList.add(
             DataItem("MENTORSHIP AND CIVIC GROWTH",
@@ -74,9 +72,10 @@ class SkillsandOpportunitiesinfo : AppCompatActivity() {
                         "8. Regular Check-Ins: Implement a system for regular check-ins between mentors and students to track progress, provide guidance, and offer support.\n\n" +
                         "9. Assessment and Feedback: Continuously assess the outcomes of the program, focusing on students' sense of institutional belonging and civic growth, and gather feedback for improvement.\n\n" +
                         "10. Personalized Education: Ensure that the Pathways for Civic Growth project contributes to a personalized educational experience, allowing students to tailor their learning journey through community engagement.\n\n",
-                R.drawable.img_137,
-                "https://www.studentsuccess.pitt.edu/content/pathways-civic-growth-implementing-model-civic-mentoring",
-                "https://tciurbanhealth.org/wp-content/uploads/2020/11/phil-fix2.jpeg")
+
+                "https://tciurbanhealth.org/wp-content/uploads/2020/11/phil-fix2.jpeg",
+                "https://www.studentsuccess.pitt.edu/content/pathways-civic-growth-implementing-model-civic-mentoring"
+                )
         )
 
         dataList.add(
@@ -93,11 +92,9 @@ class SkillsandOpportunitiesinfo : AppCompatActivity() {
                         "9. Reflective Practices: Incorporate mechanisms for reflection into leadership activities, helping students analyze their actions and decisions to continuously improve their leadership abilities.\n\n" +
                         "10. Recognition and Celebration: Acknowledge and celebrate student leaders who demonstrate consistent dedication and perseverance in their leadership roles. This recognition reinforces their commitment to making a difference.\n\n",
 
-
-
-                R.drawable.img_139,
-                "https://www.mhskids.org/blog/5-tips-for-empowering-student-leaders/",
-                "https://images.squarespace-cdn.com/content/v1/5e20c70a7802d9509b9aeff2/1660252674363-6B2QEJYYOO8BBXXQV9VY/unsplash-image-zFSo6bnZJTw.jpg")
+                "https://images.squarespace-cdn.com/content/v1/5e20c70a7802d9509b9aeff2/1660252674363-6B2QEJYYOO8BBXXQV9VY/unsplash-image-zFSo6bnZJTw.jpg",
+                "https://www.mhskids.org/blog/5-tips-for-empowering-student-leaders/"
+                )
         )
 
         dataList.add(
@@ -114,9 +111,10 @@ class SkillsandOpportunitiesinfo : AppCompatActivity() {
                         "8. Outcome-Oriented Design: Design the program with clear, measurable outcomes in mind, aligning it with the desired leadership competencies and the overarching goals of civic engagement.\n\n" +
                         "9. External Collaboration: Seek input and collaboration from external stakeholders, including experts and practitioners in the field of civic engagement, to ensure the program's relevance and effectiveness.\n\n" +
                         "10. Online Program Optimization: If transitioning to online formats, design programs specifically for the online environment rather than merely transferring in-person content. Follow best practices for online program design to maximize engagement and effectiveness.\n\n",
-                R.drawable.img_140,
-                "https://www.linkedin.com/pulse/8-evidence-based-practices-designing-leadership-development-duns/",
-                "https://www.purdue.edu/vpsl/leadership/images/Website-CELD.jpg")
+
+                "https://www.purdue.edu/vpsl/leadership/images/Website-CELD.jpg",
+                "https://www.linkedin.com/pulse/8-evidence-based-practices-designing-leadership-development-duns/"
+                )
         )
 
         val adapter = DataAdapter(dataList)

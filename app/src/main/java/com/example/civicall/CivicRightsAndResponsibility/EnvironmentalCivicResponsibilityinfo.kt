@@ -37,9 +37,10 @@ class EnvironmentalCivicResponsibilityinfo : AppCompatActivity() {
                         "8. SUSTAINABLE DEVELOPMENT: Students can connect the study to the broader concept of sustainable development, emphasizing that access to clean water is a pivotal element in achieving sustainability.\n\n" +
                         "9. COMMUNITY INVOLVEMENT: Understanding the role of the public in decision-making processes related to water services, students can learn about the importance of community involvement in environmental issues.\n\n" +
                         "10. ADVOCACY AND POLICY INFLUENCE: This study empowers students to engage in advocacy for water rights and may inspire future policymakers to shape regulations that ensure access to clean water for all Filipinos.\n\n",
-                R.drawable.img_245,
-                "https://www.rappler.com/voices/thought-leaders/230328-water-human-right/",
-                "https://www.rappler.com/tachyon/r3-assets/B1F8D5430D78478F90EF00BEDDB3BE21/img/6D2324C049104709919382B1DBDC8473/water-human-right-may-12-2019.jpg?resize=640%2C360&zoom=1"
+
+                "https://www.rappler.com/tachyon/r3-assets/B1F8D5430D78478F90EF00BEDDB3BE21/img/6D2324C049104709919382B1DBDC8473/water-human-right-may-12-2019.jpg?resize=640%2C360&zoom=1",
+                "https://www.rappler.com/voices/thought-leaders/230328-water-human-right/"
+
             )
         )
         dataList.add(
@@ -55,9 +56,10 @@ class EnvironmentalCivicResponsibilityinfo : AppCompatActivity() {
                         "8. EMPOWERMENT: Learning about the successful advocacy and empowerment of indigenous communities can inspire students to actively engage in social and environmental causes.\n" +
                         "9. GLOBAL PERSPECTIVE: The study connects local issues with global conservation efforts, fostering a broader perspective on environmental conservation and Indigenous Peoples' rights.\n" +
                         "10. FUTURE LEADERSHIP: By studying the achievements and challenges of indigenous leaders, students are encouraged to become future leaders in environmental conservation and cultural preservation in the Philippines.\n",
-                R.drawable.img_246,
-                "https://www.thegef.org/newsroom/feature-stories/indigenous-peoples-philippines-leading-conservation-efforts",
-                "https://www.thegef.org/sites/default/files/styles/main_image_content_width/public/undp_philippines_indigenous_peoples_news.jpg?h=e85f6c07&itok=Mo2o2YVL")
+
+                "https://www.thegef.org/sites/default/files/styles/main_image_content_width/public/undp_philippines_indigenous_peoples_news.jpg?h=e85f6c07&itok=Mo2o2YVL",
+                "https://www.thegef.org/newsroom/feature-stories/indigenous-peoples-philippines-leading-conservation-efforts"
+         )
         )
         dataList.add(
             DataItem("ENVIRONMENTAL JUSTICE AND CIVIC RESPONSIBILITY IN THE PHILIPPINES",
@@ -72,9 +74,10 @@ class EnvironmentalCivicResponsibilityinfo : AppCompatActivity() {
                         "8. GLOBAL CITIZENSHIP: It promotes the idea of global citizenship by emphasizing that environmental issues transcend borders and require collective responsibility.\n" +
                         "9. SOCIAL RESPONSIBILITY: Students develop a sense of social responsibility towards vulnerable communities affected by environmental injustices and climate change, fostering empathy and solidarity.\n" +
                         "10. SUSTAINABLE FUTURE: Ultimately, this study inspires students to become champions of environmental justice and civic responsibility, contributing to a more sustainable and equitable future for the Philippines and the world.\n",
-                R.drawable.img_247,
-                "https://www.rappler.com/voices/imho/opinion-philippine-government-must-involve-civil-society-more-climate-policymaking/",
-                "https://www.rappler.com/tachyon/2022/11/civil-society-climate-policymaking-november-18-2022.jpg?resize=1280%2C900&zoom=1")
+
+                "https://www.rappler.com/tachyon/2022/11/civil-society-climate-policymaking-november-18-2022.jpg?resize=1280%2C900&zoom=1",
+                "https://www.rappler.com/voices/imho/opinion-philippine-government-must-involve-civil-society-more-climate-policymaking/"
+              )
         )
 
         dataList.add(
@@ -91,9 +94,10 @@ class EnvironmentalCivicResponsibilityinfo : AppCompatActivity() {
                         "8. CONFLICT RESOLUTION: It offers insights into peaceful conflict resolution methods employed by environmental defenders, which can serve as examples for students in resolving environmental disputes.\n" +
                         "9. INTERSECTIONS OF ACTIVISM: Students explore the overlap of environmental and civic activism, recognizing the interconnectedness of these movements.\n" +
                         "10. GRASSROOTS CHANGE: The study empowers students to recognize that they, too, can drive grassroots change, making a meaningful impact on their local environment and society.\n",
-                R.drawable.img_248,
-                "https://www.rappler.com/voices/thought-leaders/opinion-environmental-defenders-our-heroes/",
-                "https://www.rappler.com/tachyon/2023/04/Environmental-Defenders-our-heroes.jpg?resize=1280%2C720&zoom=1")
+
+                "https://www.rappler.com/tachyon/2023/04/Environmental-Defenders-our-heroes.jpg?resize=1280%2C720&zoom=1",
+                "https://www.rappler.com/voices/thought-leaders/opinion-environmental-defenders-our-heroes/"
+              )
         )
 
         dataList.add(
@@ -109,9 +113,10 @@ class EnvironmentalCivicResponsibilityinfo : AppCompatActivity() {
                         "8. ECONOMIC AND ENVIRONMENTAL BALANCE: The study highlights the delicate balance between economic development and environmental preservation, encouraging students to explore sustainable solutions.\n" +
                         "9. PUBLIC INVOLVEMENT: It emphasizes the significance of public participation in decision-making processes, fostering an understanding of civic advocacy in a democratic society.\n" +
                         "10. ENVIRONMENTAL EDUCATION: This study promotes environmental education, making students more conscious of the broader issues related to environmental policies and civic advocacy.",
-                R.drawable.img_249,
-                "https://www.rappler.com/nation/environmental-advocates-seek-policies-protect-watersheds/",
-                "https://www.rappler.com/tachyon/r3-assets/21AA3697628844BD94E5C8C70B1A8E1B/img/40EC0749252C4F8EAB668978231EBD4D/youth-climate-strike-may-24-2019-007-May-25-2019-011-scaled.jpg")
+
+                "https://www.rappler.com/tachyon/r3-assets/21AA3697628844BD94E5C8C70B1A8E1B/img/40EC0749252C4F8EAB668978231EBD4D/youth-climate-strike-may-24-2019-007-May-25-2019-011-scaled.jpg",
+                "https://www.rappler.com/nation/environmental-advocates-seek-policies-protect-watersheds/"
+                )
         )
 
 

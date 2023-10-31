@@ -40,9 +40,8 @@
                             "9. LIABILITY UNDERSTANDING: Ensure volunteer coordinators understand liability laws in their state, addressing insurance and waivers as necessary.\n\n" +
                             "10. APPRECIATION AND RECOGNITION: Show appreciation and recognition to volunteers regularly, fostering a positive and supportive environment that encourages their dedication.\n\n",
 
-                    R.drawable.img_81,
-                    "https://www.govtech.com/em/disaster/how-to-recruit-retain-organize-volunteers.html",
-                    "https://stock.adobe.com/au/images/happy-volunteer-group-pointing-towards-camera/32032949"
+                    "https://as2.ftcdn.net/v2/jpg/00/32/03/29/1000_F_32032949_XiIpVwVLdjYMXbwxzGW1NUq3PXGgJlPg.jpg",
+                    "https://www.govtech.com/em/disaster/how-to-recruit-retain-organize-volunteers.html"
                 )
             )
             dataList.add(
@@ -62,12 +61,9 @@
                             "9. PUBLIC INFORMATION AND OUTREACH: Collaborate with public information officers to disseminate information about the volunteer coordination centers, needed skills, and volunteer opportunities. Ensure the public is aware of how to get involved.\n\n" +
                             "10. ADAPT AND ADJUST: Continuously assess and adjust volunteer coordination efforts based on the evolving needs of the disaster response. Flexibility and adaptability are key to successful volunteer management.\n\n",
 
-
-
-
-                    R.drawable.img_82,
-                    "http://extension.msstate.edu/publications/managing-volunteers-times-disaster-the-local-volunteer-coordinator%E2%80%99s-role",
-                    "http://extension.msstate.edu/sites/default/files/publication-images/P2958/No.%204_opt.jpg")
+                    "http://extension.msstate.edu/sites/default/files/publication-images/P2958/No.%204_opt.jpg",
+                    "http://extension.msstate.edu/publications/managing-volunteers-times-disaster-the-local-volunteer-coordinator%E2%80%99s-role"
+                  )
             )
             dataList.add(
                 DataItem("Volunteer Skills: Bridging the Gap Between Community Needs and Career Advancement",
@@ -84,9 +80,10 @@
                             "8. EMPATHY: When working with beneficiaries of organizations, it allows us to have a chance at practicing empathy with those who are in different shoes. Being able to see from different perspectives can help us communicate better with those from different backgrounds and reduce the chances of conflict and misunderstanding in the future.\n\n" +
                             "9. SELF-AWARENESS: As you receive feedback from other volunteers and managers, you will get to understand yourself more. Being self-aware and able to reflect is the key to self-improvement. Consider keeping a journal to track what you have learned and also how the volunteering experiences make you feel.\n\n" +
                             "10. ABILITY TO LEARN: The skills required in volunteering can be very diverse. Volunteers also have a chance to play multiple roles. Each new role is a chance to learn new skills. Change is the new constant especially in this rapidly-changing era. The ability to learn will help us to adapt and keep up with the future. We will also never know how certain skills we gain from volunteering will eventually come to use.\n\n",
-                            R.drawable.img_84,
-                    "https://empower2free.com/hacks-on-building-life-skills-by-volunteering/",
-                    "https://empower2free.com/wp-content/uploads/2021/11/Building-Life-Skills-by-Volunteering-Blog-Banner-1.png")
+
+                    "https://empower2free.com/wp-content/uploads/2021/11/Building-Life-Skills-by-Volunteering-Blog-Banner-1.png",
+                    "https://empower2free.com/hacks-on-building-life-skills-by-volunteering/"
+                  )
             )
             dataList.add(
                 DataItem("Ensuring Trust and Capability: Screening and Credentialing Volunteers in Disaster Response",
@@ -104,9 +101,9 @@
                             "8. UTILIZE NATIONAL DATABASES: Use national databases, such as the National Sex Offender Public Registry (NSOPR), to identify applicants registered as sex offenders.\n\n" +
                             "9. EMPHASIZE TRAINING AND PREPAREDNESS: Prioritize training and preparedness among volunteers, ensuring they are well-equipped to respond effectively and safely in disaster situations.\n\n" +
                             "10. MONITOR AND SUPERVISE: Continuously monitor and supervise volunteers, especially during their initial probationary period. Regularly review their performance and adherence to the organization's code of conduct.\n\n",
-         R.drawable.img_83,
-                    "https://www.gettyimages.com/detail/photo/mature-woman-volunteer-with-clipboard-royalty-free-image/1163686588",
-                    "https://www.gettyimages.com/detail/photo/mature-woman-volunteer-with-clipboard-royalty-free-image/1163686588")
+
+                    "https://www.waldenu.edu/media/4543/seo-860-bs-127823438-1200x675?h=484&w=860",
+                    "https://www.galaxydigital.com/blog/the-role-of-volunteers-in-disasters")
             )
             dataList.add(
                 DataItem("Smart and Safe Giving: Tips for Donating to Charities in the Philippines",
@@ -123,12 +120,9 @@
                             "9. AVOID UNSOLICITED REQUESTS: Be cautious of unsolicited donation requests, especially through emails or phone calls. Scammers often take advantage of disaster situations to solicit funds fraudulently.\n\n" +
                             "10. SPREAD AWARENESS: Encourage others to contribute to disaster response efforts by sharing information about trusted organizations and the importance of responsible giving.\n\n",
 
-
-
-
-                    R.drawable.img_85,
-                    "https://www.tatlerasia.com/power-purpose/philanthropy/5-tips-when-donating-to-charities-in-the-philippines",
-                    "https://cdn.tatlerasia.com/tatlerasia/i/2021/08/05130123-joel-muniz-a4ax1apccfa-unsplash_cover_2000x1333.jpg")
+                    "https://cdn.tatlerasia.com/tatlerasia/i/2021/08/05130123-joel-muniz-a4ax1apccfa-unsplash_cover_2000x1333.jpg",
+                    "https://www.tatlerasia.com/power-purpose/philanthropy/5-tips-when-donating-to-charities-in-the-philippines"
+               )
             )
 
 
@@ -156,7 +150,6 @@
                     startActivity(intent)
                 }
             })
-
 
             // Set the adapter for the RecyclerView
             recyclerView.adapter = adapter

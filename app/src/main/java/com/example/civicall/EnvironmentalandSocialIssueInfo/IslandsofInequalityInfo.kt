@@ -36,9 +36,10 @@ class IslandsofInequalityInfo : AppCompatActivity() {
                         "8. LACK OF RESOURCES AND INFRASTRUCTURE: Many schools, especially in rural areas, lack basic amenities like electricity and potable water, affecting the quality of education.\n\n" +
                         "9. GOVERNMENT INVESTMENT IN INFRASTRUCTURE: The government has initiated infrastructure projects and educational programs, like DepEd TV and DepEd Commons, to address resource and infrastructure challenges.\n\n" +
                         "10. THE DIGITAL DIVIDE AND THE IMPACT OF COVID-19: The COVID-19 pandemic has exposed the digital divide, with many students lacking access to technology for online learning, highlighting disparities in education.",
-                R.drawable.img_311,
-                "https://pids.gov.ph/details/news/in-the-news/educational-challenges-in-the-philippines",
-                "https://media.philstar.com/photos/2021/02/17/school2020-08-0221-59-54_2021-02-17_19-06-21.jpg"
+
+                "https://media.philstar.com/photos/2021/02/17/school2020-08-0221-59-54_2021-02-17_19-06-21.jpg",
+                "https://pids.gov.ph/details/news/in-the-news/educational-challenges-in-the-philippines"
+
             )
         )
         dataList.add(
@@ -54,9 +55,10 @@ class IslandsofInequalityInfo : AppCompatActivity() {
                         "8. LEARNING CHALLENGES PERSIST: Despite efforts, a quarter of parents reported that their children are not learning adequately due to limited resources, poor learning environments, and insufficient teaching staff.\n\n" +
                         "9. WORKFORCE IMPACTS: Beyond the education sector, the pandemic led to a significant increase in unemployment rates, affecting the country's workforce.\n\n" +
                         "10. MASS PROMOTION AND LACK OF PROPER ASSESSMENT: The practice of mass promotion, driven by various factors, has contributed to poor student learning outcomes. Additionally, the lack of proper assessment hinders accurate measurement of student progress.\n",
-                R.drawable.img_312,
-                "https://www.pbed.ph/blogs/47/PBEd/State%20of%20Philippine%20Education%20Report%202023",
-                "https://files01.pna.gov.ph/ograph/2023/01/04/ybl8412.jpg")
+
+                "https://files01.pna.gov.ph/ograph/2023/01/04/ybl8412.jpg",
+                "https://www.pbed.ph/blogs/47/PBEd/State%20of%20Philippine%20Education%20Report%202023"
+         )
         )
         dataList.add(
             DataItem("GOVERNMENT INITIATIVES TO IMPROVE ACCESS TO EDUCATION IN THE PHILIPPINES",
@@ -71,9 +73,10 @@ class IslandsofInequalityInfo : AppCompatActivity() {
                         "8. INCLUSIVE EDUCATION: The government is committed to inclusive education and protecting learners from discrimination, including children with disabilities.\n\n" +
                         "9. SUPPORT FOR TEACHERS: Teachers are recognized as essential to education quality, with a focus on providing professional development, reducing administrative burdens, and increasing compensation.\n\n" +
                         "10. HOLISTIC EDUCATION AGENDA: The government's MATATAG Agenda outlines a comprehensive roadmap for improving access to quality education in the Philippines.",
-                R.drawable.img_313,
-                "https://ovp.gov.ph/post/basic-education-report-2023-speech",
-                "https://files01.pna.gov.ph/ograph/2022/08/18/053a0223.jpg")
+
+                "https://files01.pna.gov.ph/ograph/2022/08/18/053a0223.jpg",
+                "https://ovp.gov.ph/post/basic-education-report-2023-speech"
+              )
         )
 
         dataList.add(
@@ -90,9 +93,10 @@ class IslandsofInequalityInfo : AppCompatActivity() {
                         "8. BUSINESS GROWTH: ICT is driving economic growth in the Philippines by improving business operations, expanding market reach, and fostering innovation.\n\n" +
                         "9. FUTURE ROLE OF ICT: The article emphasizes that ICT will continue to be vital in the Philippines, requiring investments in infrastructure and human capital.\n\n" +
                         "10. CONNECTING COMMUNITIES AND ENRICHING LIVES: ICT connects communities through online platforms and enriches lives by offering educational opportunities and entertainment, ultimately forging a digital future for the Philippines.",
-                R.drawable.img_314,
-                "https://pia.gov.ph/features/2023/06/07/national-ict-month-2023-celebrating-technologys-power-to-change-lives#:~:text=ICT%20is%20revolutionizing%20education%20in,and%20to%20assess%20student%20progress.",
-                "https://mb.com.ph/wp-content/uploads/2021/07/19810.jpeg")
+
+                "https://mb.com.ph/wp-content/uploads/2021/07/19810.jpeg",
+                "https://pia.gov.ph/features/2023/06/07/national-ict-month-2023-celebrating-technologys-power-to-change-lives#:~:text=ICT%20is%20revolutionizing%20education%20in,and%20to%20assess%20student%20progress."
+              )
         )
 
         dataList.add(
@@ -109,9 +113,10 @@ class IslandsofInequalityInfo : AppCompatActivity() {
                         "8. TERTIARY LEVEL LICENSING: The article raises concerns about professional licensure examinations, reporting that only 42% of applicants passed in 2019, impacting the country's future workforce.\n\n" +
                         "9. DECLINE IN UNIVERSITY RANKINGS: The University of the Philippines' fall in world university rankings is noted, signaling challenges within the higher education system.\n\n" +
                         "10. HEALTH STATUS AND UNDERNUTRITION: It addresses health concerns, highlighting the Philippines' high infant and child mortality rates, lower life expectancy, and prevalence of stunting, all of which are influenced by socioeconomic factors.",
-                R.drawable.img_315,
-                "https://www.rappler.com/voices/analysis-what-they-do-not-tell-you-about-education-health-systems-problems-philippines/",
-                "https://www.rappler.com/tachyon/2023/06/TL-What-they-dont-tell-Philippines-Education-Health-June-6-2023.jpg?resize=1280%2C720&zoom=1")
+
+                "https://www.rappler.com/tachyon/2023/06/TL-What-they-dont-tell-Philippines-Education-Health-June-6-2023.jpg?resize=1280%2C720&zoom=1",
+                "https://www.rappler.com/voices/analysis-what-they-do-not-tell-you-about-education-health-systems-problems-philippines/"
+             )
         )
 
 

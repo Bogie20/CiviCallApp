@@ -38,9 +38,9 @@ class ElNinoInfo : AppCompatActivity() {
                         "9. SMART KITCHEN PRACTICES: Don't let the faucet run while washing rice, fruits, and vegetables, and reuse this water for plant irrigation.\n\n" +
                         "10. EFFICIENT COOKING: Steam vegetables instead of boiling and use the correct pot or pan size to minimize water consumption.\n\n",
 
-                R.drawable.img_201,
-                "https://newsinfo.inquirer.net/1799837/pro-envt-group-urges-public-to-prepare-for-el-nino-gives-tips-on-water-conservation#:~:text=Collect%20water%20dripping%20from%20air,lessen%20the%20use%20of%20water.",
-                "https://media.philstar.com/photos/2020/02/24/water_2020-02-24_22-14-30371_thumbnail.jpg"
+                "https://media.philstar.com/photos/2020/02/24/water_2020-02-24_22-14-30371_thumbnail.jpg",
+                "https://newsinfo.inquirer.net/1799837/pro-envt-group-urges-public-to-prepare-for-el-nino-gives-tips-on-water-conservation#:~:text=Collect%20water%20dripping%20from%20air,lessen%20the%20use%20of%20water."
+
             )
         )
         dataList.add(
@@ -56,9 +56,10 @@ class ElNinoInfo : AppCompatActivity() {
                         "8. EFFICIENT WATER ALLOCATION: Collaborate with irrigation associations to ensure the efficient allocation and utilization of water in irrigation systems.\n\n" +
                         "9. MONITORING AND INTERVENTION: Establish a task force to monitor and implement strategies that mitigate the impact of prolonged drought on agriculture and fisheries.\n\n" +
                         "10. RESILIENT FARMING PRACTICES: Educate farmers about diversified sources of food and income, enabling them to adapt to adverse weather conditions through resilient farming practices.\n\n",
-                R.drawable.img_202,
-                "https://www.officialgazette.gov.ph/2014/05/07/da-prepared-to-tackle-el-nino/#:~:text=Meanwhile%2C%20farmers%20who%20don't,saving%20technologies%20are%20also%20available.",
-                "https://www.benarnews.org/english/news/philippine/philippines-economy-04062019174245.html/190406-PH-El-Nino-1000.JPG/@@images/image")
+
+                "https://www.benarnews.org/english/news/philippine/philippines-economy-04062019174245.html/190406-PH-El-Nino-1000.JPG/@@images/image",
+                "https://www.officialgazette.gov.ph/2014/05/07/da-prepared-to-tackle-el-nino/#:~:text=Meanwhile%2C%20farmers%20who%20don't,saving%20technologies%20are%20also%20available."
+            )
         )
         dataList.add(
             DataItem("RAINWATER HARVESTING TECHNIQUES",
@@ -73,9 +74,10 @@ class ElNinoInfo : AppCompatActivity() {
                         "8. REGULATORY COMPLIANCE: Adhere to local regulations and guidelines related to rainwater harvesting to ensure legal and safe practices.\n\n" +
                         "9. PERIODIC MAINTENANCE: Establish a regular maintenance schedule to clean and maintain the harvesting infrastructure for optimal functionality.\n\n" +
                         "10. MONITORING AND EFFICIENCY: Implement monitoring systems to track rainwater collection and usage, optimizing its efficiency and sustainability.",
-                R.drawable.img_203,
-                "https://balikas.net/rainwater-harvesting-solution-to-counter-el-nino/",
-                "https://5.imimg.com/data5/ZH/UO/HQ/SELLER-6136224/recharging-rainwater-harvesting-system-500x500.jpg")
+
+                "https://5.imimg.com/data5/ZH/UO/HQ/SELLER-6136224/recharging-rainwater-harvesting-system-500x500.jpg",
+                "https://balikas.net/rainwater-harvesting-solution-to-counter-el-nino/"
+             )
         )
 
         dataList.add(
@@ -92,9 +94,9 @@ class ElNinoInfo : AppCompatActivity() {
                         "9. REGULAR MONITORING: Establish a monitoring system to track the effectiveness of dry toilets, hygiene practices, and rainwater harvesting, ensuring the long-term success of the initiative.\n\n" +
                         "10. SUSTAINABILITY PLANNING: Develop a sustainability plan to continue supporting communities in water, sanitation, and hygiene even beyond the El Nino crisis, helping them become more resilient to future challenges.",
 
-                R.drawable.img_204,
-                "https://www.globalgiving.org/projects/el-nino-water-sanitation-and-hygiene-initiative-1/",
-                "https://www.makatimed.net.ph/wp-content/uploads/2021/01/1000-1-3.jpg")
+                "https://www.makatimed.net.ph/wp-content/uploads/2021/01/1000-1-3.jpg",
+                "https://www.globalgiving.org/projects/el-nino-water-sanitation-and-hygiene-initiative-1/"
+              )
         )
 
         dataList.add(
@@ -110,9 +112,10 @@ class ElNinoInfo : AppCompatActivity() {
                         "8. PLANTING CALENDAR ADJUSTMENT: Adjust planting calendars to align with expected El Niño conditions, optimizing crop growth.\n\n" +
                         "9. INPUT BUFFER STOCKING: Establish a buffer stock of essential agricultural inputs to mitigate supply chain disruptions during El Niño.\n\n" +
                         "10. PROMOTION OF RESILIENT CROPS: Encourage the cultivation of short-cycle and drought-tolerant crops to enhance agricultural resilience during dry spells.\n",
-                R.drawable.img_205,
-                "https://www.pna.gov.ph/index.php/articles/1203047",
-                "https://oxfam.org.ph/wp-content/uploads/2023/05/DSC_0310-1024x683.jpg")
+
+                "https://oxfam.org.ph/wp-content/uploads/2023/05/DSC_0310-1024x683.jpg",
+                "https://www.pna.gov.ph/index.php/articles/1203047"
+)
         )
 
 
@@ -142,13 +145,6 @@ class ElNinoInfo : AppCompatActivity() {
 
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
-
-
-
-
-
-
-
 
     }
 }

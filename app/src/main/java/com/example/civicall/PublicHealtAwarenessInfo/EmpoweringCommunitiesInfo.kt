@@ -52,9 +52,10 @@ class EmpoweringCommunitiesInfo : AppCompatActivity() {
                         "8. MODEL RESPONSE IN CALOOCAN CITY: Barangay 28 in Caloocan City developed a successful COVID-19 response model, recognizing the importance of adequately supporting and compensating CHWs.\n\n" +
                         "9. COMMUNITY ENGAGEMENT: Barangay 28 prioritized community engagement through house-to-house visits, daily health monitoring, and real conversations with residents.\n\n" +
                         "10. PROPOSED LEGISLATION: Rep. Angelica Natasha Co introduced House Bill No. 3985 advocating for standard honorariums, medical assistance, and benefits for CHWs, highlighting their essential role in public health.",
-                R.drawable.img_342,
-                "https://newsinfo.inquirer.net/1334687/their-local-knowledge-is-key-to-effective-contact-tracing",
-                "https://newsinfo.inquirer.net/files/2020/09/News79557-e1599935163960.jpg"
+
+                "https://newsinfo.inquirer.net/files/2020/09/News79557-e1599935163960.jpg",
+                "https://newsinfo.inquirer.net/1334687/their-local-knowledge-is-key-to-effective-contact-tracing"
+
             )
         )
         dataList.add(
@@ -70,9 +71,10 @@ class EmpoweringCommunitiesInfo : AppCompatActivity() {
                         "8. POLICY COORDINATION: Encourage coordination and alignment between different local health policies and funding sources to reduce disparities in healthcare provision.\n\n" +
                         "9. COMMUNITY ENGAGEMENT: Foster community engagement and support for BHCs through collaboration with local leaders and private organizations.\n\n" +
                         "10. RESEARCH AND ADVOCACY: Promote research and advocacy efforts to highlight the importance of BHCs in achieving health equity, which can drive policy changes and increased funding.",
-                R.drawable.img_343,
-                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10481217/#:~:text=The%20Philippines'%20primary%20care%20is,barangay%20health%20workers%20(BHWs).",
-                "https://files01.pna.gov.ph/ograph/2021/07/13/central-3.jpg")
+
+                "https://files01.pna.gov.ph/ograph/2021/07/13/central-3.jpg",
+                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10481217/#:~:text=The%20Philippines'%20primary%20care%20is,barangay%20health%20workers%20(BHWs)."
+            )
         )
         dataList.add(
             DataItem("EDUCATING FOR HEALTH: THE POWER OF COMMUNITY HEALTH EDUCATION",
@@ -87,9 +89,10 @@ class EmpoweringCommunitiesInfo : AppCompatActivity() {
                         "8. TARGETED HEALTH EDUCATION: HEALTH EDUCATION SHOULD BE TAILORED TO MEET THE SPECIFIC NEEDS AND DEMOGRAPHICS OF DIFFERENT POPULATIONS FOR INCREASED RELEVANCE AND EFFECTIVENESS.\n\n" +
                         "9. LIFE SKILLS AND CRITICAL THINKING: HEALTH EDUCATION IMPARTS NOT ONLY KNOWLEDGE BUT ALSO ESSENTIAL LIFE SKILLS AND CRITICAL THINKING ABILITIES, ENABLING INDIVIDUALS TO NAVIGATE COMPLEX HEALTH CHALLENGES.\n\n" +
                         "10. DIGITAL HEALTH EDUCATION AND YOUTH EMPOWERMENT: INCORPORATING DIGITAL PLATFORMS ENHANCES ACCESSIBILITY, AND EMPOWERING YOUTH THROUGH EDUCATION FROM AN EARLY AGE IS VITAL FOR INFORMED DECISION-MAKING AND HEALTHY LIVES.",
-                R.drawable.img_344,
-                "https://www.itmedicalteam.pl/articles/the-power-of-health-education-empowering-individuals-for-a-better-future-121260.html",
-                "https://childhope.org.ph/wp-content/uploads/2021/11/childhope-philippines-health-seminar-e1637221377162.jpg")
+
+                "https://childhope.org.ph/wp-content/uploads/2021/11/childhope-philippines-health-seminar-e1637221377162.jpg",
+                "https://www.itmedicalteam.pl/articles/the-power-of-health-education-empowering-individuals-for-a-better-future-121260.html"
+             )
         )
 
         dataList.add(
@@ -106,9 +109,10 @@ class EmpoweringCommunitiesInfo : AppCompatActivity() {
                         "8. PUBLIC HEALTH SURVEILLANCE: BHWs also contribute to public health surveillance, tracking and addressing health needs.\n\n" +
                         "9. CHALLENGES OF POLITICAL CONNECTIONS: Socio-political connections often determine BHW appointments.\n\n" +
                         "10. ECONOMIC AND NON-MONETARY REWARDS: While honoraria and allowances are provided, many BHWs also work part-time and contribute their own resources to fulfill their roles.",
-                R.drawable.img_345,
-                "https://bmchealthservres.biomedcentral.com/articles/10.1186/s12913-020-05699-0",
-                "https://www.healthfuturesfoundation.com/wp-content/uploads/2022/04/Banner-HFI-WHO-Western-Pacific-Innovation-Challenge-e1650889195392.jpg")
+
+                "https://www.healthfuturesfoundation.com/wp-content/uploads/2022/04/Banner-HFI-WHO-Western-Pacific-Innovation-Challenge-e1650889195392.jpg",
+                "https://bmchealthservres.biomedcentral.com/articles/10.1186/s12913-020-05699-0"
+             )
         )
 
         dataList.add(
@@ -124,9 +128,10 @@ class EmpoweringCommunitiesInfo : AppCompatActivity() {
                         "8. SUPPORTIVE WORKFORCE: Young HCPs value collaborative cultures that combine technology with professional autonomy, impacting performance and work-life balance.\n\n" +
                         "9. ENGAGING THE WORKFORCE: Advancements excite younger HCPs, but education in data analysis and data-sharing technology is vital for the medical field's digitization.\n\n" +
                         "10. LOWERING INTERNAL BARRIERS: To harness the potential of younger HCPs, organizations must promote inclusivity and create platforms for their perspectives, paving the way for transformative healthcare.",
-                R.drawable.img_341,
-                "https://business.inquirer.net/317249/empowering-younger-healthcare-professionals-by-creating-the-ideal-working-environment",
-                "https://www.unicef.org/philippines/sites/unicef.org.philippines/files/styles/hero_desktop/public/UNIPH2020-WHD-BARMM.JPG?itok=H0je4qfg")
+
+                "https://www.unicef.org/philippines/sites/unicef.org.philippines/files/styles/hero_desktop/public/UNIPH2020-WHD-BARMM.JPG?itok=H0je4qfg",
+                "https://business.inquirer.net/317249/empowering-younger-healthcare-professionals-by-creating-the-ideal-working-environment"
+             )
         )
 
 

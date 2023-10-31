@@ -36,9 +36,8 @@ class SustainabilityInitiativesInfo : AppCompatActivity() {
                         "9. LEVERAGE TECHNOLOGY: Utilize social media, websites, and digital platforms to connect with a wider audience, share information, and mobilize support for environmental causes.\n\n" +
                         "10. CELEBRATE ACHIEVEMENTS: Recognize and celebrate the achievements of student activists and their contributions to environmental sustainability through awards, events, and acknowledgments.\n\n",
 
-                R.drawable.img_164,
-                "https://www.mdpi.com/2076-0760/6/4/134",
-                "https://samoaconservationsociety.files.wordpress.com/2017/07/rse-workers.jpg?w=820"
+                "https://samoaconservationsociety.files.wordpress.com/2017/07/rse-workers.jpg?w=820",
+                "https://www.mdpi.com/2076-0760/6/4/134"
             )
         )
         dataList.add(
@@ -55,10 +54,9 @@ class SustainabilityInitiativesInfo : AppCompatActivity() {
                         "9. ENVIRONMENTAL STEWARDSHIP: By participating in green initiatives, students become stewards of the environment, responsible for its protection and preservation.\n\n" +
                         "10. FUTURE LEADERS: Students involved in environmental activism are poised to become future leaders committed to sustainability and civic engagement.\n\n",
 
-
-                R.drawable.img_165,
-                "https://www.ilo.org/global/about-the-ilo/history/centenary/WCMS_467270/lang--en/index.htm",
-                "https://www.licas.news/wp-content/uploads/2020/03/2018.04.21-Eco-Walk-For-the-Environment-JC-1.jpg")
+                "https://www.licas.news/wp-content/uploads/2020/03/2018.04.21-Eco-Walk-For-the-Environment-JC-1.jpg",
+                "https://www.ilo.org/global/about-the-ilo/history/centenary/WCMS_467270/lang--en/index.htm"
+                )
         )
         dataList.add(
             DataItem("SUSTAINABILITY IN EDUCATION",
@@ -73,9 +71,10 @@ class SustainabilityInitiativesInfo : AppCompatActivity() {
                         "8. RESOURCE OPTIMIZATION: Implement sustainable practices within educational institutions, such as energy conservation, waste reduction, and eco-friendly campus designs.\n\n" +
                         "9. RESEARCH AND INNOVATION: Encourage research on sustainability issues and support innovative solutions developed by students and faculty.\n\n" +
                         "10. GLOBAL COLLABORATION: Foster international partnerships and exchanges to share knowledge and best practices in sustainability education and civic engagement.\n\n",
-                R.drawable.img_455,
-                "https://www.apn-gcr.org/bulletin/article/venturing-sustainability-political-lessons-from-civic-engagement-and-transformative-learning-in-asia/",
-                "https://sustainability.batstate-u.edu.ph/wp-content/uploads/slider4/SDGPhotoslide1.jpeg")
+
+                "https://sustainability.batstate-u.edu.ph/wp-content/uploads/slider4/SDGPhotoslide1.jpeg",
+                "https://www.apn-gcr.org/bulletin/article/venturing-sustainability-political-lessons-from-civic-engagement-and-transformative-learning-in-asia/"
+              )
         )
 
         dataList.add(
@@ -92,11 +91,9 @@ class SustainabilityInitiativesInfo : AppCompatActivity() {
                         "9. WASTE REDUCTION INITIATIVES: Implement strategies to reduce single-use plastics and packaging within the community, such as promoting reusable bags and containers.\n\n" +
                         "10. MEASURE AND CELEBRATE PROGRESS: Continuously monitor and measure the environmental impact of your initiatives, and celebrate milestones and successes to inspire further engagement and commitment.\n\n",
 
-
-
-                R.drawable.img_168,
-                "https://www.peopleandthesea.org/community-engagement-philippines/",
-                "https://ik.imagekit.io/tvlk/blog/2019/01/Greenpeace-Philippines.jpg")
+                "https://ik.imagekit.io/tvlk/blog/2019/01/Greenpeace-Philippines.jpg",
+                "https://www.peopleandthesea.org/community-engagement-philippines/"
+                )
         )
 
         dataList.add(
@@ -112,9 +109,9 @@ class SustainabilityInitiativesInfo : AppCompatActivity() {
                         "8. SET GOALS: Define clear goals for your volunteer experience. Determine what you hope to achieve personally and how you aim to contribute to the organization's mission.\n\n" +
                         "9. BEGIN VOLUNTEERING: Start your volunteer work with enthusiasm and dedication. Whether it's mentoring, organizing events, or providing essential services, give your best effort.\n\n" +
                         "10. REFLECT AND ADAPT: Regularly reflect on your volunteer experiences. Assess the impact you've made, evaluate your goals, and adapt your volunteer efforts as needed. This ongoing process ensures your service remains high-impact and meaningful.\n\n",
-                R.drawable.img_169,
-                "https://www.idealist.org/en/careers/environment-advocate-7-ways",
-                "https://jobs.naaee.org/sites/default/files/styles/hero_wide/public/eepro/careers/images/science-symposium.jpg?h=a1e1a043&itok=uRp3bS3A")
+                "https://jobs.naaee.org/sites/default/files/styles/hero_wide/public/eepro/careers/images/science-symposium.jpg?h=a1e1a043&itok=uRp3bS3A",
+                "https://www.idealist.org/en/careers/environment-advocate-7-ways"
+                )
         )
 
         val adapter = DataAdapter(dataList)

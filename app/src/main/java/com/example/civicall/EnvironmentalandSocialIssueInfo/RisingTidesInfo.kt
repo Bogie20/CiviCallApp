@@ -16,12 +16,6 @@ class RisingTidesInfo : AppCompatActivity() {
         setContentView(R.layout.activity_rising_tides_info)
 
 
-
-
-
-
-
-
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
@@ -43,9 +37,10 @@ class RisingTidesInfo : AppCompatActivity() {
                         "8. LOCAL CONCERNS: Fisherfolk receive inadequate compensation for the airport's construction.\n   - Local fishermen affected by airport development receive minimal compensation and express concerns about their livelihoods.\n\n" +
                         "9. URGENT CALL FOR ACTION: Experts emphasize the need for revised development plans.\n   - Experts stress the importance of proactive measures and higher elevation development plans to mitigate the dangers of sea-level rise.\n\n" +
                         "10. HOPES FOR RESILIENCE: Coastal residents hold onto dreams of a sustainable way of life.\n    - Despite the challenges, coastal residents like Sarah and Benny hope for government support to sustain their way of life in the face of coastal erosion and sea-level rise.",
-                R.drawable.img_281,
-                "https://www.rappler.com/environment/in-troubled-waters-rising-sea-levels-threaten-sinking-town-survival/",
-                "https://www.rappler.com/tachyon/2023/06/IMG_8073-scaled.jpg?resize=2560%2C1920&zoom=1"
+
+                "https://www.rappler.com/tachyon/2023/06/IMG_8073-scaled.jpg?resize=2560%2C1920&zoom=1",
+                "https://www.rappler.com/environment/in-troubled-waters-rising-sea-levels-threaten-sinking-town-survival/"
+
             )
         )
         dataList.add(
@@ -61,9 +56,10 @@ class RisingTidesInfo : AppCompatActivity() {
                         "8. GLOBAL COMPETITIVENESS: Metro Manila, as a growth driver, can follow global models for integrated cities and coastal developments, fostering economic activities, tourism, and inclusive communities.\n\n" +
                         "9. INCLUSIVE GROWTH CENTERS: Inclusive development with well-designed master plans can energize communities, making the urban landscape an extension of their home and unlocking future potential.\n\n" +
                         "10. TOWARDS A COMPETITIVE AND VIBRANT FUTURE: Embracing history, celebrating milestones, and responding to residents' aspirations can make Metro Manila a competitive and vibrant city with a promising future.\n\n",
-                R.drawable.img_282,
-                "https://www.rappler.com/brandrap/urban-development-goals-metro-manila/",
-                "https://www.rappler.com/tachyon/2023/04/SM-Supermalls-reverb-2.jpg?resize=1920%2C1440&zoom=1")
+
+                "https://www.rappler.com/tachyon/2023/04/SM-Supermalls-reverb-2.jpg?resize=1920%2C1440&zoom=1",
+                "https://www.rappler.com/brandrap/urban-development-goals-metro-manila/"
+              )
         )
         dataList.add(
             DataItem("ADAPTATION AND MITIGATION STRATEGIES IN THE PHILIPPINES",
@@ -78,9 +74,10 @@ class RisingTidesInfo : AppCompatActivity() {
                         "8. COMPREHENSIVE RELOCATION PLANNING: Relocating coastal communities should be thoroughly studied and implemented to ensure the resilience of vulnerable populations.\n\n" +
                         "9. COMMUNITY ENGAGEMENT: Involving communities in dialogues and decisions is essential for effective adaptation and mitigation efforts.\n\n" +
                         "10. BROAD IMPACT ON DEVELOPMENT: Addressing sea level rise extends beyond environmental concerns, as it has far-reaching effects on various development indicators in the Philippines.\n\n",
-                R.drawable.img_283,
-                "https://newsinfo.inquirer.net/1493135/long-term-plans-needed-to-protect-metro-manilas-most-vulnerable-from-rising-seas",
-                "https://newsinfo.inquirer.net/files/2021/09/08-SLR-story-AC-Dimatatac-Navotas1-14-July-2021-2048x1269.jpg")
+
+                "https://newsinfo.inquirer.net/files/2021/09/08-SLR-story-AC-Dimatatac-Navotas1-14-July-2021-2048x1269.jpg",
+                "https://newsinfo.inquirer.net/1493135/long-term-plans-needed-to-protect-metro-manilas-most-vulnerable-from-rising-seas"
+             )
         )
 
         dataList.add(
@@ -97,9 +94,10 @@ class RisingTidesInfo : AppCompatActivity() {
                         "8. DOMESTIC AND INTERNATIONAL OPPORTUNITIES: The project seeks to expand opportunities for fishery products, ensuring a reliable fish supply for national food security and boosting competitiveness in small and medium fishery enterprises.\n\n" +
                         "9. WIDESPREAD IMPACT: Beyond fisherfolk, various industry stakeholders such as equipment providers, processors, and exporters are expected to benefit.\n\n" +
                         "10. FISHERIES MANAGEMENT AND SUSTAINABILITY: FISHCORE will support the creation of improved fisheries management systems, environmental conservation, and infrastructure development in selected coastal areas.",
-                R.drawable.img_284,
-                "https://www.worldbank.org/en/news/press-release/2023/05/31/new-fisheries-initiative-will-benefit-over-a-million-people-in-the-phi#:~:text=The%20fisheries%20sector%20currently%20contributes,Filipino%20families'%20sources%20of%20protein.",
-                "https://cms-image-bucket-production-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/7/6/6/3/38473667-1-eng-GB/2021-07-09T034227Z_1538337702_RC2REO9V2145_RTRMADP_3_PHILIPPINES-CHINA-SOUTHCHINASEAre.jpg")
+
+                "https://cms-image-bucket-production-ap-northeast-1-a7d2.s3.ap-northeast-1.amazonaws.com/images/7/6/6/3/38473667-1-eng-GB/2021-07-09T034227Z_1538337702_RC2REO9V2145_RTRMADP_3_PHILIPPINES-CHINA-SOUTHCHINASEAre.jpg",
+                "https://www.worldbank.org/en/news/press-release/2023/05/31/new-fisheries-initiative-will-benefit-over-a-million-people-in-the-phi#:~:text=The%20fisheries%20sector%20currently%20contributes,Filipino%20families'%20sources%20of%20protein."
+                )
         )
 
         dataList.add(
@@ -115,9 +113,10 @@ class RisingTidesInfo : AppCompatActivity() {
                         "8. MANAGEMENT TECHNIQUES: Proposals should include both hard and soft coastal management techniques to mitigate the impacts of sea-level rise.\n\n" +
                         "9. INCLUSIVE DESIGN: Preference is given to proposals that emphasize inclusivity and nature-based solutions for conservation and restoration.\n\n" +
                         "10. AWARDS: The most impactful solutions will be awarded 150,000PHP each, with finalists receiving 50,000PHP, and top solutions will be showcased in a public event organized by the OML Center.",
-                R.drawable.img_285,
-                "https://www.omlopezcenter.org/2022-0912-climate-resilience-challenge-toward-coastal-resilience-2022/",
-                "https://www.omlopezcenter.org/wp-content/uploads/2022/09/iStock-1316819108-640x480.jpg")
+
+                "https://www.omlopezcenter.org/wp-content/uploads/2022/09/iStock-1316819108-640x480.jpg",
+                "https://www.omlopezcenter.org/2022-0912-climate-resilience-challenge-toward-coastal-resilience-2022/"
+            )
         )
 
 
@@ -147,9 +146,6 @@ class RisingTidesInfo : AppCompatActivity() {
 
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
-
-
-
 
     }
 }

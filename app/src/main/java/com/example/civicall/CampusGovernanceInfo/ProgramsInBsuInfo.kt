@@ -37,31 +37,6 @@ class ProgramsInBsuInfo : AppCompatActivity() {
                         "Graduate programs are also offered to provide advanced learning in specialized disciplines. These provide professionals more opportunities for career advancement, increase their prospects, and nurture greater intellectual curiosity and passion for inquiry, thus molding them to become leaders, managers, and innovators by developing transformative solutions to real world problems.\n\n" ,
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                R.drawable.img_408,
                 "https://batstate-u.edu.ph/programs/",
                 "https://batstate-u.edu.ph/programs/"
             )
@@ -137,23 +112,9 @@ class ProgramsInBsuInfo : AppCompatActivity() {
 
 
 
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/ceafa.jpg",
+                "https://batstate-u.edu.ph/programs/engineering/"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-                R.drawable.img_432,
-                "https://batstate-u.edu.ph/programs/engineering/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/ceafa.jpg"
             )
         )
 
@@ -183,11 +144,9 @@ class ProgramsInBsuInfo : AppCompatActivity() {
                         "   Bachelor of Science in Psychology\n\n" +
                         "   Bachelor of Science in Fisheries and Aquatic Sciences\n\n\n" ,
 
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/arts.jpg",
+                "https://batstate-u.edu.ph/programs/arts-and-sciences"
 
-
-                R.drawable.img_433,
-                "https://batstate-u.edu.ph/programs/arts-and-sciences",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/arts.jpg"
             )
         )
 
@@ -221,11 +180,9 @@ class ProgramsInBsuInfo : AppCompatActivity() {
                         "   Bachelor of Science in Customs Administration\n\n" +
                         "   Bachelor of Science in Entrepreneurship\n\n\n" ,
 
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/hrm.jpg",
+                "https://batstate-u.edu.ph/programs/accountancy-business-and-international-hospitality/"
 
-
-                R.drawable.img_434,
-                "https://batstate-u.edu.ph/programs/accountancy-business-and-international-hospitality/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/hrm.jpg"
             )
         )
         dataList.add(
@@ -243,12 +200,9 @@ class ProgramsInBsuInfo : AppCompatActivity() {
                         "Bachelor of Science in Computer Science\n\n" +
                         "Bachelor of Science in Information Technology\n\n",
 
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/cics-1-edited-scaled.jpg",
+                "https://batstate-u.edu.ph/programs/informatics-and-computing-sciences/"
 
-
-
-                R.drawable.img_435,
-                "https://batstate-u.edu.ph/programs/informatics-and-computing-sciences/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/cics-1-edited-scaled.jpg"
             )
         )
 
@@ -265,13 +219,9 @@ class ProgramsInBsuInfo : AppCompatActivity() {
                         "   Bachelor of Science in Nutrition and Dietetics\n\n" +
                         "   Bachelor of Science in Public Health (Disaster Response)\n\n",
 
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/nurse.jpg",
+                "https://batstate-u.edu.ph/programs/nursing-nutrition-and-dietetics/"
 
-
-
-
-                R.drawable.img_436,
-                "https://batstate-u.edu.ph/programs/nursing-nutrition-and-dietetics/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/nurse.jpg"
             )
         )
 
@@ -300,20 +250,11 @@ class ProgramsInBsuInfo : AppCompatActivity() {
                         "Major in Welding and Fabrication Technology\n\n\n" ,
 
 
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/cics-1-edited-scaled.jpg",
+                "https://batstate-u.edu.ph/programs/industrial-technology/"
 
-
-                R.drawable.img_437,
-                "https://batstate-u.edu.ph/programs/industrial-technology/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/cics-1-edited-scaled.jpg"
             )
         )
-
-
-
-
-
-
-
 
         dataList.add(
             DataItem(
@@ -324,24 +265,11 @@ class ProgramsInBsuInfo : AppCompatActivity() {
                         "PHILOSOPHY OR RATIONALE OF THE PROGRAM\n\n\n" +
                         "The College of Law is a young department established in 2005. Guided by its vision of academic excellence, it caters to the aspirations of professionals mostly from Region IV to become part of the legal profession.  To achieve its aim of developing competent and morally upright lawyers, the College is composed of faculty members who are trial judges, seasoned practitioners and scholars who possess the work ethic of a dedicated law professor.  It is steadfast in its resolve to contribute to the achievement of the Batangas State University’s vision and mission of producing leaders for the 21st century.\n\n" ,
 
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/law.jpg",
+                "https://batstate-u.edu.ph/programs/law/"
 
-
-
-                R.drawable.img_438,
-                "https://batstate-u.edu.ph/programs/law/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/law.jpg"
             )
         )
-
-
-
-
-
-
-
-
-
-
 
         dataList.add(
             DataItem(
@@ -354,13 +282,9 @@ class ProgramsInBsuInfo : AppCompatActivity() {
                         "Bachelor of Science in Agriculture\n\n" +
                         "Bachelor of Science in Forestry\n\n" ,
 
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/lobo-agriculture.jpg",
+                "https://batstate-u.edu.ph/programs/agriculture-and-forestry/"
 
-
-
-
-                R.drawable.img_439,
-                "https://batstate-u.edu.ph/programs/agriculture-and-forestry/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/lobo-agriculture.jpg"
             )
         )
 
@@ -371,13 +295,9 @@ class ProgramsInBsuInfo : AppCompatActivity() {
 
                 "The university has an Integrated School (IS) in its Main Campus and a Laboratory School in its Nasugbu campus, offering pre-elementary, elementary, junior high school, and senior high school (STEM Track for the IS and STEM and ABM strands for the Laboratory School). Basic education in the university follows the K-12 basic education curriculum framework, and puts premium to science, mathematics, and technology courses. A wide array of co- and extra-curricular activities are provided to maximize the students’ potentials for holistic development.\n\n",
 
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/11/Basic-Education-1-edited.jpg",
+                "https://batstate-u.edu.ph/programs/basic-education/"
 
-
-
-
-                R.drawable.img_440,
-                "https://batstate-u.edu.ph/programs/basic-education/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/11/Basic-Education-1-edited.jpg"
             )
         )
 
@@ -417,13 +337,9 @@ class ProgramsInBsuInfo : AppCompatActivity() {
                         "* Major in Electronics Technology\n\n" +
                         "Bachelor of Physical Education\n\n",
 
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/teacher.jpg",
+                "https://batstate-u.edu.ph/programs/teacher-education/"
 
-
-
-
-                R.drawable.img_441,
-                "https://batstate-u.edu.ph/programs/teacher-education/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/teacher.jpg"
             )
         )
 
@@ -453,13 +369,9 @@ class ProgramsInBsuInfo : AppCompatActivity() {
                         "MISSION\n" +
                         "To provide affordable medical education to students who will contribute in accelerating progress towards Universal Health Care and sustainable development goals.\n\n",
 
+                "https://batstate-u.edu.ph/wp-content/uploads/2023/02/com-programs-scaled.jpg",
+                "https://batstate-u.edu.ph/programs/college-of-medicine/"
 
-
-
-
-                R.drawable.img_442,
-                "https://batstate-u.edu.ph/programs/college-of-medicine/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2023/02/com-programs-scaled.jpg"
             )
         )
 
@@ -502,14 +414,9 @@ class ProgramsInBsuInfo : AppCompatActivity() {
                         "* Major in Civil Technology\n" +
                         "* Major in Automotive Technology\n\n\n" ,
 
-
-
-
-
-
-                R.drawable.img_443,
+                "https://batstate-u.edu.ph/wp-content/uploads/2023/01/ETEEAP-pic-1.jpeg",
                 "https://batstate-u.edu.ph/programs/eteeap/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2023/01/ETEEAP-pic-1.jpeg"
+
             )
         )
 

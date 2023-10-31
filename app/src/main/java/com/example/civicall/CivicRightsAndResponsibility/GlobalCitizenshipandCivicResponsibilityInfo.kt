@@ -47,9 +47,9 @@ class GlobalCitizenshipandCivicResponsibilityInfo : AppCompatActivity() {
                         "   - The article emphasizes the legal framework for dual citizenship in the Philippines and the distinction between naturalized and natural-born Filipinos.\n\n\n" +
                         "10. PROMOTING INCLUSIVITY\n\n\n" +
                         "   - As global Filipinos become more common, the need for a more inclusive definition of Filipino identity and a liberal approach to citizenship is emphasized.\n\n\n",
-                R.drawable.img_276,
-                "https://www.rappler.com/voices/thought-leaders/172675-citizenship-identity-global-filipinos/",
-                "https://beta-planet.gvi.co.uk/wp-content/uploads/2018/10/1366966659-2019-dec-20-11-54-44-000000-21588244544_9946d0aab3_o_gvi_cape-town-1024x513.jpg"
+
+                "https://beta-planet.gvi.co.uk/wp-content/uploads/2018/10/1366966659-2019-dec-20-11-54-44-000000-21588244544_9946d0aab3_o_gvi_cape-town-1024x513.jpg",
+                "https://www.rappler.com/voices/thought-leaders/172675-citizenship-identity-global-filipinos/"
             )
         )
         dataList.add(
@@ -75,9 +75,10 @@ class GlobalCitizenshipandCivicResponsibilityInfo : AppCompatActivity() {
                         "   - The Anti-Terrorism Act, passed in 2020, exacerbated the situation by legitimizing the practice of \"red-tagging\" defenders.\n\n\n" +
                         "10. CALLS FOR INTERNATIONAL INVESTIGATION:\n\n\n" +
                         "   - The article underscores the urgent need for an international, independent investigation into human rights violations in the Philippines and calls for the protection of defenders' rights.\n\n",
-                R.drawable.img_277,
-                "https://www.omct.org/en/resources/statements/philippines-global-solidarity-with-filipino-human-rights-defenders",
-                "https://ptfund.org/wp-content/uploads/2019/01/Untitled-400x300.png")
+
+                "https://ptfund.org/wp-content/uploads/2019/01/Untitled-400x300.png",
+                "https://www.omct.org/en/resources/statements/philippines-global-solidarity-with-filipino-human-rights-defenders"
+             )
         )
         dataList.add(
             DataItem("TRANSNATIONAL CHALLENGES AND CIVIC ENGAGEMENT",
@@ -103,11 +104,11 @@ class GlobalCitizenshipandCivicResponsibilityInfo : AppCompatActivity() {
                         "   - In an era of social media and information overload, the platform aims to build digital resilience among the youth.\n\n\n" +
                         "10. AGENTS OF CHANGE\n\n\n" +
                         "   - Ultimately, 'Ikaw Mismo!' seeks to nurture well-informed, engaged, and digitally resilient future voters and agents of change.\n\n\n",
-                R.drawable.img_278,
-                "https://solve.mit.edu/challenges/learning-for-civic-action-challenge/solutions/72419",
-                "https://oliviaalfath.files.wordpress.com/2018/05/img_7085-e1526795534138.jpg?w=820&h=312&crop=1")
-        )
 
+                "https://oliviaalfath.files.wordpress.com/2018/05/img_7085-e1526795534138.jpg?w=820&h=312&crop=1",
+                "https://solve.mit.edu/challenges/learning-for-civic-action-challenge/solutions/72419"
+              )
+        )
         dataList.add(
             DataItem("INTERNATIONAL AGREEMENTS AND CIVIC DUTIES",
                 "Exploring the intricate interplay of international agreements and civic duties within the evolving global landscape, we delve into the responsibilities of nations and individuals on the world stage.  \"\n" +
@@ -121,9 +122,10 @@ class GlobalCitizenshipandCivicResponsibilityInfo : AppCompatActivity() {
                         "8. SUSTAINABLE SOCIAL POLICIES: The article points out that many developing countries face difficulties in identifying sustainable social policies, given constraints related to external debt, international aid, and national wealth distribution.\n\n" +
                         "9. ROLE OF GLOBALIZATION IN SOCIAL POLICY: The impact of globalization on shaping the social policy agenda is emphasized, with an increasing focus on market liberalization and competition as tools for poverty reduction.\n\n" +
                         "10. SOCIAL EXCLUSION AND POLICY REFORM: The article touches on the emergence of social exclusion and the necessity for policy reforms, indicating that public-policy changes are often introduced without systematic assessment of outcomes.",
-                R.drawable.img_279,
-                "https://idrc-crdi.ca/sites/default/files/openebooks/854-6/index.html",
-                "https://www.rappler.com/tachyon/2022/09/Bello-state-of-the-world-September-17-2022.jpg")
+
+                "https://www.rappler.com/tachyon/2022/09/Bello-state-of-the-world-September-17-2022.jpg",
+                "https://idrc-crdi.ca/sites/default/files/openebooks/854-6/index.html"
+          )
         )
 
         dataList.add(
@@ -139,9 +141,10 @@ class GlobalCitizenshipandCivicResponsibilityInfo : AppCompatActivity() {
                         "8. ROLE OF EDUCATIONAL INSTITUTIONS: Schools and universities are urged to integrate global education into their curricula by incorporating global issues and experiential learning.\n\n" +
                         "9. TEACHER TRAINING: Teachers should receive training in global education pedagogy to effectively impart global perspectives in their teaching.\n\n" +
                         "10. PARTNERSHIPS AND TECHNOLOGY: Collaboration, partnerships, and the integration of technology play a crucial role in promoting global education, fostering connections across borders.",
-                R.drawable.img_280,
-                "https://www.linkedin.com/pulse/global-education-empowering-citizens-sustainable-future-bathina",
-                "https://www.mcgill.ca/medhealthsci/files/medhealthsci/styles/fullwidth_breakpoints_theme_moriarty_small_1x/public/channels/image/global_health_students_lightened.jpg?itok=Dr_x4DR1&timestamp=1608149724")
+
+                "https://www.mcgill.ca/medhealthsci/files/medhealthsci/styles/fullwidth_breakpoints_theme_moriarty_small_1x/public/channels/image/global_health_students_lightened.jpg?itok=Dr_x4DR1&timestamp=1608149724",
+                "https://www.linkedin.com/pulse/global-education-empowering-citizens-sustainable-future-bathina"
+       )
         )
 
 

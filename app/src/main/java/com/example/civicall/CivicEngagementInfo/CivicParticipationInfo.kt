@@ -36,9 +36,8 @@ class CivicParticipationInfo : AppCompatActivity() {
                         "9. EDUCATE OTHERS: Share your knowledge and passion for civic engagement with fellow students. Host workshops or informational sessions to educate others about the importance of voting and civic participation.\n\n" +
                         "10. PARTICIPATE IN ELECTIONS: Encourage voter turnout among your peers by organizing on-campus election events, promoting early voting, and assisting with absentee ballot requests. Your involvement can have a significant impact on the democratic process.\n\n",
 
-                R.drawable.img_159,
-                "https://www.forbes.com/sites/civicnation/2022/11/01/community-colleges-are-key-to-promote-voter-engagement/?sh=505452ee31ff/",
-                "https://media.philstar.com/images/articles/gen17-barangay-sk-polls_2018-07-08_21-40-54.jpg"
+                "https://media.philstar.com/images/articles/gen17-barangay-sk-polls_2018-07-08_21-40-54.jpg",
+                "https://www.forbes.com/sites/civicnation/2022/11/01/community-colleges-are-key-to-promote-voter-engagement/?sh=505452ee31ff/"
             )
         )
         dataList.add(
@@ -55,10 +54,8 @@ class CivicParticipationInfo : AppCompatActivity() {
                         "9. DEBATE AND DISCUSSION FORUMS: Organize regular debates and discussion forums where students can exchange ideas, challenge perspectives, and refine their understanding of civic issues.\n\n" +
                         "10. MENTORSHIP PROGRAMS: Establish mentorship programs that connect experienced civic-minded individuals with students, offering guidance and inspiration for active citizenship.\n\n",
 
-
-                R.drawable.img_160,
-                "https://www.samuelcohn.net/development-1/everything-you-need-to-know-about-how-to-create-a-successful-student-led-social-movement",
-                "https://1cms-img.imgix.net/Students-rally1.jpg")
+                "https://1cms-img.imgix.net/Students-rally1.jpg",
+                "https://www.samuelcohn.net/development-1/everything-you-need-to-know-about-how-to-create-a-successful-student-led-social-movement",)
         )
         dataList.add(
             DataItem("POLITICAL ACTIVISM AND YOUTH",
@@ -73,9 +70,9 @@ class CivicParticipationInfo : AppCompatActivity() {
                         "8. PARENTAL AND COMMUNITY INVOLVEMENT: Encourage parents and communities to engage in civic and political actions, setting positive examples for young individuals.\n\n" +
                         "9. PEER ENGAGEMENT: Cultivate a sense of solidarity among peers, promoting commitment to civic and political goals and values within school and community settings.\n\n" +
                         "10. GLOBAL AWARENESS: Inspire young people to explore and critically understand global issues, allowing them to channel their passions into global citizenship activities.\n\n",
-                R.drawable.img_452,
-                "https://www.un.org/en/chronicle/article/young-peoples-civic-and-political-engagement-and-global-citizenship",
-                "https://eu.boell.org/sites/default/files/grid/2021/12/06/Young%20voices%20on%20the%20rise%201960x784px.jpg")
+
+                "https://eu.boell.org/sites/default/files/grid/2021/12/06/Young%20voices%20on%20the%20rise%201960x784px.jpg",
+                "https://www.un.org/en/chronicle/article/young-peoples-civic-and-political-engagement-and-global-citizenship",)
         )
 
         dataList.add(
@@ -92,11 +89,8 @@ class CivicParticipationInfo : AppCompatActivity() {
                         "9. EFFICIENT CLASSROOM OUTREACH: Develop efficient methods for classroom-based voter registration presentations, optimizing time and engagement.\n\n" +
                         "10. WIDESPREAD ADOPTION: Encourage more universities to adopt these strategies, transforming the legal mandate into a successful program for engaging students in the electoral process.\n\n",
 
-
-
-                R.drawable.img_162,
-                "https://www.cambridge.org/core/journals/ps-political-science-and-politics/article/i-will-register-and-vote-if-you-teach-me-how-a-field-experiment-testing-voter-registration-in-college-classrooms/2752048B2D7F6E703553306C5EF8AB4D",
-                "https://files01.pna.gov.ph/ograph/2023/01/11/comelec-seminars-registration-in-schoolscomelec-photo.jpg")
+                "https://files01.pna.gov.ph/ograph/2023/01/11/comelec-seminars-registration-in-schoolscomelec-photo.jpg",
+                "https://www.cambridge.org/core/journals/ps-political-science-and-politics/article/i-will-register-and-vote-if-you-teach-me-how-a-field-experiment-testing-voter-registration-in-college-classrooms/2752048B2D7F6E703553306C5EF8AB4D",)
         )
 
         dataList.add(
@@ -113,9 +107,9 @@ class CivicParticipationInfo : AppCompatActivity() {
                         "8. STUDENT INVOLVEMENT: Involve students in the process by seeking their input on what they want and need to learn about elections and voting. Encourage them to participate actively in civic education initiatives.\n\n" +
                         "9. ASSESS AND MAP EXISTING ASSETS: Use tools like the CIRCLE Growing Voters report's asset mapping guide to assess existing resources, capacities, and relationships within the school and community that can support civic education and voter registration efforts.\n\n" +
                         "10. SUSTAINED COMMITMENT: Recognize that fostering civic engagement and voter registration initiatives is an ongoing process. Maintain a sustained commitment to civic education and continue to adapt and expand initiatives to meet the evolving needs of students and the community.\n\n",
-                R.drawable.img_163,
-                "https://www.nationalcivicleague.org/ncr-article/growing-voters-in-the-classroom-and-beyond/",
-                "https://assets2.rappler.com/186BBB6087E243DAA2BBC782442E45D0/img/838349FD3FF44BD2B3D16FA39E01813C/Voters_registration_in_Quezon_City-Sept-25-2018-01.jpg")
+
+                "https://assets2.rappler.com/186BBB6087E243DAA2BBC782442E45D0/img/838349FD3FF44BD2B3D16FA39E01813C/Voters_registration_in_Quezon_City-Sept-25-2018-01.jpg",
+                "https://www.nationalcivicleague.org/ncr-article/growing-voters-in-the-classroom-and-beyond/")
         )
 
         val adapter = DataAdapter(dataList)

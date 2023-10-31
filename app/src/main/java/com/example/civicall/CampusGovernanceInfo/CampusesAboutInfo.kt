@@ -32,9 +32,9 @@ class CampusesAboutInfo : AppCompatActivity() {
                 "PABLO BORBON CAMPUS",
                 "Pablo Borbon is the oldest campus in the university and serves as the seat of the administration of the institution. It is located at Rizal Avenue, Batangas City, and has a land area of 5.96 hectares. Nestled at the heart of the city, its proximity to the Batangas International Port and convenient access to the Southern Tagalog Arterial Road (STAR), coupled with its strong program offerings in a 21st century environment, makes it an ideal academic destination for students and opens collaboration opportunities with national and international partners.\"\n\n",
 
-                R.drawable.img_413,
-                "https://batstate-u.edu.ph/campuses/pablo-borbon/",
-                "https://lh3.googleusercontent.com/p/AF1QipO0R1UqV2DNU9o086db7Il4CYwO5q0HTWDqS6tI=s1360-w1360-h1020"
+                "https://lh3.googleusercontent.com/p/AF1QipO0R1UqV2DNU9o086db7Il4CYwO5q0HTWDqS6tI=s1360-w1360-h1020",
+                "https://batstate-u.edu.ph/campuses/pablo-borbon/"
+
             )
         )
         dataList.add(
@@ -42,9 +42,9 @@ class CampusesAboutInfo : AppCompatActivity() {
                 "LEMERY CAMPUS",
                 "BatStateU Lemery is the second smallest campus in the university in terms of land area, located in Brgy. Bagong Sikat, Lemery, Batangas. Despite this, its program offerings, especially in education and business and management, remain strong and in demand. Lemery is a first class municipality that is a growing urban center in Western Batangas. It serves as a provincial urban center for its surrounding rural municipalities, which highlight the growth of businesses, along the establishment of two shopping malls in the area. It also hosts the largest public high school in the first legislative district of Batangas.\"\n\n",
 
-                R.drawable.img_414,
-                "https://batstate-u.edu.ph/campuses/lemery/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/campus-lemery-1.jpg"
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/campus-lemery-1.jpg",
+                "https://batstate-u.edu.ph/campuses/lemery/"
+
             )
         )
 
@@ -53,9 +53,9 @@ class CampusesAboutInfo : AppCompatActivity() {
                 "ROSARIO CAMPUS",
                 "The one-hectare land of the campus in Barangay Namunga, Rosario, Batangas was donated by the generous Inandan and Zuño families of the municipality. As an expression of gratitude to the donors, the first school building of the campus was named after Pedro Inandan, while the campus was named after Jose B. Zuño. Rosario is a first class municipality that has enabled business and industry to flourish, and is host to almost a hundred private and public educational institutions and learning centers.\"\n\n",
 
-                R.drawable.img_415,
-                "https://batstate-u.edu.ph/campuses/rosario/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2021/09/Batstateu-Rosario-scaled.jpg"
+                "https://batstate-u.edu.ph/wp-content/uploads/2021/09/Batstateu-Rosario-scaled.jpg",
+                "https://batstate-u.edu.ph/campuses/rosario/"
+
             )
         )
 
@@ -65,9 +65,9 @@ class CampusesAboutInfo : AppCompatActivity() {
                 "ALANGILAN CAMPUS",
                 "Acquired by the university in 1984, Alangilan is the second oldest campus in the university. Located in Golden Country Homes, Brgy. Alangilan, Batangas City, it has total land area of 5.62 hectares; the three colleges and research hubs in the campus occupy 2.89 hectares, while 2.73 hectares were recently acquired for the Knowledge, Innovation, and Science Technology (KIST) Park, the first KIST Park registered under the Philippine Economic Zone Authority in the country.\"\n\n",
 
-                R.drawable.img_416,
-                "https://batstate-u.edu.ph/campuses/alangilan/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/11/Alangilan-entrance-facade.jpg"
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/11/Alangilan-entrance-facade.jpg",
+                "https://batstate-u.edu.ph/campuses/alangilan/"
+
             )
         )
 
@@ -77,9 +77,9 @@ class CampusesAboutInfo : AppCompatActivity() {
                 "MABINI CAMPUS",
                 "The newest campus in the university is BatStateU Mabini with its operations starting only in 2018. Through the generosity of the local municipal government and the Yu family, the youngest BatStateU campus was established on a four-hectare property with the three-storey Josefina L. Yu Hall as its first academic infrastructure. Mabini, being a first class municipality, has a booming economy and a hub for business industries primarily because of its diving destinations.\"\n\n",
 
-                R.drawable.img_417,
-                "https://batstate-u.edu.ph/campuses/mabini/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/Mabini.jpg"
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/Mabini.jpg",
+                "https://batstate-u.edu.ph/campuses/mabini/"
+
             )
         )
 
@@ -96,9 +96,9 @@ class CampusesAboutInfo : AppCompatActivity() {
                         "\n" +
                         "          With the present population of five hundred nine (514) students enrolled with 21 faculty members in the various degree programs (College of Teacher Education, College of Industrial Technology and College of Business, Economics, and International Hospitality Management), the University will always be true to its vision to be an institutional model for its culture and excellence in higher education as shown in its people and product. The University will remain steadfast in its mission as a premier institution of learning and continue to strengthen its curricular offerings to produce globally competitive graduates.\"\n\n",
 
-                R.drawable.img_418,
-                "https://batstate-u.edu.ph/campuses/san-juan/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/sanjuan-slider-1.jpg"
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/sanjuan-slider-1.jpg",
+                "https://batstate-u.edu.ph/campuses/san-juan/"
+
             )
         )
 
@@ -113,9 +113,9 @@ class CampusesAboutInfo : AppCompatActivity() {
                         "\n" +
                         "The second half of the site is known to many as the Physical Education School Sports (PESS) Ground or the Roxas-Gargollo Sports Field. Measuring at 1.6849 hectare, this spacious open field is a frequent venue for PE subjects, military trainings, sports events and other outdoor activities. The Batstate U Hostel that serves as a function hall for local events stands proudly at the southern part of the field along side the Higher Education Building where most of the classes of the colleges of different programs are held. \"\n\n",
 
-                R.drawable.img_419,
-                "https://batstate-u.edu.ph/campuses/nasugbu/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/Nasugbu-facade-scaled.jpg"
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/Nasugbu-facade-scaled.jpg",
+                "https://batstate-u.edu.ph/campuses/nasugbu/"
+
             )
         )
 
@@ -128,9 +128,9 @@ class CampusesAboutInfo : AppCompatActivity() {
                         "\n" +
                         "The university’s program offerings are recognized by the country’s Commission on Higher Education. These are designed to provide opportunities for students to discover their potential and enhance their technical and creative skills in a vibrant academic environment. Each program offering is anchored on pragmatic, relevant, and socially responsive curricula that train students to be globally competitive by embracing transdisciplinary, social intelligence, new media literacy, design mindset, and physical and virtual collaboration. The university believes that these skills are required in emerging professional and social environments. \"\n\n",
 
-                R.drawable.img_421,
-                "https://batstate-u.edu.ph/campuses/malvar/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/malvar-slider-1.jpg"
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/malvar-slider-1.jpg",
+                "https://batstate-u.edu.ph/campuses/malvar/"
+
             )
         )
 
@@ -141,9 +141,9 @@ class CampusesAboutInfo : AppCompatActivity() {
                 "LOBO CAMPUS",
                 "While BatStateU Lobo has the smallest actual-campus land area at 0.12 ha located in Brgy. Masaguitsuit, it is the location of the only College of Agriculture and Forestry in the province of Batangas, and is one of the very few in CALABARZON. Lobo has white sand beaches and protected mangrove forests, fish sanctuaries, and marine protected areas, while agriculture and food production are its main industries. Its seas are part of the Verde Island Passage, recognized to be the center of the center of marine shorefish biodiversity in the world.\"\n\n",
 
-                R.drawable.img_422,
-                "https://batstate-u.edu.ph/campuses/lobo/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/lobo-slider-2.jpg"
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/lobo-slider-2.jpg",
+                "https://batstate-u.edu.ph/campuses/lobo/"
+
             )
         )
 
@@ -154,9 +154,9 @@ class CampusesAboutInfo : AppCompatActivity() {
                 "BALAYAN CAMPUS",
                 "Batangas State University Balayan is one of the university’s oldest extension campuses located in Brgy. Caloocan, Balayan. Established in 1994, BatStateU Balayan has since been offering technology and technical-vocational education programs to the youth of the community. Balayan is a first-class municipality that hosts a number of industries and small and medium-scale enterprises.\"\n\n",
 
-                R.drawable.img_423,
-                "https://batstate-u.edu.ph/campuses/balayan/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/campus-balayan-canteen.jpg"
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/campus-balayan-canteen.jpg",
+                "https://batstate-u.edu.ph/campuses/balayan/"
+
             )
         )
 
@@ -166,9 +166,9 @@ class CampusesAboutInfo : AppCompatActivity() {
                 "LIPA CAMPUS",
                 "Located in Brgy. Marawoy, Lipa City, the BatStateU Lipa is named Don Claro M. Recto campus as a tribute to the prominent public servant from Lipa, Batangas. The campus has shown strong academic performance and its programs have established a positive reputation in the community despite the presence of other higher education institutions in the area. Lipa City is a first class city is only 78km south of Manila, easily accessible via STAR Tollway, and has become a key commercial, financial, and medical center in the province.\"\n\n",
 
-                R.drawable.img_424,
-                "https://batstate-u.edu.ph/campuses/lipa/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/lipa-slider-3.jpg"
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/lipa-slider-3.jpg",
+                "https://batstate-u.edu.ph/campuses/lipa/"
+
             )
         )
 

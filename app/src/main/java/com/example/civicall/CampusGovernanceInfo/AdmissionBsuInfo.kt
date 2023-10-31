@@ -210,17 +210,9 @@ class AdmissionBsuInfo : AppCompatActivity() {
                         "G. For qualifiers, a Notice of Admission will be posted in the BatStateUCAT link: https://dione.batstate-u.edu.ph/tao/#/batstateucat/.\n\n" +
                         "H. Wait for the enrollment schedule.\n\n",
 
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/homepage-webslider-1.jpg",
+                "https://batstate-u.edu.ph/about/"
 
-
-
-
-
-
-
-
-                R.drawable.img_392,
-                "https://batstate-u.edu.ph/about/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/homepage-webslider-1.jpg"
             )
         )
 

@@ -38,9 +38,9 @@ class NavigatingMountainInfo : AppCompatActivity() {
                         "9. SLEEPING GEAR: Choose sleeping bags and pads rated for low temperatures and ensure they provide insulation from the cold ground.\n\n" +
                         "10. WATER MANAGEMENT: Carry equipment for melting snow or purifying water, including stoves, fuel, and water treatment options, as water sources may be limited in high-altitude areas.\n\n",
 
-                        R.drawable.img_211,
-                "https://www.rei.com/learn/expert-advice/mountaineering-gear-essentials.html",
-                "https://primer.com.ph/blog/wp-content/uploads/sites/14/2018/07/pexels-photo-1076081-e1531379652879.jpeg"
+                "https://primer.com.ph/blog/wp-content/uploads/sites/14/2018/07/pexels-photo-1076081-e1531379652879.jpeg",
+                "https://www.rei.com/learn/expert-advice/mountaineering-gear-essentials.html"
+
             )
         )
         dataList.add(
@@ -56,9 +56,10 @@ class NavigatingMountainInfo : AppCompatActivity() {
                         "8. SURVIVAL TOOLS AND EQUIPMENT: Know how to use essential tools like machetes and ropes for various tasks, from clearing paths to crafting tools.\n\n" +
                         "9. WEATHER RESILIENCE: Be prepared for unpredictable weather conditions, equipping yourself with waterproof gear and clothing.\n\n" +
                         "10. CULTURAL AND ENVIRONMENTAL RESPECT: Show respect for the rainforest and indigenous cultures by minimizing your impact on the environment and local communities.\n\n",
-                R.drawable.img_212,
-                "https://www.latimes.com/archives/la-xpm-1994-08-21-mn-29437-story.html",
-                "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/07/a1/e4/40.jpg")
+
+                "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/07/a1/e4/40.jpg",
+                "https://www.latimes.com/archives/la-xpm-1994-08-21-mn-29437-story.html"
+           )
         )
         dataList.add(
             DataItem("SHELTER CONSTRUCTION IN THE HILLS",
@@ -73,9 +74,10 @@ class NavigatingMountainInfo : AppCompatActivity() {
                         "8. INTERIOR INSULATION: Line the interior with soft materials like leaves, grass, or moss for a comfortable bedding area.\n\n" +
                         "9. EMERGENCY SIGNALING: Create a visible signal to alert potential rescuers in case of emergencies.\n\n" +
                         "10. REGULAR MAINTENANCE: Periodically inspect and reinforce your shelter, making necessary improvements for lasting durability and protection.",
-                R.drawable.img_213,
-                "https://www.trailhiking.com.au/safety/how-to-build-a-survival-shelter/",
-                "https://www.trailhiking.com.au/wp-content/uploads/2021/02/A-frame-Debris-Shelter.jpg")
+
+                "https://www.trailhiking.com.au/wp-content/uploads/2021/02/A-frame-Debris-Shelter.jpg",
+                "https://www.trailhiking.com.au/safety/how-to-build-a-survival-shelter/"
+           )
         )
 
         dataList.add(
@@ -92,9 +94,9 @@ class NavigatingMountainInfo : AppCompatActivity() {
                         "9. HEALTH AND NUTRITION: Delve into the nutritional aspects of wild ingredients and how they contribute to the well-being of Negrito communities, understanding the profound connection between food and health.\n\n" +
                         "10. CULINARY RESILIENCE: Embrace the spirit of resilience as you leave with a deeper appreciation for the Negrito's enduring food traditions, a testament to the strength of indigenous cultures in preserving their culinary heritage.",
 
-                R.drawable.img_209,
-                "https://www.peopleandplants.org/traditional-foodways/the-philippines",
-                "https://images.squarespace-cdn.com/content/v1/5ca2d827aadd343de55a408b/d8afdefd-e1bf-4127-8231-647f29d2042e/_10A0032.jpg?format=1500w")
+                "https://images.squarespace-cdn.com/content/v1/5ca2d827aadd343de55a408b/d8afdefd-e1bf-4127-8231-647f29d2042e/_10A0032.jpg?format=1500w",
+                "https://www.peopleandplants.org/traditional-foodways/the-philippines"
+  )
         )
 
         dataList.add(
@@ -110,9 +112,10 @@ class NavigatingMountainInfo : AppCompatActivity() {
                         "8. SYMPTOM AWARENESS: Educate yourself on the early symptoms of altitude sickness, including headaches, nausea, and shortness of breath, to take timely action if they occur.\n\n" +
                         "9. WEATHER MONITORING: Keep a close watch on weather conditions, as extreme cold and storms can exacerbate altitude sickness; be prepared to seek shelter or descend.\n\n" +
                         "10. EMERGENCY PLAN: Develop a clear emergency plan and share it with your expedition team, including evacuation procedures in case of severe altitude sickness.",
-                R.drawable.img_462,
-                "https://my.clevelandclinic.org/health/diseases/15111-altitude-sickness",
-                "https://images.hive.blog/0x0/https://files.peakd.com/file/peakd-hive/ybanezkim26/EoyN8Q1tiM7CAVMpukq5eJci7PFYojv9KosCEcevFSDtccfbAw9xCGuiCZf2ANM7NhZ.jpg")
+
+                "https://images.hive.blog/0x0/https://files.peakd.com/file/peakd-hive/ybanezkim26/EoyN8Q1tiM7CAVMpukq5eJci7PFYojv9KosCEcevFSDtccfbAw9xCGuiCZf2ANM7NhZ.jpg",
+                "https://my.clevelandclinic.org/health/diseases/15111-altitude-sickness"
+           )
         )
 
 

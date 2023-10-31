@@ -37,9 +37,10 @@ class SocioeconomicFactorsandHealthInfo : AppCompatActivity() {
                         "8. POLICY DEVELOPMENTS: Multiple policy developments, such as the 'No Balance Billing' and the 'Z Benefit Package,' aimed to improve access to quality healthcare.\n\n" +
                         "9. REDUCTION IN INEQUALITIES: The study reveals that NHIP coverage and healthcare utilization among older adults improved from 2003 to 2017, reducing socioeconomic inequalities over time.\n\n" +
                         "10. PUBLIC HEALTH CHALLENGE: Achieving universal health coverage and addressing health disparities among older adults remain important public health challenges in the Philippines.",
-                R.drawable.img_361,
-                "https://environhealthprevmed.biomedcentral.com/articles/10.1186/s12199-020-00854-9",
-                "https://media.philstar.com/photos/2019/02/23/gen3-maternity-hospital-kjrosales_2019-02-23_23-04-39.jpg"
+
+                "https://media.philstar.com/photos/2019/02/23/gen3-maternity-hospital-kjrosales_2019-02-23_23-04-39.jpg",
+                "https://environhealthprevmed.biomedcentral.com/articles/10.1186/s12199-020-00854-9"
+
             )
         )
         dataList.add(
@@ -55,9 +56,10 @@ class SocioeconomicFactorsandHealthInfo : AppCompatActivity() {
                         "8. RISING FOOD INFLATION: While the Philippines has a growing middle class and a young population, food inflation is high, with households spending over half their income on food.\n\n" +
                         "9. REGIONAL DISPARITIES: Regional disparities persist, with some areas experiencing three to four times higher hunger levels than others, deepening the issue of poverty-related health concerns.\n\n" +
                         "10. GOVERNMENT'S ROLE AND POTENTIAL SOLUTIONS: Experts suggest that government intervention, including support for local farmers and strategic import policies, could alleviate the challenges faced by farmers and reduce the impact of poverty on health.\n\n",
-                R.drawable.img_362,
-                "https://www.thenewhumanitarian.org/analysis/2023/07/27/Filipino-farmers-profits-hunger-looms",
-                "https://assets.thenewhumanitarian.org/s3fs-public/2023-07/Danilo%20Ramos%20Philippines%20farmer%20protest.jpg")
+
+                "https://assets.thenewhumanitarian.org/s3fs-public/2023-07/Danilo%20Ramos%20Philippines%20farmer%20protest.jpg",
+                "https://www.thenewhumanitarian.org/analysis/2023/07/27/Filipino-farmers-profits-hunger-looms"
+              )
         )
         dataList.add(
             DataItem("HEALTHCARE ACCESSIBILITY: BRIDGING THE GAP IN A DIVERSE LANDSCAPE",
@@ -72,9 +74,10 @@ class SocioeconomicFactorsandHealthInfo : AppCompatActivity() {
                         "8. GEOGRAPHICAL LOCATION AND TRANSPORTATION ISSUES: Limited access to better-equipped healthcare facilities due to distance and sea conditions adds to the healthcare challenges faced by residents.\n\n" +
                         "9. ENVIRONMENTAL FACTORS: Unclean water sources, improper waste disposal, and unsanitary practices further compound public health problems in some communities.\n\n" +
                         "10. RECOMMENDATIONS AND POLICY IMPLICATIONS: To improve healthcare accessibility in geographically isolated areas like Jomalig Island, the article suggests a range of solutions, including emergency boats, health education campaigns, and infrastructure improvements.",
-                R.drawable.img_363,
-                "https://www.joghr.org/article/11962-challenges-in-public-health-facilities-and-services-evidence-from-a-geographically-isolated-and-disadvantaged-area-in-the-philippines",
-                "https://www.borgenmagazine.com/wp-content/uploads/2023/08/51088900678_c6434f2e45_k.jpg")
+
+                "https://www.borgenmagazine.com/wp-content/uploads/2023/08/51088900678_c6434f2e45_k.jpg",
+                "https://www.joghr.org/article/11962-challenges-in-public-health-facilities-and-services-evidence-from-a-geographically-isolated-and-disadvantaged-area-in-the-philippines"
+           )
         )
 
         dataList.add(
@@ -91,9 +94,10 @@ class SocioeconomicFactorsandHealthInfo : AppCompatActivity() {
                         "8. HEALTH WORKERS' NEEDS NEGLECTED - The health system's failure to address the economic and social needs of healthcare workers is a critical issue, leading to a recruitment and retention crisis.\n" +
                         "9. HEALTH WORKER MIGRATION - The Philippines experiences a significant outmigration of healthcare professionals due to inadequate salaries and benefits, pushing them to seek better opportunities abroad.\n" +
                         "10. PREVENTABLE HEALTH DISPARITIES - The article underscores that a lack of healthcare professionals and inadequate services in poorer regions directly contributes to more sickness and death, ultimately worsening health outcomes and deepening health disparities.",
-                R.drawable.img_364,
-                "https://newsinfo.inquirer.net/1760779/ph-health-care-conundrum-fewer-health-professionals-where-people-are-poorest",
-                "https://newsinfo.inquirer.net/files/2023/04/HEALTH-WORKERS.jpeg")
+
+                "https://newsinfo.inquirer.net/files/2023/04/HEALTH-WORKERS.jpeg",
+                "https://newsinfo.inquirer.net/1760779/ph-health-care-conundrum-fewer-health-professionals-where-people-are-poorest"
+        )
         )
 
         dataList.add(
@@ -109,11 +113,11 @@ class SocioeconomicFactorsandHealthInfo : AppCompatActivity() {
                         "8. SYSTEMIC FACTORS AND HEALTH DISPARITIES: Many causes of health disparities are rooted in systemic factors that require multi-level interventions for effective solutions.\n" +
                         "9. IMPACT OF RESEARCH ON POPULATION HEALTH: Local evidence-based research and culturally congruent interventions are vital for improving public health in developing countries like the Philippines.\n" +
                         "10. COLLABORATIVE APPROACH TO ADDRESSING HEALTH DISPARITIES: Healthcare providers, researchers, community leaders, and policymakers must collaborate to eliminate structural racism and reduce health disparities in the Philippines.",
-                R.drawable.img_365,
-                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10072864/",
-                "https://eon.com.ph/wp-content/uploads/2020/04/People-Wearing-Mask-Discussion.jpg")
-        )
 
+                "https://eon.com.ph/wp-content/uploads/2020/04/People-Wearing-Mask-Discussion.jpg",
+                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10072864/"
+              )
+        )
 
         val adapter = DataAdapter(dataList)
 

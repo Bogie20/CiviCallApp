@@ -38,9 +38,8 @@ class CivicAdvocacyStrategiesInfo : AppCompatActivity() {
                         "9. Advocacy Tactics: Employ a range of advocacy tactics, such as grassroots organizing, lobbying, public demonstrations, and storytelling, to influence decision-makers and create awareness.\n\n" +
                         "10. Evaluation and Adaptation: Continuously evaluate the progress and impact of your advocacy efforts. Be open to adapting your strategies based on feedback and changing circumstances, ensuring your advocacy remains effective and relevant.\n\n",
 
-                R.drawable.img_129,
-                "https://organizingengagement.org/principles/advocacy/?print=print",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Frightsofnature.org.ph%2Fadvocacy-campaign-examples-for-students%2F&psig=AOvVaw1VT6sPoecgp7HaZ6LHWxpp&ust=1696602043828000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIi2iKiN34EDFQAAAAAdAAAAABAO"
+                "https://www.jocrf.org/wp-content/uploads/2021/12/college.jpg",
+                "https://organizingengagement.org/principles/advocacy/?print=print"
             )
         )
         dataList.add(
@@ -57,10 +56,9 @@ class CivicAdvocacyStrategiesInfo : AppCompatActivity() {
                         "9. Adapt and Learn: Continuously adapt your strategies based on the feedback and data you gather to improve your effectiveness.\n\n" +
                         "10. Translate Online Action to Real-World Impact: Encourage your online community to take tangible actions, such as attending events, signing petitions, or volunteering, to translate digital support into real-world change.\n\n",
 
-
-                R.drawable.img_130,
-                "https://www.linkedin.com/pulse/harnessing-power-social-media-activism-bryan-marroquin/",
-                "https://media.licdn.com/dms/image/D5612AQFcDIrE1snjiQ/article-cover_image-shrink_720_1280/0/1686582368650?e=2147483647&v=beta&t=Ku_V-ot24BJQrZFymZdj07Xdx5UFXccWYZeej3rWMEg")
+                "https://media.licdn.com/dms/image/D5612AQFcDIrE1snjiQ/article-cover_image-shrink_720_1280/0/1686582368650?e=2147483647&v=beta&t=Ku_V-ot24BJQrZFymZdj07Xdx5UFXccWYZeej3rWMEg",
+                "https://www.linkedin.com/pulse/harnessing-power-social-media-activism-bryan-marroquin/"
+                )
         )
         dataList.add(
             DataItem("BUILDING COMMUNITY PARTNERSHIPS",
@@ -75,9 +73,9 @@ class CivicAdvocacyStrategiesInfo : AppCompatActivity() {
                         "8. Familiarize with Text Messaging: Ensure that everyone in your family knows how to send text messages, which can be more reliable during network disruptions than phone calls.\n\n" +
                         "9. Subscribe to Alert Services: Sign up for local alert services that send text messages and emails with crucial information during disasters.\n\n" +
                         "10. Prioritize Communication Methods: In times of crisis, use phone calls sparingly for life-threatening emergencies and rely on text messages, email, and social media for non-emergency communication to prevent network congestion.\n\n",
-                R.drawable.img_131,
-                "https://learn.givepulse.com/blog/how-civic-engagement-can-transform-community-relationships",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fbehrend.psu.edu%2Fstudent-life%2Fstudent-leadership-and-involvement%2Fcivic-and-community-engagement&psig=AOvVaw3Hd3NE44p3AMdplDQFjlFc&ust=1696603997235000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCJDYv5qV34EDFQAAAAAdAAAAABAD")
+
+                "https://img.freepik.com/free-photo/diverse-people-doing-fist-bump-park_53876-104387.jpg",
+                "https://learn.givepulse.com/blog/how-civic-engagement-can-transform-community-relationships")
         )
 
         dataList.add(
@@ -94,10 +92,9 @@ class CivicAdvocacyStrategiesInfo : AppCompatActivity() {
                         "9. Implement Multichannel Marketing: Utilize various channels, such as social media, email, website content, text messaging, and direct mailings, to engage supporters and direct them to your campaign's microsite.\n\n" +
                         "10. Celebrate Milestones: Highlight and celebrate significant achievements throughout your campaign, concluding with an event to thank donors and emphasize their impact on your mission.\n\n",
 
-
-                R.drawable.img_132,
-                "https://www.onecause.com/blog/awareness-campaigns/",
-                "https://habitatbroward.org/wp-content/uploads/2021/09/Top-8-Benefits-of-Community-Service-for-Students.jpg")
+                "https://probonoaustralia.com.au/wp-content/uploads/2016/10/campaign.jpg",
+                "https://www.onecause.com/blog/awareness-campaigns/"
+                )
         )
 
         dataList.add(
@@ -114,9 +111,10 @@ class CivicAdvocacyStrategiesInfo : AppCompatActivity() {
                         "8. Set Goals: Define clear goals for your volunteer experience. Determine what you hope to achieve personally and how you aim to contribute to the organization's mission.\n\n" +
                         "9. Begin Volunteering: Start your volunteer work with enthusiasm and dedication. Whether it's mentoring, organizing events, or providing essential services, give your best effort.\n\n" +
                         "10. Reflect and Adapt: Regularly reflect on your volunteer experiences. Assess the impact you've made, evaluate your goals, and adapt your volunteer efforts as needed. This ongoing process ensures your service remains high-impact and meaningful.\n\n",
-                R.drawable.img_133,
-                "https://johnsoncenter.org/blog/nonprofits-are-playing-a-vital-role-in-civic-engagement/",
-                "https://johnsoncenter.org/wp-content/uploads/2020/10/shutterstock_169040624-1.jpg")
+
+                "https://johnsoncenter.org/wp-content/uploads/2020/10/shutterstock_169040624-1.jpg",
+                "https://johnsoncenter.org/blog/nonprofits-are-playing-a-vital-role-in-civic-engagement/"
+                )
         )
 
 

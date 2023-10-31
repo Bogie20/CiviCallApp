@@ -57,7 +57,7 @@
                 android:layout_height="200dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/img_463"
+                android:src="@drawable/img_5"
                 />
 
             <androidx.cardview.widget.CardView

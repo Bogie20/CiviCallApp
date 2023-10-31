@@ -47,9 +47,10 @@ class CivicResponsibilityandEducationinfo : AppCompatActivity() {
                         "   - Teachers encountered challenges in preparing materials and curriculum development, highlighting the importance of support and training.\n" +
                         "10. PARTNERSHIPS FOR IMPROVEMENT\n" +
                         "    - Building strong partnerships between schools and NGOs can help bridge the civic education gaps and enhance the delivery of programs.\n",
-                R.drawable.img_476,
-                "https://www.pids.gov.ph/details/news/press-releases/civic-education-in-the-philippines-must-be-improved-dlsu-professor",
-                "https://kabayanremit-8120.kxcdn.com/blog/wp-content/uploads/2021/04/A-guide-to-the-education-system-in-the-Philippines.jpg"
+
+                 "https://kabayanremit-8120.kxcdn.com/blog/wp-content/uploads/2021/04/A-guide-to-the-education-system-in-the-Philippines.jpg",
+                "https://www.pids.gov.ph/details/news/press-releases/civic-education-in-the-philippines-must-be-improved-dlsu-professor"
+
             )
         )
         dataList.add(
@@ -75,9 +76,9 @@ class CivicResponsibilityandEducationinfo : AppCompatActivity() {
                         "   - Civic education is recognized as an integral part of every student's education and is encouraged to be integrated into all subjects and grade levels.\n" +
                         "10. YOUTH FOR NATION-BUILDING:\n" +
                         "   - Civic education plays a critical role in shaping the youth into responsible citizens who contribute to nation-building, aligning with ongoing curriculum reviews and educational commissions.\n",
-                R.drawable.img_272,
-                "https://mb.com.ph/2023/5/3/advocacy-group-highlights-importance-of-integrating-civic-education-in-all-subjects",
-                "https://mb.com.ph/media/Photo_2_eb09f3979a/Photo_2_eb09f3979a.jpg")
+                "https://mb.com.ph/media/Photo_2_eb09f3979a/Photo_2_eb09f3979a.jpg",
+                "https://mb.com.ph/2023/5/3/advocacy-group-highlights-importance-of-integrating-civic-education-in-all-subjects"
+            )
         )
         dataList.add(
             DataItem("EDUCATING FOR CIVIC ENGAGEMENT IN SOCIAL RESPONSIBILITY",
@@ -103,9 +104,10 @@ class CivicResponsibilityandEducationinfo : AppCompatActivity() {
                         "   - The COVID-19 pandemic saw Filipinos coming together to help those in need, showcasing the enduring spirit of bayanihan.\n" +
                         "10. BAYANIHAN TODAY\n" +
                         "    - This cultural tradition continues with initiatives like 'Angat Buhay' and individuals like Angel Locsin practicing and inspiring bayanihan for social good.\n",
-                R.drawable.img_478,
-                "https://jefmenguin.com/bayanihan/",
-                "https://cambridge.com.ph/wp-content/uploads/2017/04/ccdc-hq-teachers-training-2017_image02.jpg")
+
+                "https://cambridge.com.ph/wp-content/uploads/2017/04/ccdc-hq-teachers-training-2017_image02.jpg",
+                "https://jefmenguin.com/bayanihan/"
+             )
         )
 
         dataList.add(
@@ -121,9 +123,10 @@ class CivicResponsibilityandEducationinfo : AppCompatActivity() {
                         "8. Flexibility in Education (Private SHS Implementation): Private schools have the flexibility to offer Senior High School ahead of the official program rollout in 2016-2017.\n" +
                         "9. Government Support and Resources (Implementation and Transition Management): The government has constructed classrooms, hired teachers, and provided necessary resources to ensure a smooth transition and full implementation of the program.\n" +
                         "10. Long-Term Civic Benefits (Nurturing the Holistically Developed Filipino): K to 12 graduates are equipped with essential civic skills, helping them succeed in higher education, employment, and entrepreneurship, ultimately contributing to the betterment of the Philippines.",
-                R.drawable.img_479,
-                "https://www.officialgazette.gov.ph/k-12/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/cte-2.jpg")
+
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/cte-2.jpg",
+                "https://www.officialgazette.gov.ph/k-12/"
+              )
         )
 
         dataList.add(
@@ -139,9 +142,10 @@ class CivicResponsibilityandEducationinfo : AppCompatActivity() {
                         "8. SCOPE OF CIVIC EDUCATION TOPICS: Among the 31 topics in the core subject, only one discusses active citizen participation, while others cover various aspects of culture, society, and politics.\n\n" +
                         "9. ENHANCING CIVIC LEARNING: Initiatives like 'Boto Mo Bukas Ko,' 'Sibika.ph,' and community immersion programs aim to enhance civic education and participation among students.\n\n" +
                         "10. LONG-TERM VISION FOR CIVIC EDUCATION: The article emphasizes the need to integrate civic education, values, and democratic attitudes into the core education system to prepare future generations for responsible citizenship and leadership.",
-                R.drawable.img_480,
-                "https://news.abs-cbn.com/focus/05/08/15/philippine-education-reform-program-faces-challenges",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/cics-pic.jpg")
+
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/cics-pic.jpg",
+                "https://news.abs-cbn.com/focus/05/08/15/philippine-education-reform-program-faces-challenges"
+               )
         )
 
 
@@ -171,16 +175,6 @@ class CivicResponsibilityandEducationinfo : AppCompatActivity() {
 
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
-
-
-
-
-
-
-
-
-
-
 
     }
 }

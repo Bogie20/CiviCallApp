@@ -36,9 +36,10 @@ class RighttoProtestandFreeSpeechInfo : AppCompatActivity() {
                         "8. FACING CHALLENGES: As attacks on freedom of expression continue to rise, students learn the importance of resilience, unity, and teamwork in defending fundamental rights.\n\n" +
                         "9. CIVIC RESPONSIBILITY: This study emphasizes the civic responsibility of safeguarding constitutional freedoms, preparing students to be active participants in upholding these rights.\n\n" +
                         "10. INSPIRATION AND EMPOWERMENT: Maria Ressa's journey and achievements serve as an inspiration to students, empowering them to make informed decisions, speak their minds, and defend freedom of expression in their own lives and society.\n\n",
-                R.drawable.img_472,
-                "https://www.rappler.com/world/global-affairs/nobel-peace-prize-maria-ressa-message-youth-freedom-expression/",
-                "https://pia.gov.ph/uploads/2023/03/512d328e9368702c63357579fc55fefb.jpg"
+
+                "https://pia.gov.ph/uploads/2023/03/512d328e9368702c63357579fc55fefb.jpg",
+                "https://www.rappler.com/world/global-affairs/nobel-peace-prize-maria-ressa-message-youth-freedom-expression/"
+
             )
         )
         dataList.add(
@@ -54,9 +55,10 @@ class RighttoProtestandFreeSpeechInfo : AppCompatActivity() {
                         "8. UNDERSTANDING VIRTÙ: The concept of virtù becomes a tool for students to maintain their values and beliefs, even in the face of flattery and manipulation.\n" +
                         "9. LEGAL IMPLICATIONS: Understanding speech limitations provides students with knowledge of the legal implications of spreading false information and hate speech.\n" +
                         "10. FUTURE ADVOCATES: This study inspires students to become advocates for responsible free speech, contributing to a society that values freedom of expression while maintaining ethical boundaries.\n",
-                R.drawable.img_241,
-                "https://www.rappler.com/moveph/189805-freedom-speech-limits-government-power-lie/",
-                "https://www.rappler.com/tachyon/r3-assets/B7CF108E4EF44264A485AD9F28E9A7DD/img/C4AED0A1B41846A48DC7429472FB7ACF/media-democracy-forum-nov282017-082.jpg?resize=1620%2C1080&zoom=1")
+
+                "https://www.rappler.com/tachyon/r3-assets/B7CF108E4EF44264A485AD9F28E9A7DD/img/C4AED0A1B41846A48DC7429472FB7ACF/media-democracy-forum-nov282017-082.jpg?resize=1620%2C1080&zoom=1",
+                "https://www.rappler.com/moveph/189805-freedom-speech-limits-government-power-lie/"
+             )
         )
         dataList.add(
             DataItem("BALANCING FREE SPEECH WITH SOCIAL RESPONSIBILITY",
@@ -71,9 +73,10 @@ class RighttoProtestandFreeSpeechInfo : AppCompatActivity() {
                         "8. RIGHT TO ERASURE: Exploring the 'right to be forgotten' concept empowers students to appreciate the significance of personal growth and second chances, both online and offline.\n" +
                         "9. FOI AND DATA PRIVACY: Students learn how freedom of information requests should be balanced with data privacy rights, enhancing their grasp of the evolving legal landscape.\n" +
                         "10. SELF-REGULATION: Encouraging media self-regulation and adherence to standards for responsible journalism fosters a more accountable and ethical media industry.\n",
-                R.drawable.img_242,
-                "https://www.rappler.com/nation/180500-npc-reminds-media-balance-freedom-press-right-privacy/",
-                "https://www.rappler.com/tachyon/r3-assets/612F469A6EA84F6BAE882D2B94A4B421/img/2DF130FF176D4F058E424DEE7385A798/npc-dpo6-ivy-patdu-media-privacy-20170829.jpg?resize=640%2C360&zoom=1")
+
+                "https://www.rappler.com/tachyon/r3-assets/612F469A6EA84F6BAE882D2B94A4B421/img/2DF130FF176D4F058E424DEE7385A798/npc-dpo6-ivy-patdu-media-privacy-20170829.jpg?resize=640%2C360&zoom=1",
+                "https://www.rappler.com/nation/180500-npc-reminds-media-balance-freedom-press-right-privacy/"
+                )
         )
 
         dataList.add(
@@ -99,9 +102,10 @@ class RighttoProtestandFreeSpeechInfo : AppCompatActivity() {
                         "9. CONTENT REGULATION: Students learn about the complexities of content removal requests and personal information protection, vital in an online society.\n\n" +
 
                         "10. CUSTOMARY INTERNATIONAL LAW: This study highlights how the principle of freedom of expression is embedded in international law, emphasizing its importance worldwide.\n",
-                R.drawable.img_243,
-                "https://www.mediadefence.org/ereader/publications/introductory-modules-on-digital-rights-and-freedom-of-expression-online/module-1-key-principles-of-international-law-and-freedom-of-expression/the-right-to-freedom-of-expression-under-international-law/",
-                "https://cdn-wordpress-info.futurelearn.com/wp-content/uploads/ED03065F-F0FA-41DE-B902-4036A9A94883.jpeg.optimal.jpeg")
+
+                "https://cdn-wordpress-info.futurelearn.com/wp-content/uploads/ED03065F-F0FA-41DE-B902-4036A9A94883.jpeg.optimal.jpeg",
+                "https://www.mediadefence.org/ereader/publications/introductory-modules-on-digital-rights-and-freedom-of-expression-online/module-1-key-principles-of-international-law-and-freedom-of-expression/the-right-to-freedom-of-expression-under-international-law/"
+              )
         )
 
         dataList.add(
@@ -117,9 +121,10 @@ class RighttoProtestandFreeSpeechInfo : AppCompatActivity() {
                         "8. INFORMATION LITERACY: Media literacy is emphasized, helping students critically assess the credibility and bias in news, equipping them to be discerning consumers of information.\n\n" +
                         "9. INSPIRING FUTURE JOURNALISTS: Aspiring journalists gain insight into the ethics and responsibilities of their future profession, preparing them for careers in media.\n\n" +
                         "10. DEFENDING DEMOCRACY: The study inspires students to defend press freedom and free speech as vital cornerstones of a just and democratic society.",
-                R.drawable.img_473,
-                "https://mb.com.ph/2023/5/6/safeguarding-the-freedom-of-the-press-is-protecting-the-human-rights-of-all",
-                "https://images.csmonitor.com/csm/2022/07/0725%20PHILIPPINES_PRESS_FREEDOM.1.jpg?alias=standard_900x600")
+
+                "https://images.csmonitor.com/csm/2022/07/0725%20PHILIPPINES_PRESS_FREEDOM.1.jpg?alias=standard_900x600",
+                "https://mb.com.ph/2023/5/6/safeguarding-the-freedom-of-the-press-is-protecting-the-human-rights-of-all"
+              )
         )
 
 

@@ -51,9 +51,10 @@ class PreventiveHealthcare : AppCompatActivity() {
                         "8. MMR VACCINE: Given at 9 months and 1 year old, the MMR vaccine safeguards against measles, mumps, and rubella, reducing the risk of serious complications.\n\n" +
                         "9. ONGOING VACCINATION DURING THE PANDEMIC: Routine immunization remains an essential health service even during the COVID-19 pandemic, with measures in place to ensure safety.\n\n" +
                         "10. HIGH COVERAGE TARGET: The government aims for routine immunization coverage among children to be at least 95%, and these vaccines are provided for free in public health centers and facilities to ensure accessibility for all.",
-                R.drawable.img_331,
-                "https://www.unicef.org/philippines/stories/routine-immunization-children-philippines",
-                "https://www.unicef.org/philippines/sites/unicef.org.philippines/files/styles/hero_extended/public/1000002294%20%286000%C3%974000%29.jpeg?itok=LE9RJ2vA"
+
+                "https://www.unicef.org/philippines/sites/unicef.org.philippines/files/styles/hero_extended/public/1000002294%20%286000%C3%974000%29.jpeg?itok=LE9RJ2vA",
+                "https://www.unicef.org/philippines/stories/routine-immunization-children-philippines"
+
             )
         )
         dataList.add(
@@ -69,9 +70,10 @@ class PreventiveHealthcare : AppCompatActivity() {
                         "8. LIMITED PATIENT COVERAGE: The allocated budget is only capable of providing assistance to a fraction of cancer patients throughout their required treatment cycles, whether it be targeted therapy or chemotherapy.\n\n" +
                         "9. TREATMENT COSTS: Chemotherapy costs about P5,000 per cycle, while targeted therapy costs around P30,000 per session, underlining the financial burden on cancer patients and the healthcare system.\n\n" +
                         "10. CANCER MORTALITY IN THE PHILIPPINES: The Philippines faces the challenge of addressing cancer as a leading cause of mortality, with breast cancer cases alone reaching 27,163 in 2020, according to data from the World Health Organization.\n\n",
-                R.drawable.img_332,
-                "https://www.pids.gov.ph/details/news/in-the-news/advocates-seek-intensification-of-cancer-screening-in-ph",
-                "https://childhope.org.ph/wp-content/uploads/2022/06/childhope-philippines-health-program-e1656895068613.jpg")
+
+                "https://childhope.org.ph/wp-content/uploads/2022/06/childhope-philippines-health-program-e1656895068613.jpg",
+                "https://www.pids.gov.ph/details/news/in-the-news/advocates-seek-intensification-of-cancer-screening-in-ph"
+             )
         )
         dataList.add(
             DataItem("IMPROVING HEALTHCARE INFRASTRUCTURE FOR PREVENTIVE MEDICINE IN THE PHILIPPINES",
@@ -86,9 +88,10 @@ class PreventiveHealthcare : AppCompatActivity() {
                         "8. VACCINATION CHALLENGES: Vaccine Distribution and Hurdles - Discussing the uneven distribution of vaccines across regions and the challenges in achieving vaccination goals due to a lack of health workers and accessible health centers.\n\n" +
                         "9. EFFORTS FALLING SHORT: Missed Opportunities in Vaccine Administration - Addressing the slow pace of vaccine administration and the failure to capitalize on vaccine availability.\n\n" +
                         "10. CALL FOR OVERHAUL: A Need for Systemic Improvements - Concluding with the call for a comprehensive overhaul of the Philippine healthcare system to address the shortcomings in the four crucial functions discussed.",
-                R.drawable.img_333,
-                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9201087/",
-                "https://www.bworldonline.com/wp-content/uploads/2023/01/Covid-19-patient.jpg")
+
+                "https://www.bworldonline.com/wp-content/uploads/2023/01/Covid-19-patient.jpg",
+                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9201087/"
+             )
         )
 
         dataList.add(
@@ -105,9 +108,10 @@ class PreventiveHealthcare : AppCompatActivity() {
                         "8. TAILORED STROKE AWARENESS CAMPAIGNS: Decentralized campaigns use culturally adapted materials, engagement with local stakeholders, and educational initiatives.\n\n" +
                         "9. ENGAGING COMMUNITY HEALTH WORKERS: Community health workers play a crucial role in educating high-risk individuals about stroke risk factors and recognition.\n\n" +
                         "10. COLLABORATIVE EFFORTS: Collaboration among national and local entities, including non-profit organizations and educational institutions, is vital for the success of stroke awareness campaigns.",
-                        R.drawable.img_334,
-                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10502210/",
-                "https://pia.gov.ph/uploads/2023/04/aa3fb09e46d5e9379a4b6c3c1a321938.jpg")
+
+                "https://pia.gov.ph/uploads/2023/04/aa3fb09e46d5e9379a4b6c3c1a321938.jpg",
+                "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10502210/"
+              )
         )
 
         dataList.add(
@@ -123,9 +127,10 @@ class PreventiveHealthcare : AppCompatActivity() {
                         "8. MANDATORY VACCINATION AND CONSTITUTIONAL CONCERNS: Exploring the legality of mandatory vaccination and its implications on individual rights.\n\n" +
                         "9. LEADERSHIP AND PUBLIC TRUST: Highlighting the importance of leadership in restoring public trust in vaccines.\n\n" +
                         "10. FOSTERING VACCINE CONFIDENCE: Emphasizing the need for collective efforts, transparency, and civic engagement to combat vaccine hesitancy in the Philippines.",
-                R.drawable.img_335,
-                "https://www.rappler.com/voices/imho/analysis-exploring-vaccine-hesitancy-covid-19-pandemic/",
-                "https://www.rappler.com/tachyon/2021/04/imho-sq.jpg?resize=800%2C800&zoom=1")
+
+                "https://www.rappler.com/tachyon/2021/04/imho-sq.jpg?resize=800%2C800&zoom=1",
+                "https://www.rappler.com/voices/imho/analysis-exploring-vaccine-hesitancy-covid-19-pandemic/"
+         )
         )
 
 
@@ -152,12 +157,8 @@ class PreventiveHealthcare : AppCompatActivity() {
             }
         })
 
-
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
-
-
-
 
     }
 }

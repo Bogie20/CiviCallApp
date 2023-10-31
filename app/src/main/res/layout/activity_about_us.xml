@@ -131,61 +131,44 @@ android:text="Now you can effortlessly discover Nearby Volunteer Opportunities ,
         android:layout_height="wrap_content"
         android:layout_below="@+id/civicallinfo2"
         android:layout_marginTop="10dp"
-
         android:layout_marginLeft="18dp"
-
         android:padding="5dp"
         android:text="Connect with Us"
         android:fontFamily="@font/inter_bold"
         android:textColor="@color/black"
         android:textSize="15dp" />
     <LinearLayout
-
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/civicallinfo3"
-
-
-        android:orientation="horizontal">
-
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <ImageButton
             android:id="@+id/google_login"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="50dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="Sign in with Name"
-            android:src="@drawable/name"></ImageButton>
+            android:layout_marginRight="20dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Sign in with Name"
+        android:src="@drawable/google_icon"
+        android:scaleType="centerInside">
 
-        <ImageButton
-            android:id="@+id/facebook"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-        android:layout_marginLeft="50dp"
+    </ImageButton>
 
-            android:background="@android:color/transparent"
-            android:contentDescription="Sign in with Name"
-            android:src="@drawable/fb" />
+    <ImageButton
+        android:id="@+id/facebook"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+    android:background="@android:color/transparent"
+    android:contentDescription="Sign in with Name"
+    android:src="@drawable/facebook_icon"
+    android:scaleType="centerInside"/>
 
-        <ImageButton
-            android:id="@+id/instgram"
-            android:layout_marginLeft="40dp"
-            android:layout_width="70dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-
-
-            android:background="@android:color/transparent"
-            android:contentDescription="Sign in with Name"
-            android:src="@drawable/instagram4" />
-
-
-
-
-    </LinearLayout>
+</LinearLayout>
 
 
 

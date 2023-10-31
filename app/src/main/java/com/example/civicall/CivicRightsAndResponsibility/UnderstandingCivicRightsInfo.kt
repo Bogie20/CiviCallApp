@@ -36,9 +36,10 @@ class UnderstandingCivicRightsInfo : AppCompatActivity() {
                         "8. PRESUMPTION OF INNOCENCE: This principle safeguards the rights of the accused, ensuring they are considered innocent until proven guilty.\n\n" +
                         "9. HABEAS CORPUS: This right prevents unlawful detention and protects against arbitrary imprisonment.\n\n" +
                         "10. LIMITATIONS ON GOVERNMENT POWER: The Bill of Rights acts as a check on government authority, preventing the abuse of power and protecting the rights of the people.\n\n",
-                        R.drawable.img_465,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-iii/#:~:text=No%20person%20shall%20be%20deprived,equal%20protection%20of%20the%20laws.",
-                "https://asiapacific.unwomen.org/sites/default/files/Field%20Office%20ESEAsia/Images/2019/01/ph-IMG_0323-960px.jpg"
+
+                "https://asiapacific.unwomen.org/sites/default/files/Field%20Office%20ESEAsia/Images/2019/01/ph-IMG_0323-960px.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-iii/#:~:text=No%20person%20shall%20be%20deprived,equal%20protection%20of%20the%20laws."
+
             )
         )
         dataList.add(
@@ -54,9 +55,10 @@ class UnderstandingCivicRightsInfo : AppCompatActivity() {
                         "8. CIVIC RESPONSIBILITY: Understand the importance of civic rights and the role of political activism, encouraging you to take your civic responsibilities seriously.\n" +
                         "9. CRITICAL THINKING: Sharpen your critical thinking skills by analyzing the context and impact of historical protests and assessing the consequences of political actions.\n" +
                         "10. GLOBAL CITIZENSHIP: Contribute to your development as a responsible global citizen by gaining insights into the challenges and triumphs of democracy in the Philippines, which can be relevant to similar movements worldwide.",
-                R.drawable.img_466,
-                "https://www.officialgazette.gov.ph/edsa/the-ph-protest/",
-                "https://upload.wikimedia.org/wikipedia/commons/7/71/PH3c-070416.jpg")
+
+                "https://upload.wikimedia.org/wikipedia/commons/7/71/PH3c-070416.jpg",
+                "https://www.officialgazette.gov.ph/edsa/the-ph-protest/"
+     )
         )
         dataList.add(
             DataItem("INTERNATIONAL COMPARISON OF CIVIC RIGHTS:",
@@ -71,9 +73,10 @@ class UnderstandingCivicRightsInfo : AppCompatActivity() {
                         "8. CIVIC ENGAGEMENT: It encourages students to participate actively in civic life, emphasizing the significance of voting, community involvement, and advocacy.\n\n" +
                         "9. EMPATHY AND TOLERANCE: This study fosters empathy and tolerance by shedding light on the struggles faced by individuals in different parts of the world.\n\n" +
                         "10. PREPARATION FOR AN INTERCONNECTED WORLD: In our interconnected world, knowing how civic rights vary across countries is crucial for adapting to an ever-evolving global landscape.\n\n",
-                R.drawable.img_232,
-                "https://www.pewresearch.org/short-reads/2019/03/20/countries-have-different-priorities-when-they-review-each-others-human-rights-records/",
-                "https://ishr.ch/wp-content/uploads/2021/06/philippines-1394508copy_0.jpg")
+
+                "https://ishr.ch/wp-content/uploads/2021/06/philippines-1394508copy_0.jpg",
+                "https://www.pewresearch.org/short-reads/2019/03/20/countries-have-different-priorities-when-they-review-each-others-human-rights-records/"
+)
         )
 
         dataList.add(
@@ -90,9 +93,10 @@ class UnderstandingCivicRightsInfo : AppCompatActivity() {
                         "8. CHALLENGES OF DEMOCRACY: The post-revolution challenges, such as coup attempts and political divisions, shed light on the complexities of establishing and maintaining democracy.\n\n" +
                         "9. MEMORY AND LEGACY: It highlights the importance of historical memory and the need to critically examine the legacy of civic rights movements.\n\n" +
                         "10. CONTEMPORARY RELEVANCE: Given the resurgence of authoritarianism in some regions, studying this revolution provides valuable insights into contemporary struggles for civic rights and democracy.\n",
-                R.drawable.img_467,
-                "https://origins.osu.edu/milestones/people-power-revolution-philippines-1986?language_content_entity=en",
-                "https://manilatoday.net/wp-content/uploads/2016/11/untitled-91-1024x687.jpg")
+
+                "https://manilatoday.net/wp-content/uploads/2016/11/untitled-91-1024x687.jpg",
+                "https://origins.osu.edu/milestones/people-power-revolution-philippines-1986?language_content_entity=en"
+        )
         )
 
         dataList.add(
@@ -108,9 +112,10 @@ class UnderstandingCivicRightsInfo : AppCompatActivity() {
                         "8. BALANCING RIGHTS AND RESPONSIBILITIES: Students learn to strike a balance between individual rights and collective well-being, fostering a sense of social responsibility in a democratic society.\n\n" +
                         "9. SAFEGUARDING CONSTITUTIONAL PRINCIPLES: The study reinforces the importance of adhering to constitutional values, ensuring the endurance of democratic institutions, and the rule of law.\n\n" +
                         "10. EMPOWERING CHANGE-MAKERS: Equipped with the knowledge and values, students emerge as active contributors to their communities, driving meaningful change, and preserving the essence of democracy in their daily lives.",
-                R.drawable.img_234,
-                "https://civiced.org/papers/articles_role.html",
-                "https://freedomhouse.org/sites/default/files/styles/768x400_fp_scale_crop_/public/2019-10/Philippines_fotn2019_country-hero.jpg?h=deee9842&itok=_xSX6eR6")
+
+                "https://freedomhouse.org/sites/default/files/styles/768x400_fp_scale_crop_/public/2019-10/Philippines_fotn2019_country-hero.jpg?h=deee9842&itok=_xSX6eR6",
+                "https://civiced.org/papers/articles_role.html"
+             )
         )
 
 

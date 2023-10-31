@@ -38,9 +38,9 @@ class IslandSurvivalInfo : AppCompatActivity() {
                         "9. DEAD RECKONING: Discover the method of dead reckoning, which involves estimating a vessel's current position based on a previously known position and the course and speed of the boat.\n\n" +
                         "10. MODERN TOOLS WITH TRADITIONAL WISDOM: Understand the integration of modern navigational tools like GPS and compasses with the time-tested wisdom of indigenous navigation techniques, providing a comprehensive approach to island-hopping in the Philippines.",
 
-                R.drawable.img_215,
+                "https://tunatime.ph/cdn/shop/products/Tuna-Time-200-1024x1024.jpg?v=1662347138",
                 "https://guides.library.manoa.hawaii.edu/c.php?g=105238&p=685462",
-                "https://tunatime.ph/cdn/shop/products/Tuna-Time-200-1024x1024.jpg?v=1662347138"
+
             )
         )
         dataList.add(
@@ -56,9 +56,10 @@ class IslandSurvivalInfo : AppCompatActivity() {
                         "8. BYCATCH REDUCTION DEVICES: Employ bycatch reduction devices like TEDs (Turtle Excluder Devices) and BRDs (Bycatch Reduction Devices) to release unintended catch unharmed.\n\n" +
                         "9. SEASONAL FISHING: Abide by seasonal fishing regulations to protect fish during their breeding and spawning seasons.\n\n" +
                         "10. EDUCATION AND AWARENESS: Engage in community education and awareness programs about sustainable fishing practices, encouraging responsible choices among local fishers and consumers.\n\n",
-                R.drawable.img_216,
-                "https://www.divescotty.com/underwater-blog/fishing-in-philippines.php#:~:text=Traditional%20Fishing%20in%20the%20Philippines&text=Spear%20guns%20are%20commonly%20used,fishing%20practice%20in%20the%20Philippines.",
-                "https://www.divescotty.com/images/pictures/blog/fishing/768/fishing-net-at-the-beach_768.jpg")
+
+                "https://www.divescotty.com/images/pictures/blog/fishing/768/fishing-net-at-the-beach_768.jpg",
+                "https://www.divescotty.com/underwater-blog/fishing-in-philippines.php#:~:text=Traditional%20Fishing%20in%20the%20Philippines&text=Spear%20guns%20are%20commonly%20used,fishing%20practice%20in%20the%20Philippines."
+      )
         )
         dataList.add(
             DataItem("COCONUT UTILIZATION FOR SURVIVAL:",
@@ -73,9 +74,10 @@ class IslandSurvivalInfo : AppCompatActivity() {
                         "8. OPENING COCONUTS SAFELY: Safely open mature coconuts to access their meat and water, avoiding injury.\n\n" +
                         "9. COCONUT DERIVED PRODUCTS: Explore the use of coconut cream, milk, and oil for additional sustenance and practical purposes.\n\n" +
                         "10. SURVIVAL BALANCE: While coconuts are a valuable resource, remember to diversify your diet with other available foods and maintain a balanced approach to survival.\n\n",
-                R.drawable.img_217,
-                "https://www.desertislandsurvival.com/surviving-on-coconut/",
-                "https://images.surferseo.art/c9412812-9b0e-426e-b2d3-e2dc3142bcd7.jpeg")
+
+                "https://images.surferseo.art/c9412812-9b0e-426e-b2d3-e2dc3142bcd7.jpeg",
+                "https://www.desertislandsurvival.com/surviving-on-coconut/"
+              )
         )
 
         dataList.add(
@@ -92,9 +94,9 @@ class IslandSurvivalInfo : AppCompatActivity() {
                         "9. PREFERENCE ANALYSIS: Determine the most preferred medicinal plants for specific disease categories by calculating the Fidelity Level (FL).\n\n" +
                         "10. CULTURAL PRESERVATION: Use the collected data as a medium for preserving cultural heritage, aiding ethnopharmacological research, and contributing to the preservation of biological diversity.\n",
 
-                R.drawable.img_218,
-                "https://www.frontiersin.org/articles/10.3389/fphar.2021.790567/full",
-                "https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/Food-Nutrition/1296x728_Holy_Basil.jpg?w=1155&h=1528")
+                "https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/Food-Nutrition/1296x728_Holy_Basil.jpg?w=1155&h=1528",
+                "https://www.frontiersin.org/articles/10.3389/fphar.2021.790567/full"
+              )
         )
 
         dataList.add(
@@ -110,9 +112,10 @@ class IslandSurvivalInfo : AppCompatActivity() {
                         "8. COMMUNITY DRILLS: Regularly conduct disaster preparedness drills, involving all community members, to practice response procedures and enhance coordination.\n\n" +
                         "9. COLLABORATION AND MUTUAL SUPPORT: Foster collaboration between island communities, promoting mutual support in times of crisis, such as sharing resources, personnel, and knowledge.\n\n" +
                         "10. CONTINUOUS MONITORING AND ADAPTATION: Implement a system for continuous monitoring of disaster risks and community readiness, regularly adapting plans based on lessons learned and changing conditions.",
-                R.drawable.img_219,
-                "https://opengovasia.com/strengthening-disaster-resilience-and-preparedness-in-the-philippines/",
-                "https://adra.ph/wp-content/uploads/2020/06/DRR-Kits-Turnover-Levy-1024x683.jpg")
+
+                "https://adra.ph/wp-content/uploads/2020/06/DRR-Kits-Turnover-Levy-1024x683.jpg",
+                "https://opengovasia.com/strengthening-disaster-resilience-and-preparedness-in-the-philippines/"
+            )
         )
 
 

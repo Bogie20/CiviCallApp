@@ -39,10 +39,8 @@ class AmplifyingStudentVoicesInfo: AppCompatActivity() {
                         "9. HANDLE QUESTIONS AND OBJECTIONS: Be prepared to address questions, objections, or opposing viewpoints from the audience with poise and evidence-based responses.\n\n" +
                         "10. CALL TO ACTION: Conclude your speech with a compelling call to action, encouraging your audience to take concrete steps in support of your cause, whether it's signing a petition, volunteering, or spreading awareness.\n\n",
 
-                R.drawable.img_446,
-                "https://courses.lumenlearning.com/wm-publicspeaking/chapter/speaking-as-civic-engagement/",
-                "https://www.ohchr.org/sites/default/files/styles/hero_5_image_desktop/public/2022-10/oxfid_youth_challenge.jpg?itok=B8Qrzsaz"
-            )
+                "https://www.ohchr.org/sites/default/files/styles/hero_5_image_desktop/public/2022-10/oxfid_youth_challenge.jpg?itok=B8Qrzsaz",
+                "https://courses.lumenlearning.com/wm-publicspeaking/chapter/speaking-as-civic-engagement/")
         )
         dataList.add(
             DataItem("STORYTELLING FOR CHANGE",
@@ -57,11 +55,8 @@ class AmplifyingStudentVoicesInfo: AppCompatActivity() {
                         "8. ENCOURAGE ENGAGEMENT: Prompt your audience to engage with your story, whether it's by sharing, commenting, or taking specific actions related to your advocacy.\n\n" +
                         "9. MEASURE IMPACT: Utilize web analytics, surveys, and other data sources to measure the impact of your storytelling on awareness, engagement, attitude change, and learning.\n\n" +
                         "10. CONTINUOUS IMPROVEMENT: Continuously refine your storytelling skills by seeking feedback, experimenting with different approaches, and learning from both successes and challenges.\n\n",
-
-
-                R.drawable.img_177,
-                "https://www.linkedin.com/advice/1/how-can-you-amplify-patient-voices-storytelling",
-                "https://atdph.org/wp-content/uploads/2018/03/20180120-SL-Norzagaray08-Crisal-1.jpg")
+                "https://atdph.org/wp-content/uploads/2018/03/20180120-SL-Norzagaray08-Crisal-1.jpg",
+                "https://www.linkedin.com/advice/1/how-can-you-amplify-patient-voices-storytelling")
         )
         dataList.add(
             DataItem("ART AND CREATIVITY IN ADVOCACY",
@@ -76,9 +71,8 @@ class AmplifyingStudentVoicesInfo: AppCompatActivity() {
                         "8. LEVERAGE FUNDING OPPORTUNITIES: Explore funding opportunities available through legislative policies, such as the Every Student Succeeds Act and Student Support and Academic Enrichment Grants, and ensure they are utilized for art education.\n\n" +
                         "9. SUPPORT TITLE I SCHOOLS: Advocate for art education in Title I schools, emphasizing its significance for students in need of arts education opportunities.\n\n" +
                         "10. COMMUNITY PARTNERSHIPS: Seek partnerships with hospitals, coffee shops, local businesses, and more to display student artwork and generate funds for your art program, ensuring art's accessibility to all.\n\n",
-                R.drawable.img_178,
-                "https://theartofeducation.edu/2017/11/4-effective-ways-can-advocate-arts/",
-                "https://theartofeducation.edu/wp-content/uploads/2017/11/IMG_3132-1024x754.jpg")
+                "https://theartofeducation.edu/wp-content/uploads/2017/11/IMG_3132-1024x754.jpg",
+                "https://theartofeducation.edu/2017/11/4-effective-ways-can-advocate-arts/")
         )
 
         dataList.add(
@@ -95,11 +89,8 @@ class AmplifyingStudentVoicesInfo: AppCompatActivity() {
                         "9. CRITICAL ANALYSIS PROJECTS: Assign projects that require critical analysis of media content, encouraging individuals to deconstruct messages and identify potential biases.\n\n" +
                         "10. COMMUNITY ENGAGEMENT: Promote community engagement through media literacy initiatives, empowering individuals to share their knowledge and advocate for informed citizenship.\n\n",
 
-
-
-                R.drawable.img_179,
-                "https://edmo.eu/media-literacy/the-importance-of-media-literacy-in-fighting-disinformation/",
-                "https://blog.gale.com/wp-content/uploads/2023/09/iStock-1517463468.jpg")
+                "https://blog.gale.com/wp-content/uploads/2023/09/iStock-1517463468.jpg",
+                "https://edmo.eu/media-literacy/the-importance-of-media-literacy-in-fighting-disinformation/")
         )
 
         dataList.add(
@@ -116,9 +107,8 @@ class AmplifyingStudentVoicesInfo: AppCompatActivity() {
                         "8. Enhance Political Participation: Strengthen the advocacy and influencing capacity of target groups, empowering them to engage in decision-making processes.\n\n" +
                         "9. Link and Learn: Actively participate in facilitated meetings and gatherings to share experiences and learnings with other grant recipients, documenting insights for broader dissemination.\n\n" +
                         "10. Embrace Diversity: Emphasize the value of diversity and inclusion within the community, ensuring that all voices are heard and respected.\n\n",
-                R.drawable.img_180,
-                "https://voice.global/call-for-proposal/empowering-the-unheard-philippines-empowerment-grant-v-19105-ph-em/",
-                "https://www.cipe.org/wp-content/uploads/2018/10/Philippines-Youth_Image-3.jpg")
+                "https://www.cipe.org/wp-content/uploads/2018/10/Philippines-Youth_Image-3.jpg",
+                "https://voice.global/call-for-proposal/empowering-the-unheard-philippines-empowerment-grant-v-19105-ph-em/")
         )
 
 

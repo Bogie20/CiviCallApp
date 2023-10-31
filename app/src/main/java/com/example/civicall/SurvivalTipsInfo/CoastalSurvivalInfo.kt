@@ -14,12 +14,6 @@ class CoastalSurvivalInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_coastal_survival_info)
-
-
-
-
-
-
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
@@ -41,9 +35,10 @@ class CoastalSurvivalInfo : AppCompatActivity() {
                         "8. MONITORING BUOYS: While buoys can be helpful, never rely on them completely; remember that they might shift from their moorings.\n\n" +
                         "9. TIDE CONSIDERATION: Factor in the influence of tides and currents on your vessel's course, ensuring accurate navigation along the coastline.\n\n" +
                         "10. CONTINUOUS MONITORING: Continuously update your position as you navigate, employing a combination of traditional methods and modern technology to ensure safe and efficient coastal navigation.",
-                R.drawable.img_225,
-                "https://www.oxfordreference.com/display/10.1093/oi/authority.20110803095620181#:~:text=Satellite%20navigation%20systems%20such%20as,less%20accurate%20than%20the%20ranges).",
-                "https://cdn.britannica.com/09/93609-050-6773B246/Officers-passenger-ship-charts-navigation.jpg"
+
+                "https://cdn.britannica.com/09/93609-050-6773B246/Officers-passenger-ship-charts-navigation.jpg",
+                "https://www.oxfordreference.com/display/10.1093/oi/authority.20110803095620181#:~:text=Satellite%20navigation%20systems%20such%20as,less%20accurate%20than%20the%20ranges)."
+
             )
         )
         dataList.add(
@@ -59,9 +54,10 @@ class CoastalSurvivalInfo : AppCompatActivity() {
                         "8. FLOOD ZONE COMPLIANCE: Adhere to building codes and standards for flood-prone areas, including additional ties, straps, anchors, and elevated structures.\n\n" +
                         "9. OUTDOOR SPACE PROTECTION: Safeguard outdoor spaces from the elements by using weatherproof materials and proper maintenance to prevent corrosion and damage.\n\n" +
                         "10. RESPECTFUL AESTHETICS: Prioritize aesthetics that respect the natural surroundings, blending architecture with the coastal landscape for a harmonious and visually appealing shelter design.",
-                R.drawable.img_226,
-                "https://www.re-thinkingthefuture.com/rtf-fresh-perspectives/a2106-10-things-to-remember-while-designing-in-coastal-areas/",
-                "https://www.bworldonline.com/wp-content/uploads/2022/01/Odette-reconstruction-easternvisayas-PHILIPPINE-ARMY.jpg")
+
+                "https://www.bworldonline.com/wp-content/uploads/2022/01/Odette-reconstruction-easternvisayas-PHILIPPINE-ARMY.jpg",
+                "https://www.re-thinkingthefuture.com/rtf-fresh-perspectives/a2106-10-things-to-remember-while-designing-in-coastal-areas/"
+          )
         )
         dataList.add(
             DataItem("FISHING AND GATHERING COASTAL RESOURCES",
@@ -76,9 +72,10 @@ class CoastalSurvivalInfo : AppCompatActivity() {
                         "8. RESTOCKING INITIATIVES: Support restocking programs for threatened or overexploited species, helping to replenish their populations.\n\n" +
                         "9. REDUCING PLASTIC POLLUTION: Raise awareness about the importance of reducing plastic pollution in coastal areas to protect marine ecosystems.\n\n" +
                         "10. COLLABORATIVE RESEARCH: Encourage collaborative research efforts between local communities, scientists, and environmental organizations to develop innovative, sustainable fishing techniques and conservation strategies.\n\n",
-                R.drawable.img_227,
-                "https://www.divescotty.com/underwater-blog/fishing-in-philippines.php#:~:text=Marine%20Capture%20Fisheries%20in%20the%20Philippines&text=The%20group%20of%20fishers%20uses,bodies%20of%20water%2C%20etc.)",
-                "https://www.divescotty.com/images/pictures/blog/fishing/768/aquaculture_768.jpg")
+
+                "https://www.divescotty.com/images/pictures/blog/fishing/768/aquaculture_768.jpg",
+                "https://www.divescotty.com/underwater-blog/fishing-in-philippines.php#:~:text=Marine%20Capture%20Fisheries%20in%20the%20Philippines&text=The%20group%20of%20fishers%20uses,bodies%20of%20water%2C%20etc.)"
+            )
         )
 
         dataList.add(
@@ -94,9 +91,10 @@ class CoastalSurvivalInfo : AppCompatActivity() {
                         "8. BEACH CLEANUP INITIATIVES: Encourage regular beach cleanup programs to remove plastics and debris that can degrade coastal water quality, keeping the sea and shores cleaner.\n\n" +
                         "9. SALINITY GRADIENT POWER: Investigate salinity gradient power generation, which simultaneously produces renewable energy while desalinating seawater.\n\n" +
                         "10. COMMUNITY EDUCATION: Conduct educational programs within coastal communities to raise awareness about the importance of natural filtration methods, fostering community involvement in preserving their coastal water resources.\n",
-                R.drawable.img_228,
-                "https://www.ctc-n.org/technologies/seawater-desalination#:~:text=Evaporation%3A%20A%20method%20to%20obtain,through%20which%20seawater%20cannot%20pass.",
-                "https://www.pgesco.com/wp-content/uploads/2016/06/Desalination-And-Water-Treatment-Facilities-abo-qir-1-600x372.jpg")
+
+                "https://www.pgesco.com/wp-content/uploads/2016/06/Desalination-And-Water-Treatment-Facilities-abo-qir-1-600x372.jpg",
+                "https://www.ctc-n.org/technologies/seawater-desalination#:~:text=Evaporation%3A%20A%20method%20to%20obtain,through%20which%20seawater%20cannot%20pass."
+              )
         )
 
         dataList.add(
@@ -112,9 +110,10 @@ class CoastalSurvivalInfo : AppCompatActivity() {
                         "8. STRUCTURAL DRIVERS RECOGNITION: Address the complex structural factors influencing coastal livelihoods.\n\n" +
                         "9. LONG-TERM RESILIENCE PLANNING: Develop a long-term strategy for resilience to counter short-term interventions.\n\n" +
                         "10. COMMUNITY-LED ADAPTATION: Empower coastal communities to lead their own adaptation efforts, leveraging local knowledge and solutions.",
-                R.drawable.img_229,
-                "https://www.eastasiaforum.org/2020/11/25/building-resilient-coastal-communities-in-the-asia-pacific/",
-                "https://mb.com.ph/wp-content/uploads/2022/03/73579.jpeg")
+
+                "https://mb.com.ph/wp-content/uploads/2022/03/73579.jpeg",
+                "https://www.eastasiaforum.org/2020/11/25/building-resilient-coastal-communities-in-the-asia-pacific/"
+           )
         )
 
 
@@ -144,27 +143,5 @@ class CoastalSurvivalInfo : AppCompatActivity() {
 
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

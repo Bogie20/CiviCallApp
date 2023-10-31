@@ -37,9 +37,10 @@ class RoleofNutritionEducationInfo : AppCompatActivity() {
                         "8. GOVERNMENT-SCHOOL COLLABORATION: Discussing the collaborative efforts between DOST-FNRI and the Department of Education (DepEd) to integrate nutritious products in school feeding programs.\n\n" +
                         "9. COMPLEMENTARY FOOD DEVELOPMENT: Highlighting efforts to develop complementary foods for children aged 6 to 24 months to address their energy needs.\n\n" +
                         "10. IMPORTANCE OF NUTRITION EDUCATION: Stressing the importance of nutrition education and the role of parents, teachers, and influencers in promoting good nutrition.",
-                R.drawable.img_336,
-                "https://www.rappler.com/bulletin-board/dost-fnri-says-nutrition-critical-students-health-face-to-face-classes-implementation/",
-                "https://www.rappler.com/tachyon/2022/11/face-to-face-class-pinyahan-elementary-november-2-2022-001.jpg?resize=1400%2C934&zoom=1"
+
+                "https://www.rappler.com/tachyon/2022/11/face-to-face-class-pinyahan-elementary-november-2-2022-001.jpg?resize=1400%2C934&zoom=1",
+                "https://www.rappler.com/bulletin-board/dost-fnri-says-nutrition-critical-students-health-face-to-face-classes-implementation/"
+
             )
         )
         dataList.add(
@@ -55,9 +56,10 @@ class RoleofNutritionEducationInfo : AppCompatActivity() {
                         "8. FOSTERING COMMUNITIES OF HEALTH-CONSCIOUSNESS: Describing the role of Facebook communities, inter-school contests, and inter-region events in promoting the program's goals.\n\n" +
                         "9. IMPACTING MILLIONS OF STUDENTS AND TEACHERS: Showcasing the widespread reach of the Nestlé Wellness Campus program, covering seven regions in the Philippines.\n\n" +
                         "10. ASSESSING KNOWLEDGE AND BEHAVIOR CHANGE: How the program has led to improved nutrition knowledge and healthier habits among students, parents, and teachers.",
-                R.drawable.img_337,
-                "https://globalnation.inquirer.net/213920/a-decade-of-helping-filipino-children-lead-happier-healthier-lives-through-nutrition-education",
-                "https://www.rappler.com/tachyon/r3-assets/612F469A6EA84F6BAE882D2B94A4B421/img/F64BBBFA77AE405E8721DE8429EA3A9C/dswd-supplementary-feeding-program-20140130.jpg")
+
+                "https://www.rappler.com/tachyon/r3-assets/612F469A6EA84F6BAE882D2B94A4B421/img/F64BBBFA77AE405E8721DE8429EA3A9C/dswd-supplementary-feeding-program-20140130.jpg",
+                "https://globalnation.inquirer.net/213920/a-decade-of-helping-filipino-children-lead-happier-healthier-lives-through-nutrition-education"
+             )
         )
         dataList.add(
             DataItem("FOOD SECURITY AND ITS CONNECTION TO PUBLIC HEALTH NUTRITION",
@@ -72,9 +74,10 @@ class RoleofNutritionEducationInfo : AppCompatActivity() {
                         "8. PLIGHT OF PALAY FARMERS: Low prices have pushed palay farmers into hardship, with some rice millers becoming importers due to attractive trading margins.\n\n" +
                         "9. COMPLEX FOOD SECURITY DEFINITION: Achieving a common understanding of food security is challenging due to multifaceted components, including availability, access, utilization, and stability of food.\n\n" +
                         "10. NEED FOR COMPREHENSIVE APPROACH: To improve food security, it's essential to address not only rice but other staples, encourage local production, and involve all stakeholders, emphasizing the importance of competitiveness in various food items.",
-                R.drawable.img_338,
-                "https://newsinfo.inquirer.net/1431945/food-security-in-ph-a-task-for-everyone",
-                "https://newsinfo.inquirer.net/files/2023/09/529587.jpeg")
+
+                "https://newsinfo.inquirer.net/files/2023/09/529587.jpeg",
+                "https://newsinfo.inquirer.net/1431945/food-security-in-ph-a-task-for-everyone"
+             )
         )
 
         dataList.add(
@@ -91,9 +94,10 @@ class RoleofNutritionEducationInfo : AppCompatActivity() {
                         "8. COUNTRY-SPECIFIC APPROACHES: Sustainable diets will vary by country, with some needing to reduce certain food consumption and others maintaining traditional dietary patterns.\n\n" +
                         "9. FOOD SOVEREIGNTY CONNECTION: Sustainable diets align with the concept of food sovereignty, emphasizing people's right to culturally acceptable and ecosystem-friendly food production.\n\n" +
                         "10. POLICY RECOMMENDATIONS: Revising national dietary guidelines to reflect sustainable diets can be a pivotal step toward achieving food security and public health improvements.",
-                R.drawable.img_339,
-                "https://opinion.inquirer.net/166118/rethinking-filipino-diet-can-help-ensure-food-security-and-healthy-lifestyle",
-                "https://newsinfo.inquirer.net/files/2022/10/WhatsApp-Image-2022-10-17-at-11.02.13-AM.jpeg")
+
+                "https://newsinfo.inquirer.net/files/2022/10/WhatsApp-Image-2022-10-17-at-11.02.13-AM.jpeg",
+                "https://opinion.inquirer.net/166118/rethinking-filipino-diet-can-help-ensure-food-security-and-healthy-lifestyle"
+             )
         )
 
         dataList.add(
@@ -109,9 +113,10 @@ class RoleofNutritionEducationInfo : AppCompatActivity() {
                         "8. ECONOMIC IMPACT: On a macroeconomic level, the country loses about 1.5 to 3 percent of its GDP annually due to child stunting.\n\n" +
                         "9. MAJOR INTERVENTIONS: The PPAN includes interventions to increase access to nutritious food, promote behavioral change in feeding practices, and enhance access to quality nutrition services.\n\n" +
                         "10. NUTRITION INITIATIVES: Specific interventions involve food gardens, Kadiwa stores, dietary supplementation, support for breastfeeding, growth monitoring, and adolescent health programs.",
-                R.drawable.img_340,
-                "https://newsinfo.inquirer.net/1826601/5-year-plan-to-fight-malnutrition-formed",
-                "https://newsinfo.inquirer.net/files/2023/09/529588-620x454.jpeg")
+
+                "https://newsinfo.inquirer.net/files/2023/09/529588-620x454.jpeg",
+                "https://newsinfo.inquirer.net/1826601/5-year-plan-to-fight-malnutrition-formed"
+           )
         )
 
 

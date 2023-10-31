@@ -16,11 +16,6 @@ class DirtyAirBrightSolutionsInfo : AppCompatActivity() {
         setContentView(R.layout.activity_dirty_air_bright_solutions_info)
 
 
-
-
-
-
-
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
@@ -42,9 +37,10 @@ class DirtyAirBrightSolutionsInfo : AppCompatActivity() {
                         "8. BUDGET SHORTAGES FOR MONITORING: The DENR has been struggling with insufficient funds for maintaining air quality monitoring stations.\n\n" +
                         "9. LESSONS FROM THE COVID-19 PANDEMIC: The COVID-19 lockdown period demonstrated the benefits of reduced car usage and its positive impact on air quality.\n\n" +
                         "10. MOVING TOWARDS A BETTER NORMAL: The article concludes by emphasizing the importance of applying lessons from the pandemic to create a cleaner and healthier future for the city.",
-                R.drawable.img_291,
-                "https://www.rappler.com/environment/car-fueled-smog-metro-manila-shows-gaps-air-quality-transportation-policies/",
-                "https://www.rappler.com/tachyon/2023/09/volcanic-smog-vog-taal-metro-manila-september-22-2023-003.jpg?resize=1982%2C1321&zoom=1"
+
+                "https://www.rappler.com/tachyon/2023/09/volcanic-smog-vog-taal-metro-manila-september-22-2023-003.jpg?resize=1982%2C1321&zoom=1",
+                "https://www.rappler.com/environment/car-fueled-smog-metro-manila-shows-gaps-air-quality-transportation-policies/"
+
             )
         )
         dataList.add(
@@ -60,9 +56,10 @@ class DirtyAirBrightSolutionsInfo : AppCompatActivity() {
                         "8. COMPREHENSIVE HEALTHCARE: It advocates for comprehensive healthcare services available closer to people's homes, provided by coordinated healthcare teams.\n\n" +
                         "9. LEADERSHIP FOR UNIVERSAL HEALTH COVERAGE: The need for visionary and courageous leadership committed to universal health coverage is highlighted as a critical step.\n\n" +
                         "10. ACTIONS IN THE PHILIPPINES: The article applauds the commitment of the Philippines' Secretary of Health, Francisco Duque III, to strengthen primary healthcare, invest in prevention, and promote good governance in health.\n\n",
-                R.drawable.img_292,
-                "https://www.who.int/philippines/news/commentaries/detail/health-for-all-is-key-for-a-safer-fairer-more-prosperous-philippines",
-                "https://borgenproject.org/wp-content/uploads/The_Effects_of_Poverty_in_the_Philippines.jpg")
+
+                "https://borgenproject.org/wp-content/uploads/The_Effects_of_Poverty_in_the_Philippines.jpg",
+                "https://www.who.int/philippines/news/commentaries/detail/health-for-all-is-key-for-a-safer-fairer-more-prosperous-philippines"
+       )
         )
         dataList.add(
             DataItem("INITIATIVES FOR CLEANER AIR IN THE PHILIPPINES",
@@ -77,9 +74,10 @@ class DirtyAirBrightSolutionsInfo : AppCompatActivity() {
                         "8. PARTNERSHIPS FOR MAINTENANCE: Collaborations with host institutions and agencies ensure the ongoing maintenance and security of monitoring equipment.\n\n" +
                         "9. FULL AIRSHED OPERATIONALIZATION: Nationwide airshed operationalization and action plan implementation are part of the initiative.\n\n" +
                         "10. PROMOTING CLEANER AIR: DENR's efforts align with the broader goal of promoting cleaner air and a healthier environment in the Philippines.",
-                R.drawable.img_293,
-                "https://www.denr.gov.ph/index.php/priority-programs/clean-air-program",
-                "https://www.greenpeace.org/static/planet4-philippines-stateless/2021/06/f0f25e6f-gp1su2sq-1024x683.jpg")
+
+                "https://www.greenpeace.org/static/planet4-philippines-stateless/2021/06/f0f25e6f-gp1su2sq-1024x683.jpg",
+                "https://www.denr.gov.ph/index.php/priority-programs/clean-air-program"
+               )
         )
 
         dataList.add(
@@ -96,9 +94,10 @@ class DirtyAirBrightSolutionsInfo : AppCompatActivity() {
                         "8. LEGAL RECOURSE FOR PERMIT DENIAL: Environmental regulators' decisions on permits are generally not appealable but can be challenged for grave abuse of discretion.\n\n" +
                         "9. EXTENDED PRODUCER RESPONSIBILITY (EPR): The EPR Act introduces EPR mechanisms for waste reduction and recovery, placing responsibility on producers throughout a product's lifecycle.\n\n" +
                         "10. CHALLENGES AND ENFORCEMENT POWERS: Environmental regulators have authority to investigate, collect samples, conduct site inspections, and enforce environmental laws, promoting accountability and compliance.",
-                R.drawable.img_294,
-                "https://iclg.com/practice-areas/environment-and-climate-change-laws-and-regulations/philippines",
-                "https://development.asia/sites/default/files/summary/gms-pollution.png")
+
+                "https://development.asia/sites/default/files/summary/gms-pollution.png",
+                "https://iclg.com/practice-areas/environment-and-climate-change-laws-and-regulations/philippines"
+            )
         )
 
         dataList.add(
@@ -114,9 +113,10 @@ class DirtyAirBrightSolutionsInfo : AppCompatActivity() {
                         "8. GOVERNMENT ENERGY PLAN: The Philippine Department of Energy indicates that coal remains a significant part of the country's energy mix, with plans to expand domestic coal resources.\n\n" +
                         "9. TRANSITION TO CLEAN ENERGY: Experts stress the need to transition away from coal dependence and promote alternative energy sources like hydro, tidal, geothermal, wind, and solar power.\n\n" +
                         "10. CLIMATE CHANGE AND PUBLIC HEALTH: The Philippines is working on initiatives to reduce short-lived climate pollutants and align with the Paris climate change agreement, emphasizing the urgent public health aspect of addressing climate change and air pollution.",
-                R.drawable.img_295,
-                "https://noharm-global.org/articles/news/asia/news-health-experts-philippines-lead-fight-against-dirty-air",
-                "https://newsinfo.inquirer.net/files/2023/03/AIR-POLLUTION.jpeg")
+
+                "https://newsinfo.inquirer.net/files/2023/03/AIR-POLLUTION.jpeg",
+                "https://noharm-global.org/articles/news/asia/news-health-experts-philippines-lead-fight-against-dirty-air"
+              )
         )
 
 

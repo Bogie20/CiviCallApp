@@ -43,9 +43,9 @@ class SearchAndRescueinfo : AppCompatActivity() {
                         "9. Efficiency: Trained teams work more efficiently, reducing the time it takes to locate and assist individuals in need. This efficiency can save critical minutes during emergencies.\n\n" +
                         "10. Safety: Training ensures that SAR team members can operate safely in challenging environments, minimizing the risk to themselves and others during rescue missions.\n\n",
 
-                R.drawable.img_86,
-                "http://www.lifesafety.com/emergency-training/search-rescue-training/",
-                "https://www.bjreview.com/Cover_Stories_Series_2011/2011-08/15/content_383682.htm"
+                "https://www.bjreview.com/Cover_Stories_Series_2011/images/attachement/jpg/site23/20110812/00219b46f0320faf3ae70d.jpg",
+                "http://www.lifesafety.com/emergency-training/search-rescue-training/"
+
             )
         )
         dataList.add(
@@ -60,12 +60,9 @@ class SearchAndRescueinfo : AppCompatActivity() {
                         "7. Safety: Regular inspections and maintenance help prevent accidents and injuries caused by faulty equipment, ensuring the safety of SAR team members and those they are rescuing.\n\n" +
                         "8. Mission Success: Maintaining equipment readiness contributes to the overall success of SAR operations by minimizing disruptions and delays due to equipment malfunctions.\n\n" +
                         "9. Cost-Efficiency: Routine maintenance is cost-effective compared to replacing damaged or worn-out equipment. It extends the lifespan of equipment, saving resources in the long run.\n\n" +
-
                         "10. Professionalism: A well-maintained and organized equipment inventory reflects professionalism and commitment, instilling confidence in team members and stakeholders during SAR missions.\n\n",
 
-
-                R.drawable.img_87,
-                "https://www.ukfrs.com/guidance/search/personal-protective-equipment-ppe-rescues",
+                "https://www.panaynews.net/wp-content/uploads/2019/07/DISASTER-RESPONSE-TOOLS.jpg",
                 "https://www.panaynews.net/do-lgus-have-disaster-response-equipment/")
         )
         dataList.add(
@@ -82,9 +79,9 @@ class SearchAndRescueinfo : AppCompatActivity() {
                         "9. Coordination: Clear protocols improve coordination and communication among team members, ensuring a cohesive and effective response to the situation.\n\n" +
                         "10. Accountability: Protocols establish a framework for accountability, helping SAR teams document their actions, findings, and decisions throughout the search process, which can be essential for debriefing and analysis.\n\n",
 
-                R.drawable.img_88,
-                "https://safety4sea.com/emergency-procedures-how-search-and-rescue-works/",
-                "https://preparecenter.org/wp-content/uploads/2023/03/Early-warning-for-cyclone-preparedness-in-Bangladesh.jpg")
+                "https://preparecenter.org/wp-content/uploads/2023/03/Early-warning-for-cyclone-preparedness-in-Bangladesh.jpg",
+                "https://safety4sea.com/emergency-procedures-how-search-and-rescue-works/"
+              )
         )
 
         dataList.add(
@@ -102,13 +99,9 @@ class SearchAndRescueinfo : AppCompatActivity() {
                         "9. Adaptability: Experienced team leaders can adapt to evolving situations and make real-time adjustments to SAR strategies, enhancing the chances of a successful outcome.\n\n" +
                         "10. Accountability: Assigning team leaders ensures accountability for actions and decisions made during SAR operations, which is essential for post-mission analysis and improvement.\n\n",
 
-
-
-
-
-                R.drawable.img_92,
-                "https://www.nwcg.gov/ad-positions/srtl",
-                "https://crisisresponse.iom.int/sites/g/files/tmzbdl1481/files/styles/appeal_header_image_style/public/appeal/photos/philippines.JPG?h=144a81e2&itok=MNXFilkC")
+                "https://crisisresponse.iom.int/sites/g/files/tmzbdl1481/files/styles/appeal_header_image_style/public/appeal/photos/philippines.JPG?h=144a81e2&itok=MNXFilkC",
+                "https://www.nwcg.gov/ad-positions/srtl"
+               )
         )
 
         dataList.add(
@@ -126,9 +119,9 @@ class SearchAndRescueinfo : AppCompatActivity() {
                         "9. Public Confidence: Demonstrating a commitment to saving lives in emergencies builds public trust and confidence in the capabilities of emergency responders and authorities.\n\n" +
                         "10. Humanitarian Imperative: Prioritizing life-saving operations aligns with the humanitarian imperative to protect and preserve human life during times of crisis, reflecting a moral and ethical duty.\n\n",
 
-                R.drawable.img_93,
-                "https://www.hobartcity.com.au/Council/News-publications-and-announcements/Latest-news/smoke-free-parks",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rcrc-resilience-southeastasia.org%2Fhealth%2Fcommunity-based-health-and-first-aid%2Ffirst-aid%2F&psig=AOvVaw2QU30hGPB9gHjsawRHz_IC&ust=1696427641351000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCNiBzamE2oEDFQAAAAAdAAAAABAD")
+                "https://www.rcrc-resilience-southeastasia.org/wp-content/uploads/2016/04/p-LAO0019-e1461924037320-958x400.jpg",
+                "https://www.rcrc-resilience-southeastasia.org/health/community-based-health-and-first-aid/first-aid/"
+            )
         )
         dataList.add(
             DataItem("Informing the Public: Effective Communication in Disaster Response",
@@ -146,22 +139,9 @@ class SearchAndRescueinfo : AppCompatActivity() {
                         "9. Coordination: Public communication fosters coordination among responders, organizations, and agencies involved in emergency response, ensuring a unified and efficient effort.\n\n" +
                         "10. Accountability: Transparent communication holds authorities accountable for their actions and decisions during emergencies, fostering transparency and public scrutiny.\n\n",
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-                R.drawable.img_89,
-                "https://www.samhsa.gov/dtac/disaster-response-template-toolkit/messaging-through-other-media",
-                "https://philippines.oxfam.org/latest/stories/salcedo-leader-urges-government-adopt-anticipatory-action-drrm ")
+                "https://www.preventionweb.net/sites/default/files/styles/landscape_16_9/public/2022-10/Bangladesh_final-192.JPG%20%281%29.jpg?h=a67c7ce3&itok=MCjgpa06",
+                "https://www.samhsa.gov/dtac/disaster-response-template-toolkit/messaging-through-other-media"
+              )
         )
         dataList.add(
             DataItem("Paws for Help: Utilizing K-9 Units in Disaster Search Operations",
@@ -179,25 +159,13 @@ class SearchAndRescueinfo : AppCompatActivity() {
                         "9. Non-Invasive Search: Dogs provide a non-invasive method of search, reducing the risk of further harm to survivors or disturbing evidence in forensic searches.\n\n" +
                         "10. Team Collaboration: K-9 units enhance collaboration within SAR teams, working alongside human searchers and providing valuable support in locating individuals in challenging conditions.\n\n",
 
-
-
-
-
-
-
-
-                R.drawable.img_90,
-                "https://www.corinthiansgroup.com/importance-of-k-9-units-in-security/",
-                "https://www.rappler.com/tachyon/r3-assets/9BF98A19C9964319AAB2C026408A9D97/img/8E23BC282BF24B85B59668C763DB7F5D/Coast-Guard-K9s-20150625-01.jpg?resize=640%2C427&zoom=1")
+                "https://media.philstar.com/photos/2019/11/21/pcg-k9_2019-11-21_15-07-45.jpg",
+                "https://www.corinthiansgroup.com/importance-of-k-9-units-in-security/"
+                )
         )
         dataList.add(
             DataItem("Recording and Reporting Discoveries: Vital Steps in Disaster Response",
                 "Documenting and reporting findings is a crucial step in search and rescue (SAR) operations and emergency response efforts. Accurate and detailed documentation ensures that critical information about the operation, including discoveries, conditions, and actions taken, is preserved for analysis, decision-making, and future reference. This guide outlines procedures for documenting and reporting findings and underscores the importance of this process in effective SAR operations.\n\n" +
-
-
-
-
-
 
                         "1. Record Keeping: Establish a systematic record-keeping system to document all aspects of the SAR operation. This includes mission objectives, team assignments, equipment use, and timelines.\n\n" +
                         "2. Field Notes: SAR team members should maintain field notebooks or digital devices to record observations, discoveries, locations, and any relevant details during search and rescue activities.\n\n" +
@@ -210,13 +178,9 @@ class SearchAndRescueinfo : AppCompatActivity() {
                         "9. Resource Allocation: Reports on findings help incident commanders allocate resources effectively and make informed decisions regarding resource needs for ongoing or future SAR operations.\n\n" +
                         "10. Effective Communication: Documented findings facilitate communication with other response agencies, law enforcement, medical personnel, and affected individuals, ensuring that all stakeholders have access to critical information.\n\n",
 
-
-
-
-
-                R.drawable.img_91,
+                "https://psba.edu/wp-content/uploads/2018/08/MsIlas.jpg",
                 "https://www.imo.org/en/OurWork/Safety/Pages/IMO-documents-relevant-to-SAR.aspx",
-                "https://psba.edu/wp-content/uploads/2018/08/MsIlas.jpg")
+             )
         )
 
 
@@ -242,7 +206,6 @@ class SearchAndRescueinfo : AppCompatActivity() {
                 startActivity(intent)
             }
         })
-
 
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter

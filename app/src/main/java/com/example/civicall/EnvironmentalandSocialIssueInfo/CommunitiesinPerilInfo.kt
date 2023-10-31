@@ -37,9 +37,10 @@ class CommunitiesinPerilInfo : AppCompatActivity() {
                         "8. GLOBAL AND REGIONAL DYNAMICS: Land grabbing isn't limited to the Philippines; it's influenced by international actors and regional contexts\n\n" +
                         "9. LAND RIGHTS DEFINED: Understanding land grabbing involves grasping land rights, encompassing land ownership, control, and usage. \n\n" +
                         "10. LEGAL TOOLS AND HUMAN RIGHTS: There are international human rights instruments and legal tools aimed at safeguarding land, forests, fisheries, and natural resources. \n\n",
-                R.drawable.img_321,
-                "https://focusweb.org/wp-content/uploads/2017/04/PolicyReview2015_Understanding-Land-Rights_Land-Grabbing_21stCentury.pdf",
-                "https://viacampesina.org/en/wp-content/uploads/sites/2/2014/03/solidarity%20missionscaled.jpg"
+
+                "https://viacampesina.org/en/wp-content/uploads/sites/2/2014/03/solidarity%20missionscaled.jpg",
+                "https://focusweb.org/wp-content/uploads/2017/04/PolicyReview2015_Understanding-Land-Rights_Land-Grabbing_21stCentury.pdf"
+
             )
         )
         dataList.add(
@@ -55,9 +56,10 @@ class CommunitiesinPerilInfo : AppCompatActivity() {
                         "8. CAMP COORDINATION CHALLENGES: Coordination mechanisms for IDP camps face issues due to confusion among government authorities and limited resources of local host governments.\n\n" +
                         "9. MILITARIZED RESPONSE: The response to IDP issues is heavily militarized, with the Department of National Defense playing a central role.\n\n" +
                         "10. RIGHTS-BASED APPROACH NEEDED: The absence of specific rights for IDPs hinders their ability to claim entitlements and engage in meaningful dialogue, highlighting the need for a more rights-based approach to internal displacement.\n\n",
-                R.drawable.img_322,
-                "https://chr.gov.ph/a-disaster-approach-to-displacement-idps-in-the-philippines/",
-                "https://www.peaceinsight.org/wp-content/uploads/2015/06/Philippines-IDPs.jpg")
+
+                "https://www.peaceinsight.org/wp-content/uploads/2015/06/Philippines-IDPs.jpg",
+                "https://chr.gov.ph/a-disaster-approach-to-displacement-idps-in-the-philippines/"
+             )
         )
         dataList.add(
             DataItem("RESETTLEMENT PROGRAMS AND THEIR EFFECTIVENESS",
@@ -72,9 +74,10 @@ class CommunitiesinPerilInfo : AppCompatActivity() {
                         "8. DISPLACEMENT CHALLENGES: Observations indicate that government-led resettlement can carry significant risks, potentially prolonging displacement and increasing vulnerability.\n\n" +
                         "9. DISASTER RESPONSE: Humanitarian agencies play a crucial role in post-disaster resettlement, working alongside government counterparts and development agencies.\n\n" +
                         "10. LESSONS LEARNED: The article's findings stress the importance of careful planning, legal safeguards, and collaboration to ensure the effectiveness of resettlement programs in disaster-prone regions.",
-                R.drawable.img_323,
-                "https://reliefweb.int/report/philippines/philippines-post-typhoon-resettlement-plan-carries-risks",
-                "https://www.jvejercito.com/wp-content/uploads/2018/07/30740556_1953317138011624_5043007353213943808_n-960x640.jpg")
+
+                "https://www.jvejercito.com/wp-content/uploads/2018/07/30740556_1953317138011624_5043007353213943808_n-960x640.jpg",
+                "https://reliefweb.int/report/philippines/philippines-post-typhoon-resettlement-plan-carries-risks"
+               )
         )
 
         dataList.add(
@@ -91,9 +94,10 @@ class CommunitiesinPerilInfo : AppCompatActivity() {
                         "8.CONTINUED CONSULTATIONS: Additional consultations are scheduled in the provinces of Basilan, Sulu, and Tawi-Tawi, with a committee report expected in July.\n\n" +
                         "9.SAMIRA GUTOC'S PERSPECTIVE: Marawi Rescue Team head Samira Gutoc, a former senatorial candidate and an IDP herself, emphasizes that the bill promotes an environment that protects conflict victims and fosters economic growth.\n\n" +
                         "10.REGIONAL GOVERNMENT RESPONSIBILITY: The proposed legislation places significant responsibility on regional government bodies and local authorities to execute the mandate effectively in the absence of a national law addressing IDPs' rights in the Philippines.",
-                R.drawable.img_324,
-                "https://www.rappler.com/nation/mindanao/barmm-works-law-aid-residents-displaced-violence-disasters/",
-                "https://www.rappler.com/tachyon/2021/07/bukidnon-07162021-002.jpg")
+
+                "https://www.rappler.com/tachyon/2021/07/bukidnon-07162021-002.jpg",
+                "https://www.rappler.com/nation/mindanao/barmm-works-law-aid-residents-displaced-violence-disasters/"
+          )
         )
 
         dataList.add(
@@ -110,9 +114,10 @@ class CommunitiesinPerilInfo : AppCompatActivity() {
                         "8. TRANSPARENCY CHALLENGES: Transparency issues, lack of consultations, and diversion tactics complicate the debate over reclamation.\n\n" +
                         "9. HOT SPOTS: Reclamation projects are concentrated in Visayas and Calabarzon regions, particularly Manila Bay.\n\n" +
                         "10. LONG-TERM CONSEQUENCES: Reclamation's impact on urban decline and increased flooding highlights the need for careful, data-driven assessments.",
-                R.drawable.img_325,
-                "https://www.rappler.com/environment/reclamations-philippines-spreading-posing-dangers/",
-                "https://www.rappler.com/tachyon/2022/05/reclamation-watch-PH-May-27-2022.jpg?resize=1280%2C720&zoom=1")
+
+                "https://www.rappler.com/tachyon/2022/05/reclamation-watch-PH-May-27-2022.jpg?resize=1280%2C720&zoom=1",
+                "https://www.rappler.com/environment/reclamations-philippines-spreading-posing-dangers/"
+               )
         )
 
 

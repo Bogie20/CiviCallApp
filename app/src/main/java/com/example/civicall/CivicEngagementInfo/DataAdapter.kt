@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
+import com.squareup.picasso.Picasso
 
 class DataAdapter(private val dataList: List<DataItem>) :
     RecyclerView.Adapter<DataAdapter.ViewHolder>() {
@@ -87,12 +88,19 @@ class DataAdapter(private val dataList: List<DataItem>) :
         return ViewHolder(itemView)
     }
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = dataList[position]
         holder.currentItem = currentItem
         holder.titleTextView.text = currentItem.title
         holder.paragraphTextView.text = currentItem.paragraph
-        holder.imageView.setImageResource(currentItem.imageResourceId)
+
+        // Use Picasso to load the image from the imageLink
+        Picasso.get()
+            .load(currentItem.imageLink)
+            .placeholder(R.drawable.placeholder) // You can use a placeholder image while the URL image is loading
+            .error(R.drawable.placeholdererror) // You can specify an error image in case the URL image fails to load
+            .into(holder.imageView)
     }
 
     override fun getItemCount(): Int {

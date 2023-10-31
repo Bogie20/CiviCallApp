@@ -15,9 +15,6 @@ class VolcanicEruptionInfo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_volcanic_eruption_info)
 
-
-
-
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
@@ -40,9 +37,9 @@ class VolcanicEruptionInfo : AppCompatActivity() {
                         "9. TRAINING AND CAPACITY BUILDING: Train local personnel, including scientists and emergency responders, in the operation of the monitoring system and in interpreting its data.\n\n" +
                         "10. REGULAR MAINTENANCE AND UPDATES: Implement a schedule for routine maintenance and system updates to ensure the continuous operation and accuracy of the monitoring system.\n\n",
 
-                        R.drawable.img_186,
-                "https://www.pna.gov.ph/articles/1071549",
-                "https://www.phivolcs.dost.gov.ph/vault/images/article-images/soepd1.jpg"
+                "https://www.phivolcs.dost.gov.ph/vault/images/article-images/soepd1.jpg",
+                "https://www.pna.gov.ph/articles/1071549"
+
             )
         )
         dataList.add(
@@ -64,9 +61,9 @@ class VolcanicEruptionInfo : AppCompatActivity() {
                         "14. TOWEL, WET WIPES, TISSUES, OR PAPER TOWELS: These items are versatile for cleaning, cooling down, and makeshift masks.\n\n" +
                         "15. PORTABLE VACUUM CLEANER: Consider a portable vacuum cleaner in your car's trunk for cleaning ash from your vehicle or surroundings.\n\n",
 
-                R.drawable.img_187,
-                "https://www.autodeal.com.ph/articles/car-features/volcanic-eruption-survival-kit-what-bring-in-your-car",
-                "https://i.ytimg.com/vi/qR3C6nJeYOs/maxresdefault.jpg")
+                "https://i.ytimg.com/vi/qR3C6nJeYOs/maxresdefault.jpg",
+                "https://www.autodeal.com.ph/articles/car-features/volcanic-eruption-survival-kit-what-bring-in-your-car"
+)
         )
         dataList.add(
             DataItem("EVACUATION ROUTES AND SAFETY ZONES",
@@ -81,9 +78,10 @@ class VolcanicEruptionInfo : AppCompatActivity() {
                         "8. TRANSPORTATION AND LOGISTICS: Arrange transportation options, including buses, trucks, and boats, to facilitate the evacuation of residents, especially those with limited mobility. Stockpile emergency supplies in safety zones.\n\n" +
                         "9. EVACUATION DRILLS AND TRAINING: Conduct regular evacuation drills and training sessions for both residents and responders. Ensure that everyone knows their roles and responsibilities during an evacuation.\n\n" +
                         "10. CONTINUOUS MONITORING: Establish a system for continuous monitoring of volcanic activity, including seismic data and gas emissions. Update hazard assessments and evacuation plans as needed based on the latest information.",
-                R.drawable.img_188,
-                "https://appliedvolc.biomedcentral.com/articles/10.1186/s13617-021-00109-4",
-                "https://www.arabnews.com/sites/default/files/styles/660x371_watermarksaudi/public/main-image/2023/06/11/3860426-2067169154.jpg?itok=owK3pFTT")
+
+                "https://www.arabnews.com/sites/default/files/styles/660x371_watermarksaudi/public/main-image/2023/06/11/3860426-2067169154.jpg?itok=owK3pFTT",
+                "https://appliedvolc.biomedcentral.com/articles/10.1186/s13617-021-00109-4"
+             )
         )
 
         dataList.add(
@@ -100,9 +98,9 @@ class VolcanicEruptionInfo : AppCompatActivity() {
                         "9. SAFE DRIVING PRACTICES: If driving becomes necessary, keep car windows closed and avoid using the air conditioning system. Driving in ashfall stirs up ash, potentially causing engine issues and stalling vehicles.\n\n" +
                         "10. SPECIALIZED PROTECTION: Emergency and cleanup workers may require specialized respiratory protection based on their tasks. Ensure that workers have appropriate equipment for their activities.",
 
-                R.drawable.img_189,
-                "https://www.cdc.gov/disasters/volcanoes/during.html#:~:text=Protecting%20yourself%20during%20ashfall&text=Wear%20long%2Dsleeved%20shirts%20and,air%20intakes%20into%20the%20building.",
-                "https://media.cnn.com/api/v1/images/stellar/prod/140214121124-indonesia-volcano-evacuee-mount-kelud.jpg?q=w_3504,h_2336,x_0,y_0,c_fill")
+                "https://media.cnn.com/api/v1/images/stellar/prod/140214121124-indonesia-volcano-evacuee-mount-kelud.jpg?q=w_3504,h_2336,x_0,y_0,c_fill",
+                "https://www.cdc.gov/disasters/volcanoes/during.html#:~:text=Protecting%20yourself%20during%20ashfall&text=Wear%20long%2Dsleeved%20shirts%20and,air%20intakes%20into%20the%20building."
+             )
         )
 
         dataList.add(
@@ -118,11 +116,11 @@ class VolcanicEruptionInfo : AppCompatActivity() {
                         "8. ASTHMA OR COPD TRAVEL PACK: Create a portable pack containing all your essential medicines and instructions, making it easily accessible in case of emergencies.\n\n" +
                         "9. SEEK MEDICAL ATTENTION: If your pulmonary symptoms persist despite medication, seek immediate medical attention. Watch for symptoms like wheezing, shortness of breath, chest heaviness, lightheadedness, or dizziness.\n\n" +
                         "10. CLEAN-UP SAFETY: If involved in clean-up activities, use caution. Avoid areas with dust and soot if you have lung or heart problems. Wet dusty areas before cleaning to reduce airborne particulates, and wear an appropriate dust mask during clean-up.\n\n",
-                R.drawable.img_190,
-                "https://www.lung.org/clean-air/emergencies-and-natural-disasters/volcanic-ash",
-                "https://sa.kapamilya.com/absnews/abscbnnews/media/2020/life/01/14/20200113-taal-eruption-lemery-jc-5.jpg")
-        )
 
+                "https://sa.kapamilya.com/absnews/abscbnnews/media/2020/life/01/14/20200113-taal-eruption-lemery-jc-5.jpg",
+                "https://www.lung.org/clean-air/emergencies-and-natural-disasters/volcanic-ash"
+             )
+        )
 
         val adapter = DataAdapter(dataList)
 

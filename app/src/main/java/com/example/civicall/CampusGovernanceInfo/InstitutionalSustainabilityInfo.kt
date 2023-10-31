@@ -15,7 +15,6 @@ class InstitutionalSustainabilityInfo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_institutional_sustainability_info)
 
-
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
@@ -95,18 +94,9 @@ class InstitutionalSustainabilityInfo : AppCompatActivity() {
 
                         "Achieving institutional sustainability is a collective endeavor that demands engagement from all corners of the University community. With the University President leading the way, and the commitment to a whole-of-university approach, the institution is poised to make a lasting impact on sustainable development, both locally and globally. As the higher education sector navigates an ever-changing landscape, institutions like the University are setting a benchmark for responsible, accountable, and forward-thinking governance and management.\n\n",
 
+                "https://businessmirror.com.ph/wp-content/uploads/2023/02/Microsoft-Philippines-x-Batangas-State-University-scaled.jpg",
+                "https://sustainability.batstate-u.edu.ph/programs/institutional-sustainability/governance-and-management/"
 
-
-
-
-
-
-
-
-
-                R.drawable.img_376,
-                "https://sustainability.batstate-u.edu.ph/programs/institutional-sustainability/governance-and-management/",
-                "https://businessmirror.com.ph/wp-content/uploads/2023/02/Microsoft-Philippines-x-Batangas-State-University-scaled.jpg"
             )
         )
 

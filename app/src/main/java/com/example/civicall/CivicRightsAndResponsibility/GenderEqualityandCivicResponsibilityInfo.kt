@@ -42,9 +42,10 @@ class GenderEqualityandCivicResponsibilityInfo : AppCompatActivity() {
                         "8. IMPACT OF POLITICAL LEADERSHIP: Misogynistic attitudes may be perpetuated by political leadership and have far-reaching societal consequences.\n" +
                         "9. GENDER BIAS IN EDUCATION: The study also examines gender bias in education, highlighting the need for safe spaces and addressing issues like sexual harassment.\n" +
                         "10. ADVOCACY FOR GENDER EQUALITY: The article emphasizes the importance of raising critical awareness about gender issues and advocating for legal reforms to combat gender-based violence and promote gender equality.\n",
-                R.drawable.img_261,
-                "https://www.rappler.com/nation/filipino-women-highly-biased-against-own-gender/",
-                "https://www.rappler.com/tachyon/2023/06/Rappler-Talk-women-bias.jpg?resize=1280%2C720&zoom=1"
+
+                "https://www.rappler.com/tachyon/2023/06/Rappler-Talk-women-bias.jpg?resize=1280%2C720&zoom=1",
+                "https://www.rappler.com/nation/filipino-women-highly-biased-against-own-gender/"
+
             )
         )
         dataList.add(
@@ -60,9 +61,10 @@ class GenderEqualityandCivicResponsibilityInfo : AppCompatActivity() {
                         "8. ASEAN MEMBER: The Philippines is a founding member of the Association of Southeast Asian Nations (ASEAN), promoting gender equality in the region.\n" +
                         "9. APEC PARTICIPATION: The country is also a founding member of the Asia-Pacific Economic Cooperation (APEC) and works on women's economic empowerment.\n" +
                         "10. SIGNATORY TO HUMAN RIGHTS TREATIES: The Philippines is a signatory to various international human rights treaties that protect and promote women's rights.",
-                R.drawable.img_262,
-                "https://pcw.gov.ph/international-commitments/#:~:text=The%20Philippines%20is%20one%20of,bill%20of%20rights%20of%20women.",
-                "https://asiapacific.unwomen.org/sites/default/files/Field%20Office%20ESEAsia/Images/2016/09/philippines-cedaw-main.jpg?la=en")
+
+                "https://asiapacific.unwomen.org/sites/default/files/Field%20Office%20ESEAsia/Images/2016/09/philippines-cedaw-main.jpg?la=en",
+                "https://pcw.gov.ph/international-commitments/#:~:text=The%20Philippines%20is%20one%20of,bill%20of%20rights%20of%20women."
+              )
         )
         dataList.add(
             DataItem("GENDER EMPOWERMENT IN CIVIC PARTICIPATION IN THE PHILIPPINES",
@@ -79,9 +81,10 @@ class GenderEqualityandCivicResponsibilityInfo : AppCompatActivity() {
                         "8. LOCAL COUNCIL GENDER GAP: Even at the local level, a significant gender gap persists, with more male councilors compared to their female counterparts.\n" +
                         "9. VOTER TURNOUT: Women have maintained a slight lead in voter turnout compared to men in recent elections.\n" +
                         "10. GENDER EMPOWERMENT LAWS: The Philippines has enacted various laws to promote gender empowerment, but challenges in implementation and gender inequality issues remain.",
-                R.drawable.img_475,
-                "https://www.rappler.com/moveph/124248-women-politics-governance/",
-                "https://nimd.org/wp-content/uploads/2022/04/Women-Political-Participation-social.jpg")
+
+                "https://nimd.org/wp-content/uploads/2022/04/Women-Political-Participation-social.jpg",
+                "https://www.rappler.com/moveph/124248-women-politics-governance/"
+            )
         )
 
         dataList.add(
@@ -97,9 +100,10 @@ class GenderEqualityandCivicResponsibilityInfo : AppCompatActivity() {
                         "8. SUPPORT WOMEN'S LEADERSHIP: Encourage and create space for women and girls to lead and effect positive change in communities.\n\n" +
                         "9. FUNDAMENTAL HUMAN RIGHT: Gender equality is not only a fundamental right but also the necessary foundation to achieve a peaceful, thriving, and sustainable world.\n\n" +
                         "10. COLLECTIVE FIGHT FOR EQUALITY: Promoting gender equality requires collective action, involving both men and women, to build a more equitable society.",
-                R.drawable.img_265,
-                "https://www.rappler.com/newsbreak/iq/198603-data-privacy-personal-information-protection-tips/",
-                "https://plan-international.org/tachyon/2022/01/GGE-Gonzalo-Activism.jpg?resize=507%2C507&zoom=1")
+
+                "https://plan-international.org/tachyon/2022/01/GGE-Gonzalo-Activism.jpg?resize=507%2C507&zoom=1",
+                "https://www.rappler.com/newsbreak/iq/198603-data-privacy-personal-information-protection-tips/"
+           )
         )
 
 
@@ -129,28 +133,6 @@ class GenderEqualityandCivicResponsibilityInfo : AppCompatActivity() {
 
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

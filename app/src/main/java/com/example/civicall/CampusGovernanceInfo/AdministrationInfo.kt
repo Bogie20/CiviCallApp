@@ -28,49 +28,19 @@ class AdministrationInfo : AppCompatActivity() {
                 "ADMINISTRATIONS ABOUT",
                 "The Administration and Finance – Central Administration serves as a proactive partner in delivering excellent service to the Batangas State University community. It embraces BASICS: Brand of Excellence, Access, Social Relevance, Inclusive Innovation, Capacity and Sustainability - the pillars of the University’s Strategic Plan 2019-2029.\n\n" +
 
-
-
-
                         "The Vice President for Administration and Finance provides leadership, over-all direction and supervision in the operation of and in the implementation of policies and procedures for procurement services, supplies and property management, human resource management and development, records keeping and management, facility planning and maintenance, motor pool, ground maintenance and other related services (Administration Services); accounting, budgeting, utilization and disbursement of cash (Financial Services); infrastructure development, project implementation, inspection and monitoring (Project Management); and medical and dental services (Health Services).\n\n" +
-
-
-
-
 
                         "Within those offices lie critical functions of strategic allocation of resources, including but not limited to human, physical and financial, and administrative and general support services that enable the University to excel in academic, research, extension and other community services. By providing data, financial information, insight and analysis, we assist leadership and management in its financial and management decisions that help fulfill its mission while maintaining a position of financial strength and ensuring compliance with applicable laws, rules and regulations, the university’s internal policies and guidelines including.\n\n" +
 
 
-
-
-
-
                         "The Administration and Finance – Central Administration is responsive to the short and long term needs of the BatStateU community. It interconnects its services to the United Nation's Sustainable Development Goals (SDGs). Our work is organized around three primary goal areas cutting across strategic priorities of the University:\n\n" +
-
-
-
-
-
-
-
-
 
                         "1. To provide the highest levels of services in order to promote the success of Red Spartans students, our colleagues in the BatStateU community, and the public using the best available tools, technologies and practices (Service);\n\n" +
 
                         "2. To provide a safe environment that protects and encourages improvements in the health and wellness of all aspects of the BatStateU community (Health and Safety); and\n\n" +
 
 
-
-
-
-
-
                         "3. to ensure that all human, financial, physical and other resources owned by and entrusted to the University are deployed and utilized in an effective, efficient, transparent, and socially responsible manner for viability and sustainability of its operation (Stewardship).\n\n" +
-
-
-
-
-
-
 
 
                         "With a team of dedicated men and women, we seek to elevate the University to “Greater Heights of Excellence in Innovation and Social Transformation” as it traverses its path to becoming a premier national university.\n\n" +
@@ -107,46 +77,11 @@ class AdministrationInfo : AppCompatActivity() {
                         "We share and demonstrate our strong faith in a Supreme Being through committed, dedicated and faithful service to the BatstateU community. We will inspire faith that is needed in every step of our journey as public servant.\n\n" +
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         "With a team of dedicated men and women, we seek to elevate the University to “Greater Heights of Excellence in Innovation and Social Transformation” as it traverses its path to becoming a premier national university.\n\n",
 
-                R.drawable.img_392,
-                "https://batstate-u.edu.ph/about/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/homepage-webslider-1.jpg"
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/homepage-webslider-1.jpg",
+                "https://batstate-u.edu.ph/about/"
+
             )
         )
 
@@ -156,8 +91,6 @@ class AdministrationInfo : AppCompatActivity() {
                 "Atty. Luzviminda Rosales, Vice President for Administration Finance, during the ocular inspection of unserviceable properties of the University for disposal.\n\n" +
                         "Facilitates University activities and operations; and provides proficient and economical services relating to records, humans resources, procurement, property and supply, and general services.\n\n",
 
-
-                        R.drawable.img_485,
                 "https://batstate-u.edu.ph/administration-services/about-us",
                 "https://batstate-u.edu.ph/wp-content/uploads/2023/02/vpaf-general-functions-of-unit-1.jpg"
             )
@@ -168,8 +101,6 @@ class AdministrationInfo : AppCompatActivity() {
                 "HUMAN RESOURCE MANAGEMENT OFFICE",
                         "Performs human resource responsibilities on recruitment, selection and placement; learning and development; rewards and recognition; and performance management, and ensures that the University strengthens employee empowerment.\n\n",
 
-
-                R.drawable.img_486,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
                 "https://batstate-u.edu.ph/wp-content/uploads/2023/02/vpaf-general-functions-of-unit-2.jpg"
             )
@@ -180,8 +111,6 @@ class AdministrationInfo : AppCompatActivity() {
                 "PROCUREMENT OFFICE",
                 "Procures best quality goods and services; reviews the accuracy and completeness of all documents pertaining to procurement transactions; and ensures effective and efficient management of procurement processes and procedures.\n\n",
 
-
-                R.drawable.img_487,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
                 "https://batstate-u.edu.ph/wp-content/uploads/2020/10/scholar-1.jpg"
             )
@@ -194,10 +123,9 @@ class AdministrationInfo : AppCompatActivity() {
                 "RECORDS MANAGEMENT OFFICE",
                 "Performs systemic and administrative control of records; ensures efficiency, consistency and uniformity of records management in terms of access, confidentiality and security; and complies with the rules and regulations that govern the management of public records.\n\n",
 
+                "https://cda.gov.ph/wp-content/uploads/2021/01/2017-08-01-news-cormic.jpg",
+                "https://batstate-u.edu.ph/administration-services/general-functions-of-units/"
 
-                R.drawable.img_488,
-                "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
-                "https://cda.gov.ph/wp-content/uploads/2021/01/2017-08-01-news-cormic.jpg"
             )
         )
 
@@ -207,8 +135,6 @@ class AdministrationInfo : AppCompatActivity() {
                 "PROPERTY AND SUPPLY OFFICE",
                 "Manages, utilizes and safeguards the properties and supplies against loss and wastage in accordance with the existing rules and regulations of the University which ensure the effective and efficient delivery of services to internal and external clients.\n\n",
 
-
-                R.drawable.img_490,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
                 "https://dab.bangsamoro.gov.ph/wp-content/uploads/2023/07/239907930_159783403009539_9009296346119503774_n.jpg"
             )
@@ -220,45 +146,18 @@ class AdministrationInfo : AppCompatActivity() {
                 "Implements policies and guidelines on general services functions such as facility management services; building, equipment and grounds maintenance, and motor pool services.\n\n",
 
 
-                R.drawable.img_400,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
                 "https://batstate-u.edu.ph/wp-content/uploads/2023/02/vpaf-general-functions-of-unit-8.jpg"
             )
         )
-
-
-
-
-
-
-
-
-
-
-
 
         dataList.add(
             DataItem(
                 "FINANCIAL SERVICES",
                 "Provides quality financial services relating to accounting, budgeting and cashiering which include the effective and sustainable allocation and management of funds that support the strategic plan of the University.\n\n",
 
-                R.drawable.img_402,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
                 "https://batstate-u.edu.ph/wp-content/uploads/2020/10/scholar-3.jpg"
-            )
-        )
-
-
-
-
-        dataList.add(
-            DataItem(
-                "ACCOUNTING OFFICE",
-                "Maintain records of financial transactions, prepares financial reports and statements; and assesses and communicates financial information based on accounting and auditing rules and regulations for efficient management of University operations.\n\n",
-
-                R.drawable.img_403,
-                "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2023/02/vpaf-general-functions-of-unit-9.jpg"
             )
         )
 
@@ -267,7 +166,6 @@ class AdministrationInfo : AppCompatActivity() {
                 "BUDGET OFFICE",
                 "Performs the budgeting process from budget preparation to execution and accountability; and coordinates with the concerned offices/agencies on the proper allocation and utilization of government funds toward effective and efficient fiscal leadership.\n\n",
 
-                R.drawable.img_404,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
                 "https://binalonan.gov.ph/wp-content/uploads/2018/07/A-usual-day-at-work.jpg"
             )
@@ -280,7 +178,6 @@ class AdministrationInfo : AppCompatActivity() {
                 "CASHIER OFFICE",
                 "Ensures safekeeping of money, checks and official receipts; ensures that all collections are properly recorded and timely deposited; and maintains a complete record of check disbursement and accounts.\n\n",
 
-                R.drawable.img_405,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
                 "https://batstate-u.edu.ph/wp-content/uploads/2023/02/vpaf-general-functions-of-unit-10.jpg"
             )
@@ -292,40 +189,16 @@ class AdministrationInfo : AppCompatActivity() {
                 "PROJECT MANAGEMENT OFFICE",
                 "Develops and implements plans for infrastructure development; and ensures that infrastructure projects are properly coordinated and consistent with University's strategic thrusts and priorities.\n\n",
 
-                R.drawable.img_406,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
                 "https://batstate-u.edu.ph/wp-content/uploads/2023/02/vpaf-general-functions-of-unit-11.jpg"
             )
         )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         dataList.add(
             DataItem(
                 "FINANCIAL SERVICES  OFFICE",
                 "Provides quality financial services relating to accounting, budgeting and cashiering which include the effective and sustainable allocation and management of funds that support the strategic plan of the University.\n\n",
 
-                R.drawable.img_407,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
                 "https://batstate-u.edu.ph/wp-content/uploads/2020/10/scholar-3.jpg"
             )

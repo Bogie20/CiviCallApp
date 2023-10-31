@@ -73,9 +73,9 @@ class AboutInfo : AppCompatActivity() {
                         "As Batangas State University continues its journey towards becoming a premier national university, it remains devoted to developing leaders in the global knowledge economy, advancing engineering education, and promoting sustainable development, all while fostering innovation and excellence.\n\n" +
 
                         "Discovering the history of Batangas State University is not just a journey through time; it's a testament to the institution's enduring commitment to progress, innovation, and the betterment of society.\n\n",
-                R.drawable.img_392,
-                "https://batstate-u.edu.ph/about/",
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/homepage-webslider-1.jpg"
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/homepage-webslider-1.jpg",
+                "https://batstate-u.edu.ph/about/"
+
             )
         )
         val adapter = DataAdapter(dataList)

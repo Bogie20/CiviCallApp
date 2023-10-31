@@ -37,9 +37,10 @@ class TheImpactofPublicHealthAwarenessInfo : AppCompatActivity() {
                         "8. GLOBAL COLLABORATION: The WHO and UN agencies are partnering with the Philippines to reduce NCD-related premature deaths by a third by 2030.\n\n" +
                         "9. INTERAGENCY TASK FORCE: A UN-led Task Force, comprising over 40 agencies, is working to combat NCDs as part of the Sustainable Development Agenda.\n\n" +
                         "10. CRUCIAL MEASURES: The task force will recommend comprehensive tobacco control, regulation of unhealthy food marketing to children, nutrition labeling, and the promotion of healthy diets and physical activity.",
-                R.drawable.img_346,
-                "https://www.who.int/philippines/news/commentaries/detail/time-for-action-to-stop-the-deadliest-diseases-in-the-philippines",
-                "https://www.uicc.org/sites/default/files/styles/original_small/public/thumbnails/image/SUCCESS-Philippines-Jhpiego-20211107_161204.jpeg.webp?itok=LpZlbsAO"
+
+                "https://www.uicc.org/sites/default/files/styles/original_small/public/thumbnails/image/SUCCESS-Philippines-Jhpiego-20211107_161204.jpeg.webp?itok=LpZlbsAO",
+                "https://www.who.int/philippines/news/commentaries/detail/time-for-action-to-stop-the-deadliest-diseases-in-the-philippines"
+
             )
         )
         dataList.add(
@@ -55,9 +56,10 @@ class TheImpactofPublicHealthAwarenessInfo : AppCompatActivity() {
                         "8. TAILORED INTERVENTIONS FOR DIVERSE POPULATIONS: Addressing different population groups with specific interventions.\n\n" +
                         "9. PRIMORDIAL PREVENTION FOR RISK REDUCTION: Explaining primordial prevention's role in reducing health risks by preventing risk factors.\n\n" +
                         "10. CRAFTING IMPACTFUL HEALTH CAMPAIGNS: Step-by-step guide for creating effective health awareness campaigns.\n",
-                R.drawable.img_347,
-                "https://www.adbirt.com/blog/how-to-promote-health-awareness/",
-                "https://evident.ph/wp-content/uploads/2021/07/DOH_Behance_Main-Art.jpg")
+
+                "https://evident.ph/wp-content/uploads/2021/07/DOH_Behance_Main-Art.jpg",
+                "https://www.adbirt.com/blog/how-to-promote-health-awareness/"
+              )
         )
         dataList.add(
             DataItem("UNHEALTHY HABITS IN THE PHILIPPINES: EXPLORING THEIR IMPACT ON CHRONIC DISEASES",
@@ -72,9 +74,10 @@ class TheImpactofPublicHealthAwarenessInfo : AppCompatActivity() {
                         "8. PROCESSED SNACKS: Processed snacks, such as chips and candies, are now staples in Filipino households, lacking essential nutrients.\n\n" +
                         "9. TOBACCO AND ALCOHOL USE: Smoking remains a significant concern, while binge drinking is linked to various health problems.\n\n" +
                         "10. ECONOMIC AND HEALTHCARE IMPACT: Unhealthy habits strain the healthcare system and have economic repercussions, making urgent action necessary.",
-                R.drawable.img_348,
-                "https://www.southwestjournal.com/unhealthy-habits-in-the-philippines/",
-                "https://www.southwestjournal.com/wp-content/webp-express/webp-images/uploads/2023/10/Sufary-beverages.jpg.webp")
+
+                "https://www.southwestjournal.com/wp-content/webp-express/webp-images/uploads/2023/10/Sufary-beverages.jpg.webp",
+                "https://www.southwestjournal.com/unhealthy-habits-in-the-philippines/"
+)
         )
 
         dataList.add(
@@ -91,9 +94,10 @@ class TheImpactofPublicHealthAwarenessInfo : AppCompatActivity() {
                         "8. ALARMING STATISTICS: Over 27 million Filipinos are overweight or obese, and the prevalence of obesity among adults has steadily risen over the past two decades.\n\n" +
                         "9. PROJECTED TRENDS: Without action, it is estimated that more than 30% of Filipino adolescents will be overweight or obese by 2030.\n\n" +
                         "10. ADDRESSING THE ISSUE: Various organizations and government bodies are working to implement policies, promote healthy diets, and increase physical activity to combat the growing obesity problem in the Philippines.",
-                R.drawable.img_349,
-                "https://newsinfo.inquirer.net/1694528/obesitys-heavy-toll-millions-of-filipinos-now-at-greater-health-risks",
-                "https://newsinfo.inquirer.net/files/2022/11/OBESITY.jpeg")
+
+                "https://newsinfo.inquirer.net/files/2022/11/OBESITY.jpeg",
+                "https://newsinfo.inquirer.net/1694528/obesitys-heavy-toll-millions-of-filipinos-now-at-greater-health-risks"
+              )
         )
 
         dataList.add(
@@ -109,9 +113,10 @@ class TheImpactofPublicHealthAwarenessInfo : AppCompatActivity() {
                         "8. COST OF EDUCATION: The rising cost of education is making it unaffordable for many students and their families.\n\n" +
                         "9. HYBRID LEARNING: A blend of physical and digital learning methods is necessary for comprehensive health education.\n\n" +
                         "10. ACCESSIBLE EDUCATION: Diversity, equity, and inclusion should be integral to affordable and accessible health education.",
-                R.drawable.img_350,
-                "https://business.inquirer.net/380420/health-education-in-transition-preparing-future-health-workforce-for-patient-care",
-                "https://business.inquirer.net/files/2023/01/HEALTH.png")
+
+                "https://business.inquirer.net/files/2023/01/HEALTH.png",
+                "https://business.inquirer.net/380420/health-education-in-transition-preparing-future-health-workforce-for-patient-care"
+            )
         )
 
 

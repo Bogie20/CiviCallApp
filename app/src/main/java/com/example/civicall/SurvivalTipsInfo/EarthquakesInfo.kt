@@ -38,9 +38,8 @@ class EarthquakesInfo : AppCompatActivity() {
                         "9. EDUCATE YOUR FAMILY: Teach your family members earthquake safety procedures, including 'Drop, Cover, and Hold On.' Conduct regular earthquake drills to practice these safety measures.\n\n" +
                         "10. SECURE GLASS WINDOWS AND MIRRORS: Apply safety film to glass windows and mirrors to prevent them from shattering during an earthquake, reducing the risk of injury and damage.",
 
-                R.drawable.img_181,
-                "https://www.linkedin.com/pulse/ideas-secure-your-house-against-earthquakes-simple-steps-gerry-bongon/",
-                "https://www.lumina.com.ph/assets/news-and-blogs-photos/Earthquake-Preparedness-Plan/OG-Earthquake-Preparedness-Plan-Tips-Safe-places-to-put-furniture-at-home.webp"
+                "https://www.lumina.com.ph/assets/news-and-blogs-photos/Earthquake-Preparedness-Plan/OG-Earthquake-Preparedness-Plan-Tips-Safe-places-to-put-furniture-at-home.webp",
+                "https://www.linkedin.com/pulse/ideas-secure-your-house-against-earthquakes-simple-steps-gerry-bongon/"
             )
         )
         dataList.add(
@@ -57,9 +56,9 @@ class EarthquakesInfo : AppCompatActivity() {
                         "9. PET SUPPLIES: If you have pets, assemble a separate kit for them with food, water, leashes, carriers, medications, and copies of their medical records.\n\n" +
                         "10. EMERGENCY PLAN: Develop a family emergency plan outlining evacuation routes, rendezvous points, and contact information. Ensure everyone in your household is familiar with the plan.",
 
-                R.drawable.img_182,
-                "https://www.earthquakeauthority.com/Blog/2019/How-to-Make-an-Earthquake-Emergency-Kit",
-                "https://s.w-x.co/disaster_supply_kit.jpg")
+                "https://s.w-x.co/disaster_supply_kit.jpg",
+                "https://www.earthquakeauthority.com/Blog/2019/How-to-Make-an-Earthquake-Emergency-Kit"
+              )
         )
         dataList.add(
             DataItem("EVACUATION PLANS AND SAFE ZONES",
@@ -75,9 +74,10 @@ class EarthquakesInfo : AppCompatActivity() {
                         "8. COMMUNICATION ACCESS: Ensure radio and cell phone availability by avoiding evacuation points in areas with impaired or inaccessible communications.\n\n" +
                         "9. CRIMINAL ACTS: Be prepared for the possibility of criminal acts such as bombings or arson. Responders should control the area and maintain the integrity of the crime scene if such incidents occur.\n\n" +
                         "10. CONTINUOUS REVIEW: Regularly review and update evacuation plans and safe zones to adapt to changing circumstances, improve safety measures, and enhance preparedness for earthquake scenarios.",
-                R.drawable.img_183,
-                "https://www.colorado.edu/firelifesafety/fire-drills/selecting-evacuation-locations#:~:text=Try%20to%20Locate%20Evacuation%20Point%3A&text=At%20a%20safe%20distance%20from,and%20sewer%20main%20access%20covers.",
-                "https://i0.wp.com/www.up.edu.ph/wp-content/uploads/2019/02/IMG_5171.jpg?resize=640%2C427&ssl=1")
+
+                "https://i0.wp.com/www.up.edu.ph/wp-content/uploads/2019/02/IMG_5171.jpg?resize=640%2C427&ssl=1",
+                "https://www.colorado.edu/firelifesafety/fire-drills/selecting-evacuation-locations#:~:text=Try%20to%20Locate%20Evacuation%20Point%3A&text=At%20a%20safe%20distance%20from,and%20sewer%20main%20access%20covers."
+             )
         )
 
         dataList.add(
@@ -94,9 +94,9 @@ class EarthquakesInfo : AppCompatActivity() {
                         "9. INITIATE CPR (CARDIOPULMONARY RESUSCITATION): In cases of cardiac arrest with no pulse, start CPR immediately. Familiarize yourself with CPR procedures and perform them effectively.\n\n" +
                         "10. ENSURE WARMTH AND MEDICAL ATTENTION: Keep injured individuals warm by covering them with blankets or additional clothing. Seek medical assistance for serious injuries promptly. Pay special attention to the well-being of children and individuals requiring special assistance.",
 
-                R.drawable.img_184,
-                "http://scecinfo.usc.edu/eqcountry/roots/step6.html",
-                "https://staging.imanilahost.com/redcross/wp-content/uploads/2019/07/FOR-PR.jpg")
+                "https://staging.imanilahost.com/redcross/wp-content/uploads/2019/07/FOR-PR.jpg",
+                "http://scecinfo.usc.edu/eqcountry/roots/step6.html"
+             )
         )
 
         dataList.add(
@@ -112,9 +112,10 @@ class EarthquakesInfo : AppCompatActivity() {
                         "8. ADVOCACY AND FEEDBACK: Use the platform to advocate for specific causes or provide feedback to local governments or organizations, amplifying your civic voice.\n\n" +
                         "9. GAMIFIED ENGAGEMENT: Explore gamification features within the platform, earning rewards or recognition for your contributions to encourage ongoing involvement.\n\n" +
                         "10. MOBILE ACCESSIBILITY: Download the native mobile app for added convenience, allowing you to engage with your community and campaigns while on the go.\n\n",
-                R.drawable.img_185,
-                "https://bonyan.ngo/blog/psychosocial-support-for-earthquake-victims/",
-                "https://www.xu.edu.ph/images/2017/img/march/Surigao1.jpg")
+
+                "https://www.xu.edu.ph/images/2017/img/march/Surigao1.jpg",
+                "https://bonyan.ngo/blog/psychosocial-support-for-earthquake-victims/"
+               )
         )
 
 

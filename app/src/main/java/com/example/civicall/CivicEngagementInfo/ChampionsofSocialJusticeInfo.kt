@@ -36,14 +36,14 @@ class ChampionsofSocialJusticeInfo : AppCompatActivity() {
                         "9. VOTE AND MOBILIZE: Encourage voter registration and participation among your peers. Mobilize students to support political candidates and policies that prioritize racial equality.\n\n" +
                         "10. CONTINUOUS SELF-REFLECTION: Regularly reflect on your own biases, privileges, and contributions to racial equality efforts. Stay committed to lifelong learning and improvement in this important cause.\n\n",
 
-                R.drawable.img_444,
-                "https://www.kaplanpathways.com/blog/why-is-racial-equality-important/",
-                "https://i.guim.co.uk/img/media/f76a3b0a63df5a9bd38da97f3e66b09e3a5b6ca9/0_3_6000_3602/master/6000.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=d70febd9b542e8b59de11529b64ece2f"
+                "https://i.guim.co.uk/img/media/f76a3b0a63df5a9bd38da97f3e66b09e3a5b6ca9/0_3_6000_3602/master/6000.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=d70febd9b542e8b59de11529b64ece2f",
+                "https://www.kaplanpathways.com/blog/why-is-racial-equality-important/"
+
             )
         )
         dataList.add(
             DataItem("GENDER EQUALITY ",
-                "\"Unlocking the Power of Gender Equality: Empowering Youth Activism in Civic Engagement. Delve into the intricate tapestry of gender dynamics as we explore how youth worldwide are shaping the future of civic engagement, dissecting gender differences in activism, and redefining the path to equality.\"\n\n\n" +
+                "\"Unlocking the Power of Gender Equality: Empowering Youth Activism in Civic Engagement. Delve into the intricate tapestry of gender dynamics as we explore how youth worldwide are shaping the future of civic engagement, dissecting gender differences in activism, and redefining the path to equality.\"\n\n" +
                         "1. EDUCATE AND RAISE AWARENESS: Organize workshops, seminars, and awareness campaigns to educate young people about gender equality issues and their role in activism.\n\n" +
                         "2. FOSTER INCLUSIVE LEADERSHIP: Encourage and support young leaders of all genders to take on leadership roles in civic and community initiatives.\n\n" +
                         "3. AMPLIFY DIVERSE VOICES: Create platforms for marginalized and underrepresented voices, allowing them to share their experiences and perspectives.\n\n" +
@@ -55,10 +55,8 @@ class ChampionsofSocialJusticeInfo : AppCompatActivity() {
                         "9. DATA-DRIVEN INITIATIVES: Collect and analyze data on gender disparities and activism impact to guide evidence-based strategies.\n\n" +
                         "10. CELEBRATE ACHIEVEMENTS: Recognize and celebrate the achievements of youth activists working towards gender equality, inspiring others to join the cause.\n\n",
 
-
-                R.drawable.img_451,
-                "https://spb.psychopen.eu/index.php/spb/article/view/3887/3887.html",
-                "https://knowlaw.in/wp-content/uploads/2021/06/Gender-Equality01.jpg")
+                "https://knowlaw.in/wp-content/uploads/2021/06/Gender-Equality01.jpg",
+                "https://spb.psychopen.eu/index.php/spb/article/view/3887/3887.html")
         )
             dataList.add(
                 DataItem("PROMOTING INDIGENOUS RIGHTS AND CULTURAL INCLUSIVITY ON CAMPUS",
@@ -74,9 +72,9 @@ class ChampionsofSocialJusticeInfo : AppCompatActivity() {
                     "9. COMMUNITY ENGAGEMENT: Organize sessions on community engagement and partnership-building for IP education. Encourage collaboration between schools and local IP communities.\n\n" +
                     "10. MONITORING AND EVALUATION: Continuously monitor the progress of your initiatives. Collect feedback from IP communities, students, and educators to assess the impact of your efforts. Adjust your programs and strategies as needed to ensure they remain effective.\n\n",
 
-                            R.drawable.img_174,
-                "https://www.deped.gov.ph/2017/01/31/deped-sustains-support-for-culture-based-education-for-ip-learners/",
-                "https://www.britishcouncil.ph/sites/default/files/ph_ipse_03.jpg")
+
+                "https://assets.change.org/photos/8/ly/tf/QalYTfPtyjcysqs-1600x900-noPad.jpg?1521994361",
+                    "https://www.deped.gov.ph/2017/01/31/deped-sustains-support-for-culture-based-education-for-ip-learners/",)
         )
 
         dataList.add(
@@ -96,11 +94,9 @@ class ChampionsofSocialJusticeInfo : AppCompatActivity() {
                         "9. PARTNERSHIPS AND COLLABORATION: Collaboration between public and private institutions, sharing resources like textbooks and facilities, promotes equal access to quality education.\n\n" +
                         "10. HOLISTIC APPROACH: A holistic approach, considering social and economic factors, is crucial to reduce income inequality, promote inclusion, and drive sustainable development for a better quality of life in Metro Manila.",
 
-
-
-                    R.drawable.img_484,
-                "https://btf.rappler.com/161/scattered-flickers-of-light-the-education-outlook-of-the-megacity-of-metro-manila",
-                "https://btf.rappler.com/tachyon/sites/9/2023/01/327035535_566891875334320_3462293533200080570_n-1.jpg?resize=1080%2C810&zoom=1")
+                    "https://btf.rappler.com/tachyon/sites/9/2023/01/327035535_566891875334320_3462293533200080570_n-1.jpg?resize=1080%2C810&zoom=1",
+                "https://btf.rappler.com/161/scattered-flickers-of-light-the-education-outlook-of-the-megacity-of-metro-manila"
+             )
         )
 
         dataList.add(
@@ -117,9 +113,9 @@ class ChampionsofSocialJusticeInfo : AppCompatActivity() {
                         "8. INCLUSIVE EVENTS: Organize campus events and activities that celebrate different cultures, identities, and backgrounds, promoting cross-cultural understanding.\n\n" +
                         "9. BIAS REPORTING SYSTEM: Implement a confidential reporting system for incidents of bias, discrimination, or harassment and take proactive measures to address such issues.\n\n" +
                         "10. COLLABORATIVE DIALOGUE: Encourage open and respectful dialogue among students, faculty, and staff, fostering a campus culture where diverse viewpoints are valued and heard.\n\n",
-                R.drawable.img_445,
-                "https://www.teacherph.com/inclusive-education-philippines/#:~:text=Making%20Inclusive%20Education%20a%20Reality%20in%20the%20Philippines,-The%20Philippines%20is&text=This%20includes%20having%20ramps%20and,deaf%20or%20hard%20of%20hearing.",
-                "https://www.teacherph.com/wp-content/uploads/2022/08/Inclusive-Education-in-the-Philippines.png")
+
+                "https://www.teacherph.com/wp-content/uploads/2022/08/Inclusive-Education-in-the-Philippines.png",
+                "https://www.teacherph.com/inclusive-education-philippines/#:~:text=Making%20Inclusive%20Education%20a%20Reality%20in%20the%20Philippines,-The%20Philippines%20is&text=This%20includes%20having%20ramps%20and,deaf%20or%20hard%20of%20hearing.",)
         )
 
         val adapter = DataAdapter(dataList)

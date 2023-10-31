@@ -37,9 +37,9 @@ class BreakingtheChainsInfo : AppCompatActivity() {
                         "8. EXPLOITATIVE PRACTICES: Testimonies reveal the extent of exploitation, including extortionate fees to Philippine immigration and collusion at the Manila airport.\n\n" +
                         "9. FOREIGN VICTIMS: Thousands of individuals, including foreigners from Indonesia, China, Vietnam, and Malaysia, have been victims of trafficking within the Philippines.\n\n" +
                         "10. INTERNATIONAL PERSPECTIVE: The report emphasizes that even Tier 1 countries like the Philippines face challenges, underlining the need for continuous improvements and recommendations to address human trafficking effectively.\n",
-                R.drawable.img_306,
-                "https://www.rappler.com/nation/philippines-yet-to-vigorously-investigate-prosecute-labor-trafficking-us-state-department/",
-                "https://www.rappler.com/tachyon/2023/01/human-trafficking-migrant-workers-senate-hearing-january-25-2023-001.jpg?resize=1400%2C933&zoom=1"
+
+                "https://www.rappler.com/tachyon/2023/01/human-trafficking-migrant-workers-senate-hearing-january-25-2023-001.jpg?resize=1400%2C933&zoom=1",
+                "https://www.rappler.com/nation/philippines-yet-to-vigorously-investigate-prosecute-labor-trafficking-us-state-department/"
             )
         )
         dataList.add(
@@ -55,9 +55,10 @@ class BreakingtheChainsInfo : AppCompatActivity() {
                         "8. BETTER IMMIGRATION OFFICER TRAINING: Some suggest that immigration authorities should receive proper training to distinguish first-time travelers from potential trafficking victims, reducing the need for excessive documentation.\n" +
                         "9. AIRPORT IMPROVEMENTS: Calls for improving the country's airports are made, given that the Ninoy Aquino International Airport (NAIA) has faced criticism for its stressful environment and queuing times.\n" +
                         "10. CHALLENGES IN SECURING DOCUMENTS: Travelers share challenges in obtaining required documents to prove their financial capability for international travel, emphasizing the need to be well-prepared when facing immigration procedures.\n",
-                R.drawable.img_307,
-                "https://www.rappler.com/nation/filipinos-online-reaction-revised-guidelines-immigration-fight-human-trafficking/",
-                "https://media.philstar.com/photos/2023/05/28/jpeg-optimizerimg5277jpeg_2023-05-28_18-57-30.jpg")
+
+                "https://media.philstar.com/photos/2023/05/28/jpeg-optimizerimg5277jpeg_2023-05-28_18-57-30.jpg",
+                "https://www.rappler.com/nation/filipinos-online-reaction-revised-guidelines-immigration-fight-human-trafficking/"
+               )
         )
         dataList.add(
             DataItem("REHABILITATION AND SUPPORT FOR SURVIVORS",
@@ -72,9 +73,10 @@ class BreakingtheChainsInfo : AppCompatActivity() {
                         "8. RESTORATION AND DIGNITY: Love146 focuses on restoring a sense of dignity, freedom, and peace in the lives of survivors.\n" +
                         "9. HOLISTIC GROWTH: The safe homes offer various activities, from tending gardens to raising farm animals, which promote reflection and personal growth.\n" +
                         "10. EMPOWERING SURVIVOR FUTURES: The ultimate goal is to empower survivors to recognize their worth, discover new purposes in life, and become valued, productive members of society.",
-                R.drawable.img_308,
-                "https://love146.org/philippines-survivor-care/",
-                "https://2012-2017.usaid.gov/sites/default/files/styles/732_width/public/success_story/Post%20primal%20meet-blur.jpg?itok=mys6RNU0")
+
+                "https://2012-2017.usaid.gov/sites/default/files/styles/732_width/public/success_story/Post%20primal%20meet-blur.jpg?itok=mys6RNU0",
+                "https://love146.org/philippines-survivor-care/"
+    )
         )
 
         dataList.add(
@@ -91,9 +93,10 @@ class BreakingtheChainsInfo : AppCompatActivity() {
                         "8. WITNESS PROTECTION: Measures like the Witness Protection Program offer safeguards to those providing testimony against traffickers.\n" +
                         "9. VICTIM COMPENSATION: Victims may seek compensation for the harms they have endured.\n" +
                         "10. FILING COMPLAINTS: Various parties, including victims, family members, and witnesses, can file complaints against trafficking offenders.",
-                R.drawable.img_309,
-                "https://pcw.gov.ph/faq-republic-act-9208/#:~:text=Use%20of%20Trafficked%20Persons%20%E2%80%93%20any,thousand%20to%205%20million%20pesos.",
-                "https://pcw.gov.ph/assets/files/2022/07/RA-9208-2-500x458-1.jpg")
+
+                "https://pcw.gov.ph/assets/files/2022/07/RA-9208-2-500x458-1.jpg",
+                "https://pcw.gov.ph/faq-republic-act-9208/#:~:text=Use%20of%20Trafficked%20Persons%20%E2%80%93%20any,thousand%20to%205%20million%20pesos."
+               )
         )
 
         dataList.add(
@@ -110,9 +113,10 @@ class BreakingtheChainsInfo : AppCompatActivity() {
                         "8. CHILD SOLDIER RECRUITMENT: Certain areas in the Philippines see child soldiers being recruited by extremist groups.\n" +
                         "9. COMMON RECRUITMENT METHODS: Traffickers frequently use deceit, debt, or promises of employment to lure victims, exploiting them in various sectors.\n" +
                         "10. IMPACT OF COVID-19: The pandemic increased online child sexual exploitation, but the Filipino government continues to fight trafficking with NGOs' support.",
-                R.drawable.img_310,
-                "https://theexodusroad.com/human-trafficking-in-the-philippines/#:~:text=Organizations%20like%20Together%20in%20Hope,being%20exploited%20in%20sex%20trafficking.",
-                "https://theexodusroad.com/wp-content/uploads/2022/03/philippines-street_web.jpg")
+
+                "https://theexodusroad.com/wp-content/uploads/2022/03/philippines-street_web.jpg",
+                "https://theexodusroad.com/human-trafficking-in-the-philippines/#:~:text=Organizations%20like%20Together%20in%20Hope,being%20exploited%20in%20sex%20trafficking."
+              )
         )
 
 

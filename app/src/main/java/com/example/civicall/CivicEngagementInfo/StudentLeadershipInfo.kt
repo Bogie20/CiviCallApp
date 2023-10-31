@@ -35,9 +35,9 @@ class StudentLeadershipInfo : AppCompatActivity() {
                         "9. LEADERSHIP RECOGNITION: Acknowledge and celebrate student leaders who actively engage in youth activism, reinforcing the idea that their efforts can make a significant impact.\n\n" +
                         "10. YOUTH-LED INITIATIVES: Encourage student leaders to initiate their own youth-led projects, allowing them to apply their activism knowledge and drive positive change in their communities.\n\n",
 
-                R.drawable.img_453,
-                "https://www.rappler.com/moveph/27023-youth-activism-organized-action/",
-                "https://eu.boell.org/sites/default/files/grid/2021/12/06/Young%20voices%20on%20the%20rise%201960x784px.jpg"
+                "https://eu.boell.org/sites/default/files/grid/2021/12/06/Young%20voices%20on%20the%20rise%201960x784px.jpg",
+                "https://www.rappler.com/moveph/27023-youth-activism-organized-action/"
+
             )
         )
         dataList.add(
@@ -54,10 +54,9 @@ class StudentLeadershipInfo : AppCompatActivity() {
                         "9. STRATEGIC NONVIOLENT ACTION: Employ nonviolent strategies and tactics that align with your goals, such as protests, demonstrations, or awareness campaigns.\n\n" +
                         "10. EVALUATION AND ADAPTATION: Continuously assess your progress, adapt to changing circumstances, and refine your approach based on lessons learned.\n\n",
 
-
-                R.drawable.img_454,
-                "https://www.samuelcohn.net/development-1/everything-you-need-to-know-about-how-to-create-a-successful-student-led-social-movement",
-                "https://mcm.edu.ph/wp-content/uploads/2022/07/IMG_1661-scaled-1.jpeg")
+                "https://mcm.edu.ph/wp-content/uploads/2022/07/IMG_1661-scaled-1.jpeg",
+                "https://www.samuelcohn.net/development-1/everything-you-need-to-know-about-how-to-create-a-successful-student-led-social-movement"
+             )
         )
         dataList.add(
             DataItem("STRATEGIES FOR CAMPUS SOCIAL CHANGE LEADERSHIP",
@@ -72,9 +71,10 @@ class StudentLeadershipInfo : AppCompatActivity() {
                         "8. FAMILIARIZE WITH TEXT MESSAGING: Ensure that everyone in your family knows how to send text messages, which can be more reliable during network disruptions than phone calls.\n\n" +
                         "9. SUBSCRIBE TO ALERT SERVICES: Sign up for local alert services that send text messages and emails with crucial information during disasters.\n\n" +
                         "10. PRIORITIZE COMMUNICATION METHODS: In times of crisis, use phone calls sparingly for life-threatening emergencies and rely on text messages, email, and social media for non-emergency communication to prevent network congestion.\n\n",
-                R.drawable.img_126,
-                "https://journalofleadershiped.org/jole_articles/strengthening-college-students-integrative-leadership-orientation-by-building-a-foundation-for-civic-engagement-and-multicultural-competence/",
-                "https://www.waldenu.edu/media/4894/seo-1354-bs-volunteering-problem-cheerful-243564697-1200x675")
+
+                "https://www.waldenu.edu/media/4894/seo-1354-bs-volunteering-problem-cheerful-243564697-1200x675",
+                "https://journalofleadershiped.org/jole_articles/strengthening-college-students-integrative-leadership-orientation-by-building-a-foundation-for-civic-engagement-and-multicultural-competence/"
+                )
         )
 
         dataList.add(
@@ -91,11 +91,9 @@ class StudentLeadershipInfo : AppCompatActivity() {
                         "9. TAKE ACTION: Execute your plan, organize events, campaigns, or initiatives, and actively work toward your goals.\n\n" +
                         "10. MEASURE IMPACT AND ADAPT: Continuously assess the impact of your actions, gather feedback, and be open to adapting your strategies for greater effectiveness.\n\n",
 
-
-
-                R.drawable.img_127,
-                "https://www.gse.harvard.edu/ideas/news/20/09/turning-passion-civic-action",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rappler.com%2Fmoveph%2Fhow-communities-join-hands-crisis-duterte-year-4%2F&psig=AOvVaw3oThZo02gCRpuVdAUblEj_&ust=1696594679394000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOCFh-zx3oEDFQAAAAAdAAAAABAE")
+                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rappler.com%2Fmoveph%2Fhow-communities-join-hands-crisis-duterte-year-4%2F&psig=AOvVaw3oThZo02gCRpuVdAUblEj_&ust=1696594679394000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOCFh-zx3oEDFQAAAAAdAAAAABAE",
+                "https://www.gse.harvard.edu/ideas/news/20/09/turning-passion-civic-action"
+                )
         )
 
         dataList.add(
@@ -112,9 +110,10 @@ class StudentLeadershipInfo : AppCompatActivity() {
                         "8. SET GOALS: Define clear goals for your volunteer experience. Determine what you hope to achieve personally and how you aim to contribute to the organization's mission.\n\n" +
                         "9. BEGIN VOLUNTEERING: Start your volunteer work with enthusiasm and dedication. Whether it's mentoring, organizing events, or providing essential services, give your best effort.\n\n" +
                         "10. REFLECT AND ADAPT: Regularly reflect on your volunteer experiences. Assess the impact you've made, evaluate your goals, and adapt your volunteer efforts as needed. This ongoing process ensures your service remains high-impact and meaningful.\n\n",
-                R.drawable.img_128,
-                "https://www.indeed.com/career-advice/career-development/community-service-ideas-college-students",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pna.gov.ph%2Farticles%2F1122889&psig=AOvVaw2jhQJiVZsIXFYNj-8vl54k&ust=1696595824391000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPi-jo723oEDFQAAAAAdAAAAABAE")
+
+                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pna.gov.ph%2Farticles%2F1122889&psig=AOvVaw2jhQJiVZsIXFYNj-8vl54k&ust=1696595824391000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPi-jo723oEDFQAAAAAdAAAAABAE",
+                "https://www.indeed.com/career-advice/career-development/community-service-ideas-college-students"
+                )
         )
 
         val adapter = DataAdapter(dataList)
