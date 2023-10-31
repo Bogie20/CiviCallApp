@@ -10,7 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import com.example.civicall.CampusGovernanceInfo.CampusGovernanceMenu
-import com.example.civicall.CivicEngagementInfo.Civic
+import com.example.civicall.CivicEngagementInfo.CivicMenu
 import com.example.civicall.CivicRightsAndResponsibility.CivicRightsAndResponsibilityMenu
 import com.example.civicall.DisasterResponseInfo.DisasterResponseMenu
 import com.example.civicall.EmergencyCon.MainEmergencyContact
@@ -40,7 +40,7 @@ class InformationFragment : Fragment() {
         val cardview8 = view.findViewById<CardView>(R.id.cardview8)
 
         cardview1.setOnClickListener {
-            val intent = Intent(requireContext(), Civic::class.java)
+            val intent = Intent(requireContext(), CivicMenu::class.java)
             startActivity(intent)
         }
 

@@ -234,7 +234,7 @@
             android:name=".CivicEngagementInfo.StudentLeadershipInfo"
             android:exported="true" />
         <activity
-            android:name=".CivicEngagementInfo.Civic"
+            android:name=".CivicEngagementInfo.CivicMenu"
             android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.SkillsandOpportunitiesinfo"

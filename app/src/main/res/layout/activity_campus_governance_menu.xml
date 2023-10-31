@@ -59,21 +59,12 @@
                 app:cardCornerRadius="15dp"
                 app:cardElevation="4dp">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/img_5"
-                />
                 <ImageView
                     android:id="@+id/feed_post_image"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:scaleType="fitXY"
-                    android:background="@drawable/img_483"
+                    android:background="@drawable/campusgovernancemenu"
                     />
 
             </androidx.cardview.widget.CardView>

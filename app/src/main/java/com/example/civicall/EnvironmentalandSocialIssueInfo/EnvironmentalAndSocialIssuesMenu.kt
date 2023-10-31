@@ -13,11 +13,7 @@ import com.example.civicall.CivicEngagementInfo.CivicAdapterMain
 class EnvironmentalAndSocialIssuesMenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_environmental_and_social_issues_info)
-
-
-
-
+        setContentView(R.layout.activity_environmental_and_social_issues_menu)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMain)
         recyclerView.layoutManager = LinearLayoutManager(this)
 

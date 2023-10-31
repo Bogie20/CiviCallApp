@@ -15,11 +15,6 @@ class healtawarenessinfoMenu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_healtawarenessinfo_menu)
 
-
-
-
-
-
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMain)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
