@@ -16,12 +16,10 @@ class Settings : AppCompatActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        notificationToggle = binding.notificationToggle
-
-
+//        notificationToggle = binding.notificationToggle
 
         // Initialize the BackClick view using view binding
-        val BackClick = binding.back100
+//        val BackClick = binding.back100
 
         // Set an OnCheckedChangeListener to detect switch state changes
         notificationToggle.setOnCheckedChangeListener { _, isChecked ->

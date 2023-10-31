@@ -10,10 +10,10 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
-class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
+class NineRecoveryandRebuildingEffortsInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_recoveryand_rebuilding_efforts_info)
+        setContentView(R.layout.activity_nine_recoveryand_rebuilding_efforts_info)
 
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
@@ -51,7 +51,7 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
             )
         )
         dataList.add(
-            DataItem("Charting the Path to Resilience: Developing a Recovery Plan for Disaster Response.",
+            DataItem("Charting the Path to Resilience: Developing a Recovery Plan for Disaster Response",
                 "Hey, college students, ever wondered how organizations ensure they bounce back from disasters? Well, let's dive into the world of Disaster Recovery Plans (DRP). These plans are the secret sauce for swift responses, safeguarding IT systems, and keeping the business wheels turning, even in the face of calamity.\n\n" +
 
 
@@ -66,7 +66,7 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
                         "9. TESTING AND REVISION:Regularly test the DRP based on predefined criteria and procedures. Conduct various types of tests, such as checklist tests, full interruption tests, parallel tests, and simulation tests. Revise the plan as needed to ensure its effectiveness.\n\n" +
                         "10. DOCUMENTATION AND MAINTENANCE:Maintain up-to-date documentation of the DRP, ensuring that it reflects the organization's evolving needs, IT infrastructure changes, and the latest best practices in disaster recovery.\n\n" ,
 
-                "https://recovery.preventionweb.net/sites/default/files/styles/landscape_16_9/public/2021-12/PDNA%20Mini%20page_4.jpg?h=b555fb61&itok=JB2iN5X4",
+                "https://publichealth.tulane.edu/wp-content/uploads/sites/3/2022/08/disaster-recovery-plan-excerpt-infographic.png",
                 "https://www.druva.com/glossary/what-is-a-disaster-recovery-plan-definition-and-related-faqs"
               )
         )
@@ -113,7 +113,7 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
            )
         )
         dataList.add(
-            DataItem("Rebuilding the Foundation: Prioritizing Infrastructure Repairs in Disaster Response.",
+            DataItem("Rebuilding the Foundation: Prioritizing Infrastructure Repairs in Disaster Response",
                 "Attention, college students! Dive into the world of Disaster Resilient Infrastructure (DRI) and uncover how it safeguards communities and shapes our future. Join us on this captivating journey where science meets resilience, and be part of an exciting exploration into the realm of DRI.\n\n" +
 
                         "1. ASSESS VULNERABILITIES: Begin by assessing your community's vulnerabilities to various natural disasters based on its geographic location. Consider the types of disasters that pose the greatest threats, such as hurricanes, floods, earthquakes, or wildfires.\n\n" +
@@ -127,7 +127,7 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
                         "9. COMMUNITY IMPACT: Consider the broader impact of infrastructure repairs on the community's well-being, economic stability, and quality of life. Projects that benefit the majority should be prioritized.\n\n" +
                         "10. REGULAR UPDATES: Continuously update and revise the prioritization plan based on changing risks, emerging threats, and lessons learned from previous disasters. Flexibility and adaptability are key in disaster response planning.\n\n" ,
 
-                "https://tao-pilipinas.org/wp-content/uploads/2020/08/ruby-northern-samar.jpg",
+                "https://www.eastasiaforum.org/wp-content/uploads/2021/10/Whitney-HIGH-RES-scaled.jpg",
                 "https://www.govpilot.com/blog/what-is-disaster-resilient-infrastructure-why-is-it-needed"
           )
         )
@@ -166,7 +166,7 @@ class RecoveryandRebuildingEffortsInfo : AppCompatActivity() {
                         "9. PROMOTE RESILIENCE: Promote the concept of resilience-building as a long-term strategy to minimize the potential damage to lives and livelihoods from future typhoons.\n\n" +
                         "10. COMMUNITY ENGAGEMENT: Actively involve local communities in disaster preparedness efforts. Ensure they have access to information and resources to enhance their resilience.\n\n" ,
 
-                "https://www.pdrf.org/wp-content/uploads/2021/03/What-We-Do-Community-Resilience.jpg",
+                "https://publichealth.tulane.edu/wp-content/uploads/sites/3/2022/05/BLOG-disaster-management-degree.png",
                 "https://www.lse.ac.uk/granthaminstitute/publication/disaster-impacts-and-financing-local-insights-from-the-philippines/"
            )
         )

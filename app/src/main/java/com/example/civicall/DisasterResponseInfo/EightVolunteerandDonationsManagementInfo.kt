@@ -10,10 +10,10 @@
     import com.example.civicall.CivicEngagementInfo.DataItem
     import com.example.civicall.R
 
-    class VolunteerandDonationsManagementInfo : AppCompatActivity() {
+    class EightVolunteerandDonationsManagementInfo : AppCompatActivity() {
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
-            setContentView(R.layout.activity_volunteerand_donations_management_info)
+            setContentView(R.layout.activity_eight_volunteerand_donations_management_info)
 
             val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
             val layoutManager = LinearLayoutManager(this)
@@ -61,7 +61,7 @@
                             "9. PUBLIC INFORMATION AND OUTREACH: Collaborate with public information officers to disseminate information about the volunteer coordination centers, needed skills, and volunteer opportunities. Ensure the public is aware of how to get involved.\n\n" +
                             "10. ADAPT AND ADJUST: Continuously assess and adjust volunteer coordination efforts based on the evolving needs of the disaster response. Flexibility and adaptability are key to successful volunteer management.\n\n",
 
-                    "http://extension.msstate.edu/sites/default/files/publication-images/P2958/No.%204_opt.jpg",
+                    "https://www.allhandsandhearts.org/wp-content/uploads/2018/05/Volunteer.webp",
                     "http://extension.msstate.edu/publications/managing-volunteers-times-disaster-the-local-volunteer-coordinator%E2%80%99s-role"
                   )
             )
@@ -81,7 +81,7 @@
                             "9. SELF-AWARENESS: As you receive feedback from other volunteers and managers, you will get to understand yourself more. Being self-aware and able to reflect is the key to self-improvement. Consider keeping a journal to track what you have learned and also how the volunteering experiences make you feel.\n\n" +
                             "10. ABILITY TO LEARN: The skills required in volunteering can be very diverse. Volunteers also have a chance to play multiple roles. Each new role is a chance to learn new skills. Change is the new constant especially in this rapidly-changing era. The ability to learn will help us to adapt and keep up with the future. We will also never know how certain skills we gain from volunteering will eventually come to use.\n\n",
 
-                    "https://empower2free.com/wp-content/uploads/2021/11/Building-Life-Skills-by-Volunteering-Blog-Banner-1.png",
+                    "https://res.cloudinary.com/grand-canyon-university/image/fetch/w_750,h_564,c_fill,g_faces,q_auto/https://www.gcu.edu/sites/default/files/media/GettyImages-135538080.jpg",
                     "https://empower2free.com/hacks-on-building-life-skills-by-volunteering/"
                   )
             )

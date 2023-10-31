@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".DisasterResponseInfo.FoodDistributionAndNutrionInfo">
-
-
+    tools:context=".DisasterResponseInfo.ThreeNaturalDisasterInfo">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -33,12 +31,12 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Food distribution &amp; Nutrition"
-            android:textAllCaps="true"
+            android:text="Natural Disasters"
             android:textColor="@color/white"
-            android:textSize="16dp" />
+            android:textSize="18dp" />
 
     </RelativeLayout>
 
@@ -73,7 +71,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Food Distribution &amp; Nutrition in Disaster Response"
+                    android:text="Understanding the Diversity of Natural Disasters: A Comprehensive Exploration"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -86,7 +84,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Food Distribution and Nutrition in Disaster Response: Serving Hope in Times of Crisis. In the wake of calamity and catastrophe, understanding the vital role of efficient food distribution and nutrition becomes not only a humanitarian imperative but also a formidable challenge that requires strategic precision and unwavering dedication.&quot;"
+                    android:text="&quot;Hey there, Spartan! Life at college is an epic journey, and part of being a true Spartan is knowing how to conquer every challenge, even the forces of nature. Today, we're delving into the thrilling world of natural disasters. Buckle up, because by the end of this, you'll have the knowledge to face them head-on!&quot;"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -109,7 +107,5 @@
                 />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

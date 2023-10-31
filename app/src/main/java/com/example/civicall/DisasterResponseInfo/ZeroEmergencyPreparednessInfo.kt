@@ -10,10 +10,10 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
-class EmergencyPreparednessInfo : AppCompatActivity() {
+class ZeroEmergencyPreparednessInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_emergency_preparedness_info)
+        setContentView(R.layout.activity_oneemergency_preparedness_info)
 
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
@@ -40,9 +40,8 @@ class EmergencyPreparednessInfo : AppCompatActivity() {
                         "9. Resource Allocation: Plan for resource allocation and allocation of staff roles in advance, ensuring that critical resources are distributed efficiently during emergencies.\n\n" +
                         "10. Leadership Commitment: Secure commitment from healthcare facility leadership to prioritize disaster preparedness efforts and allocate necessary resources to maintain operations and provide crucial care during and after a disaster.\n\n",
 
-                "https://www.corporatewellnessmagazine.com/article/5-key-components-effective-disaster-preparedness",
+                "https://www.makatimed.net.ph/wp-content/uploads/2021/08/Disaster-Preparedness-Plan-What-to-Do-in-Case-of-an-Emergency.jpg",
                 "https://www.corporatewellnessmagazine.com/article/5-key-components-effective-disaster-preparedness"
-
             )
         )
         dataList.add(
@@ -77,7 +76,7 @@ class EmergencyPreparednessInfo : AppCompatActivity() {
                         "9. Subscribe to Alert Services: Sign up for local alert services that send text messages and emails with crucial information during disasters.\n\n" +
                         "10. Prioritize Communication Methods: In times of crisis, use phone calls sparingly for life-threatening emergencies and rely on text messages, email, and social media for non-emergency communication to prevent network congestion.\n\n",
 
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.arnolditkin.com%2Fblog%2Fmaritime%2Fhow-offshore-workers-communicate-with-loved-ones%2F&psig=AOvVaw1d6keuZcwGoHajTShRhI6e&ust=1696484194397000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCND5oaHW24EDFQAAAAAdAAAAABAE",
+                "https://readysouthflorida.org/wp-content/uploads/2013/04/escapeplanas2_17.jpg",
                 "https://www.habitat.org/our-work/disaster-response/disaster-preparedness-homeowners/family-communications-plan#:~:text=Prepare%20a%20family%20contact%20sheet,distance%20calls%20than%20local%20calls./"
               )
         )
@@ -96,7 +95,7 @@ class EmergencyPreparednessInfo : AppCompatActivity() {
                         "9. Use Electricity Safely: If you notice an electrical appliance smoking or smelling unusual, unplug it immediately and have it serviced. Replace damaged electrical cords and avoid overloading extension cords.\n\n" +
                         "10. Crawl Low Under Smoke: During a fire, smoke rises, and the air near the floor is cleaner. If you must escape through smoke, crawl on your hands and knees to the nearest exit.\n\n",
 
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Faiefire.com%2Fimportant-fire-prevention-safety-measures-in-buildings%2F&psig=AOvVaw1a8SC1TlB3-CH7uP1_XsH7&ust=1696484774291000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIjdi7bY24EDFQAAAAAdAAAAABAE",
+                "https://damiaglobalservices.com/wp-content/uploads/2022/06/FIRE-SAFETY-INSTALLATION-COMPANIES-IN-INDIA-re-sized.webp",
                 "https://www.nwcg.gov/ad-positions/srtl"
              )
         )

@@ -10,10 +10,10 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
-class PsychologicalSupportServicesInfo : AppCompatActivity() {
+class SevenPsychologicalSupportServicesInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_psychological_support_services_info)
+        setContentView(R.layout.activity_seven_psychological_support_services_info)
 
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
@@ -44,7 +44,6 @@ class PsychologicalSupportServicesInfo : AppCompatActivity() {
 
                 "https://www.apa.org/images/disaster-mental-health-tile_tcm7-319090.jpg",
                 "https://www.apa.org/topics/disasters-response/disaster-mental-health-psychologists"
-
             )
         )
         dataList.add(

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".DisasterResponseInfo.SearchAndRescueinfo">
+    tools:context=".DisasterResponseInfo.EightVolunteerandDonationsManagementInfo">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             android:textAllCaps="true"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Natural Disasters"
+            android:text="Volunteer &amp; Donations"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -71,11 +71,11 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Disaster Response and Search and Rescue Operations"
+                    android:text="Guiding Generosity: Volunteer and Donations Management in Disaster Response"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp" />
                 <TextView
@@ -84,7 +84,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Search and Rescue Operations, or SAR, are a vital element of emergency response efforts. This guide offers a detailed overview of the key components involved in SAR, including team training, equipment maintenance, and coordination with local authorities. It serves as an essential resource for those dedicated to preserving lives and communities during crises.&quot;"
+                    android:text="&quot;Welcome to our discussion on 'Guiding Generosity: Volunteer and Donations Management in Disaster Response.' In this study, we'll explore the crucial aspects of effectively managing volunteers and coordinating donations during disasters, equipping you with the knowledge and skills to make a meaningful impact in disaster relief efforts.&quot;"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"

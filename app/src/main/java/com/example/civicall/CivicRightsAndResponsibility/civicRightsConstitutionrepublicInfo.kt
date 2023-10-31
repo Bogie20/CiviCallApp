@@ -15,14 +15,6 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_civic_rights_constitutionrepublic_info)
 
-
-
-
-
-
-
-
-
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
@@ -43,9 +35,6 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "The national territory comprises the Philippine archipelago, with all the islands and waters embraced therein, and all other territories over which the Philippines has sovereignty or jurisdiction, consisting of its terrestrial, fluvial and aerial domains, including its territorial sea, the seabed, the subsoil, the insular shelves, and other submarine areas. The waters around, between, and connecting the islands of the archipelago, regardless of their breadth and dimensions, form part of the internal waters of the Philippines.\n\n",
 
 
-
-
-                R.drawable.img_260,
                 "https://i.ytimg.com/vi/AuHQvtQSbyQ/maxresdefault.jpg",
                 "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-i/")
         )
@@ -126,17 +115,8 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "Section 28. Subject to reasonable conditions prescribed by law, the State adopts and implements a policy of full public disclosure of all its transactions involving public interest.\n",
 
 
-
-
-
-
-
-
-
-
-                R.drawable.img_260,
                 "https://i.ytimg.com/vi/AuHQvtQSbyQ/maxresdefault.jpg",
-                "https://image.slidesharecdn.com/dumaugarticle2-150427085745-conversion-gate01/85/dumaug-article-2-declaration-of-principles-and-state-policies-1-320.jpg")
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-ii/")
         )
 
 
@@ -208,25 +188,9 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "\n" +
                         "Section 22. No ex post facto law or bill of attainder shall be enacted.\n\n",
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-iii/",
-                "https://image.slidesharecdn.com/article3sec6-9-151108092228-lva1-app6892/75/article-3-sec-69-1-2048.jpg")
+                "https://image.slidesharecdn.com/article3sec6-9-151108092228-lva1-app6892/75/article-3-sec-69-1-2048.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-iii/"
+               )
         )
 
         dataList.add(
@@ -258,11 +222,9 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "\n" +
                         "Section 5. Dual allegiance of citizens is inimical to the national interest and shall be dealt with by law.\n\n" ,
 
-
-
-                R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-iv/",
-                "https://i.ytimg.com/vi/bZaTH_6of_o/maxresdefault.jpg")
+                "https://i.ytimg.com/vi/bZaTH_6of_o/maxresdefault.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-iv/"
+              )
         )
 
 
@@ -284,13 +246,9 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "\n" +
                         "The Congress shall also design a procedure for the disabled and the illiterates to vote without the assistance of other persons. Until then, they shall be allowed to vote under existing laws and such rules as the Commission on Elections may promulgate to protect the secrecy of the ballot.\n\n" ,
 
-
-
-
-
-                R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-v/",
-                "https://www.rappler.com/tachyon/r3-assets/612F469A6EA84F6BAE882D2B94A4B421/img/13F0B7ED10F54DAABAB9F88584187722/2013-elections.jpg")
+                "https://www.rappler.com/tachyon/r3-assets/612F469A6EA84F6BAE882D2B94A4B421/img/13F0B7ED10F54DAABAB9F88584187722/2013-elections.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-v/"
+         )
         )
 
 
@@ -414,28 +372,10 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "\n" +
                         "SECTION 32. The Congress shall, as early as possible, provide for a system of initiative and referendum, and the exceptions therefrom, whereby the people can directly propose and enact laws or approve or reject any act or law or part thereof passed by the Congress or local legislative body after the registration of a petition therefor signed by at least ten per centum of the total number of registered voters, of which every legislative district must be represented by at least three per centum of the registered voters thereof.\n\n" ,
 
-
-
-
-
-
-
-
-
-
-
-
-                R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-vi/",
-                "https://www.rappler.com/tachyon/r3-assets/612F469A6EA84F6BAE882D2B94A4B421/img/84CAAED020344338A3FCCB1540A2BE79/congress-senate-20160724-001.jpg")
+                "https://www.rappler.com/tachyon/r3-assets/612F469A6EA84F6BAE882D2B94A4B421/img/84CAAED020344338A3FCCB1540A2BE79/congress-senate-20160724-001.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-vi/"
+         )
         )
-
-
-
-
-
-
-
 
         dataList.add(
             DataItem("THE 1987 CONSTITUTION OF THE REPUBLIC OF THE PHILIPPINES – ARTICLE VII",
@@ -543,36 +483,9 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "\n" +
                         "Section 23. The President shall address the Congress at the opening of its regular session. He may also appear before it at any other time.\n" ,
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-vii/",
-                "https://i.ytimg.com/vi/B1AcPo9Vyc8/maxresdefault.jpg")
+                "https://i.ytimg.com/vi/B1AcPo9Vyc8/maxresdefault.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-vii/"
+              )
         )
 
 
@@ -672,21 +585,10 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "\n" +
                         "Section 16. The Supreme Court shall, within thirty days from the opening of each regular session of the Congress, submit to the President and the Congress an annual report on the operations and activities of the Judiciary.\n",
 
-
-                R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-viii/",
-                "https://i.ytimg.com/vi/goppgyKPUWg/maxresdefault.jpg")
+                "https://i.ytimg.com/vi/goppgyKPUWg/maxresdefault.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-viii/"
+              )
         )
-
-
-
-
-
-
-
-
-
-
 
 
         dataList.add(
@@ -812,17 +714,9 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "\n" +
                         "Section 4. The Commission shall submit to the President and the Congress, within the time fixed by law, an annual report covering the financial condition and operation of the Government, its subdivisions, agencies, and instrumentalities, including government-owned or controlled corporations, and non-governmental entities subject to its audit, and recommend measures necessary to improve their effectiveness and efficiency. It shall submit such other reports as may be required by law.\n" ,
 
-
-
-
-
-
-
-
-
-                R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-ix/",
-                "https://i.ytimg.com/vi/Cvelg_Qbobc/sddefault.jpg")
+                "https://i.ytimg.com/vi/Cvelg_Qbobc/sddefault.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-ix/"
+               )
         )
 
 
@@ -952,10 +846,9 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "\n" +
                         "Section 4. The Commission shall submit to the President and the Congress, within the time fixed by law, an annual report covering the financial condition and operation of the Government, its subdivisions, agencies, and instrumentalities, including government-owned or controlled corporations, and non-governmental entities subject to its audit, and recommend measures necessary to improve their effectiveness and efficiency. It shall submit such other reports as may be required by law.\n" ,
 
-
-                R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-ix/",
-                "https://i.ytimg.com/vi/Cvelg_Qbobc/sddefault.jpg")
+                "https://i.ytimg.com/vi/Cvelg_Qbobc/sddefault.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-ix/"
+              )
         )
 
 
@@ -1035,16 +928,9 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "\n" +
                         "Section 21. The preservation of peace and order within the regions shall be the responsibility of the local police agencies which shall be organized, maintained, supervised, and utilized in accordance with applicable laws. The defense and security of the regions shall be the responsibility of the National Government.\n" ,
 
-
-
-
-
-
-
-
-                R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-x/",
-                "https://image.slidesharecdn.com/article10-141116025134-conversion-gate02/75/the-1987-constitution-of-the-republic-of-the-philippines-article-x-1-2048.jpg")
+                "https://image.slidesharecdn.com/article10-141116025134-conversion-gate02/75/the-1987-constitution-of-the-republic-of-the-philippines-article-x-1-2048.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-x/"
+              )
         )
 
 
@@ -1128,9 +1014,9 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "\n" +
                         "Section 18. Public officers and employees owe the State and this Constitution allegiance at all times and any public officer or employee who seeks to change his citizenship or acquire the status of an immigrant of another country during his tenure shall be dealt with by law.\n" ,
 
-                R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xi/",
-                "https://i.ytimg.com/vi/3R-yVSsR0zQ/maxresdefault.jpg")
+                "https://i.ytimg.com/vi/3R-yVSsR0zQ/maxresdefault.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xi/"
+              )
         )
 
 
@@ -1215,11 +1101,9 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "\n" +
                         "Section 22. Acts which circumvent or negate any of the provisions of this Article shall be considered inimical to the national interest and subject to criminal and civil sanctions, as may be provided by law.\n" ,
 
-
-
-                R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xii/",
-                "https://i.ytimg.com/vi/RClqVnAPyxc/sddefault.jpg")
+                "https://i.ytimg.com/vi/RClqVnAPyxc/sddefault.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xii/"
+             )
         )
 
 
@@ -1303,11 +1187,9 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "\n" +
                         "Section 22. Acts which circumvent or negate any of the provisions of this Article shall be considered inimical to the national interest and subject to criminal and civil sanctions, as may be provided by law.\n" ,
 
-
-
-                R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xii/",
-                "https://i.ytimg.com/vi/RClqVnAPyxc/sddefault.jpg")
+                "https://i.ytimg.com/vi/RClqVnAPyxc/sddefault.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xii/"
+             )
         )
 
         dataList.add(
@@ -1416,15 +1298,9 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "\n" +
                         "Section 19. The Congress may provide for other cases of violations of human rights that should fall within the authority of the Commission, taking into account its recommendations.\n",
 
-
-
-
-
-
-
-                R.drawable.img_260,
+                "https://i.ytimg.com/vi/1ho4cYTzd1A/sddefault.jpg",
                 "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xiii/",
-                "https://i.ytimg.com/vi/1ho4cYTzd1A/sddefault.jpg")
+              )
         )
 
 
@@ -1534,32 +1410,18 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "(11) Perform such other duties and functions as may be provided by law.\n" +
                         "\n" +
                         "Section 19. The Congress may provide for other cases of violations of human rights that should fall within the authority of the Commission, taking into account its recommendations.\n",
-
-
-
-
-
-
-
-                R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xiii/",
-                "https://i.ytimg.com/vi/1ho4cYTzd1A/sddefault.jpg")
+                "https://i.ytimg.com/vi/1ho4cYTzd1A/sddefault.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xiii/"
+              )
         )
-
-
-
 
         dataList.add(
             DataItem("THE 1987 CONSTITUTION OF THE REPUBLIC OF THE PHILIPPINES – ARTICLE XIV\n",
-
 
                 "ARTICLE XIV\n\n" +
 
                         "EDUCATION, SCIENCE AND TECHNOLOGY, ARTS, CULTURE AND SPORTS\n\n" +
                         "Article XIII of the 1987 Constitution of the Republic of the Philippines is dedicated to the principles of social justice and human rights. It outlines the state's commitment to promoting equitable economic opportunities, labor protection, agrarian and natural resources reform, urban land reform and housing, healthcare, and the safeguarding of human rights, reflecting the nation's dedication to improving the well-being and rights of its citizens.\n\n" +
-
-
-
 
                         "EDUCATION\n" +
                         "\n\n" +
@@ -1655,19 +1517,9 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "\n" +
                         "(2) All educational institutions shall undertake regular sports activities throughout the country in cooperation with athletic clubs and other sectors.\n",
 
-
-
-
-
-
-
-
-
-
-
-                R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xiv/",
-                "https://i.ytimg.com/vi/fQdoKCva7nE/maxresdefault.jpg")
+                "https://i.ytimg.com/vi/fQdoKCva7nE/maxresdefault.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xiv/"
+               )
         )
 
         dataList.add(
@@ -1692,9 +1544,10 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "(4) The right of families or family associations to participate in the planning and implementation of policies and programs that affect them.\n" +
                         "\n" +
                         "Section 4. The family has the duty to care for its elderly members but the State may also do so through just programs of social security.\n\n",
-     R.drawable.img_260,
+
+                "https://i.ytimg.com/vi/_2DVzGky6Ic/maxresdefault.jpg",
                 "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xv/",
-                "https://i.ytimg.com/vi/_2DVzGky6Ic/maxresdefault.jpg")
+                )
         )
 
 
@@ -1751,12 +1604,10 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "\n" +
                         "Section 12. The Congress may create a consultative body to advise the President on policies affecting indigenous cultural communities, the majority of the members of which shall come from such communities.\n" ,
 
-
-                        R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xvi/",
-                "https://i.ytimg.com/vi/wtezWjVvZTc/maxresdefault.jpg")
+                "https://i.ytimg.com/vi/wtezWjVvZTc/maxresdefault.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xvi/"
         )
-
+        )
 
         dataList.add(
             DataItem("THE 1987 CONSTITUTION OF THE REPUBLIC OF THE PHILIPPINES – ARTICLE XVI\n",
@@ -1811,15 +1662,10 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "\n" +
                         "Section 12. The Congress may create a consultative body to advise the President on policies affecting indigenous cultural communities, the majority of the members of which shall come from such communities.\n" ,
 
-
-                R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xvi/",
-                "https://i.ytimg.com/vi/wtezWjVvZTc/maxresdefault.jpg")
+                "https://i.ytimg.com/vi/wtezWjVvZTc/maxresdefault.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xvi/"
+              )
         )
-
-
-
-
         dataList.add(
             DataItem("THE 1987 CONSTITUTION OF THE REPUBLIC OF THE PHILIPPINES – ARTICLE XVII\n",
 
@@ -1845,19 +1691,10 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "\n" +
                         "Any amendment under Section 2 hereof shall be valid when ratified by a majority of the votes cast in a plebiscite which shall be held not earlier than sixty days nor later than ninety days after the certification by the Commission on Elections of the sufficiency of the petition.\n" ,
 
-
-
-
-
-
-
-                R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xvii/",
-                "https://i.ytimg.com/vi/buOdXkuGC9M/sddefault.jpg")
+                "https://i.ytimg.com/vi/buOdXkuGC9M/sddefault.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xvii/"
+             )
         )
-
-
-
 
         dataList.add(
             DataItem("THE 1987 CONSTITUTION OF THE REPUBLIC OF THE PHILIPPINES – ARTICLE XVIII\n",
@@ -1934,19 +1771,9 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
                         "\n" +
                         "The foregoing proposed Constitution of the Republic of the Philippines was approved by the Constitutional Commission of 1986 on the twelfth day of October, Nineteen hundred and eighty-six, and accordingly signed on the fifteenth day of October, Nineteen hundred and eighty-six at the Plenary Hall, National Government Center, Quezon City, by the Commissioners whose signatures are hereunder affixed.\n" ,
 
-
-
-
-
-
-
-
-
-
-
-                R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xviii/",
-                "https://i.ytimg.com/vi/TtVsOO8ZFag/maxresdefault.jpg")
+                "https://i.ytimg.com/vi/TtVsOO8ZFag/maxresdefault.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xviii/"
+             )
         )
 
         dataList.add(
@@ -1962,35 +1789,10 @@ class civicRightsConstitutionrepublicInfo : AppCompatActivity() {
 
                            "The foregoing proposed Constitution of the Republic of the Philippines was approved by the Constitutional Commission of 1986 on the twelfth day of October, Nineteen hundred and eighty-six, and accordingly signed on the fifteenth day of October, Nineteen hundred and eighty-six at the Plenary Hall, National Government Center, Quezon City, by the Commissioners whose signatures are hereunder affixed.\n" ,
 
-
-
-
-
-
-
-
-
-
-
-                R.drawable.img_260,
-                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xviii/",
-                "https://i.ytimg.com/vi/TtVsOO8ZFag/maxresdefault.jpg")
+                "https://i.ytimg.com/vi/TtVsOO8ZFag/maxresdefault.jpg",
+                "https://www.officialgazette.gov.ph/constitutions/the-1987-constitution-of-the-republic-of-the-philippines/the-1987-constitution-of-the-republic-of-the-philippines-article-xviii/"
+             )
         )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         val adapter = DataAdapter(dataList)
 

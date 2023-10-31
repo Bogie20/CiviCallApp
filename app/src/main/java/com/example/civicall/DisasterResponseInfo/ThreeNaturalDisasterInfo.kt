@@ -10,10 +10,10 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
-class NaturalDisasterInfo : AppCompatActivity() {
+class ThreeNaturalDisasterInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_natural_disaster_info)
+        setContentView(R.layout.activity_threenatural_disaster_info)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
@@ -134,8 +134,9 @@ class NaturalDisasterInfo : AppCompatActivity() {
                         "9. CLIMATE-RESILIENT AGRICULTURE: Promote climate-resilient agricultural practices to safeguard food security and livelihoods in storm-prone regions.\n\n" +
                         "10. INTERNATIONAL COLLABORATION: Foster international partnerships for knowledge exchange, resource sharing, and joint research on climate change adaptation and tropical storm management.\n\n",
 
-                "https://www.pagasa.dost.gov.ph/information/climate-change-in-the-philippines",
-                "https://www.cnnphilippines.com/.imaging/default/dam/cnn/2023/3/23/SWS-Climate-Change_CNNPH.jpg/jcr:content.jpg?width=750&height=450&crop:1:1,smart")
+                "https://www.cnnphilippines.com/.imaging/default/dam/cnn/2023/3/23/SWS-Climate-Change_CNNPH.jpg/jcr:content.jpg?width=750&height=450&crop:1:1,smart",
+                "https://www.pagasa.dost.gov.ph/information/climate-change-in-the-philippines"
+               )
         )
         dataList.add(
             DataItem("Disaster Risk Reduction in Coastal Communities: A Focus on the Philippines  ",
@@ -173,7 +174,7 @@ class NaturalDisasterInfo : AppCompatActivity() {
                         "9. COMMUNITY ENGAGEMENT PLATFORMS: Establish online platforms for community engagement, where citizens can access disaster preparedness resources, share local knowledge, and participate in disaster risk reduction initiatives.\n\n" +
                         "10. DATA ANALYTICS FOR DECISION-MAKING: Utilize data analytics and artificial intelligence to process large datasets from various sources, enabling informed decision-making and resource optimization during disaster response and recovery.\n\n",
 
-                "https://www.pdc.org/wp-content/uploads/AHACentre-DisasterAWARE-2.jpg",
+                "https://www.aeologic.com/blog/wp-content/uploads/2022/11/Science-and-Technology-in-Disaster-Management.jpg",
                 "https://www.ictworks.org/philippines-ict4d-solutions-disaster-risk-reduction/#:~:text=ICT4D%20can%20play%20a%20vital,and%20mapping%20of%20affected%20areas%2C"
           )
         )

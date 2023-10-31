@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".DisasterResponseInfo.CommunicationAndInformationInfo">
+    tools:context=".DisasterResponseInfo.FiveCommunicationAndInformationInfo">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -32,12 +32,12 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:textAllCaps="true"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Communication &amp; info"
+            android:text="Communication &amp; Information"
             android:textColor="@color/white"
-            android:textSize="18dp" />
+            android:textSize="16dp" />
 
     </RelativeLayout>
 

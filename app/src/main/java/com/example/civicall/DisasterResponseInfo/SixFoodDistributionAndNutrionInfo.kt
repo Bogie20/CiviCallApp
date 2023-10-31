@@ -10,10 +10,10 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
-class FoodDistributionAndNutrionInfo : AppCompatActivity() {
+class SixFoodDistributionAndNutrionInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_food_distribution_and_nutrion_info)
+        setContentView(R.layout.activity_six_food_distribution_and_nutrion_info)
 
 
 
@@ -62,7 +62,7 @@ class FoodDistributionAndNutrionInfo : AppCompatActivity() {
                         "9. LONG-TERM RESILIENCE BUILDING: Integrate strategies for long-term resilience building in vulnerable communities, such as skill development and income-generation programs.\n\n" +
                         "10. COMMUNICATION AND PUBLIC OUTREACH: Utilize social media and other communication channels to maintain transparency, mobilize volunteers, and secure additional support.\n\n",
 
-                "https://www.officialgazette.gov.ph/images/uploads/Photo2a-596x430.jpg",
+                "https://www.feedingtexas.org/wp-content/uploads/2019/06/DSC4921-1024x681.jpg",
                 "https://reliefweb.int/report/philippines/local-ngos-and-community-volunteers-mobilise-deliver-emergency-food-relief"
             )
         )

@@ -10,10 +10,10 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
-class FireSafetyInfo : AppCompatActivity() {
+class TwoFireSafetyInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fire_safety_info)
+        setContentView(R.layout.activity_twofire_safety_info)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
@@ -60,7 +60,7 @@ class FireSafetyInfo : AppCompatActivity() {
 
                     "10. REPORTING CONCERNS: If you have concerns about the effectiveness of the evacuation plan or notice any obstacles along the evacuation routes, report them to campus authorities to ensure a safer environment for all residents.\n\n",
 
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fm.indiamart.com%2Fproddetail%2Ffire-protection-equipment-21907048762.html&psig=AOvVaw3JLmiFGP6j5n5WIM-dFX7v&ust=1696470647809000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMC9juuj24EDFQAAAAAdAAAAABAZ",
+                "https://chmsu.edu.ph/wp-content/uploads/2023/03/DSC_0065-1024x683.jpg",
             "https://issuu.com/hofstra/docs/living-factor-calendar_32413209ada772/s/16589034"
               )
         )
@@ -78,7 +78,7 @@ class FireSafetyInfo : AppCompatActivity() {
                         "9. Immediate Evacuation: Always treat a fire alarm as a real emergency and evacuate promptly. Avoid using elevators during evacuations.\n\n" +
                         "10. Reporting Concerns: Report any concerns about the effectiveness of the evacuation plan or obstacles along evacuation routes to campus authorities for improvement.\n\n",
 
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.alertmedia.com%2Fblog%2Ffire-evacuation-plan-for-your-business%2F&psig=AOvVaw05AWtlksUFTVjPJ8ip5L1g&ust=1696470967487000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCNCCu4Sl24EDFQAAAAAdAAAAABAI",
+                "https://i.pinimg.com/736x/51/ab/8b/51ab8bfc6a49945f22750df5fdd4ad35.jpg",
             "https://www.firesafe.org.uk/fire-emergency-evacuation-plan-or-fire-procedure/"
               )
         )
@@ -117,7 +117,7 @@ class FireSafetyInfo : AppCompatActivity() {
                     "9. Emergency Procedures: Familiarize yourself with the location of fire extinguishers and emergency shutdowns in case of electrical fires.\n\n" +
                     "10. Roommates' Awareness: Educate your roommates about electrical safety practices to promote collective safety and responsibility.\n\n",
 
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.thehortongroup.com%2Fresources%2Felectrical-safety%2F&psig=AOvVaw3r4Rt6nvs5VWOOkPR5P0R2&ust=1696471759533000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLjwovin24EDFQAAAAAdAAAAABAQ",
+                "https://www.lancsfirerescue.org.uk/wp-content/uploads/2021/01/Untitled-design.png",
             "https://fens.sabanciuniv.edu/tr/laboratory-safety/general-laboratory-safety/preventing-electrical-hazards"
                )
         )
@@ -137,7 +137,7 @@ class FireSafetyInfo : AppCompatActivity() {
                     "9. Educate Roommates: Communicate candle and open flame safety practices with your roommates to ensure collective awareness.\n\n" +
                     "10. Emergency Response: Know the location of fire alarms and evacuation procedures, and act swiftly if a fire does occur.\n\n",
 
-                "https://www.townandcountry-ins.com/wp-content/uploads/sites/155/2020/12/Candle-Safety-Blog.png",
+                "https://internationalfireandsafetyjournal.com/wp-content/uploads/2022/10/shutterstock_1544840762.jpg",
             "https://www.hamilton.edu/offices/epss/open-flame-candle-safety"
           )
         )

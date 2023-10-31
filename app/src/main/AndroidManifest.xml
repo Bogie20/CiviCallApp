@@ -253,37 +253,37 @@
         <!-- Civic Engagement End -->
         <!-- Disaster Response Start -->
         <activity
-            android:name=".DisasterResponseInfo.CommunicationAndInformationInfo"
+            android:name=".DisasterResponseInfo.FiveCommunicationAndInformationInfo"
             android:exported="true" />
         <activity
-            android:name=".DisasterResponseInfo.EmergencyPreparednessInfo"
+            android:name=".DisasterResponseInfo.ZeroEmergencyPreparednessInfo"
             android:exported="true" />
         <activity
             android:name=".DisasterResponseInfo.DisasterResponseMenu"
             android:exported="true" />
         <activity
-            android:name=".DisasterResponseInfo.FireSafetyInfo"
+            android:name=".DisasterResponseInfo.TwoFireSafetyInfo"
             android:exported="true" />
         <activity
-            android:name=".DisasterResponseInfo.FirstAidInfo"
+            android:name=".DisasterResponseInfo.OneFirstAidInfo"
             android:exported="true" />
         <activity
-            android:name=".DisasterResponseInfo.FoodDistributionAndNutrionInfo"
+            android:name=".DisasterResponseInfo.SixFoodDistributionAndNutrionInfo"
             android:exported="true" />
         <activity
-            android:name=".DisasterResponseInfo.NaturalDisasterInfo"
+            android:name=".DisasterResponseInfo.ThreeNaturalDisasterInfo"
             android:exported="true" />
         <activity
-            android:name=".DisasterResponseInfo.PsychologicalSupportServicesInfo"
+            android:name=".DisasterResponseInfo.SevenPsychologicalSupportServicesInfo"
             android:exported="true" />
         <activity
-            android:name=".DisasterResponseInfo.RecoveryandRebuildingEffortsInfo"
+            android:name=".DisasterResponseInfo.NineRecoveryandRebuildingEffortsInfo"
             android:exported="true" />
         <activity
-            android:name=".DisasterResponseInfo.SearchAndRescueinfo"
+            android:name=".DisasterResponseInfo.FourSearchAndRescueinfo"
             android:exported="true" />
         <activity
-            android:name=".DisasterResponseInfo.VolunteerandDonationsManagementInfo"
+            android:name=".DisasterResponseInfo.EightVolunteerandDonationsManagementInfo"
             android:exported="true" /> <!-- Disaster Response End -->
         <!-- Educational End -->
         <!-- Emergency Contact Start -->

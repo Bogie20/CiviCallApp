@@ -10,10 +10,10 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
-class CommunicationAndInformationInfo : AppCompatActivity() {
+class FiveCommunicationAndInformationInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_communication_and_information_info)
+        setContentView(R.layout.activity_five_communication_and_information_info)
 
 
 
@@ -43,7 +43,7 @@ class CommunicationAndInformationInfo : AppCompatActivity() {
                         "9. Update Strategies: Regularly adapt SSM strategies to evolving technologies and scenarios.\n\n" +
                         "10. Embrace Tech: Embrace emerging technologies like AI, predictive analytics, and collaborative platforms for proactive disaster management.\n\n",
 
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.linkedin.com%2Fpulse%2Fnavigating-chaos-power-system-status-management-gerlach-mpa-mep&psig=AOvVaw3dC5w_kSoHGSD76ZsCVo0U&ust=1696490147029000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCNDc4bzs24EDFQAAAAAdAAAAABAD",
+                "https://www.researchgate.net/publication/334754915/figure/fig2/AS:786201988575233@1564456569976/WiND-network-model-for-post-disaster-management.ppm",
                 "https://www.linkedin.com/pulse/navigating-chaos-power-system-status-management-gerlach-mpa-mep/"
             )
         )
@@ -80,7 +80,7 @@ class CommunicationAndInformationInfo : AppCompatActivity() {
                         "9. Community Feedback Loops: Create channels for community feedback and input, allowing residents to share information, concerns, and suggestions.\n\n" +
                         "10. Regular Training and Drills: Conduct regular drills and training sessions for community leaders and members to familiarize them with information-sharing protocols and platforms.\n\n",
 
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.govtech.com%2Fem%2Fsafety%2Finformation-sharing-more-critical-than-ever-amid-the-coronavirus.html&psig=AOvVaw0lpDCAzJAo95Dw5TSa5yzx&ust=1696492938286000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIDdyOr224EDFQAAAAAdAAAAABAE",
+                "https://www.researchgate.net/publication/327389931/figure/fig1/AS:741033319100418@1553687519419/nternet-of-social-things-connected-during-emergency-situation.png",
                 "https://www.govtech.com/em/safety/information-sharing-more-critical-than-ever-amid-the-coronavirus.html"
              )
         )
@@ -100,7 +100,7 @@ class CommunicationAndInformationInfo : AppCompatActivity() {
                         "9. Community Feedback Loops: Create channels for community feedback and input, allowing residents to share information, concerns, and suggestions.\n\n" +
                         "10. Regular Training and Drills: Conduct regular drills and training sessions for community leaders and members to familiarize them with information-sharing protocols and platforms.\n\n",
 
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.childrenandscreens.com%2Fmedia%2Fpress-releases%2Fsocial-media-meets-social-distancing-ten-expert-tips-for-parents-of-teens-and-tweens-during-the-pandemic%2F&psig=AOvVaw2wZZOd8s33niTm4cFScXPz&ust=1696494033285000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCNDk3PT624EDFQAAAAAdAAAAABAJ",
+                "https://theinteractiveimprint.com/wp-content/uploads/2017/09/Social-Media-Natural-Disaster.png",
                 "https://www.adjustersinternational.com/resources/news-and-events/social-media-before-during-and-after-a-disaster/#:~:text=Officials%20use%20social%20media%20during,affected%20areas%20and%20identifying%20survivors."
              )
         )
@@ -119,7 +119,7 @@ class CommunicationAndInformationInfo : AppCompatActivity() {
                         "10. Privacy and Security: Implement measures to protect the privacy of individuals while issuing alerts and guard against potential security threats or misinformation.\n\n",
 
 
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.manchestereveningnews.co.uk%2Fnews%2Fgreater-manchester-news%2Fpeople-still-receiving-late-emergency-26769748&psig=AOvVaw29z35IANH-8YSIW4ZqcItT&ust=1696495169148000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMjwypL_24EDFQAAAAAdAAAAABAE",
+                "https://www.lumina.com.ph/assets/news-and-blogs-photos/NDRRMC-Alert-A-Text-Message-You-Shouldnt-Ignore/OG-NDRRMC-Alert-A-Text-Message-You-Shouldnt-Ignore-1.png",
                 "https://nap.nationalacademies.org/read/24935/chapter/2#17")
         )
 

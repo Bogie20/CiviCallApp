@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".DisasterResponseInfo.VolunteerandDonationsManagementInfo">
+    tools:context=".DisasterResponseInfo.ZeroEmergencyPreparednessInfo">
+
+
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -31,10 +33,10 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
             android:layout_centerInParent="true"
+
             android:fontFamily="@font/lexend_bold"
-            android:text="Volunteer &amp; Donations"
+            android:text="Emergency Preparedness"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -53,7 +55,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <androidx.cardview.widget.CardView
                 android:backgroundTint="@color/white"
                 android:layout_gravity="center"
@@ -71,7 +72,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Guiding Generosity: Volunteer and Donations Management in Disaster Response"
+                    android:text="Emergency Preparedness Plan ahead for safety"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -84,7 +85,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Welcome to our discussion on 'Guiding Generosity: Volunteer and Donations Management in Disaster Response.' In this study, we'll explore the crucial aspects of effectively managing volunteers and coordinating donations during disasters, equipping you with the knowledge and skills to make a meaningful impact in disaster relief efforts.&quot;"
+                    android:text="&quot;Hello, future Spartan scholars! Ever pondered what it takes to become a real-life hero? Well, it begins with a simple act - planning ahead for safety. Today, we're delving into the intriguing realm of emergency preparedness, equipping you with the skills to tackle any challenge life throws your way.&quot;"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -94,7 +95,6 @@
                     android:gravity="start"
                     android:textAlignment="viewStart"
                     />
-
             </androidx.cardview.widget.CardView>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -107,4 +107,5 @@
                 />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

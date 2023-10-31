@@ -10,10 +10,10 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
-class SearchAndRescueinfo : AppCompatActivity() {
+class FourSearchAndRescueinfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.searchandrescueinfo)
+        setContentView(R.layout.four_searchandrescueinfo)
 
 
 
