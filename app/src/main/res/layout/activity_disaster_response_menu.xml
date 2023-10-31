@@ -50,15 +50,28 @@
 
 
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
+
+            <androidx.cardview.widget.CardView
+                android:backgroundTint="@color/white"
+                android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/img_456"
-                />
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:id="@+id/feed_post_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/img_456"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
 
             <androidx.cardview.widget.CardView
                 android:backgroundTint="@color/white"

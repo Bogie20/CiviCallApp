@@ -45,32 +45,32 @@ class SocioeconomicFactorsandHealthInfo : AppCompatActivity() {
         dataList.add(
             DataItem("POVERTY'S TOLL ON HEALTH: UNDERSTANDING THE LINK",
                 "In the Philippines, the intersection of poverty and health is a pressing concern. This article delves into the challenges faced by farmers, shedding light on the intricate link between socioeconomic status and health consequences, ultimately seeking to understand how poverty takes its toll on well-being.\n\n" +
-                        "1. FARMERS STRUGGLE AMID ECONOMIC CHALLENGES: Farmers like Felipe Nazar in the Philippines face grueling work schedules and rising costs of farm inputs, impacting their livelihoods and contributing to poverty-related health concerns.\n" +
-                        "2. EXTERNAL FACTORS WORSEN THE SITUATION: External events like the COVID-19 pandemic, Russia's invasion of Ukraine, and climate disruptions further compound the challenges faced by Filipino farmers, raising concerns about increased hunger in the country.\n" +
-                        "3. INCREASING POVERTY AMONG FARMERS: Farmers and fisherfolk are among the poorest workers in the Philippines, with nearly one in three living below the poverty threshold, as input costs have doubled since 2020.\n" +
-                        "4. IMPACT ON HOUSEHOLD INCOMES: Traditional incomes for farmers have dwindled, leading to financial struggles, debt, and the inability to afford basic necessities, including education for their children.\n" +
-                        "5. REDUCED PROFITS IN FARMING: Despite the efforts of farmers and their families, many farms are not profitable, forcing them to sell their crops at low prices while consumers pay significantly more.\n" +
-                        "6. DEBT AS A COPING MECHANISM: Many farmers resort to borrowing from loan sharks to cover costs, plunging them into a cycle of debt due to the high interest rates.\n" +
-                        "7. HUNGER ON THE RISE: A significant portion of Filipinos faces hunger, with one in ten experiencing involuntary hunger, and the majority unable to afford a healthy diet.\n" +
-                        "8. RISING FOOD INFLATION: While the Philippines has a growing middle class and a young population, food inflation is high, with households spending over half their income on food.\n" +
-                        "9. REGIONAL DISPARITIES: Regional disparities persist, with some areas experiencing three to four times higher hunger levels than others, deepening the issue of poverty-related health concerns.\n" +
-                        "10. GOVERNMENT'S ROLE AND POTENTIAL SOLUTIONS: Experts suggest that government intervention, including support for local farmers and strategic import policies, could alleviate the challenges faced by farmers and reduce the impact of poverty on health.\n",
+                        "1. FARMERS STRUGGLE AMID ECONOMIC CHALLENGES: Farmers like Felipe Nazar in the Philippines face grueling work schedules and rising costs of farm inputs, impacting their livelihoods and contributing to poverty-related health concerns.\n\n" +
+                        "2. EXTERNAL FACTORS WORSEN THE SITUATION: External events like the COVID-19 pandemic, Russia's invasion of Ukraine, and climate disruptions further compound the challenges faced by Filipino farmers, raising concerns about increased hunger in the country.\n\n" +
+                        "3. INCREASING POVERTY AMONG FARMERS: Farmers and fisherfolk are among the poorest workers in the Philippines, with nearly one in three living below the poverty threshold, as input costs have doubled since 2020.\n\n" +
+                        "4. IMPACT ON HOUSEHOLD INCOMES: Traditional incomes for farmers have dwindled, leading to financial struggles, debt, and the inability to afford basic necessities, including education for their children.\n\n" +
+                        "5. REDUCED PROFITS IN FARMING: Despite the efforts of farmers and their families, many farms are not profitable, forcing them to sell their crops at low prices while consumers pay significantly more.\n\n" +
+                        "6. DEBT AS A COPING MECHANISM: Many farmers resort to borrowing from loan sharks to cover costs, plunging them into a cycle of debt due to the high interest rates.\n\n" +
+                        "7. HUNGER ON THE RISE: A significant portion of Filipinos faces hunger, with one in ten experiencing involuntary hunger, and the majority unable to afford a healthy diet.\n\n" +
+                        "8. RISING FOOD INFLATION: While the Philippines has a growing middle class and a young population, food inflation is high, with households spending over half their income on food.\n\n" +
+                        "9. REGIONAL DISPARITIES: Regional disparities persist, with some areas experiencing three to four times higher hunger levels than others, deepening the issue of poverty-related health concerns.\n\n" +
+                        "10. GOVERNMENT'S ROLE AND POTENTIAL SOLUTIONS: Experts suggest that government intervention, including support for local farmers and strategic import policies, could alleviate the challenges faced by farmers and reduce the impact of poverty on health.\n\n",
                 R.drawable.img_362,
                 "https://www.thenewhumanitarian.org/analysis/2023/07/27/Filipino-farmers-profits-hunger-looms",
                 "https://assets.thenewhumanitarian.org/s3fs-public/2023-07/Danilo%20Ramos%20Philippines%20farmer%20protest.jpg")
         )
         dataList.add(
             DataItem("HEALTHCARE ACCESSIBILITY: BRIDGING THE GAP IN A DIVERSE LANDSCAPE",
-                "In a nation as geographically diverse as the Philippines, healthcare accessibility is a multifaceted challenge. This article explores the hurdles faced by underserved communities, shedding light on the urgent need to bridge the healthcare gap in this diverse landscape.\"\n\n" +
-                        "1. CHALLENGES IN JOMALIG'S REMOTE HEALTHCARE: The article investigates the struggles faced by the geographically isolated Jomalig Island in the Philippines, highlighting the difficulties in providing essential healthcare services.\n" +
-                        "2. DEFICIENT PUBLIC HEALTH FACILITIES: Jomalig Island grapples with inadequate public health facilities and services, creating obstacles to addressing the health needs of its population.\n" +
-                        "3. GEOGRAPHICAL DISADVANTAGE AND LIMITED ACCESS: Due to its remote location, Jomalig Island faces substantial challenges in delivering healthcare, with long travel times exacerbating the issue.\n" +
-                        "4. ECONOMIC AND SOCIAL SERVICE CHALLENGES: The geographical isolation results in deficiencies in basic public services, such as water, electricity, and roads, impacting the overall well-being of the community.\n" +
-                        "5. MORTALITY AND MORBIDITY RATES: Although not alarmingly high, mortality and morbidity rates reveal some health concerns on the island, including hypertension and diarrhea.\n" +
-                        "6. RELIANCE ON FAITH HEALERS: A significant portion of the population resorts to 'faith healers' over traditional healthcare services, contributing to health complications.\n" +
-                        "7. ECONOMIC HARDSHIPS AND LIMITED INCOME: The economic status of the population directly affects health outcomes, with malnutrition and financial constraints hindering access to healthcare.\n" +
-                        "8. GEOGRAPHICAL LOCATION AND TRANSPORTATION ISSUES: Limited access to better-equipped healthcare facilities due to distance and sea conditions adds to the healthcare challenges faced by residents.\n" +
-                        "9. ENVIRONMENTAL FACTORS: Unclean water sources, improper waste disposal, and unsanitary practices further compound public health problems in some communities.\n" +
+                "In a nation as geographically diverse as the Philippines, healthcare accessibility is a multifaceted challenge. This article explores the hurdles faced by underserved communities, shedding light on the urgent need to bridge the healthcare gap in this diverse landscape.\"\n\n\n" +
+                        "1. CHALLENGES IN JOMALIG'S REMOTE HEALTHCARE: The article investigates the struggles faced by the geographically isolated Jomalig Island in the Philippines, highlighting the difficulties in providing essential healthcare services.\n\n" +
+                        "2. DEFICIENT PUBLIC HEALTH FACILITIES: Jomalig Island grapples with inadequate public health facilities and services, creating obstacles to addressing the health needs of its population.\n\n" +
+                        "3. GEOGRAPHICAL DISADVANTAGE AND LIMITED ACCESS: Due to its remote location, Jomalig Island faces substantial challenges in delivering healthcare, with long travel times exacerbating the issue.\n\n" +
+                        "4. ECONOMIC AND SOCIAL SERVICE CHALLENGES: The geographical isolation results in deficiencies in basic public services, such as water, electricity, and roads, impacting the overall well-being of the community.\n\n" +
+                        "5. MORTALITY AND MORBIDITY RATES: Although not alarmingly high, mortality and morbidity rates reveal some health concerns on the island, including hypertension and diarrhea.\n\n" +
+                        "6. RELIANCE ON FAITH HEALERS: A significant portion of the population resorts to 'faith healers' over traditional healthcare services, contributing to health complications.\n\n" +
+                        "7. ECONOMIC HARDSHIPS AND LIMITED INCOME: The economic status of the population directly affects health outcomes, with malnutrition and financial constraints hindering access to healthcare.\n\n" +
+                        "8. GEOGRAPHICAL LOCATION AND TRANSPORTATION ISSUES: Limited access to better-equipped healthcare facilities due to distance and sea conditions adds to the healthcare challenges faced by residents.\n\n" +
+                        "9. ENVIRONMENTAL FACTORS: Unclean water sources, improper waste disposal, and unsanitary practices further compound public health problems in some communities.\n\n" +
                         "10. RECOMMENDATIONS AND POLICY IMPLICATIONS: To improve healthcare accessibility in geographically isolated areas like Jomalig Island, the article suggests a range of solutions, including emergency boats, health education campaigns, and infrastructure improvements.",
                 R.drawable.img_363,
                 "https://www.joghr.org/article/11962-challenges-in-public-health-facilities-and-services-evidence-from-a-geographically-isolated-and-disadvantaged-area-in-the-philippines",
@@ -79,11 +79,11 @@ class SocioeconomicFactorsandHealthInfo : AppCompatActivity() {
 
         dataList.add(
             DataItem("SOCIAL DETERMINANTS OF HEALTH: SHAPING LIVES AND HEALTH OUTCOMES",
-                "In the intricate interplay of social determinants and health, the Philippines grapples with a significant challenge. This article delves into the complex web of factors that shape lives and health outcomes in the country\"\n" +
+                "In the intricate interplay of social determinants and health, the Philippines grapples with a significant challenge. This article delves into the complex web of factors that shape lives and health outcomes in the country\"\n\n\n" +
 
-                        "1. SOCIAL DETERMINANTS: The Silent Architects of Health - The article unveils the critical role of social determinants, such as education, income, and employment, in molding health outcomes and exacerbating health disparities.\n" +
+                        "1. SOCIAL DETERMINANTS: The Silent Architects of Health - The article unveils the critical role of social determinants, such as education, income, and employment, in molding health outcomes and exacerbating health disparities.\n\n" +
                         "2. PHILIPPINES' HEALTH CARE DISPARITIES - It sheds light on the Philippines' ongoing struggle with healthcare inequities, where the distribution of health professionals fails to meet World Health Organization standards.\n" +
-                        "3. DEFICIENCY IN HEALTH CARE WORKERS - The Philippines grapples with a severe shortage of healthcare professionals, with a ratio far below recommended levels, especially in regions with higher poverty rates.\n" +
+                        "3. DEFICIENCY IN HEALTH CARE WORKERS - The Philippines grapples with a severe shortage of healthcare professionals, with a ratio far below recommended levels, especially in regions with higher poverty rates.\n\n" +
                         "4. WEALTH DISPARITY AND HEALTH NEEDS - It emphasizes the correlation between wealth inequality and health outcomes, highlighting how poorer regions with greater health needs face underdeveloped health services.\n" +
                         "5. REGIONAL HEALTH CARE DISPARITIES - The data exposes disparities in health worker distribution, where more impoverished areas have fewer healthcare professionals, further limiting access to essential care.\n" +
                         "6. THE ROLE OF PUBLIC HEALTH CARE - The article suggests that expanding the public health care system with a focus on poorer regions could significantly bridge the healthcare gap.\n" +

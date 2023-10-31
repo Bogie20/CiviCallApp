@@ -50,16 +50,16 @@ class DirtyAirBrightSolutionsInfo : AppCompatActivity() {
         dataList.add(
             DataItem("HEALTH IMPACTS AND SOCIAL INEQUALITY IN THE PHILIPPINES",
                 "In the Philippines, achieving health for all remains a pressing challenge, with significant disparities in healthcare access and health outcomes. This article explores the intricate relationship between health impacts and social inequality, shedding light on the critical issues affecting the nation's well-being.\n\n" +
-                        "1. UNIVERSAL HEALTH COVERAGE: The article emphasizes the importance of universal health coverage and access to essential health services as a fundamental human right.\n" +
-                        "2. HEALTHCARE INEQUITIES IN ASIA AND THE PACIFIC: It highlights the fact that up to half of the population in some Asian and Pacific countries lack access to health services due to various barriers.\n" +
-                        "3. FINANCIAL HARDSHIP IN HEALTH: The poorest Filipinos spend a significant portion of their income on healthcare, leading to financial hardship and trade-offs with food expenses.\n" +
-                        "4. WHO's 70th ANNIVERSARY: The World Health Organization (WHO) marks its 70th anniversary by reemphasizing health as a fundamental human right and the need for 'health for all.'\n" +
-                        "5. HEALTH CHALLENGES IN THE PHILIPPINES: The article underscores the health challenges facing the Philippines, including noncommunicable diseases and epidemics.\n" +
-                        "6. GLARING GAPS IN ACCESS: It points out the existing gaps in access to healthcare, which may be due to affordability, geographical distance, knowledge gaps, or social stigma.\n" +
-                        "7. PREVENTING NONCOMMUNICABLE DISEASES: The context stresses the importance of effective preventive measures and management of diseases like heart attacks, stroke, diabetes, and cancer.\n" +
-                        "8. COMPREHENSIVE HEALTHCARE: It advocates for comprehensive healthcare services available closer to people's homes, provided by coordinated healthcare teams.\n" +
-                        "9. LEADERSHIP FOR UNIVERSAL HEALTH COVERAGE: The need for visionary and courageous leadership committed to universal health coverage is highlighted as a critical step.\n" +
-                        "10. ACTIONS IN THE PHILIPPINES: The article applauds the commitment of the Philippines' Secretary of Health, Francisco Duque III, to strengthen primary healthcare, invest in prevention, and promote good governance in health.\n",
+                        "1. UNIVERSAL HEALTH COVERAGE: The article emphasizes the importance of universal health coverage and access to essential health services as a fundamental human right.\n\n" +
+                        "2. HEALTHCARE INEQUITIES IN ASIA AND THE PACIFIC: It highlights the fact that up to half of the population in some Asian and Pacific countries lack access to health services due to various barriers.\n\n" +
+                        "3. FINANCIAL HARDSHIP IN HEALTH: The poorest Filipinos spend a significant portion of their income on healthcare, leading to financial hardship and trade-offs with food expenses.\n\n" +
+                        "4. WHO's 70th ANNIVERSARY: The World Health Organization (WHO) marks its 70th anniversary by reemphasizing health as a fundamental human right and the need for 'health for all.'\n\n" +
+                        "5. HEALTH CHALLENGES IN THE PHILIPPINES: The article underscores the health challenges facing the Philippines, including noncommunicable diseases and epidemics.\n\n" +
+                        "6. GLARING GAPS IN ACCESS: It points out the existing gaps in access to healthcare, which may be due to affordability, geographical distance, knowledge gaps, or social stigma.\n\n" +
+                        "7. PREVENTING NONCOMMUNICABLE DISEASES: The context stresses the importance of effective preventive measures and management of diseases like heart attacks, stroke, diabetes, and cancer.\n\n" +
+                        "8. COMPREHENSIVE HEALTHCARE: It advocates for comprehensive healthcare services available closer to people's homes, provided by coordinated healthcare teams.\n\n" +
+                        "9. LEADERSHIP FOR UNIVERSAL HEALTH COVERAGE: The need for visionary and courageous leadership committed to universal health coverage is highlighted as a critical step.\n\n" +
+                        "10. ACTIONS IN THE PHILIPPINES: The article applauds the commitment of the Philippines' Secretary of Health, Francisco Duque III, to strengthen primary healthcare, invest in prevention, and promote good governance in health.\n\n",
                 R.drawable.img_292,
                 "https://www.who.int/philippines/news/commentaries/detail/health-for-all-is-key-for-a-safer-fairer-more-prosperous-philippines",
                 "https://borgenproject.org/wp-content/uploads/The_Effects_of_Poverty_in_the_Philippines.jpg")
@@ -84,17 +84,17 @@ class DirtyAirBrightSolutionsInfo : AppCompatActivity() {
 
         dataList.add(
             DataItem("INDUSTRIAL EMISSIONS AND REGULATIONS IN THE PHILIPPINES",
-                "Discover the dynamic landscape of environmental regulations in the Philippines, where a complex web of policies, agencies, and compliance measures shapes the path to sustainable development. Uncover the key facets of environmental law and its impact on industries, seafarers, and the nation's commitment to combating climate change.\"\n" +
+                "Discover the dynamic landscape of environmental regulations in the Philippines, where a complex web of policies, agencies, and compliance measures shapes the path to sustainable development. Uncover the key facets of environmental law and its impact on industries, seafarers, and the nation's commitment to combating climate change.\"\n\n" +
 
-                        "1. CONSTITUTIONAL BASIS FOR ENVIRONMENTAL POLICY: Environmental policy in the Philippines is rooted in the Constitution, emphasizing the right to a 'balanced and healthful ecology' and sustainable development.\n" +
-                        "2. REGALIAN DOCTRINE AND RESOURCE OWNERSHIP: The Regalian Doctrine dictates that natural resources are state-owned, with the government regulating exploration, development, and utilization.\n" +
-                        "3. VARIED ENVIRONMENTAL LAWS: Environmental policy in the Philippines encompasses a range of laws governing water, air, forestry, mining, fisheries, and more.\n" +
-                        "4. ROLE OF THE DEPARTMENT OF ENVIRONMENT AND NATURAL RESOURCES (DENR): The DENR is the primary agency responsible for enforcing environmental laws, including the management and conservation of natural resources.\n" +
-                        "5. SHIFT TOWARDS PARTICIPATORY GOVERNANCE: The Philippines has transitioned from a regulation-heavy regime to more participatory environmental governance, emphasizing public consultations and stakeholder involvement.\n" +
-                        "6. FREEDOM OF INFORMATION MANDATE: The government is committed to transparency and access to environmental information, as exemplified by Executive Order No. 2 and the DENR's FOI Manual.\n" +
-                        "7. ENVIRONMENTAL PERMIT REQUIREMENTS: Environmentally Critical Projects (ECPs) must obtain Environmental Compliance Certificates (ECCs), with various permits required for aspects like air quality, hazardous waste, and wastewater discharge.\n" +
-                        "8. LEGAL RECOURSE FOR PERMIT DENIAL: Environmental regulators' decisions on permits are generally not appealable but can be challenged for grave abuse of discretion.\n" +
-                        "9. EXTENDED PRODUCER RESPONSIBILITY (EPR): The EPR Act introduces EPR mechanisms for waste reduction and recovery, placing responsibility on producers throughout a product's lifecycle.\n" +
+                        "1. CONSTITUTIONAL BASIS FOR ENVIRONMENTAL POLICY: Environmental policy in the Philippines is rooted in the Constitution, emphasizing the right to a 'balanced and healthful ecology' and sustainable development.\n\n" +
+                        "2. REGALIAN DOCTRINE AND RESOURCE OWNERSHIP: The Regalian Doctrine dictates that natural resources are state-owned, with the government regulating exploration, development, and utilization.\n\n" +
+                        "3. VARIED ENVIRONMENTAL LAWS: Environmental policy in the Philippines encompasses a range of laws governing water, air, forestry, mining, fisheries, and more.\n\n" +
+                        "4. ROLE OF THE DEPARTMENT OF ENVIRONMENT AND NATURAL RESOURCES (DENR): The DENR is the primary agency responsible for enforcing environmental laws, including the management and conservation of natural resources.\n\n" +
+                        "5. SHIFT TOWARDS PARTICIPATORY GOVERNANCE: The Philippines has transitioned from a regulation-heavy regime to more participatory environmental governance, emphasizing public consultations and stakeholder involvement.\n\n" +
+                        "6. FREEDOM OF INFORMATION MANDATE: The government is committed to transparency and access to environmental information, as exemplified by Executive Order No. 2 and the DENR's FOI Manual.\n\n" +
+                        "7. ENVIRONMENTAL PERMIT REQUIREMENTS: Environmentally Critical Projects (ECPs) must obtain Environmental Compliance Certificates (ECCs), with various permits required for aspects like air quality, hazardous waste, and wastewater discharge.\n\n" +
+                        "8. LEGAL RECOURSE FOR PERMIT DENIAL: Environmental regulators' decisions on permits are generally not appealable but can be challenged for grave abuse of discretion.\n\n" +
+                        "9. EXTENDED PRODUCER RESPONSIBILITY (EPR): The EPR Act introduces EPR mechanisms for waste reduction and recovery, placing responsibility on producers throughout a product's lifecycle.\n\n" +
                         "10. CHALLENGES AND ENFORCEMENT POWERS: Environmental regulators have authority to investigate, collect samples, conduct site inspections, and enforce environmental laws, promoting accountability and compliance.",
                 R.drawable.img_294,
                 "https://iclg.com/practice-areas/environment-and-climate-change-laws-and-regulations/philippines",
@@ -104,15 +104,15 @@ class DirtyAirBrightSolutionsInfo : AppCompatActivity() {
         dataList.add(
             DataItem("PUBLIC AWARENESS AND BEHAVIOR CHANGE IN THE PHILIPPINES",
                 "In the Philippines, a growing awareness of the severe health impacts of air pollution has sparked a call for change. Health experts are leading the charge, advocating for stricter environmental regulations and fostering public awareness to drive behavior change, all in the pursuit of cleaner air and better health.\n\n\n" +
-                        "1. AIR POLLUTION CRISIS: The Philippines faces a severe air pollution crisis, ranking among the highest in the world for air pollution-related deaths, primarily attributed to fine particulate matter in the air.\n" +
-                        "2. HEALTH EXPERTS TAKE ACTION: Health experts in the country are advocating for the stricter enforcement of clean air and environmental protection laws to address the public health challenges posed by air pollution.\n" +
-                        "3. IMPACT ON PUBLIC HEALTH: The Philippines records approximately 45.3 air pollution-related deaths per 100,000 people, emphasizing the critical impact on public health.\n" +
-                        "4. REGIONAL CONCERN: Air pollution is a significant concern in the Asia-Pacific region, with the Western Pacific Region, including the Philippines, witnessing a substantial number of premature deaths due to air pollution.\n" +
-                        "5. CALL FOR STRONGER REGULATIONS: Experts call for a revisit of environmental regulations, such as the Clean Air Act, to combat air pollution and waste management challenges more effectively.\n" +
-                        "6. DIRTY AIR SOURCES: Coal-fired power plants are identified as major sources of air pollution in the Philippines, linked to various respiratory diseases.\n" +
-                        "7. GLOBAL IMPACT: A joint study by Greenpeace Philippines and Harvard University highlights the global consequences of coal-fired power plants and their contribution to greenhouse gas emissions.\n" +
-                        "8. GOVERNMENT ENERGY PLAN: The Philippine Department of Energy indicates that coal remains a significant part of the country's energy mix, with plans to expand domestic coal resources.\n" +
-                        "9. TRANSITION TO CLEAN ENERGY: Experts stress the need to transition away from coal dependence and promote alternative energy sources like hydro, tidal, geothermal, wind, and solar power.\n" +
+                        "1. AIR POLLUTION CRISIS: The Philippines faces a severe air pollution crisis, ranking among the highest in the world for air pollution-related deaths, primarily attributed to fine particulate matter in the air.\n\n" +
+                        "2. HEALTH EXPERTS TAKE ACTION: Health experts in the country are advocating for the stricter enforcement of clean air and environmental protection laws to address the public health challenges posed by air pollution.\n\n" +
+                        "3. IMPACT ON PUBLIC HEALTH: The Philippines records approximately 45.3 air pollution-related deaths per 100,000 people, emphasizing the critical impact on public health.\n\n" +
+                        "4. REGIONAL CONCERN: Air pollution is a significant concern in the Asia-Pacific region, with the Western Pacific Region, including the Philippines, witnessing a substantial number of premature deaths due to air pollution.\n\n" +
+                        "5. CALL FOR STRONGER REGULATIONS: Experts call for a revisit of environmental regulations, such as the Clean Air Act, to combat air pollution and waste management challenges more effectively.\n\n" +
+                        "6. DIRTY AIR SOURCES: Coal-fired power plants are identified as major sources of air pollution in the Philippines, linked to various respiratory diseases.\n\n" +
+                        "7. GLOBAL IMPACT: A joint study by Greenpeace Philippines and Harvard University highlights the global consequences of coal-fired power plants and their contribution to greenhouse gas emissions.\n\n" +
+                        "8. GOVERNMENT ENERGY PLAN: The Philippine Department of Energy indicates that coal remains a significant part of the country's energy mix, with plans to expand domestic coal resources.\n\n" +
+                        "9. TRANSITION TO CLEAN ENERGY: Experts stress the need to transition away from coal dependence and promote alternative energy sources like hydro, tidal, geothermal, wind, and solar power.\n\n" +
                         "10. CLIMATE CHANGE AND PUBLIC HEALTH: The Philippines is working on initiatives to reduce short-lived climate pollutants and align with the Paris climate change agreement, emphasizing the urgent public health aspect of addressing climate change and air pollution.",
                 R.drawable.img_295,
                 "https://noharm-global.org/articles/news/asia/news-health-experts-philippines-lead-fight-against-dirty-air",

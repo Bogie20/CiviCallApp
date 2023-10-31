@@ -65,60 +65,10 @@ class CivicResponsibilityandtheRuleofLawInfo : AppCompatActivity() {
                 "https://lawphil.net/international/treaties/bpij.html",
                 "https://cdn.factsasia.org/medium_eu_8da0fba43e.png")
         )
-        dataList.add(
-            DataItem("CIVIL LIBERTIES AND THE RULE OF LAW IN THE PHILIPPINES",
-                "Explore the bedrock of civil liberties and the rule of law in the Philippines as we delve into the Bill of Rights. Discover the rights, protections, and legal framework that underpin the country's commitment to individual freedoms and justice.\"\n\n" +
 
-                "The Bill of Rights in the Philippines is an essential component of the 1987 Philippine Constitution. It serves as a bulwark for preserving the fundamental rights and protections of Filipino citizens.\n\n" +
-                        "Rights Covered in the Bill of Rights:\n\n" +
-                        "1. Right to Due Process:\n" +
-                        "   - Provides protection against arbitrary deprivation of life, liberty, and property.\n" +
-                        "   - Ensures equality under the law.\n\n" +
-                        "2. Right Against Unreasonable Searches and Seizures:\n" +
-                        "   - Establishes a clear distinction between searches and seizures.\n" +
-                        "   - Requires the necessity of a valid search warrant and warrant of arrest.\n\n" +
-                        "3. Right to Privacy:\n" +
-                        "   - Grants the right to be left alone, with exceptions for lawful court orders and public safety.\n\n" +
-                        "4. Freedom of Speech, Expression, and Press:\n" +
-                        "   - Guarantees the right to express opinions without restraint, with some limitations.\n\n" +
-                        "5. Freedom of Assembly:\n" +
-                        "   - Preserves the right to hold rallies and voice grievances, subject to restrictions for public safety and order.\n\n" +
-                        "6. Freedom of Religion:\n" +
-                        "   - Safeguards the right to worship without interference.\n" +
-                        "   - Prohibits religious tests for public office.\n\n" +
-                        "7. Liberty of Abode and Right to Travel:\n" +
-                        "   - Provides the right to choose and change residence freely.\n" +
-                        "   - Allows exceptions for court orders and national security.\n\n" +
-                        "8. Right to Information:\n" +
-                        "   - Ensures the right to access government records, with certain exceptions for reasons of security.\n\n" +
-                        "9. Right to Form Association:\n" +
-                        "   - Grants the freedom to organize or be a member of groups, unions, or societies.\n\n" +
-                        "10. Right to Just Compensation:\n" +
-                        "    - Recognizes inherent state powers, including police power, taxation, and eminent domain.\n" +
-                        "    - Ensures just compensation for property taken by the government.\n\n" +
-                        "11. Obligation of Contracts:\n" +
-                        "    - Imposes the legal duty to fulfill promises in contracts.\n" +
-                        "    - Prohibits the government from passing laws that impair contracts.\n\n" +
-                        "12. Right of Habeas Corpus:\n" +
-                        "    - Provides the right to challenge the legality of detention in court.\n" +
-                        "    - Prevents secret detentions.\n\n" +
-                        "13. Rights of an Accused Under Custodial Investigation:\n" +
-                        "    - Includes Miranda rights, such as the right to remain silent, consult with counsel, and more.\n" +
-                        "    - Protects against self-incrimination, cruel punishment, and more.\n\n" +
-                        "14. Right Against Involuntary Servitude:\n" +
-                        "    - Prohibits compulsory service, with certain exceptions.\n\n" +
-                        "15. Right Against Excessive Fines and Bail:\n" +
-                        "    - Guards against the imposition of excessive fines.\n" +
-                        "    - Defines bail as a cash bond or property posted to ensure court appearances.\n\n" +
-                        "16. Right Against the Infliction of Death Penalty:\n" +
-                        "    - The Philippine Constitution abolished the death penalty but allowed for its re-imposition for heinous crimes.\n\n" +
-                        "17. Right Against Double Jeopardy:\n" +
-                        "    - Protects individuals from facing multiple prosecutions for the same offense.\n\n" +
-                        "These rights and protections collectively form the cornerstone of civil liberties and the rule of law in the Philippines, ensuring that individuals are shielded from government abuse and that justice prevails.\n",
-                R.drawable.img_252,
-                "https://www.youtube.com/watch?v=KaLzPN-9n70&ab_channel=CivilServiceReviewTV",
-                "https://cdn.slidesharecdn.com/ss_thumbnails/billofrightslecture-3-110926012813-phpapp02-thumbnail.jpg?width=336&height=210&fit=bounds")
-        )
+
+
+
 
         dataList.add(
             DataItem("THE INTERSECTION OF ETHICS AND LAW",
