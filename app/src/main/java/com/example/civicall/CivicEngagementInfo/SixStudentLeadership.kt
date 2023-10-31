@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
 
-class StudentLeadershipInfo : AppCompatActivity() {
+class SixStudentLeadership : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_advocacy)
+        setContentView(R.layout.activity_sixstudentleadership)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
@@ -35,7 +35,7 @@ class StudentLeadershipInfo : AppCompatActivity() {
                         "9. LEADERSHIP RECOGNITION: Acknowledge and celebrate student leaders who actively engage in youth activism, reinforcing the idea that their efforts can make a significant impact.\n\n" +
                         "10. YOUTH-LED INITIATIVES: Encourage student leaders to initiate their own youth-led projects, allowing them to apply their activism knowledge and drive positive change in their communities.\n\n",
 
-                "https://eu.boell.org/sites/default/files/grid/2021/12/06/Young%20voices%20on%20the%20rise%201960x784px.jpg",
+                "https://www.edgeip.com/images/FCK/Image/202111/Swansea-ClimateActivists.jpg",
                 "https://www.rappler.com/moveph/27023-youth-activism-organized-action/"
 
             )
@@ -91,7 +91,7 @@ class StudentLeadershipInfo : AppCompatActivity() {
                         "9. TAKE ACTION: Execute your plan, organize events, campaigns, or initiatives, and actively work toward your goals.\n\n" +
                         "10. MEASURE IMPACT AND ADAPT: Continuously assess the impact of your actions, gather feedback, and be open to adapting your strategies for greater effectiveness.\n\n",
 
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rappler.com%2Fmoveph%2Fhow-communities-join-hands-crisis-duterte-year-4%2F&psig=AOvVaw3oThZo02gCRpuVdAUblEj_&ust=1696594679394000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOCFh-zx3oEDFQAAAAAdAAAAABAE",
+                "https://blog.polco.us/hubfs/Polco%20Live%20Event-2.png",
                 "https://www.gse.harvard.edu/ideas/news/20/09/turning-passion-civic-action"
                 )
         )
@@ -111,7 +111,7 @@ class StudentLeadershipInfo : AppCompatActivity() {
                         "9. BEGIN VOLUNTEERING: Start your volunteer work with enthusiasm and dedication. Whether it's mentoring, organizing events, or providing essential services, give your best effort.\n\n" +
                         "10. REFLECT AND ADAPT: Regularly reflect on your volunteer experiences. Assess the impact you've made, evaluate your goals, and adapt your volunteer efforts as needed. This ongoing process ensures your service remains high-impact and meaningful.\n\n",
 
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pna.gov.ph%2Farticles%2F1122889&psig=AOvVaw2jhQJiVZsIXFYNj-8vl54k&ust=1696595824391000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPi-jo723oEDFQAAAAAdAAAAABAE",
+                "https://discover.abre.com/wp-content/uploads/2022/11/FI_-Intro-to-Service-Learning-1024x576-1.jpeg",
                 "https://www.indeed.com/career-advice/career-development/community-service-ideas-college-students"
                 )
         )

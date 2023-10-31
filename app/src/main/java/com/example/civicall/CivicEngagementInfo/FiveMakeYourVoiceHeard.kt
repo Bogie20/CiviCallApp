@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
 
-class CivicParticipationInfo : AppCompatActivity() {
+class
+FiveMakeYourVoiceHeard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_roadmap)
+        setContentView(R.layout.activity_fivemakeyourvoiceheard)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
@@ -54,7 +55,7 @@ class CivicParticipationInfo : AppCompatActivity() {
                         "9. DEBATE AND DISCUSSION FORUMS: Organize regular debates and discussion forums where students can exchange ideas, challenge perspectives, and refine their understanding of civic issues.\n\n" +
                         "10. MENTORSHIP PROGRAMS: Establish mentorship programs that connect experienced civic-minded individuals with students, offering guidance and inspiration for active citizenship.\n\n",
 
-                "https://1cms-img.imgix.net/Students-rally1.jpg",
+                "https://wp.atenews.ph/wp-content/uploads/2022/05/Graphics-Atenean-Profile.png",
                 "https://www.samuelcohn.net/development-1/everything-you-need-to-know-about-how-to-create-a-successful-student-led-social-movement",)
         )
         dataList.add(

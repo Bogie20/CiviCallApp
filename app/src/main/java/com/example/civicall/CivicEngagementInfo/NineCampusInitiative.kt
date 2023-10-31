@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
 
-class SustainabilityInitiativesInfo : AppCompatActivity() {
+class NineCampusInitiative : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lasting_impact)
+        setContentView(R.layout.activity_ninecampusinitiative)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
@@ -76,7 +76,6 @@ class SustainabilityInitiativesInfo : AppCompatActivity() {
                 "https://www.apn-gcr.org/bulletin/article/venturing-sustainability-political-lessons-from-civic-engagement-and-transformative-learning-in-asia/"
               )
         )
-
         dataList.add(
             DataItem("CREATING ECO-FRIENDLY COMMUNITIES",
                 "\"Embark on a journey of transformation and community empowerment as we delve into the heart of eco-friendly civic engagement. Discover how dedicated individuals and organizations are paving the way for sustainable, eco-conscious communities in the Philippines and beyond.\"\"\n\n" +

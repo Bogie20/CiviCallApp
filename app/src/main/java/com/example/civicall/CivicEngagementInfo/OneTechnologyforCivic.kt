@@ -8,16 +8,37 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
 
-class DigitalToolsforCivicEngagementInfo : AppCompatActivity() {
+class OneTechnologyforCivic : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_navigatingtips)
+        setContentView(R.layout.activity_onetechnologyforcivic)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
 
         // Create a list of data to display in the RecyclerView
         val dataList = ArrayList<DataItem>()
+
+        dataList.add(
+            DataItem("LEARNING ABOUT DATA PRIVACY IN THE PHILIPPINES",
+                "As businesses and industries continue to embrace technology and digital solutions, understanding the concept of data privacy becomes increasingly important. In this lesson, we'll explore data privacy in the Philippines, its significance, and the legal framework that governs it.\n" +
+                        "\nWhat is Data Privacy?\n\n" +
+                        "Data privacy is the fundamental right that allows individuals to control how their personal information is collected, accessed, and utilized. It encompasses various forms of personal data, including health records, financial information, and personally identifiable information (PII). Businesses leverage this data to make informed decisions, such as customer feedback, proprietary research, and much more.\n" +
+                        "\nThe Importance of Data Privacy\n\n" +
+                        "As entrepreneurs, safeguarding the privacy and security of your customers' information should be a top priority. Data breaches and leaks can lead to various risks, including identity theft, discrimination, and reputational damage. Understanding why data privacy is crucial can help protect both your customers and your business.\n" +
+                        "\nData Privacy in the Philippines\n\n" +
+                        "In 2012, the Philippines introduced the Data Privacy Act of 2012 (DPA) to ensure the protection of personal and sensitive information in both public and private communication systems. The National Privacy Commission (NPC) was established to oversee the implementation of DPA, aligning the country's data protection practices with international standards. The NPC acts as a watchdog, upholding data privacy standards.\n" +
+                        "\nKey Terms and Provisions\n\n" +
+                        "The DPA encompasses several key terms and provisions that govern data privacy. These include the legal definition of consent, parameters for processing personal information, subcontracting data processing, the rights of data subjects, security and accountability measures, government entity responsibilities, and the application to government contractors. Understanding these terms and provisions is crucial for ensuring compliance.\n" +
+                        "\nGuidelines for Data Processing\n\n" +
+                        "To ensure proper compliance with data privacy laws, the Data Privacy Act's Implementing Rules and Regulations (IRR) provide guidelines for data processing. This includes obtaining consent from data subjects, securely storing their information, and properly disposing of personal data to prevent unauthorized access or disclosure.\n" +
+                        "\nEnsuring Compliance with Data Privacy Laws\n\n" +
+                        "Understanding data privacy rules is essential for protecting customer privacy and avoiding legal penalties. To navigate these complexities effectively, businesses may seek the expertise of specialized corporate law firms, which can provide guidance on implementing data privacy laws and ensuring compliance.\n",
+
+                "https://carpolaw.com/wp-content/uploads/2022/12/BLOGS-IMAGES-CLA-min.png",
+                "https://carpolaw.com/data-privacy-philippines/"
+            )
+        )
 
         dataList.add(
             DataItem(
@@ -53,25 +74,9 @@ class DigitalToolsforCivicEngagementInfo : AppCompatActivity() {
                         "9. Monitor Progress: Regularly track the performance of your online petition or campaign. Analyze metrics such as the number of signatures, shares, and engagement to assess its effectiveness.\n\n" +
                         "10. Take Offline Action: While your campaign is online, remember that real-world actions often drive change. Organize events, meetings, or advocacy efforts that complement your online efforts and translate support into tangible results.\n\n",
 
-                "https://149519988.v2.pressablecdn.com/wp-content/uploads/IMG_5330-crop-800.jpg",
-                "https://www.pewresearch.org/internet/2013/04/25/civic-engagement-in-the-digital-age/")
-        )
-        dataList.add(
-            DataItem("DATA PRIVACY IN CIVIC ENGAGEMENT",
-                "As communities increasingly rely on online platforms to interact with governments and organizations, safeguarding the confidentiality of personal information becomes not just a preference but a vital necessity for ensuring the security and trustworthiness of these digital interactions.\n\n" +
-                        "1. Clear Privacy Policies: Develop and prominently display transparent privacy policies that detail how personal data is collected, used, stored, and shared during civic engagement activities.\n\n" +
-                        "2. Data Encryption: Implement strong data encryption protocols to protect sensitive information from unauthorized access or interception.\n\n" +
-                        "3. Access Control: Utilize access controls to ensure that only authorized individuals have access to personal data, reducing the risk of data breaches.\n\n" +
-                        "4. Anonymous Participation: Offer options for anonymous or pseudonymous participation to provide community members with a sense of security and privacy.\n\n" +
-                        "5. Verification Process: Implement a verification process for community members to enhance accountability and trust within the engagement platform.\n\n" +
-                        "6. User Permissions: Utilize user permissions and access management systems to control who can view, edit, or manage sensitive data, minimizing the risk of unauthorized leaks.\n\n" +
-                        "7. Data Minimization: Collect only necessary and relevant data to limit the amount of personal information stored, reducing exposure to potential breaches.\n\n" +
-                        "8. Regular Audits: Conduct regular audits of data handling processes and security measures to identify and rectify vulnerabilities proactively.\n\n" +
-                        "9. User Education: Educate community members about data privacy practices, their rights, and how to report concerns regarding their personal information.\n\n" +
-                        "10. Responsive Support: Establish channels for community members to ask questions, voice concerns, and request modifications or deletion of their personal data, ensuring their privacy preferences are respected.\n\n",
+                "https://media.istockphoto.com/id/1167409896/photo/mans-hand-holding-cell-phone-with-blank-screen.jpg?s=612x612&w=0&k=20&c=8Uum-r5M5Sc_pY1zGxrvlSBuGt1UHnrPh6FXltPxAl8=",
+                "https://www.pewresearch.org/internet/2013/04/25/civic-engagement-in-the-digital-age/"
 
-                "https://venturebeat.com/wp-content/uploads/2021/03/business-meeting.GettyImages-607477465.jpg?fit=2114%2C1207&strip=all",
-                "https://www.socialpinpoint.com/data-protection-and-privacy-in-communityengagement/"
             )
         )
         dataList.add(
@@ -90,7 +95,7 @@ class DigitalToolsforCivicEngagementInfo : AppCompatActivity() {
 
                 "https://en.reset.org/app/uploads/2021/09/Civic-Tech-1536x1024.jpg",
                 "https://en.reset.org/what-is-civic-tech/"
-                )
+             )
         )
 
         dataList.add(
@@ -110,7 +115,7 @@ class DigitalToolsforCivicEngagementInfo : AppCompatActivity() {
 
                 "https://www.arabnews.com/sites/default/files/styles/n_670_395/public/main-image/2018/11/17/1371496-492058900.jpg?itok=jSFLUFlz",
                 "https://activisthandbook.org/tools/security"
-                )
+              )
         )
 
         val adapter = DataAdapter(dataList)

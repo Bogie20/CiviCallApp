@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
 
-class TechforGoodsinfo : AppCompatActivity() {
+class EightDigitalCivic : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_techfor_goodsinfo)
+        setContentView(R.layout.activity_eightdigitalcivic)
 
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)

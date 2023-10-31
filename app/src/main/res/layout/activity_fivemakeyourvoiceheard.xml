@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".CivicEngagementInfo.ChampionsofSocialJusticeInfo">
-
+    tools:context=".CivicEngagementInfo.FiveMakeYourVoiceHeard">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -32,10 +31,10 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
             android:layout_centerInParent="true"
+            android:textAllCaps="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="SOCIAL JUSTICE"
+            android:text="Make your voice heard"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -66,12 +65,12 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp">
 
-                <TextView
+            <TextView
                     android:id="@+id/title"
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CHAMPIONS OF SOCIAL JUSTICE: EMPOWERING STUDENTS FOR CHANGE"
+                    android:text="The Student's Guide to Civic Participation: Making Your Voice Heard"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -84,7 +83,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Step into the world of social justice champions and explore the transformative power of student-led change. From battling for racial equality to championing LGBTQ+ rights on campus, this journey empowers students to dismantle inequality through education and embrace inclusive initiatives.&quot;"
+                    android:text="&quot;Welcome to The Student's Guide to Civic Participation: Making Your Voice Heard. In this guide, we will explore the crucial role college students play in shaping their communities and the nation through topics such as the importance of college voter engagement, election preparedness, political activism, advocating for voting rights, and civic education on elections. Discover how you can actively participate in the democratic process and make a meaningful impact as a student.&quot;"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -106,4 +105,4 @@
                 />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

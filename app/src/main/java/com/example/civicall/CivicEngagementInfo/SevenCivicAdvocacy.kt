@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
 
-class CivicAdvocacyStrategiesInfo : AppCompatActivity() {
+class SevenCivicAdvocacy : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_youth_empowerment)
+        setContentView(R.layout.activity_sevencivicadvocacy)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
@@ -56,7 +56,7 @@ class CivicAdvocacyStrategiesInfo : AppCompatActivity() {
                         "9. Adapt and Learn: Continuously adapt your strategies based on the feedback and data you gather to improve your effectiveness.\n\n" +
                         "10. Translate Online Action to Real-World Impact: Encourage your online community to take tangible actions, such as attending events, signing petitions, or volunteering, to translate digital support into real-world change.\n\n",
 
-                "https://media.licdn.com/dms/image/D5612AQFcDIrE1snjiQ/article-cover_image-shrink_720_1280/0/1686582368650?e=2147483647&v=beta&t=Ku_V-ot24BJQrZFymZdj07Xdx5UFXccWYZeej3rWMEg",
+                "https://www.chattertulsa.com/wp-content/uploads/2022/08/Crowd-of-young-adults-with-phones-small.jpg",
                 "https://www.linkedin.com/pulse/harnessing-power-social-media-activism-bryan-marroquin/"
                 )
         )

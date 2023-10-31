@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
 
-class SkillsandOpportunitiesinfo : AppCompatActivity() {
+class ZeroCivicLeadership : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_getting_started)
@@ -18,10 +18,25 @@ class SkillsandOpportunitiesinfo : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
 
-        // Create a list of data to display in the RecyclerView
         val dataList = ArrayList<DataItem>()
 
-        // Create a SpannableString with a larger text size for the specific portion
+        dataList.add(
+            DataItem("TYPES OF CIVIC ENGAGEMENT AT ILLINOIS STATE UNIVERSITY",
+                "Civic engagement at Illinois State University encompasses a range of activities that empower individuals with the knowledge, skills, values, and motivation to make a positive impact on their communities, both through political or non-political means. These civic engagement activities can be categorized into nine distinct types to better understand how faculty, staff, and students engage with civic issues and community organizations:\n\n" +
+                        "1. Activism/Advocacy: This involves organizing to bring about political or social change, raising awareness, or promoting specific causes or policies. Examples include student actions addressing climate change and social awareness rallies.\n\n" +
+                        "2. Civic Learning: Acquiring knowledge about community, government, and social or political issues, with or without the practical application of this knowledge. For instance, attending town council meetings and reporting on the experience.\n\n" +
+                        "3. Community Service/Volunteerism: Engaging in activities that benefit others or the community, which may or may not include structured training and reflection. This includes students seeking opportunities to speak Spanish in volunteer settings or volunteering at local organizations.\n\n" +
+                        "4. Service Learning: Connecting service activities with student learning objectives to benefit both the community organization and the student. This type involves real community needs, application of knowledge, and reflection. An example is students addressing business needs and recommending solutions for community organizations.\n\n" +
+                        "5. Community Engaged Internship: Providing students with hands-on experiences that enhance their understanding of social or political issues related to their area of study. This is denoted as 'Professional Practice' in the university catalog.\n\n" +
+                        "6. Philanthropy/Fundraising: Collecting resources, such as money, food, or clothing, to benefit charitable organizations or agencies. This includes students raising funds to support education or hosting clothing drives for those in need.\n\n" +
+                        "7. Political Engagement: Developing one's political understanding and views, potentially challenging political ideas, and influencing policies or political positions. Students may engage with legislators on issues like physical education in schools or participate in political research and debates.\n\n" +
+                        "8. Community Engaged Research: Creating new knowledge in collaboration with a community partner to address public concerns while contributing to student learning in the academic discipline. For example, psychology students conduct research for animal rescue and shelter organizations.\n\n" +
+                        "9. Social Entrepreneurship/Social Innovation: Combining innovation and resourcefulness to address social and environmental challenges through business models, products, or services. For instance, students creating businesses to cater to the needs of specific communities or providing services to reduce waste and support underdeveloped economies.\n\n",
+
+                "https://civicengagement.illinoisstate.edu/images/faculty-staff/Types-Civic-Engagement.png",
+                "https://civicengagement.illinoisstate.edu/faculty-staff/engagement-types/"
+            )
+        )
         dataList.add(
             DataItem(
                 "LEADERSHIP SKILLS FOR COLLEGE STUDENTS",

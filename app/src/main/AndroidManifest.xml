@@ -213,38 +213,38 @@
         <!-- Educational Start -->
         <!-- Civic Engagement Start -->
         <activity
-            android:name=".CivicEngagementInfo.TechforGoodsinfo"
+            android:name=".CivicEngagementInfo.ZeroCivicLeadership"
             android:exported="true" />
         <activity
-            android:name=".CivicEngagementInfo.CivicAdvocacyStrategiesInfo"
+            android:name=".CivicEngagementInfo.OneTechnologyforCivic"
             android:exported="true" />
         <activity
-            android:name=".CivicEngagementInfo.GlobalCitizenshipInfo"
+            android:name=".CivicEngagementInfo.TwoGlobalAdvancement"
             android:exported="true" />
         <activity
-            android:name=".CivicEngagementInfo.DigitalToolsforCivicEngagementInfo"
+            android:name=".CivicEngagementInfo.ThreeEffectiveAdvocacy"
             android:exported="true" />
         <activity
-            android:name=".CivicEngagementInfo.ChampionsofSocialJusticeInfo"
+            android:name=".CivicEngagementInfo.FourSocialJustice"
             android:exported="true" />
         <activity
-            android:name=".CivicEngagementInfo.AmplifyingStudentVoicesInfo"
+            android:name=".CivicEngagementInfo.FiveMakeYourVoiceHeard"
             android:exported="true" />
         <activity
-            android:name=".CivicEngagementInfo.StudentLeadershipInfo"
+            android:name=".CivicEngagementInfo.SixStudentLeadership"
             android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.CivicMenu"
             android:exported="true" />
         <activity
-            android:name=".CivicEngagementInfo.SkillsandOpportunitiesinfo"
+            android:name=".CivicEngagementInfo.SevenCivicAdvocacy"
             android:exported="true" />
         <activity
-            android:name=".CivicEngagementInfo.SustainabilityInitiativesInfo"
+            android:name=".CivicEngagementInfo.EightDigitalCivic"
             android:exported="true"
             />
         <activity
-            android:name=".CivicEngagementInfo.CivicParticipationInfo"
+            android:name=".CivicEngagementInfo.NineCampusInitiative"
             android:exported="true" /> <!-- Civic Engagement End -->
              <!-- Civic Engagement End -->
         <!-- Disaster Response Start -->

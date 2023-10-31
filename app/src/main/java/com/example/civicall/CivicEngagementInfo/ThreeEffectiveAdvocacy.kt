@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
 
-class AmplifyingStudentVoicesInfo: AppCompatActivity() {
+class ThreeEffectiveAdvocacy: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_participant_tips)
+        setContentView(R.layout.activity_threeeffectiveadvocacy)
 
 
 
