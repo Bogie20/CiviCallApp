@@ -7,10 +7,13 @@
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- permissions -->
@@ -25,9 +28,11 @@
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
         <activity
+            android:name=".CivicRightsAndResponsibility.civicRightsConstitutionrepublicInfo"
+            android:exported="true" />
+        <activity
             android:name=".CampusGovernanceInfo.ProgramsInBsuInfo"
             android:exported="true" />
-
         <activity
             android:name=".CampusGovernanceInfo.AdmissionBsuInfo"
             android:exported="true" />
@@ -92,7 +97,6 @@
             android:name=".PublicHealtAwarenessInfo.healtawarenessinfoMenu"
             android:exported="true" />
         <activity
-
             android:name=".EnvironmentalandSocialIssueInfo.InvisibleLaborInfo"
             android:exported="true" />
         <activity
@@ -246,7 +250,7 @@
         <activity
             android:name=".CivicEngagementInfo.NineCampusInitiative"
             android:exported="true" /> <!-- Civic Engagement End -->
-             <!-- Civic Engagement End -->
+        <!-- Civic Engagement End -->
         <!-- Disaster Response Start -->
         <activity
             android:name=".DisasterResponseInfo.CommunicationAndInformationInfo"
@@ -339,7 +343,6 @@
             android:name=".Settings"
             android:exported="true"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".Feedback"
             android:exported="true"
