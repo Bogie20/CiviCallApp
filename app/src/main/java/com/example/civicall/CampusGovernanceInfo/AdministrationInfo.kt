@@ -157,9 +157,9 @@ class AdministrationInfo : AppCompatActivity() {
                         "Facilitates University activities and operations; and provides proficient and economical services relating to records, humans resources, procurement, property and supply, and general services.\n\n",
 
 
-                        R.drawable.img_393,
+                        R.drawable.img_485,
                 "https://batstate-u.edu.ph/administration-services/about-us",
-                "https://batstate-u.edu.ph/administration-services/about-us"
+                "https://batstate-u.edu.ph/wp-content/uploads/2023/02/vpaf-general-functions-of-unit-1.jpg"
             )
         )
 
@@ -169,9 +169,9 @@ class AdministrationInfo : AppCompatActivity() {
                         "Performs human resource responsibilities on recruitment, selection and placement; learning and development; rewards and recognition; and performance management, and ensures that the University strengthens employee empowerment.\n\n",
 
 
-                R.drawable.img_397,
+                R.drawable.img_486,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
-                "https://batstate-u.edu.ph/administration-services/general-functions-of-units/"
+                "https://batstate-u.edu.ph/wp-content/uploads/2023/02/vpaf-general-functions-of-unit-2.jpg"
             )
         )
 
@@ -181,9 +181,9 @@ class AdministrationInfo : AppCompatActivity() {
                 "Procures best quality goods and services; reviews the accuracy and completeness of all documents pertaining to procurement transactions; and ensures effective and efficient management of procurement processes and procedures.\n\n",
 
 
-                R.drawable.img_398,
+                R.drawable.img_487,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
-                "https://batstate-u.edu.ph/administration-services/general-functions-of-units/"
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/scholar-1.jpg"
             )
         )
 
@@ -195,9 +195,9 @@ class AdministrationInfo : AppCompatActivity() {
                 "Performs systemic and administrative control of records; ensures efficiency, consistency and uniformity of records management in terms of access, confidentiality and security; and complies with the rules and regulations that govern the management of public records.\n\n",
 
 
-                R.drawable.img_399,
+                R.drawable.img_488,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
-                "https://batstate-u.edu.ph/administration-services/general-functions-of-units/"
+                "https://cda.gov.ph/wp-content/uploads/2021/01/2017-08-01-news-cormic.jpg"
             )
         )
 
@@ -208,9 +208,9 @@ class AdministrationInfo : AppCompatActivity() {
                 "Manages, utilizes and safeguards the properties and supplies against loss and wastage in accordance with the existing rules and regulations of the University which ensure the effective and efficient delivery of services to internal and external clients.\n\n",
 
 
-                R.drawable.img_401,
+                R.drawable.img_490,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
-                "https://batstate-u.edu.ph/administration-services/general-functions-of-units/"
+                "https://dab.bangsamoro.gov.ph/wp-content/uploads/2023/07/239907930_159783403009539_9009296346119503774_n.jpg"
             )
         )
 
@@ -222,7 +222,7 @@ class AdministrationInfo : AppCompatActivity() {
 
                 R.drawable.img_400,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
-                "https://batstate-u.edu.ph/administration-services/general-functions-of-units/"
+                "https://batstate-u.edu.ph/wp-content/uploads/2023/02/vpaf-general-functions-of-unit-8.jpg"
             )
         )
 
@@ -244,7 +244,7 @@ class AdministrationInfo : AppCompatActivity() {
 
                 R.drawable.img_402,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
-                "https://batstate-u.edu.ph/administration-services/general-functions-of-units/"
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/scholar-3.jpg"
             )
         )
 
@@ -258,7 +258,7 @@ class AdministrationInfo : AppCompatActivity() {
 
                 R.drawable.img_403,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
-                "https://batstate-u.edu.ph/administration-services/general-functions-of-units/"
+                "https://batstate-u.edu.ph/wp-content/uploads/2023/02/vpaf-general-functions-of-unit-9.jpg"
             )
         )
 
@@ -269,7 +269,7 @@ class AdministrationInfo : AppCompatActivity() {
 
                 R.drawable.img_404,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
-                "https://batstate-u.edu.ph/administration-services/general-functions-of-units/"
+                "https://binalonan.gov.ph/wp-content/uploads/2018/07/A-usual-day-at-work.jpg"
             )
         )
 
@@ -282,7 +282,7 @@ class AdministrationInfo : AppCompatActivity() {
 
                 R.drawable.img_405,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
-                "https://batstate-u.edu.ph/administration-services/general-functions-of-units/"
+                "https://batstate-u.edu.ph/wp-content/uploads/2023/02/vpaf-general-functions-of-unit-10.jpg"
             )
         )
 
@@ -294,7 +294,7 @@ class AdministrationInfo : AppCompatActivity() {
 
                 R.drawable.img_406,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
-                "https://batstate-u.edu.ph/administration-services/general-functions-of-units/"
+                "https://batstate-u.edu.ph/wp-content/uploads/2023/02/vpaf-general-functions-of-unit-11.jpg"
             )
         )
 
@@ -327,7 +327,7 @@ class AdministrationInfo : AppCompatActivity() {
 
                 R.drawable.img_407,
                 "https://batstate-u.edu.ph/administration-services/general-functions-of-units/",
-                "https://batstate-u.edu.ph/administration-services/general-functions-of-units/"
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/scholar-3.jpg"
             )
         )
 
