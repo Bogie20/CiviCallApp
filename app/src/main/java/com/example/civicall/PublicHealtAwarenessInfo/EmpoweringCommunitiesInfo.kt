@@ -25,7 +25,7 @@ class EmpoweringCommunitiesInfo : AppCompatActivity() {
         setContentView(view)
 
         // Now, you can use 'binding' to reference your views in the layout
-        binding.back1.setOnClickListener {
+        binding.backbtn.setOnClickListener {
             val intent = Intent(this, healtawarenessinfoMenu::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)

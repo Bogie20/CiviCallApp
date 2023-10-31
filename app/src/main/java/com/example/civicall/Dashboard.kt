@@ -5,7 +5,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -80,11 +79,6 @@ class Dashboard : AppCompatActivity() {
             val intent = Intent(this, MainMenu::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-        }
-        binding.fab.setOnClickListener {
-            val intent = Intent(this, Upload_engagement::class.java)
-            startActivity(intent)
-            // You can also add any transition animations if needed
         }
         binding.fab.setOnClickListener {
             val intent = Intent(this, Upload_engagement::class.java)

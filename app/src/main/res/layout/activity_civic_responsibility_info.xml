@@ -17,16 +17,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageButton
-            android:id="@+id/profileburger"
-            android:layout_width="60dp"
-            android:paddingLeft="5dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center|left"
-            android:background="@android:color/transparent"
-            android:src="@drawable/menubutton"
-            android:contentDescription="Open Navigation Menu" />
-
+        <ImageView
+            android:id="@+id/backbtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginVertical="8dp"
+            android:contentDescription="Back to Previous"
+            android:src="@drawable/backbtn"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="BackClick" />
         <TextView
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"

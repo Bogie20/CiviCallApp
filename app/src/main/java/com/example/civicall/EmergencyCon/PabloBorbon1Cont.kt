@@ -21,7 +21,7 @@ class PabloBorbon1Cont : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pablo_borbon1_cont)
 
-        val backButton: ImageView = findViewById(R.id.backbutton)
+        val backButton: ImageView = findViewById(R.id.backbtn)
         backButton.setOnClickListener {
             onBackPressed()
         }

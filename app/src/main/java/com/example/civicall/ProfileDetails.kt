@@ -30,17 +30,14 @@ class ProfileDetails : AppCompatActivity() {
             val intent = Intent(this, EditProfile::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-
         }
         // Initialize Firebase authentication instance
         firebaseAuth = FirebaseAuth.getInstance()
 
         // Check if the user is logged in
         checkUser()
-
         // Set up click listeners for UI elements
-
-        binding.back1.setOnClickListener {
+        binding.backbtn.setOnClickListener {
             val intent = Intent(this, MainMenu::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)

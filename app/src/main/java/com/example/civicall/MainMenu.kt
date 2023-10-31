@@ -3,7 +3,6 @@ package com.example.civicall
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -36,9 +35,9 @@ class MainMenu : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         checkUser()
 
-        BackClick = findViewById(R.id.back1)
+        BackClick = findViewById(R.id.backbtn)
 
-        binding.back1.setOnClickListener {
+        binding.backbtn.setOnClickListener {
             val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter,R.anim.animate_fade_exit)
@@ -88,8 +87,6 @@ class MainMenu : AppCompatActivity() {
                 dialog.show()
             }
         }
-
-
 
         verification1.setOnClickListener {
             // Handle click for menu item 2

@@ -357,15 +357,7 @@
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".myprofile1"
-            android:exported="true"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".MainMenu"
-            android:exported="true"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Rewardforms"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
@@ -382,7 +374,6 @@
             android:name=".Register1"
             android:exported="true"
             android:screenOrientation="portrait" />
-
 
         <meta-data
             android:name="preloaded_fonts"

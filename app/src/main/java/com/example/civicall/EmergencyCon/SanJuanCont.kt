@@ -21,7 +21,7 @@ class SanJuanCont : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_san_juan_cont)
 
-        val backButton: ImageView = findViewById(R.id.backbutton)
+        val backButton: ImageView = findViewById(R.id.backbtn)
         backButton.setOnClickListener {
             onBackPressed()
         }

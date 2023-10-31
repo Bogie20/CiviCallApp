@@ -22,7 +22,7 @@ class BalayanCont : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_balayan_cont)
 
-        val backButton: ImageView = findViewById(R.id.backbutton)
+        val backButton: ImageView = findViewById(R.id.backbtn)
         backButton.setOnClickListener {
             onBackPressed() // Simulate back button press
         }

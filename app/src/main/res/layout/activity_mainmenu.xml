@@ -54,17 +54,19 @@
             app:layout_constraintVertical_bias="0.083" />
 
         <ImageView
-            android:id="@+id/back1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/backbtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginVertical="8dp"
+            android:contentDescription="Back to Previous"
+            android:src="@drawable/backbtn"
             android:clickable="true"
-            android:contentDescription="Home Icon"
             android:focusable="true"
             android:onClick="BackClick"
-            android:padding="6dp"
-            android:src="@drawable/baseline_arrow_circle_left_24"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.034" />
 
 
         <de.hdodenhof.circleimageview.CircleImageView

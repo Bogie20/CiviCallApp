@@ -461,7 +461,7 @@ class Register1 : AppCompatActivity() {
         progressDialog.setTitle("Please wait...")
         progressDialog.setCanceledOnTouchOutside(false)
 
-        activityRegister1Binding.back.setOnClickListener {
+        activityRegister1Binding.backbtn.setOnClickListener {
             val intent = Intent(this, Login::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
