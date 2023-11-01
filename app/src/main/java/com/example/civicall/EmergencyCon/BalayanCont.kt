@@ -8,10 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import java.util.Locale
 
 class BalayanCont : AppCompatActivity() {
+    private lateinit var networkUtils: NetworkUtils
+
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
@@ -22,6 +25,8 @@ class BalayanCont : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_balayan_cont)
 
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         val backButton: ImageView = findViewById(R.id.backbtn)
         backButton.setOnClickListener {
             onBackPressed() // Simulate back button press
@@ -122,4 +127,10 @@ class BalayanCont : AppCompatActivity() {
     companion object {
         private const val REQUEST_PHONE_PERMISSION = 1
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

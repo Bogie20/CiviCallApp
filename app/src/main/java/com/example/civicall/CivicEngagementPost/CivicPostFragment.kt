@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener
 import nl.joery.animatedbottombar.AnimatedBottomBar
 
 class CivicPostFragment : Fragment() {
+
     private lateinit var databaseReference: DatabaseReference
     private lateinit var eventListener: ValueEventListener
     private lateinit var recyclerView: RecyclerView

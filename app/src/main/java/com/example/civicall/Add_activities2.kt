@@ -16,6 +16,7 @@ import com.google.firebase.storage.FirebaseStorage
 
 
 class Add_activities2 : AppCompatActivity() {
+    private lateinit var networkUtils: NetworkUtils
   private lateinit var database: FirebaseDatabase
   private lateinit var reference: DatabaseReference
   private lateinit var auth: FirebaseAuth
@@ -25,7 +26,8 @@ class Add_activities2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddActivities2Binding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         database = FirebaseDatabase.getInstance()
         reference = database.reference.child("Activities")
         auth = FirebaseAuth.getInstance()
@@ -176,9 +178,9 @@ class Add_activities2 : AppCompatActivity() {
                 }
         }
     }
-
-
-
-
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
 
 }

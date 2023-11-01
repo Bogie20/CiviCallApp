@@ -8,15 +8,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 
 class ThreeTyphoon : AppCompatActivity() {
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_three_typhoon_info)
-
-
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
@@ -143,4 +144,9 @@ class ThreeTyphoon : AppCompatActivity() {
         recyclerView.adapter = adapter
 
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

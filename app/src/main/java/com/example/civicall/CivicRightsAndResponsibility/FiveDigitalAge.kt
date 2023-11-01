@@ -8,13 +8,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 
 class FiveDigitalAge : AppCompatActivity() {
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_five_digital_age)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
@@ -42,7 +45,8 @@ class FiveDigitalAge : AppCompatActivity() {
             )
         )
         dataList.add(
-            DataItem("CYBERSECURITY AND CIVIC RESPONSIBILITY",
+            DataItem(
+                "CYBERSECURITY AND CIVIC RESPONSIBILITY",
                 "\"Unveiling the Cyber Threat Landscape: Exploring Cybersecurity and Civic Responsibility in the Philippines. Dive into the digital realm where cybersecurity meets civic duty, as we navigate the challenges and responsibilities of safeguarding our connected society.\n\n" +
                         "1. DIGITAL DEFENSE EDUCATION: This study equips students with crucial knowledge about the state of cybersecurity in the Philippines, empowering them to protect themselves and society from online threats.\n" +
                         "2. CIVIC CYBER RESPONSIBILITY: It underscores the importance of cyber responsibility as an essential civic duty in the modern digital age, where individuals play a role in ensuring a secure online environment.\n" +
@@ -60,7 +64,8 @@ class FiveDigitalAge : AppCompatActivity() {
             )
         )
         dataList.add(
-            DataItem("DIGITAL CITIZENSHIP AND MEDIA LITERACYS",
+            DataItem(
+                "DIGITAL CITIZENSHIP AND MEDIA LITERACYS",
                 "Embark on a journey through the digital landscape, where we explore the essence of digital citizenship and the critical role of media literacy. Uncover the keys to responsible online participation and safeguarding your privacy.\"\n\n" +
 
 
@@ -77,11 +82,12 @@ class FiveDigitalAge : AppCompatActivity() {
 
                 "https://www.rappler.com/tachyon/2023/07/Screen-Shot-2023-07-20-at-4.10.17-PM.png?resize=840%2C629&zoom=1.5",
                 "https://www.rappler.com/moveph/understanding-role-citizen-journalism-digital-world-factsfirstph-learning-series-july-2023/"
-              )
+            )
         )
 
         dataList.add(
-            DataItem("ETHICAL CONSIDERATIONS IN THE DIGITAL AGE",
+            DataItem(
+                "ETHICAL CONSIDERATIONS IN THE DIGITAL AGE",
                 "Navigate the complex landscape of digital ethics in the modern age. Explore the ethical responsibilities of influencers and the impact of their actions on public discourse.\"\n" +
                         "1. PROMOTING ETHICAL AWARENESS: This study fosters a sense of ethical awareness, helping students recognize the significance of ethics in their online interactions.\n" +
                         "2. CRITICAL THINKING: Students will develop critical thinking skills to evaluate the ethical implications of various digital actions and decisions.\n" +
@@ -96,11 +102,12 @@ class FiveDigitalAge : AppCompatActivity() {
 
                 "https://www.rappler.com/tachyon/2021/09/tl-influencers-1.jpg?resize=1280%2C720&zoom=1",
                 "https://www.rappler.com/voices/thought-leaders/opinion-social-media-influencers-ethical-responsibility/"
-               )
+            )
         )
 
         dataList.add(
-            DataItem("PROTECTING PERSONAL DATA AND CIVIC DUTY",
+            DataItem(
+                "PROTECTING PERSONAL DATA AND CIVIC DUTY",
                 "Enter the digital age with confidence and civic responsibility by learning how to safeguard your personal information. Explore the essential steps to protect your data and fulfill your civic duty in the online world.\n\n\n" +
                         "1. EMPOWERMENT IN THE DIGITAL AGE: Students will gain the knowledge and skills needed to protect their personal information, allowing them to navigate the digital landscape with confidence.\n\n" +
                         "2. DATA PRIVACY AWARENESS: The study fosters an understanding of the importance of data privacy, ensuring that students are well-informed about the risks and vulnerabilities associated with sharing personal information online.\n\n" +
@@ -115,7 +122,7 @@ class FiveDigitalAge : AppCompatActivity() {
 
                 "https://www.rappler.com/tachyon/r3-assets/612F469A6EA84F6BAE882D2B94A4B421/img/C1C1F37CF68C40039C6E5EFF93C3A446/location-social-media-march-20-2018.jpg?resize=640%2C360&zoom=1",
                 "https://www.rappler.com/newsbreak/iq/198603-data-privacy-personal-information-protection-tips/"
-              )
+            )
         )
 
         val adapter = DataAdapter(dataList)
@@ -145,10 +152,10 @@ class FiveDigitalAge : AppCompatActivity() {
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
 
-
-
-
-
-
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

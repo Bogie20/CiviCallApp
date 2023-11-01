@@ -8,17 +8,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityFourHealthcareTechnologyBinding
 
 class FourHealthcareTechnology : AppCompatActivity() {
 
-
+    private lateinit var networkUtils: NetworkUtils
 
     private lateinit var binding: ActivityFourHealthcareTechnologyBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         binding = ActivityFourHealthcareTechnologyBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
@@ -161,4 +163,9 @@ class FourHealthcareTechnology : AppCompatActivity() {
 
 
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

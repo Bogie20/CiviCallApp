@@ -16,6 +16,7 @@ class Feedback : AppCompatActivity() {
     private lateinit var BackClick: ImageView
     private lateinit var editTextText2: TextView
     private lateinit var ratingBar: RatingBar
+    private lateinit var networkUtils: NetworkUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +24,8 @@ class Feedback : AppCompatActivity() {
 
         setContentView(R.layout.activity_feedback)
         BackClick = findViewById(R.id.back100)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         editTextText2 = findViewById(R.id.editTextText2)
         ratingBar = findViewById(R.id.ratingBar)
 
@@ -51,6 +53,11 @@ class Feedback : AppCompatActivity() {
             popupFragment.show(supportFragmentManager, "popup")
         })
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }
 
 

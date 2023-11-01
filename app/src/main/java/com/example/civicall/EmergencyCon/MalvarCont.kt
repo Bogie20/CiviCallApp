@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import java.util.Locale
 
@@ -17,11 +18,12 @@ class MalvarCont : AppCompatActivity() {
     private lateinit var searchView: SearchView
     private var mList = ArrayList<ContactData>()
     private lateinit var adapter: ContactAdapter
-
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_malvar_cont)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         val backButton: ImageView = findViewById(R.id.backbtn)
         backButton.setOnClickListener {
             onBackPressed()
@@ -111,4 +113,9 @@ class MalvarCont : AppCompatActivity() {
     companion object {
         private const val REQUEST_PHONE_PERMISSION = 1
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

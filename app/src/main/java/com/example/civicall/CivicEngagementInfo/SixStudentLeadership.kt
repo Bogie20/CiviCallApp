@@ -6,13 +6,16 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 
 class SixStudentLeadership : AppCompatActivity() {
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sixstudentleadership)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
@@ -143,4 +146,9 @@ class SixStudentLeadership : AppCompatActivity() {
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

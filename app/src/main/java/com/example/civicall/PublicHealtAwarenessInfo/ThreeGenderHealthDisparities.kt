@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityThreeGenderHealthDisparitiesBinding
 
 class ThreeGenderHealthDisparities : AppCompatActivity() {
+    private lateinit var networkUtils: NetworkUtils
 
     private lateinit var binding: ActivityThreeGenderHealthDisparitiesBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +22,8 @@ class ThreeGenderHealthDisparities : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         // Now, you can use 'binding' to reference your views in the layout
         binding.backbtn.setOnClickListener {
             val intent = Intent(this, healtawarenessinfoMenu::class.java)
@@ -158,7 +162,10 @@ class ThreeGenderHealthDisparities : AppCompatActivity() {
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
 
-
-
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

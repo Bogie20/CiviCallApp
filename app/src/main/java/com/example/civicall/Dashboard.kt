@@ -48,22 +48,32 @@ class Dashboard : AppCompatActivity() {
                 when (newIndex) {
                     0 -> {
                         binding.titleLarge.text = "Civic Engagement"
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         replaceFragment(CivicPostFragment())
                     }
                     1 -> {
                         binding.titleLarge.text = "Information Resources"
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         replaceFragment(InformationFragment())
                     }
                     2 -> {
                         binding.titleLarge.text = ""
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         launchAddEngagementActivity()
                     }
                     3 -> {
                         binding.titleLarge.text = "Forum"
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         replaceFragment(ForumsFragment())
                     }
                     4 -> {
                         binding.titleLarge.text = "Notifications"
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         replaceFragment(notificationFragment())
                     }
                 }
@@ -83,6 +93,7 @@ class Dashboard : AppCompatActivity() {
         binding.fab.setOnClickListener {
             val intent = Intent(this, Upload_engagement::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
             // You can also add any transition animations if needed
         }
 

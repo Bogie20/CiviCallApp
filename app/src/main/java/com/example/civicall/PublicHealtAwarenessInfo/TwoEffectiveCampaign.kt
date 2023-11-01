@@ -8,16 +8,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityTwoEffectiveCampaignBinding
 
 class TwoEffectiveCampaign : AppCompatActivity() {
-
+    private lateinit var networkUtils: NetworkUtils
     private lateinit var binding: ActivityTwoEffectiveCampaignBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         binding = ActivityTwoEffectiveCampaignBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
@@ -160,9 +162,10 @@ class TwoEffectiveCampaign : AppCompatActivity() {
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
 
-
-
-
-
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

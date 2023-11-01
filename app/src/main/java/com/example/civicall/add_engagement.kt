@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class add_engagement : AppCompatActivity() {
+    private lateinit var networkUtils: NetworkUtils
     private lateinit var binding: ActivityAddEngagementBinding
     private lateinit var database: FirebaseDatabase
     private lateinit var reference: DatabaseReference
@@ -31,7 +32,8 @@ class add_engagement : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddEngagementBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         savedInputData = savedInstanceState?.getBundle("inputData")
 
         database = FirebaseDatabase.getInstance()
@@ -174,6 +176,11 @@ class add_engagement : AppCompatActivity() {
         }
     )
 
+
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
 
 }
 

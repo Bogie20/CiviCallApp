@@ -6,16 +6,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 
 class OneTechnologyforCivic : AppCompatActivity() {
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onetechnologyforcivic)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         // Create a list of data to display in the RecyclerView
         val dataList = ArrayList<DataItem>()
 
@@ -145,4 +148,10 @@ class OneTechnologyforCivic : AppCompatActivity() {
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
     }
+    override fun onDestroy() {
+        super.onDestroy()
+
+        networkUtils.cleanup()
+    }
+
 }

@@ -9,14 +9,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataMain
 import com.example.civicall.R
 import com.example.civicall.CivicEngagementInfo.CivicAdapterMain
+import com.example.civicall.NetworkUtils
 
 class EnvironmentalAndSocialIssuesMenu : AppCompatActivity() {
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_environmental_and_social_issues_menu)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMain)
         recyclerView.layoutManager = LinearLayoutManager(this)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         val campusList = listOf(
             DataMain("Breaking the Chains unraveling Human Trafficking and exploitation in the Philippines"),
             DataMain("Communities in Peril Displacement and Resettlement in the Philippines"),
@@ -102,8 +105,10 @@ class EnvironmentalAndSocialIssuesMenu : AppCompatActivity() {
 
         recyclerView.adapter = adapter
 
-
-
-
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

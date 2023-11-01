@@ -21,6 +21,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
 class Accountverification : AppCompatActivity() {
+    private lateinit var networkUtils: NetworkUtils
     private lateinit var BackClick: ImageView
     private lateinit var uploadButton: Button
     private lateinit var fileNameTextView: TextView
@@ -36,6 +37,8 @@ class Accountverification : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_accountverification)
         BackClick = findViewById(R.id.back100)
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         BackClick.setOnClickListener {
             val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)
@@ -175,4 +178,9 @@ class Accountverification : AppCompatActivity() {
         val fragment = PopupDialogFragment(fileName)
         fragment.show(fragmentTransaction, "popup_dialog")
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

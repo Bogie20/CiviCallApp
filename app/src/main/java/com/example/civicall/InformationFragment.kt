@@ -43,7 +43,6 @@ class InformationFragment : Fragment() {
             val intent = Intent(requireContext(), CivicMenu::class.java)
             startActivity(intent)
         }
-
         cardview2.setOnClickListener {
             val intent = Intent(requireContext(), DisasterResponseMenu::class.java)
             startActivity(intent)

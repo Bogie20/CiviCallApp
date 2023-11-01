@@ -8,14 +8,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivitySevenNutritionEducationBinding
 
 class SevenNutritionEducation : AppCompatActivity() {
+    private lateinit var networkUtils: NetworkUtils
     private lateinit var binding: ActivitySevenNutritionEducationBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
 
         binding = ActivitySevenNutritionEducationBinding.inflate(layoutInflater)
         val view = binding.root
@@ -153,9 +157,10 @@ class SevenNutritionEducation : AppCompatActivity() {
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
 
-
-
-
-
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

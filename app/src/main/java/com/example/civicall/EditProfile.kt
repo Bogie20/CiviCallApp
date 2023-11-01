@@ -89,7 +89,6 @@ class EditProfile : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         storage = FirebaseStorage.getInstance()
         imageRef = storage.reference.child("profileImages")
-
         checkUser()
 
 
@@ -788,7 +787,9 @@ class EditProfile : AppCompatActivity() {
         // Cleanup to unregister the network callback
         networkUtils.cleanup()
     }
+
 }
+
 
 
 data class User(
@@ -807,6 +808,7 @@ data class User(
     val nstp: String = ""
 
 )
+
 
 
 

@@ -8,14 +8,16 @@ import com.example.civicall.CivicEngagementInfo.CivicAdapterMain
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataMain
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 
 class SurvivalMenu : AppCompatActivity() {
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_survival_menu)
-
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMain)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -104,6 +106,11 @@ class SurvivalMenu : AppCompatActivity() {
 
         recyclerView.adapter = adapter
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }
 
 

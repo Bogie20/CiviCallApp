@@ -6,11 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import java.util.*
 
 class MainEmergencyContact : AppCompatActivity() {
 
+    private lateinit var networkUtils: NetworkUtils
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
     private var mList = ArrayList<ContactData>()
@@ -19,7 +21,8 @@ class MainEmergencyContact : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_emergency_contact)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         recyclerView = findViewById(R.id.recyclerView)
         searchView = findViewById(R.id.searchView)
 
@@ -73,4 +76,9 @@ class MainEmergencyContact : AppCompatActivity() {
         mList.add(ContactData("ROSARIO CAMPUS", R.drawable.rosariosymbol))
         mList.add(ContactData("SAN JUAN CAMPUS", R.drawable.sanjuansymbol))
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }
