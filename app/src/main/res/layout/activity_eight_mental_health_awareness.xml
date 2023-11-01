@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".EnvironmentalandSocialIssueInfo.DirtyAirBrightSolutionsInfo">
+    android:layout_height="match_parent"
+    tools:context=".EnvironmentalandSocialIssueInfo.EightMentalHealthAwareness">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -34,9 +34,9 @@
             android:textAllCaps="true"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Pollution"
+            android:text="Mental Health awareness"
             android:textColor="@color/white"
-            android:textSize="18dp" />
+            android:textSize="17dp" />
 
     </RelativeLayout>
 
@@ -52,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
 
             <androidx.cardview.widget.CardView
                 android:backgroundTint="@color/white"
@@ -70,29 +71,29 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CLEARING THE HAZE: EMPOWERING COLLEGE STUDENTS IN THE FIGHT AGAINST POLLUTION"
-                    android:textSize="15sp"
+                    android:text="THE SILENT CRISIS: MENTAL HEALTH IN THE PHILIPPINES"
+                    android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp" />
+
                 <TextView
 
                     android:id="@+id/info"
-                    android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Take a deep breath, college students! Pollution's not just a problem; it's an opportunity for change. Dive into the heart of the Philippines as we explore 'Clearing the Haze: Your Role in Battling Pollution.' Join us in unraveling the impact, initiatives, and innovations that make cleaner air a reality. It's time to breathe life into solutions. Ready to be the change?"
-                    android:textSize="13sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="90dp"
                     android:layout_marginStart="13dp"
+                    android:layout_marginTop="90dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/lexend"
                     android:gravity="start"
+                    android:text="&quot;Unlocking Minds: Navigating the Unspoken Struggles of Mental Health in the Philippines – a pressing concern for both individual well-being and societal progress, join us on a journey through stigma, services, and solutions.&quot;"
                     android:textAlignment="viewStart"
-                    />
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
 
             </androidx.cardview.widget.CardView>
             <androidx.recyclerview.widget.RecyclerView

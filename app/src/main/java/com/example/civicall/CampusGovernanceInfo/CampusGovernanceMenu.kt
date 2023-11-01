@@ -21,16 +21,16 @@ class CampusGovernanceMenu : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val campusList = listOf(
-            DataMain("Discovering the history of batangas state university"),
-            DataMain("Navigating university governance and leadership"),
-            DataMain("Your path to admission: requirements and deadlines"),
-            DataMain("Discover our vibrant campus locations: your path to unique learning environments"),
-            DataMain("Empowering student representation in university governance"),
-            DataMain("Connecting globally: international programs and partnerships"),
-            DataMain("Enhancing institutional sustainability through comprehensive governance and management"),
-            DataMain("Exploring diverse academic and co-curricular offerings"),
-            DataMain("Nurturing holistic student development: the role of osas at batangas state university"),
-            DataMain("Sustainability and social responsibility at Bsu")
+            DataMain("Discovering the History of Batangas State University"),
+            DataMain("Navigating University Governance and Leadership"),
+            DataMain("Your Path to Admission: Requirements and Deadlines"),
+            DataMain("Discover our Vibrant Campus Locations: Your Path to Unique Learning Environments"),
+            DataMain("Empowering Student Representation in University Governance"),
+            DataMain("Connecting Globally: International Programs and Partnerships"),
+            DataMain("Enhancing Institutional Sustainability Through Comprehensive Governance and Management"),
+            DataMain("Exploring Diverse Academic and Co-curricular Offerings"),
+            DataMain("Nurturing Holistic Student Development: The Role of OSAS at Batangas State University"),
+            DataMain("Sustainability and Social Responsibility at BSU")
         )
 
         val adapter = CivicAdapterMain(campusList) { position ->

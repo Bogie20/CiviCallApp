@@ -94,16 +94,16 @@
             android:name=".PublicHealtAwarenessInfo.healtawarenessinfoMenu"
             android:exported="true" />
         <activity
-            android:name=".EnvironmentalandSocialIssueInfo.InvisibleLaborInfo"
+            android:name=".EnvironmentalandSocialIssueInfo.FourGenderEquality"
             android:exported="true" />
         <activity
-            android:name=".EnvironmentalandSocialIssueInfo.CommunitiesinPerilInfo"
+            android:name=".EnvironmentalandSocialIssueInfo.OneSocialDisparities"
             android:exported="true" />
         <activity
-            android:name=".EnvironmentalandSocialIssueInfo.TheSilentCrisisInfo"
+            android:name=".EnvironmentalandSocialIssueInfo.EightMentalHealthAwareness"
             android:exported="true" />
         <activity
-            android:name=".EnvironmentalandSocialIssueInfo.IslandsofInequalityInfo"
+            android:name=".EnvironmentalandSocialIssueInfo.SixIslandInequality"
             android:exported="true" />
         <activity
             android:name=".ProfileDetails"
@@ -112,22 +112,22 @@
             android:name=".EditProfile"
             android:exported="false" /> <!-- Posting Civic Engagement Start -->
         <activity
-            android:name=".EnvironmentalandSocialIssueInfo.BreakingtheChainsInfo"
+            android:name=".EnvironmentalandSocialIssueInfo.ZeroBreaktheChain"
             android:exported="true" />
         <activity
-            android:name=".EnvironmentalandSocialIssueInfo.WaterWoesandWinsInfo"
+            android:name=".EnvironmentalandSocialIssueInfo.NineCleanWater"
             android:exported="true" />
         <activity
-            android:name=".EnvironmentalandSocialIssueInfo.GreenGoldRushInfo"
+            android:name=".EnvironmentalandSocialIssueInfo.ThreeGreenTreasure"
             android:exported="true" />
         <activity
-            android:name=".EnvironmentalandSocialIssueInfo.DirtyAirBrightSolutionsInfo"
+            android:name=".EnvironmentalandSocialIssueInfo.TwoPollution"
             android:exported="true" />
         <activity
-            android:name=".EnvironmentalandSocialIssueInfo.IslandsofBiodiversityInfo"
+            android:name=".EnvironmentalandSocialIssueInfo.FiveConservingBiodiversity"
             android:exported="true" />
         <activity
-            android:name=".EnvironmentalandSocialIssueInfo.RisingTidesInfo"
+            android:name=".EnvironmentalandSocialIssueInfo.SevenRisingAwareness"
             android:exported="true" />
         <activity
             android:name=".EnvironmentalandSocialIssueInfo.EnvironmentalAndSocialIssuesMenu"

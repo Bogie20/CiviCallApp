@@ -10,10 +10,10 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
-class DirtyAirBrightSolutionsInfo : AppCompatActivity() {
+class TwoPollution : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dirty_air_bright_solutions_info)
+        setContentView(R.layout.activity_two_pollution)
 
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)

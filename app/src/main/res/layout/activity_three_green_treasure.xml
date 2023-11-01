@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/grey"
     android:layout_height="match_parent"
-    tools:context=".EnvironmentalandSocialIssueInfo.RisingTidesInfo">
+    tools:context=".EnvironmentalandSocialIssueInfo.ThreeGreenTreasure">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -31,10 +31,10 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAllCaps="true"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Rising Awareness"
-            android:textAllCaps="true"
+            android:text="Green Treasure"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -71,7 +71,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="RISING TIDES, SINKING CITIES: COASTAL VULNERABILITY IN THE PHILIPPINES"
+                    android:text="RAINFOREST RECKONING: UNEARTHING THE PRECARIOUS FUTURE OF THE PHILIPPINE GREEN TREASURE"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -85,12 +85,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="13dp"
-                    android:layout_marginTop="120dp"
+                    android:layout_marginTop="140dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:fontFamily="@font/lexend"
                     android:gravity="start"
-                    android:text="&quot;Unveil the Philippines' Coastal Conundrum: Dive into a journey of rising tides, urban resilience, and economic impact in the archipelago.&quot;"
+                    android:text="&quot;Join us as we delve into the fate of the Philippine rainforest – a green treasure facing immense challenges. We'll examine deforestation's impact on biodiversity, indigenous communities, and sustainable forest management. Dive into the complexities of indigenous land rights and the ecological and economic significance of these vital ecosystems. Your role in preserving this natural heritage awaits your understanding and commitment&quot;"
                     android:textAlignment="viewStart"
                     android:textColor="@color/black"
                     android:textSize="13sp" />

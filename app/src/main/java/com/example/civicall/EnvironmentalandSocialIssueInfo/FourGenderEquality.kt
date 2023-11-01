@@ -10,10 +10,10 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
-class InvisibleLaborInfo : AppCompatActivity() {
+class FourGenderEquality : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_invisible_labor_info)
+        setContentView(R.layout.activity_four_gender_equality)
 
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)

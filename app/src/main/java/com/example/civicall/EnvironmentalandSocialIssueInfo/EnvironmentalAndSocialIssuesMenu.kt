@@ -18,16 +18,16 @@ class EnvironmentalAndSocialIssuesMenu : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val campusList = listOf(
-            DataMain("Breaking the chains unraveling human trafficking and exploitation in the Philippines"),
-            DataMain("Communities in peril displacement and resettlement in the Philippines"),
-            DataMain("Clearing the haze empowering college students in the fight against pollution"),
-            DataMain("Rainforest reckoning unearthing the precarious future of the Philippine green treasure"),
-            DataMain("Invisible labor women's rights and gender equality in the Philippines"),
-            DataMain("Islands of biodiversity conservation struggles in the Philippine archipelago"),
-            DataMain("Islands of inequality social disparities and access to education in the Philippines"),
-            DataMain("Rising tides, sinking cities coastal vulnerability in the Philippines"),
-            DataMain("The silent crisis mental health in the philippines"),
-            DataMain("Water woes and wins: access and scarcity in the philippine islands")
+            DataMain("Breaking the Chains unraveling Human Trafficking and exploitation in the Philippines"),
+            DataMain("Communities in Peril Displacement and Resettlement in the Philippines"),
+            DataMain("Clearing the Haze Empowering College Students in the Fight Against Pollution"),
+            DataMain("Rainforest Reckoning Unearthing the Precarious Future of the Philippine Green Treasure"),
+            DataMain("Invisible Labor Women's Rights and Gender Equality in the Philippines"),
+            DataMain("Islands of Biodiversity Conservation Struggles in the Philippine Archipelago"),
+            DataMain("Islands of Inequality Social Disparities and Access to Education in the Philippines"),
+            DataMain("Rising Tides, Sinking Cities Coastal Vulnerability in the Philippines"),
+            DataMain("The Silent Crisis Mental Health in the Philippines"),
+            DataMain("Water Woes and Wins: Access and Scarcity in the Philippine Islands")
         )
 
         val adapter = CivicAdapterMain(campusList) { position ->
@@ -35,61 +35,61 @@ class EnvironmentalAndSocialIssuesMenu : AppCompatActivity() {
             when (position) {
                 0 -> {
                     // Handle click for Item 0
-                    val intent = Intent(this, BreakingtheChainsInfo::class.java)
+                    val intent = Intent(this, ZeroBreaktheChain::class.java)
                     startActivity(intent)
                 }
 
                 1 -> {
                     // Handle click for Item 1
-                    val intent = Intent(this, CommunitiesinPerilInfo::class.java)
+                    val intent = Intent(this, OneSocialDisparities::class.java)
                     startActivity(intent)
                 }
 
                 2 -> {
                     // Handle click for Item 2
-                    val intent = Intent(this, DirtyAirBrightSolutionsInfo::class.java)
+                    val intent = Intent(this, TwoPollution::class.java)
                     startActivity(intent)
                 }
 
                 3 -> {
                     // Handle click for Item 3
-                    val intent = Intent(this, GreenGoldRushInfo::class.java)
+                    val intent = Intent(this, ThreeGreenTreasure::class.java)
                     startActivity(intent)
                 }
 
                 4 -> {
                     // Handle click for Item 4
-                    val intent = Intent(this, InvisibleLaborInfo::class.java)
+                    val intent = Intent(this, FourGenderEquality::class.java)
                     startActivity(intent)
                 }
 
                 5 -> {
                     // Handle click for Item 5
-                    val intent = Intent(this, IslandsofBiodiversityInfo::class.java)
+                    val intent = Intent(this, FiveConservingBiodiversity::class.java)
                     startActivity(intent)
                 }
 
                 6 -> {
                     // Handle click for Item 6
-                    val intent = Intent(this, IslandsofInequalityInfo::class.java)
+                    val intent = Intent(this, SixIslandInequality::class.java)
                     startActivity(intent)
                 }
 
                 7 -> {
                     // Handle click for Item 7
-                    val intent = Intent(this, RisingTidesInfo::class.java)
+                    val intent = Intent(this, SevenRisingAwareness::class.java)
                     startActivity(intent)
                 }
 
                 8 -> {
                     // Handle click for Item 8
-                    val intent = Intent(this, TheSilentCrisisInfo::class.java)
+                    val intent = Intent(this, EightMentalHealthAwareness::class.java)
                     startActivity(intent)
                 }
 
                 9 -> {
                     // Handle click for Item 9
-                    val intent = Intent(this, WaterWoesandWinsInfo::class.java)
+                    val intent = Intent(this, NineCleanWater::class.java)
                     startActivity(intent)
                 }
 

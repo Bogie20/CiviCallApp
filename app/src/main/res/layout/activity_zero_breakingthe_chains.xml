@@ -3,14 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/grey"
     android:layout_height="match_parent"
-    tools:context=".EnvironmentalandSocialIssueInfo.IslandsofBiodiversityInfo">
+    android:background="@color/grey"
+    tools:context=".EnvironmentalandSocialIssueInfo.ZeroBreaktheChain">
     <RelativeLayout
+
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/redpink"
+        android:elevation="4dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -30,10 +32,10 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAllCaps="true"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Conserving biodiversity"
-            android:textAllCaps="true"
+            android:text="Break the Chain"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -47,31 +49,30 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-
             <androidx.cardview.widget.CardView
                 android:backgroundTint="@color/white"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="4dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
 
                 <TextView
                     android:id="@+id/title"
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ISLANDS OF BIODIVERSITY: CONSERVATION STRUGGLES IN THE PHILIPPINE ARCHIPELAGO"
-                    android:textSize="16sp"
+                    android:text="BREAKING THE CHAINS: UNRAVELING HUMAN TRAFFICKING AND EXPLOITATION IN THE PHILIPPINES"
+                    android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
@@ -83,12 +84,12 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dive into the Enigmatic World of Philippine Biodiversity: From thriving ecosystems to indigenous wisdom, explore the unique challenges and triumphs in this tropical paradise"
-                    android:textSize="12sp"
+                    android:text="In this exploration tailored for college students, we peel back the layers of an important battle – the fight against human trafficking in the Philippines. Get ready to dive into a world of challenges, resilience, and hope in just five crucial chapters."
+                    android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="100dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="90dp"
+                    android:layout_marginStart="13dp"
                     android:layout_marginEnd="16dp"
                     android:gravity="start"
                     android:textAlignment="viewStart"
@@ -96,15 +97,14 @@
 
             </androidx.cardview.widget.CardView>
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewMain"
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="25dp"
                 />
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

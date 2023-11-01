@@ -10,10 +10,10 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
-class IslandsofBiodiversityInfo : AppCompatActivity() {
+class FiveConservingBiodiversity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_islandsof_biodiversity_info)
+        setContentView(R.layout.activity_five_conserving_biodiversity)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
@@ -66,7 +66,7 @@ class IslandsofBiodiversityInfo : AppCompatActivity() {
                         "10. URGENT NEED FOR INCREASED BIODIVERSITY SPENDING\n" +
                         "    - The article calls for increased government spending on biodiversity, securement of remaining biodiversity pockets, and incentives for research and development in genetic biodiversity areas.\n\n",
 
-                "http://static.rappler.com/images/greenseaturtle-20120120.jpg",
+                "https://www.rythmfoundation.org/wp-content/uploads/2017/04/bataanaet9.jpg",
                 "https://www.rappler.com/voices/thought-leaders/133722-investing-biodiversity-future-undp/"
              )
         )
