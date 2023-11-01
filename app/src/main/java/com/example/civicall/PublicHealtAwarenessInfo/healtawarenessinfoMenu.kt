@@ -19,16 +19,16 @@ class healtawarenessinfoMenu : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val campusList = listOf(
-            DataMain("Empowering communities grassroots efforts in public health"),
-            DataMain("Environmental health in the philippines: awareness and action"),
+            DataMain("Empowering Communities Grassroots Efforts in Public Health"),
+            DataMain("Environmental Health in the Philippines: Awareness and Action"),
             DataMain("Evaluating the effectiveness of public health campaigns in the philippines"),
-            DataMain("Gender disparities in public health awareness and access"),
-            DataMain("Innovations in healthcare leveraging technology for awareness"),
-            DataMain("Mental health matters breaking the stigma in the philippines"),
-            DataMain("Preventive healthcare a key to a healthier philippines topic"),
-            DataMain("The role of nutrition education in public health awareness"),
-            DataMain("Socioeconomic factors and health inequities in the philippines"),
-            DataMain("The Impact of public health awareness on lifestyle diseases")
+            DataMain("Gender Disparities in Public Health Awareness and Access"),
+            DataMain("Innovations in Healthcare Leveraging Technology for Awareness"),
+            DataMain("Mental Health Matters Breaking the Stigma in the Philippines"),
+            DataMain("Preventive Healthcare a Key to a Healthier Philippines Topic"),
+            DataMain("The Role of Nutrition Education in Public Health Awareness"),
+            DataMain("Socioeconomic Factors and Health Inequities in the Philippines"),
+            DataMain("The Impact of Public Health Awareness on Lifestyle Diseases")
         )
 
         val adapter = CivicAdapterMain(campusList) { position ->

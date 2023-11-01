@@ -29,7 +29,7 @@ class FourSearchAndRescueinfo : AppCompatActivity() {
 
         dataList.add(
             DataItem(
-                " Comprehensive Training Framework for Disaster Response and Search and Rescue Teams",
+                "Comprehensive Training Framework for Disaster Response and Search and Rescue Teams",
                 "Joining the race against time, search and rescue teams leap into action after earthquakes strike urban areas, aiming to find survivors trapped beneath debris. In these critical moments, a comprehensive training framework for disaster response teams becomes vital to ensure their effectiveness in life-saving missions.\"\"\n\n" +
 
                         "1. Risk Analysis and Evaluation: Begin by analyzing and evaluating the specific disaster risks in the region, considering factors like seismic activity, population density, and building structures. Identify the types of disasters or emergencies your search and rescue team may encounter and the resources required.\n\n" +
@@ -43,7 +43,7 @@ class FourSearchAndRescueinfo : AppCompatActivity() {
                         "9. Efficiency: Trained teams work more efficiently, reducing the time it takes to locate and assist individuals in need. This efficiency can save critical minutes during emergencies.\n\n" +
                         "10. Safety: Training ensures that SAR team members can operate safely in challenging environments, minimizing the risk to themselves and others during rescue missions.\n\n",
 
-                "https://www.bjreview.com/Cover_Stories_Series_2011/images/attachement/jpg/site23/20110812/00219b46f0320faf3ae70d.jpg",
+                "https://images.squarespace-cdn.com/content/v1/53713421e4b04b1ccbd1ef5e/1565258042183-P2ECSY0P0Q7S3IYZH9S5/IMG_2797+%282%29.JPG",
                 "http://www.lifesafety.com/emergency-training/search-rescue-training/"
 
             )

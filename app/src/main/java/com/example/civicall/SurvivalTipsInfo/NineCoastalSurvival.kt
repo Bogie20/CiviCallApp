@@ -73,7 +73,7 @@ class NineCoastalSurvival : AppCompatActivity() {
                         "9. REDUCING PLASTIC POLLUTION: Raise awareness about the importance of reducing plastic pollution in coastal areas to protect marine ecosystems.\n\n" +
                         "10. COLLABORATIVE RESEARCH: Encourage collaborative research efforts between local communities, scientists, and environmental organizations to develop innovative, sustainable fishing techniques and conservation strategies.\n\n",
 
-                "https://www.divescotty.com/images/pictures/blog/fishing/768/aquaculture_768.jpg",
+                "https://files01.pna.gov.ph/ograph/2020/09/17/fishermen.jpg",
                 "https://www.divescotty.com/underwater-blog/fishing-in-philippines.php#:~:text=Marine%20Capture%20Fisheries%20in%20the%20Philippines&text=The%20group%20of%20fishers%20uses,bodies%20of%20water%2C%20etc.)"
             )
         )

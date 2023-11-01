@@ -16,7 +16,6 @@ class OneFirstAidInfo : AppCompatActivity() {
         setContentView(R.layout.activity_one_first_aid_info)
 
 
-
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
@@ -181,7 +180,7 @@ class OneFirstAidInfo : AppCompatActivity() {
                         "4. SKILLED WORKFORCE: Having a trained and expert workforce familiar with emergency preparedness procedures ensures effective decision-making and response, even in high-stress situations.\n\n" +
                         "5. ACCOUNTABILITY: Regular testing, measurement, and evaluation of emergency response systems and expenditures to ensure they are effective, efficient, and focused on public health priorities during crises.\n\n",
 
-                "https://hazards.colorado.edu/uploads/freeform/Nurse.jpeg",
+                "https://www.redcross.org/content/dam/redcross/about-us/news/2021/hurricane-ida-12987-113.jpg",
                 "https://www.youtube.com/watch?v=Lnoph21Je6I&ab_channel=JonathanNoel"
              )
         )

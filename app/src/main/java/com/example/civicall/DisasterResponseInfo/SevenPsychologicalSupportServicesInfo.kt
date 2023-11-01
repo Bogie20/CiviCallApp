@@ -60,7 +60,7 @@ class SevenPsychologicalSupportServicesInfo : AppCompatActivity() {
                         "9. SELF-CARE FOR HEALTHCARE PROVIDERS: Develop self-care programs and support mechanisms for healthcare providers to prevent burnout and secondary trauma, ensuring they can continue to offer trauma-informed care effectively.\n\n" +
                         "10. CONTINUOUS TRAINING AND EVALUATION: Regularly update and assess trauma-informed care practices, incorporating the latest research and feedback from communities to enhance the quality of care provided.\n\n",
 
-                "https://www.ruralhealthinfo.org/rural-monitor/wp-content/uploads/2019/04/gilmartin-bird.jpg",
+                "https://www.redcross.org.au/globalassets/cms-assets/image-gallery/news/mallacoota-.jpg",
                 "https://www.ruralhealthinfo.org/rural-monitor/trauma-informed-care"
               )
         )
@@ -77,7 +77,7 @@ class SevenPsychologicalSupportServicesInfo : AppCompatActivity() {
                         "8. COMMUNITY OUTREACH AND EDUCATION: Launch community outreach and education campaigns to reduce stigma associated with seeking help, raising awareness about available crisis counseling services, and promoting mental well-being.\n\n" +
                         "9. SUPERVISION AND SELF-CARE: Provide ongoing supervision and support for crisis counselors, emphasizing self-care practices to prevent burnout and compassion fatigue, ensuring their sustained effectiveness.\n\n" +
                         "10. CONTINUOUS EVALUATION AND IMPROVEMENT: Establish mechanisms for continuous evaluation and improvement of crisis counseling and disaster response efforts, incorporating feedback from survivors and communities to enhance the quality of services provided.\n\n",
-                "https://www.samhsa.gov/sites/default/files/dtac-banner.jpg",
+                "https://dcfwfuaf91uza.cloudfront.net/online/wp-content/uploads/Crisis-Counseling-Degree.jpg",
                 "https://www.samhsa.gov/dtac/disaster-response-template-toolkit/disaster-responder-stress-management"
             )
         )
@@ -99,7 +99,7 @@ class SevenPsychologicalSupportServicesInfo : AppCompatActivity() {
                         "4. CLIMATE RESILIENCE INTEGRATION: Develop and implement strategies to integrate climate resilience into national and regional development planning, aligning policies with disaster risk reduction.\n\n" +
                         "5. WATERSHED RESILIENCE PROMOTION: Execute projects in critical watersheds to promote climate resilience, emphasizing green growth measures and ecosystem restoration.\n\n",
 
-                "https://hazards.colorado.edu/uploads/freeform/option1.jpeg",
+                "https://www.mercyrelief.org/site/wp-content/uploads/@Iloilo_IMG_2297-1080x675.jpg",
                 "https://hazards.colorado.edu/news/research-counts/unity-is-strength-community-resilience-in-puerto-rico-after-hurricane-maria"
               )
         )

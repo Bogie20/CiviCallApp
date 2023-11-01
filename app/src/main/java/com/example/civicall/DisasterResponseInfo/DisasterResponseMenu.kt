@@ -19,8 +19,8 @@ class DisasterResponseMenu : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val campusList = listOf(
-            DataMain("Emergency Preparedness: Plan ahead for safety."),
-            DataMain("First Aid and Basic Life Support:Learn life-saving skills."),
+            DataMain("Emergency Preparedness: Plan Ahead for Safety."),
+            DataMain("First Aid and Basic Life Support: Learn Life-Saving Skills."),
             DataMain("Fire Safety: Mastering the Flames."),
             DataMain("Understanding the Diversity of Natural Disasters: A Comprehensive Exploration"),
             DataMain("Disaster Response and Search and Rescue Operations"),
