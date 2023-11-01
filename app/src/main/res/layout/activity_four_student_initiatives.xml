@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/grey"
     android:layout_height="match_parent"
-    tools:context=".CampusGovernanceInfo.AboutInfo">
+    tools:context=".CampusGovernanceInfo.FourStudentInitiatives">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -31,10 +31,10 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:textAllCaps="true"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="ABOUT THE UNIVERSITY"
+            android:text="Student initiative"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -70,7 +70,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DISCOVERING THE HISTORY OF BATANGAS STATE UNIVERSITY"
+                    android:text="EMPOWERING STUDENT REPRESENTATION IN UNIVERSITY GOVERNANCE"
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -83,11 +83,11 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Embark on a captivating journey through time as we uncover the remarkable history of Batangas State University, a beacon of innovation and excellence in the Philippines. From its humble beginnings as a Manual Training School to its prestigious status as the Philippines' National Engineering University, the story of BatStateU is a testament to growth, evolution, and unwavering commitment to education."
+                    android:text="In the realm of higher education, student involvement in governance is the cornerstone of a thriving campus democracy. Discover how students actively contribute to university decision-making, ensuring their voices are heard and valued."
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="80dp"
                     android:layout_marginStart="13dp"
                     android:layout_marginEnd="16dp"
                     android:gravity="start"
@@ -106,7 +106,5 @@
                 />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

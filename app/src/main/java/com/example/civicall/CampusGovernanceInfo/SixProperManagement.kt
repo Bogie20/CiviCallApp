@@ -10,10 +10,10 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
-class InstitutionalSustainabilityInfo : AppCompatActivity() {
+class SixProperManagement : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_institutional_sustainability_info)
+        setContentView(R.layout.activity_six_proper_management)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)

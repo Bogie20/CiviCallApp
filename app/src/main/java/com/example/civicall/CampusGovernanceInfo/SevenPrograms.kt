@@ -10,10 +10,10 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
-class ProgramsInBsuInfo : AppCompatActivity() {
+class SevenPrograms : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_programs_in_bsu_info)
+        setContentView(R.layout.activity_seven_programs)
 
 
 
@@ -37,7 +37,7 @@ class ProgramsInBsuInfo : AppCompatActivity() {
                         "Graduate programs are also offered to provide advanced learning in specialized disciplines. These provide professionals more opportunities for career advancement, increase their prospects, and nurture greater intellectual curiosity and passion for inquiry, thus molding them to become leaders, managers, and innovators by developing transformative solutions to real world problems.\n\n" ,
 
 
-                "https://batstate-u.edu.ph/programs/",
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/2nd-Student-Leaders-General-Assembly.jpg",
                 "https://batstate-u.edu.ph/programs/"
             )
         )
@@ -250,7 +250,7 @@ class ProgramsInBsuInfo : AppCompatActivity() {
                         "Major in Welding and Fabrication Technology\n\n\n" ,
 
 
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/cics-1-edited-scaled.jpg",
+                "https://www.ttiasia.com/content/ttiasia/en/resources/marketeye/categories/new-technology/me-apte-20210312/_jcr_content/centerParsys/image_copy.coreimg.jpeg/1615569685963/tti-marketeye-apte-iiot-digital-transformation-800x500.jpeg",
                 "https://batstate-u.edu.ph/programs/industrial-technology/"
 
             )

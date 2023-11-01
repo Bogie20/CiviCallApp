@@ -10,10 +10,10 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
-class AdmissionBsuInfo : AppCompatActivity() {
+class TwoAdmission : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_admission_bsu_info)
+        setContentView(R.layout.activity_two_admission)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
@@ -210,7 +210,7 @@ class AdmissionBsuInfo : AppCompatActivity() {
                         "G. For qualifiers, a Notice of Admission will be posted in the BatStateUCAT link: https://dione.batstate-u.edu.ph/tao/#/batstateucat/.\n\n" +
                         "H. Wait for the enrollment schedule.\n\n",
 
-                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/homepage-webslider-1.jpg",
+                "https://batstate-u.edu.ph/wp-content/uploads/2020/10/homepage-banner-3.jpg",
                 "https://batstate-u.edu.ph/about/"
 
             )

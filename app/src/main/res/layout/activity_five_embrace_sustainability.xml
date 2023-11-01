@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/grey"
     android:layout_height="match_parent"
-    tools:context=".CampusGovernanceInfo.EmpoweringStudentInfo">
+    tools:context=".CampusGovernanceInfo.FiveEmbraceSustainability">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -31,10 +31,10 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Student initiative"
+            android:text="Embrace SUSTAINABILITY"
+            android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -65,13 +65,14 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp">
 
+
                 <TextView
                     android:id="@+id/title"
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="EMPOWERING STUDENT REPRESENTATION IN UNIVERSITY GOVERNANCE"
-                    android:textSize="15sp"
+                    android:text="CONNECTING GLOBALLY: INTERNATIONAL PROGRAMS AND PARTNERSHIPS"
+                    android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
@@ -83,17 +84,16 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="In the realm of higher education, student involvement in governance is the cornerstone of a thriving campus democracy. Discover how students actively contribute to university decision-making, ensuring their voices are heard and valued."
+                    android:text="&quot;Embracing Sustainability: Batangas State University's Commitment to a Greener, More Responsible Future. Explore how we integrate sustainable practices, education, and global initiatives, aligned with the United Nations' Sustainable Development Goals, through our Center for Sustainable Development (CSD)&quot;"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="80dp"
+                    android:layout_marginTop="100dp"
                     android:layout_marginStart="13dp"
                     android:layout_marginEnd="16dp"
                     android:gravity="start"
                     android:textAlignment="viewStart"
                     />
-
             </androidx.cardview.widget.CardView>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -106,5 +106,4 @@
                 />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

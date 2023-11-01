@@ -10,10 +10,10 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
-class CampusesAboutInfo : AppCompatActivity() {
+class ThreeAboutTheCampuses : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_campuses_about_info)
+        setContentView(R.layout.activity_three_about_the_campuses)
 
 
 

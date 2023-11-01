@@ -28,34 +28,34 @@
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
         <activity
-            android:name=".CampusGovernanceInfo.ProgramsInBsuInfo"
+            android:name=".CampusGovernanceInfo.SevenPrograms"
             android:exported="true" />
         <activity
-            android:name=".CampusGovernanceInfo.AdmissionBsuInfo"
+            android:name=".CampusGovernanceInfo.TwoAdmission"
             android:exported="true" />
         <activity
-            android:name=".CampusGovernanceInfo.GlobalbsuInfo"
+            android:name=".CampusGovernanceInfo.FiveEmbraceSustainability"
             android:exported="true" />
         <activity
-            android:name=".CampusGovernanceInfo.SustainabilityBsuInfo"
+            android:name=".CampusGovernanceInfo.NineSustainability"
             android:exported="true" />
         <activity
-            android:name=".CampusGovernanceInfo.CampusesAboutInfo"
+            android:name=".CampusGovernanceInfo.ThreeAboutTheCampuses"
             android:exported="true" />
         <activity
-            android:name=".CampusGovernanceInfo.StudentsBSUInfo"
+            android:name=".CampusGovernanceInfo.EightStudentDevelopment"
             android:exported="true" />
         <activity
-            android:name=".CampusGovernanceInfo.AdministrationInfo"
+            android:name=".CampusGovernanceInfo.OneAdministration"
             android:exported="true" />
         <activity
-            android:name=".CampusGovernanceInfo.AboutInfo"
+            android:name=".CampusGovernanceInfo.ZeroAboutTheUniversity"
             android:exported="true" />
         <activity
-            android:name=".CampusGovernanceInfo.EmpoweringStudentInfo"
+            android:name=".CampusGovernanceInfo.FourStudentInitiatives"
             android:exported="true" />
         <activity
-            android:name=".CampusGovernanceInfo.InstitutionalSustainabilityInfo"
+            android:name=".CampusGovernanceInfo.SixProperManagement"
             android:exported="true" />
         <activity
             android:name=".CampusGovernanceInfo.CampusGovernanceMenu"

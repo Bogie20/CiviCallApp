@@ -10,10 +10,11 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
-class GlobalbsuInfo : AppCompatActivity() {
+class NineSustainability : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_globalbsu_info)
+        setContentView(R.layout.activity_nine_sustainability)
+
 
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
@@ -85,67 +86,10 @@ class GlobalbsuInfo : AppCompatActivity() {
                         "\n" +
                         "5. To contribute to the sustainable development of the country through collaborations and dialogue, aiming to realize a mo resilient society\n\n",
 
-                "https://batstate-u.edu.ph/global/admissions/",
+                "https://sustainability.batstate-u.edu.ph/wp-content/uploads/2021/09/CSD7-04.jpg",
                 "https://batstate-u.edu.ph/global/admissions/"
             )
         )
-        dataList.add(
-            DataItem(
-                "INDUSTRY IMMERSION AND INTERNSHIP PROGRAM",
-                "The University endeavors to strengthen the industry exposure of its faculty and students by infusing industry-based skills into the curriculum. Immersion with foreign industries and conducting internship in foreign institutions ensure that faculty and students apply theory to practice in a global environment, thus avoiding skills mismatch between academic inputs and industry needs.\"Comprehensive Disaster Preparedness Kits: A Guide to Effective Disaster Response\" and equip yourself with the knowledge to safeguard your community and ensure a brighter, more resilient future.\"\"\n\n",
-
-
-                "https://batstate-u.edu.ph/global/",
-                "https://batstate-u.edu.ph/global/"
-            )
-        )
-
-
-        dataList.add(
-            DataItem(
-                "SOCIAL INNOVATION PROGRAM",
-                "Batangas State University partners with foreign institutions for a social innovation program, where BatStateU students collaborate with foreign students in engaging in community-based projects and volunteer activities to address the needs of local communities, while at the same time harnessing their critical thinking and collaborative learning skills using the Design Thinking Methodology. \n\n",
-
-
-                "https://batstate-u.edu.ph/global/",
-                "https://batstate-u.edu.ph/global/"
-            )
-        )
-
-
-        dataList.add(
-            DataItem(
-                "VISITING PROFESSOR PROGRAM",
-                "The university’s Visiting Professor Program welcomes faculty experts and professionals from all over the world to conduct a series of lectures on specialized topics in various academic and research fields. The program is sometimes facilitated in partnership with other universities or organizations.\n\n",
-
-                "https://batstate-u.edu.ph/global/",
-                "https://batstate-u.edu.ph/global/"
-            )
-        )
-
-
-        dataList.add(
-            DataItem(
-                "STUDENT EXCHANGE PROGRAM",
-                "The program provides opportunities for BatStateU students to study in a foreign country and explore that country’s rich history and culture. Similarly, students from other countries are welcomed in Batangas State University, as they study here and engage themselves in various cultural and social activities for academic and personal development. \n\n",
-
-
-                "https://batstate-u.edu.ph/global/",
-                "https://batstate-u.edu.ph/global/"
-            )
-        )
-
-
-        dataList.add(
-            DataItem(
-                "INTERNATIONAL CONFERENCE HOSTING",
-                "The University hosts the biennial International Research Conference on Innovations in Engineering, Science and Technology (IRCIEST), which is an international gathering of science and engineering professionals, researchers, and academicians who share advancements in the field through intensive lectures, master classes, research presentations, and pitching competitions. The university also hosts an International Research Conference on Business, Education and Social Sciences. Recently, the university hosted the first ASEAN Conference and Exposition on Disaster Risk Management and Climate Change Adaptation.\n\n",
-
-                "https://batstate-u.edu.ph/global/",
-                "https://batstate-u.edu.ph/global/"
-            )
-        )
-
         val adapter = DataAdapter(dataList)
 
         // Set an item click listener for the adapter to open the link when the reference TextView is clicked
@@ -172,13 +116,6 @@ class GlobalbsuInfo : AppCompatActivity() {
 
         // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
-
-
-
-
-
-
-
 
     }
 }

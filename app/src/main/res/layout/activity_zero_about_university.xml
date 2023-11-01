@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/grey"
     android:layout_height="match_parent"
-    tools:context=".CampusGovernanceInfo.GlobalbsuInfo">
+    tools:context=".CampusGovernanceInfo.ZeroAboutTheUniversity">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -31,10 +31,10 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Embrace SUSTAINABILITY"
-            android:textAllCaps="true"
+            android:text="ABOUT THE UNIVERSITY"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -65,14 +65,13 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp">
 
-
                 <TextView
                     android:id="@+id/title"
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CONNECTING GLOBALLY: INTERNATIONAL PROGRAMS AND PARTNERSHIPS"
-                    android:textSize="20sp"
+                    android:text="DISCOVERING THE HISTORY OF BATANGAS STATE UNIVERSITY"
+                    android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
@@ -84,16 +83,17 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;Embracing Sustainability: Batangas State University's Commitment to a Greener, More Responsible Future. Explore how we integrate sustainable practices, education, and global initiatives, aligned with the United Nations' Sustainable Development Goals, through our Center for Sustainable Development (CSD)&quot;"
+                    android:text="Embark on a captivating journey through time as we uncover the remarkable history of Batangas State University, a beacon of innovation and excellence in the Philippines. From its humble beginnings as a Manual Training School to its prestigious status as the Philippines' National Engineering University, the story of BatStateU is a testament to growth, evolution, and unwavering commitment to education."
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="70dp"
                     android:layout_marginStart="13dp"
                     android:layout_marginEnd="16dp"
                     android:gravity="start"
                     android:textAlignment="viewStart"
                     />
+
             </androidx.cardview.widget.CardView>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -106,4 +106,7 @@
                 />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

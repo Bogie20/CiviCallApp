@@ -10,10 +10,10 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
-class StudentsBSUInfo : AppCompatActivity() {
+class EightStudentDevelopment : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_students_bsuinfo)
+        setContentView(R.layout.activity_eight_student_development)
 
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
@@ -26,42 +26,22 @@ class StudentsBSUInfo : AppCompatActivity() {
         dataList.add(
             DataItem(
                 "OSAS: Fostering Student Welfare and Development",
-
-
-
                 "Brief Description\n\n" +
-
-
                         "The Office of Student Affairs and Services (OSAS) aims to mold globally competent and value-laden citizens by striving to enrich students through a holistic approach in providing Student Welfare and Development Programs and Services in consonance with the vision, mission, goals and objectives of Batangas State University and the mandates of the Commission on Higher Education (CHED). These basic services and programs   ensure and promote student well-being and are designed to explore, enhance and     develop the student’s full    potential in leadership and social responsibility through various institutional and student–initiated activities that upholds the core values of the university. \n\n" +
-
-
-
                         "Thrusts and Priorities\n\n" +
-
-
                         "The OSAS are the services and programs in the university that are concerned with academic support experiences of students to attain holistic student development. The purpose is to facilitate holistic student growth for active participation in the       collective efforts to develop the community and build a progressive nation. These non-academic services are student-centered and three-pronged:  student welfare services, student development programs and services and institutional student programs and services. \n\n" +
-
-
                         "Contact Details \n\n" +
-
                         "Telephone: (043) 980-0385 loc. 1134 \n\n" +
                         "Email address: osas.central@g.batstate-u.edu.ph\n\n",
-
-                "https://batstate-u.edu.ph/student-affairs-and-services/#",
+                "https://home.interface.edu.ph/images/2018/05/22/sao.png",
                 "https://batstate-u.edu.ph/student-affairs-and-services/"
             )
         )
-
-
-
         dataList.add(
             DataItem(
                 "FOOD SERVICES\n\n",
-
                         "In accordance with CHED Memorandum Order No. 09, s. 2013 (Enhanced Policies and Guidelines on Student Affairs and Services) and DEPED Order No.: 8 Series 2007 (Revised Implementing Guidelines On The Operation And Management Of School Canteens In Public Elementary And Secondary Schools), the following guidelines for the Food Services in Batangas State University are hereby adopted for the information, guidance and compliance of all concerned.\n\n" +
-
                         "Services:\n\n" +
-
                         "• Monitors the food safety, hygiene and sanitation of all food business operations in the respective campus, makes spot checks and calls the attention of the staff for noted deviations from the policies and procedures of the university.\n\n" +
                         "• Participates in evaluating canteen tenant applicants based on the set criteria and in the committee’s recommendation to the University President for approval.\n\n\n" +
                         "• Assists in providing recommendations or actions on any customers’ issues and concerns with regard to canteen services\n\n\n" +

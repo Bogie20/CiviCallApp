@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/grey"
     android:layout_height="match_parent"
-    tools:context=".CampusGovernanceInfo.StudentsBSUInfo">
+    tools:context=".CampusGovernanceInfo.NineSustainability">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -31,10 +31,10 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
             android:layout_centerInParent="true"
+            android:textAllCaps="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Student development"
+            android:text="SUSTAINABILITY"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -65,13 +65,14 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp">
 
+
                 <TextView
                     android:id="@+id/title"
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="NURTURING HOLISTIC STUDENT DEVELOPMENT: THE ROLE OF OSAS AT BATANGAS STATE UNIVERSITY"
-                    android:textSize="15sp"
+                    android:text="SUSTAINABILITY AND SOCIAL RESPONSIBILITY AT BSU"
+                    android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
@@ -83,17 +84,16 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dive into the heart of Batangas State University, where the Office of Student Affairs and Services (OSAS) plays a pivotal role in cultivating globally competent and value-laden citizens. Discover how OSAS strives to enrich students through a holistic approach, empowering them to become leaders and socially responsible individuals while upholding the university's core values."
+                    android:text="&quot;Embracing Sustainability: Batangas State University's Commitment to a Greener, More Responsible Future. Explore how we integrate sustainable practices, education, and global initiatives, aligned with the United Nations' Sustainable Development Goals, through our Center for Sustainable Development (CSD)&quot;"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="110dp"
+                    android:layout_marginTop="100dp"
                     android:layout_marginStart="13dp"
                     android:layout_marginEnd="16dp"
                     android:gravity="start"
                     android:textAlignment="viewStart"
                     />
-
             </androidx.cardview.widget.CardView>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -106,5 +106,4 @@
                 />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

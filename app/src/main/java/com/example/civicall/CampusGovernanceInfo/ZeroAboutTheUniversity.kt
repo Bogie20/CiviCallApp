@@ -10,10 +10,10 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
 
-class AboutInfo : AppCompatActivity() {
+class ZeroAboutTheUniversity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_about_info)
+        setContentView(R.layout.activity_zero_about_university)
 
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
