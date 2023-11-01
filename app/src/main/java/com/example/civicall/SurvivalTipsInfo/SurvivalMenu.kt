@@ -25,7 +25,7 @@ class SurvivalMenu : AppCompatActivity() {
             DataMain("Surviving a Tsunami in the Philippines: Coastal Disaster Preparedness"),
             DataMain("College Student's Guide to Typhoon Preparedness in the Philippines"),
             DataMain("Coping with El Niño: Managing Drought and Water Scarcity"),
-            DataMain("Philippine jungle survival: navigating the dense rainforests"),
+            DataMain("Philippine Jungle Survival: Navigating the Dense Rainforests"),
             DataMain("Navigating Philippine Mountains: Survival in Rugged Terrain"),
             DataMain("Island Survival Strategies: Thriving in Remote Philippine Archipelagos"),
             DataMain("Survival Psychology in the Philippines: Mental Resilience Amidst Disasters"),
@@ -37,61 +37,61 @@ class SurvivalMenu : AppCompatActivity() {
             when (position) {
                 0 -> {
                     // Handle click for Item 0
-                    val intent = Intent(this, EarthquakesInfo::class.java)
+                    val intent = Intent(this, ZeroSurvivingEarthquakes::class.java)
                     startActivity(intent)
                 }
 
                 1 -> {
                     // Handle click for Item 1
-                    val intent = Intent(this, VolcanicEruptionInfo::class.java)
+                    val intent = Intent(this, OneVolcanicEruption::class.java)
                     startActivity(intent)
                 }
 
                 2 -> {
                     // Handle click for Item 2
-                    val intent = Intent(this, TsunamiInfo::class.java)
+                    val intent = Intent(this, TwoTsunami::class.java)
                     startActivity(intent)
                 }
 
                 3 -> {
                     // Handle click for Item 3
-                    val intent = Intent(this, TyphoonInfo::class.java)
+                    val intent = Intent(this, ThreeTyphoon::class.java)
                     startActivity(intent)
                 }
 
                 4 -> {
                     // Handle click for Item 4
-                    val intent = Intent(this, ElNinoInfo::class.java)
+                    val intent = Intent(this, FourElNino::class.java)
                     startActivity(intent)
                 }
 
                 5 -> {
                     // Handle click for Item 5
-                    val intent = Intent(this, JunglerInfo::class.java)
+                    val intent = Intent(this, FiveJungle::class.java)
                     startActivity(intent)
                 }
 
                 6 -> {
                     // Handle click for Item 6
-                    val intent = Intent(this, NavigatingMountainInfo::class.java)
+                    val intent = Intent(this, SixNavigatingMountain::class.java)
                     startActivity(intent)
                 }
 
                 7 -> {
                     // Handle click for Item 7
-                    val intent = Intent(this, IslandSurvivalInfo::class.java)
+                    val intent = Intent(this, SevenIslandSurvival::class.java)
                     startActivity(intent)
                 }
 
                 8 -> {
                     // Handle click for Item 8
-                    val intent = Intent(this, SurvivalPsychologyInfo::class.java)
+                    val intent = Intent(this, EightSurvivalPsychology::class.java)
                     startActivity(intent)
                 }
 
                 9 -> {
                     // Handle click for Item 9
-                    val intent = Intent(this, CoastalSurvivalInfo::class.java)
+                    val intent = Intent(this, NineCoastalSurvival::class.java)
                     startActivity(intent)
                 }
 

@@ -3,11 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".DisasterResponseInfo.SevenPsychologicalSupportServicesInfo">
-
-
+    android:layout_height="match_parent"
+    tools:context=".CivicRightsAndResponsibility.ZeroDemystifyingCivicRights">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -37,9 +35,9 @@
             android:textAllCaps="true"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Psychological Support"
+            android:text="DEMYSTIFYING CIVIC RIGHTS"
             android:textColor="@color/white"
-            android:textSize="18dp" />
+            android:textSize="17dp" />
 
     </RelativeLayout>
 
@@ -55,7 +53,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
 
             <androidx.cardview.widget.CardView
                 android:backgroundTint="@color/white"
@@ -74,7 +71,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Resilience and Recovery Psychological Support Services in Disaster Response"
+                    android:text="DEMYSTIFYING CIVIC RIGHTS: A COMPREHENSIVE EXPLORATION"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -87,11 +84,11 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;In the face of natural and man-made disasters, the provision of psychological support services has emerged as an essential component of disaster response efforts. This introduction explores the critical role that psychological support plays in promoting resilience and aiding recovery during and after calamitous events.&quot;"
+                    android:text="Delve into the vibrant tapestry of civic rights and responsibilities as we embark on a journey to understand their essence. From the historical struggles of visionary leaders to the contemporary significance of civic rights in your daily life, this exploration promises to empower and inspire you."
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="90dp"
                     android:layout_marginStart="13dp"
                     android:layout_marginEnd="16dp"
                     android:gravity="start"
@@ -110,4 +107,10 @@
                 />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

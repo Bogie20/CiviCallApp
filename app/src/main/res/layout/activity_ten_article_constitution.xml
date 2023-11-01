@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".DisasterResponseInfo.SevenPsychologicalSupportServicesInfo">
-
-
+    tools:context=".CivicRightsAndResponsibility.TenConstitutionPhilippines">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -19,27 +17,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageView
-            android:id="@+id/backbtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginVertical="8dp"
-            android:contentDescription="Back to Previous"
-            android:src="@drawable/backbtn"
-            android:clickable="true"
-            android:focusable="true"
-            android:onClick="BackClick" />
+        <ImageButton
+            android:id="@+id/profileburger"
+            android:layout_width="60dp"
+            android:paddingLeft="5dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center|left"
+            android:background="@android:color/transparent"
+            android:src="@drawable/menubutton"
+            android:contentDescription="Open Navigation Menu" />
 
         <TextView
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
+
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Psychological Support"
+            android:text="PHILIPPINE CONSTITUTION"
             android:textColor="@color/white"
-            android:textSize="18dp" />
+            android:textSize="16dp" />
 
     </RelativeLayout>
 
@@ -55,7 +52,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
 
             <androidx.cardview.widget.CardView
                 android:backgroundTint="@color/white"
@@ -74,8 +70,8 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Resilience and Recovery Psychological Support Services in Disaster Response"
-                    android:textSize="20sp"
+                    android:text="UNDERSTANDING THE 1987 CONSTITUTION OF THE REPUBLIC OF THE PHILIPPINES: A COMPREHENSIVE GUIDE FOR COLLEGE STUDENTS"
+                    android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
@@ -87,11 +83,11 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;In the face of natural and man-made disasters, the provision of psychological support services has emerged as an essential component of disaster response efforts. This introduction explores the critical role that psychological support plays in promoting resilience and aiding recovery during and after calamitous events.&quot;"
+                    android:text="This guide is designed to provide college students in the Philippines with a comprehensive understanding of the 1987 Constitution of the Republic of the Philippines. It will delve into the key principles, provisions, and historical context of this important document, enabling students to grasp the foundations of their nation's governance and legal system."
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="110dp"
                     android:layout_marginStart="13dp"
                     android:layout_marginEnd="16dp"
                     android:gravity="start"
@@ -110,4 +106,7 @@
                 />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

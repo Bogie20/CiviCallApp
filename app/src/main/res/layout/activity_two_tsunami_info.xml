@@ -5,10 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".DisasterResponseInfo.SevenPsychologicalSupportServicesInfo">
-
-
-
+    tools:context=".SurvivalTipsInfo.TwoTsunami">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -34,10 +31,10 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Psychological Support"
+            android:text="Surviving Tsunami "
+            android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -56,7 +53,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <androidx.cardview.widget.CardView
                 android:backgroundTint="@color/white"
                 android:layout_gravity="center"
@@ -74,7 +70,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Resilience and Recovery Psychological Support Services in Disaster Response"
+                    android:text="SURVIVING A TSUNAMI IN THE PHILIPPINES: COASTAL DISASTER PREPAREDNESS"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -87,11 +83,11 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;In the face of natural and man-made disasters, the provision of psychological support services has emerged as an essential component of disaster response efforts. This introduction explores the critical role that psychological support plays in promoting resilience and aiding recovery during and after calamitous events.&quot;"
+                    android:text="Diving into Danger: College Student's Guide to Surviving a Tsunami in the Philippines. Explore tsunami warning systems, safe high grounds, and real-life survival stories as we equip you with the knowledge and skills to navigate coastal disaster preparedness."
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="130dp"
                     android:layout_marginStart="13dp"
                     android:layout_marginEnd="16dp"
                     android:gravity="start"

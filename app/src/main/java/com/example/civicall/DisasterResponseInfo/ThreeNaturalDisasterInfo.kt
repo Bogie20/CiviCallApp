@@ -13,7 +13,7 @@ import com.example.civicall.R
 class ThreeNaturalDisasterInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_threenatural_disaster_info)
+        setContentView(R.layout.activity_three_natural_disaster_info)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)

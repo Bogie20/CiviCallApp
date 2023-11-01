@@ -13,7 +13,7 @@ import com.example.civicall.R
 class OneFirstAidInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_first_aid_info)
+        setContentView(R.layout.activity_one_first_aid_info)
 
 
 
@@ -141,7 +141,7 @@ class OneFirstAidInfo : AppCompatActivity() {
                         "10. TARGET AUDIENCE: These standards and guidelines primarily serve EMS providers and ambulance teams within the Philippine Red Cross, helping them deliver high-quality pre-hospital care and medical transportation services in compliance with established protocols and regulatory standards.\n\n",
 
 
-                "https://i.ytimg.com/vi/Xu9zdIwnJ0U/maxresdefault.jpg",
+                "https://pia.gov.ph/uploads/2021/10/a658776753a16594626aca0cbcbd48d2-800-1200.jpg",
                 "https://www.youtube.com/watch?v=Xu9zdIwnJ0U&ab_channel=Etactics")
         )
         dataList.add(

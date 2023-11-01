@@ -11,7 +11,7 @@ import com.example.civicall.R
 class ThreeEffectiveAdvocacy: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_threeeffectiveadvocacy)
+        setContentView(R.layout.activity_three_effectiveadvocacy)
 
 
 

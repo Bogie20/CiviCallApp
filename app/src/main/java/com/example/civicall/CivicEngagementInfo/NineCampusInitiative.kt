@@ -11,7 +11,7 @@ import com.example.civicall.R
 class NineCampusInitiative : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ninecampusinitiative)
+        setContentView(R.layout.activity_nine_campusinitiative)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)

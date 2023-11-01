@@ -13,7 +13,7 @@ import com.example.civicall.R
 class TwoFireSafetyInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_twofire_safety_info)
+        setContentView(R.layout.activity_two_fire_safety_info)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)

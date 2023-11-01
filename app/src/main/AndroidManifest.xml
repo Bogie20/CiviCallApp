@@ -28,9 +28,6 @@
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
         <activity
-            android:name=".CivicRightsAndResponsibility.civicRightsConstitutionrepublicInfo"
-            android:exported="true" />
-        <activity
             android:name=".CampusGovernanceInfo.ProgramsInBsuInfo"
             android:exported="true" />
         <activity
@@ -136,41 +133,44 @@
             android:name=".EnvironmentalandSocialIssueInfo.EnvironmentalAndSocialIssuesMenu"
             android:exported="true" /> <!-- Civic rights -->
         <activity
-            android:name=".CivicRightsAndResponsibility.GlobalCitizenshipandCivicResponsibilityInfo"
+            android:name=".CivicRightsAndResponsibility.TenConstitutionPhilippines"
             android:exported="true" />
         <activity
-            android:name=".CivicRightsAndResponsibility.CivicResponsibilityandEducationinfo"
+            android:name=".CivicRightsAndResponsibility.NineGlobalCitizen"
             android:exported="true" />
         <activity
-            android:name=".CivicRightsAndResponsibility.CivicResponsibilityinTimesofCrisisInfo"
+            android:name=".CivicRightsAndResponsibility.EightCivicResponsibility"
             android:exported="true" />
         <activity
-            android:name=".CivicRightsAndResponsibility.GenderEqualityandCivicResponsibilityInfo"
+            android:name=".CivicRightsAndResponsibility.SevenTImeofCrisis"
             android:exported="true" />
         <activity
-            android:name=".CivicRightsAndResponsibility.CivicRightsinaDigitalWorldInfo"
+            android:name=".CivicRightsAndResponsibility.SixEmpoweringYou"
             android:exported="true" />
         <activity
-            android:name=".CivicRightsAndResponsibility.CivicResponsibilityandtheRuleofLawInfo"
+            android:name=".CivicRightsAndResponsibility.FiveDigitalAge"
             android:exported="true" />
         <activity
-            android:name=".CivicRightsAndResponsibility.EnvironmentalCivicResponsibilityinfo"
+            android:name=".CivicRightsAndResponsibility.FourLegality"
             android:exported="true" />
         <activity
-            android:name=".CivicRightsAndResponsibility.RighttoProtestandFreeSpeechInfo"
+            android:name=".CivicRightsAndResponsibility.ThreeEnvironmentalResponsibility"
             android:exported="true" />
         <activity
-            android:name=".CivicRightsAndResponsibility.CivicResponsibilityInfo"
+            android:name=".CivicRightsAndResponsibility.TwoRighttoExpress"
             android:exported="true" />
         <activity
-            android:name=".CivicRightsAndResponsibility.UnderstandingCivicRightsInfo"
+            android:name=".CivicRightsAndResponsibility.OneCivicRights"
+            android:exported="true" />
+        <activity
+            android:name=".CivicRightsAndResponsibility.ZeroDemystifyingCivicRights"
             android:exported="true" />
         <activity
             android:name=".CivicRightsAndResponsibility.CivicRightsAndResponsibilityMenu"
             android:exported="true" /> <!-- Civic rights end -->
         <!-- Survival Tips start here -->
         <activity
-            android:name=".SurvivalTipsInfo.NavigatingMountainInfo"
+            android:name=".SurvivalTipsInfo.SixNavigatingMountain"
             android:exported="true" />
         <activity
             android:name=".SurvivalTipsInfo.SurvivalMenu"
@@ -181,31 +181,31 @@
         <!-- Educational Start -->
         <!-- Civic Engagement Start -->
         <activity
-            android:name=".SurvivalTipsInfo.CoastalSurvivalInfo"
+            android:name=".SurvivalTipsInfo.NineCoastalSurvival"
             android:exported="true" />
         <activity
-            android:name=".SurvivalTipsInfo.SurvivalPsychologyInfo"
+            android:name=".SurvivalTipsInfo.EightSurvivalPsychology"
             android:exported="true" />
         <activity
-            android:name=".SurvivalTipsInfo.IslandSurvivalInfo"
+            android:name=".SurvivalTipsInfo.SevenIslandSurvival"
             android:exported="true" />
         <activity
-            android:name=".SurvivalTipsInfo.JunglerInfo"
+            android:name=".SurvivalTipsInfo.FiveJungle"
             android:exported="true" />
         <activity
-            android:name=".SurvivalTipsInfo.ElNinoInfo"
+            android:name=".SurvivalTipsInfo.FourElNino"
             android:exported="true" />
         <activity
-            android:name=".SurvivalTipsInfo.TyphoonInfo"
+            android:name=".SurvivalTipsInfo.ThreeTyphoon"
             android:exported="true" />
         <activity
-            android:name=".SurvivalTipsInfo.TsunamiInfo"
+            android:name=".SurvivalTipsInfo.TwoTsunami"
             android:exported="true" />
         <activity
-            android:name=".SurvivalTipsInfo.VolcanicEruptionInfo"
+            android:name=".SurvivalTipsInfo.OneVolcanicEruption"
             android:exported="true" />
         <activity
-            android:name=".SurvivalTipsInfo.EarthquakesInfo"
+            android:name=".SurvivalTipsInfo.ZeroSurvivingEarthquakes"
             android:exported="true" /> <!-- Survival Tips  End -->
         <activity
             android:name=".CivicEngagementPost.Update_engagement"

@@ -13,7 +13,7 @@ import com.example.civicall.R
 class ZeroEmergencyPreparednessInfo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_oneemergency_preparedness_info)
+        setContentView(R.layout.activity_zero_emergency_preparedness_info)
 
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)

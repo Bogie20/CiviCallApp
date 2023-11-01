@@ -3,12 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".DisasterResponseInfo.SevenPsychologicalSupportServicesInfo">
-
-
-
+    android:layout_height="match_parent"
+    tools:context=".CivicRightsAndResponsibility.NineGlobalCitizen">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -37,7 +34,7 @@
             android:textAllCaps="true"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Psychological Support"
+            android:text="impact the community"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -56,7 +53,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <androidx.cardview.widget.CardView
                 android:backgroundTint="@color/white"
                 android:layout_gravity="center"
@@ -74,7 +70,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Resilience and Recovery Psychological Support Services in Disaster Response"
+                    android:text="NURTURING RESPONSIBLE GLOBAL CITIZENS: CIVIC RESPONSIBILITY IN A GLOBALIZED WORLD"
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -87,11 +83,11 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&quot;In the face of natural and man-made disasters, the provision of psychological support services has emerged as an essential component of disaster response efforts. This introduction explores the critical role that psychological support plays in promoting resilience and aiding recovery during and after calamitous events.&quot;"
+                    android:text="Unleash your potential as a change-maker in the world! Dive into the realm of global issues, civic action, and your role as a responsible global citizen, all while pursuing your college journey."
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="130dp"
                     android:layout_marginStart="13dp"
                     android:layout_marginEnd="16dp"
                     android:gravity="start"
