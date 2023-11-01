@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/grey"
     android:layout_height="match_parent"
-    tools:context=".PublicHealtAwarenessInfo.EvaluatingtheEffectivenessInfo">
+    android:background="@color/grey"
+    tools:context=".PublicHealtAwarenessInfo.FiveMentalHealthMatters">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -31,10 +31,10 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="effective campaign"
+            android:text="mental health matters"
+            android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -70,7 +70,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="EVALUATING THE EFFECTIVENESS OF PUBLIC HEALTH CAMPAIGNS IN THE PHILIPPINES"
+                    android:text="MENTAL HEALTH MATTERS: BREAKING THE STIGMA IN THE PHILIPPINES"
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -83,7 +83,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Unveiling the Power of Public Health Campaigns: From Health Communication to Behavior Change. Join us on a journey to evaluate the effectiveness of public health initiatives in the Philippines, analyzing health communication, campaign evaluation, behavior change, health education, and the strategies that drive public health success. As college students, it's time to be the change-makers in health promotion"
+                    android:text="Unlocking Minds: Navigating the Unspoken Struggles of Mental Health in the Philippines – a pressing concern for both individual well-being and societal progress, join us on a journey through stigma, services, and solutions."
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"

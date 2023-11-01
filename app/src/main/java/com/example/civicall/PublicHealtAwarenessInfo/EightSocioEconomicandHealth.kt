@@ -9,16 +9,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
+import com.example.civicall.databinding.ActivityEightSocioeconomicFactorHealthBinding
 
-class SocioeconomicFactorsandHealthInfo : AppCompatActivity() {
+class EightSocioEconomicandHealth : AppCompatActivity() {
+    private lateinit var binding: ActivityEightSocioeconomicFactorHealthBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_socioeconomic_factorsand_health_info)
 
+        binding = ActivityEightSocioeconomicFactorHealthBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
+
+
 
         // Create a list of data to display in the RecyclerView
         val dataList = ArrayList<DataItem>()

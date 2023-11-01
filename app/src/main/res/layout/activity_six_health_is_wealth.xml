@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".PublicHealtAwarenessInfo.MentalHealthMattersInfo">
+    tools:context=".PublicHealtAwarenessInfo.SixHealthisWealth">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -31,10 +31,10 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="mental health"
+            android:text="Health is wealth"
+            android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -70,7 +70,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MENTAL HEALTH MATTERS: BREAKING THE STIGMA IN THE PHILIPPINES"
+                    android:text="PREVENTIVE HEALTHCARE: A KEY TO A HEALTHIER PHILIPPINES TOPIC"
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -83,7 +83,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Unlocking Minds: Navigating the Unspoken Struggles of Mental Health in the Philippines – a pressing concern for both individual well-being and societal progress, join us on a journey through stigma, services, and solutions."
+                    android:text="Unlocking a Healthier Philippines: From Immunization Vigilance to Healthcare Resilience, discover the vital path of preventive healthcare that every college student should follow for a brighter future."
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"

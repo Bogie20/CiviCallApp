@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".PublicHealtAwarenessInfo.RoleofNutritionEducationInfo">
+    tools:context=".PublicHealtAwarenessInfo.OneHealingtheEnvironment">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -31,12 +31,12 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Importance of Nutrition"
+            android:text="healing the environment"
+            android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="18dp" />
+            android:textSize="17dp" />
 
     </RelativeLayout>
 
@@ -70,7 +70,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="THE ROLE OF NUTRITION EDUCATION IN PUBLIC HEALTH AWARENESS"
+                    android:text="ENVIRONMENTAL HEALTH IN THE PHILIPPINES: AWARENESS AND ACTION"
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -83,7 +83,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fueling a Health Revolution: Unveiling the Power of Nutrition Education in Shaping Stronger, Smarter, and Healthier College Generations. Join the journey of public health awareness through the lens of nutrition"
+                    android:text="Guardians of the Earth: Championing Environmental Health in the Philippines. From navigating health risks to pollution control, climate change impact, green initiatives, and eco-awareness, let's embark on a journey to preserve our planet for future generations. It's time for college students to be the eco-warriors of today"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"

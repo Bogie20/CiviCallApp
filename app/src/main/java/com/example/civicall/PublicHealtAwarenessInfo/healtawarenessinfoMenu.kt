@@ -36,61 +36,61 @@ class healtawarenessinfoMenu : AppCompatActivity() {
             when (position) {
                 0 -> {
                     // Handle click for Item 0
-                    val intent = Intent(this, EmpoweringCommunitiesInfo::class.java)
+                    val intent = Intent(this, ZeroGrassRootsEffort::class.java)
                     startActivity(intent)
                 }
 
                 1 -> {
                     // Handle click for Item 1
-                    val intent = Intent(this, EnvironmentalHealthinthePhilippinesInfo::class.java)
+                    val intent = Intent(this, OneHealingtheEnvironment::class.java)
                     startActivity(intent)
                 }
 
                 2 -> {
                     // Handle click for Item 2
-                    val intent = Intent(this, EvaluatingtheEffectivenessInfo::class.java)
+                    val intent = Intent(this, TwoEffectiveCampaign::class.java)
                     startActivity(intent)
                 }
 
                 3 -> {
                     // Handle click for Item 3
-                    val intent = Intent(this, GenderDisparitiesinPublicInfo::class.java)
+                    val intent = Intent(this, ThreeGenderHealthDisparities::class.java)
                     startActivity(intent)
                 }
 
                 4 -> {
                     // Handle click for Item 4
-                    val intent = Intent(this, InnovationsinHealthcareInfo::class.java)
+                    val intent = Intent(this, FourHealthcareTechnology::class.java)
                     startActivity(intent)
                 }
 
                 5 -> {
                     // Handle click for Item 5
-                    val intent = Intent(this, MentalHealthMattersInfo::class.java)
+                    val intent = Intent(this, FiveMentalHealthMatters::class.java)
                     startActivity(intent)
                 }
 
                 6 -> {
                     // Handle click for Item 6
-                    val intent = Intent(this, PreventiveHealthcare::class.java)
+                    val intent = Intent(this, SixHealthisWealth::class.java)
                     startActivity(intent)
                 }
 
                 7 -> {
                     // Handle click for Item 7
-                    val intent = Intent(this, RoleofNutritionEducationInfo::class.java)
+                    val intent = Intent(this, SevenNutritionEducation::class.java)
                     startActivity(intent)
                 }
 
                 8 -> {
                     // Handle click for Item 8
-                    val intent = Intent(this, SocioeconomicFactorsandHealthInfo::class.java)
+                    val intent = Intent(this, EightSocioEconomicandHealth::class.java)
                     startActivity(intent)
                 }
 
                 9 -> {
                     // Handle click for Item 9
-                    val intent = Intent(this, TheImpactofPublicHealthAwarenessInfo::class.java)
+                    val intent = Intent(this, NineImpactofHealthAwareness::class.java)
                     startActivity(intent)
                 }
 

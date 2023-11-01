@@ -9,18 +9,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
-import com.example.civicall.databinding.ActivityEmpoweringCommunitiesInfoBinding
+import com.example.civicall.databinding.ActivityZeroGrassrootsEffortBinding
 
 
-class EmpoweringCommunitiesInfo : AppCompatActivity() {
+class ZeroGrassRootsEffort : AppCompatActivity() {
 
-    private lateinit var binding: ActivityEmpoweringCommunitiesInfoBinding  // Declare the binding variable
+    private lateinit var binding: ActivityZeroGrassrootsEffortBinding  // Declare the binding variable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_empowering_communities_info)
 
-        binding = ActivityEmpoweringCommunitiesInfoBinding.inflate(layoutInflater)
+        binding = ActivityZeroGrassrootsEffortBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 

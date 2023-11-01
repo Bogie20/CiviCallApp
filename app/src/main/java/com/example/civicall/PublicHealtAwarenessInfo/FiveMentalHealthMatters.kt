@@ -9,16 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
-import com.example.civicall.databinding.ActivityEmpoweringCommunitiesInfoBinding
+import com.example.civicall.databinding.ActivityFiveMentalHealthMattersBinding
 
-class MentalHealthMattersInfo : AppCompatActivity() {
+class FiveMentalHealthMatters : AppCompatActivity() {
 
 
-    private lateinit var binding: ActivityEmpoweringCommunitiesInfoBinding
+    private lateinit var binding: ActivityFiveMentalHealthMattersBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mental_health_matters_info)
-        binding = ActivityEmpoweringCommunitiesInfoBinding.inflate(layoutInflater)
+
+        binding = ActivityFiveMentalHealthMattersBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 

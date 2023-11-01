@@ -11,7 +11,7 @@ import com.example.civicall.R
 class EightDigitalCivic : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_eightdigitalcivic)
+        setContentView(R.layout.activity_eight_digitalcivic)
 
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)

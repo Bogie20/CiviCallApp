@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".PublicHealtAwarenessInfo.InnovationsinHealthcareInfo">
+    tools:context=".PublicHealtAwarenessInfo.SevenNutritionEducation">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -34,9 +34,9 @@
             android:textAllCaps="true"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Healthcare Technology"
+            android:text="Importance of Nutrition"
             android:textColor="@color/white"
-            android:textSize="17dp" />
+            android:textSize="18dp" />
 
     </RelativeLayout>
 
@@ -70,7 +70,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="INNOVATIONS IN HEALTHCARE: LEVERAGING TECHNOLOGY FOR AWARENESS"
+                    android:text="THE ROLE OF NUTRITION EDUCATION IN PUBLIC HEALTH AWARENESS"
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -83,7 +83,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Revolutionizing Healthcare: How Technology Is Shaping Your Wellness Journey. From health tech innovations to mHealth, eHealth, telehealth, and digital solutions, it's time for college students to explore the high-tech world of healthcare"
+                    android:text="Fueling a Health Revolution: Unveiling the Power of Nutrition Education in Shaping Stronger, Smarter, and Healthier College Generations. Join the journey of public health awareness through the lens of nutrition"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"

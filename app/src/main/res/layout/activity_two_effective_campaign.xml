@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/grey"
     android:layout_height="match_parent"
-    tools:context=".PublicHealtAwarenessInfo.EmpoweringCommunitiesInfo">
+    tools:context=".PublicHealtAwarenessInfo.TwoEffectiveCampaign">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             android:textAllCaps="true"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Grassroots Effort"
+            android:text="effective campaign"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -70,7 +70,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="EMPOWERING COMMUNITIES: GRASSROOTS EFFORTS IN PUBLIC HEALTH"
+                    android:text="EVALUATING THE EFFECTIVENESS OF PUBLIC HEALTH CAMPAIGNS IN THE PHILIPPINES"
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -83,7 +83,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Join the Movement: Unleashing the Power of Grassroots Efforts in Public Health. Discover how community health workers, Barangay health centers, education, engagement, and primary care are transforming the health landscape right in your own backyard"
+                    android:text="Unveiling the Power of Public Health Campaigns: From Health Communication to Behavior Change. Join us on a journey to evaluate the effectiveness of public health initiatives in the Philippines, analyzing health communication, campaign evaluation, behavior change, health education, and the strategies that drive public health success. As college students, it's time to be the change-makers in health promotion"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"

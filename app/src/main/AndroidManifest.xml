@@ -61,34 +61,34 @@
             android:name=".CampusGovernanceInfo.CampusGovernanceMenu"
             android:exported="true" />
         <activity
-            android:name=".PublicHealtAwarenessInfo.EvaluatingtheEffectivenessInfo"
+            android:name=".PublicHealtAwarenessInfo.TwoEffectiveCampaign"
             android:exported="true" />
         <activity
-            android:name=".PublicHealtAwarenessInfo.EnvironmentalHealthinthePhilippinesInfo"
+            android:name=".PublicHealtAwarenessInfo.OneHealingtheEnvironment"
             android:exported="true" />
         <activity
-            android:name=".PublicHealtAwarenessInfo.SocioeconomicFactorsandHealthInfo"
+            android:name=".PublicHealtAwarenessInfo.EightSocioEconomicandHealth"
             android:exported="true" />
         <activity
-            android:name=".PublicHealtAwarenessInfo.GenderDisparitiesinPublicInfo"
+            android:name=".PublicHealtAwarenessInfo.ThreeGenderHealthDisparities"
             android:exported="true" />
         <activity
-            android:name=".PublicHealtAwarenessInfo.InnovationsinHealthcareInfo"
+            android:name=".PublicHealtAwarenessInfo.FourHealthcareTechnology"
             android:exported="true" />
         <activity
-            android:name=".PublicHealtAwarenessInfo.TheImpactofPublicHealthAwarenessInfo"
+            android:name=".PublicHealtAwarenessInfo.NineImpactofHealthAwareness"
             android:exported="true" />
         <activity
-            android:name=".PublicHealtAwarenessInfo.EmpoweringCommunitiesInfo"
+            android:name=".PublicHealtAwarenessInfo.ZeroGrassRootsEffort"
             android:exported="true" />
         <activity
-            android:name=".PublicHealtAwarenessInfo.MentalHealthMattersInfo"
+            android:name=".PublicHealtAwarenessInfo.FiveMentalHealthMatters"
             android:exported="true" />
         <activity
-            android:name=".PublicHealtAwarenessInfo.RoleofNutritionEducationInfo"
+            android:name=".PublicHealtAwarenessInfo.SevenNutritionEducation"
             android:exported="true" />
         <activity
-            android:name=".PublicHealtAwarenessInfo.PreventiveHealthcare"
+            android:name=".PublicHealtAwarenessInfo.SixHealthisWealth"
             android:exported="true" />
         <activity
             android:name=".PublicHealtAwarenessInfo.healtawarenessinfoMenu"

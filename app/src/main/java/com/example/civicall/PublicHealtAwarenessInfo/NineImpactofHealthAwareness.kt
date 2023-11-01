@@ -9,12 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.R
+import com.example.civicall.databinding.ActivityNineImpactOfAwarenessBinding
 
-class TheImpactofPublicHealthAwarenessInfo : AppCompatActivity() {
+class NineImpactofHealthAwareness : AppCompatActivity() {
+    private lateinit var binding: ActivityNineImpactOfAwarenessBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_the_impactof_public_health_awareness_info)
 
+        binding = ActivityNineImpactOfAwarenessBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)

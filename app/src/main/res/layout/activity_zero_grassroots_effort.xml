@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".PublicHealtAwarenessInfo.SocioeconomicFactorsandHealthInfo">
+    android:layout_height="match_parent"
+    tools:context=".PublicHealtAwarenessInfo.ZeroGrassRootsEffort">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -31,10 +31,10 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAllCaps="true"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="Social justice"
-            android:textAllCaps="true"
+            android:text="Grassroots Effort"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
@@ -70,7 +70,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SOCIOECONOMIC FACTORS AND HEALTH INEQUITIES IN THE PHILIPPINES"
+                    android:text="EMPOWERING COMMUNITIES: GRASSROOTS EFFORTS IN PUBLIC HEALTH"
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -83,7 +83,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="breaking barriers, bridging divides: the tale of socioeconomic factors and health inequities in the philippines. let's embark on a journey to uncover the links between poverty, healthcare accessibility, social determinants of health, and health disparities. as college students, it's our turn to be the champions of change in the pursuit of health equity!"
+                    android:text="Join the Movement: Unleashing the Power of Grassroots Efforts in Public Health. Discover how community health workers, Barangay health centers, education, engagement, and primary care are transforming the health landscape right in your own backyard"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"

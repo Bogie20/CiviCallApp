@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".PublicHealtAwarenessInfo.EnvironmentalHealthinthePhilippinesInfo">
+    tools:context=".PublicHealtAwarenessInfo.FourHealthcareTechnology">
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -31,10 +31,10 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAllCaps="true"
             android:layout_centerInParent="true"
             android:fontFamily="@font/lexend_bold"
-            android:text="healing the environment"
-            android:textAllCaps="true"
+            android:text="Healthcare Technology"
             android:textColor="@color/white"
             android:textSize="17dp" />
 
@@ -70,7 +70,7 @@
                     android:fontFamily="@font/lexend_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ENVIRONMENTAL HEALTH IN THE PHILIPPINES: AWARENESS AND ACTION"
+                    android:text="INNOVATIONS IN HEALTHCARE: LEVERAGING TECHNOLOGY FOR AWARENESS"
                     android:textSize="15sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"
@@ -83,7 +83,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Guardians of the Earth: Championing Environmental Health in the Philippines. From navigating health risks to pollution control, climate change impact, green initiatives, and eco-awareness, let's embark on a journey to preserve our planet for future generations. It's time for college students to be the eco-warriors of today"
+                    android:text="Revolutionizing Healthcare: How Technology Is Shaping Your Wellness Journey. From health tech innovations to mHealth, eHealth, telehealth, and digital solutions, it's time for college students to explore the high-tech world of healthcare"
                     android:textSize="13sp"
                     android:textColor="@color/black"
                     android:layout_marginBottom="16dp"

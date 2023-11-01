@@ -8,18 +8,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
-import com.example.civicall.Dashboard
 import com.example.civicall.R
-import com.example.civicall.databinding.ActivityEmpoweringCommunitiesInfoBinding
+import com.example.civicall.databinding.ActivityOneHealingTheEnvironmentBinding
 
-class EnvironmentalHealthinthePhilippinesInfo : AppCompatActivity() {
 
-    private lateinit var binding: ActivityEmpoweringCommunitiesInfoBinding  // De
+class OneHealingtheEnvironment : AppCompatActivity() {
+
+    private lateinit var binding: ActivityOneHealingTheEnvironmentBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_environmental_healthinthe_philippines_info)
 
-        binding = ActivityEmpoweringCommunitiesInfoBinding.inflate(layoutInflater)
+        binding = ActivityOneHealingTheEnvironmentBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
@@ -72,7 +71,7 @@ class EnvironmentalHealthinthePhilippinesInfo : AppCompatActivity() {
 
                 "https://www.flipscience.ph/wp-content/uploads/2018/06/FS.Covers.Oct-Nov2018-2.jpg",
                 "https://dicf.unepgrid.ch/philippines/pollution#:~:text=Air%2C%20waste%20and%20water%20pollution,rapid%20development%2C%20industrialization%20and%20urbanization."
-              )
+            )
         )
         dataList.add(
             DataItem("CLIMATE CHANGE IMPACT: ADAPTING TO A CHANGING WORLD",
@@ -90,7 +89,7 @@ class EnvironmentalHealthinthePhilippinesInfo : AppCompatActivity() {
 
                 "https://icsc.ngo/wp-content/uploads/2020/03/AFP_manila-residents-flooding-storm.jpg",
                 "https://www.philstar.com/headlines/2023/02/20/2246224/rising-sea-level-threatens-stability-boundaries-philippines-warns"
-              )
+            )
         )
 
         dataList.add(
@@ -108,9 +107,9 @@ class EnvironmentalHealthinthePhilippinesInfo : AppCompatActivity() {
                         "9. YOUTH CLIMATE ACTIVISM: Filipino youth are taking up the mantle of climate activism, demanding climate justice and advocating for solutions to combat the climate crisis.\n\n" +
                         "10. SUSTAINABLE DEVELOPMENT GOALS: The Philippines is actively working to improve its ranking in the United Nations Sustainable Development Report, aiming for a future where sustainability and environmental conservation thrive.",
 
-                "http://new.priorityconsultants.com/wp-content/uploads/2021/05/PC-Green-blogpost4-1024x538.jpg",
+                "https://www.undp.org/sites/g/files/zskgke326/files/styles/banner_image_desktop/public/migration/ba/GoGreen_twitter.jpg?h=d28b8abe&itok=LuKlpqQH",
                 "https://priorityconsultants.com/blog/green-is-in-the-rise-of-environmental-sustainability-in-the-philippines/"
-             )
+            )
         )
 
         dataList.add(
@@ -129,7 +128,7 @@ class EnvironmentalHealthinthePhilippinesInfo : AppCompatActivity() {
 
                 "https://www.cnnphilippines.com/.imaging/default/dam/cnn/2022/12/12/ADVERTORIAL%20BREEZE%20ECOPROJECT/BREEZE-ECOPROJECT-1.png/jcr:content.png?width=750&height=450&crop:1:1,smart",
                 "https://www.cnnphilippines.com/lifestyle/2022/12/12/getting-dirty-for-good-breeze-ecoproject.html"
-        )
+            )
         )
 
 
