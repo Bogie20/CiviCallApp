@@ -1,11 +1,13 @@
 package com.example.civicall
 
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.civicall.databinding.ActivitySettingsBinding
 import android.view.View
 import android.widget.Switch
+
 
 class Settings : AppCompatActivity() {
     private lateinit var notificationToggle: Switch
@@ -16,16 +18,9 @@ class Settings : AppCompatActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        notificationToggle = binding.notificationToggle
 
         // Initialize the BackClick view using view binding
-//        val BackClick = binding.back100
-
-        // Set an OnCheckedChangeListener to detect switch state changes
-        notificationToggle.setOnCheckedChangeListener { _, isChecked ->
-            // Update the switch text when its state changes
-            updateSwitchText(isChecked)
-        }
+        val BackClick = binding.profileburger
 
         // Handle the "Back" button click to navigate to the Dashboard activity
         BackClick.setOnClickListener {
@@ -39,6 +34,7 @@ class Settings : AppCompatActivity() {
         }
     }
 
+
     private fun updateSwitchText(isChecked: Boolean) {
         if (isChecked) {
             notificationToggle.text = "On"
@@ -47,3 +43,6 @@ class Settings : AppCompatActivity() {
         }
     }
 }
+
+
+
