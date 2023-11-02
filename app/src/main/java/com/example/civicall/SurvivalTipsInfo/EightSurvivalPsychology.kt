@@ -10,14 +10,19 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
+import com.example.civicall.databinding.ActivityEightSurvivalPsychologyInfoBinding
 
 class EightSurvivalPsychology : AppCompatActivity() {
     private lateinit var networkUtils: NetworkUtils
+    private lateinit var binding: ActivityEightSurvivalPsychologyInfoBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_eight_survival_psychology_info)
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
+        binding = ActivityEightSurvivalPsychologyInfoBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager

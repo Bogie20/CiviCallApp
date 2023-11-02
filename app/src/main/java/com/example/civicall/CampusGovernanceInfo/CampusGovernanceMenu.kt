@@ -8,21 +8,25 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.CivicAdapterMain
 import com.example.civicall.CivicEngagementInfo.DataMain
+import com.example.civicall.InformationFragment
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
+import com.example.civicall.databinding.ActivityCampusGovernanceMenuBinding
 
 class CampusGovernanceMenu : AppCompatActivity() {
     private lateinit var networkUtils: NetworkUtils
+    private lateinit var binding: ActivityCampusGovernanceMenuBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_campus_governance_menu)
-
-
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
+        binding = ActivityCampusGovernanceMenuBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMain)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        val layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = layoutManager
 
         val campusList = listOf(
             DataMain("Discovering the History of Batangas State University"),
@@ -109,6 +113,11 @@ class CampusGovernanceMenu : AppCompatActivity() {
 
         recyclerView.adapter = adapter
 
+        binding.backbtn.setOnClickListener {
+            val intent = Intent(this, InformationFragment::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
 
     }
     override fun onDestroy() {
