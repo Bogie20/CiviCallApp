@@ -1,6 +1,7 @@
 package com.example.civicall.EmergencyCon
 
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -31,7 +32,10 @@ class MainEmergencyContact : AppCompatActivity() {
         addDataToList()
         adapter = MainContactAdapter(mList)
         recyclerView.adapter = adapter
-
+        val backButton: ImageView = findViewById(R.id.backbtn)
+        backButton.setOnClickListener {
+            onBackPressed()
+        }
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false

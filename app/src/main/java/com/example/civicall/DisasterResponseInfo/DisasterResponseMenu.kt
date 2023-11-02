@@ -9,18 +9,32 @@ import com.example.civicall.CivicEngagementInfo.CivicAdapterMain
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataMain
+import com.example.civicall.InformationFragment
 import com.example.civicall.NetworkUtils
+import com.example.civicall.databinding.ActivityDisasterResponseMenuBinding
 
 class DisasterResponseMenu : AppCompatActivity() {
     private lateinit var networkUtils: NetworkUtils
+    private lateinit var binding: ActivityDisasterResponseMenuBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_disaster_response_menu)
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
+        binding = ActivityDisasterResponseMenuBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMain)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        val layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = layoutManager
+
+        binding.backbtn.setOnClickListener {
+            val intent = Intent(this, InformationFragment::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
 
         val campusList = listOf(
             DataMain("Emergency Preparedness: Plan Ahead for Safety."),
@@ -111,5 +125,8 @@ class DisasterResponseMenu : AppCompatActivity() {
         super.onDestroy()
         networkUtils.cleanup()
     }
-
+    override fun onBackPressed() {
+        super.onBackPressed()
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)}
 }

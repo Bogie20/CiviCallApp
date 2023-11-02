@@ -8,20 +8,32 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
+import com.example.civicall.databinding.ActivityFivemakeyourvoiceheardBinding
 
-class
-FiveMakeYourVoiceHeard : AppCompatActivity() {
+class FiveMakeYourVoiceHeard : AppCompatActivity() {
+    private lateinit var binding:ActivityFivemakeyourvoiceheardBinding
     private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fivemakeyourvoiceheard)
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
+        binding = ActivityFivemakeyourvoiceheardBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        networkUtils = NetworkUtils(this)
-        networkUtils.initialize()
 
-        // Create a list of data to display in the RecyclerView
+        binding.backbtn.setOnClickListener {
+            val intent = Intent(this, CivicMenu::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
+
+
         val dataList = ArrayList<DataItem>()
 
         // Create a SpannableString with a larger text size for the specific portion
@@ -149,5 +161,8 @@ FiveMakeYourVoiceHeard : AppCompatActivity() {
 
         networkUtils.cleanup()
     }
-
+    override fun onBackPressed() {
+        super.onBackPressed()
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)}
 }

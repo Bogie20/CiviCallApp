@@ -7,17 +7,32 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.civicall.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.civicall.InformationFragment
 import com.example.civicall.NetworkUtils
+import com.example.civicall.databinding.ActivityCivicMenuBinding
 
 class CivicMenu : AppCompatActivity() {
     private lateinit var networkUtils: NetworkUtils
+    private lateinit var binding: ActivityCivicMenuBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_civic_menu)
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMain)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        binding = ActivityCivicMenuBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        val layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = layoutManager
+
+        binding.backbtn.setOnClickListener {
+            val intent = Intent(this, InformationFragment::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
 
         val campusList = listOf(
             DataMain("What is Civic Engagement? and How to Engage for Community Building"),
@@ -110,5 +125,8 @@ class CivicMenu : AppCompatActivity() {
 
         networkUtils.cleanup()
     }
-
+    override fun onBackPressed() {
+        super.onBackPressed()
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)}
 }

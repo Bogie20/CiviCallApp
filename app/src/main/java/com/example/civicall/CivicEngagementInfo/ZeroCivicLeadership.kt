@@ -8,20 +8,39 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
+import com.example.civicall.databinding.ActivityZeroCivicLeadershipBinding
+
 
 class ZeroCivicLeadership : AppCompatActivity() {
+    private lateinit var binding:ActivityZeroCivicLeadershipBinding
     private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_getting_started)
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
+        binding = ActivityZeroCivicLeadershipBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
 
+
+        binding.backbtn.setOnClickListener {
+            val intent = Intent(this, CivicMenu::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
+
+
+
+
         val dataList = ArrayList<DataItem>()
+
 
         dataList.add(
             DataItem("TYPES OF CIVIC ENGAGEMENT AT ILLINOIS STATE UNIVERSITY",
@@ -168,6 +187,9 @@ class ZeroCivicLeadership : AppCompatActivity() {
 
         networkUtils.cleanup()
     }
-
+    override fun onBackPressed() {
+        super.onBackPressed()
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)}
 
 }

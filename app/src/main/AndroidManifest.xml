@@ -142,7 +142,7 @@
             android:name=".CivicRightsAndResponsibility.EightCivicResponsibility"
             android:exported="true" />
         <activity
-            android:name=".CivicRightsAndResponsibility.SevenTImeofCrisis"
+            android:name=".CivicRightsAndResponsibility.SevenTimeofCrisis"
             android:exported="true" />
         <activity
             android:name=".CivicRightsAndResponsibility.SixEmpoweringYou"

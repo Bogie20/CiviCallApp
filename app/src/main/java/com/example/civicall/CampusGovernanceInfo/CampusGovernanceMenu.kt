@@ -28,6 +28,14 @@ class CampusGovernanceMenu : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
 
+        binding.backbtn.setOnClickListener {
+            val intent = Intent(this, InformationFragment::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
+
         val campusList = listOf(
             DataMain("Discovering the History of Batangas State University"),
             DataMain("Navigating University Governance and Leadership"),
@@ -125,5 +133,9 @@ class CampusGovernanceMenu : AppCompatActivity() {
 
         networkUtils.cleanup()
     }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)}
 
 }

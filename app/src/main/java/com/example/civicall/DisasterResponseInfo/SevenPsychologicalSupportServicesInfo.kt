@@ -10,23 +10,32 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
+import com.example.civicall.databinding.ActivitySevenPsychologicalSupportServicesInfoBinding
 
 class SevenPsychologicalSupportServicesInfo : AppCompatActivity() {
+    private lateinit var binding:ActivitySevenPsychologicalSupportServicesInfoBinding
     private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_seven_psychological_support_services_info)
-
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
+        binding = ActivitySevenPsychologicalSupportServicesInfoBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
 
-        // Create a list of data to display in the RecyclerView
-        val dataList = ArrayList<DataItem>()
+        binding.backbtn.setOnClickListener {
+            val intent = Intent(this, DisasterResponseMenu::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
 
-        // Create a SpannableString with a larger text size for the specific portion
+        val dataList = ArrayList<DataItem>()
 
         dataList.add(
             DataItem(
@@ -197,5 +206,8 @@ class SevenPsychologicalSupportServicesInfo : AppCompatActivity() {
         super.onDestroy()
         networkUtils.cleanup()
     }
-
+    override fun onBackPressed() {
+        super.onBackPressed()
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)}
 }
