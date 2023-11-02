@@ -27,9 +27,14 @@ class Settings : AppCompatActivity() {
             val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)
         }
-        val reportProblemsImageView = binding.reportProblemsImageView
-        reportProblemsImageView.setOnClickListener {
-            val intent = Intent(this, Reportproblems::class.java)
+//        val reportProblemsImageView = binding.reportProblemsImageView
+//        reportProblemsImageView.setOnClickListener {
+//            val intent = Intent(this, Reportproblems::class.java)
+//            startActivity(intent)
+//        }
+        val changepass = binding.changepass
+        changepass.setOnClickListener {
+            val intent = Intent(this, ChangePassword::class.java)
             startActivity(intent)
         }
     }

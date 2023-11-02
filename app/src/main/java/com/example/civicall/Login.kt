@@ -160,7 +160,6 @@ class Login : AppCompatActivity() {
         }
 
 
-
         binding.btnlogin.setOnClickListener {
             if (networkUtils.isOnline) {
                 validateData()
@@ -182,7 +181,6 @@ class Login : AppCompatActivity() {
             email.error = "Invalid Email"
             return
         }
-
         firebaseAuth.sendPasswordResetEmail(emailText).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 showCustomChangedPassMessage("Check Your Email to change the Password", 3000, R.layout.dialog_happyface)
@@ -193,6 +191,7 @@ class Login : AppCompatActivity() {
             }
         }
     }
+
     private fun dismissCustomDialog() {
         if (isPopupShowing) {
             // Dismiss the custom popup dialog
