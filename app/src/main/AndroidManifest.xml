@@ -16,7 +16,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- permissions -->
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -27,6 +27,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
+        <activity
+            android:name=".ChangePassword"
+            android:exported="false" />
         <activity
             android:name=".CampusGovernanceInfo.SevenPrograms"
             android:exported="true" />
@@ -212,8 +215,7 @@
             android:exported="true" />
         <activity
             android:name=".CivicEngagementPost.DetailPost"
-            android:exported="true" />
-    <!-- Posting Civic Engagement End -->
+            android:exported="true" /> <!-- Posting Civic Engagement End -->
         <!-- Educational Start -->
         <!-- Civic Engagement Start -->
         <activity
@@ -245,8 +247,7 @@
             android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.EightDigitalCivic"
-            android:exported="true"
-            />
+            android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.NineCampusInitiative"
             android:exported="true" /> <!-- Civic Engagement End -->

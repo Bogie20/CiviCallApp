@@ -20,11 +20,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
+
 class Accountverification : AppCompatActivity() {
-    private lateinit var networkUtils: NetworkUtils
     private lateinit var BackClick: ImageView
     private lateinit var uploadButton: Button
     private lateinit var fileNameTextView: TextView
+
 
     private val REQUEST_CODE_DOCUMENT_PICKER = 1
     private var isFileUploaded = false
@@ -33,37 +34,42 @@ class Accountverification : AppCompatActivity() {
     private val storage = FirebaseStorage.getInstance()
     private val storageRef = storage.reference
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_accountverification)
         BackClick = findViewById(R.id.back100)
-        networkUtils = NetworkUtils(this)
-        networkUtils.initialize()
         BackClick.setOnClickListener {
             val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)
         }
 
+
         uploadButton = findViewById(R.id.uploadbutton)
         fileNameTextView = findViewById(R.id.selectedFileNameTextView)
 
+
         // Get the SharedPreferences instance
         sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE)
+
 
         val buttonRemove = findViewById<Button>(R.id.buttonremove)
         buttonRemove.setOnClickListener {
             // Reset the verification status
             isFileUploaded = false
 
+
             // Clear the file name from SharedPreferences
             val editor = sharedPreferences.edit()
             editor.remove(FILE_NAME_KEY)
             editor.apply()
 
+
             // Update the UI to reflect the changes
             fileNameTextView.text = "Not Yet Verified"
             uploadButton.isEnabled = true
         }
+
 
         // Retrieve the file name from SharedPreferences if it exists
         val savedFileName = sharedPreferences.getString(FILE_NAME_KEY, null)
@@ -82,6 +88,7 @@ class Accountverification : AppCompatActivity() {
         }
     }
 
+
     // Restores the file name and upload status when the activity is resumed
     override fun onResume() {
         super.onResume()
@@ -92,6 +99,7 @@ class Accountverification : AppCompatActivity() {
             uploadButton.isEnabled = false
         }
     }
+
 
     private fun showConfirmationDialog(fileName: String) {
         val builder = AlertDialog.Builder(this)
@@ -107,11 +115,13 @@ class Accountverification : AppCompatActivity() {
         builder.show()
     }
 
+
     private fun openDocumentPicker() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "application/pdf" // Specify the MIME type for PDF files
         startActivityForResult(intent, REQUEST_CODE_DOCUMENT_PICKER)
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -122,19 +132,23 @@ class Accountverification : AppCompatActivity() {
                     // Get the file name from the URI
                     val fileName = getFileName(uri)
 
+
                     // Upload the file to Firebase Storage
                     val storageRef = FirebaseStorage.getInstance().reference
                     val fileReference = storageRef.child("verification File/$fileName")
+
 
                     fileReference.putFile(uri)
                         .addOnSuccessListener { _ ->
                             // File successfully uploaded
                             Toast.makeText(this, "File uploaded to Firebase Storage", Toast.LENGTH_SHORT).show()
 
+
                             // Save the file name in SharedPreferences
                             val editor = sharedPreferences.edit()
                             editor.putString(FILE_NAME_KEY, fileName)
                             editor.apply()
+
 
                             // Show the confirmation dialog before showing the popup dialog
                             showConfirmationDialog(fileName)
@@ -153,11 +167,13 @@ class Accountverification : AppCompatActivity() {
         }
     }
 
+
     private fun isFileAllowed(uri: Uri): Boolean {
         val contentResolver: ContentResolver = contentResolver
         val mime = contentResolver.getType(uri)
         return mime?.startsWith("application/pdf") == true
     }
+
 
     private fun getFileName(uri: Uri): String {
         val contentResolver: ContentResolver = contentResolver
@@ -172,15 +188,11 @@ class Accountverification : AppCompatActivity() {
         return "Unknown File"
     }
 
+
     private fun showPopupDialog(fileName: String) {
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         val fragment = PopupDialogFragment(fileName)
         fragment.show(fragmentTransaction, "popup_dialog")
     }
-    override fun onDestroy() {
-        super.onDestroy()
-        networkUtils.cleanup()
-    }
-
 }
