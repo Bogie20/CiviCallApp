@@ -3,6 +3,7 @@ package com.example.civicall.CivicEngagementInfo
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,19 +22,15 @@ class ThreeEffectiveAdvocacy : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
 
-        binding.backbtn.setOnClickListener {
-            val intent = Intent(this, CivicMenu::class.java)
+        val backButton: ImageView = findViewById(R.id.backbtn)
+        backButton.setOnClickListener {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-            startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
         }
 
-
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val dataList = ArrayList<DataItem>()
         dataList.add(
             DataItem(
@@ -146,17 +143,12 @@ class ThreeEffectiveAdvocacy : AppCompatActivity() {
             }
         })
 
-
-        // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
     }
     override fun onDestroy() {
         super.onDestroy()
 
         networkUtils.cleanup()
     }
-    override fun onBackPressed() {
-        super.onBackPressed()
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)}
 }

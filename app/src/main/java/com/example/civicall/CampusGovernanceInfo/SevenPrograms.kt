@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataAdapter
@@ -25,18 +26,14 @@ class SevenPrograms : AppCompatActivity() {
         setContentView(view)
 
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
-
-        binding.backbtn.setOnClickListener {
-            val intent = Intent(this, CampusGovernanceMenu::class.java)
+        val backButton: ImageView = findViewById(R.id.backbtn)
+        backButton.setOnClickListener {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-            startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
         }
 
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val dataList = ArrayList<DataItem>()
 
         dataList.add(
@@ -458,10 +455,8 @@ class SevenPrograms : AppCompatActivity() {
                 startActivity(intent)
             }
         })
-
-
-        // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
     }
     override fun onDestroy() {
@@ -469,8 +464,4 @@ class SevenPrograms : AppCompatActivity() {
 
         networkUtils.cleanup()
     }
-    override fun onBackPressed() {
-        super.onBackPressed()
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)}
 }

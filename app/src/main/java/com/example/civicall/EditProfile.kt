@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -196,11 +197,11 @@ class EditProfile : AppCompatActivity() {
             showSaveConfirmationDialog()
         }
 
-        binding.backbtn.setOnClickListener {
-            val intent = Intent(this, ProfileDetails::class.java)
+        val backButton: ImageView = findViewById(R.id.backbtn)
+        backButton.setOnClickListener {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
         }
 
         binding.profileImage.setOnClickListener {
@@ -743,11 +744,6 @@ class EditProfile : AppCompatActivity() {
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path = MediaStore.Images.Media.insertImage(contentResolver, inImage, "Title", null)
         return Uri.parse(path)
-    }
-    override fun onBackPressed() {
-        super.onBackPressed()
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
 
     private fun uploadProfileImage(imageUri: Uri) {

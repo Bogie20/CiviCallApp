@@ -3,6 +3,7 @@ package com.example.civicall.SurvivalTipsInfo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import com.example.civicall.CivicEngagementInfo.CivicAdapterMain
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,17 +11,25 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataMain
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
+import com.example.civicall.databinding.ActivitySurvivalMenuBinding
 
 class SurvivalMenu : AppCompatActivity() {
     private lateinit var networkUtils: NetworkUtils
+    private lateinit var binding: ActivitySurvivalMenuBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_survival_menu)
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMain)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
+        binding = ActivitySurvivalMenuBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        val backButton: ImageView = findViewById(R.id.backbtn)
+        backButton.setOnClickListener {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
+        }
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val campusList = listOf(
             DataMain("Surviving Philippine Earthquakes: Preparedness and Response"),
             DataMain("Volcanic Eruption Survival in the Philippines: Ashfall and Lava Flow"),
@@ -105,6 +114,7 @@ class SurvivalMenu : AppCompatActivity() {
         }
 
         recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
     }
     override fun onDestroy() {
         super.onDestroy()

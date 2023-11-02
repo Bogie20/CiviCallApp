@@ -2,6 +2,7 @@ package com.example.civicall.PublicHealtAwarenessInfo
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import com.example.civicall.CivicEngagementInfo.CivicAdapterMain
 import androidx.appcompat.app.AppCompatActivity
@@ -10,17 +11,28 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataMain
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
+import com.example.civicall.databinding.ActivityHealthAwarenessMenuBinding
 
-class healtawarenessinfoMenu : AppCompatActivity() {
+class HealthAwarenessMenu : AppCompatActivity() {
     private lateinit var networkUtils: NetworkUtils
+    private lateinit var binding: ActivityHealthAwarenessMenuBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_healtawarenessinfo_menu)
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMain)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        binding = ActivityHealthAwarenessMenuBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
+        val backButton: ImageView = findViewById(R.id.backbtn)
+        backButton.setOnClickListener {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
+        }
+
+
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMain)
         val campusList = listOf(
             DataMain("Empowering Communities Grassroots Efforts in Public Health"),
             DataMain("Environmental Health in the Philippines: Awareness and Action"),
@@ -105,9 +117,7 @@ class healtawarenessinfoMenu : AppCompatActivity() {
         }
 
         recyclerView.adapter = adapter
-
-
-
+        recyclerView.layoutManager = LinearLayoutManager(this)
     }
     override fun onDestroy() {
         super.onDestroy()

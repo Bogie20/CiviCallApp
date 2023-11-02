@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataAdapter
@@ -13,8 +14,8 @@ import com.example.civicall.R
 import com.example.civicall.databinding.ActivityEightSurvivalPsychologyInfoBinding
 
 class EightSurvivalPsychology : AppCompatActivity() {
+    private lateinit var binding:ActivityEightSurvivalPsychologyInfoBinding
     private lateinit var networkUtils: NetworkUtils
-    private lateinit var binding: ActivityEightSurvivalPsychologyInfoBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         networkUtils = NetworkUtils(this)
@@ -23,13 +24,14 @@ class EightSurvivalPsychology : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
-
-        // Create a list of data to display in the RecyclerView
+        val backButton: ImageView = findViewById(R.id.backbtn)
+        backButton.setOnClickListener {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
+        }
         val dataList = ArrayList<DataItem>()
-
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         dataList.add(
             DataItem(
                 "COPING WITH TRAUMA AND LOSS",
@@ -149,9 +151,9 @@ class EightSurvivalPsychology : AppCompatActivity() {
             }
         })
 
-
-        // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
 
     }
     override fun onDestroy() {

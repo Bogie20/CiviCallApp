@@ -4,28 +4,34 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
+import com.example.civicall.databinding.ActivitySevenRisingAwarenessBinding
 
 class SevenRisingAwareness : AppCompatActivity() {
+    private lateinit var binding:ActivitySevenRisingAwarenessBinding
     private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_seven_rising_awareness)
-
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
+        binding = ActivitySevenRisingAwarenessBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        // Create a list of data to display in the RecyclerView
+        val backButton: ImageView = findViewById(R.id.backbtn)
+        backButton.setOnClickListener {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
+        }
         val dataList = ArrayList<DataItem>()
-
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         dataList.add(
             DataItem(
                 "COASTAL EROSION AND SEA-LEVEL RISE IN THE PHILIPPINES",
@@ -147,8 +153,8 @@ class SevenRisingAwareness : AppCompatActivity() {
         })
 
 
-        // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
     }
     override fun onDestroy() {

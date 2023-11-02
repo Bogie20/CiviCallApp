@@ -2,15 +2,15 @@ package com.example.civicall.DisasterResponseInfo
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.civicall.R
-import com.example.civicall.CivicEngagementInfo.CivicAdapterMain
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.civicall.CivicEngagementInfo.CivicAdapterMain
 import com.example.civicall.CivicEngagementInfo.DataMain
-import com.example.civicall.InformationFragment
 import com.example.civicall.NetworkUtils
+import com.example.civicall.R
 import com.example.civicall.databinding.ActivityDisasterResponseMenuBinding
 
 class DisasterResponseMenu : AppCompatActivity() {
@@ -24,18 +24,13 @@ class DisasterResponseMenu : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
-
-        binding.backbtn.setOnClickListener {
-            val intent = Intent(this, InformationFragment::class.java)
+        val backButton: ImageView = findViewById(R.id.backbtn)
+        backButton.setOnClickListener {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-            startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
         }
-
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMain)
         val campusList = listOf(
             DataMain("Emergency Preparedness: Plan Ahead for Safety."),
             DataMain("First Aid and Basic Life Support: Learn Life-Saving Skills."),
@@ -120,13 +115,10 @@ class DisasterResponseMenu : AppCompatActivity() {
         }
 
         recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
     }
     override fun onDestroy() {
         super.onDestroy()
         networkUtils.cleanup()
     }
-    override fun onBackPressed() {
-        super.onBackPressed()
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)}
 }

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import android.widget.Toast
 import com.example.civicall.databinding.ActivityProfiledetailsBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -37,11 +38,11 @@ class ProfileDetails : AppCompatActivity() {
         // Check if the user is logged in
         checkUser()
         // Set up click listeners for UI elements
-        binding.backbtn.setOnClickListener {
-            val intent = Intent(this, MainMenu::class.java)
+        val backButton: ImageView = findViewById(R.id.backbtn)
+        backButton.setOnClickListener {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-            overridePendingTransition(R.anim.animate_fade_enter,R.anim.animate_fade_exit)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
         }
 
 
@@ -106,11 +107,6 @@ class ProfileDetails : AppCompatActivity() {
             // Show a toast if there's a failure in fetching data
             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
         }
-    }
-    override fun onBackPressed() {
-        super.onBackPressed()
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
     override fun onDestroy() {
         super.onDestroy()

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.DataAdapter
@@ -13,24 +14,23 @@ import com.example.civicall.R
 import com.example.civicall.databinding.ActivitySevenNutritionEducationBinding
 
 class SevenNutritionEducation : AppCompatActivity() {
+    private lateinit var binding:ActivitySevenNutritionEducationBinding
     private lateinit var networkUtils: NetworkUtils
-    private lateinit var binding: ActivitySevenNutritionEducationBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
-
         binding = ActivitySevenNutritionEducationBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
+        val backButton: ImageView = findViewById(R.id.backbtn)
+        backButton.setOnClickListener {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
+        }
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
-
-
-        // Create a list of data to display in the RecyclerView
         val dataList = ArrayList<DataItem>()
 
         dataList.add(
@@ -154,8 +154,8 @@ class SevenNutritionEducation : AppCompatActivity() {
         })
 
 
-        // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
     }
     override fun onDestroy() {

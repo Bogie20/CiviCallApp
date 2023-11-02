@@ -1,5 +1,6 @@
 package com.example.civicall.EmergencyCon
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
@@ -34,6 +35,8 @@ class MainEmergencyContact : AppCompatActivity() {
         recyclerView.adapter = adapter
         val backButton: ImageView = findViewById(R.id.backbtn)
         backButton.setOnClickListener {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
             onBackPressed()
         }
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

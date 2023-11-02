@@ -1,5 +1,6 @@
 package com.example.civicall.EmergencyCon
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.ImageView
@@ -26,6 +27,8 @@ class MabiniCont : AppCompatActivity() {
         networkUtils.initialize()
         val backButton: ImageView = findViewById(R.id.backbtn)
         backButton.setOnClickListener {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
             onBackPressed()
         }
         recyclerView = findViewById(R.id.recyclerView)

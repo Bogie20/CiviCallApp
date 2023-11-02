@@ -1,14 +1,14 @@
 package com.example.civicall.CampusGovernanceInfo
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.CivicEngagementInfo.CivicAdapterMain
 import com.example.civicall.CivicEngagementInfo.DataMain
-import com.example.civicall.InformationFragment
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityCampusGovernanceMenuBinding
@@ -24,16 +24,11 @@ class CampusGovernanceMenu : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
-
-        binding.backbtn.setOnClickListener {
-            val intent = Intent(this, InformationFragment::class.java)
+        val backButton: ImageView = findViewById(R.id.backbtn)
+        backButton.setOnClickListener {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-            startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
         }
 
         val campusList = listOf(
@@ -48,7 +43,7 @@ class CampusGovernanceMenu : AppCompatActivity() {
             DataMain("Nurturing Holistic Student Development: The Role of OSAS at Batangas State University"),
             DataMain("Sustainability and Social Responsibility at BSU")
         )
-
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMain)
         val adapter = CivicAdapterMain(campusList) { position ->
             // Handle the item click here based on the position
             when (position) {
@@ -118,14 +113,9 @@ class CampusGovernanceMenu : AppCompatActivity() {
                 }
             }
         }
-
         recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-        binding.backbtn.setOnClickListener {
-            val intent = Intent(this, InformationFragment::class.java)
-            startActivity(intent)
-            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-        }
 
     }
     override fun onDestroy() {
@@ -133,9 +123,5 @@ class CampusGovernanceMenu : AppCompatActivity() {
 
         networkUtils.cleanup()
     }
-    override fun onBackPressed() {
-        super.onBackPressed()
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)}
 
 }

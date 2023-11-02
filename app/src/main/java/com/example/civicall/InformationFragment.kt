@@ -17,7 +17,7 @@ import com.example.civicall.EmergencyCon.MainEmergencyContact
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import com.example.civicall.EnvironmentalandSocialIssueInfo.EnvironmentalAndSocialIssuesMenu
-import com.example.civicall.PublicHealtAwarenessInfo.healtawarenessinfoMenu
+import com.example.civicall.PublicHealtAwarenessInfo.HealthAwarenessMenu
 import com.example.civicall.SurvivalTipsInfo.SurvivalMenu
 
 class InformationFragment : Fragment() {
@@ -65,7 +65,7 @@ class InformationFragment : Fragment() {
             startActivity(intent)
         }
         cardview7.setOnClickListener {
-            val intent = Intent(requireContext(), healtawarenessinfoMenu::class.java)
+            val intent = Intent(requireContext(), HealthAwarenessMenu::class.java)
             startActivity(intent)
         }
         cardview8.setOnClickListener {

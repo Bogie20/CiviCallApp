@@ -37,10 +37,11 @@ class MainMenu : AppCompatActivity() {
 
         BackClick = findViewById(R.id.backbtn)
 
-        binding.backbtn.setOnClickListener {
-            val intent = Intent(this, Dashboard::class.java)
-            startActivity(intent)
-            overridePendingTransition(R.anim.animate_fade_enter,R.anim.animate_fade_exit)
+        val backButton: ImageView = findViewById(R.id.backbtn)
+        backButton.setOnClickListener {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
         }
 
         val setting: TextView = findViewById(R.id.Setting)
@@ -167,11 +168,6 @@ class MainMenu : AppCompatActivity() {
             }
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-    }
     override fun onDestroy() {
         super.onDestroy()
 

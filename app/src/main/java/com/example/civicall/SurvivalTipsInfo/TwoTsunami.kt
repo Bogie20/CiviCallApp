@@ -10,21 +10,28 @@ import com.example.civicall.CivicEngagementInfo.DataAdapter
 import com.example.civicall.CivicEngagementInfo.DataItem
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
+import android.widget.ImageView
+import com.example.civicall.databinding.ActivityTwoTsunamiInfoBinding
 
 class TwoTsunami : AppCompatActivity() {
+    private lateinit var binding:ActivityTwoTsunamiInfoBinding
     private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_two_tsunami_info)
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
+        binding = ActivityTwoTsunamiInfoBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        // Create a list of data to display in the RecyclerView
+        val backButton: ImageView = findViewById(R.id.backbtn)
+        backButton.setOnClickListener {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
+        }
         val dataList = ArrayList<DataItem>()
-
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         dataList.add(
             DataItem(
                 "TSUNAMI WARNING SYSTEMS AND ALERTS",
@@ -143,10 +150,8 @@ class TwoTsunami : AppCompatActivity() {
             }
         })
 
-
-        // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
-
+        recyclerView.layoutManager = LinearLayoutManager(this)
     }
     override fun onDestroy() {
         super.onDestroy()

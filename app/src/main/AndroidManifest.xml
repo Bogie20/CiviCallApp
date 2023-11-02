@@ -91,7 +91,7 @@
             android:name=".PublicHealtAwarenessInfo.SixHealthisWealth"
             android:exported="true" />
         <activity
-            android:name=".PublicHealtAwarenessInfo.healtawarenessinfoMenu"
+            android:name=".PublicHealtAwarenessInfo.HealthAwarenessMenu"
             android:exported="true" />
         <activity
             android:name=".EnvironmentalandSocialIssueInfo.FourGenderEquality"

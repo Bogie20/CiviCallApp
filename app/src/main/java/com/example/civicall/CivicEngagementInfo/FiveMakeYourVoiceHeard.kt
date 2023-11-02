@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.NetworkUtils
@@ -21,22 +22,17 @@ class FiveMakeYourVoiceHeard : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
 
-        binding.backbtn.setOnClickListener {
-            val intent = Intent(this, CivicMenu::class.java)
+        val backButton: ImageView = findViewById(R.id.backbtn)
+        backButton.setOnClickListener {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-            startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
         }
 
 
         val dataList = ArrayList<DataItem>()
-
-        // Create a SpannableString with a larger text size for the specific portion
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
         dataList.add(
             DataItem(
@@ -153,8 +149,8 @@ class FiveMakeYourVoiceHeard : AppCompatActivity() {
         })
 
 
-        // Set the adapter for the RecyclerView
         recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
     }
     override fun onDestroy() {
         super.onDestroy()
