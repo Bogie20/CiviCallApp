@@ -37,7 +37,7 @@
                 android:id="@+id/civicall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+               android:layout_marginLeft="40dp"
                 android:fontFamily="@font/oleo_script"
                 android:text="Balayan Emergency Contact"
                 android:textColor="@color/white"

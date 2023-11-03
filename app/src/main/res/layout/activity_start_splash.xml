@@ -34,7 +34,7 @@
             android:fontFamily="@font/dmsans_bold"
             android:padding="10sp"
             android:gravity="center"
-            android:text="Be A Part of Community Building"
+            android:text="Join the Movement: Building a Stronger Community Together"
             android:textColor="@color/redpink"
             android:textSize="25sp"
             android:textStyle="bold" />

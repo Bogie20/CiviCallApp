@@ -32,12 +32,11 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_centerInParent="true"
-            android:fontFamily="@font/lexend_bold"
+            android:fontFamily="@font/oleo_script"
             android:text="Settings And Password"
             android:textColor="@color/white"
-            android:textSize="18dp" />
+            android:textSize="23dp" />
 
     </RelativeLayout>
 
@@ -47,8 +46,6 @@
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/relativeLayout"
         app:layout_constraintBottom_toBottomOf="parent">
-
-
 
         <LinearLayout
             android:layout_marginTop="20dp"

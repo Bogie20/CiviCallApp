@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/oswald_bold"
+        android:fontFamily="@font/oleo_script"
         android:letterSpacing="0.10"
         android:text="CIVICALL"
         android:textColor="@color/whiteTextColor"

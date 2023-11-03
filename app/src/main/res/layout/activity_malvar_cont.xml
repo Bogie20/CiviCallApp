@@ -37,11 +37,11 @@
                 android:id="@+id/civicall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:fontFamily="@font/inter_bold"
+                android:layout_marginLeft="40dp"
+                android:fontFamily="@font/oleo_script"
                 android:text="Malvar Emergency Contact"
                 android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:textSize="23dp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

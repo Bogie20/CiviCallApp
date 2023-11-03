@@ -26,13 +26,13 @@
             android:clickable="true"
             android:focusable="true"
             android:onClick="BackClick" />
+
         <TextView
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_centerInParent="true"
-            android:fontFamily="@font/lexend_bold"
+            android:fontFamily="@font/oleo_script"
             android:text="COASTAL RESILIENCE"
             android:textColor="@color/white"
             android:textSize="18dp" />
