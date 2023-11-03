@@ -7,11 +7,13 @@ import com.example.civicall.databinding.ActivityStartSplash3Binding
 
 class StartSplash3 : AppCompatActivity() {
     private lateinit var binding: ActivityStartSplash3Binding
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityStartSplash3Binding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         binding.volunteerImage.setImageResource(R.drawable.volunteer3)
 
         //Next button clicking activity
@@ -30,4 +32,9 @@ class StartSplash3 : AppCompatActivity() {
             finish()
         }
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

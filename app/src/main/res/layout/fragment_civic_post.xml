@@ -18,12 +18,11 @@
         app:searchHintIcon="@null"
         app:queryHint="Search..."
         android:focusable="false"
-        app:closeIcon="@drawable/filter_25"
         app:searchIcon="@drawable/search_icon"
         android:background="@drawable/search_view_background"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressBar"

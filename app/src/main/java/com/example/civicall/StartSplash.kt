@@ -7,11 +7,13 @@ import com.example.civicall.databinding.ActivityStartSplashBinding
 
 class StartSplash : AppCompatActivity() {
     private lateinit var binding: ActivityStartSplashBinding
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityStartSplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
 
         //Setting trhe first image and thgen changing the background image at regular intervals
         binding.volunteerImage.setImageResource(R.drawable.volunteer)
@@ -32,4 +34,9 @@ class StartSplash : AppCompatActivity() {
             finish()
         }
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

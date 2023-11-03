@@ -47,7 +47,7 @@ class Dashboard : AppCompatActivity() {
             ) {
                 when (newIndex) {
                     0 -> {
-                        binding.titleLarge.text = "Civic Engagement"
+                        binding.titleLarge.text = "Take Action: Join the Cause"
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         replaceFragment(CivicPostFragment())

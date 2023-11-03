@@ -35,6 +35,7 @@ class ChangePassword : AppCompatActivity() {
     private var currentpassword = ""
     private var newpassword = ""
     private var retypepassword = ""
+    private lateinit var networkUtils: NetworkUtils
     private fun validateCurrentPassword(): Boolean {
         val password = binding.CurrentPassword.text.toString().trim()
 
@@ -100,6 +101,8 @@ class ChangePassword : AppCompatActivity() {
         binding = ActivityChangePasswordBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
 
         auth = FirebaseAuth.getInstance()
         binding.btnchange.setOnClickListener {
@@ -318,4 +321,9 @@ class ChangePassword : AppCompatActivity() {
             )
         }
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

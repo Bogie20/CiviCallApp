@@ -12,11 +12,13 @@ import kotlin.concurrent.schedule
 
 class StartSplash2 : AppCompatActivity() {
     private lateinit var binding: ActivityStartSplash2Binding
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityStartSplash2Binding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
 
         //Setting trhe first image and thgen changing the background image at regular intervals
         binding.volunteerImage.setImageResource(R.drawable.volunteer2)
@@ -37,4 +39,9 @@ class StartSplash2 : AppCompatActivity() {
             finish()
         }
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }
