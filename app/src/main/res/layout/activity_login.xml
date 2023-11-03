@@ -45,7 +45,7 @@
         android:id="@+id/headerWelcomeText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome Back"
+        android:text="Start Your Civic Journey"
         android:fontFamily="@font/oleo_script"
         android:textColor="@color/DarkGray"
         android:layout_marginTop="100dp"

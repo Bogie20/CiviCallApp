@@ -29,10 +29,10 @@ class ForumsFragment : Fragment() {
 //            startActivity(i)
 //        }
 
-        binding.backButtonAppoint.setOnClickListener {
-            val i = Intent(requireContext(), MainMenu::class.java)
-            startActivity(i)
-        }
+//        binding.backButtonAppoint.setOnClickListener {
+//            val i = Intent(requireContext(), MainMenu::class.java)
+//            startActivity(i)
+//        }
 
 //        binding.call1.setOnClickListener {
 //            val intent = Intent(Intent.ACTION_CALL)

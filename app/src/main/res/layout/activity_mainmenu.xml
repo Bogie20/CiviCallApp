@@ -25,11 +25,9 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:fontFamily="@font/inter_bold"
+            android:fontFamily="@font/oleo_script"
             android:paddingBottom="-50dp"
             android:text="Menu"
-
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/profileImage"

@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:fontFamily="@font/lexend_bold"
+                android:fontFamily="@font/oleo_script"
                 android:text="Give Feedback"
                 android:textColor="@color/white"
                 android:textSize="25dp"
