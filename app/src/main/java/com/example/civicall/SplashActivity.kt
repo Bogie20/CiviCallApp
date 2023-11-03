@@ -34,6 +34,7 @@ class SplashActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
         lifecycleScope.launch {
+
             binding.logo.alpha = 0f
 
             binding.logo.animate().setDuration(2000).alpha(1f).withEndAction {
