@@ -115,6 +115,3 @@ class ProfileDetails : AppCompatActivity() {
         networkUtils.cleanup()
     }
 }
-
-
-

@@ -678,7 +678,7 @@ class EditProfile : AppCompatActivity() {
         if (isImageDialogShowing) {
             return
         }
-      dismissCustomDialog()
+        dismissCustomDialog()
         val dialogView = layoutInflater.inflate(R.layout.profileedit_popup, null)
         val lytCameraPick = dialogView.findViewById<LinearLayout>(R.id.lytCameraPick)
         val lytGalleryPick = dialogView.findViewById<LinearLayout>(R.id.lytGalleryPick)
@@ -795,7 +795,3 @@ data class User(
     val nstp: String = ""
 
 )
-
-
-
-

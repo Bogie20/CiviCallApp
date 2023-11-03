@@ -12,8 +12,6 @@ class StartSplash3 : AppCompatActivity() {
         binding = ActivityStartSplash3Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        //Setting trhe first image and thgen changing the background image at regular intervals
         binding.volunteerImage.setImageResource(R.drawable.volunteer3)
 
         //Next button clicking activity

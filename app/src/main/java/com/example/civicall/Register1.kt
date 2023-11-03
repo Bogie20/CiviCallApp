@@ -815,14 +815,13 @@ dismissCustomDialog()
         firebaseAuth.createUserWithEmailAndPassword(email, pass)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Account creation success
-                    // Call updateUserInfo to save user info after creating the account
                     updateUserInfo()
-                    // Now, navigate to the Login activity
+
                     val intent = Intent(this, Login::class.java)
-                    intent.putExtra("showSuccessPopup", true) // Set the flag to true
+                    intent.putExtra("showSuccessPopup", true)
                     startActivity(intent)
                     finish()
+                    firebaseAuth.signOut()
                 } else {
                     // Account creation failed
                     val errorMessage = task.exception?.message ?: "Unknown error occurred."
@@ -832,8 +831,8 @@ dismissCustomDialog()
     }
 
 
-    private fun updateUserInfo() {
 
+    private fun updateUserInfo() {
         val searchFragment = CivicPostFragment()
         val args = Bundle()
         args.putString("firstName", fname)
@@ -855,6 +854,7 @@ dismissCustomDialog()
         hashMap["userType"] = userCategory
         hashMap["timestamp"] = timestamp
         hashMap["campus"] = selectedCampus
+        hashMap["verificationStatus"] = false // Set verification status to false by default
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, searchFragment)
@@ -872,6 +872,7 @@ dismissCustomDialog()
                 showCustomPopupError("Failed Saving User's Info due to ${e.message}")
             }
     }
+
     override fun onBackPressed() {
         super.onBackPressed()
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
