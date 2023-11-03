@@ -25,9 +25,7 @@ class StartSplash2 : AppCompatActivity() {
         binding.nextButton.setOnClickListener {
             val i = Intent(this, StartSplash3::class.java)
             startActivity(i)
-            overridePendingTransition(
-                com.google.android.material.R.anim.abc_fade_in,
-                com.google.android.material.R.anim.abc_fade_out)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
             finish()
         }
 
@@ -35,9 +33,7 @@ class StartSplash2 : AppCompatActivity() {
         binding.skipButton.setOnClickListener {
             val i = Intent(this, Login::class.java)
             startActivity(i)
-            overridePendingTransition(
-                com.google.android.material.R.anim.abc_fade_in,
-                com.google.android.material.R.anim.abc_fade_out)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
             finish()
         }
     }

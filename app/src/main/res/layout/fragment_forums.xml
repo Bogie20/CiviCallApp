@@ -1,14 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ForumsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/ll_topbar_appoint"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="10dp">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/back_button_appoint"
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:src="@drawable/backbtns" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20sp"
+            android:text="Forum"
+            android:fontFamily="@font/dmsans_bold"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="December 12 2022"
+        android:fontFamily="@font/dmsans_bold"
+        android:textColor="#686868"
+        android:textStyle="bold"
+        android:paddingEnd="20sp"
+        android:paddingStart="20sp"
+        android:layout_marginTop="15sp"
+        app:layout_constraintTop_toBottomOf="@+id/rgUnits"
+        tools:layout_editor_absoluteX="20dp" />
+
+
+
+    <RadioGroup
+        android:id="@+id/rgUnits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:padding="4dp"
+        android:background="@drawable/radio_tab_background"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/ll_topbar_appoint">
+
+        <RadioButton
+            android:id="@+id/rbupcoming"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="0.50"
+            android:background="@drawable/radio_button_selector"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="Discussion"
+            android:fontFamily="@font/dmsans_medium"
+            android:textColor="@color/DarkGray"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rbpast"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="0.50"
+            android:background="@drawable/radio_button_selector"
+            android:button="@null"
+            android:checked="false"
+            android:gravity="center"
+            android:text="Message"
+            android:fontFamily="@font/dmsans_medium"
+            android:textColor="@color/DarkGray"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RadioGroup>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

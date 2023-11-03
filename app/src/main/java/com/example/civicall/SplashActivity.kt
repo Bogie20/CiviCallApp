@@ -39,9 +39,7 @@ class SplashActivity : AppCompatActivity() {
             binding.logo.animate().setDuration(2000).alpha(1f).withEndAction {
                 val i = Intent(this@SplashActivity, StartSplash::class.java)
                 startActivity(i)
-                overridePendingTransition(
-                    com.google.android.material.R.anim.abc_fade_in,
-                    com.google.android.material.R.anim.abc_fade_out)
+                overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                 finish()
             }
             checkuser()
