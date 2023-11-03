@@ -35,11 +35,9 @@ class MainMenu : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         checkUser()
 
-        BackClick = findViewById(R.id.backbtn)
-
-        val backButton: ImageView = findViewById(R.id.backbtn)
-        backButton.setOnClickListener {
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        binding.backbtn.setOnClickListener {
+            val intent = Intent(this, Dashboard::class.java)
+            startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
             onBackPressed()
         }

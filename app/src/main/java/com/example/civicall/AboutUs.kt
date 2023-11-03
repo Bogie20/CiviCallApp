@@ -27,5 +27,4 @@ class AboutUs : AppCompatActivity() {
         super.onDestroy()
         networkUtils.cleanup()
     }
-
 }

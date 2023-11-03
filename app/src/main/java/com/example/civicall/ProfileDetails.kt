@@ -38,9 +38,9 @@ class ProfileDetails : AppCompatActivity() {
         // Check if the user is logged in
         checkUser()
         // Set up click listeners for UI elements
-        val backButton: ImageView = findViewById(R.id.backbtn)
-        backButton.setOnClickListener {
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        binding.backbtn.setOnClickListener {
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
             onBackPressed()
         }

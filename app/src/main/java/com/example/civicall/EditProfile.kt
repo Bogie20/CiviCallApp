@@ -197,9 +197,9 @@ class EditProfile : AppCompatActivity() {
             showSaveConfirmationDialog()
         }
 
-        val backButton: ImageView = findViewById(R.id.backbtn)
-        backButton.setOnClickListener {
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        binding.backbtn.setOnClickListener {
+            val intent = Intent(this, ProfileDetails::class.java)
+            startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
             onBackPressed()
         }
