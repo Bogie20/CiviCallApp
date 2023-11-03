@@ -203,7 +203,6 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:text="FEEDBACK"
-
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Engagement" />
@@ -220,11 +219,24 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:text="SETTINGS AND PRIVACY"
-
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/feedback" />
-
+    <TextView
+        android:id="@+id/Recognition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/menu_item_background"
+        android:drawableStart="@drawable/baseline_auto_awesome_24"
+        android:drawablePadding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="Recognition"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Setting" />
     <TextView
         android:id="@+id/AboutUs1"
         android:layout_width="wrap_content"
@@ -253,7 +265,7 @@
         android:text="Log Out"
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Setting"
+        app:layout_constraintTop_toBottomOf="@id/Recognition"
 
         />
 

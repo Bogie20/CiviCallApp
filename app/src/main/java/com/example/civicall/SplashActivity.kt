@@ -34,9 +34,20 @@ class SplashActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
         lifecycleScope.launch {
-            delay(2000)
+            binding.logo.alpha = 0f
+
+            binding.logo.animate().setDuration(2000).alpha(1f).withEndAction {
+                val i = Intent(this@SplashActivity, StartSplash::class.java)
+                startActivity(i)
+                overridePendingTransition(
+                    com.google.android.material.R.anim.abc_fade_in,
+                    com.google.android.material.R.anim.abc_fade_out)
+                finish()
+            }
             checkuser()
         }
+
+
     }
 
     private fun checkuser() {

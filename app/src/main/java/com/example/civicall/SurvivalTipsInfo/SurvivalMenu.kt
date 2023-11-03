@@ -29,7 +29,7 @@ class SurvivalMenu : AppCompatActivity() {
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
             onBackPressed()
         }
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMain)
         val campusList = listOf(
             DataMain("Surviving Philippine Earthquakes: Preparedness and Response"),
             DataMain("Volcanic Eruption Survival in the Philippines: Ashfall and Lava Flow"),

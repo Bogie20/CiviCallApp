@@ -93,11 +93,6 @@ class EditProfile : AppCompatActivity() {
         checkUser()
 
 
-        val campusDropdown = binding.campus
-        val campusesArray = resources.getStringArray(R.array.allowed_campuses)
-        val adaptercampus = ArrayAdapter(this, R.layout.dropdown_item, campusesArray)
-        (campusDropdown as? AutoCompleteTextView)?.setAdapter(adaptercampus)
-
         val usercategoryDropdown = binding.usercategory
         val usercategoryArray = resources.getStringArray(R.array.user_category)
         val adapterusertype = ArrayAdapter(this, R.layout.dropdown_item, usercategoryArray)
@@ -286,7 +281,6 @@ class EditProfile : AppCompatActivity() {
         binding.Contactline.text = Editable.Factory.getInstance().newEditable(user.phoneno)
         binding.ContactEme.text =
             Editable.Factory.getInstance().newEditable(user.ContactEme) // Set the ContactEme field
-        binding.campus.setText(user.campus, false)
         binding.usercategory.setText(user.userType, false)
         binding.birthdate.setText(user.birthday, false)
         binding.nstp.setText(user.nstp, false)
@@ -310,7 +304,6 @@ class EditProfile : AppCompatActivity() {
             val updatedLastName = binding.Lname.text.toString()
             val updatedAddress = binding.address.text.toString()
             val updatedContact = binding.Contactline.text.toString()
-            val updatedCampus = binding.campus.text.toString()
             val updatedUserType = binding.usercategory.text.toString()
             val updatedBirthday = binding.birthdate.text.toString()
             val updatedGender = binding.spinnerSex.text.toString()
@@ -351,7 +344,6 @@ class EditProfile : AppCompatActivity() {
                 "lastname" to updatedLastName,
                 "address" to updatedAddress,
                 "phoneno" to updatedContact,
-                "campus" to updatedCampus,
                 "userType" to updatedUserType,
                 "birthday" to updatedBirthday,
                 "gender" to updatedGender,
@@ -794,7 +786,6 @@ data class User(
     val lastname: String = "",
     val address: String = "",
     val phoneno: String = "",
-    val campus: String = "",
     val userType: String = "",
     val birthday: String = "",
     val gender: String = "",

@@ -33,7 +33,6 @@
             app:layout_constraintStart_toEndOf="@+id/textView4"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
@@ -353,39 +352,12 @@
 
 
             </com.google.android.material.textfield.TextInputLayout>
-            <TextView
-                android:id="@+id/label6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Campus:"
-                android:textSize="20sp"
-                android:layout_marginStart="5dp"
-                android:layout_marginBottom="5dp"
-                android:textColor="@color/white_70"
-                android:textStyle="bold"
-                />
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/campusTextInputLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
 
-
-                <AutoCompleteTextView
-                    android:id="@+id/campus"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:background="@drawable/rounded_edittext_background"
-                    android:editable="false" />
-            </com.google.android.material.textfield.TextInputLayout>
             <TextView
                 android:id="@+id/label7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Current Status:"
+                android:text="User Type:"
                 android:textSize="20sp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
