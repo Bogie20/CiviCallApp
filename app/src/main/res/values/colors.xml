@@ -130,4 +130,11 @@
     <color name="dark_background">#2F3032</color>
     <color name="dialog_info">#3086EB</color>
     <color name="dialog_info_darker">#1565C0</color>
+
+<!--forumpost-->
+    <color name="colorPrimaryText">#444444</color>
+    <color name="lineColor">#E6E6E6</color>
+    <color name="colorSecondaryText">#A5A5A5</color>
+
+    <color name="colorTextSelected">@color/white</color>
 </resources>
