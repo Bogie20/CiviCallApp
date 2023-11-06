@@ -121,7 +121,7 @@ class Update_engagement: AppCompatActivity() {
         val uploadersId = user?.uid
         if (uri != null) {
             // A new image is selected, update the data and imageUrl
-            val dataClass = DataClass(uploadersId, title, dateandtime, location, imageUrl)
+            val dataClass = DataClass(uploadersId, title, dateandtime, location, imageUrl, false)
 
             databaseReference.setValue(dataClass)
                 .addOnCompleteListener { task ->
@@ -141,7 +141,7 @@ class Update_engagement: AppCompatActivity() {
                 }
         } else {
             // No new image is selected, retain the existing image URL
-            val dataClass = DataClass(uploadersId, title, dateandtime, location, oldImageURL)
+            val dataClass = DataClass(uploadersId, title, dateandtime, location, oldImageURL, false)
 
             databaseReference.setValue(dataClass)
                 .addOnCompleteListener { task ->

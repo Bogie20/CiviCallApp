@@ -144,19 +144,27 @@ class MainMenu : AppCompatActivity() {
                     val fname = it.child("firstname").value
                     val lname = it.child("lastname").value
                     val email = it.child("email").value
+                    val verificationStatus = it.child("verificationStatus").value
                     val imageProfile = it.child("ImageProfile").value
-                    // Add space between first name and last name
 
-                    binding.firstName.text = fname.toString()
                     binding.firstName.text = fname.toString()
                     binding.lastName.text = lname.toString()
                     binding.email1.text = email.toString()
 
-                    val profileImage =
-                        binding.profileImage // Replace with your ImageView ID in the layout
+                    val profileImage = binding.profileImage // Replace with your ImageView ID in the layout
+
                     // Load the profile image using Picasso library
                     if (imageProfile != null && imageProfile.toString().isNotEmpty()) {
                         Picasso.get().load(imageProfile.toString()).into(profileImage)
+                    }
+
+                    // Check verification status and set drawable accordingly
+                    if (verificationStatus == true) {
+                        // If verificationStatus is true, set a drawable for a verified account
+                        binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verificationtrue_icon, 0, 0, 0)
+                    } else {
+                        // If verificationStatus is false, set a drawable for an unverified account
+                        binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verificationfalse_icon, 0, 0, 0)
                     }
                 } else {
                     Toast.makeText(this, "User Not existed", Toast.LENGTH_LONG).show()
@@ -165,6 +173,7 @@ class MainMenu : AppCompatActivity() {
                 Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
             }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

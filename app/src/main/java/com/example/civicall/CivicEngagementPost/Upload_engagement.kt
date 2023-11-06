@@ -92,14 +92,20 @@ class Upload_engagement : AppCompatActivity() {
         val datetime = uploadDateandTime.text.toString()
         val location = uploadLocation.text.toString()
 
-        // Get the UID of the currently logged-in user
+        val verificationStatus = false
+
         val user = FirebaseAuth.getInstance().currentUser
         val uploadersId = user?.uid
 
         if (uploadersId != null) {
-            val dataClass = DataClass(uploadersId,title, datetime, location, imageURL!!)
+            // Set verificationStatus to false in the DataClass object
+            val dataClass =
+                DataClass(uploadersId, title, datetime, location, imageURL!!, verificationStatus)
+
+            // Generate the current date and time using DateFormat and Calendar and use it as the key for the post
             val currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().time)
 
+            // Upload the DataClass object to the "Upload Engagement" node in Firebase Realtime Database with the current date and time as the key
             FirebaseDatabase.getInstance().getReference("Upload Engagement").child(currentDate)
                 .setValue(dataClass)
                 .addOnCompleteListener { task ->

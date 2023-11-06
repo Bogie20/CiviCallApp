@@ -3,6 +3,7 @@ package com.example.civicall.CivicEngagementPost
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -58,11 +59,8 @@ class DetailPost : AppCompatActivity() {
 
         val currentUser = FirebaseAuth.getInstance().currentUser
         val currentUserId = currentUser?.uid
-
-        // Initialize Firebase Database reference
         val databaseReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
 
-        // Fetch the uploadersUID from Firebase
         databaseReference.child(key).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -71,20 +69,13 @@ class DetailPost : AppCompatActivity() {
                     // Check if the current user is the uploader of the post
                     if (currentUserId != null && currentUserId == uploadersUID) {
                         fabMenu.visibility = View.VISIBLE
-                        deleteButton.visibility = View.VISIBLE
-                        editButton.visibility = View.VISIBLE
                     } else {
-
                         fabMenu.visibility = View.GONE
-                        deleteButton.visibility = View.GONE
-                        editButton.visibility = View.GONE
-
                     }
                 }
             }
-
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle the error, if any
+                Toast.makeText(this@DetailPost, "Database error: " + databaseError.message, Toast.LENGTH_SHORT).show()
             }
         })
 
