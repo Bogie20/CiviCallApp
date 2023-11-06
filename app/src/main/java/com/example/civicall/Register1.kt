@@ -201,10 +201,10 @@ class Register1 : AppCompatActivity() {
             activityRegister1Binding.birthdateTextInputLayout.error = "Date of Birth is Required"
             return false
         } else {
-            val dobParts = birthday.split(" / ")
+            val dobParts = birthday.split("/")
             if (dobParts.size == 3) {
-                val day = dobParts[0].toInt()
-                val month = dobParts[1].toInt()
+                val month = dobParts[0].toInt()
+                val day = dobParts[1].toInt()
                 val year = dobParts[2].toInt()
 
                 val calendar = Calendar.getInstance()
@@ -231,6 +231,7 @@ class Register1 : AppCompatActivity() {
             return true
         }
     }
+
     private fun validateCampus(): Boolean {
         val campus = activityRegister1Binding.campus.text.toString().trim()
 
@@ -487,8 +488,8 @@ class Register1 : AppCompatActivity() {
         birthday.setOnClickListener {
             val datePickerDialog = DatePickerDialog(
                 this,
-                DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                    val dateString = "$dayOfMonth / ${month + 1} / $year"
+                { _, year, month, dayOfMonth ->
+                    val dateString = "${month + 1}/${dayOfMonth}/${year}"
                     birthday.setText(dateString)
                 },
                 Myear,
@@ -497,6 +498,7 @@ class Register1 : AppCompatActivity() {
             )
             datePickerDialog.show()
         }
+
 
         // Ang ginagawa nito is habang nag tatype ka nawawala na agad yung error
         fun addTextChangeListenerWithDelay(editText: EditText, validationFunction: () -> Unit, delayMillis: Long) {

@@ -119,8 +119,8 @@ class EditProfile : AppCompatActivity() {
         birthday.setOnClickListener {
             val datePickerDialog = DatePickerDialog(
                 this,
-                DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                    val dateString = "$dayOfMonth / ${month + 1} / $year"
+                { _, year, month, dayOfMonth ->
+                    val dateString = "${month + 1}/${dayOfMonth}/${year}"
                     birthday.setText(dateString)
                 },
                 Myear,
@@ -129,6 +129,9 @@ class EditProfile : AppCompatActivity() {
             )
             datePickerDialog.show()
         }
+
+
+
 
         fullMname = binding.mname.text.toString()
         fullLname = binding.Lname.text.toString()
@@ -555,10 +558,10 @@ class EditProfile : AppCompatActivity() {
             showCustomPopup("Date of Birth is Required")
             return false
         } else {
-            val dobParts = birthday.split(" / ")
+            val dobParts = birthday.split("/")
             if (dobParts.size == 3) {
-                val day = dobParts[0].toInt()
-                val month = dobParts[1].toInt()
+                val month = dobParts[0].toInt()
+                val day = dobParts[1].toInt()
                 val year = dobParts[2].toInt()
 
                 val calendar = Calendar.getInstance()
@@ -570,12 +573,11 @@ class EditProfile : AppCompatActivity() {
                     currentYear - year - if (currentMonth < month || (currentMonth == month && currentDay < day)) 1 else 0
 
                 if (age < 18) {
-                    showCustomPopup( "You must be at least 18 years old")
+                    showCustomPopup("You must be at least 18 years old")
                     return false
                 }
             } else {
                 showCustomPopupError("Invalid Date of Birth format")
-
                 return false
             }
 
@@ -584,6 +586,7 @@ class EditProfile : AppCompatActivity() {
             return true
         }
     }
+
     private fun validateContactNumber(): Boolean {
         val contactNumber = binding.Contactline.text.toString().trim()
 

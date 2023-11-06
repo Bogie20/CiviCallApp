@@ -4,6 +4,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -16,7 +18,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
+import java.util.TimeZone
 
 class Upload_engagement : AppCompatActivity() {
 
@@ -37,6 +42,10 @@ class Upload_engagement : AppCompatActivity() {
         uploadTitle = findViewById(R.id.uploadTitle)
         uploadLocation = findViewById(R.id.uploadLocation)
         saveButton = findViewById(R.id.updateButton)
+
+        uploadDateandTime.setOnClickListener {
+            showDateTimePicker()
+        }
 
         val activityResultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -60,6 +69,57 @@ class Upload_engagement : AppCompatActivity() {
         saveButton.setOnClickListener {
             saveData()
         }
+    }
+    private fun showDateTimePicker() {
+        val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
+        dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            { _, year, month, dayOfMonth ->
+                calendar.set(Calendar.YEAR, year)
+                calendar.set(Calendar.MONTH, month)
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                val timePickerDialog = TimePickerDialog(
+                    this,
+                    { _, hourOfDay, minute ->
+                        val startCalendar = calendar.clone() as Calendar
+                        startCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                        startCalendar.set(Calendar.MINUTE, minute)
+
+                        val finishTimePickerDialog = TimePickerDialog(
+                            this,
+                            { _, finishHourOfDay, finishMinute ->
+                                val finishCalendar = startCalendar.clone() as Calendar
+                                finishCalendar.set(Calendar.HOUR_OF_DAY, finishHourOfDay)
+                                finishCalendar.set(Calendar.MINUTE, finishMinute)
+
+                                val formattedStartTime = dateFormat.format(startCalendar.time)
+                                val formattedFinishTime = SimpleDateFormat("hh:mm a", Locale.US).format(finishCalendar.time)
+
+                                // Set the selected date and time text in the uploadDateandTime EditText
+                                uploadDateandTime.setText("$formattedStartTime to $formattedFinishTime")
+                            },
+                            startCalendar.get(Calendar.HOUR_OF_DAY),
+                            startCalendar.get(Calendar.MINUTE),
+                            false
+                        )
+                        finishTimePickerDialog.show()
+                    },
+                    calendar.get(Calendar.HOUR_OF_DAY),
+                    calendar.get(Calendar.MINUTE),
+                    false
+                )
+                timePickerDialog.show()
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+
+        datePickerDialog.show()
     }
 
     private fun saveData() {
