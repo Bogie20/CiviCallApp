@@ -1,6 +1,5 @@
 package com.example.civicall.CivicEngagementPost
 
-
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.os.Bundle
@@ -11,9 +10,14 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.civicall.R
 import com.github.clans.fab.FloatingActionButton
+import com.github.clans.fab.FloatingActionMenu
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
@@ -25,8 +29,10 @@ class DetailPost : AppCompatActivity() {
     private lateinit var detailImage: ImageView
     private lateinit var deleteButton: FloatingActionButton
     private lateinit var editButton: FloatingActionButton
+    private lateinit var fabMenu: FloatingActionMenu
     private var key = ""
     private var imageUrl = ""
+    private var uploadersUID = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +43,8 @@ class DetailPost : AppCompatActivity() {
         detailTitle = findViewById(R.id.detailTitle)
         deleteButton = findViewById(R.id.deleteButton)
         editButton = findViewById(R.id.editButton)
-        detailLocation= findViewById(R.id.detailLocation)
+        detailLocation = findViewById(R.id.detailLocation)
+        fabMenu = findViewById(R.id.fabicon)
 
         val bundle = intent.extras
         bundle?.let {
@@ -48,6 +55,38 @@ class DetailPost : AppCompatActivity() {
             imageUrl = it.getString("Image") ?: ""
             Glide.with(this).load(it.getString("Image")).into(detailImage)
         }
+
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val currentUserId = currentUser?.uid
+
+        // Initialize Firebase Database reference
+        val databaseReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
+
+        // Fetch the uploadersUID from Firebase
+        databaseReference.child(key).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    uploadersUID = dataSnapshot.child("uploadersUID").value.toString()
+
+                    // Check if the current user is the uploader of the post
+                    if (currentUserId != null && currentUserId == uploadersUID) {
+                        fabMenu.visibility = View.VISIBLE
+                        deleteButton.visibility = View.VISIBLE
+                        editButton.visibility = View.VISIBLE
+                    } else {
+
+                        fabMenu.visibility = View.GONE
+                        deleteButton.visibility = View.GONE
+                        editButton.visibility = View.GONE
+
+                    }
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle the error, if any
+            }
+        })
 
         deleteButton.setOnClickListener {
             val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
