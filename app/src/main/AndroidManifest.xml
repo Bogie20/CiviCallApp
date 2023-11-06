@@ -28,8 +28,23 @@
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
         <activity
-            android:name=".ChangePassword"
+            android:name=".AccountVerification.ParentConsent"
             android:exported="false" />
+        <activity
+            android:name=".AccountVerification.CertificateOfRegistration"
+            android:exported="false" />
+        <activity
+            android:name=".AccountVerification.CertificateOfGraduation"
+            android:exported="true" />
+        <activity
+            android:name=".AccountVerification.FileCategory"
+            android:exported="true" />
+        <activity
+            android:name=".AccountVerification.MainAccountVerification"
+            android:exported="true" />
+        <activity
+            android:name=".ChangePassword"
+            android:exported="true" />
         <activity
             android:name=".CampusGovernanceInfo.SevenPrograms"
             android:exported="true" />
@@ -346,6 +361,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Feedback"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CivicEngagements"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
