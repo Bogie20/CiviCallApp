@@ -1,9 +1,13 @@
 package com.example.civicall.CivicEngagementPost
 
 import android.app.Activity
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -14,38 +18,54 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.civicall.R
+import com.example.civicall.databinding.ActivityUpdateEngagementBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import java.util.TimeZone
 
 class Update_engagement: AppCompatActivity() {
 
     private lateinit var updateImage: ImageView
     private lateinit var updateButton: Button
-    private lateinit var updateDateandTime: EditText
+    private lateinit var updateDateandTime: AutoCompleteTextView
     private lateinit var updateTitle: EditText
     private lateinit var updateLocation: EditText
+    private lateinit var updateCampus: AutoCompleteTextView
     private var title: String = ""
     private var dateandtime: String = ""
     private var location: String = ""
     private var imageUrl: String = ""
     private var key: String = ""
     private var oldImageURL: String = ""
+    private var campus: String = ""
     private var uri: Uri? = null
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference
+    private lateinit var binding: ActivityUpdateEngagementBinding
+    private lateinit var updateCampusAutoComplete: AutoCompleteTextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_update_engagement)
+        binding = ActivityUpdateEngagementBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        updateButton = findViewById(R.id.updateButton)
-        updateDateandTime = findViewById(R.id.updateDateandTime)
-        updateImage = findViewById(R.id.updateImage)
-        updateLocation = findViewById(R.id.updateLocation)
-        updateTitle = findViewById(R.id.updateTitle)
+        updateButton = binding.updateButton
+        updateDateandTime = binding.updateDateandTime
+        updateImage = binding.updateImage
+        updateLocation = binding.updateLocation
+        updateTitle = binding.updateTitle
+        updateCampus = binding.updateCampus
+
+        updateCampus.setOnClickListener {
+            showCampusSelectionDialog()
+        }
 
         val activityResultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -66,6 +86,7 @@ class Update_engagement: AppCompatActivity() {
             updateTitle.setText(bundle.getString("Title"))
             updateDateandTime.setText(bundle.getString("Date&Time"))
             updateLocation.setText(bundle.getString("Location"))
+            updateCampus.setText(bundle.getString("Campus"))
             key = bundle.getString("Key")!!
             oldImageURL = bundle.getString("Image")!!
         }
@@ -82,8 +103,10 @@ class Update_engagement: AppCompatActivity() {
             saveData()
 
         }
+        updateDateandTime.setOnClickListener {
+            showDateTimePicker()
+        }
     }
-
     private fun saveData() {
         val builder = AlertDialog.Builder(this@Update_engagement)
         builder.setCancelable(false)
@@ -100,28 +123,152 @@ class Update_engagement: AppCompatActivity() {
                 while (!uriTask.isComplete);
                 val urlImage = uriTask.result
                 imageUrl = urlImage.toString()
-                updateData()
-                dialog.dismiss()
+
+                if (!isDateTimeInPast(updateDateandTime.text.toString())) {
+                    // If the date and time are not in the past, proceed with data upload
+                    updateData()
+                    dialog.dismiss()
+                } else {
+                    dialog.dismiss()
+                    Toast.makeText(
+                        this@Update_engagement,
+                        "Selected date and time are in the past",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }.addOnFailureListener { e ->
                 dialog.dismiss()
+                // Handle the image upload failure, e.g., show an error message
+                Toast.makeText(
+                    this@Update_engagement,
+                    "Image upload failed: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         } else {
             // No new image selected, just update the data
-            updateData()
-            dialog.dismiss()
+            if (!isDateTimeInPast(updateDateandTime.text.toString())) {
+                updateData()
+                dialog.dismiss()
+            } else {
+                dialog.dismiss()
+                Toast.makeText(
+                    this@Update_engagement,
+                    "Selected date and time are in the past",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+    private fun showCampusSelectionDialog() {
+        val campuscategoryArray = resources.getStringArray(R.array.allowed_campuses)
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Select Campus")
+        builder.setItems(campuscategoryArray) { _, which ->
+            val selectedCampus = campuscategoryArray[which]
+            updateCampus.setText(selectedCampus)
+        }
+
+        val alertDialog = builder.create()
+
+        // Apply window animations and background styling here
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        alertDialog.show()
+    }
+
+
+    private fun isDateTimeInPast(dateTimeString: String): Boolean {
+        try {
+            val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
+            dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+            val selectedDateTime = dateFormat.parse(dateTimeString)
+            val currentDateTime = Calendar.getInstance().time
+
+            // Check if the selected date and time are in the past
+            return selectedDateTime != null && selectedDateTime.before(currentDateTime)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+            return true  // Handle the error as per your requirements
         }
     }
 
+    private fun showDateTimePicker() {
+        val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
+        dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            { _, year, month, dayOfMonth ->
+                calendar.set(Calendar.YEAR, year)
+                calendar.set(Calendar.MONTH, month)
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                val timePickerDialog = TimePickerDialog(
+                    this,
+                    { _, hourOfDay, minute ->
+                        val startCalendar = calendar.clone() as Calendar
+                        startCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                        startCalendar.set(Calendar.MINUTE, minute)
+
+                        val finishTimePickerDialog = TimePickerDialog(
+                            this,
+                            { _, finishHourOfDay, finishMinute ->
+                                val finishCalendar = startCalendar.clone() as Calendar
+                                finishCalendar.set(Calendar.HOUR_OF_DAY, finishHourOfDay)
+                                finishCalendar.set(Calendar.MINUTE, finishMinute)
+
+                                // Check if finish time is later than start time
+                                if (finishCalendar.after(startCalendar)) {
+                                    val formattedStartTime = dateFormat.format(startCalendar.time)
+                                    val formattedFinishTime = SimpleDateFormat(
+                                        "hh:mm a",
+                                        Locale.US
+                                    ).format(finishCalendar.time)
+
+                                    // Set the selected date and time text in the updateDateandTime AutoCompleteTextView
+                                    updateDateandTime.setText("$formattedStartTime to $formattedFinishTime")
+                                } else {
+                                    Toast.makeText(
+                                        this@Update_engagement,
+                                        "Finish time must be later than start time",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            },
+                            calendar.get(Calendar.HOUR_OF_DAY),
+                            calendar.get(Calendar.MINUTE),
+                            false
+                        )
+                        finishTimePickerDialog.show()
+                    },
+                    calendar.get(Calendar.HOUR_OF_DAY),
+                    calendar.get(Calendar.MINUTE),
+                    false
+                )
+                timePickerDialog.show()
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+
+        datePickerDialog.show()
+    }
     private fun updateData() {
         title = updateTitle.text.toString().trim()
         dateandtime = updateDateandTime.text.toString().trim()
         location = updateLocation.text.toString()
+        campus = updateCampus.text.toString()
 
         val user = FirebaseAuth.getInstance().currentUser
         val uploadersId = user?.uid
         if (uri != null) {
             // A new image is selected, update the data and imageUrl
-            val dataClass = DataClass(uploadersId, title, dateandtime, location, imageUrl, false)
+            val dataClass =
+                DataClass(uploadersId, title, dateandtime, location, imageUrl, campus, false)
 
             databaseReference.setValue(dataClass)
                 .addOnCompleteListener { task ->
@@ -141,7 +288,8 @@ class Update_engagement: AppCompatActivity() {
                 }
         } else {
             // No new image is selected, retain the existing image URL
-            val dataClass = DataClass(uploadersId, title, dateandtime, location, oldImageURL, false)
+            val dataClass =
+                DataClass(uploadersId, title, dateandtime, location, oldImageURL, campus, false)
 
             databaseReference.setValue(dataClass)
                 .addOnCompleteListener { task ->

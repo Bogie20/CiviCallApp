@@ -28,6 +28,7 @@ class DetailPost : AppCompatActivity() {
     private lateinit var detailTitle: TextView
     private lateinit var detailLocation: TextView
     private lateinit var detailImage: ImageView
+    private lateinit var detailcampus: TextView
     private lateinit var deleteButton: FloatingActionButton
     private lateinit var editButton: FloatingActionButton
     private lateinit var fabMenu: FloatingActionMenu
@@ -45,6 +46,7 @@ class DetailPost : AppCompatActivity() {
         deleteButton = findViewById(R.id.deleteButton)
         editButton = findViewById(R.id.editButton)
         detailLocation = findViewById(R.id.detailLocation)
+        detailcampus = findViewById(R.id.detailcampus)
         fabMenu = findViewById(R.id.fabicon)
 
         val bundle = intent.extras
@@ -52,10 +54,12 @@ class DetailPost : AppCompatActivity() {
             detailDateandTime.text = it.getString("Date&Time")
             detailTitle.text = it.getString("Title")
             detailLocation.text = it.getString("Location")
+            detailcampus.text = it.getString("Campus") // Set campus information
             key = it.getString("Key") ?: ""
             imageUrl = it.getString("Image") ?: ""
             Glide.with(this).load(it.getString("Image")).into(detailImage)
         }
+
 
         val currentUser = FirebaseAuth.getInstance().currentUser
         val currentUserId = currentUser?.uid
@@ -97,6 +101,7 @@ class DetailPost : AppCompatActivity() {
                 .putExtra("Title", detailTitle.text.toString())
                 .putExtra("Date&Time", detailDateandTime.text.toString())
                 .putExtra("Location", detailLocation.text.toString())
+                .putExtra("Campus", detailcampus.text.toString())
                 .putExtra("Image", imageUrl)
                 .putExtra("Key", key)
             startActivity(intent)

@@ -16,12 +16,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.view.animation.AnimationUtils
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -287,7 +285,6 @@ class EditProfile : AppCompatActivity() {
             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
         }
     }
-
 
     private fun displayUserData(user: User) {
         binding.email1.text = user.email

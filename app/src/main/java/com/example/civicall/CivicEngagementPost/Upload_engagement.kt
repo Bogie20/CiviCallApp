@@ -9,15 +9,19 @@ import android.app.TimePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import com.example.civicall.R
+import com.example.civicall.databinding.ActivityUploadEngagementBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import java.text.DateFormat
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -28,20 +32,27 @@ class Upload_engagement : AppCompatActivity() {
     private lateinit var uploadImage: ImageView
     private lateinit var saveButton: Button
     private lateinit var uploadTitle: EditText
-    private lateinit var uploadDateandTime: EditText
+    private lateinit var uploadDateandTime: AutoCompleteTextView
     private lateinit var uploadLocation: EditText
     private var imageURL: String? = null
     private var uri: Uri? = null
+    private lateinit var binding: ActivityUploadEngagementBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_upload_engagement)
+        binding = ActivityUploadEngagementBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        uploadImage = findViewById(R.id.uploadImage)
-        uploadDateandTime = findViewById(R.id.uploadDateandTime)
-        uploadTitle = findViewById(R.id.uploadTitle)
-        uploadLocation = findViewById(R.id.uploadLocation)
-        saveButton = findViewById(R.id.updateButton)
+        uploadImage = binding.uploadImage
+        uploadDateandTime = binding.uploadDateandTime
+        uploadTitle = binding.uploadTitle
+        uploadLocation = binding.uploadLocation
+        saveButton = binding.updateButton
+
+        val campusDropdown = binding.uploadCampus
+        val campusArray = resources.getStringArray(R.array.allowed_campuses)
+        val adaptercampus = ArrayAdapter(this, R.layout.dropdown_item, campusArray)
+        (campusDropdown as? AutoCompleteTextView)?.setAdapter(adaptercampus)
 
         uploadDateandTime.setOnClickListener {
             showDateTimePicker()
@@ -70,6 +81,7 @@ class Upload_engagement : AppCompatActivity() {
             saveData()
         }
     }
+
     private fun showDateTimePicker() {
         val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
@@ -96,14 +108,26 @@ class Upload_engagement : AppCompatActivity() {
                                 finishCalendar.set(Calendar.HOUR_OF_DAY, finishHourOfDay)
                                 finishCalendar.set(Calendar.MINUTE, finishMinute)
 
-                                val formattedStartTime = dateFormat.format(startCalendar.time)
-                                val formattedFinishTime = SimpleDateFormat("hh:mm a", Locale.US).format(finishCalendar.time)
+                                // Check if finish time is later than start time
+                                if (finishCalendar.after(startCalendar)) {
+                                    val formattedStartTime = dateFormat.format(startCalendar.time)
+                                    val formattedFinishTime = SimpleDateFormat(
+                                        "hh:mm a",
+                                        Locale.US
+                                    ).format(finishCalendar.time)
 
-                                // Set the selected date and time text in the uploadDateandTime EditText
-                                uploadDateandTime.setText("$formattedStartTime to $formattedFinishTime")
+                                    // Set the selected date and time text in the uploadDateandTime EditText
+                                    uploadDateandTime.setText("$formattedStartTime to $formattedFinishTime")
+                                } else {
+                                    Toast.makeText(
+                                        this@Upload_engagement,
+                                        "Finish time must be later than start time",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
                             },
-                            startCalendar.get(Calendar.HOUR_OF_DAY),
-                            startCalendar.get(Calendar.MINUTE),
+                            calendar.get(Calendar.HOUR_OF_DAY),
+                            calendar.get(Calendar.MINUTE),
                             false
                         )
                         finishTimePickerDialog.show()
@@ -122,6 +146,7 @@ class Upload_engagement : AppCompatActivity() {
         datePickerDialog.show()
     }
 
+
     private fun saveData() {
         val storageReference =
             FirebaseStorage.getInstance().getReference().child("Poster Civic Images")
@@ -139,18 +164,46 @@ class Upload_engagement : AppCompatActivity() {
                 while (!uriTask.isComplete);
                 val urlImage = uriTask.result
                 imageURL = urlImage.toString()
-                uploadData()
-                dialog.dismiss()
+
+                // Check if the selected date and time are in the past
+                if (!isDateTimeInPast(uploadDateandTime.text.toString())) {
+                    // If the date and time are not in the past, proceed with data upload
+                    uploadData()
+                    dialog.dismiss()
+                } else {
+                    dialog.dismiss()
+                    Toast.makeText(
+                        this@Upload_engagement,
+                        "Selected date and time are in the past",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
             .addOnFailureListener { e ->
                 dialog.dismiss()
             }
     }
 
+    private fun isDateTimeInPast(dateTimeString: String): Boolean {
+        try {
+            val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
+            dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+            val selectedDateTime = dateFormat.parse(dateTimeString)
+            val currentDateTime = Calendar.getInstance().time
+
+            // Check if the selected date and time are in the past
+            return selectedDateTime != null && selectedDateTime.before(currentDateTime)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+            return true  // Handle the error as per your requirements
+        }
+    }
+
     private fun uploadData() {
         val title = uploadTitle.text.toString()
         val datetime = uploadDateandTime.text.toString()
         val location = uploadLocation.text.toString()
+        val campus = binding.uploadCampus.text.toString()
 
         val verificationStatus = false
 
@@ -160,7 +213,15 @@ class Upload_engagement : AppCompatActivity() {
         if (uploadersId != null) {
             // Set verificationStatus to false in the DataClass object
             val dataClass =
-                DataClass(uploadersId, title, datetime, location, imageURL!!, verificationStatus)
+                DataClass(
+                    uploadersId,
+                    title,
+                    datetime,
+                    location,
+                    imageURL!!,
+                    campus,
+                    verificationStatus
+                ) // Pass the campus information
 
             // Generate the current date and time using DateFormat and Calendar and use it as the key for the post
             val currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().time)

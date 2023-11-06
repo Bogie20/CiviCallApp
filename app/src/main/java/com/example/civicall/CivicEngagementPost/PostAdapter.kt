@@ -27,6 +27,7 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
         holder.recTitle.text = data.dataTitle
         holder.recDateandTime.text = data.dataDateandTime
         holder.recLocation.text = data.dataLocation
+        holder.recCampus.text = data.datacampus // Add this line
 
         holder.recCard.setOnClickListener {
             val intent = Intent(context, DetailPost::class.java).apply {
@@ -35,10 +36,12 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
                 putExtra("Title", data.dataTitle)
                 putExtra("Key", data.key)
                 putExtra("Location", data.dataLocation)
+                putExtra("Campus", data.datacampus) // Pass campus data to the detail view
             }
             context.startActivity(intent)
         }
     }
+
 
     override fun getItemCount(): Int {
         return dataList.size
@@ -56,4 +59,5 @@ class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val recDateandTime: TextView = itemView.findViewById(R.id.civicDateandTime)
     val recLocation: TextView = itemView.findViewById(R.id.civicLocation)
     val recTitle: TextView = itemView.findViewById(R.id.civicTitle)
+    val recCampus: TextView = itemView.findViewById(R.id.civicCampus)
 }
