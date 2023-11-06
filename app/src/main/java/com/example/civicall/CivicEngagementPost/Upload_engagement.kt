@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import com.example.civicall.R
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import java.text.DateFormat
@@ -45,7 +46,8 @@ class Upload_engagement : AppCompatActivity() {
                 uri = data?.data
                 uploadImage.setImageURI(uri)
             } else {
-                Toast.makeText(this@Upload_engagement, "No Image Selected", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@Upload_engagement, "No Image Selected", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
@@ -61,8 +63,9 @@ class Upload_engagement : AppCompatActivity() {
     }
 
     private fun saveData() {
-        val storageReference = FirebaseStorage.getInstance().getReference().child("Poster Civic Images")
-            .child(uri?.lastPathSegment!!) // Use !! to assert that uri is not null
+        val storageReference =
+            FirebaseStorage.getInstance().getReference().child("Poster Civic Images")
+                .child(uri?.lastPathSegment!!) // Use !! to assert that uri is not null
 
         val builder = AlertDialog.Builder(this@Upload_engagement)
         builder.setCancelable(false)
@@ -86,23 +89,29 @@ class Upload_engagement : AppCompatActivity() {
 
     private fun uploadData() {
         val title = uploadTitle.text.toString()
-        val dateandtime = uploadDateandTime.text.toString()
+        val datetime = uploadDateandTime.text.toString()
         val location = uploadLocation.text.toString()
 
-        val dataClass = DataClass(title, dateandtime, location, imageURL!!)
+        // Get the UID of the currently logged-in user
+        val user = FirebaseAuth.getInstance().currentUser
+        val uploadersId = user?.uid
 
-        val currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().time)
+        if (uploadersId != null) {
+            val dataClass = DataClass(uploadersId,title, datetime, location, imageURL!!)
+            val currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().time)
 
-        FirebaseDatabase.getInstance().getReference("Upload Engagement").child(currentDate)
-            .setValue(dataClass)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(this@Upload_engagement, "Saved", Toast.LENGTH_SHORT).show()
-                    finish()
+            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(currentDate)
+                .setValue(dataClass)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(this@Upload_engagement, "Saved", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
                 }
-            }
-            .addOnFailureListener { e ->
-                Toast.makeText(this@Upload_engagement, e.message.toString(), Toast.LENGTH_SHORT).show()
-            }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this@Upload_engagement, e.message.toString(), Toast.LENGTH_SHORT)
+                        .show()
+                }
+        }
     }
 }

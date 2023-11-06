@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.civicall.R
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -116,9 +117,11 @@ class Update_engagement: AppCompatActivity() {
         dateandtime = updateDateandTime.text.toString().trim()
         location = updateLocation.text.toString()
 
+        val user = FirebaseAuth.getInstance().currentUser
+        val uploadersId = user?.uid
         if (uri != null) {
             // A new image is selected, update the data and imageUrl
-            val dataClass = DataClass(title, dateandtime, location, imageUrl)
+            val dataClass = DataClass(uploadersId, title, dateandtime, location, imageUrl)
 
             databaseReference.setValue(dataClass)
                 .addOnCompleteListener { task ->
@@ -138,7 +141,7 @@ class Update_engagement: AppCompatActivity() {
                 }
         } else {
             // No new image is selected, retain the existing image URL
-            val dataClass = DataClass(title, dateandtime, location, oldImageURL)
+            val dataClass = DataClass(uploadersId, title, dateandtime, location, oldImageURL)
 
             databaseReference.setValue(dataClass)
                 .addOnCompleteListener { task ->

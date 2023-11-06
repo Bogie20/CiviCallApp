@@ -57,6 +57,8 @@ class EditProfile : AppCompatActivity() {
     private var fullAddress: String = ""
     private var fullMobileNumber: String = ""
     private var fullEmeMobileNumber: String = ""
+    private var fullCourse: String = ""
+    private var fullSrcode: String = ""
     private var isPopupShowing = false
     private lateinit var networkUtils: NetworkUtils
 
@@ -134,19 +136,22 @@ class EditProfile : AppCompatActivity() {
         fullMobileNumber = binding.Contactline.text.toString()
         fullEmeMobileNumber = binding.ContactEme.text.toString()
         fullFname = binding.fname.text.toString()
+        fullCourse = binding.Course.text.toString()
+        fullSrcode = binding.SrCode.text.toString()
 
         val maxLength = 80 // Max character limit for name fields
         val maxContactLength = 20 // Max character limit for contact field
         val maxAddressLength = 255 // Max character limit for address field
-
         // Create a map of EditText fields and their respective character limits
         val editTextsToLimit = mapOf(
             binding.fname to maxLength,
             binding.mname to maxLength,
             binding.Lname to maxLength,
+            binding.Course to maxLength,
             binding.address to maxAddressLength,
             binding.Contactline to maxContactLength,
-            binding.ContactEme to maxContactLength
+            binding.ContactEme to maxContactLength,
+            binding.SrCode to maxContactLength
         )
 
         for ((editText, limit) in editTextsToLimit) {
@@ -170,6 +175,11 @@ class EditProfile : AppCompatActivity() {
                 binding.Lname.setSelection(fullLname.length)
             }
         }
+        binding.Course.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                binding.Course.setSelection(fullCourse.length)
+            }
+        }
 
         binding.address.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
@@ -187,7 +197,11 @@ class EditProfile : AppCompatActivity() {
                 binding.ContactEme.setSelection(fullEmeMobileNumber.length)
             }
         }
-
+        binding.SrCode.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                binding.SrCode.setSelection(fullSrcode.length)
+            }
+        }
         binding.savebtn.setOnClickListener {
             showSaveConfirmationDialog()
         }
@@ -277,7 +291,9 @@ class EditProfile : AppCompatActivity() {
         binding.fname.text = Editable.Factory.getInstance().newEditable(user.firstname)
         binding.mname.text = Editable.Factory.getInstance().newEditable(user.middlename)
         binding.Lname.text = Editable.Factory.getInstance().newEditable(user.lastname)
+        binding.Course.text = Editable.Factory.getInstance().newEditable(user.course)
         binding.address.text = Editable.Factory.getInstance().newEditable(user.address)
+        binding.SrCode.text = Editable.Factory.getInstance().newEditable(user.srcode)
         binding.Contactline.text = Editable.Factory.getInstance().newEditable(user.phoneno)
         binding.ContactEme.text =
             Editable.Factory.getInstance().newEditable(user.ContactEme) // Set the ContactEme field
@@ -304,11 +320,13 @@ class EditProfile : AppCompatActivity() {
             val updatedLastName = binding.Lname.text.toString()
             val updatedAddress = binding.address.text.toString()
             val updatedContact = binding.Contactline.text.toString()
+            val updatedCourse = binding.Course.text.toString()
+            val updatedSrCode = binding.SrCode.text.toString()
             val updatedUserType = binding.usercategory.text.toString()
             val updatedBirthday = binding.birthdate.text.toString()
             val updatedGender = binding.spinnerSex.text.toString()
-            val updatedContactEme = binding.ContactEme.text.toString() // Get the ContactEme field
-            val updatedNstp = binding.nstp.text.toString()             // Get the nstp field
+            val updatedContactEme = binding.ContactEme.text.toString()
+            val updatedNstp = binding.nstp.text.toString()
 
 
             // Add validation checks and return early if there is an error
@@ -333,7 +351,7 @@ class EditProfile : AppCompatActivity() {
             }
             !validateBirthday()
 
-            if (!validateFirstName() || !validateMiddleName() || !validateLastName() || !validateAddress() || !validateBirthday() || !validateContactNumber() || !validateEmeContactNumber()) {
+            if (!validateFirstName() || !validateMiddleName() || !validateLastName() || !validateAddress() || !validateBirthday() || !validateContactNumber() || !validateEmeContactNumber() || !validateCourse() || !validateSrCode() ) {
                 showCustomPopup("Please provide valid information for the following fields.")
                 return
             }
@@ -342,6 +360,8 @@ class EditProfile : AppCompatActivity() {
                 "firstname" to updatedFirstName,
                 "middlename" to updatedMiddleName,
                 "lastname" to updatedLastName,
+                "course" to updatedCourse,
+                "srcode" to updatedSrCode,
                 "address" to updatedAddress,
                 "phoneno" to updatedContact,
                 "userType" to updatedUserType,
@@ -351,7 +371,6 @@ class EditProfile : AppCompatActivity() {
                 "nstp" to updatedNstp,
             )
 
-            // Continue with the update if no validation error
             database.updateChildren(updateData)
                 .addOnSuccessListener {
                     showCustomPopupSuccess("Profile updated successfully")
@@ -381,16 +400,16 @@ class EditProfile : AppCompatActivity() {
         val saveButton = dialogView.findViewById<Button>(R.id.saveBtn)
         val cancelButton = dialogView.findViewById<Button>(R.id.cancelBtn)
 
-        // Set the animation style
+
         alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
 
-        // Set the background to be transparent
+
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         saveButton.setOnClickListener {
             alertDialog.dismiss()
-            dismissCustomDialog() // Reset the flag when the dialog is dismissed
-            // User clicked "Save," perform the save operation
+            dismissCustomDialog()
+
             updateProfile()
         }
 
@@ -623,6 +642,7 @@ class EditProfile : AppCompatActivity() {
             return true
         }
     }
+
     private fun validateAddress(): Boolean {
         val address = binding.address.text.toString().trim()
 
@@ -634,6 +654,34 @@ class EditProfile : AppCompatActivity() {
             return false
         } else {
             binding.address.error = null
+            return true
+        }
+    }
+    private fun validateCourse(): Boolean {
+        val Course = binding.Course.text.toString().trim()
+
+        if (Course.isEmpty()) {
+            binding.Course.error = "Course field is required"
+            return false
+        } else if (Course.length < 8) {
+            binding.Course.error = "It is too short"
+            return false
+        } else {
+            binding.Course.error = null
+            return true
+        }
+    }
+    private fun validateSrCode(): Boolean {
+        val SrCode = binding.SrCode.text.toString().trim()
+
+        if (SrCode.isEmpty()) {
+            binding.SrCode.error = "SrCode field is required"
+            return false
+        } else if (SrCode.length <= 7) {
+            binding.SrCode.error = "Input is too short"
+            return false
+        } else {
+            binding.SrCode.error = null
             return true
         }
     }
@@ -785,6 +833,8 @@ data class User(
     val middlename: String = "",
     val lastname: String = "",
     val address: String = "",
+    val course: String = "",
+    val srcode: String = "",
     val phoneno: String = "",
     val userType: String = "",
     val birthday: String = "",

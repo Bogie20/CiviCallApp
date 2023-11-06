@@ -37,7 +37,7 @@
                 android:id="@+id/civicall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="40dp"
                 android:fontFamily="@font/oleo_script"
                 android:text="CIVIC ENGAGEMENT DETAILS"
                 android:textColor="@color/white"
