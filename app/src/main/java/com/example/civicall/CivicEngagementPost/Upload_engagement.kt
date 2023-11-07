@@ -32,6 +32,8 @@ class Upload_engagement : AppCompatActivity() {
     private lateinit var uploadImage: ImageView
     private lateinit var saveButton: Button
     private lateinit var uploadTitle: EditText
+    private lateinit var uploadFacilitator: EditText
+    private lateinit var uploadFacilitatorInfo: EditText
     private lateinit var uploadObjective: EditText
     private lateinit var uploadIntro: EditText
     private lateinit var uploadDateandTime: AutoCompleteTextView
@@ -48,6 +50,8 @@ class Upload_engagement : AppCompatActivity() {
         uploadImage = binding.uploadImage
         uploadDateandTime = binding.uploadDateandTime
         uploadTitle = binding.uploadTitle
+        uploadFacilitator = binding.uploadFacilitator
+        uploadFacilitatorInfo = binding.uploadFacilitatorInfo
         uploadLocation = binding.uploadLocation
         saveButton = binding.updateButton
         uploadObjective = binding.uploadObjective
@@ -207,6 +211,8 @@ class Upload_engagement : AppCompatActivity() {
         val title = uploadTitle.text.toString()
         val datetime = uploadDateandTime.text.toString()
         val location = uploadLocation.text.toString()
+        val facilitator = uploadFacilitator.text.toString()
+        val facilitatorinfo = uploadFacilitatorInfo.text.toString()
         val campus = binding.uploadCampus.text.toString()
         val objective = uploadObjective.text.toString()
         val introduction = uploadIntro.text.toString()
@@ -225,6 +231,8 @@ class Upload_engagement : AppCompatActivity() {
                 campus,
                 objective,
                 introduction,
+                facilitator,
+                facilitatorinfo,
                 verificationStatus
             )
 

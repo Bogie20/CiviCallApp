@@ -10,9 +10,10 @@
     app:cardCornerRadius="20dp"
     app:cardElevation="8dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="309dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/recImage"
@@ -25,91 +26,73 @@
             android:scaleType="centerCrop"
             android:src="@drawable/placeholder"
             app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            />
 
         <TextView
             android:id="@+id/civicTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/recImage"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="0dp"
             android:gravity="start"
             android:layout_marginEnd="15dp"
+            android:textAllCaps="true"
             android:textStyle="bold"
-            android:layout_marginBottom="80dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recImage"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:text="ENVIRONMENT CLEANING PROGRAM "
+            android:fontFamily="@font/roboto_medium_italic"
+            android:text="ENVIRONMENT CLEANING PROGRAM"
             android:textColor="@color/DarkGray"
-            android:textSize="16sp" />
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            />
 
         <TextView
             android:id="@+id/civicLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/recImage"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="15dp"
             android:gravity="start"
-            android:layout_marginBottom="50dp"
+            android:fontFamily="@font/inter_medium"
             android:text="Barangay Santiago Malvar Batangas"
             android:textColor="@color/DarkGray"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/civicTitle"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            />
         <TextView
             android:id="@+id/civicDateandTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/recImage"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:drawableLeft="@drawable/calendar"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="10dp"
             android:gravity="start"
             android:layout_marginEnd="15dp"
-            android:layout_marginBottom="28dp"
+            android:fontFamily="@font/inter_medium"
             android:text=" 09-12-2023, 5:30am to 10:00am"
             android:textColor="@color/DarkGray"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/civicLocation"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            />
 
         <TextView
             android:id="@+id/civicCampus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/recImage"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:gravity="end"
             android:layout_marginEnd="15dp"
-            android:layout_marginBottom="5dp"
             android:textAllCaps="true"
+            android:fontFamily="@font/inter_medium"
             android:text="JPLPC-MALVAR CAMPUS"
             android:textColor="@color/DarkGray"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/civicDateandTime"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:maxLines="1"
+            android:ellipsize="end"
+            />
 
-    </RelativeLayout>
-
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

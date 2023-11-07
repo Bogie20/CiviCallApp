@@ -2,13 +2,15 @@ package com.example.civicall.CivicEngagementPost
 
 class DataClass {
     var uploadersUID: String? = null
-    var dataTitle: String? = null
-    var dataDateandTime: String? = null
-    var dataLocation: String? = null
-    var dataImage: String? = null
-    var dataCampus: String? = null
-    var dataObjective: String? = null
-    var dataIntro: String? = null
+    var title: String? = null
+    var dateandTime: String? = null
+    var location: String? = null
+    var image: String? = null
+    var campus: String? = null
+    var objective: String? = null
+    var intro: String? = null
+    var facilitatorsName: String? = null
+    var facilitatorsContactorEmail: String? = null
     var verificationStatus: Boolean = false
 
     var key: String? = null
@@ -17,24 +19,28 @@ class DataClass {
         }
 
     constructor(
-        uploadersid: String?,
-        dataTitle: String?,
-        dataDateandTime: String?,
-        dataLocation: String?,
-        dataImage: String,
-        datacampus: String?,
-        dataObjective: String,
-        dataIntro: String?,
+        uploadersuid: String?,
+        title: String?,
+        dateandTime: String?,
+        location: String?,
+        image: String,
+        campus: String?,
+        objective: String,
+        intro: String?,
+        facilitatorsName: String?,
+        facilitatorsContactorEmail: String?,
         verificationStatus: Boolean
     ) {
-        this.uploadersUID = uploadersid
-        this.dataTitle = dataTitle
-        this.dataDateandTime = dataDateandTime
-        this.dataLocation = dataLocation
-        this.dataImage = dataImage
-        this.dataCampus = datacampus
-        this.dataObjective = dataObjective
-        this.dataIntro = dataIntro
+        this.uploadersUID = uploadersuid
+        this.title = title
+        this.dateandTime = dateandTime
+        this.location = location
+        this.image = image
+        this.campus = campus
+        this.objective = objective
+        this.intro = intro
+        this.facilitatorsName = facilitatorsName
+        this.facilitatorsContactorEmail = facilitatorsContactorEmail
         this.verificationStatus = verificationStatus
     }
 

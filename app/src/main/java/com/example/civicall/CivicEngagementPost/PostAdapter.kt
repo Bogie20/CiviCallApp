@@ -23,22 +23,24 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = dataList[position]
 
-        Glide.with(context).load(data.dataImage).into(holder.recImage)
-        holder.recTitle.text = data.dataTitle
-        holder.recDateandTime.text = data.dataDateandTime
-        holder.recLocation.text = data.dataLocation
-        holder.recCampus.text = data.dataCampus // Add this line
+        Glide.with(context).load(data.image).into(holder.recImage)
+        holder.recTitle.text = data.title
+        holder.recDateandTime.text = data.dateandTime
+        holder.recLocation.text = data.location
+        holder.recCampus.text = data.campus // Add this line
 
         holder.recCard.setOnClickListener {
             val intent = Intent(context, DetailPost::class.java).apply {
-                putExtra("Image", data.dataImage)
-                putExtra("Date&Time", data.dataDateandTime)
-                putExtra("Title", data.dataTitle)
-                putExtra("Objective", data.dataObjective)
-                putExtra("Introduction", data.dataIntro)
+                putExtra("Image", data.image)
+                putExtra("Date&Time", data.dateandTime)
+                putExtra("Title", data.title)
+                putExtra("Facilitator", data.facilitatorsName)
+                putExtra("FacilitatorConEm", data.facilitatorsContactorEmail)
+                putExtra("Objective", data.objective)
+                putExtra("Introduction", data.intro)
                 putExtra("Key", data.key)
-                putExtra("Location", data.dataLocation)
-                putExtra("Campus", data.dataCampus)
+                putExtra("Location", data.location)
+                putExtra("Campus", data.campus)
             }
             context.startActivity(intent)
         }

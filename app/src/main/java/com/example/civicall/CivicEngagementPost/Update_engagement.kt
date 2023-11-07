@@ -38,11 +38,15 @@ class Update_engagement: AppCompatActivity() {
     private lateinit var updateButton: Button
     private lateinit var updateDateandTime: AutoCompleteTextView
     private lateinit var updateTitle: EditText
+    private lateinit var updateFacilitator: EditText
+    private lateinit var updateFacilitatorInfo: EditText
     private lateinit var updateLocation: EditText
     private lateinit var updateCampus: AutoCompleteTextView
     private var title: String = ""
     private var objective: String = ""
     private var introduction: String = ""
+    private var facilitator: String = ""
+    private var facilitatorinfo: String = ""
     private var dateandtime: String = ""
     private var location: String = ""
     private var imageUrl: String = ""
@@ -64,6 +68,8 @@ class Update_engagement: AppCompatActivity() {
         updateImage = binding.updateImage
         updateLocation = binding.updateLocation
         updateTitle = binding.updateTitle
+        updateFacilitator = binding.updateFacilitator
+        updateFacilitatorInfo = binding.updateFacilitatorInfo
         updateCampus = binding.updateCampus
         updateObjective = binding.updateObjective
         updateIntro = binding.updateIntro
@@ -94,6 +100,8 @@ class Update_engagement: AppCompatActivity() {
             updateCampus.setText(bundle.getString("Campus"))
             updateObjective.setText(bundle.getString("Objective"))
             updateIntro.setText(bundle.getString("Introduction"))
+            updateFacilitator.setText(bundle.getString("Facilitator"))
+            updateFacilitatorInfo.setText(bundle.getString("FacilitatorConEm"))
             key = bundle.getString("Key")!!
             oldImageURL = bundle.getString("Image")!!
         }
@@ -269,6 +277,8 @@ class Update_engagement: AppCompatActivity() {
         dateandtime = updateDateandTime.text.toString().trim()
         location = updateLocation.text.toString()
         campus = updateCampus.text.toString()
+        facilitator = updateFacilitator.text.toString()
+        facilitatorinfo = updateFacilitatorInfo.text.toString()
         objective = updateObjective.text.toString()
         introduction = updateIntro.text.toString()
 
@@ -285,6 +295,8 @@ class Update_engagement: AppCompatActivity() {
                 campus,
                 objective,
                 introduction,
+                facilitator,
+                facilitatorinfo,
                 false
             )
 
@@ -316,6 +328,8 @@ class Update_engagement: AppCompatActivity() {
                 campus,
                 objective,
                 introduction,
+                facilitator,
+                facilitatorinfo,
                 false
             )
 

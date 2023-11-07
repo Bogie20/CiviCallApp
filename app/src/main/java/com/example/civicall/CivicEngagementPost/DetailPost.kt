@@ -25,6 +25,8 @@ class DetailPost : AppCompatActivity() {
 
     private lateinit var detailDateandTime: TextView
     private lateinit var detailTitle: TextView
+    private lateinit var detailFaciName: TextView
+    private lateinit var detailFaciInfo: TextView
     private lateinit var detailLocation: TextView
     private lateinit var detailImage: ImageView
     private lateinit var detailObjective: TextView
@@ -44,6 +46,8 @@ class DetailPost : AppCompatActivity() {
         detailDateandTime = findViewById(R.id.detailDateandTime)
         detailImage = findViewById(R.id.detailImage)
         detailTitle = findViewById(R.id.detailTitle)
+        detailFaciName = findViewById(R.id.detailFaciName)
+        detailFaciInfo = findViewById(R.id.detailFaciInfo)
         detailObjective = findViewById(R.id.detailDesc)
         detailIntro = findViewById(R.id.detailIntro)
         deleteButton = findViewById(R.id.deleteButton)
@@ -58,6 +62,8 @@ class DetailPost : AppCompatActivity() {
             detailDateandTime.text = it.getString("Date&Time")
             detailLocation.text = it.getString("Location")
             detailcampus.text = it.getString("Campus")
+            detailFaciName.text = it.getString("Facilitator")
+            detailFaciInfo.text = it.getString("FacilitatorConEm")
             detailObjective.text = it.getString("Objective")
             detailIntro.text = it.getString("Introduction")
             key = it.getString("Key") ?: ""
@@ -127,6 +133,8 @@ class DetailPost : AppCompatActivity() {
                 .putExtra("Date&Time", detailDateandTime.text.toString())
                 .putExtra("Location", detailLocation.text.toString())
                 .putExtra("Image", imageUrl)
+                .putExtra("Facilitator", detailFaciName.text.toString())
+                .putExtra("FacilitatorConEm", detailFaciInfo.text.toString())
                 .putExtra("Campus", detailcampus.text.toString())
                 .putExtra("Objective", detailObjective.text.toString())
                 .putExtra("Introduction", detailIntro.text.toString())

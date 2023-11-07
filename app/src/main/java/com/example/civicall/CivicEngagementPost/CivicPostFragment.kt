@@ -118,7 +118,7 @@ class CivicPostFragment : Fragment() {
     private fun searchList(text: String) {
         val searchList = ArrayList<DataClass>()
         for (dataClass in dataList) {
-            if (dataClass?.dataTitle?.toLowerCase()?.contains(text.toLowerCase()) == true) {
+            if (dataClass?.title?.toLowerCase()?.contains(text.toLowerCase()) == true) {
                 searchList.add(dataClass)
             }
         }
