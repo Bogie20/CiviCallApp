@@ -59,7 +59,7 @@ class DetailPost : AppCompatActivity() {
             detailLocation.text = it.getString("Location")
             detailcampus.text = it.getString("Campus")
             detailObjective.text = it.getString("Objective")
-            detailObjective.text = it.getString("Introduction")
+            detailIntro.text = it.getString("Introduction")
             key = it.getString("Key") ?: ""
             imageUrl = it.getString("Image") ?: ""
             Glide.with(this).load(it.getString("Image")).into(detailImage)
