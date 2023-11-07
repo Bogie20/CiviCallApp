@@ -35,9 +35,10 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
                 putExtra("Date&Time", data.dataDateandTime)
                 putExtra("Title", data.dataTitle)
                 putExtra("Objective", data.dataObjective)
+                putExtra("Introduction", data.dataIntro)
                 putExtra("Key", data.key)
                 putExtra("Location", data.dataLocation)
-                putExtra("Campus", data.dataCampus) // Pass campus data to the detail view
+                putExtra("Campus", data.dataCampus)
             }
             context.startActivity(intent)
         }

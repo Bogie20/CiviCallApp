@@ -33,6 +33,7 @@ class Upload_engagement : AppCompatActivity() {
     private lateinit var saveButton: Button
     private lateinit var uploadTitle: EditText
     private lateinit var uploadObjective: EditText
+    private lateinit var uploadIntro: EditText
     private lateinit var uploadDateandTime: AutoCompleteTextView
     private lateinit var uploadLocation: EditText
     private var imageURL: String? = null
@@ -50,6 +51,7 @@ class Upload_engagement : AppCompatActivity() {
         uploadLocation = binding.uploadLocation
         saveButton = binding.updateButton
         uploadObjective = binding.uploadObjective
+        uploadIntro = binding.uploadIntro
 
         val campusDropdown = binding.uploadCampus
         val campusArray = resources.getStringArray(R.array.allowed_campuses)
@@ -207,6 +209,7 @@ class Upload_engagement : AppCompatActivity() {
         val location = uploadLocation.text.toString()
         val campus = binding.uploadCampus.text.toString()
         val objective = uploadObjective.text.toString()
+        val introduction = uploadIntro.text.toString()
         val verificationStatus = false
 
         val user = FirebaseAuth.getInstance().currentUser
@@ -221,6 +224,7 @@ class Upload_engagement : AppCompatActivity() {
                 imageURL!!,
                 campus,
                 objective,
+                introduction,
                 verificationStatus
             )
 

@@ -33,6 +33,7 @@ import java.util.TimeZone
 class Update_engagement: AppCompatActivity() {
 
     private lateinit var updateObjective: EditText
+    private lateinit var updateIntro: EditText
     private lateinit var updateImage: ImageView
     private lateinit var updateButton: Button
     private lateinit var updateDateandTime: AutoCompleteTextView
@@ -41,6 +42,7 @@ class Update_engagement: AppCompatActivity() {
     private lateinit var updateCampus: AutoCompleteTextView
     private var title: String = ""
     private var objective: String = ""
+    private var introduction: String = ""
     private var dateandtime: String = ""
     private var location: String = ""
     private var imageUrl: String = ""
@@ -64,6 +66,7 @@ class Update_engagement: AppCompatActivity() {
         updateTitle = binding.updateTitle
         updateCampus = binding.updateCampus
         updateObjective = binding.updateObjective
+        updateIntro = binding.updateIntro
 
         updateCampus.setOnClickListener {
             showCampusSelectionDialog()
@@ -90,6 +93,7 @@ class Update_engagement: AppCompatActivity() {
             updateLocation.setText(bundle.getString("Location"))
             updateCampus.setText(bundle.getString("Campus"))
             updateObjective.setText(bundle.getString("Objective"))
+            updateIntro.setText(bundle.getString("Introduction"))
             key = bundle.getString("Key")!!
             oldImageURL = bundle.getString("Image")!!
         }
@@ -266,6 +270,7 @@ class Update_engagement: AppCompatActivity() {
         location = updateLocation.text.toString()
         campus = updateCampus.text.toString()
         objective = updateObjective.text.toString()
+        introduction = updateIntro.text.toString()
 
         val user = FirebaseAuth.getInstance().currentUser
         val uploadersId = user?.uid
@@ -279,6 +284,7 @@ class Update_engagement: AppCompatActivity() {
                 imageUrl,
                 campus,
                 objective,
+                introduction,
                 false
             )
 
@@ -309,6 +315,7 @@ class Update_engagement: AppCompatActivity() {
                 oldImageURL,
                 campus,
                 objective,
+                introduction,
                 false
             )
 

@@ -89,8 +89,33 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/labelPurpose"
-                android:text="Objective:"
+                android:text="Introduction:"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/inter_bold"
+                android:textSize="24sp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/redpink"/>
+            <TextView
+
+                android:id="@+id/detailIntro"
+                android:fontFamily="@font/lexend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Explores the key survival techniques vital for those navigating the unpredictable and often challenging coastal regions of the Philippines."
+                android:textSize="15sp"
+                android:layout_marginHorizontal="20dp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="16dp"
+                android:gravity="start"
+                android:lineSpacingExtra="5dp"
+
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description:"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/inter_bold"

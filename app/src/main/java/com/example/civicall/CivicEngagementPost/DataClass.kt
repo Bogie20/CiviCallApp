@@ -8,6 +8,7 @@ class DataClass {
     var dataImage: String? = null
     var dataCampus: String? = null
     var dataObjective: String? = null
+    var dataIntro: String? = null
     var verificationStatus: Boolean = false
 
     var key: String? = null
@@ -23,6 +24,7 @@ class DataClass {
         dataImage: String,
         datacampus: String?,
         dataObjective: String,
+        dataIntro: String?,
         verificationStatus: Boolean
     ) {
         this.uploadersUID = uploadersid
@@ -32,6 +34,7 @@ class DataClass {
         this.dataImage = dataImage
         this.dataCampus = datacampus
         this.dataObjective = dataObjective
+        this.dataIntro = dataIntro
         this.verificationStatus = verificationStatus
     }
 

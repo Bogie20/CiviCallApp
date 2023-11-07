@@ -28,6 +28,7 @@ class DetailPost : AppCompatActivity() {
     private lateinit var detailLocation: TextView
     private lateinit var detailImage: ImageView
     private lateinit var detailObjective: TextView
+    private lateinit var detailIntro: TextView
     private lateinit var detailcampus: TextView
     private lateinit var deleteButton: FloatingActionButton
     private lateinit var editButton: FloatingActionButton
@@ -44,6 +45,7 @@ class DetailPost : AppCompatActivity() {
         detailImage = findViewById(R.id.detailImage)
         detailTitle = findViewById(R.id.detailTitle)
         detailObjective = findViewById(R.id.detailDesc)
+        detailIntro = findViewById(R.id.detailIntro)
         deleteButton = findViewById(R.id.deleteButton)
         editButton = findViewById(R.id.editButton)
         detailLocation = findViewById(R.id.detailLocation)
@@ -57,6 +59,7 @@ class DetailPost : AppCompatActivity() {
             detailLocation.text = it.getString("Location")
             detailcampus.text = it.getString("Campus")
             detailObjective.text = it.getString("Objective")
+            detailObjective.text = it.getString("Introduction")
             key = it.getString("Key") ?: ""
             imageUrl = it.getString("Image") ?: ""
             Glide.with(this).load(it.getString("Image")).into(detailImage)
@@ -106,6 +109,7 @@ class DetailPost : AppCompatActivity() {
                 .putExtra("Image", imageUrl)
                 .putExtra("Campus", detailcampus.text.toString())
                 .putExtra("Objective", detailObjective.text.toString())
+                .putExtra("Introduction", detailIntro.text.toString())
                 .putExtra("Key", key)
             startActivity(intent)
         }
