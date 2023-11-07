@@ -28,6 +28,18 @@
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
         <activity
+            android:name=".AccountVerification.UploadPhoto"
+            android:exported="false" />
+        <activity
+            android:name=".AccountVerification.UploadVerificationFile"
+            android:exported="false" />
+        <activity
+            android:name=".AccountVerification.GovernmentId"
+            android:exported="false" />
+        <activity
+            android:name=".AccountVerification.IdVerifications"
+            android:exported="false" />
+        <activity
             android:name=".AccountVerification.ParentConsent"
             android:exported="false" />
         <activity

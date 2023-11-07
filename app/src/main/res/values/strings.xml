@@ -125,6 +125,19 @@
 
     <string name="app_name_chatx">ChatX</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="uploadfile">
+
+
+        <u>Upload file</u>
+
+    </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="Retake">
+
+
+        <u>Retake Photo</u>
+
+    </string>
 
     <string name="password">Password</string>
     <string name="email">Email</string>

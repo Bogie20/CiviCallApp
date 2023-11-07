@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.civicall.R
 
-class ParentConsent : AppCompatActivity() {
+class GovernmentId : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_parent_consent)
+        setContentView(R.layout.activity_government_id)
     }
 }
