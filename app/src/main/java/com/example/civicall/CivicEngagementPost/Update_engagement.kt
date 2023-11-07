@@ -33,6 +33,7 @@ import java.util.TimeZone
 class Update_engagement: AppCompatActivity() {
 
     private lateinit var updateObjective: EditText
+    private lateinit var updateInstruction: EditText
     private lateinit var updateIntro: EditText
     private lateinit var updateImage: ImageView
     private lateinit var updateButton: Button
@@ -44,6 +45,7 @@ class Update_engagement: AppCompatActivity() {
     private lateinit var updateCampus: AutoCompleteTextView
     private var title: String = ""
     private var objective: String = ""
+    private var instruction: String = ""
     private var introduction: String = ""
     private var facilitator: String = ""
     private var facilitatorinfo: String = ""
@@ -72,6 +74,7 @@ class Update_engagement: AppCompatActivity() {
         updateFacilitatorInfo = binding.updateFacilitatorInfo
         updateCampus = binding.updateCampus
         updateObjective = binding.updateObjective
+        updateInstruction = binding.updateInstruction
         updateIntro = binding.updateIntro
 
         updateCampus.setOnClickListener {
@@ -99,6 +102,7 @@ class Update_engagement: AppCompatActivity() {
             updateLocation.setText(bundle.getString("Location"))
             updateCampus.setText(bundle.getString("Campus"))
             updateObjective.setText(bundle.getString("Objective"))
+            updateInstruction.setText(bundle.getString("Instruction"))
             updateIntro.setText(bundle.getString("Introduction"))
             updateFacilitator.setText(bundle.getString("Facilitator"))
             updateFacilitatorInfo.setText(bundle.getString("FacilitatorConEm"))
@@ -280,6 +284,7 @@ class Update_engagement: AppCompatActivity() {
         facilitator = updateFacilitator.text.toString()
         facilitatorinfo = updateFacilitatorInfo.text.toString()
         objective = updateObjective.text.toString()
+        instruction = updateInstruction.text.toString()
         introduction = updateIntro.text.toString()
 
         val user = FirebaseAuth.getInstance().currentUser
@@ -297,6 +302,7 @@ class Update_engagement: AppCompatActivity() {
                 introduction,
                 facilitator,
                 facilitatorinfo,
+                instruction,
                 false
             )
 
@@ -330,6 +336,7 @@ class Update_engagement: AppCompatActivity() {
                 introduction,
                 facilitator,
                 facilitatorinfo,
+                instruction,
                 false
             )
 

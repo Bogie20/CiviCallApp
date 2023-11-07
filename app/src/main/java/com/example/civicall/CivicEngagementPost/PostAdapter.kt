@@ -37,6 +37,7 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
                 putExtra("Facilitator", data.facilitatorsName)
                 putExtra("FacilitatorConEm", data.facilitatorsContactorEmail)
                 putExtra("Objective", data.objective)
+                putExtra("Instruction", data.instruction)
                 putExtra("Introduction", data.intro)
                 putExtra("Key", data.key)
                 putExtra("Location", data.location)

@@ -35,6 +35,7 @@ class Upload_engagement : AppCompatActivity() {
     private lateinit var uploadFacilitator: EditText
     private lateinit var uploadFacilitatorInfo: EditText
     private lateinit var uploadObjective: EditText
+    private lateinit var uploadInstruction: EditText
     private lateinit var uploadIntro: EditText
     private lateinit var uploadDateandTime: AutoCompleteTextView
     private lateinit var uploadLocation: EditText
@@ -55,6 +56,7 @@ class Upload_engagement : AppCompatActivity() {
         uploadLocation = binding.uploadLocation
         saveButton = binding.updateButton
         uploadObjective = binding.uploadObjective
+        uploadInstruction = binding.uploadInstruction
         uploadIntro = binding.uploadIntro
 
         val campusDropdown = binding.uploadCampus
@@ -215,6 +217,7 @@ class Upload_engagement : AppCompatActivity() {
         val facilitatorinfo = uploadFacilitatorInfo.text.toString()
         val campus = binding.uploadCampus.text.toString()
         val objective = uploadObjective.text.toString()
+        val instruction = uploadInstruction.text.toString()
         val introduction = uploadIntro.text.toString()
         val verificationStatus = false
 
@@ -233,6 +236,7 @@ class Upload_engagement : AppCompatActivity() {
                 introduction,
                 facilitator,
                 facilitatorinfo,
+                instruction,
                 verificationStatus
             )
 

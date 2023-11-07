@@ -11,6 +11,7 @@ class DataClass {
     var intro: String? = null
     var facilitatorsName: String? = null
     var facilitatorsContactorEmail: String? = null
+    var instruction: String? = null
     var verificationStatus: Boolean = false
 
     var key: String? = null
@@ -29,6 +30,7 @@ class DataClass {
         intro: String?,
         facilitatorsName: String?,
         facilitatorsContactorEmail: String?,
+        instruction: String?,
         verificationStatus: Boolean
     ) {
         this.uploadersUID = uploadersuid
@@ -41,6 +43,7 @@ class DataClass {
         this.intro = intro
         this.facilitatorsName = facilitatorsName
         this.facilitatorsContactorEmail = facilitatorsContactorEmail
+        this.instruction = instruction
         this.verificationStatus = verificationStatus
     }
 

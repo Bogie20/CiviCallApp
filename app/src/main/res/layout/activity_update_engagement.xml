@@ -172,6 +172,31 @@
                         app:hintTextColor="@color/DarkGray" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/instructionTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:elevation="80dp"
+                    app:hintTextColor="@color/DarkGray"
+
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/updateInstruction"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="15dp"
+                        android:ellipsize="end"
+                        android:hint="Instruction"
+                        android:inputType="textMultiLine"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="30dp"
+                        android:paddingBottom="100dp"
+                        app:hintTextColor="@color/DarkGray" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/locationTextInputLayout"

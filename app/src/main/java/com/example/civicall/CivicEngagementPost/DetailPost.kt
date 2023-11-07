@@ -30,6 +30,7 @@ class DetailPost : AppCompatActivity() {
     private lateinit var detailLocation: TextView
     private lateinit var detailImage: ImageView
     private lateinit var detailObjective: TextView
+    private lateinit var detailInstruction: TextView
     private lateinit var detailIntro: TextView
     private lateinit var detailcampus: TextView
     private lateinit var deleteButton: FloatingActionButton
@@ -49,6 +50,7 @@ class DetailPost : AppCompatActivity() {
         detailFaciName = findViewById(R.id.detailFaciName)
         detailFaciInfo = findViewById(R.id.detailFaciInfo)
         detailObjective = findViewById(R.id.detailDesc)
+        detailInstruction = findViewById(R.id.detailInstruction)
         detailIntro = findViewById(R.id.detailIntro)
         deleteButton = findViewById(R.id.deleteButton)
         editButton = findViewById(R.id.editButton)
@@ -65,6 +67,7 @@ class DetailPost : AppCompatActivity() {
             detailFaciName.text = it.getString("Facilitator")
             detailFaciInfo.text = it.getString("FacilitatorConEm")
             detailObjective.text = it.getString("Objective")
+            detailInstruction.text = it.getString("Instruction")
             detailIntro.text = it.getString("Introduction")
             key = it.getString("Key") ?: ""
             imageUrl = it.getString("Image") ?: ""
@@ -137,6 +140,7 @@ class DetailPost : AppCompatActivity() {
                 .putExtra("FacilitatorConEm", detailFaciInfo.text.toString())
                 .putExtra("Campus", detailcampus.text.toString())
                 .putExtra("Objective", detailObjective.text.toString())
+                .putExtra("Instruction", detailInstruction.text.toString())
                 .putExtra("Introduction", detailIntro.text.toString())
                 .putExtra("Key", key)
             startActivity(intent)
