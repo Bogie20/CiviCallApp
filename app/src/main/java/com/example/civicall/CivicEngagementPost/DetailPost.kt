@@ -1,13 +1,12 @@
 package com.example.civicall.CivicEngagementPost
 
-import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.civicall.R
 import com.github.clans.fab.FloatingActionButton
@@ -28,6 +27,7 @@ class DetailPost : AppCompatActivity() {
     private lateinit var detailTitle: TextView
     private lateinit var detailLocation: TextView
     private lateinit var detailImage: ImageView
+    private lateinit var detailObjective: TextView
     private lateinit var detailcampus: TextView
     private lateinit var deleteButton: FloatingActionButton
     private lateinit var editButton: FloatingActionButton
@@ -43,6 +43,7 @@ class DetailPost : AppCompatActivity() {
         detailDateandTime = findViewById(R.id.detailDateandTime)
         detailImage = findViewById(R.id.detailImage)
         detailTitle = findViewById(R.id.detailTitle)
+        detailObjective = findViewById(R.id.detailDesc)
         deleteButton = findViewById(R.id.deleteButton)
         editButton = findViewById(R.id.editButton)
         detailLocation = findViewById(R.id.detailLocation)
@@ -51,10 +52,11 @@ class DetailPost : AppCompatActivity() {
 
         val bundle = intent.extras
         bundle?.let {
-            detailDateandTime.text = it.getString("Date&Time")
             detailTitle.text = it.getString("Title")
+            detailDateandTime.text = it.getString("Date&Time")
             detailLocation.text = it.getString("Location")
-            detailcampus.text = it.getString("Campus") // Set campus information
+            detailcampus.text = it.getString("Campus")
+            detailObjective.text = it.getString("Objective")
             key = it.getString("Key") ?: ""
             imageUrl = it.getString("Image") ?: ""
             Glide.with(this).load(it.getString("Image")).into(detailImage)
@@ -101,8 +103,9 @@ class DetailPost : AppCompatActivity() {
                 .putExtra("Title", detailTitle.text.toString())
                 .putExtra("Date&Time", detailDateandTime.text.toString())
                 .putExtra("Location", detailLocation.text.toString())
-                .putExtra("Campus", detailcampus.text.toString())
                 .putExtra("Image", imageUrl)
+                .putExtra("Campus", detailcampus.text.toString())
+                .putExtra("Objective", detailObjective.text.toString())
                 .putExtra("Key", key)
             startActivity(intent)
         }

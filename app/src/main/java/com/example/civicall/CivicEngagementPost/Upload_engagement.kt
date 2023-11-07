@@ -32,6 +32,7 @@ class Upload_engagement : AppCompatActivity() {
     private lateinit var uploadImage: ImageView
     private lateinit var saveButton: Button
     private lateinit var uploadTitle: EditText
+    private lateinit var uploadObjective: EditText
     private lateinit var uploadDateandTime: AutoCompleteTextView
     private lateinit var uploadLocation: EditText
     private var imageURL: String? = null
@@ -48,6 +49,7 @@ class Upload_engagement : AppCompatActivity() {
         uploadTitle = binding.uploadTitle
         uploadLocation = binding.uploadLocation
         saveButton = binding.updateButton
+        uploadObjective = binding.uploadObjective
 
         val campusDropdown = binding.uploadCampus
         val campusArray = resources.getStringArray(R.array.allowed_campuses)
@@ -204,24 +206,23 @@ class Upload_engagement : AppCompatActivity() {
         val datetime = uploadDateandTime.text.toString()
         val location = uploadLocation.text.toString()
         val campus = binding.uploadCampus.text.toString()
-
+        val objective = uploadObjective.text.toString()
         val verificationStatus = false
 
         val user = FirebaseAuth.getInstance().currentUser
         val uploadersId = user?.uid
 
         if (uploadersId != null) {
-            // Set verificationStatus to false in the DataClass object
-            val dataClass =
-                DataClass(
-                    uploadersId,
-                    title,
-                    datetime,
-                    location,
-                    imageURL!!,
-                    campus,
-                    verificationStatus
-                ) // Pass the campus information
+            val dataClass = DataClass(
+                uploadersId,
+                title,
+                datetime,
+                location,
+                imageURL!!,
+                campus,
+                objective,
+                verificationStatus
+            )
 
             // Generate the current date and time using DateFormat and Calendar and use it as the key for the post
             val currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().time)

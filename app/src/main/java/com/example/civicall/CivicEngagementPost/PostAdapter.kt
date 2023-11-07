@@ -27,16 +27,17 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
         holder.recTitle.text = data.dataTitle
         holder.recDateandTime.text = data.dataDateandTime
         holder.recLocation.text = data.dataLocation
-        holder.recCampus.text = data.datacampus // Add this line
+        holder.recCampus.text = data.dataCampus // Add this line
 
         holder.recCard.setOnClickListener {
             val intent = Intent(context, DetailPost::class.java).apply {
                 putExtra("Image", data.dataImage)
                 putExtra("Date&Time", data.dataDateandTime)
                 putExtra("Title", data.dataTitle)
+                putExtra("Objective", data.dataObjective)
                 putExtra("Key", data.key)
                 putExtra("Location", data.dataLocation)
-                putExtra("Campus", data.datacampus) // Pass campus data to the detail view
+                putExtra("Campus", data.dataCampus) // Pass campus data to the detail view
             }
             context.startActivity(intent)
         }

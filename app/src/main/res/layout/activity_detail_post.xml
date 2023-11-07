@@ -90,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/labelPurpose"
-                android:text="Purpose:"
+                android:text="Objective:"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/inter_bold"
@@ -100,37 +100,10 @@
                 android:textColor="@color/redpink"/>
             <TextView
 
-                android:id="@+id/detailinfo"
+                android:id="@+id/detailDesc"
                 android:fontFamily="@font/lexend"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Explores the key survival techniques vital for those navigating the unpredictable and often challenging coastal regions of the Philippines. From safe navigation to shelter construction, sustainable resource gathering, water purification, and fostering community cooperation, this comprehensive guide equips individuals with the knowledge needed to thrive in this unique and dynamic environment"
-                android:textSize="15sp"
-                android:layout_marginHorizontal="20dp"
-                android:textColor="@color/black"
-                android:layout_marginBottom="16dp"
-                android:gravity="start"
-                android:lineSpacingExtra="5dp"
-                android:textAlignment="viewStart"
-                />
-            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/labelInstruction"
-                android:text="Instruction:"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/inter_bold"
-                android:textSize="24sp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="15dp"
-                android:textColor="@color/redpink"/>
-            <TextView
-
-                android:id="@+id/detailInstruction"
-                android:fontFamily="@font/lexend"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Explores the key survival techniques vital for those navigating the unpredictable and often challenging coastal regions of the Philippines. From safe navigation to shelter construction, sustainable resource gathering, water purification, and fostering community cooperation, this comprehensive guide equips individuals with the knowledge needed to thrive in this unique and dynamic environment"
                 android:textSize="15sp"
                 android:layout_marginHorizontal="20dp"
@@ -138,7 +111,7 @@
                 android:layout_marginBottom="16dp"
                 android:gravity="start"
                 android:lineSpacingExtra="5dp"
-                android:textAlignment="viewStart"
+
                 />
 
     <TextView

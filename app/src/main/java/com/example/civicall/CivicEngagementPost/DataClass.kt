@@ -6,7 +6,8 @@ class DataClass {
     var dataDateandTime: String? = null
     var dataLocation: String? = null
     var dataImage: String? = null
-    var datacampus: String? = null
+    var dataCampus: String? = null
+    var dataObjective: String? = null
     var verificationStatus: Boolean = false
 
     var key: String? = null
@@ -21,6 +22,7 @@ class DataClass {
         dataLocation: String?,
         dataImage: String,
         datacampus: String?,
+        dataObjective: String,
         verificationStatus: Boolean
     ) {
         this.uploadersUID = uploadersid
@@ -28,7 +30,8 @@ class DataClass {
         this.dataDateandTime = dataDateandTime
         this.dataLocation = dataLocation
         this.dataImage = dataImage
-        this.datacampus = datacampus
+        this.dataCampus = datacampus
+        this.dataObjective = dataObjective
         this.verificationStatus = verificationStatus
     }
 

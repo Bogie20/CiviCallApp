@@ -32,6 +32,7 @@ import java.util.TimeZone
 
 class Update_engagement: AppCompatActivity() {
 
+    private lateinit var updateObjective: EditText
     private lateinit var updateImage: ImageView
     private lateinit var updateButton: Button
     private lateinit var updateDateandTime: AutoCompleteTextView
@@ -39,6 +40,7 @@ class Update_engagement: AppCompatActivity() {
     private lateinit var updateLocation: EditText
     private lateinit var updateCampus: AutoCompleteTextView
     private var title: String = ""
+    private var objective: String = ""
     private var dateandtime: String = ""
     private var location: String = ""
     private var imageUrl: String = ""
@@ -49,7 +51,6 @@ class Update_engagement: AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference
     private lateinit var binding: ActivityUpdateEngagementBinding
-    private lateinit var updateCampusAutoComplete: AutoCompleteTextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +63,7 @@ class Update_engagement: AppCompatActivity() {
         updateLocation = binding.updateLocation
         updateTitle = binding.updateTitle
         updateCampus = binding.updateCampus
+        updateObjective = binding.updateObjective
 
         updateCampus.setOnClickListener {
             showCampusSelectionDialog()
@@ -87,6 +89,7 @@ class Update_engagement: AppCompatActivity() {
             updateDateandTime.setText(bundle.getString("Date&Time"))
             updateLocation.setText(bundle.getString("Location"))
             updateCampus.setText(bundle.getString("Campus"))
+            updateObjective.setText(bundle.getString("Objective"))
             key = bundle.getString("Key")!!
             oldImageURL = bundle.getString("Image")!!
         }
@@ -262,13 +265,23 @@ class Update_engagement: AppCompatActivity() {
         dateandtime = updateDateandTime.text.toString().trim()
         location = updateLocation.text.toString()
         campus = updateCampus.text.toString()
+        objective = updateObjective.text.toString()
 
         val user = FirebaseAuth.getInstance().currentUser
         val uploadersId = user?.uid
         if (uri != null) {
-            // A new image is selected, update the data and imageUrl
-            val dataClass =
-                DataClass(uploadersId, title, dateandtime, location, imageUrl, campus, false)
+
+            val dataClass = DataClass(
+                uploadersId,
+                title,
+                dateandtime,
+                location,
+                imageUrl,
+                campus,
+                objective,
+                false
+            )
+
 
             databaseReference.setValue(dataClass)
                 .addOnCompleteListener { task ->
@@ -287,9 +300,18 @@ class Update_engagement: AppCompatActivity() {
                         .show()
                 }
         } else {
-            // No new image is selected, retain the existing image URL
-            val dataClass =
-                DataClass(uploadersId, title, dateandtime, location, oldImageURL, campus, false)
+
+            val dataClass = DataClass(
+                uploadersId,
+                title,
+                dateandtime,
+                location,
+                oldImageURL,
+                campus,
+                objective,
+                false
+            )
+
 
             databaseReference.setValue(dataClass)
                 .addOnCompleteListener { task ->
