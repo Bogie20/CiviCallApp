@@ -87,6 +87,26 @@ class DetailPost : AppCompatActivity() {
                 Toast.makeText(this@DetailPost, "Database error: " + databaseError.message, Toast.LENGTH_SHORT).show()
             }
         })
+        databaseReference.child(key).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    uploadersUID = dataSnapshot.child("uploadersUID").value.toString()
+                    val verificationStatus = dataSnapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
+
+                    // Check if the current user is the uploader of the post and verificationStatus is false
+                    if (currentUserId != null && currentUserId == uploadersUID && !verificationStatus) {
+                        fabMenu.visibility = View.VISIBLE
+                    } else {
+                        fabMenu.visibility = View.GONE
+                    }
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Toast.makeText(this@DetailPost, "Database error: " + databaseError.message, Toast.LENGTH_SHORT).show()
+            }
+        })
+
 
         deleteButton.setOnClickListener {
             val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
