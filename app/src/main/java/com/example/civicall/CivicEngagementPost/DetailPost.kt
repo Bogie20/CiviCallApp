@@ -205,7 +205,7 @@ class DetailPost : AppCompatActivity() {
             .setPositiveButton("Yes") { _, _ ->
                 // Remove the user's UID from the Participants node
                 participantsReference.child(userId).removeValue()
-                joinButton.text = "Join" // Change the button text back to "Join"
+                joinButton.text = "Join Now" // Change the button text back to "Join"
             }
             .setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
             .show()
