@@ -40,9 +40,11 @@ class Update_engagement: AppCompatActivity() {
     private lateinit var updateDateandTime: AutoCompleteTextView
     private lateinit var updateTitle: EditText
     private lateinit var updateFacilitator: EditText
+    private lateinit var updateTargetParty: EditText
     private lateinit var updateFacilitatorInfo: EditText
     private lateinit var updateLocation: EditText
     private lateinit var updateCampus: AutoCompleteTextView
+    private lateinit var updateCategory: AutoCompleteTextView
     private var title: String = ""
     private var objective: String = ""
     private var instruction: String = ""
@@ -51,10 +53,12 @@ class Update_engagement: AppCompatActivity() {
     private var facilitatorinfo: String = ""
     private var dateandtime: String = ""
     private var location: String = ""
+    private var targetparty: String = ""
     private var imageUrl: String = ""
     private var key: String = ""
     private var oldImageURL: String = ""
     private var campus: String = ""
+    private var category: String = ""
     private var uri: Uri? = null
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference
@@ -70,12 +74,19 @@ class Update_engagement: AppCompatActivity() {
         updateImage = binding.updateImage
         updateLocation = binding.updateLocation
         updateTitle = binding.updateTitle
+        updateTargetParty = binding.updateTargetParty
         updateFacilitator = binding.updateFacilitator
         updateFacilitatorInfo = binding.updateFacilitatorInfo
         updateCampus = binding.updateCampus
+        updateCategory = binding.updateCategory
         updateObjective = binding.updateObjective
         updateInstruction = binding.updateInstruction
         updateIntro = binding.updateIntro
+
+        val categoryDropdown = binding.updateCategory
+        val categoryArray = resources.getStringArray(R.array.engagement_category)
+        val adaptercategory = ArrayAdapter(this, R.layout.dropdown_item, categoryArray)
+        (categoryDropdown as? AutoCompleteTextView)?.setAdapter(adaptercategory)
 
         updateCampus.setOnClickListener {
             showCampusSelectionDialog()
@@ -97,6 +108,7 @@ class Update_engagement: AppCompatActivity() {
         val bundle = intent.extras
         if (bundle != null) {
             Glide.with(this@Update_engagement).load(bundle.getString("Image")).into(updateImage)
+            updateCategory.setText(bundle.getString("Category"))
             updateTitle.setText(bundle.getString("Title"))
             updateDateandTime.setText(bundle.getString("Date&Time"))
             updateLocation.setText(bundle.getString("Location"))
@@ -104,6 +116,7 @@ class Update_engagement: AppCompatActivity() {
             updateObjective.setText(bundle.getString("Objective"))
             updateInstruction.setText(bundle.getString("Instruction"))
             updateIntro.setText(bundle.getString("Introduction"))
+            updateTargetParty.setText(bundle.getString("TargetParticipants"))
             updateFacilitator.setText(bundle.getString("Facilitator"))
             updateFacilitatorInfo.setText(bundle.getString("FacilitatorConEm"))
             key = bundle.getString("Key")!!
@@ -281,6 +294,8 @@ class Update_engagement: AppCompatActivity() {
         dateandtime = updateDateandTime.text.toString().trim()
         location = updateLocation.text.toString()
         campus = updateCampus.text.toString()
+        targetparty = updateTargetParty.text.toString()
+        category = updateCategory.text.toString()
         facilitator = updateFacilitator.text.toString()
         facilitatorinfo = updateFacilitatorInfo.text.toString()
         objective = updateObjective.text.toString()
@@ -293,6 +308,7 @@ class Update_engagement: AppCompatActivity() {
 
             val dataClass = DataClass(
                 uploadersId,
+                category,
                 title,
                 dateandtime,
                 location,
@@ -303,6 +319,7 @@ class Update_engagement: AppCompatActivity() {
                 facilitator,
                 facilitatorinfo,
                 instruction,
+                targetparty,
                 false
             )
 
@@ -327,6 +344,7 @@ class Update_engagement: AppCompatActivity() {
 
             val dataClass = DataClass(
                 uploadersId,
+                category,
                 title,
                 dateandtime,
                 location,
@@ -337,6 +355,7 @@ class Update_engagement: AppCompatActivity() {
                 facilitator,
                 facilitatorinfo,
                 instruction,
+                targetparty,
                 false
             )
 

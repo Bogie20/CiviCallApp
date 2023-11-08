@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         app:cardBackgroundColor="@color/redpink"
         app:cardCornerRadius="4dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +18,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -37,9 +37,9 @@
                 android:id="@+id/civicall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="70dp"
                 android:fontFamily="@font/oleo_script"
-                android:text="UPLOAD A CIVIC POST"
+                android:text="UPDATE POST"
                 android:textColor="@color/white"
                 android:textSize="23dp" />
 
@@ -96,7 +96,23 @@
                         android:src="@drawable/jherimyimage" />
 
                 </androidx.cardview.widget.CardView>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/categoryTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:hint="Category"
+                    app:helperTextTextColor="@color/red"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
+                    <AutoCompleteTextView
+                        android:id="@+id/uploadCategory"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:editable="false" />
+                </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/titleTextInputLayout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -110,13 +126,13 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/uploadTitle"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="wrap_content"
                         android:drawablePadding="15dp"
                         android:ellipsize="end"
+                        android:lineSpacingExtra="6dp"
+                        android:paddingVertical="25dp"
                         android:hint="Title"
-                        android:inputType="text"
-                        android:lines="1"
-                        android:maxLines="1"
+                        android:inputType="textMultiLine"
                         android:paddingStart="20dp"
                         android:paddingEnd="30dp"
                         app:hintTextColor="@color/DarkGray" />
@@ -130,6 +146,7 @@
                     android:layout_marginTop="20dp"
                     android:elevation="80dp"
                     app:hintTextColor="@color/DarkGray"
+
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -139,14 +156,14 @@
                         android:drawablePadding="15dp"
                         android:ellipsize="end"
                         android:hint="Introduction"
+                        android:lineSpacingExtra="6dp"
                         android:inputType="textMultiLine"
                         android:paddingStart="20dp"
                         android:paddingEnd="30dp"
-                        android:paddingBottom="60dp"
+                        android:paddingBottom="100dp"
                         app:hintTextColor="@color/DarkGray" />
 
                 </com.google.android.material.textfield.TextInputLayout>
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/descriptionTextInputLayout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -172,9 +189,8 @@
                         app:hintTextColor="@color/DarkGray" />
 
                 </com.google.android.material.textfield.TextInputLayout>
-
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/InstructionTextInputLayout"
+                    android:id="@+id/instructionTextInputLayout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -191,6 +207,7 @@
                         android:drawablePadding="15dp"
                         android:ellipsize="end"
                         android:hint="Instruction"
+                        android:lineSpacingExtra="6dp"
                         android:inputType="textMultiLine"
                         android:paddingStart="20dp"
                         android:paddingEnd="30dp"
@@ -201,22 +218,28 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/locationTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:hint="Location"
-                    app:helperTextTextColor="@color/red"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_marginTop="20dp"
+                    android:autofillHints="name"
+                    android:elevation="80dp"
+                    app:hintTextColor="@color/DarkGray">
 
-                    <AutoCompleteTextView
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/uploadLocation"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:drawableStart="@drawable/sharelocation"
-                        android:drawablePadding="10dp"
-                        android:editable="true" />
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="15dp"
+                        android:ellipsize="end"
+                        android:hint="Location"
+                        android:lineSpacingExtra="6dp"
+                        android:paddingVertical="25dp"
+                        android:inputType="textMultiLine"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="30dp"
+                        app:hintTextColor="@color/DarkGray" />
+
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -236,6 +259,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
+                        android:lineSpacingExtra="6dp"
+                        android:paddingVertical="25dp"
                         android:editable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -255,6 +280,31 @@
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:editable="false" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/targetpartyTextInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:autofillHints="name"
+                    android:elevation="80dp"
+                    app:hintTextColor="@color/DarkGray">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/uploadTargetParty"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:drawablePadding="15dp"
+                        android:ellipsize="end"
+                        android:hint="Target Participants"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="30dp"
+                        app:hintTextColor="@color/DarkGray" />
+
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/facilitateTextInputLayout"
@@ -307,7 +357,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
                 <Button
-                    android:id="@+id/updateButton"
+                    android:id="@+id/uploadButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"

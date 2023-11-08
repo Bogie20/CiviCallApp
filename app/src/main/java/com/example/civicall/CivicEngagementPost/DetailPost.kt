@@ -29,10 +29,12 @@ class DetailPost : AppCompatActivity() {
     private lateinit var detailFaciInfo: TextView
     private lateinit var detailLocation: TextView
     private lateinit var detailImage: ImageView
+    private lateinit var detailTargetParty: TextView
     private lateinit var detailObjective: TextView
     private lateinit var detailInstruction: TextView
     private lateinit var detailIntro: TextView
     private lateinit var detailcampus: TextView
+    private lateinit var detailCategory: TextView
     private lateinit var deleteButton: FloatingActionButton
     private lateinit var editButton: FloatingActionButton
     private lateinit var fabMenu: FloatingActionMenu
@@ -46,7 +48,9 @@ class DetailPost : AppCompatActivity() {
 
         detailDateandTime = findViewById(R.id.detailDateandTime)
         detailImage = findViewById(R.id.detailImage)
+        detailCategory = findViewById(R.id.detailCategory)
         detailTitle = findViewById(R.id.detailTitle)
+        detailTargetParty = findViewById(R.id.detailTargetParty)
         detailFaciName = findViewById(R.id.detailFaciName)
         detailFaciInfo = findViewById(R.id.detailFaciInfo)
         detailObjective = findViewById(R.id.detailDesc)
@@ -60,6 +64,7 @@ class DetailPost : AppCompatActivity() {
 
         val bundle = intent.extras
         bundle?.let {
+            detailCategory.text = it.getString("Category")
             detailTitle.text = it.getString("Title")
             detailDateandTime.text = it.getString("Date&Time")
             detailLocation.text = it.getString("Location")
@@ -69,6 +74,7 @@ class DetailPost : AppCompatActivity() {
             detailObjective.text = it.getString("Objective")
             detailInstruction.text = it.getString("Instruction")
             detailIntro.text = it.getString("Introduction")
+            detailTargetParty.text = it.getString("TargetParticipants")
             key = it.getString("Key") ?: ""
             imageUrl = it.getString("Image") ?: ""
             Glide.with(this).load(it.getString("Image")).into(detailImage)
@@ -132,6 +138,7 @@ class DetailPost : AppCompatActivity() {
 
         editButton.setOnClickListener {
             val intent = Intent(this@DetailPost, Update_engagement::class.java)
+                .putExtra("Category", detailCategory.text.toString())
                 .putExtra("Title", detailTitle.text.toString())
                 .putExtra("Date&Time", detailDateandTime.text.toString())
                 .putExtra("Location", detailLocation.text.toString())
@@ -142,6 +149,7 @@ class DetailPost : AppCompatActivity() {
                 .putExtra("Objective", detailObjective.text.toString())
                 .putExtra("Instruction", detailInstruction.text.toString())
                 .putExtra("Introduction", detailIntro.text.toString())
+                .putExtra("TargetParticipants", detailTargetParty.text.toString())
                 .putExtra("Key", key)
             startActivity(intent)
         }

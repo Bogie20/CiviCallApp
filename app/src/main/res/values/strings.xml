@@ -32,7 +32,16 @@
         <item>Rosario Campus</item>
         <item>San Juan Campus</item>
         <item>None</item>
-        <!-- Add more campuses here -->
+    </string-array>
+    <string-array name="engagement_category">
+        <item>Tree Planting</item>
+        <item>Fund Raising</item>
+        <item>Donations</item>
+        <item>Clean Up Drive</item>
+        <item>Feeding Program</item>
+        <item>Relief Operations</item>
+        <item>Seminar Training</item>
+        <item>Teaching Literacy</item>
     </string-array>
     <string name="app_name">CiviCall</string>
     <string name="title_activity_menu">Menu</string>

@@ -34,9 +34,11 @@ class Upload_engagement : AppCompatActivity() {
     private lateinit var uploadTitle: EditText
     private lateinit var uploadFacilitator: EditText
     private lateinit var uploadFacilitatorInfo: EditText
+    private lateinit var uploadTargetParty: EditText
     private lateinit var uploadObjective: EditText
     private lateinit var uploadInstruction: EditText
     private lateinit var uploadIntro: EditText
+    private lateinit var uploadCategory: AutoCompleteTextView
     private lateinit var uploadDateandTime: AutoCompleteTextView
     private lateinit var uploadLocation: EditText
     private var imageURL: String? = null
@@ -50,11 +52,13 @@ class Upload_engagement : AppCompatActivity() {
 
         uploadImage = binding.uploadImage
         uploadDateandTime = binding.uploadDateandTime
+        uploadCategory = binding.uploadCategory
         uploadTitle = binding.uploadTitle
+        uploadTargetParty = binding.uploadTargetParty
         uploadFacilitator = binding.uploadFacilitator
         uploadFacilitatorInfo = binding.uploadFacilitatorInfo
         uploadLocation = binding.uploadLocation
-        saveButton = binding.updateButton
+        saveButton = binding.uploadButton
         uploadObjective = binding.uploadObjective
         uploadInstruction = binding.uploadInstruction
         uploadIntro = binding.uploadIntro
@@ -63,6 +67,11 @@ class Upload_engagement : AppCompatActivity() {
         val campusArray = resources.getStringArray(R.array.allowed_campuses)
         val adaptercampus = ArrayAdapter(this, R.layout.dropdown_item, campusArray)
         (campusDropdown as? AutoCompleteTextView)?.setAdapter(adaptercampus)
+
+        val categoryDropdown = binding.uploadCategory
+        val categoryArray = resources.getStringArray(R.array.engagement_category)
+        val adaptercategory = ArrayAdapter(this, R.layout.dropdown_item, categoryArray)
+        (categoryDropdown as? AutoCompleteTextView)?.setAdapter(adaptercategory)
 
         uploadDateandTime.setOnClickListener {
             showDateTimePicker()
@@ -215,7 +224,9 @@ class Upload_engagement : AppCompatActivity() {
         val location = uploadLocation.text.toString()
         val facilitator = uploadFacilitator.text.toString()
         val facilitatorinfo = uploadFacilitatorInfo.text.toString()
+        val targetparty = uploadTargetParty.text.toString()
         val campus = binding.uploadCampus.text.toString()
+        val category = binding.uploadCategory.text.toString()
         val objective = uploadObjective.text.toString()
         val instruction = uploadInstruction.text.toString()
         val introduction = uploadIntro.text.toString()
@@ -227,6 +238,7 @@ class Upload_engagement : AppCompatActivity() {
         if (uploadersId != null) {
             val dataClass = DataClass(
                 uploadersId,
+                category,
                 title,
                 datetime,
                 location,
@@ -237,6 +249,7 @@ class Upload_engagement : AppCompatActivity() {
                 facilitator,
                 facilitatorinfo,
                 instruction,
+                targetparty,
                 verificationStatus
             )
 

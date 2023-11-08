@@ -33,10 +33,12 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
             val intent = Intent(context, DetailPost::class.java).apply {
                 putExtra("Image", data.image)
                 putExtra("Date&Time", data.dateandTime)
+                putExtra("Category", data.category)
                 putExtra("Title", data.title)
                 putExtra("Facilitator", data.facilitatorsName)
                 putExtra("FacilitatorConEm", data.facilitatorsContactorEmail)
                 putExtra("Objective", data.objective)
+                putExtra("TargetParticipants", data.targetparty)
                 putExtra("Instruction", data.instruction)
                 putExtra("Introduction", data.intro)
                 putExtra("Key", data.key)
