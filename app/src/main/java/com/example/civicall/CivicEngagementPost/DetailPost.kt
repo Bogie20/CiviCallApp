@@ -3,9 +3,11 @@ package com.example.civicall.CivicEngagementPost
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.civicall.R
@@ -41,6 +43,7 @@ class DetailPost : AppCompatActivity() {
     private var key = ""
     private var imageUrl = ""
     private var uploadersUID = ""
+    private lateinit var joinButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +64,35 @@ class DetailPost : AppCompatActivity() {
         detailLocation = findViewById(R.id.detailLocation)
         detailcampus = findViewById(R.id.detailcampus)
         fabMenu = findViewById(R.id.fabicon)
+        joinButton = findViewById(R.id.joinButton)
+
+        // Add an OnClickListener to the joinButton
+        joinButton.setOnClickListener {
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            if (currentUser != null) {
+                val userId = currentUser.uid
+                val databaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                val participantsReference = databaseReference.child("Participants")
+
+                // Check if the user is already a participant
+                participantsReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        if (dataSnapshot.hasChild(userId)) {
+                            // User is already a participant, so show "Cancel" confirmation
+                            showCancelConfirmationDialog(userId, participantsReference)
+                        } else {
+                            // User is not a participant, show "Join" confirmation
+                            showJoinConfirmationDialog(userId, participantsReference)
+                        }
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        // Handle the error
+                        Toast.makeText(this@DetailPost, "Database error: " + databaseError.message, Toast.LENGTH_SHORT).show()
+                    }
+                })
+            }
+        }
 
         val bundle = intent.extras
         bundle?.let {
@@ -79,7 +111,6 @@ class DetailPost : AppCompatActivity() {
             imageUrl = it.getString("Image") ?: ""
             Glide.with(this).load(it.getString("Image")).into(detailImage)
         }
-
 
         val currentUser = FirebaseAuth.getInstance().currentUser
         val currentUserId = currentUser?.uid
@@ -153,5 +184,30 @@ class DetailPost : AppCompatActivity() {
                 .putExtra("Key", key)
             startActivity(intent)
         }
+    }
+    private fun showJoinConfirmationDialog(userId: String, participantsReference: DatabaseReference) {
+        AlertDialog.Builder(this)
+            .setTitle("Join Confirmation")
+            .setMessage("Are you sure you want to join?")
+            .setPositiveButton("Yes") { _, _ ->
+                // Add the user's UID to the Participants node
+                participantsReference.child(userId).setValue(true)
+                joinButton.text = "Cancel" // Change the button text to "Cancel"
+            }
+            .setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
+            .show()
+    }
+
+    private fun showCancelConfirmationDialog(userId: String, participantsReference: DatabaseReference) {
+        AlertDialog.Builder(this)
+            .setTitle("Cancel Confirmation")
+            .setMessage("Are you sure you want to cancel?")
+            .setPositiveButton("Yes") { _, _ ->
+                // Remove the user's UID from the Participants node
+                participantsReference.child(userId).removeValue()
+                joinButton.text = "Join" // Change the button text back to "Join"
+            }
+            .setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
+            .show()
     }
 }
