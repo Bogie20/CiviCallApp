@@ -107,41 +107,17 @@
 
                 <LinearLayout
                     android:layout_marginTop="70dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center">
 
 
 
 
-                    <TextView
-
-                        android:id="@+id/warning6"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-
-                        android:fontFamily="@font/lexend_medium"
-                        android:text="@string/Retake"
-                        android:textColor="@color/redpink"
-                        android:textSize="15sp"
-                        />
-
-
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/uploadbutton"
-                        android:layout_width="150dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="0dp"
@@ -151,7 +127,30 @@
                         android:textAllCaps="false"
                         android:textColor="@android:color/white" />
 
+
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/Reupload"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="0dp"
+                        android:layout_marginTop="0dp"
+                        android:background="@drawable/withstrokebutton"
+                        android:text="Re-Upload Photo"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
 
