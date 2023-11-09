@@ -1,5 +1,6 @@
 package com.example.civicall.CivicEngagementPost
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -44,11 +45,11 @@ class DetailPost : AppCompatActivity() {
     private var imageUrl = ""
     private var uploadersUID = ""
     private lateinit var joinButton: Button
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_post)
-
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val currentUserId = currentUser?.uid
         detailDateandTime = findViewById(R.id.detailDateandTime)
         detailImage = findViewById(R.id.detailImage)
         detailCategory = findViewById(R.id.detailCategory)
@@ -64,54 +65,37 @@ class DetailPost : AppCompatActivity() {
         detailLocation = findViewById(R.id.detailLocation)
         detailcampus = findViewById(R.id.detailcampus)
         fabMenu = findViewById(R.id.fabicon)
+
         joinButton = findViewById(R.id.joinButton)
-        joinButton.text = "Join Now"
 
-        // Add an OnClickListener to the joinButton
+
         joinButton.setOnClickListener {
-            val currentUser = FirebaseAuth.getInstance().currentUser
-            if (currentUser != null) {
-                val userId = currentUser.uid
-                val databaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
-                val participantsReference = databaseReference.child("Participants")
+            if (currentUserId != null) {
+                val reference: DatabaseReference =
+                    FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
 
-                // Check if the user is already a participant
-                participantsReference.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        if (dataSnapshot.hasChild(userId)) {
-                            // User is already a participant, so show "Cancel" confirmation
-                            showCancelConfirmationDialog(userId, participantsReference)
-                        } else {
-                            // User is not a participant, show "Join" confirmation
-                            showJoinConfirmationDialog(userId, participantsReference)
+                // Check if the user has already joined
+                reference.child("Participants")
+                    .addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            if (dataSnapshot.hasChild(currentUserId)) {
+                                // The user has already joined, so ask if they want to cancel
+                                showCancelConfirmationDialog(reference, currentUserId)
+                            } else {
+                                // The user hasn't joined, so ask if they want to join
+                                showJoinConfirmationDialog(reference, currentUserId)
+                            }
                         }
-                    }
 
-                    override fun onCancelled(databaseError: DatabaseError) {
-                        // Handle the error
-                        Toast.makeText(this@DetailPost, "Database error: " + databaseError.message, Toast.LENGTH_SHORT).show()
-                    }
-                })
+                        override fun onCancelled(databaseError: DatabaseError) {
+                            Toast.makeText(
+                                this@DetailPost,
+                                "Database error: " + databaseError.message,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    })
             }
-        }
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        if (currentUser != null) {
-            val userId = currentUser.uid
-            val databaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
-            val participantsReference = databaseReference.child("Participants")
-            participantsReference.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    if (dataSnapshot.hasChild(userId)) {
-                        // User is already a participant, set the button text to "Cancel"
-                        joinButton.text = "Cancel"
-                    }
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // Handle the error
-                    Toast.makeText(this@DetailPost, "Database error: " + databaseError.message, Toast.LENGTH_SHORT).show()
-                }
-            })
         }
         val bundle = intent.extras
         bundle?.let {
@@ -131,9 +115,8 @@ class DetailPost : AppCompatActivity() {
             Glide.with(this).load(it.getString("Image")).into(detailImage)
         }
 
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        val currentUserId = currentUser?.uid
-        val databaseReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
+        val databaseReference: DatabaseReference =
+            FirebaseDatabase.getInstance().getReference("Upload Engagement")
 
         databaseReference.child(key).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -148,15 +131,22 @@ class DetailPost : AppCompatActivity() {
                     }
                 }
             }
+
             override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(this@DetailPost, "Database error: " + databaseError.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@DetailPost,
+                    "Database error: " + databaseError.message,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
         databaseReference.child(key).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
                     uploadersUID = dataSnapshot.child("uploadersUID").value.toString()
-                    val verificationStatus = dataSnapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
+                    val verificationStatus =
+                        dataSnapshot.child("verificationStatus").getValue(Boolean::class.java)
+                            ?: false
 
                     // Check if the current user is the uploader of the post and verificationStatus is false
                     if (currentUserId != null && currentUserId == uploadersUID && !verificationStatus) {
@@ -168,13 +158,18 @@ class DetailPost : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(this@DetailPost, "Database error: " + databaseError.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@DetailPost,
+                    "Database error: " + databaseError.message,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
 
 
         deleteButton.setOnClickListener {
-            val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
+            val reference: DatabaseReference =
+                FirebaseDatabase.getInstance().getReference("Upload Engagement")
             val storage: FirebaseStorage = FirebaseStorage.getInstance()
 
             val storageReference: StorageReference = storage.getReferenceFromUrl(imageUrl)
@@ -203,30 +198,68 @@ class DetailPost : AppCompatActivity() {
                 .putExtra("Key", key)
             startActivity(intent)
         }
-    }
-    private fun showJoinConfirmationDialog(userId: String, participantsReference: DatabaseReference) {
-        AlertDialog.Builder(this)
-            .setTitle("Join Confirmation")
-            .setMessage("Are you sure you want to join?")
-            .setPositiveButton("Yes") { _, _ ->
-                // Add the user's UID to the Participants node
-                participantsReference.child(userId).setValue(true)
-                joinButton.text = "Cancel" // Change the button text to "Cancel"
-            }
-            .setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
-            .show()
+
     }
 
-    private fun showCancelConfirmationDialog(userId: String, participantsReference: DatabaseReference) {
-        AlertDialog.Builder(this)
-            .setTitle("Cancel Confirmation")
-            .setMessage("Are you sure you want to cancel?")
-            .setPositiveButton("Yes") { _, _ ->
-                // Remove the user's UID from the Participants node
-                participantsReference.child(userId).removeValue()
-                joinButton.text = "Join Now" // Change the button text back to "Join Now"
-            }
-            .setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
-            .show()
+    private fun showJoinConfirmationDialog(reference: DatabaseReference, currentUserId: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Join Confirmation")
+        builder.setMessage("Are you sure you want to join?")
+        builder.setPositiveButton("Yes") { _, _ ->
+            // Add the user's UID to the "Participants" node
+            reference.child("Participants").child(currentUserId).setValue(true)
+
+            // Update the button text to "Cancel"
+            joinButton.text = "Cancel"
+        }
+        builder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss()
+        }
+        val dialog = builder.create()
+        dialog.show()
     }
+
+    @SuppressLint("SetTextI18n")
+    private fun showCancelConfirmationDialog(reference: DatabaseReference, currentUserId: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Cancel Confirmation")
+        builder.setMessage("Are you sure you want to cancel?")
+        builder.setPositiveButton("Yes") { _, _ ->
+            // Remove the user's UID from the "Participants" node
+            reference.child("Participants").child(currentUserId).removeValue()
+
+            // Update the button text to "Join Now"
+            joinButton.text = "Join Now"
+        }
+        builder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss()
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
+    val currentUser = FirebaseAuth.getInstance().currentUser
+    val currentUserId = currentUser?.uid
+    override fun onResume() {
+        super.onResume()
+
+        if (currentUserId != null) {
+            val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+
+            reference.child("Participants").addListenerForSingleValueEvent(object : ValueEventListener {
+                @SuppressLint("SetTextI18n")
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (dataSnapshot.hasChild(currentUserId)) {
+                        joinButton.text = "Cancel"
+                    } else {
+                        joinButton.text = "Join Now"
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Toast.makeText(this@DetailPost, "Database error: " + databaseError.message, Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+    }
+
 }

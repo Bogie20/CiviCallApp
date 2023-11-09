@@ -385,11 +385,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="50dp"
+                android:text=""
                  android:layout_marginBottom="50dp"
                 android:fontFamily="@font/inter_bold"
                 android:background="@drawable/button_shape"
                 android:backgroundTint="@color/redpink"
-                android:text=""
                 android:textColor="@color/white"
                 android:textSize="25sp">
 
