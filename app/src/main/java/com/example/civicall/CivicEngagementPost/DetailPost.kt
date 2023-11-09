@@ -94,7 +94,25 @@ class DetailPost : AppCompatActivity() {
                 })
             }
         }
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            val userId = currentUser.uid
+            val databaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+            val participantsReference = databaseReference.child("Participants")
+            participantsReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (dataSnapshot.hasChild(userId)) {
+                        // User is already a participant, set the button text to "Cancel"
+                        joinButton.text = "Cancel"
+                    }
+                }
 
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Handle the error
+                    Toast.makeText(this@DetailPost, "Database error: " + databaseError.message, Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
         val bundle = intent.extras
         bundle?.let {
             detailCategory.text = it.getString("Category")
