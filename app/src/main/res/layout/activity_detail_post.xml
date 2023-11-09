@@ -328,7 +328,7 @@
                         android:fontFamily="@font/lexend"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="55"
+                        android:text="0"
                         android:textSize="15sp"
                         android:textColor="@color/redpink"
                         android:lineSpacingExtra="5dp"
@@ -389,7 +389,7 @@
                 android:fontFamily="@font/inter_bold"
                 android:background="@drawable/button_shape"
                 android:backgroundTint="@color/redpink"
-                android:text="Join Now"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="25sp">
 

@@ -26,7 +26,7 @@
             android:gravity="center"
             android:text="Discussion"
             android:fontFamily="@font/dmsans_medium"
-            android:textColor="@color/DarkGray"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -41,7 +41,7 @@
             android:gravity="center"
             android:text="Message"
             android:fontFamily="@font/dmsans_medium"
-            android:textColor="@color/DarkGray"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
     </RadioGroup>

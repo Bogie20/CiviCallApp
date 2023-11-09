@@ -65,6 +65,7 @@ class DetailPost : AppCompatActivity() {
         detailcampus = findViewById(R.id.detailcampus)
         fabMenu = findViewById(R.id.fabicon)
         joinButton = findViewById(R.id.joinButton)
+        joinButton.text = "Join Now"
 
         // Add an OnClickListener to the joinButton
         joinButton.setOnClickListener {
@@ -205,7 +206,7 @@ class DetailPost : AppCompatActivity() {
             .setPositiveButton("Yes") { _, _ ->
                 // Remove the user's UID from the Participants node
                 participantsReference.child(userId).removeValue()
-                joinButton.text = "Join Now" // Change the button text back to "Join"
+                joinButton.text = "Join Now" // Change the button text back to "Join Now"
             }
             .setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
             .show()
