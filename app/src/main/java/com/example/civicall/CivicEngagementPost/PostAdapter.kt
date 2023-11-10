@@ -2,12 +2,15 @@ package com.example.civicall.CivicEngagementPost
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat.setTint
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
@@ -49,20 +52,18 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
             }
             context.startActivity(intent)
         }
-        val user = FirebaseAuth.getInstance().currentUser
-        val currentUserUid = user?.uid
-
-        // Check if the current user is the uploader
-        val isUploader = currentUserUid == data.uploadersUID
-
-        if (data.verificationStatus || isUploader) {
-            holder.itemView.visibility = View.VISIBLE
-
+        if (data.verificationStatus == true) {
+            holder.recTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.verificationtrue_icon, 0)
+            // Tint the drawable for verified posts
+            holder.recTitle.compoundDrawables[2]?.setColorFilter(ContextCompat.getColor(context, R.color.verified), PorterDuff.Mode.SRC_IN)
         } else {
-            holder.itemView.visibility = View.GONE
+            // If verificationStatus is false, set a drawable for an unverified post
+            holder.recTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.verificationfalse_icon, 0)
+            // Tint the drawable for unverified posts
+            holder.recTitle.compoundDrawables[2]?.setColorFilter(ContextCompat.getColor(context, R.color.unverified), PorterDuff.Mode.SRC_IN)
         }
-    }
 
+    }
 
     override fun getItemCount(): Int {
         return dataList.size

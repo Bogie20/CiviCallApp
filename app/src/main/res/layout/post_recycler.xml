@@ -38,6 +38,8 @@
             android:layout_marginEnd="15dp"
             android:textAllCaps="true"
             android:textStyle="bold"
+            android:drawableTint="#FF0000"
+            android:drawableEnd="@drawable/verificationfalse_icon"
             android:fontFamily="@font/roboto_medium_italic"
             android:text="ENVIRONMENT CLEANING PROGRAM"
             android:textColor="@color/DarkGray"

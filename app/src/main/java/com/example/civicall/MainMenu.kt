@@ -2,6 +2,7 @@ package com.example.civicall
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -10,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContextCompat
 import com.example.civicall.databinding.ActivityMainmenuBinding
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
@@ -177,10 +179,15 @@ class MainMenu : AppCompatActivity() {
                     if (verificationStatus == true) {
                         // If verificationStatus is true, set a drawable for a verified account
                         binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verificationtrue_icon, 0, 0, 0)
+                        // Tint the drawable for verified accounts
+                        binding.email1.compoundDrawables[0]?.setColorFilter(ContextCompat.getColor(this, R.color.verified), PorterDuff.Mode.SRC_IN)
                     } else {
                         // If verificationStatus is false, set a drawable for an unverified account
                         binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verificationfalse_icon, 0, 0, 0)
+                        // Tint the drawable for unverified accounts
+                        binding.email1.compoundDrawables[0]?.setColorFilter(ContextCompat.getColor(this, R.color.unverifiedyellow), PorterDuff.Mode.SRC_IN)
                     }
+
                 } else {
                     Toast.makeText(this, "User Not existed", Toast.LENGTH_LONG).show()
                 }

@@ -81,29 +81,54 @@ class DetailPost : AppCompatActivity() {
                 val reference: DatabaseReference =
                     FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
 
-                // Check if the user has already joined
-                reference.child("Participants")
-                    .addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onDataChange(dataSnapshot: DataSnapshot) {
-                            if (dataSnapshot.hasChild(currentUserId)) {
-                                // The user has already joined, so ask if they want to cancel
-                                showCancelConfirmationDialog(reference, currentUserId)
-                            } else {
-                                // The user hasn't joined, so ask if they want to join
-                                showJoinConfirmationDialog(reference, currentUserId)
-                            }
-                        }
+                // Check if the post is under verification
+                reference.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        val verificationStatus =
+                            dataSnapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
 
-                        override fun onCancelled(databaseError: DatabaseError) {
+                        if (verificationStatus) {
+                            reference.child("Participants")
+                                .addListenerForSingleValueEvent(object : ValueEventListener {
+                                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                        if (dataSnapshot.hasChild(currentUserId)) {
+                                            // The user has already joined, so ask if they want to cancel
+                                            showCancelConfirmationDialog(reference, currentUserId)
+                                        } else {
+                                            // The user hasn't joined, so ask if they want to join
+                                            showJoinConfirmationDialog(reference, currentUserId)
+                                        }
+                                    }
+
+                                    override fun onCancelled(databaseError: DatabaseError) {
+                                        Toast.makeText(
+                                            this@DetailPost,
+                                            "Database error: " + databaseError.message,
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                })
+                        } else {
+                            // The post is not verified, show a toast message
                             Toast.makeText(
                                 this@DetailPost,
-                                "Database error: " + databaseError.message,
-                                Toast.LENGTH_SHORT
+                                "This post is under verification. Please wait until it's verified by the admin.",
+                                Toast.LENGTH_LONG
                             ).show()
                         }
-                    })
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        Toast.makeText(
+                            this@DetailPost,
+                            "Database error: " + databaseError.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                })
             }
         }
+
         val bundle = intent.extras
         bundle?.let {
             detailCategory.text = it.getString("Category")

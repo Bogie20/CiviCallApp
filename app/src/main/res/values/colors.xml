@@ -46,6 +46,9 @@
     <color name="bottomNavigationBackground">#F7F7F7</color>
     <color name="emerald">#64cc54</color>
     <color name="yellow">#ffd248</color>
+    <color name="unverified">#FF0000</color>
+    <color name="unverifiedyellow">#FFFF00</color>
+    <color name="verified">#00FF00</color>
 
     <!--gradient colors-->
     <color name="gradientOrange">#FF416C</color>
