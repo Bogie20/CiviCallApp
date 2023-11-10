@@ -11,6 +11,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.text.InputType
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
@@ -57,6 +58,7 @@ class Upload_engagement : AppCompatActivity() {
         uploadCategory = binding.uploadCategory
         uploadTitle = binding.uploadTitle
         uploadTargetParty = binding.uploadTargetParty
+        uploadTargetParty.inputType = InputType.TYPE_CLASS_NUMBER
         uploadFacilitator = binding.uploadFacilitator
         uploadFacilitatorInfo = binding.uploadFacilitatorInfo
         uploadLocation = binding.uploadLocation

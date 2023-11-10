@@ -164,7 +164,13 @@ class MainMenu : AppCompatActivity() {
 
                     // Load the profile image using Picasso library
                     if (imageProfile != null && imageProfile.toString().isNotEmpty()) {
-                        Picasso.get().load(imageProfile.toString()).into(profileImage)
+                        Picasso.get()
+                            .load(imageProfile.toString())
+                            .placeholder(R.drawable.three) // Replace with the resource ID of your placeholder image
+                            .into(profileImage)
+                    } else {
+                        // If no image URL is available, set the placeholder directly
+                        profileImage.setImageResource(R.drawable.three)
                     }
 
                     // Check verification status and set drawable accordingly

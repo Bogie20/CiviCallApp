@@ -86,7 +86,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="12dp"
-                android:fontFamily="@font/bowlby_one_sc"
+                android:fontFamily="@font/dmsans_bolditalic"
                 android:gravity="center"
                 android:text="ENVIRONMENTAL CLEAN UP"
                 android:textAllCaps="true"

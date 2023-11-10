@@ -91,16 +91,19 @@ class ProfileDetails : AppCompatActivity() {
                 binding.campustxt.text = campus.toString()
                 binding.nstpnumtxt.text = nstp.toString()
 
-                val profileImage =
-                    binding.profileImage // Replace with your ImageView ID in the layout
-                // Load the profile image using Picasso library
-                if (imageProfile != null && imageProfile.toString().isNotEmpty()) {
-                    Picasso.get().load(imageProfile.toString()).into(profileImage)
-                }
-            }
-            else {
-                Toast.makeText(this, "User Not existed", Toast.LENGTH_LONG).show()
+                val profileImage = binding.profileImage // Replace with your ImageView ID in the layout
 
+                // Load the profile image using Picasso library with a placeholder
+                if (imageProfile != null && imageProfile.toString().isNotEmpty()) {
+                    Picasso.get()
+                        .load(imageProfile.toString())
+                        .placeholder(R.drawable.three)
+                        .into(profileImage)
+                } else {
+                    profileImage.setImageResource(R.drawable.three)
+                }
+            } else {
+                Toast.makeText(this, "User Not existed", Toast.LENGTH_LONG).show()
             }
 
         }.addOnFailureListener {

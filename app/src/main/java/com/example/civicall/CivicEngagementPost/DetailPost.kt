@@ -1,11 +1,11 @@
 package com.example.civicall.CivicEngagementPost
 
 import android.annotation.SuppressLint
-import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -43,6 +43,7 @@ class DetailPost : AppCompatActivity() {
     private lateinit var detailIntro: TextView
     private lateinit var detailcampus: TextView
     private lateinit var detailCategory: TextView
+    private lateinit var detailCurrentParty: TextView
     private lateinit var deleteButton: FloatingActionButton
     private lateinit var editButton: FloatingActionButton
     private lateinit var fabMenu: FloatingActionMenu
@@ -72,6 +73,7 @@ class DetailPost : AppCompatActivity() {
         fabMenu = findViewById(R.id.fabicon)
 
         joinButton = findViewById(R.id.joinButton)
+        detailCurrentParty = findViewById(R.id.detailCurrentParty)
 
 
         joinButton.setOnClickListener {
@@ -257,6 +259,20 @@ class DetailPost : AppCompatActivity() {
                 }
             })
         }
+        val participantsReference: DatabaseReference =
+            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key).child("Participants")
+
+        participantsReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val participantCount = dataSnapshot.childrenCount.toInt()
+                detailCurrentParty.text = "$participantCount"
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.e("DetailPost", "Database error: " + databaseError.message)
+                Toast.makeText(this@DetailPost, "Database error: " + databaseError.message, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
     private var isSaveConfirmationDialogShowing = false // Add this variable
 

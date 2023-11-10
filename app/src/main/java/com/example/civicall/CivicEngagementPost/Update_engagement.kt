@@ -8,6 +8,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.text.InputType
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
@@ -79,6 +80,7 @@ class Update_engagement: AppCompatActivity() {
         updateLocation = binding.updateLocation
         updateTitle = binding.updateTitle
         updateTargetParty = binding.updateTargetParty
+        updateTargetParty.inputType = InputType.TYPE_CLASS_NUMBER
         updateFacilitator = binding.updateFacilitator
         updateFacilitatorInfo = binding.updateFacilitatorInfo
         updateCampus = binding.updateCampus
