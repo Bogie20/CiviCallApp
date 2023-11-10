@@ -174,7 +174,7 @@
             app:layout_constraintTop_toBottomOf="@id/card">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
@@ -193,16 +193,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white_56"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
+                    android:maxLines="1"
+                    android:layout_marginStart="2dp"
                     android:text="Current Engagement" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="20dp"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -211,7 +212,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0.0"
-                    android:paddingEnd="30dp"
+                    android:paddingEnd="20dp"
                   android:layout_gravity="center"
                     android:textSize="30sp" />
 
@@ -221,14 +222,15 @@
                     android:layout_height="wrap_content"
                     android:text="Active Points"
                     android:layout_gravity="center"
-                    android:paddingStart="10dp"
+                    android:paddingStart="30dp"
+                    android:maxLines="1"
                     android:textSize="14sp"
                     android:textColor="@color/white_56" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
@@ -247,8 +249,9 @@
                     android:layout_height="wrap_content"
                     android:text="Finish Activity"
                     android:layout_gravity="center"
-                    android:textSize="14sp"
-                    android:paddingStart="30dp"
+                    android:textSize="13sp"
+                    android:maxLines="1"
+                    android:paddingStart="20dp"
                     android:textColor="@color/white_56" />
 
             </LinearLayout>

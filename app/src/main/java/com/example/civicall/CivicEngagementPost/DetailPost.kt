@@ -389,16 +389,62 @@ class DetailPost : AppCompatActivity() {
         }
     }
     private fun deletePost() {
-        val reference: DatabaseReference =
-            FirebaseDatabase.getInstance().getReference("Upload Engagement")
+        val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
         val storage: FirebaseStorage = FirebaseStorage.getInstance()
 
         val storageReference: StorageReference = storage.getReferenceFromUrl(imageUrl)
         storageReference.delete().addOnSuccessListener(OnSuccessListener {
+            // Get the current user
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            val currentUserId = currentUser?.uid
+
+            if (currentUserId != null) {
+                val userRef = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId)
+                val participantsReference: DatabaseReference = reference.child(key).child("Participants")
+
+                participantsReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        // Check if the current user has joined the post
+                        if (dataSnapshot.hasChild(currentUserId)) {
+                            // If joined, decrement the TotalEngagement count in the Users node
+                            userRef.child("CurrentEngagement").addListenerForSingleValueEvent(object : ValueEventListener {
+                                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                    var totalEngagementCount = dataSnapshot.getValue(Int::class.java) ?: 0
+
+                                    // Decrement the TotalEngagement count in the Users node
+                                    if (totalEngagementCount > 0) {
+                                        totalEngagementCount--
+                                    }
+
+                                    userRef.child("CurrentEngagement").setValue(totalEngagementCount)
+                                }
+
+                                override fun onCancelled(databaseError: DatabaseError) {
+                                    val errorMessage = "Database error: ${databaseError.message}"
+
+                                    Log.e("DetailPost", errorMessage)
+
+                                    Toast.makeText(this@DetailPost, errorMessage, Toast.LENGTH_SHORT).show()
+                                }
+                            })
+                        }
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        val errorMessage = "Database error: ${databaseError.message}"
+
+                        Log.e("DetailPost", errorMessage)
+
+                        Toast.makeText(this@DetailPost, errorMessage, Toast.LENGTH_SHORT).show()
+                    }
+                })
+            }
+
+            // Remove the post from the database
             reference.child(key).removeValue()
+
             Toast.makeText(this@DetailPost, "Deleted", Toast.LENGTH_SHORT).show()
             finish() // Finish the current activity and go back to the previous one
         })
     }
-
 }

@@ -23,7 +23,7 @@ class ProfileDetails : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private lateinit var networkUtils: NetworkUtils
     private lateinit var totalEngagementTextView: TextView
-
+    private var postsListener: ValueEventListener? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfiledetailsBinding.inflate(layoutInflater)
@@ -50,11 +50,8 @@ class ProfileDetails : AppCompatActivity() {
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
             onBackPressed()
         }
-
-
     }
 
-    // Function to check if a user is logged in or not
     private fun checkUser() {
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser == null) {

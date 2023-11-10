@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
+import com.google.firebase.auth.FirebaseAuth
 
 class PostAdapter (private val context: Context, private var dataList: List<DataClass>) :
     RecyclerView.Adapter<MyViewHolder>() {
@@ -18,6 +19,7 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.post_recycler, parent, false)
         return MyViewHolder(view)
+
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -46,6 +48,18 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
                 putExtra("Campus", data.campus)
             }
             context.startActivity(intent)
+        }
+        val user = FirebaseAuth.getInstance().currentUser
+        val currentUserUid = user?.uid
+
+        // Check if the current user is the uploader
+        val isUploader = currentUserUid == data.uploadersUID
+
+        if (data.verificationStatus || isUploader) {
+            holder.itemView.visibility = View.VISIBLE
+
+        } else {
+            holder.itemView.visibility = View.GONE
         }
     }
 
