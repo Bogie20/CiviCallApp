@@ -3,13 +3,18 @@ package com.example.civicall
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.example.civicall.databinding.ActivityProfiledetailsBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 
 class ProfileDetails : AppCompatActivity() {
@@ -17,15 +22,16 @@ class ProfileDetails : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var networkUtils: NetworkUtils
+    private lateinit var totalEngagementTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Initialize binding before setting the content view
         binding = ActivityProfiledetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
 
+        totalEngagementTextView = findViewById(R.id.totaleng)
 
         binding.edit.setOnClickListener {
             val intent = Intent(this, EditProfile::class.java)
@@ -110,6 +116,22 @@ class ProfileDetails : AppCompatActivity() {
             // Show a toast if there's a failure in fetching data
             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
         }
+        val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+        userRef.child("CurrentEngagement").addListenerForSingleValueEvent(object :
+            ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val totalEngagementCount = dataSnapshot.getValue(Int::class.java) ?: 0
+
+                // Update the TotalEngagement count in the TextView
+                totalEngagementTextView.text = totalEngagementCount.toString()
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                val errorMessage = "Database error: ${databaseError.message}"
+                Log.e("ProfileDetails", errorMessage)
+                Toast.makeText(this@ProfileDetails, errorMessage, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
     override fun onDestroy() {
         super.onDestroy()

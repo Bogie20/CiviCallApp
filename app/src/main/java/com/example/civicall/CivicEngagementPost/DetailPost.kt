@@ -210,6 +210,9 @@ class DetailPost : AppCompatActivity() {
 
             // Update the button text to "Cancel"
             joinButton.text = "Cancel"
+
+            // Call joinPost() here to update the TotalEngagement count
+            joinPost()
         }
         builder.setNegativeButton("No") { dialog, _ ->
             dialog.dismiss()
@@ -229,6 +232,9 @@ class DetailPost : AppCompatActivity() {
 
             // Update the button text to "Join Now"
             joinButton.text = "Join Now"
+
+            // Call joinPost() here to update the TotalEngagement count
+            cancelPost()
         }
         builder.setNegativeButton("No") { dialog, _ ->
             dialog.dismiss()
@@ -273,6 +279,61 @@ class DetailPost : AppCompatActivity() {
                 Toast.makeText(this@DetailPost, "Database error: " + databaseError.message, Toast.LENGTH_SHORT).show()
             }
         })
+    }
+    private fun joinPost() {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val currentUserId = currentUser?.uid
+
+        if (currentUserId != null) {
+            val userRef = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId)
+            userRef.child("CurrentEngagement").addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    var totalEngagementCount = dataSnapshot.getValue(Int::class.java) ?: 0
+
+                    totalEngagementCount++
+
+                    // Update the TotalEngagement count in the Users node
+                    userRef.child("CurrentEngagement").setValue(totalEngagementCount)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    val errorMessage = "Database error: ${databaseError.message}"
+
+                    Log.e("DetailPost", errorMessage)
+
+                    Toast.makeText(this@DetailPost, errorMessage, Toast.LENGTH_SHORT).show()
+
+                }
+            })
+        }
+    }
+    private fun cancelPost() {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val currentUserId = currentUser?.uid
+
+        if (currentUserId != null) {
+            val userRef = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId)
+            userRef.child("CurrentEngagement").addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    var totalEngagementCount = dataSnapshot.getValue(Int::class.java) ?: 0
+
+                    // Decrement the TotalEngagement count in the Users node
+                    if (totalEngagementCount > 0) {
+                        totalEngagementCount--
+                    }
+
+                    userRef.child("CurrentEngagement").setValue(totalEngagementCount)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    val errorMessage = "Database error: ${databaseError.message}"
+
+                    Log.e("DetailPost", errorMessage)
+
+                    Toast.makeText(this@DetailPost, errorMessage, Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
     }
     private var isSaveConfirmationDialogShowing = false // Add this variable
 

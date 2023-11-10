@@ -291,11 +291,13 @@ class Upload_engagement : AppCompatActivity() {
                 verificationStatus
             )
 
-            // Generate the current date and time using DateFormat and Calendar and use it as the key for the post
-            val currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().time)
+            val baseKey = uploadTitle.text.toString()
 
-            // Upload the DataClass object to the "Upload Engagement" node in Firebase Realtime Database with the current date and time as the key
-            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(currentDate)
+            val timestamp = System.currentTimeMillis().toString()
+
+            val postKey = "$baseKey-$timestamp"
+
+            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
                 .setValue(dataClass)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -307,6 +309,7 @@ class Upload_engagement : AppCompatActivity() {
                     Toast.makeText(this@Upload_engagement, e.message.toString(), Toast.LENGTH_SHORT)
                         .show()
                 }
+
         }
     }
 }
