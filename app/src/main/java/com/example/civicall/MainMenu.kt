@@ -9,7 +9,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
 import com.example.civicall.databinding.ActivityMainmenuBinding
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -54,7 +56,7 @@ class MainMenu : AppCompatActivity() {
             if (!isLogoutDialogShown) { // Check if the dialog is not already shown
                 isLogoutDialogShown = true // Set the flag to true
                 // Create a custom logout confirmation dialog
-                val dialogView = layoutInflater.inflate(R.layout.dialog_logout, null)
+                val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
                 val dialogBuilder = AlertDialog.Builder(this)
                     .setView(dialogView)
                 val dialog = dialogBuilder.create()
@@ -62,10 +64,17 @@ class MainMenu : AppCompatActivity() {
                 dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
                 dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-                val yesButton = dialogView.findViewById<Button>(R.id.logoutBtn)
-                val cancelButton = dialogView.findViewById<Button>(R.id.cancelBtn)
 
-                yesButton.setOnClickListener {
+                val title: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
+                val message: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
+                val logout: MaterialButton = dialogView.findViewById(R.id.saveBtn)
+                val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+
+                title.text = "Logout"
+                message.text = "Are you sure you want to Logout?"
+
+                logout.text = "Yes"
+                logout.setOnClickListener {
                     // Handle click for the "Yes, Logout" button
                     firebaseAuth.signOut()
                     val intent = Intent(this, Login::class.java)
@@ -73,8 +82,8 @@ class MainMenu : AppCompatActivity() {
                     finish()
                     dialog.dismiss()
                 }
-
-                cancelButton.setOnClickListener {
+                cancelBtn.text = "Cancel"
+                cancelBtn.setOnClickListener {
                     // Handle click for the "Cancel" button
                     dialog.dismiss()
                 }

@@ -27,9 +27,11 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.civicall.databinding.ActivityEditProfileBinding
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -389,7 +391,7 @@ class EditProfile : AppCompatActivity() {
 
     private fun showSaveConfirmationDialog() {
         if (isSaveConfirmationDialogShowing) {
-            return // Dialog is already showing, return early
+            return
         }
         dismissCustomDialog()
         val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
@@ -397,8 +399,10 @@ class EditProfile : AppCompatActivity() {
             .setView(dialogView)
             .create()
 
-        val saveButton = dialogView.findViewById<Button>(R.id.saveBtn)
-        val cancelButton = dialogView.findViewById<Button>(R.id.cancelBtn)
+        val confirmTitle: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
+        val logoutMsg: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
+        val saveBtn: MaterialButton = dialogView.findViewById(R.id.saveBtn)
+        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
 
 
         alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
@@ -406,17 +410,20 @@ class EditProfile : AppCompatActivity() {
 
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        saveButton.setOnClickListener {
+        confirmTitle.text = "Confirmation"
+        logoutMsg.text = "Are you sure you want to save these changes?"
+
+        saveBtn.text = "Save"
+        saveBtn.setOnClickListener {
             alertDialog.dismiss()
             dismissCustomDialog()
 
             updateProfile()
         }
-
-        cancelButton.setOnClickListener {
-            isSaveConfirmationDialogShowing = false // Reset the flag
+        cancelBtn.text = "Cancel"
+        cancelBtn.setOnClickListener {
+            isSaveConfirmationDialogShowing = false
             alertDialog.dismiss()
-            // User clicked "Cancel," do nothing or provide feedback
         }
         alertDialog.setOnDismissListener{
             isSaveConfirmationDialogShowing = false
@@ -424,7 +431,7 @@ class EditProfile : AppCompatActivity() {
 
         alertDialog.show()
         isSaveConfirmationDialogShowing =
-            true // Set the flag to indicate that the dialog is showing
+            true
     }
     private fun showCustomPopup(message: String) {
         // Check if the pop-up is already showing, and if so, return early

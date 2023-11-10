@@ -258,39 +258,59 @@ class DetailPost : AppCompatActivity() {
             })
         }
     }
+    private var isSaveConfirmationDialogShowing = false // Add this variable
+
     private fun showDeleteConfirmationDialog() {
-        val dialog = Dialog(this)
-        dialog.setContentView(R.layout.dialog_confirmation)
+        if (isSaveConfirmationDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
 
-        val confirmTitle: AppCompatTextView = dialog.findViewById(R.id.ConfirmTitle)
-        val logoutMsg: AppCompatTextView = dialog.findViewById(R.id.logoutMsg)
-        val saveBtn: MaterialButton = dialog.findViewById(R.id.saveBtn)
-        val cancelBtn: MaterialButton = dialog.findViewById(R.id.cancelBtn)
+        val confirmTitle: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
+        val logoutMsg: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
+        val saveBtn: MaterialButton = dialogView.findViewById(R.id.saveBtn)
+        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
 
-        // Set window animations
-        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
 
-        // Set transparent background
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         confirmTitle.text = "Confirmation"
         logoutMsg.text = "Are you sure you want to delete this post?"
 
         saveBtn.text = "Delete"
         saveBtn.setOnClickListener {
-            // Delete the post
-            deletePost()
-            dialog.dismiss()
-        }
+            alertDialog.dismiss()
+            dismissCustomDialog()
 
+            deletePost()
+        }
         cancelBtn.text = "Cancel"
         cancelBtn.setOnClickListener {
-            dialog.dismiss()
+            isSaveConfirmationDialogShowing = false // Reset the flag
+            alertDialog.dismiss()
+            // User clicked "Cancel," do nothing or provide feedback
+        }
+        alertDialog.setOnDismissListener{
+            isSaveConfirmationDialogShowing = false
         }
 
-        dialog.show()
+        alertDialog.show()
+        isSaveConfirmationDialogShowing =
+            true
     }
+    private fun dismissCustomDialog() {
+        if (isSaveConfirmationDialogShowing) {
 
+            isSaveConfirmationDialogShowing = false
+        }
+    }
     private fun deletePost() {
         val reference: DatabaseReference =
             FirebaseDatabase.getInstance().getReference("Upload Engagement")

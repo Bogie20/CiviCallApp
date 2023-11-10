@@ -18,9 +18,11 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityUpdateEngagementBinding
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -134,7 +136,7 @@ class Update_engagement: AppCompatActivity() {
         }
 
         updateButton.setOnClickListener {
-            saveData()
+            showUpdateConfirmation()
 
         }
         updateDateandTime.setOnClickListener {
@@ -379,6 +381,59 @@ class Update_engagement: AppCompatActivity() {
                     Toast.makeText(this@Update_engagement, e.message.toString(), Toast.LENGTH_SHORT)
                         .show()
                 }
+        }
+    }
+    private var isSaveConfirmationDialogShowing = false // Add this variable
+
+    private fun showUpdateConfirmation() {
+        if (isSaveConfirmationDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val confirmTitle: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
+        val logoutMsg: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
+        val saveBtn: MaterialButton = dialogView.findViewById(R.id.saveBtn)
+        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        confirmTitle.text = "Confirmation"
+        logoutMsg.text = "Are you sure you want to delete this post?"
+
+        saveBtn.text = "Delete"
+        saveBtn.setOnClickListener {
+            alertDialog.dismiss()
+            dismissCustomDialog()
+
+            saveData()
+        }
+        cancelBtn.text = "Cancel"
+        cancelBtn.setOnClickListener {
+            isSaveConfirmationDialogShowing = false // Reset the flag
+            alertDialog.dismiss()
+            // User clicked "Cancel," do nothing or provide feedback
+        }
+        alertDialog.setOnDismissListener{
+            isSaveConfirmationDialogShowing = false
+        }
+
+        alertDialog.show()
+        isSaveConfirmationDialogShowing =
+            true
+    }
+    private fun dismissCustomDialog() {
+        if (isSaveConfirmationDialogShowing) {
+
+            isSaveConfirmationDialogShowing = false
         }
     }
 }
