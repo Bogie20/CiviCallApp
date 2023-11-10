@@ -407,9 +407,9 @@ class Update_engagement: AppCompatActivity() {
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         confirmTitle.text = "Confirmation"
-        logoutMsg.text = "Are you sure you want to delete this post?"
+        logoutMsg.text = "Are you sure you want to update this post?"
 
-        saveBtn.text = "Delete"
+        saveBtn.text = "Update"
         saveBtn.setOnClickListener {
             alertDialog.dismiss()
             dismissCustomDialog()
