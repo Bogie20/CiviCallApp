@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
@@ -78,41 +79,68 @@ class DetailPost : AppCompatActivity() {
 
         joinButton.setOnClickListener {
             if (currentUserId != null) {
-                val reference: DatabaseReference =
-                    FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                // Check if the user is verified
+                val userRef = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId)
+                userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(userSnapshot: DataSnapshot) {
+                        val userVerificationStatus = userSnapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
 
-                // Check if the post is under verification
-                reference.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        val verificationStatus =
-                            dataSnapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
+                        if (userVerificationStatus) {
+                            // The user is verified, proceed with checking post verification status
+                            val reference: DatabaseReference =
+                                FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
 
-                        if (verificationStatus) {
-                            reference.child("Participants")
-                                .addListenerForSingleValueEvent(object : ValueEventListener {
-                                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                                        if (dataSnapshot.hasChild(currentUserId)) {
-                                            // The user has already joined, so ask if they want to cancel
-                                            showCancelConfirmationDialog(reference, currentUserId)
-                                        } else {
-                                            // The user hasn't joined, so ask if they want to join
-                                            showJoinConfirmationDialog(reference, currentUserId)
-                                        }
-                                    }
+                            // Check if the post is under verification
+                            reference.addListenerForSingleValueEvent(object : ValueEventListener {
+                                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                    val verificationStatus =
+                                        dataSnapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
 
-                                    override fun onCancelled(databaseError: DatabaseError) {
+                                    if (verificationStatus) {
+                                        // ... rest of the logic for joining or canceling
+                                        reference.child("Participants")
+                                            .addListenerForSingleValueEvent(object : ValueEventListener {
+                                                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                                    if (dataSnapshot.hasChild(currentUserId)) {
+                                                        // The user has already joined, so ask if they want to cancel
+                                                        showCancelConfirmationDialog(reference, currentUserId)
+                                                    } else {
+                                                        // The user hasn't joined, so ask if they want to join
+                                                        showJoinConfirmationDialog(reference, currentUserId)
+                                                    }
+                                                }
+
+                                                override fun onCancelled(databaseError: DatabaseError) {
+                                                    Toast.makeText(
+                                                        this@DetailPost,
+                                                        "Database error: " + databaseError.message,
+                                                        Toast.LENGTH_SHORT
+                                                    ).show()
+                                                }
+                                            })
+                                    } else {
+                                        // The post is not verified, show a toast message
                                         Toast.makeText(
                                             this@DetailPost,
-                                            "Database error: " + databaseError.message,
-                                            Toast.LENGTH_SHORT
+                                            "Hold on! This post is currently under verification. Please wait until it's approved by the admin.",
+                                            Toast.LENGTH_LONG
                                         ).show()
                                     }
-                                })
+                                }
+
+                                override fun onCancelled(databaseError: DatabaseError) {
+                                    Toast.makeText(
+                                        this@DetailPost,
+                                        "Database error: " + databaseError.message,
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            })
                         } else {
-                            // The post is not verified, show a toast message
+                            // The user is not verified, show a toast message
                             Toast.makeText(
                                 this@DetailPost,
-                                "This post is under verification. Please wait until it's verified by the admin.",
+                                "Oops! Your account is not verified. Please verify your account before joining.",
                                 Toast.LENGTH_LONG
                             ).show()
                         }
@@ -225,11 +253,35 @@ class DetailPost : AppCompatActivity() {
 
     }
 
+    private var isJoinConfirmationDialogShowing = false
+
     private fun showJoinConfirmationDialog(reference: DatabaseReference, currentUserId: String) {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Join Confirmation")
-        builder.setMessage("Are you sure you want to join?")
-        builder.setPositiveButton("Yes") { _, _ ->
+        if (isJoinConfirmationDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val dialogView = layoutInflater.inflate(R.layout.dialog_engagement, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val confirmTitle: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
+        val logoutMsg: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
+        val joinBtn: MaterialButton = dialogView.findViewById(R.id.saveBtn)
+        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+        val dialogIconFlat: AppCompatImageView = dialogView.findViewById(R.id.dialog_icon_flat)
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        confirmTitle.text = "Join Confirmation"
+        logoutMsg.text = "By confirming, you are expressing your commitment to join this engagement. Are you sure you want to proceed?"
+
+
+        joinBtn.text = "Join"
+        joinBtn.setOnClickListener {
+            alertDialog.dismiss()
+            dismissCustomDialog()
             // Add the user's UID to the "Participants" node
             reference.child("Participants").child(currentUserId).setValue(true)
 
@@ -239,34 +291,79 @@ class DetailPost : AppCompatActivity() {
             // Call joinPost() here to update the TotalEngagement count
             joinPost()
         }
-        builder.setNegativeButton("No") { dialog, _ ->
-            dialog.dismiss()
+
+        cancelBtn.text = "Cancel"
+        cancelBtn.setOnClickListener {
+            isJoinConfirmationDialogShowing = false
+            alertDialog.dismiss()
         }
-        val dialog = builder.create()
-        dialog.show()
+
+        dialogIconFlat.setImageResource(R.drawable.needhelp) // Set the join icon here
+
+        alertDialog.setOnDismissListener {
+            isJoinConfirmationDialogShowing = false
+        }
+
+        alertDialog.show()
+        isJoinConfirmationDialogShowing = true
     }
 
-    @SuppressLint("SetTextI18n")
+    private var isCancelConfirmationDialogShowing = false
+
     private fun showCancelConfirmationDialog(reference: DatabaseReference, currentUserId: String) {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Cancel Confirmation")
-        builder.setMessage("Are you sure you want to cancel?")
-        builder.setPositiveButton("Yes") { _, _ ->
+        if (isCancelConfirmationDialogShowing) {
+            return
+        }
+
+        dismissCustomDialog()
+
+        val dialogView = layoutInflater.inflate(R.layout.dialog_engagement, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val confirmTitle: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
+        val volunteerMsg: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
+        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+        val joinBtn: MaterialButton = dialogView.findViewById(R.id.saveBtn)
+        val dialogIconFlat: AppCompatImageView = dialogView.findViewById(R.id.dialog_icon_flat)
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        confirmTitle.text = "Cancel Confirmation"
+        volunteerMsg.text = "Your participation is valuable to us. Are you sure you want to cancel your engagement?"
+
+        cancelBtn.text = "Cancel"
+        cancelBtn.setOnClickListener {
+            isCancelConfirmationDialogShowing = false
+            alertDialog.dismiss()
+        }
+
+        joinBtn.text = "Confirm"
+        joinBtn.setOnClickListener {
+            isCancelConfirmationDialogShowing = false
+            alertDialog.dismiss()
+
             // Remove the user's UID from the "Participants" node
             reference.child("Participants").child(currentUserId).removeValue()
 
             // Update the button text to "Join Now"
             joinButton.text = "Join Now"
 
-            // Call joinPost() here to update the TotalEngagement count
             cancelPost()
         }
-        builder.setNegativeButton("No") { dialog, _ ->
-            dialog.dismiss()
+
+        dialogIconFlat.setImageResource(R.drawable.weneedyou) // Set the cancel icon here
+
+        alertDialog.setOnDismissListener {
+            isCancelConfirmationDialogShowing = false
         }
-        val dialog = builder.create()
-        dialog.show()
+
+        alertDialog.show()
+        isCancelConfirmationDialogShowing = true
     }
+
     val currentUser = FirebaseAuth.getInstance().currentUser
     val currentUserId = currentUser?.uid
     override fun onResume() {
@@ -411,6 +508,10 @@ class DetailPost : AppCompatActivity() {
         if (isSaveConfirmationDialogShowing) {
 
             isSaveConfirmationDialogShowing = false
+        }
+        if (isJoinConfirmationDialogShowing) {
+
+            isJoinConfirmationDialogShowing = false
         }
     }
     private fun deletePost() {

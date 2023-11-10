@@ -49,7 +49,7 @@
     <color name="unverified">#FF0000</color>
     <color name="unverifiedyellow">#FFFF00</color>
     <color name="verified">#00FF00</color>
-
+    <color name="paleBackground">#CCFFFFFF</color>
     <!--gradient colors-->
     <color name="gradientOrange">#FF416C</color>
     <color name="gradientViolet">#8A52E9</color>

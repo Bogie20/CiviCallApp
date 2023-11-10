@@ -152,9 +152,13 @@
 
             <TextView
                 android:id="@+id/email1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:paddingLeft="75dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/verify"
                 android:fontFamily="@font/inter_bold"
                 android:text="Example@gmail.com"
                 android:textColor="@color/white"

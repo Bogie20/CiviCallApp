@@ -1,6 +1,7 @@
 package com.example.civicall
 
 import android.content.Intent
+import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.example.civicall.databinding.ActivityProfiledetailsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -81,6 +83,7 @@ class ProfileDetails : AppCompatActivity() {
                 val usertype = snapshot.child("userType").value
                 val campus = snapshot.child("campus").value
                 val nstp = snapshot.child("nstp").value
+                val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
 
                 binding.firstName.text = firstName.toString()
                 binding.lastName.text = lastName.toString()
@@ -105,9 +108,21 @@ class ProfileDetails : AppCompatActivity() {
                 } else {
                     profileImage.setImageResource(R.drawable.three)
                 }
+                if (verificationStatus) {
+                    // If verificationStatus is true, set a drawable for a verified account
+                    binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verificationtrue_icon, 0, 0, 0)
+                    // Tint the drawable for verified accounts
+                    binding.email1.compoundDrawables[0]?.setColorFilter(ContextCompat.getColor(this, R.color.verified), PorterDuff.Mode.SRC_IN)
+                } else {
+                    // If verificationStatus is false, set a drawable for an unverified account
+                    binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verificationfalse_icon, 0, 0, 0)
+                    // Tint the drawable for unverified accounts
+                    binding.email1.compoundDrawables[0]?.setColorFilter(ContextCompat.getColor(this, R.color.unverifiedyellow), PorterDuff.Mode.SRC_IN)
+                }
             } else {
                 Toast.makeText(this, "User Not existed", Toast.LENGTH_LONG).show()
             }
+
 
         }.addOnFailureListener {
             // Show a toast if there's a failure in fetching data
