@@ -4,6 +4,8 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -142,8 +144,15 @@ class Update_engagement: AppCompatActivity() {
     private fun saveData() {
         val builder = AlertDialog.Builder(this@Update_engagement)
         builder.setCancelable(false)
-        builder.setView(R.layout.loading_layout)
+        val inflater = layoutInflater
+        val loadingLayout = inflater.inflate(R.layout.loading_layout, null)
+        builder.setView(loadingLayout)
         val dialog = builder.create()
+
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
         dialog.show()
 
         if (uri != null) {

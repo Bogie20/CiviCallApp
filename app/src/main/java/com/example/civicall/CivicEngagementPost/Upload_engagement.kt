@@ -7,6 +7,8 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -167,15 +169,44 @@ class Upload_engagement : AppCompatActivity() {
 
 
     private fun saveData() {
-        val storageReference =
-            FirebaseStorage.getInstance().getReference().child("Poster Civic Images")
-                .child(uri?.lastPathSegment!!) // Use !! to assert that uri is not null
+        // Validate if any of the required fields is empty
+        if (uploadTitle.text.isNullOrBlank() ||
+            uploadDateandTime.text.isNullOrBlank() ||
+            uploadLocation.text.isNullOrBlank() ||
+            uploadFacilitator.text.isNullOrBlank() ||
+            uploadFacilitatorInfo.text.isNullOrBlank() ||
+            uploadTargetParty.text.isNullOrBlank() ||
+            binding.uploadCampus.text.isNullOrBlank() ||
+            binding.uploadCategory.text.isNullOrBlank() ||
+            uploadObjective.text.isNullOrBlank() ||
+            uploadInstruction.text.isNullOrBlank() ||
+            uploadIntro.text.isNullOrBlank() ||
+            uri == null
+        ) {
+            Toast.makeText(
+                this@Upload_engagement,
+                "Please fill in all the required information",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
+        val storageReference = FirebaseStorage.getInstance().getReference()
+            .child("Poster Civic Images").child(uri?.lastPathSegment!!)
 
         val builder = AlertDialog.Builder(this@Upload_engagement)
         builder.setCancelable(false)
-        builder.setView(R.layout.loading_layout)
+        val inflater = layoutInflater
+        val loadingLayout = inflater.inflate(R.layout.loading_layout, null)
+        builder.setView(loadingLayout)
         val dialog = builder.create()
+
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
         dialog.show()
+
 
         storageReference.putFile(uri!!)
             .addOnSuccessListener { taskSnapshot ->
@@ -200,6 +231,11 @@ class Upload_engagement : AppCompatActivity() {
             }
             .addOnFailureListener { e ->
                 dialog.dismiss()
+                Toast.makeText(
+                    this@Upload_engagement,
+                    "Failed to upload image: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
     }
 

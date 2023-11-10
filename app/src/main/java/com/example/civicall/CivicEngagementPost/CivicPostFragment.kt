@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -68,8 +69,21 @@ class CivicPostFragment : Fragment() {
                     dataClass?.key = itemSnapshot.key
                     dataClass?.let { dataList.add(it) }
                 }
+
                 adapter.notifyDataSetChanged()
                 dialog.dismiss()
+
+                if (dataList.isEmpty()) {
+                    rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
+                    recyclerView.visibility = View.GONE
+                } else {
+                    rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.GONE
+                    recyclerView.visibility = View.VISIBLE
+                    adapter.notifyDataSetChanged()
+                }
+
+                dialog.dismiss()
+
             }
 
             override fun onCancelled(error: DatabaseError) {

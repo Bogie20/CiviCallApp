@@ -1,7 +1,10 @@
 package com.example.civicall.CivicEngagementPost
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -10,11 +13,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
 import com.github.clans.fab.FloatingActionButton
 import com.github.clans.fab.FloatingActionMenu
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -168,17 +173,8 @@ class DetailPost : AppCompatActivity() {
 
 
         deleteButton.setOnClickListener {
-            val reference: DatabaseReference =
-                FirebaseDatabase.getInstance().getReference("Upload Engagement")
-            val storage: FirebaseStorage = FirebaseStorage.getInstance()
 
-            val storageReference: StorageReference = storage.getReferenceFromUrl(imageUrl)
-            storageReference.delete().addOnSuccessListener(OnSuccessListener {
-                reference.child(key).removeValue()
-                Toast.makeText(this@DetailPost, "Deleted", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(applicationContext, CivicPostFragment::class.java))
-                finish()
-            })
+            showDeleteConfirmationDialog()
         }
 
         editButton.setOnClickListener {
@@ -197,6 +193,7 @@ class DetailPost : AppCompatActivity() {
                 .putExtra("TargetParticipants", detailTargetParty.text.toString())
                 .putExtra("Key", key)
             startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
 
     }
@@ -260,6 +257,51 @@ class DetailPost : AppCompatActivity() {
                 }
             })
         }
+    }
+    private fun showDeleteConfirmationDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_confirmation)
+
+        val confirmTitle: AppCompatTextView = dialog.findViewById(R.id.ConfirmTitle)
+        val logoutMsg: AppCompatTextView = dialog.findViewById(R.id.logoutMsg)
+        val saveBtn: MaterialButton = dialog.findViewById(R.id.saveBtn)
+        val cancelBtn: MaterialButton = dialog.findViewById(R.id.cancelBtn)
+
+        // Set window animations
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        // Set transparent background
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        confirmTitle.text = "Confirmation"
+        logoutMsg.text = "Are you sure you want to delete this post?"
+
+        saveBtn.text = "Delete"
+        saveBtn.setOnClickListener {
+            // Delete the post
+            deletePost()
+            dialog.dismiss()
+        }
+
+        cancelBtn.text = "Cancel"
+        cancelBtn.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun deletePost() {
+        val reference: DatabaseReference =
+            FirebaseDatabase.getInstance().getReference("Upload Engagement")
+        val storage: FirebaseStorage = FirebaseStorage.getInstance()
+
+        val storageReference: StorageReference = storage.getReferenceFromUrl(imageUrl)
+        storageReference.delete().addOnSuccessListener(OnSuccessListener {
+            reference.child(key).removeValue()
+            Toast.makeText(this@DetailPost, "Deleted", Toast.LENGTH_SHORT).show()
+            finish() // Finish the current activity and go back to the previous one
+        })
     }
 
 }
