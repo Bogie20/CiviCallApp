@@ -287,7 +287,7 @@ class DetailPost : AppCompatActivity() {
 
             // Update the button text to "Cancel"
             joinButton.text = "Cancel"
-
+            showJoinPopupSuccess()
             // Call joinPost() here to update the TotalEngagement count
             joinPost()
         }
@@ -362,6 +362,43 @@ class DetailPost : AppCompatActivity() {
 
         alertDialog.show()
         isCancelConfirmationDialogShowing = true
+    }
+    private var isJoinSuccessDialogShowing = false
+
+    private fun showJoinPopupSuccess() {
+        // Check if the pop-up is already showing, and if so, return early
+        if (isJoinSuccessDialogShowing) {
+            return
+        }
+
+        val dialogBuilder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.dialog_success, null)
+
+        dialogBuilder.setView(dialogView)
+        val alertDialog = dialogBuilder.create()
+
+        // Set the animation style
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        // Set the background to be transparent
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val dialogIconFlat: AppCompatImageView = dialogView.findViewById(R.id.dialog_icon_flat)
+        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message_flat)
+        val okButton = dialogView.findViewById<Button>(R.id.btn_action_flat)
+
+        messageTextView.text = "Looking forward to seeing you there, dedicated volunteer!"
+
+        okButton.setOnClickListener {
+            alertDialog.dismiss()
+            isJoinSuccessDialogShowing = false // Set the variable to false when the pop-up is dismissed
+        }
+        dialogIconFlat.setImageResource(R.drawable.handshake)
+        dismissCustomDialog()
+
+        alertDialog.show()
+        isJoinSuccessDialogShowing = true // Set the variable to true when the pop-up is displayed
     }
 
     val currentUser = FirebaseAuth.getInstance().currentUser
@@ -513,6 +550,11 @@ class DetailPost : AppCompatActivity() {
 
             isJoinConfirmationDialogShowing = false
         }
+        if (isJoinSuccessDialogShowing) {
+
+            isJoinSuccessDialogShowing = false
+        }
+
     }
     private fun deletePost() {
         val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
