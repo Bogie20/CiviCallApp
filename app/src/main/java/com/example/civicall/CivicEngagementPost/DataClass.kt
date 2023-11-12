@@ -15,6 +15,9 @@ class DataClass {
     var instruction: String? = null
     var targetparty: String? = null
     var activepoints: String? = null
+    var paymentMethod: String? = null
+    var paymentRecipient: String? = null
+    var fundcollected: String? = null
     var verificationStatus: Boolean = false
 
     var key: String? = null
@@ -37,6 +40,9 @@ class DataClass {
         instruction: String?,
         targetparty: String?,
         activepoints: String?,
+        paymentMethod: String?,
+        paymentRecipient: String?,
+        fundcollected: String?,
         verificationStatus: Boolean
     ) {
         this.uploadersUID = uploadersuid
@@ -53,6 +59,9 @@ class DataClass {
         this.instruction = instruction
         this.targetparty = targetparty
         this.activepoints = activepoints
+        this.paymentMethod = paymentMethod
+        this.paymentRecipient = paymentRecipient
+        this.fundcollected = fundcollected
         this.verificationStatus = verificationStatus
     }
 

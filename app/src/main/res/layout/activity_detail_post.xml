@@ -242,7 +242,15 @@
                 android:background="@color/grayback"
                 android:padding="16dp">
 
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/labelEngagementDetails"
+                    android:text="Engagement Details:"
+                    android:fontFamily="@font/inter_bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/redpink"
+                    android:layout_marginBottom="8dp" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -367,6 +375,135 @@
             </LinearLayout>
 
 
+            <LinearLayout
+                android:id="@+id/paymentDetailsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:background="@color/grayback"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/labelMonetaryDetails"
+                    android:text="Contribute Via the Details Below:"
+                    android:fontFamily="@font/inter_bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/redpink"
+                    android:layout_marginBottom="8dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="start"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/labelPayment"
+                        android:fontFamily="@font/lexend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Payment-Method:"
+                        android:textSize="15sp"
+                        android:textColor="@color/DarkGray"
+                        android:layout_marginEnd="8dp"
+                        android:lineSpacingExtra="5dp"
+                        android:textAlignment="viewStart" />
+
+                    <TextView
+                        android:id="@+id/detailPaymentMethod"
+                        android:fontFamily="@font/lexend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="GCash"
+                        android:textSize="15sp"
+                        android:textColor="@color/redpink"
+                        android:lineSpacingExtra="5dp"
+                        android:textAlignment="viewStart" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="start"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/labelPaymentRecipient"
+                        android:fontFamily="@font/lexend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Payment Recipient:"
+                        android:textSize="15sp"
+                        android:textColor="@color/DarkGray"
+                        android:layout_marginEnd="8dp"
+                        android:lineSpacingExtra="5dp"
+                        android:textAlignment="viewStart" />
+
+                    <TextView
+                        android:id="@+id/detailPaymentRecipient"
+                        android:fontFamily="@font/lexend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="09267383649"
+                        android:textSize="15sp"
+                        android:textColor="@color/redpink"
+                        android:lineSpacingExtra="5dp"
+                        android:textAlignment="viewStart" />
+                    <ImageView
+                        android:id="@+id/copyIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/copy"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="8dp"
+                        android:contentDescription="Copy Icon"
+                        />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="start">
+
+                    <TextView
+                        android:id="@+id/labelFundCollected"
+                        android:fontFamily="@font/lexend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fund Collected:"
+                        android:textSize="15sp"
+                        android:textColor="@color/DarkGray"
+                        android:layout_marginEnd="8dp"
+                        android:lineSpacingExtra="5dp"
+                        android:textAlignment="viewStart" />
+                    <TextView
+                        android:id="@+id/pesosign"
+                        android:fontFamily="@font/lexend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₱ "
+                        android:textSize="15sp"
+                        android:textColor="@color/redpink"
+                        android:lineSpacingExtra="5dp"
+                        android:textAlignment="viewStart" />
+                    <TextView
+                        android:id="@+id/detailFundCollected"
+                        android:fontFamily="@font/lexend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="15sp"
+                        android:textColor="@color/redpink"
+                        android:lineSpacingExtra="5dp"
+                        android:textAlignment="viewStart" />
+                </LinearLayout>
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

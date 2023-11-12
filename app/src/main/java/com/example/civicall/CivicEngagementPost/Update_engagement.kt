@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
@@ -44,6 +45,8 @@ class Update_engagement: AppCompatActivity() {
     private lateinit var updateButton: Button
     private lateinit var updateDateandTime: AutoCompleteTextView
     private lateinit var updateTitle: EditText
+    private lateinit var updateFundCollected: EditText
+    private lateinit var updatePaymentRecipient: EditText
     private lateinit var updateFacilitator: EditText
     private lateinit var updateTargetParty: EditText
     private lateinit var updateActivePoints: EditText
@@ -51,7 +54,9 @@ class Update_engagement: AppCompatActivity() {
     private lateinit var updateLocation: EditText
     private lateinit var updateCampus: AutoCompleteTextView
     private lateinit var updateCategory: AutoCompleteTextView
+    private lateinit var updatePaymentMethod: AutoCompleteTextView
     private var title: String = ""
+    private var paymentrecipient: String = ""
     private var objective: String = ""
     private var instruction: String = ""
     private var introduction: String = ""
@@ -66,6 +71,8 @@ class Update_engagement: AppCompatActivity() {
     private var oldImageURL: String = ""
     private var campus: String = ""
     private var category: String = ""
+    private var paymentmethod: String = ""
+    private var fundcollected: String = ""
     private var uri: Uri? = null
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference
@@ -81,6 +88,8 @@ class Update_engagement: AppCompatActivity() {
         updateImage = binding.updateImage
         updateLocation = binding.updateLocation
         updateTitle = binding.updateTitle
+        updateFundCollected = binding.updateFundCollected
+        updatePaymentRecipient = binding.updatePaymentRecipient
         updateTargetParty = binding.updateTargetParty
         updateTargetParty.inputType = InputType.TYPE_CLASS_NUMBER
         updateActivePoints = binding.updateActivePoints
@@ -89,14 +98,35 @@ class Update_engagement: AppCompatActivity() {
         updateFacilitatorInfo = binding.updateFacilitatorInfo
         updateCampus = binding.updateCampus
         updateCategory = binding.updateCategory
+        updatePaymentMethod = binding.updatePaymentMethod
         updateObjective = binding.updateObjective
         updateInstruction = binding.updateInstruction
         updateIntro = binding.updateIntro
+
+        val paymentDropdown = binding.updatePaymentMethod
+        val paymentArray = resources.getStringArray(R.array.payment_category)
+        val adapterpayment = ArrayAdapter(this, R.layout.dropdown_item, paymentArray)
+        (paymentDropdown as? AutoCompleteTextView)?.setAdapter(adapterpayment)
 
         val categoryDropdown = binding.updateCategory
         val categoryArray = resources.getStringArray(R.array.engagement_category)
         val adaptercategory = ArrayAdapter(this, R.layout.dropdown_item, categoryArray)
         (categoryDropdown as? AutoCompleteTextView)?.setAdapter(adaptercategory)
+
+        val paymentMethodLayout = binding.PaymentTextInputLayout
+        val paymentRecipientLayout = binding.PaymentRecepientTextInputLayout
+
+        categoryDropdown.setOnItemClickListener { _, _, position, _ ->
+            val selectedCategory = categoryArray[position]
+
+            if (selectedCategory == "Fund Raising" || selectedCategory == "Donations") {
+                paymentMethodLayout.visibility = View.VISIBLE
+                paymentRecipientLayout.visibility = View.VISIBLE
+            } else {
+                paymentMethodLayout.visibility = View.GONE
+                paymentRecipientLayout.visibility = View.GONE
+            }
+        }
 
         updateCampus.setOnClickListener {
             showCampusSelectionDialog()
@@ -119,6 +149,8 @@ class Update_engagement: AppCompatActivity() {
         if (bundle != null) {
             Glide.with(this@Update_engagement).load(bundle.getString("Image")).into(updateImage)
             updateCategory.setText(bundle.getString("Category"))
+            updatePaymentMethod.setText(bundle.getString("PaymentMethod"))
+            updatePaymentRecipient.setText(bundle.getString("PaymentRecipient"))
             updateTitle.setText(bundle.getString("Title"))
             updateDateandTime.setText(bundle.getString("Date&Time"))
             updateLocation.setText(bundle.getString("Location"))
@@ -315,6 +347,7 @@ class Update_engagement: AppCompatActivity() {
         targetparty = updateTargetParty.text.toString()
         activepoints = updateActivePoints.text.toString()
         category = updateCategory.text.toString()
+        paymentmethod = updatePaymentMethod.text.toString()
         facilitator = updateFacilitator.text.toString()
         facilitatorinfo = updateFacilitatorInfo.text.toString()
         objective = updateObjective.text.toString()
@@ -340,6 +373,9 @@ class Update_engagement: AppCompatActivity() {
                 instruction,
                 targetparty,
                 activepoints,
+                paymentmethod,
+                paymentrecipient,
+                fundcollected,
                 false
             )
 
@@ -377,6 +413,9 @@ class Update_engagement: AppCompatActivity() {
                 instruction,
                 targetparty,
                 activepoints,
+                paymentmethod,
+                paymentrecipient,
+                fundcollected,
                 false
             )
 

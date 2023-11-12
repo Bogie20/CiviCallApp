@@ -12,6 +12,7 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
@@ -37,12 +38,15 @@ class Upload_engagement : AppCompatActivity() {
     private lateinit var uploadTitle: EditText
     private lateinit var uploadFacilitator: EditText
     private lateinit var uploadFacilitatorInfo: EditText
+    private lateinit var uploadPaymentRecipient: EditText
     private lateinit var uploadTargetParty: EditText
     private lateinit var uploadActivePoints: EditText
     private lateinit var uploadObjective: EditText
     private lateinit var uploadInstruction: EditText
     private lateinit var uploadIntro: EditText
     private lateinit var uploadCategory: AutoCompleteTextView
+    private lateinit var uploadPaymentMethod: AutoCompleteTextView
+    private lateinit var uploadFundCollected: EditText
     private lateinit var uploadDateandTime: AutoCompleteTextView
     private lateinit var uploadLocation: EditText
     private var imageURL: String? = null
@@ -57,8 +61,11 @@ class Upload_engagement : AppCompatActivity() {
         uploadImage = binding.uploadImage
         uploadDateandTime = binding.uploadDateandTime
         uploadCategory = binding.uploadCategory
+        uploadPaymentMethod = binding.uploadPaymentMethod
         uploadTitle = binding.uploadTitle
+        uploadPaymentRecipient = binding.uploadPaymentRecipient
         uploadTargetParty = binding.uploadTargetParty
+        uploadFundCollected = binding.uploadFundCollected
         uploadTargetParty.inputType = InputType.TYPE_CLASS_NUMBER
         uploadActivePoints = binding.uploadActivePoints
         uploadActivePoints.inputType = InputType.TYPE_CLASS_NUMBER
@@ -75,10 +82,30 @@ class Upload_engagement : AppCompatActivity() {
         val adaptercampus = ArrayAdapter(this, R.layout.dropdown_item, campusArray)
         (campusDropdown as? AutoCompleteTextView)?.setAdapter(adaptercampus)
 
+        val paymentDropdown = binding.uploadPaymentMethod
+        val paymentArray = resources.getStringArray(R.array.payment_category)
+        val adapterpayment = ArrayAdapter(this, R.layout.dropdown_item, paymentArray)
+        (paymentDropdown as? AutoCompleteTextView)?.setAdapter(adapterpayment)
+
         val categoryDropdown = binding.uploadCategory
         val categoryArray = resources.getStringArray(R.array.engagement_category)
         val adaptercategory = ArrayAdapter(this, R.layout.dropdown_item, categoryArray)
         (categoryDropdown as? AutoCompleteTextView)?.setAdapter(adaptercategory)
+
+        val paymentMethodLayout = binding.PaymentTextInputLayout
+        val paymentRecipientLayout = binding.PaymentRecepientTextInputLayout
+
+        categoryDropdown.setOnItemClickListener { _, _, position, _ ->
+            val selectedCategory = categoryArray[position]
+
+            if (selectedCategory == "Fund Raising" || selectedCategory == "Donations") {
+                paymentMethodLayout.visibility = View.VISIBLE
+                paymentRecipientLayout.visibility = View.VISIBLE
+            } else {
+                paymentMethodLayout.visibility = View.GONE
+                paymentRecipientLayout.visibility = View.GONE
+            }
+        }
 
         uploadDateandTime.setOnClickListener {
             showDateTimePicker()
@@ -269,6 +296,9 @@ class Upload_engagement : AppCompatActivity() {
         val activepoints = uploadActivePoints.text.toString()
         val campus = binding.uploadCampus.text.toString()
         val category = binding.uploadCategory.text.toString()
+        val fundcollected = if (uploadFundCollected.text.isNullOrBlank()) "0" else uploadFundCollected.text.toString()
+        val paymentmethod = binding.uploadPaymentMethod.text.toString()
+        val paymentrecipient = uploadPaymentRecipient.text.toString()
         val objective = uploadObjective.text.toString()
         val instruction = uploadInstruction.text.toString()
         val introduction = uploadIntro.text.toString()
@@ -293,6 +323,9 @@ class Upload_engagement : AppCompatActivity() {
                 instruction,
                 targetparty,
                 activepoints,
+                paymentmethod,
+                paymentrecipient,
+                fundcollected,
                 verificationStatus
             )
 

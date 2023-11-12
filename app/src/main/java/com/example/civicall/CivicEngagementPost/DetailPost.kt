@@ -1,6 +1,9 @@
 package com.example.civicall.CivicEngagementPost
 
 import android.annotation.SuppressLint
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -9,6 +12,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -45,6 +49,9 @@ class DetailPost : AppCompatActivity() {
     private lateinit var detailIntro: TextView
     private lateinit var detailcampus: TextView
     private lateinit var detailCategory: TextView
+    private lateinit var detailPaymentMethod: TextView
+    private lateinit var detailPaymentRecipient: TextView
+    private lateinit var detailFundCollected: TextView
     private lateinit var detailCurrentParty: TextView
     private lateinit var deleteButton: FloatingActionButton
     private lateinit var editButton: FloatingActionButton
@@ -61,6 +68,7 @@ class DetailPost : AppCompatActivity() {
         detailDateandTime = findViewById(R.id.detailDateandTime)
         detailImage = findViewById(R.id.detailImage)
         detailCategory = findViewById(R.id.detailCategory)
+        detailPaymentMethod = findViewById(R.id.detailPaymentMethod)
         detailTitle = findViewById(R.id.detailTitle)
         detailTargetParty = findViewById(R.id.detailTargetParty)
         detailActivePoints = findViewById(R.id.detailActivePoints)
@@ -68,16 +76,27 @@ class DetailPost : AppCompatActivity() {
         detailFaciInfo = findViewById(R.id.detailFaciInfo)
         detailObjective = findViewById(R.id.detailDesc)
         detailInstruction = findViewById(R.id.detailInstruction)
+        detailPaymentRecipient = findViewById(R.id.detailPaymentRecipient)
+        detailFundCollected = findViewById(R.id.detailFundCollected)
         detailIntro = findViewById(R.id.detailIntro)
         deleteButton = findViewById(R.id.deleteButton)
         editButton = findViewById(R.id.editButton)
         detailLocation = findViewById(R.id.detailLocation)
         detailcampus = findViewById(R.id.detailcampus)
         fabMenu = findViewById(R.id.fabicon)
-
         joinButton = findViewById(R.id.joinButton)
         detailCurrentParty = findViewById(R.id.detailCurrentParty)
 
+        val copyIcon: ImageView = findViewById(R.id.copyIcon)
+        val paymentRecipient: TextView = findViewById(R.id.detailPaymentRecipient)
+
+        copyIcon.setOnClickListener {
+            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("Payment Recipient", paymentRecipient.text)
+            clipboard.setPrimaryClip(clip)
+
+            Toast.makeText(this@DetailPost, "Copied to clipboard", Toast.LENGTH_SHORT).show()
+        }
 
         joinButton.setOnClickListener {
             if (currentUserId != null) {
@@ -166,6 +185,9 @@ class DetailPost : AppCompatActivity() {
             detailDateandTime.text = it.getString("Date&Time")
             detailLocation.text = it.getString("Location")
             detailcampus.text = it.getString("Campus")
+            detailPaymentMethod.text = it.getString("PaymentMethod")
+            detailPaymentRecipient.text = it.getString("PaymentRecipient")
+            detailFundCollected.text = it.getString("FundCollected")
             detailFaciName.text = it.getString("Facilitator")
             detailFaciInfo.text = it.getString("FacilitatorConEm")
             detailObjective.text = it.getString("Objective")
@@ -242,6 +264,8 @@ class DetailPost : AppCompatActivity() {
                 .putExtra("Date&Time", detailDateandTime.text.toString())
                 .putExtra("Location", detailLocation.text.toString())
                 .putExtra("Image", imageUrl)
+                .putExtra("PaymentMethod", detailPaymentMethod.text.toString())
+                .putExtra("PaymentRecipient", detailPaymentRecipient.text.toString())
                 .putExtra("Facilitator", detailFaciName.text.toString())
                 .putExtra("FacilitatorConEm", detailFaciInfo.text.toString())
                 .putExtra("Campus", detailcampus.text.toString())
@@ -427,6 +451,13 @@ class DetailPost : AppCompatActivity() {
                     Toast.makeText(this@DetailPost, "Database error: " + databaseError.message, Toast.LENGTH_SHORT).show()
                 }
             })
+            val parentLinearLayout = findViewById<LinearLayout>(R.id.paymentDetailsLayout)
+
+            if (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donations") {
+                parentLinearLayout.visibility = View.VISIBLE
+            } else {
+                parentLinearLayout.visibility = View.GONE
+            }
         }
         val participantsReference: DatabaseReference =
             FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key).child("Participants")
