@@ -173,16 +173,15 @@
                     android:layout_height="60dp"
                     android:drawableStart="@drawable/sharelocation"
                     android:drawablePadding="15dp"
-                    android:hint="Address"
-                    android:lines="1"
-                    android:inputType="text"
-                    app:hintTextColor="@color/DarkGray"
-                    android:paddingEnd="30dp"
                     android:ellipsize="end"
-                    android:singleLine="true"
+                    android:hint="Address"
+                    android:inputType="text"
+                    android:lines="1"
                     android:maxLines="1"
                     android:paddingStart="20dp"
-                    />
+                    android:paddingEnd="30dp"
+                    android:singleLine="true"
+                    app:hintTextColor="@color/DarkGray" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -369,13 +368,28 @@
                     android:paddingStart="20dp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <CheckBox
-                android:id="@+id/checkedTextView"
-                android:layout_width="350dp"
-                android:layout_marginLeft="10dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="7dp"
-                android:text="@string/agreement" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="7dp">
+
+                <CheckBox
+                    android:id="@+id/checkedTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="4dp" />
+
+                <TextView
+                    android:id="@+id/rightTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I have read and agree to the Terms and Conditions and Privacy Policy "
+                    android:layout_gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
             <Button
                 android:id="@+id/Reg"
                 android:layout_width="match_parent"
