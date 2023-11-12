@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
+import com.example.civicall.AccountVerification.UploadVerificationFile
 import com.example.civicall.databinding.ActivityMainmenuBinding
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
@@ -100,7 +101,7 @@ class MainMenu : AppCompatActivity() {
 
         verification1.setOnClickListener {
             // Handle click for menu item 2
-            val intent = Intent(this, Accountverification::class.java)
+            val intent = Intent(this, UploadVerificationFile::class.java)
             startActivity(intent)
         }
         setting.setOnClickListener {
