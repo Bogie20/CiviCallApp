@@ -144,7 +144,12 @@
     <string name="title_activity_participant_tips">ParticipantTips</string>
     <string name="success">Success</string>
     <string name="makingthemost">Making the Most of your Civic Engagement Experience</string>
-    <string name="agreement">I have read and agree to the Terms of Service and Privacy Policy.</string>
+
 
     <string name="default_web_client_id">AIzaSyCooH32tJpCHorztlJK3uYtoK687ZiCDlw</string>
+    <string name="limitations2">We take the security of your information seriously. We employ industry-standard measures to protect against unauthorized access, alteration, disclosure, or destruction of your personal information.</string>
+    <string name="limitation1">The CiviCall app is designed exclusively for students and alumni of Batangas State University and The National Engineering University.</string>
+    <string name="security">We take the security of your information seriously. We employ industry-standard measures to protect against unauthorized access, alteration, disclosure, or destruction of your personal information.</string>
+    <string name="information">We do not share personal information with third parties unless required for legal reasons, system functionality, or with user consent.</string>
+    <string name="limitation3">Technical issues may arise, affecting user experience.</string>
 </resources>

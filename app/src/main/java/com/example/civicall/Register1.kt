@@ -13,11 +13,17 @@ import android.os.Looper
 import android.text.Editable
 import android.text.InputFilter
 import android.text.InputType
+import android.text.Spannable
+import android.text.SpannableString
 import android.text.TextWatcher
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.util.Patterns
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.CheckedTextView
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -307,7 +313,36 @@ class Register1 : AppCompatActivity() {
         initialUserCategory = activityRegister1Binding.usercategory.text.toString().trim()
 
         networkUtils = NetworkUtils(this)
-        networkUtils.initialize()
+        networkUtils.initialize()t
+
+        val termsAndPrivacyTextView: TextView = findViewById(R.id.rightTextView)
+
+        // Create a SpannableString
+        val spannableString = SpannableString("I have read and agree to the Terms and Conditions and Privacy Policy")
+
+        // Create ClickableSpan for Terms and Conditions
+        val termsClickableSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                // Handle click for Terms and Conditions
+                startActivity(Intent(this@Register1, TermsAndConditions::class.java))
+            }
+        }
+
+        spannableString.setSpan(termsClickableSpan, 29, 48, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(android.text.style.ForegroundColorSpan(resources.getColor(R.color.colorAccent)), 30, 49, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        // Create ClickableSpan for Privacy Policy
+        val privacyClickableSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                startActivity(Intent(this@Register1, PrivacyAndPolicies::class.java))
+            }
+        }
+
+        spannableString.setSpan(privacyClickableSpan, 54, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(android.text.style.ForegroundColorSpan(resources.getColor(R.color.colorAccent)), 54, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        termsAndPrivacyTextView.text = spannableString
+        termsAndPrivacyTextView.movementMethod = LinkMovementMethod.getInstance()
 
         val contactNumber = activityRegister1Binding.Contactline
 
@@ -499,8 +534,6 @@ class Register1 : AppCompatActivity() {
             datePickerDialog.show()
         }
 
-
-        // Ang ginagawa nito is habang nag tatype ka nawawala na agad yung error
         fun addTextChangeListenerWithDelay(editText: EditText, validationFunction: () -> Unit, delayMillis: Long) {
             val handler = Handler(Looper.getMainLooper())
 
@@ -532,6 +565,7 @@ class Register1 : AppCompatActivity() {
             activityRegister1Binding.birthdateTextInputLayout.error = null
         }, 500)
     }
+
     private var fname = ""
     private var Mname = ""
     private var lname = ""
@@ -573,12 +607,12 @@ class Register1 : AppCompatActivity() {
         activityRegister1Binding.usercateTextInputLayout.error = null
         activityRegister1Binding.spinnerSex.error = null
 
-        val checkBox = findViewById<CheckBox>(R.id.checkedTextView)
+        val checkedTextView = findViewById<CheckBox>(R.id.checkedTextView)
         val errorMessages = mutableListOf<String>()
         if (!validateFirstName() || !validateMiddleName() || !validateUserCategory() || !validateLastName() || !validateCampus() || !validateGender() || !validateAddress() || !validateBirthday() || !validatePasswordMatch() || !validateEmail() || !validatePassword() || !validateConfirmPassword() || !validateContactNumber()) {
             errorMessages.add("Please provide valid information for the following fields.")
         }
-        else if (!checkBox.isChecked()) {
+        else if (!checkedTextView.isChecked()) {
             errorMessages.add("Please Accept the terms and Condition")
         }
 
