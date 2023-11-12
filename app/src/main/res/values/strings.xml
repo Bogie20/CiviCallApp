@@ -157,4 +157,5 @@
     <string name="security">We take the security of your information seriously. We employ industry-standard measures to protect against unauthorized access, alteration, disclosure, or destruction of your personal information.</string>
     <string name="information">We do not share personal information with third parties unless required for legal reasons, system functionality, or with user consent.</string>
     <string name="limitation3">Technical issues may arise, affecting user experience.</string>
+    <string name="title_activity_sustainable_development_goals">SustainableDevelopmentGoals</string>
 </resources>
