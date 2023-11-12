@@ -217,7 +217,7 @@
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:paddingEnd="20dp"
-                  android:layout_gravity="center"
+                    android:layout_gravity="center"
                     android:textSize="30sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
