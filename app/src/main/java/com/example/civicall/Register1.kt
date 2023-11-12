@@ -313,7 +313,7 @@ class Register1 : AppCompatActivity() {
         initialUserCategory = activityRegister1Binding.usercategory.text.toString().trim()
 
         networkUtils = NetworkUtils(this)
-        networkUtils.initialize()t
+        networkUtils.initialize()
 
         val termsAndPrivacyTextView: TextView = findViewById(R.id.rightTextView)
 
