@@ -14,6 +14,7 @@ class DataClass {
     var facilitatorsContactorEmail: String? = null
     var instruction: String? = null
     var targetparty: String? = null
+    var activepoints: String? = null
     var verificationStatus: Boolean = false
 
     var key: String? = null
@@ -35,6 +36,7 @@ class DataClass {
         facilitatorsContactorEmail: String?,
         instruction: String?,
         targetparty: String?,
+        activepoints: String?,
         verificationStatus: Boolean
     ) {
         this.uploadersUID = uploadersuid
@@ -50,6 +52,7 @@ class DataClass {
         this.facilitatorsContactorEmail = facilitatorsContactorEmail
         this.instruction = instruction
         this.targetparty = targetparty
+        this.activepoints = activepoints
         this.verificationStatus = verificationStatus
     }
 

@@ -39,6 +39,7 @@ class DetailPost : AppCompatActivity() {
     private lateinit var detailLocation: TextView
     private lateinit var detailImage: ImageView
     private lateinit var detailTargetParty: TextView
+    private lateinit var detailActivePoints: TextView
     private lateinit var detailObjective: TextView
     private lateinit var detailInstruction: TextView
     private lateinit var detailIntro: TextView
@@ -62,6 +63,7 @@ class DetailPost : AppCompatActivity() {
         detailCategory = findViewById(R.id.detailCategory)
         detailTitle = findViewById(R.id.detailTitle)
         detailTargetParty = findViewById(R.id.detailTargetParty)
+        detailActivePoints = findViewById(R.id.detailActivePoints)
         detailFaciName = findViewById(R.id.detailFaciName)
         detailFaciInfo = findViewById(R.id.detailFaciInfo)
         detailObjective = findViewById(R.id.detailDesc)
@@ -170,6 +172,7 @@ class DetailPost : AppCompatActivity() {
             detailInstruction.text = it.getString("Instruction")
             detailIntro.text = it.getString("Introduction")
             detailTargetParty.text = it.getString("TargetParticipants")
+            detailActivePoints.text = it.getString("ActivePoints")
             key = it.getString("Key") ?: ""
             imageUrl = it.getString("Image") ?: ""
             Glide.with(this).load(it.getString("Image")).into(detailImage)
@@ -246,6 +249,7 @@ class DetailPost : AppCompatActivity() {
                 .putExtra("Instruction", detailInstruction.text.toString())
                 .putExtra("Introduction", detailIntro.text.toString())
                 .putExtra("TargetParticipants", detailTargetParty.text.toString())
+                .putExtra("ActivePoints", detailActivePoints.text.toString())
                 .putExtra("Key", key)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)

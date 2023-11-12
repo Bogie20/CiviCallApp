@@ -38,6 +38,7 @@ class Upload_engagement : AppCompatActivity() {
     private lateinit var uploadFacilitator: EditText
     private lateinit var uploadFacilitatorInfo: EditText
     private lateinit var uploadTargetParty: EditText
+    private lateinit var uploadActivePoints: EditText
     private lateinit var uploadObjective: EditText
     private lateinit var uploadInstruction: EditText
     private lateinit var uploadIntro: EditText
@@ -59,6 +60,8 @@ class Upload_engagement : AppCompatActivity() {
         uploadTitle = binding.uploadTitle
         uploadTargetParty = binding.uploadTargetParty
         uploadTargetParty.inputType = InputType.TYPE_CLASS_NUMBER
+        uploadActivePoints = binding.uploadActivePoints
+        uploadActivePoints.inputType = InputType.TYPE_CLASS_NUMBER
         uploadFacilitator = binding.uploadFacilitator
         uploadFacilitatorInfo = binding.uploadFacilitatorInfo
         uploadLocation = binding.uploadLocation
@@ -263,6 +266,7 @@ class Upload_engagement : AppCompatActivity() {
         val facilitator = uploadFacilitator.text.toString()
         val facilitatorinfo = uploadFacilitatorInfo.text.toString()
         val targetparty = uploadTargetParty.text.toString()
+        val activepoints = uploadActivePoints.text.toString()
         val campus = binding.uploadCampus.text.toString()
         val category = binding.uploadCategory.text.toString()
         val objective = uploadObjective.text.toString()
@@ -288,6 +292,7 @@ class Upload_engagement : AppCompatActivity() {
                 facilitatorinfo,
                 instruction,
                 targetparty,
+                activepoints,
                 verificationStatus
             )
 

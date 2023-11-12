@@ -46,6 +46,7 @@ class Update_engagement: AppCompatActivity() {
     private lateinit var updateTitle: EditText
     private lateinit var updateFacilitator: EditText
     private lateinit var updateTargetParty: EditText
+    private lateinit var updateActivePoints: EditText
     private lateinit var updateFacilitatorInfo: EditText
     private lateinit var updateLocation: EditText
     private lateinit var updateCampus: AutoCompleteTextView
@@ -59,6 +60,7 @@ class Update_engagement: AppCompatActivity() {
     private var dateandtime: String = ""
     private var location: String = ""
     private var targetparty: String = ""
+    private var activepoints: String = ""
     private var imageUrl: String = ""
     private var key: String = ""
     private var oldImageURL: String = ""
@@ -81,6 +83,8 @@ class Update_engagement: AppCompatActivity() {
         updateTitle = binding.updateTitle
         updateTargetParty = binding.updateTargetParty
         updateTargetParty.inputType = InputType.TYPE_CLASS_NUMBER
+        updateActivePoints = binding.updateActivePoints
+        updateActivePoints.inputType = InputType.TYPE_CLASS_NUMBER
         updateFacilitator = binding.updateFacilitator
         updateFacilitatorInfo = binding.updateFacilitatorInfo
         updateCampus = binding.updateCampus
@@ -123,6 +127,7 @@ class Update_engagement: AppCompatActivity() {
             updateInstruction.setText(bundle.getString("Instruction"))
             updateIntro.setText(bundle.getString("Introduction"))
             updateTargetParty.setText(bundle.getString("TargetParticipants"))
+            updateActivePoints.setText(bundle.getString("ActivePoints"))
             updateFacilitator.setText(bundle.getString("Facilitator"))
             updateFacilitatorInfo.setText(bundle.getString("FacilitatorConEm"))
             key = bundle.getString("Key")!!
@@ -308,6 +313,7 @@ class Update_engagement: AppCompatActivity() {
         location = updateLocation.text.toString()
         campus = updateCampus.text.toString()
         targetparty = updateTargetParty.text.toString()
+        activepoints = updateActivePoints.text.toString()
         category = updateCategory.text.toString()
         facilitator = updateFacilitator.text.toString()
         facilitatorinfo = updateFacilitatorInfo.text.toString()
@@ -333,6 +339,7 @@ class Update_engagement: AppCompatActivity() {
                 facilitatorinfo,
                 instruction,
                 targetparty,
+                activepoints,
                 false
             )
 
@@ -369,6 +376,7 @@ class Update_engagement: AppCompatActivity() {
                 facilitatorinfo,
                 instruction,
                 targetparty,
+                activepoints,
                 false
             )
 

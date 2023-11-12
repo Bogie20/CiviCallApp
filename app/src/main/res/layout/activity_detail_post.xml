@@ -273,6 +273,36 @@
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="start"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/labelActivepointsCategory"
+                        android:fontFamily="@font/lexend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Active Points:"
+                        android:textSize="15sp"
+                        android:textColor="@color/DarkGray"
+                        android:layout_marginEnd="8dp"
+                        android:lineSpacingExtra="5dp"
+                        android:textAlignment="viewStart" />
+
+                    <TextView
+                        android:id="@+id/detailActivePoints"
+                        android:fontFamily="@font/lexend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0"
+                        android:textSize="15sp"
+                        android:textColor="@color/redpink"
+                        android:lineSpacingExtra="5dp"
+                        android:textAlignment="viewStart" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -298,7 +328,7 @@
                         android:fontFamily="@font/lexend"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="100"
+                        android:text="0"
                         android:textSize="15sp"
                         android:textColor="@color/redpink"
                         android:lineSpacingExtra="5dp"
