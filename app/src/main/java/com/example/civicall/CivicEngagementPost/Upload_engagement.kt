@@ -19,6 +19,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import com.example.civicall.Dashboard
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityUploadEngagementBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -76,6 +77,11 @@ class Upload_engagement : AppCompatActivity() {
         uploadObjective = binding.uploadObjective
         uploadInstruction = binding.uploadInstruction
         uploadIntro = binding.uploadIntro
+
+        binding.backbtn.setOnClickListener {
+            onBackPressed()
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
 
         val campusDropdown = binding.uploadCampus
         val campusArray = resources.getStringArray(R.array.allowed_campuses)

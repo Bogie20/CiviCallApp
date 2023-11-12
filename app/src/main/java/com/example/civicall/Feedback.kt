@@ -35,7 +35,7 @@ class Feedback : AppCompatActivity() {
 
 
         setContentView(R.layout.activity_feedback)
-        BackClick = findViewById(R.id.backbtn)
+        BackClick = findViewById(R.id.profileburger)
 
 
         editTextText2 = findViewById(R.id.editTextText2)
@@ -55,13 +55,15 @@ class Feedback : AppCompatActivity() {
 
 
         BackClick.setOnClickListener {
-            // Open the "Menu" activity/form
-            val intent = Intent(this, Dashboard::class.java)
+            val intent = Intent(this, MainMenu::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
         }
 
 
-        val popupButton: Button = findViewById(R.id.button2)
+
+        val popupButton: Button = findViewById(R.id.publishbtn)
         popupButton.setOnClickListener {
             // Show the popup when the button is clicked
             val popupFragment = PopupFragment()
@@ -69,7 +71,7 @@ class Feedback : AppCompatActivity() {
         }
 
 
-        val submitButton: Button = findViewById(R.id.button2)
+        val submitButton: Button = findViewById(R.id.publishbtn)
         submitButton.setOnClickListener {
             // Handle the feedback submission here
             submitFeedback()

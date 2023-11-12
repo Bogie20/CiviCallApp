@@ -29,6 +29,9 @@
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
         <activity
+            android:name=".AccountVerification.ReflectImage"
+            android:exported="false" />
+        <activity
             android:name=".StartSplash3"
             android:exported="false" />
         <activity

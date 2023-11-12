@@ -104,6 +104,10 @@ class ChangePassword : AppCompatActivity() {
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
 
+        binding.backbtn.setOnClickListener {
+            onBackPressed()
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
         auth = FirebaseAuth.getInstance()
         binding.btnchange.setOnClickListener {
             validateData()

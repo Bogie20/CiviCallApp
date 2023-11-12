@@ -155,10 +155,11 @@
         android:layout_below="@+id/img"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="217dp"
+        android:fontFamily="@font/roboto_medium"
         android:layout_marginRight="30dp"
         android:background="@drawable/btn_red_selector"
         android:text="Login"
-        android:textAllCaps="false"
+        android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="25dp">
 

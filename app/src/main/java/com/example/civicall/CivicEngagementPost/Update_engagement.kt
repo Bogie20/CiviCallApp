@@ -103,6 +103,10 @@ class Update_engagement: AppCompatActivity() {
         updateInstruction = binding.updateInstruction
         updateIntro = binding.updateIntro
 
+        binding.backbtn.setOnClickListener {
+            onBackPressed()
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
         val paymentDropdown = binding.updatePaymentMethod
         val paymentArray = resources.getStringArray(R.array.payment_category)
         val adapterpayment = ArrayAdapter(this, R.layout.dropdown_item, paymentArray)
@@ -353,6 +357,7 @@ class Update_engagement: AppCompatActivity() {
         objective = updateObjective.text.toString()
         instruction = updateInstruction.text.toString()
         introduction = updateIntro.text.toString()
+
 
         val user = FirebaseAuth.getInstance().currentUser
         val uploadersId = user?.uid

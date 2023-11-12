@@ -502,6 +502,7 @@ class Register1 : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter,R.anim.animate_fade_exit)
+            onBackPressed()
         }
         val regbtn: Button = findViewById(R.id.Reg)
         regbtn.setOnClickListener {
@@ -917,12 +918,6 @@ dismissCustomDialog()
             }
     }
 
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-    }
     override fun onDestroy() {
         super.onDestroy()
         networkUtils.cleanup() // Clean up when the activity is destroyed

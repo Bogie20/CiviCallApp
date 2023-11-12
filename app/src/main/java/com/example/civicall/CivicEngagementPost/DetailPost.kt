@@ -20,6 +20,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.bumptech.glide.Glide
+import com.example.civicall.Dashboard
+import com.example.civicall.InformationFragment
 import com.example.civicall.R
 import com.github.clans.fab.FloatingActionButton
 import com.github.clans.fab.FloatingActionMenu
@@ -33,8 +35,10 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.example.civicall.databinding.ActivityDetailPostBinding
 
 class DetailPost : AppCompatActivity() {
+    private lateinit var binding: ActivityDetailPostBinding
 
     private lateinit var detailDateandTime: TextView
     private lateinit var detailTitle: TextView
@@ -62,7 +66,8 @@ class DetailPost : AppCompatActivity() {
     private lateinit var joinButton: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_post)
+        binding = ActivityDetailPostBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val currentUser = FirebaseAuth.getInstance().currentUser
         val currentUserId = currentUser?.uid
         detailDateandTime = findViewById(R.id.detailDateandTime)
@@ -86,6 +91,12 @@ class DetailPost : AppCompatActivity() {
         fabMenu = findViewById(R.id.fabicon)
         joinButton = findViewById(R.id.joinButton)
         detailCurrentParty = findViewById(R.id.detailCurrentParty)
+
+        binding.backbtn.setOnClickListener {
+            onBackPressed()
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
+
 
         val copyIcon: ImageView = findViewById(R.id.copyIcon)
         val paymentRecipient: TextView = findViewById(R.id.detailPaymentRecipient)

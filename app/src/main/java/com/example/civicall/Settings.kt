@@ -19,19 +19,10 @@ class Settings : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        // Initialize the BackClick view using view binding
-        val BackClick = binding.profileburger
-
-        // Handle the "Back" button click to navigate to the Dashboard activity
-        BackClick.setOnClickListener {
-            val intent = Intent(this, Dashboard::class.java)
-            startActivity(intent)
+        binding.backbtn.setOnClickListener {
+            onBackPressed()
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
-//        val reportProblemsImageView = binding.reportProblemsImageView
-//        reportProblemsImageView.setOnClickListener {
-//            val intent = Intent(this, Reportproblems::class.java)
-//            startActivity(intent)
-//        }
         val changepass = binding.changepass
         changepass.setOnClickListener {
             val intent = Intent(this, ChangePassword::class.java)

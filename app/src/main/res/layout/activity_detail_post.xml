@@ -554,7 +554,7 @@
                 android:layout_marginTop="50dp"
                 android:text=""
                  android:layout_marginBottom="50dp"
-                android:fontFamily="@font/inter_bold"
+                android:fontFamily="@font/roboto_medium"
                 android:background="@drawable/button_shape"
                 android:backgroundTint="@color/redpink"
                 android:textColor="@color/white"
