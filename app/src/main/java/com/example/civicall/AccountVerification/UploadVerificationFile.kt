@@ -1,4 +1,6 @@
 package com.example.civicall.AccountVerification
+
+
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -13,6 +15,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.civicall.R
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class UploadVerificationFile : AppCompatActivity() {
@@ -25,9 +28,14 @@ class UploadVerificationFile : AppCompatActivity() {
                     val fileUri: Uri? = data.data
                     if (fileUri != null) {
                         val fileName = getFileDisplayName(fileUri)
-                        updateSelectedFileName(fileName)
+                        val sanitizedFileName = sanitizeFileName(fileName)
+                        updateSelectedFileName(sanitizedFileName)
                         val selectedCategory = getSelectedCategory()
-                        uploadFileToFirebase(fileUri, selectedCategory) // Upload the file to Firebase with the selected category
+                        uploadFileToFirebase(
+                            fileUri,
+                            sanitizedFileName,
+                            selectedCategory
+                        ) // Upload the file to Firebase with the selected category
                     } else {
                         // Handle the case where fileUri is null
                     }
@@ -47,6 +55,10 @@ class UploadVerificationFile : AppCompatActivity() {
             cursor?.close()
         }
         return fileName
+    }
+
+    private fun sanitizeFileName(fileName: String): String {
+        return fileName.replace(".", "_")
     }
 
     private fun updateSelectedFileName(fileName: String) {
@@ -97,11 +109,12 @@ class UploadVerificationFile : AppCompatActivity() {
         }
     }
 
-    private fun uploadFileToFirebase(fileUri: Uri, category: String) {
-        val fileName = getFileDisplayName(fileUri)
+    private fun uploadFileToFirebase(fileUri: Uri, fileName: String, category: String) {
         val database = FirebaseDatabase.getInstance()
         val usersRef = database.getReference("users")
-        val currentUser = usersRef.child("your_user_id") // Replace "your_user_id" with the actual user ID
+        val currentUser = usersRef.child(
+            FirebaseAuth.getInstance().currentUser?.uid ?: ""
+        ) // Use Firebase Authentication to get the current user ID
 
         // Save the file URI and category to the Realtime Database for the user
         val fileData = HashMap<String, Any>()
