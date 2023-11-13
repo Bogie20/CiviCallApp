@@ -204,7 +204,4 @@ class MainMenu : AppCompatActivity() {
         // Cleanup to unregister the network callback
         networkUtils.cleanup()
     }
-    }
-
-
-
+}
