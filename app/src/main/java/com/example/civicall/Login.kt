@@ -546,9 +546,15 @@ class Login : AppCompatActivity() {
                 updateUI(account)
             }
         } catch (e: ApiException) {
-            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show()
+            // Print the status code and error message for debugging
+            Toast.makeText(
+                this,
+                "Google Sign-In failed: Status Code ${e.statusCode}, ${e.localizedMessage}",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
+
 
     private fun updateUI(account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
