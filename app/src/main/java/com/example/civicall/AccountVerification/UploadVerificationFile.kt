@@ -2,7 +2,6 @@ package com.example.civicall.AccountVerification
 
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -83,7 +82,6 @@ class UploadVerificationFile : AppCompatActivity() {
 
         val uploadFileButton = findViewById<TextView>(R.id.underlineTextView)
         val openCameraButton = findViewById<Button>(R.id.uploadcamera)
-        val saveButton = findViewById<TextView>(R.id.savebtn) // Add this line
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
         val storage = FirebaseStorage.getInstance()
 
@@ -91,7 +89,6 @@ class UploadVerificationFile : AppCompatActivity() {
             val cameraIntent = Intent(this, UploadPhoto::class.java)
             startActivity(cameraIntent)
         }
-
         uploadFileButton.setOnClickListener {
             val selectedRadioButtonId = radioGroup.checkedRadioButtonId
             if (selectedRadioButtonId == -1) {
@@ -114,30 +111,8 @@ class UploadVerificationFile : AppCompatActivity() {
                 filePicker.launch(intent)
             }
         }
-
-        saveButton.setOnClickListener {
-            showConfirmationDialog()
-        }
     }
 
-    private fun showConfirmationDialog() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Confirm Upload")
-            .setMessage("Are you sure you want to upload the file?")
-            .setPositiveButton("Yes") { _, _ ->
-                // User clicked Yes, proceed with file upload
-                // Retrieve the necessary data and call the upload method
-                val selectedCategory = getSelectedCategory()
-                val filenameTextInputEditText = findViewById<TextView>(R.id.filename)
-                val fileName = filenameTextInputEditText.text.toString()
-                uploadFileToFirebase(fileUri!!, fileName, selectedCategory)
-            }
-            .setNegativeButton("Cancel") { dialog, _ ->
-                // User clicked Cancel, do nothing
-                dialog.dismiss()
-            }
-            .create().show()
-    }
     private fun uploadFileToFirebase(fileUri: Uri, fileName: String, category: String) {
         val storage = FirebaseStorage.getInstance()
         val storageRef = storage.reference
