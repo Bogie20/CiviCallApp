@@ -40,7 +40,10 @@ class CivicMenu : AppCompatActivity() {
             DataMain("Youth Leadership as a Student"),
             DataMain("A Guide for Strategic Advocacy"),
             DataMain("Digital Civic Engagement"),
-            DataMain("Campus Initiative for Sustainability")
+            DataMain("Campus Initiative for Sustainability"),
+                    DataMain("TenSustainableGoals")
+
+
         )
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMain)
@@ -103,6 +106,11 @@ class CivicMenu : AppCompatActivity() {
                 9 -> {
                     // Handle click for Item 9
                     val intent = Intent(this, NineCampusInitiative::class.java)
+                    startActivity(intent)
+                }
+                10 -> {
+                    // Handle click for Item 9
+                    val intent = Intent(this, TenSustainableGoals::class.java)
                     startActivity(intent)
                 }
 

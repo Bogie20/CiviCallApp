@@ -8,17 +8,25 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.text.TextUtils
 import android.util.Patterns
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.civicall.databinding.ActivityLoginBinding
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -39,8 +47,48 @@ class Login : AppCompatActivity() {
     private var email = ""
     private var password = ""
     private var isPopupShowing = false
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
+    private val Req_Code: Int = 123
+    private var profileImageUri: String? = null
 
+    private fun updateUserInfo(account: GoogleSignInAccount?) {
+        val timestamp = System.currentTimeMillis()
+        val uid = firebaseAuth.uid
 
+        val hashMap: HashMap<String, Any?> = HashMap()
+        hashMap["uid"] = uid
+        hashMap["firstname"] = account?.givenName
+        hashMap["middlename"] = ""
+        hashMap["lastname"] = account?.familyName
+        hashMap["email"] = account?.email
+        hashMap["phoneno"] = ""
+        hashMap["address"] = ""
+        hashMap["birthday"] = ""
+        hashMap["gender"] = ""
+        hashMap["ImageProfile"] = profileImageUri
+        hashMap["userType"] = ""
+        hashMap["timestamp"] = timestamp
+        hashMap["campus"] = ""
+        hashMap["verificationStatus"] = false
+        hashMap["CurrentEngagement"] = 0
+
+        val ref = FirebaseDatabase.getInstance().getReference("Users")
+        ref.child(uid!!)
+            .setValue(hashMap)
+            .addOnSuccessListener {
+                // Add TotalEngagement count to another location
+                val totalEngagementRef = FirebaseDatabase.getInstance().getReference("TotalEngagement")
+                totalEngagementRef.child(uid)
+                    .setValue(0)
+
+                // Proceed to the Dashboard or any other desired activity
+                startActivity(Intent(this@Login, Dashboard::class.java))
+                finish()
+            }
+            .addOnFailureListener { e ->
+                showCustomPopupError("Failed Saving User's Info due to ${e.message}")
+            }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -53,6 +101,21 @@ class Login : AppCompatActivity() {
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
         val showSuccessPopup = intent.getBooleanExtra("showSuccessPopup", false)
+
+        FirebaseApp.initializeApp(this)
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        binding.googlebtn.setOnClickListener {
+            Toast.makeText(this, "Logging In", Toast.LENGTH_SHORT).show()
+            signInGoogle()
+        }
 
         if (showSuccessPopup) {
             // Display the "Account Created Successfully!" popup
@@ -453,6 +516,7 @@ class Login : AppCompatActivity() {
                     if (isNewAccount) {
                         // User has just created an account, show the success message here
                         showCustomPopupSuccess("Account Created Successfully!")
+                        updateUserInfo(null)
                     }
                 }
 
@@ -461,6 +525,50 @@ class Login : AppCompatActivity() {
                 }
             })
     }
+    private fun signInGoogle() {
+        val signInIntent: Intent = mGoogleSignInClient.signInIntent
+        startActivityForResult(signInIntent, Req_Code, null)
+    }
+
+    @Suppress("DEPRECATION")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == Req_Code) {
+            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleResult(task)
+        }
+    }
+
+    private fun handleResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account: GoogleSignInAccount? = completedTask.getResult(ApiException::class.java)
+            if (account != null) {
+                updateUI(account)
+            }
+        } catch (e: ApiException) {
+            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun updateUI(account: GoogleSignInAccount) {
+        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
+        firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putString("email", account.email.toString())
+                editor.putString("username", account.displayName.toString())
+                editor.apply()
+
+                // Set the URL of the user's profile picture
+                profileImageUri = account.photoUrl?.toString()
+
+                // Update the user information in the Firebase Realtime Database
+                updateUserInfo(account)
+            }
+        }
+    }
+
     override fun onBackPressed() {
         super.onBackPressed()
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -473,10 +581,3 @@ class Login : AppCompatActivity() {
         networkUtils.cleanup()
     }
 }
-
-
-
-
-
-
-

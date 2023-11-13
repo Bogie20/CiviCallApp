@@ -32,6 +32,15 @@
             android:name=".AccountVerification.ReflectImage"
             android:exported="false" />
         <activity
+            android:name=".GoogleSignOut"
+            android:exported="true" />
+        <activity
+            android:name=".GoogleSignin"
+            android:exported="true" />
+        <activity
+            android:name=".CivicEngagementInfo.TenSustainableGoals"
+            android:exported="true" />
+        <activity
             android:name=".StartSplash3"
             android:exported="false" />
         <activity
@@ -45,9 +54,6 @@
             android:exported="true" />
         <activity
             android:name=".PrivacyAndPolicies"
-            android:exported="true" />
-        <activity
-            android:name=".AccountVerification.UploadPhoto"
             android:exported="true" />
         <activity
             android:name=".AccountVerification.UploadVerificationFile"
