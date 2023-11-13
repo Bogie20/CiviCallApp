@@ -14,6 +14,8 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import com.example.civicall.AccountVerification.UploadVerificationFile
 import com.example.civicall.databinding.ActivityMainmenuBinding
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -56,9 +58,9 @@ class MainMenu : AppCompatActivity() {
         val editProfileCardView:TextView= findViewById(R.id.editprofile)
 
         logout.setOnClickListener {
-            if (!isLogoutDialogShown) { // Check if the dialog is not already shown
-                isLogoutDialogShown = true // Set the flag to true
-                // Create a custom logout confirmation dialog
+            if (!isLogoutDialogShown) {
+                isLogoutDialogShown = true
+
                 val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
                 val dialogBuilder = AlertDialog.Builder(this)
                     .setView(dialogView)
@@ -66,7 +68,6 @@ class MainMenu : AppCompatActivity() {
 
                 dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
                 dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-
 
                 val title: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
                 val message: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
@@ -79,12 +80,20 @@ class MainMenu : AppCompatActivity() {
                 logout.text = "Yes"
                 logout.setOnClickListener {
                     // Handle click for the "Yes, Logout" button
+                    // Sign out from Firebase
                     firebaseAuth.signOut()
-                    val intent = Intent(this, Login::class.java)
-                    startActivity(intent)
-                    finish()
-                    dialog.dismiss()
+
+                    // Sign out from Google
+                    val googleSignInClient = GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    googleSignInClient.signOut().addOnCompleteListener {
+                        // Redirect to the login screen after successful sign-out
+                        val intent = Intent(this, Login::class.java)
+                        startActivity(intent)
+                        finish()
+                        dialog.dismiss()
+                    }
                 }
+
                 cancelBtn.text = "Cancel"
                 cancelBtn.setOnClickListener {
                     // Handle click for the "Cancel" button
@@ -92,12 +101,13 @@ class MainMenu : AppCompatActivity() {
                 }
 
                 dialog.setOnDismissListener {
-                    isLogoutDialogShown = false // Reset the flag when the dialog is dismissed
+                    isLogoutDialogShown = false
                 }
 
                 dialog.show()
             }
         }
+
 
         verification1.setOnClickListener {
             // Handle click for menu item 2

@@ -32,6 +32,9 @@
 <!--            android:name=".AccountVerification.ReflectImage"-->
 <!--            android:exported="false" />-->
         <activity
+            android:name=".GoogleCalerndar"
+            android:exported="true" />
+        <activity
             android:name=".GoogleSignOut"
             android:exported="true" />
         <activity
