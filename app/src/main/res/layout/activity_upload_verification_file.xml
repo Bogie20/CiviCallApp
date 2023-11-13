@@ -26,7 +26,6 @@
             android:src="@drawable/menubutton"
             android:contentDescription="Open Navigation Menu" />
 
-
         <TextView
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
@@ -37,8 +36,21 @@
             android:textColor="@color/white"
             android:textSize="25dp" />
 
-
+        <TextView
+            android:id="@+id/savebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/lexend_bold"
+            android:text="Save"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </RelativeLayout>
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested"
         android:layout_width="match_parent"
@@ -83,31 +95,32 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp">
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/genderTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:id="@+id/filenameTextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="File Name"
-                    android:layout_marginTop="10dp"
+                    app:hintTextColor="@color/DarkGray"
                     android:layout_marginHorizontal="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-                    <AutoCompleteTextView
-                            android:id="@+id/filename"
+                    android:layout_marginTop="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/filename"
                         android:layout_width="match_parent"
-                        android:layout_height="55dp"
+                        android:layout_height="60dp"
+                        android:drawablePadding="15dp"
+                        android:hint="File Name"
                         android:lines="1"
-                        android:editable="false"
                         android:inputType="none"
-                        android:focusable="false"
-                        android:clickable="true"
-                        android:longClickable="false"
-                    android:background="@null"
-                    android:cursorVisible="false"
-                    android:drawablePadding="0dp"
-                    android:ellipsize="end"
-                    android:singleLine="true" />
+                        android:editable="false"
+                        app:hintTextColor="@color/DarkGray"
+                        android:paddingEnd="30dp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:paddingStart="20dp"/>
+
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <LinearLayout
                     android:id="@+id/changepass"
                     android:layout_width="match_parent"
@@ -299,22 +312,7 @@
 
 
             </LinearLayout>
-            <Button
-                android:id="@+id/Reg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="60dp"
-                android:background="@drawable/button_shape"
-                android:backgroundTint="@color/redpink"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Send"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="25sp">
 
-            </Button>
 
             <LinearLayout
                 android:layout_marginBottom="10dp"

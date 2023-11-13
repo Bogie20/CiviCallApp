@@ -19,9 +19,10 @@
 
         <ImageButton
             android:id="@+id/profileburger"
-            android:layout_width="60dp"
-            android:paddingLeft="5dp"
-            android:layout_height="60dp"
+            android:layout_width="wrap_content"
+            android:paddingLeft="13dp"
+            android:layout_marginTop="7dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center|left"
             android:background="@android:color/transparent"
             android:src="@drawable/menubutton"
@@ -37,6 +38,19 @@
             android:textColor="@color/white"
             android:textSize="25dp" />
 
+        <TextView
+            android:id="@+id/savebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/lexend_bold"
+            android:text="Save"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -115,7 +129,7 @@
                     android:layout_marginHorizontal="50dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/withstrokebutton"
-                    android:text="Send Photo"
+                    android:text="Upload Photo"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white" />
 

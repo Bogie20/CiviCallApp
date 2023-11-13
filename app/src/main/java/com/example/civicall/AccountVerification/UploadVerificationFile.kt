@@ -1,94 +1,177 @@
 package com.example.civicall.AccountVerification
 
-import android.Manifest
+
+import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.OpenableColumns
-import android.text.Editable
-import android.view.View
+import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.TextView
-import androidx.activity.result.contract.ActivityResultContracts
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import com.example.civicall.databinding.ActivityUploadVerificationFileBinding
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import com.example.civicall.R
+import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 
 class UploadVerificationFile : AppCompatActivity() {
-    private lateinit var binding: ActivityUploadVerificationFileBinding
 
-    private val pickFileLauncher =
+    private val filePicker: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK) {
+            if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent? = result.data
-                data?.data?.let { uri ->
-                    handleSelectedFile(uri)
+                if (data != null) {
+                    val fileUri: Uri? = data.data
+                    if (fileUri != null) {
+                        val fileName = getFileDisplayName(fileUri)
+                        val sanitizedFileName = sanitizeFileName(fileName)
+                        updateSelectedFileName(sanitizedFileName)
+                        val selectedCategory = getSelectedCategory()
+                        uploadFileToFirebase(
+                            fileUri,
+                            sanitizedFileName,
+                            selectedCategory
+                        ) // Upload the file to Firebase with the selected category
+                    } else {
+                        // Handle the case where fileUri is null
+                    }
                 }
             }
         }
+
+    private fun getFileDisplayName(fileUri: Uri): String {
+        val cursor = contentResolver.query(fileUri, null, null, null, null)
+        var fileName = ""
+        try {
+            if (cursor != null && cursor.moveToFirst()) {
+                val displayName = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                fileName = cursor.getString(displayName)
+            }
+        } finally {
+            cursor?.close()
+        }
+        return fileName
+    }
+
+    private fun sanitizeFileName(fileName: String): String {
+        return fileName.replace(".", "_")
+    }
+
+    private fun updateSelectedFileName(fileName: String) {
+        val filenameTextInputEditText = findViewById<TextView>(R.id.filename)
+        filenameTextInputEditText.setText(fileName)
+    }
+
+    private fun getSelectedCategory(): String {
+        val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
+        val selectedRadioButtonId = radioGroup.checkedRadioButtonId
+        val radioButton = findViewById<RadioButton>(selectedRadioButtonId)
+        return radioButton.text.toString()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityUploadVerificationFileBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_upload_verification_file)
 
-        binding.underlineTextView.setOnClickListener {
-            checkStoragePermission()
+        val uploadFileButton = findViewById<TextView>(R.id.underlineTextView)
+        val openCameraButton = findViewById<Button>(R.id.uploadcamera)
+        val saveButton = findViewById<TextView>(R.id.savebtn) // Add this line
+        val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
+        val storage = FirebaseStorage.getInstance()
+
+        openCameraButton.setOnClickListener {
+            val cameraIntent = Intent(this, UploadPhoto::class.java)
+            startActivity(cameraIntent)
         }
 
-        binding.Reg.setOnClickListener {
-            // Add your code to handle the "Send" button click
-        }
-    }
-
-    private fun checkStoragePermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(
+        uploadFileButton.setOnClickListener {
+            val selectedRadioButtonId = radioGroup.checkedRadioButtonId
+            if (selectedRadioButtonId == -1) {
+                Toast.makeText(
                     this,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                openFilePicker()
+                    "Please select Certificate of Registration or Certificate of Graduation",
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
-                requestPermissions(
-                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                    STORAGE_PERMISSION_REQUEST_CODE
+                val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+                intent.addCategory(Intent.CATEGORY_OPENABLE)
+                intent.type = "*/*"
+                intent.putExtra(
+                    Intent.EXTRA_MIME_TYPES, arrayOf(
+                        "application/pdf",
+                        "application/msword",
+                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    )
                 )
+                filePicker.launch(intent)
             }
-        } else {
-            openFilePicker()
+        }
+
+        saveButton.setOnClickListener {
+            showConfirmationDialog()
         }
     }
 
-    private fun openFilePicker() {
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-        intent.addCategory(Intent.CATEGORY_OPENABLE)
-        intent.type = "*/*"
-        intent.putExtra(Intent.EXTRA_MIME_TYPES, arrayOf("application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"))
-        pickFileLauncher.launch(intent)
+    private fun showConfirmationDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Confirm Upload")
+            .setMessage("Are you sure you want to upload the file?")
+            .setPositiveButton("Yes") { _, _ ->
+                // User clicked Yes, proceed with file upload
+                // Retrieve the necessary data and call the upload method
+                val selectedCategory = getSelectedCategory()
+                val filenameTextInputEditText = findViewById<TextView>(R.id.filename)
+                val fileName = filenameTextInputEditText.text.toString()
+                uploadFileToFirebase(fileUri!!, fileName, selectedCategory)
+            }
+            .setNegativeButton("Cancel") { dialog, _ ->
+                // User clicked Cancel, do nothing
+                dialog.dismiss()
+            }
+            .create().show()
     }
+    private fun uploadFileToFirebase(fileUri: Uri, fileName: String, category: String) {
+        val storage = FirebaseStorage.getInstance()
+        val storageRef = storage.reference
 
-    private fun handleSelectedFile(uri: Uri) {
-        val cursor = contentResolver.query(uri, null, null, null, null)
-        cursor?.use {
-            if (it.moveToFirst()) {
-                val displayNameColumnIndex = it.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-                if (displayNameColumnIndex != -1) {
-                    val displayName = it.getString(displayNameColumnIndex)
-                    binding.filename.text = displayName.toEditable()
+        // Create a reference to the file in Firebase Storage with a timestamp
+        val timestamp = System.currentTimeMillis().toString()
+        val fileRef =
+            storageRef.child("User_Verification_File/${FirebaseAuth.getInstance().currentUser?.uid ?: ""}/$category/${timestamp}_$fileName")
+
+        // Upload the file to Firebase Storage
+        fileRef.putFile(fileUri)
+            .addOnSuccessListener { uploadTask ->
+                // Get the download URL from the task
+                fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
+                    // File uploaded successfully
+                    val database = FirebaseDatabase.getInstance()
+                    val usersRef = database.getReference("User Verification")
+                    val currentUser = usersRef.child(
+                        FirebaseAuth.getInstance().currentUser?.uid ?: ""
+                    )
+
+                    val categoryRef = currentUser.child(category)
+                    val fileData = HashMap<String, Any>()
+                    fileData["fileUri"] = downloadUri.toString() // Save the download URL
+                    fileData["timestamp"] = timestamp // Save the timestamp
+                    categoryRef.child(fileName).setValue(fileData)
+
+                    Toast.makeText(this, "File uploaded successfully", Toast.LENGTH_SHORT).show()
                 }
             }
-        }
-    }
-
-    // Extension function to convert String to Editable
-    fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
-
-
-
-    companion object {
-        private const val STORAGE_PERMISSION_REQUEST_CODE = 123
+            .addOnFailureListener { exception ->
+                // Handle unsuccessful uploads
+                Toast.makeText(this, "File upload failed: ${exception.message}", Toast.LENGTH_SHORT)
+                    .show()
+            }
     }
 }
