@@ -28,9 +28,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
-        <activity
-            android:name=".AccountVerification.ReflectImage"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".AccountVerification.ReflectImage"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".GoogleSignOut"
             android:exported="true" />
@@ -64,12 +64,6 @@
         <activity
             android:name=".AccountVerification.IdVerifications"
             android:exported="false" />
-        <activity
-            android:name=".AccountVerification.CertificateOfRegistration"
-            android:exported="true" />
-        <activity
-            android:name=".AccountVerification.CertificateOfGraduation"
-            android:exported="true" />
         <activity
             android:name=".AccountVerification.FileCategory"
             android:exported="true" />
