@@ -1,3 +1,4 @@
+
 package com.example.civicall
 
 import android.app.AlertDialog
@@ -25,6 +26,7 @@ import com.google.android.gms.tasks.Task
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DataSnapshot
@@ -52,42 +54,56 @@ class Login : AppCompatActivity() {
     private var profileImageUri: String? = null
 
     private fun updateUserInfo(account: GoogleSignInAccount?) {
-        val timestamp = System.currentTimeMillis()
         val uid = firebaseAuth.uid
-
-        val hashMap: HashMap<String, Any?> = HashMap()
-        hashMap["uid"] = uid
-        hashMap["firstname"] = account?.givenName
-        hashMap["middlename"] = ""
-        hashMap["lastname"] = account?.familyName
-        hashMap["email"] = account?.email
-        hashMap["phoneno"] = ""
-        hashMap["address"] = ""
-        hashMap["birthday"] = ""
-        hashMap["gender"] = ""
-        hashMap["ImageProfile"] = profileImageUri
-        hashMap["userType"] = ""
-        hashMap["timestamp"] = timestamp
-        hashMap["campus"] = ""
-        hashMap["verificationStatus"] = false
-        hashMap["CurrentEngagement"] = 0
-
         val ref = FirebaseDatabase.getInstance().getReference("Users")
-        ref.child(uid!!)
-            .setValue(hashMap)
-            .addOnSuccessListener {
-                // Add TotalEngagement count to another location
-                val totalEngagementRef = FirebaseDatabase.getInstance().getReference("TotalEngagement")
-                totalEngagementRef.child(uid)
-                    .setValue(0)
 
-                // Proceed to the Dashboard or any other desired activity
-                startActivity(Intent(this@Login, Dashboard::class.java))
-                finish()
+        ref.child(uid!!).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    startActivity(Intent(this@Login, Dashboard::class.java))
+                    finish()
+                } else {
+                    val timestamp = System.currentTimeMillis()
+                    val hashMap: HashMap<String, Any?> = HashMap()
+                    hashMap["uid"] = uid
+                    hashMap["firstname"] = account?.givenName
+                    hashMap["middlename"] = ""
+                    hashMap["lastname"] = account?.familyName
+                    hashMap["email"] = account?.email
+                    hashMap["phoneno"] = ""
+                    hashMap["address"] = ""
+                    hashMap["birthday"] = ""
+                    hashMap["gender"] = ""
+                    hashMap["ImageProfile"] = profileImageUri
+                    hashMap["userType"] = ""
+                    hashMap["timestamp"] = timestamp
+                    hashMap["campus"] = ""
+                    hashMap["verificationStatus"] = false
+                    hashMap["CurrentEngagement"] = 0
+
+                    val ref = FirebaseDatabase.getInstance().getReference("Users")
+                    ref.child(uid!!)
+                        .setValue(hashMap)
+                        .addOnSuccessListener {
+                            // Add TotalEngagement count to another location
+                            val totalEngagementRef =
+                                FirebaseDatabase.getInstance().getReference("TotalEngagement")
+                            totalEngagementRef.child(uid)
+                                .setValue(0)
+
+                            startActivity(Intent(this@Login, Dashboard::class.java))
+                            finish()
+                        }
+                        .addOnFailureListener { e ->
+                            showCustomPopupError("Failed Saving User's Info due to ${e.message}")
+                        }
+                }
             }
-            .addOnFailureListener { e ->
-                showCustomPopupError("Failed Saving User's Info due to ${e.message}")
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle onCancelled event if needed
             }
+        })
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -558,22 +574,42 @@ class Login : AppCompatActivity() {
 
     private fun updateUI(account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-        firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
-                val editor = sharedPreferences.edit()
-                editor.putString("email", account.email.toString())
-                editor.putString("username", account.displayName.toString())
-                editor.apply()
+        val firebaseUser = firebaseAuth.currentUser
 
-                // Set the URL of the user's profile picture
-                profileImageUri = account.photoUrl?.toString()
-
-                // Update the user information in the Firebase Realtime Database
-                updateUserInfo(account)
+        // Check if the email already exists in the email/password provider
+        firebaseAuth.fetchSignInMethodsForEmail(account.email!!)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val signInMethods = task.result?.signInMethods
+                    if (signInMethods != null && signInMethods.contains(EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD)) {
+                        // Email already exists in email/password provider, handle accordingly
+                        firebaseAuth.signOut()
+                        val googleSignInClient = GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        googleSignInClient.signOut().addOnCompleteListener {
+                            // Redirect to the login screen after successful sign-out
+                            val intent = Intent(this, Login::class.java)
+                            startActivity(intent)
+                        }
+                        showCustomPopupError("Email already exists. Please sign in with email/password.")
+                    } else {
+                        // Email doesn't exist, proceed to sign in with Google
+                        firebaseUser?.linkWithCredential(credential)?.addOnCompleteListener { linkTask ->
+                            if (linkTask.isSuccessful) {
+                                // Successfully linked the accounts
+                                updateUserInfo(account)
+                            } else {
+                                // Handle linking failure
+                                showCustomPopupError("Failed to link Google account: ${linkTask.exception?.message}")
+                            }
+                        }
+                    }
+                } else {
+                    // Handle fetchSignInMethodsForEmail failure
+                    showCustomPopupError("Failed to fetch sign-in methods: ${task.exception?.message}")
+                }
             }
-        }
     }
+
 
     override fun onBackPressed() {
         super.onBackPressed()
@@ -587,4 +623,3 @@ class Login : AppCompatActivity() {
         networkUtils.cleanup()
     }
 }
-

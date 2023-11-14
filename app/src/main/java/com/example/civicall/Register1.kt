@@ -892,8 +892,8 @@ dismissCustomDialog()
         hashMap["userType"] = userCategory
         hashMap["timestamp"] = timestamp
         hashMap["campus"] = selectedCampus
-        hashMap["verificationStatus"] = false // Set verification status to false by default
-        hashMap["CurrentEngagement"] = 0 // Initialize TotalEngagement count
+        hashMap["verificationStatus"] = false
+        hashMap["CurrentEngagement"] = 0
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, searchFragment)
@@ -903,11 +903,6 @@ dismissCustomDialog()
         ref.child(uid!!)
             .setValue(hashMap)
             .addOnSuccessListener {
-                // Add TotalEngagement count to another location
-                val totalEngagementRef = FirebaseDatabase.getInstance().getReference("TotalEngagement")
-                totalEngagementRef.child(uid)
-                    .setValue(0)
-
                 val intent = Intent(this, Login::class.java)
                 intent.putExtra("showSuccessPopup", true) // Set the flag to true
                 startActivity(intent)
@@ -917,6 +912,7 @@ dismissCustomDialog()
                 showCustomPopupError("Failed Saving User's Info due to ${e.message}")
             }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
