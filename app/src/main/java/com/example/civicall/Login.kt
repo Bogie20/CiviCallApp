@@ -1,4 +1,3 @@
-
 package com.example.civicall
 
 import android.app.AlertDialog
@@ -574,42 +573,22 @@ class Login : AppCompatActivity() {
 
     private fun updateUI(account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-        val firebaseUser = firebaseAuth.currentUser
+        firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putString("email", account.email.toString())
+                editor.putString("username", account.displayName.toString())
+                editor.apply()
 
-        // Check if the email already exists in the email/password provider
-        firebaseAuth.fetchSignInMethodsForEmail(account.email!!)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val signInMethods = task.result?.signInMethods
-                    if (signInMethods != null && signInMethods.contains(EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD)) {
-                        // Email already exists in email/password provider, handle accordingly
-                        firebaseAuth.signOut()
-                        val googleSignInClient = GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        googleSignInClient.signOut().addOnCompleteListener {
-                            // Redirect to the login screen after successful sign-out
-                            val intent = Intent(this, Login::class.java)
-                            startActivity(intent)
-                        }
-                        showCustomPopupError("Email already exists. Please sign in with email/password.")
-                    } else {
-                        // Email doesn't exist, proceed to sign in with Google
-                        firebaseUser?.linkWithCredential(credential)?.addOnCompleteListener { linkTask ->
-                            if (linkTask.isSuccessful) {
-                                // Successfully linked the accounts
-                                updateUserInfo(account)
-                            } else {
-                                // Handle linking failure
-                                showCustomPopupError("Failed to link Google account: ${linkTask.exception?.message}")
-                            }
-                        }
-                    }
-                } else {
-                    // Handle fetchSignInMethodsForEmail failure
-                    showCustomPopupError("Failed to fetch sign-in methods: ${task.exception?.message}")
-                }
+                // Set the URL of the user's profile picture
+                profileImageUri = account.photoUrl?.toString()
+
+                // Update the user information in the Firebase Realtime Database
+                updateUserInfo(account)
             }
+        }
     }
-
 
     override fun onBackPressed() {
         super.onBackPressed()
