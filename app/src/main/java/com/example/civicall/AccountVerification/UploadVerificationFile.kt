@@ -1,6 +1,8 @@
 package com.example.civicall.AccountVerification
 
 
+
+
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -21,7 +23,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 
+
 class UploadVerificationFile : AppCompatActivity() {
+
 
     private val filePicker: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -46,6 +50,7 @@ class UploadVerificationFile : AppCompatActivity() {
             }
         }
 
+
     private fun getFileDisplayName(fileUri: Uri): String {
         val cursor = contentResolver.query(fileUri, null, null, null, null)
         var fileName = ""
@@ -60,14 +65,17 @@ class UploadVerificationFile : AppCompatActivity() {
         return fileName
     }
 
+
     private fun sanitizeFileName(fileName: String): String {
         return fileName.replace(".", "_")
     }
+
 
     private fun updateSelectedFileName(fileName: String) {
         val filenameTextInputEditText = findViewById<TextView>(R.id.filename)
         filenameTextInputEditText.setText(fileName)
     }
+
 
     private fun getSelectedCategory(): String {
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
@@ -76,14 +84,17 @@ class UploadVerificationFile : AppCompatActivity() {
         return radioButton.text.toString()
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_verification_file)
+
 
         val uploadFileButton = findViewById<TextView>(R.id.underlineTextView)
         val openCameraButton = findViewById<Button>(R.id.uploadcamera)
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
         val storage = FirebaseStorage.getInstance()
+
 
         openCameraButton.setOnClickListener {
             val cameraIntent = Intent(this, UploadPhoto::class.java)
@@ -113,14 +124,17 @@ class UploadVerificationFile : AppCompatActivity() {
         }
     }
 
+
     private fun uploadFileToFirebase(fileUri: Uri, fileName: String, category: String) {
         val storage = FirebaseStorage.getInstance()
         val storageRef = storage.reference
+
 
         // Create a reference to the file in Firebase Storage with a timestamp
         val timestamp = System.currentTimeMillis().toString()
         val fileRef =
             storageRef.child("User_Verification_File/${FirebaseAuth.getInstance().currentUser?.uid ?: ""}/$category/${timestamp}_$fileName")
+
 
         // Upload the file to Firebase Storage
         fileRef.putFile(fileUri)
@@ -134,11 +148,13 @@ class UploadVerificationFile : AppCompatActivity() {
                         FirebaseAuth.getInstance().currentUser?.uid ?: ""
                     )
 
+
                     val categoryRef = currentUser.child(category)
                     val fileData = HashMap<String, Any>()
                     fileData["fileUri"] = downloadUri.toString() // Save the download URL
                     fileData["timestamp"] = timestamp // Save the timestamp
                     categoryRef.child(fileName).setValue(fileData)
+
 
                     Toast.makeText(this, "File uploaded successfully", Toast.LENGTH_SHORT).show()
                 }
