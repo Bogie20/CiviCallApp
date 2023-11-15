@@ -40,12 +40,18 @@ class UploadVerificationFile : AppCompatActivity() {
                         val fileName = getFileDisplayName(fileUri!!)
                         val sanitizedFileName = sanitizeFileName(fileName)
                         updateSelectedFileName(sanitizedFileName)
+                        updateUploadButtonText() // Add this line to update the button text
                     } else {
                         // Handle the case where fileUri is null
                     }
                 }
             }
         }
+
+    private fun updateUploadButtonText() {
+        val uploadFileButton = findViewById<TextView>(R.id.underlineTextView)
+        uploadFileButton.text = "Change File"
+    }
 
     private fun getFileDisplayName(fileUri: Uri): String {
         val cursor = contentResolver.query(fileUri, null, null, null, null)
@@ -147,15 +153,6 @@ class UploadVerificationFile : AppCompatActivity() {
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
         FirebaseStorage.getInstance()
 
-
-        val uploadCameraButton = findViewById<Button>(R.id.uploadcamera)
-
-        uploadCameraButton.setOnClickListener {
-            val intent = Intent(this, UploadPhoto::class.java)
-            startActivity(intent)
-            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-        }
-
         val sendBtn = findViewById<TextView>(R.id.sendbtn)
 
         sendBtn.setOnClickListener {
@@ -163,7 +160,7 @@ class UploadVerificationFile : AppCompatActivity() {
             if (selectedRadioButtonId == -1) {
                 Toast.makeText(
                     this,
-                    "Please select Certificate of Registration or Certificate of Graduation",
+                    "Please select the type of Document that you want to send",
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
@@ -182,7 +179,7 @@ class UploadVerificationFile : AppCompatActivity() {
             if (selectedRadioButtonId == -1) {
                 Toast.makeText(
                     this,
-                    "Please select Certificate of Registration or Certificate of Graduation",
+                    "Please select the type of Document to Send",
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
@@ -193,7 +190,10 @@ class UploadVerificationFile : AppCompatActivity() {
                     Intent.EXTRA_MIME_TYPES, arrayOf(
                         "application/pdf",
                         "application/msword",
-                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        "image/jpeg",
+                        "image/png",
+                        "image/jpg"
                     )
                 )
                 filePicker.launch(intent)
@@ -201,8 +201,7 @@ class UploadVerificationFile : AppCompatActivity() {
         }
     }
 
-
-    private fun uploadFileToFirebase(fileUri: Uri, fileName: String, category: String) {
+        private fun uploadFileToFirebase(fileUri: Uri, fileName: String, category: String) {
         val storage = FirebaseStorage.getInstance()
         val storageRef = storage.reference
 

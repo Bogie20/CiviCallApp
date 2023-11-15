@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/oleo_script"
-            android:text="Upload Document"
+            android:text="Account Verification"
             android:textColor="@color/white"
             android:textSize="25dp" />
         <TextView
@@ -166,7 +166,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
                             android:fontFamily="@font/lexend_medium"
-                            android:text="Government Id" />
+                            android:text="Valid Id" />
 
                     </RadioGroup>
 
@@ -201,13 +201,12 @@
                 android:layout_gravity="left">
 
                 <TextView
-
                     android:id="@+id/warning"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:fontFamily="@font/lexend_medium"
-                    android:text="•  Must be Government issued "
+                    android:text="•  Valid ID must be government-issued"
                     android:textColor="@color/instruction"
                     android:textSize="15sp"
                     />
@@ -245,7 +244,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:fontFamily="@font/lexend_medium"
-                    android:text="•  Restricted to BSU-issued documents"
+                    android:text="•  Documents must be issued by BSU"
                     android:textColor="@color/instruction"
                     android:textSize="15sp"
                     />
@@ -269,7 +268,7 @@
                         android:id="@+id/underlineTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Upload File"
+                        android:text="Pick a Document"
                         android:textSize="18dp"
                         android:clickable="true"
                         android:textColor="@color/colorAccent"
