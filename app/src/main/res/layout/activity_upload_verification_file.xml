@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -35,7 +36,6 @@
             android:text="Upload Document"
             android:textColor="@color/white"
             android:textSize="25dp" />
-
         <TextView
             android:id="@+id/sendbtn"
             android:layout_width="wrap_content"
@@ -49,6 +49,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -167,10 +168,6 @@
                             android:fontFamily="@font/lexend_medium"
                             android:text="Government Id" />
 
-
-
-
-
                     </RadioGroup>
 
 
@@ -185,14 +182,13 @@
                 android:layout_gravity="left">
 
                 <TextView
-
                     android:id="@+id/warning1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="•  Must have a picture (ID)"
                     android:fontFamily="@font/lexend_medium"
-                    android:textColor="@color/DarkGray"
+                    android:textColor="@color/instruction"
                     android:textSize="15sp"
                     />
 
@@ -212,10 +208,9 @@
                     android:layout_marginStart="16dp"
                     android:fontFamily="@font/lexend_medium"
                     android:text="•  Must be Government issued "
-                    android:textColor="@color/DarkGray"
+                    android:textColor="@color/instruction"
                     android:textSize="15sp"
                     />
-
             </LinearLayout>
 
             <LinearLayout
@@ -223,9 +218,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left">
-
-
-
 
                 <TextView
 
@@ -233,16 +225,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-
                     android:fontFamily="@font/lexend_medium"
                     android:text="•  Name must match with your App account"
-                    android:textColor="@color/DarkGray"
+                    android:textColor="@color/instruction"
                     android:textSize="15sp"
                     />
-
-
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -252,22 +239,16 @@
                 android:layout_gravity="left">
 
 
-
-
                 <TextView
-
                     android:id="@+id/warning4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:fontFamily="@font/lexend_medium"
-                    android:text="•  Date of birth must match your account"
-                    android:textColor="@color/DarkGray"
+                    android:text="•  Restricted to BSU-issued documents"
+                    android:textColor="@color/instruction"
                     android:textSize="15sp"
                     />
-
-
-
 
             </LinearLayout>
 
@@ -309,10 +290,7 @@
 
 
                 </LinearLayout>
-
-
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_marginBottom="10dp"

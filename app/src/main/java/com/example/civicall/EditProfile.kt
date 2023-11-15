@@ -101,6 +101,11 @@ class EditProfile : AppCompatActivity() {
         val adapterusertype = ArrayAdapter(this, R.layout.dropdown_item, usercategoryArray)
         (usercategoryDropdown as? AutoCompleteTextView)?.setAdapter(adapterusertype)
 
+        val campusDropdown = binding.campus
+        val campusArray = resources.getStringArray(R.array.allowed_campuses)
+        val adaptercampus = ArrayAdapter(this, R.layout.dropdown_item, campusArray)
+        (campusDropdown as? AutoCompleteTextView)?.setAdapter(adaptercampus)
+
         val genderDropdown = binding.spinnerSex
         val genderArray = resources.getStringArray(R.array.gender_array)
         val adaptergender = ArrayAdapter(this, R.layout.dropdown_item, genderArray)
@@ -301,6 +306,7 @@ class EditProfile : AppCompatActivity() {
         binding.ContactEme.text =
             Editable.Factory.getInstance().newEditable(user.ContactEme) // Set the ContactEme field
         binding.usercategory.setText(user.userType, false)
+        binding.campus.setText(user.campus, false)
         binding.birthdate.setText(user.birthday, false)
         binding.nstp.setText(user.nstp, false)
         binding.spinnerSex.setText(user.gender, false)
@@ -326,6 +332,7 @@ class EditProfile : AppCompatActivity() {
             val updatedCourse = binding.Course.text.toString()
             val updatedSrCode = binding.SrCode.text.toString()
             val updatedUserType = binding.usercategory.text.toString()
+            val updatedCampus = binding.campus.text.toString()
             val updatedBirthday = binding.birthdate.text.toString()
             val updatedGender = binding.spinnerSex.text.toString()
             val updatedContactEme = binding.ContactEme.text.toString()
@@ -368,6 +375,7 @@ class EditProfile : AppCompatActivity() {
                 "address" to updatedAddress,
                 "phoneno" to updatedContact,
                 "userType" to updatedUserType,
+                "campus" to updatedCampus,
                 "birthday" to updatedBirthday,
                 "gender" to updatedGender,
                 "ContactEme" to updatedContactEme,
@@ -845,6 +853,7 @@ data class User(
     val srcode: String = "",
     val phoneno: String = "",
     val userType: String = "",
+    val campus: String = "",
     val birthday: String = "",
     val gender: String = "",
     val email: String = "",

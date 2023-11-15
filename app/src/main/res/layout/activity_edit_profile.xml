@@ -378,6 +378,32 @@
                     android:background="@drawable/rounded_edittext_background"
                     android:editable="false"/>
             </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/label8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Campus:"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/white_70"
+                android:textStyle="bold"
+                />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/campusTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <AutoCompleteTextView
+                    android:id="@+id/campus"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:editable="false"/>
+            </com.google.android.material.textfield.TextInputLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -392,9 +418,8 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-
                     <TextView
-                        android:id="@+id/label8"
+                        android:id="@+id/label9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Date of Birth:"
@@ -416,7 +441,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-
                         <AutoCompleteTextView
                             android:id="@+id/birthdate"
                             android:layout_width="match_parent"
@@ -436,7 +460,7 @@
 
 
                     <TextView
-                        android:id="@+id/label9"
+                        android:id="@+id/label10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Gender:"
@@ -488,7 +512,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-
                 <AutoCompleteTextView
                     android:id="@+id/nstp"
                     android:layout_width="match_parent"
@@ -530,7 +553,7 @@
                     android:paddingEnd="30dp" />
             </com.google.android.material.textfield.TextInputLayout>
             <TextView
-                android:id="@+id/label14"
+                android:id="@+id/label13"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -564,7 +587,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
-                android:id="@+id/label13"
+                android:id="@+id/label14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SR-CODE:"

@@ -27,7 +27,6 @@
             android:src="@drawable/placeholder"
             app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
             />
-
         <TextView
             android:id="@+id/civicTitle"
             android:layout_width="match_parent"

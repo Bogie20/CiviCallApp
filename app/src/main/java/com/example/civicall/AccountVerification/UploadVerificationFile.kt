@@ -1,30 +1,33 @@
 package com.example.civicall.AccountVerification
 
-
-
-
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
-import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import com.example.civicall.R
-import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 
 
 class UploadVerificationFile : AppCompatActivity() {
+    private var fileUri: Uri? = null
+    private lateinit var filenameTextView: TextView
 
 
     private val filePicker: ActivityResultLauncher<Intent> =
@@ -32,24 +35,17 @@ class UploadVerificationFile : AppCompatActivity() {
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent? = result.data
                 if (data != null) {
-                    val fileUri: Uri? = data.data
+                    fileUri = data.data
                     if (fileUri != null) {
-                        val fileName = getFileDisplayName(fileUri)
+                        val fileName = getFileDisplayName(fileUri!!)
                         val sanitizedFileName = sanitizeFileName(fileName)
                         updateSelectedFileName(sanitizedFileName)
-                        val selectedCategory = getSelectedCategory()
-                        uploadFileToFirebase(
-                            fileUri,
-                            sanitizedFileName,
-                            selectedCategory
-                        ) // Upload the file to Firebase with the selected category
                     } else {
                         // Handle the case where fileUri is null
                     }
                 }
             }
         }
-
 
     private fun getFileDisplayName(fileUri: Uri): String {
         val cursor = contentResolver.query(fileUri, null, null, null, null)
@@ -83,22 +79,103 @@ class UploadVerificationFile : AppCompatActivity() {
         val radioButton = findViewById<RadioButton>(selectedRadioButtonId)
         return radioButton.text.toString()
     }
+    private var isUploadConfirmationDialogShowing = false
 
+    private fun showUploadConfirmationDialog(fileUri: Uri, fileName: String, category: String) {
+        if (isUploadConfirmationDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val builder = AlertDialog.Builder(this)
+        val dialogView = layoutInflater.inflate(R.layout.dialog_engagement, null)
+        builder.setView(dialogView)
+
+        val confirmTitle: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
+        val confirmationMessage: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
+        val uploadBtn: MaterialButton = dialogView.findViewById(R.id.saveBtn)
+        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+        val dialogIconFlat: AppCompatImageView = dialogView.findViewById(R.id.dialog_icon_flat)
+
+        builder.setCancelable(false)
+        val dialog = builder.create()
+
+        // Set window animations and background
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        confirmTitle.text = "Upload Confirmation"
+        confirmationMessage.text = "Are you sure you want to upload the file for verification of your Account?"
+
+        uploadBtn.text = "Upload"
+        uploadBtn.setOnClickListener {
+            dialog.dismiss()
+            uploadFileToFirebase(fileUri, fileName, category)
+        }
+
+        cancelBtn.text = "Cancel"
+        cancelBtn.setOnClickListener {
+            isUploadConfirmationDialogShowing = false
+            dialog.dismiss()
+        }
+
+        dialogIconFlat.setImageResource(R.drawable.verificationimage)
+
+        dialog.setOnDismissListener {
+            isUploadConfirmationDialogShowing = false
+        }
+
+        if (!isFinishing) {
+            dialog.show()
+            isUploadConfirmationDialogShowing = true
+        }
+    }
+
+    private fun dismissCustomDialog() {
+        if (isUploadConfirmationDialogShowing) {
+
+            isUploadConfirmationDialogShowing = false
+        }
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_verification_file)
-
+        filenameTextView = findViewById(R.id.filename)
 
         val uploadFileButton = findViewById<TextView>(R.id.underlineTextView)
-        val openCameraButton = findViewById<Button>(R.id.uploadcamera)
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
-        val storage = FirebaseStorage.getInstance()
+        FirebaseStorage.getInstance()
 
 
-        openCameraButton.setOnClickListener {
-            val cameraIntent = Intent(this, UploadPhoto::class.java)
-            startActivity(cameraIntent)
+        val uploadCameraButton = findViewById<Button>(R.id.uploadcamera)
+
+        uploadCameraButton.setOnClickListener {
+            val intent = Intent(this, UploadPhoto::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
+
+        val sendBtn = findViewById<TextView>(R.id.sendbtn)
+
+        sendBtn.setOnClickListener {
+            val selectedRadioButtonId = radioGroup.checkedRadioButtonId
+            if (selectedRadioButtonId == -1) {
+                Toast.makeText(
+                    this,
+                    "Please select Certificate of Registration or Certificate of Graduation",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                // Check if a file has been selected
+                val fileName = filenameTextView.text.toString()
+                if (fileName.isNotEmpty()) {
+                    val selectedCategory = getSelectedCategory()
+                    showUploadConfirmationDialog(fileUri!!, fileName, selectedCategory)
+                } else {
+                    Toast.makeText(this, "Please select a file first", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
         uploadFileButton.setOnClickListener {
             val selectedRadioButtonId = radioGroup.checkedRadioButtonId
@@ -130,7 +207,6 @@ class UploadVerificationFile : AppCompatActivity() {
         val storageRef = storage.reference
 
 
-        // Create a reference to the file in Firebase Storage with a timestamp
         val timestamp = System.currentTimeMillis().toString()
         val fileRef =
             storageRef.child("User_Verification_File/${FirebaseAuth.getInstance().currentUser?.uid ?: ""}/$category/${timestamp}_$fileName")
