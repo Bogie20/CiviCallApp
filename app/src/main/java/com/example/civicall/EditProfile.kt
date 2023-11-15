@@ -106,7 +106,7 @@ class EditProfile : AppCompatActivity() {
         val adaptercampus = ArrayAdapter(this, R.layout.dropdown_item, campusArray)
         (campusDropdown as? AutoCompleteTextView)?.setAdapter(adaptercampus)
 
-        val genderDropdown = binding.spinnerSex
+        val genderDropdown = binding.gender
         val genderArray = resources.getStringArray(R.array.gender_array)
         val adaptergender = ArrayAdapter(this, R.layout.dropdown_item, genderArray)
         (genderDropdown as? AutoCompleteTextView)?.setAdapter(adaptergender)
@@ -309,7 +309,7 @@ class EditProfile : AppCompatActivity() {
         binding.campus.setText(user.campus, false)
         binding.birthdate.setText(user.birthday, false)
         binding.nstp.setText(user.nstp, false)
-        binding.spinnerSex.setText(user.gender, false)
+        binding.gender.setText(user.gender, false)
 
         if (!user.ImageProfile.isNullOrEmpty()) {
             Picasso.get().load(user.ImageProfile).into(binding.profileImage)
@@ -334,7 +334,7 @@ class EditProfile : AppCompatActivity() {
             val updatedUserType = binding.usercategory.text.toString()
             val updatedCampus = binding.campus.text.toString()
             val updatedBirthday = binding.birthdate.text.toString()
-            val updatedGender = binding.spinnerSex.text.toString()
+            val updatedGender = binding.gender.text.toString()
             val updatedContactEme = binding.ContactEme.text.toString()
             val updatedNstp = binding.nstp.text.toString()
 
@@ -361,7 +361,7 @@ class EditProfile : AppCompatActivity() {
             }
             !validateBirthday()
 
-            if (!validateFirstName() || !validateMiddleName() || !validateLastName() || !validateAddress() || !validateBirthday() || !validateContactNumber() || !validateEmeContactNumber() || !validateCourse() || !validateSrCode() ) {
+            if (!validateFirstName() || !validateMiddleName() || !validateLastName() || !validateAddress() || !validateBirthday() || !validateContactNumber() || !validateEmeContactNumber() || !validateCourse() || !validateSrCode() || !validateGender() || !validateUserType() || !validateCampus() || !validateNstp()) {
                 showCustomPopup("Please provide valid information for the following fields.")
                 return
             }
@@ -684,6 +684,50 @@ class EditProfile : AppCompatActivity() {
             return false
         } else {
             binding.Course.error = null
+            return true
+        }
+    }
+    private fun validateGender(): Boolean {
+        val Gender = binding.gender.text.toString().trim()
+
+        if (Gender.isEmpty()) {
+            binding.gender.error = "Gender field is required"
+            return false
+        }  else {
+            binding.gender.error = null
+            return true
+        }
+    }
+    private fun validateUserType(): Boolean {
+        val UserType = binding.usercategory.text.toString().trim()
+
+        if (UserType.isEmpty()) {
+            binding.usercategory.error = "User Type field is required"
+            return false
+        }  else {
+            binding.usercategory.error = null
+            return true
+        }
+    }
+    private fun validateNstp(): Boolean {
+        val Nstp = binding.nstp.text.toString().trim()
+
+        if (Nstp.isEmpty()) {
+            binding.nstp.error = "NSTP Program field is required"
+            return false
+        }  else {
+            binding.nstp.error = null
+            return true
+        }
+    }
+    private fun validateCampus(): Boolean {
+        val Campus = binding.campus.text.toString().trim()
+
+        if (Campus.isEmpty()) {
+            binding.campus.error = "Campus field is required"
+            return false
+        }  else {
+            binding.campus.error = null
             return true
         }
     }
