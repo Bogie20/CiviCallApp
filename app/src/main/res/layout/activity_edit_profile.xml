@@ -8,7 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".EditProfile">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/card"
         android:layout_width="match_parent"
@@ -185,7 +184,9 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="name"
                 android:elevation="80dp"
-                android:layout_marginBottom="10dp"
+                app:counterMaxLength="80"
+                app:counterTextColor="@color/white"
+                app:counterEnabled="true"
                 app:hintTextColor="@color/DarkGray">
 
 
@@ -222,6 +223,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="name"
+                app:counterMaxLength="80"
+                app:counterTextColor="@color/white"
+                app:counterEnabled="true"
                 android:elevation="80dp">
 
 
@@ -257,7 +261,9 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
+                app:counterMaxLength="80"
+                app:counterTextColor="@color/white"
+                app:counterEnabled="true">
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -293,7 +299,9 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                app:counterMaxLength="255"
+                app:counterTextColor="@color/white"
+                app:counterEnabled="true"
                 android:elevation="50dp">
 
 
@@ -332,7 +340,9 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
+                app:counterMaxLength="15"
+                app:counterTextColor="@color/white"
+                app:counterEnabled="true">
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -374,6 +384,7 @@
                     android:id="@+id/usercategory"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:paddingEnd="35dp"
                     android:background="@drawable/rounded_edittext_background"
                     android:editable="false"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -400,6 +411,7 @@
                     android:id="@+id/campus"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:paddingEnd="35dp"
                     android:background="@drawable/rounded_edittext_background"
                     android:editable="false"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -410,9 +422,8 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp">
 
-
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
@@ -429,14 +440,11 @@
                         android:textColor="@color/white_70"
                         android:textStyle="bold"
                         />
-
-
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/birthdateTextInputLayout"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -444,6 +452,8 @@
                             android:id="@+id/birthdate"
                             android:layout_width="match_parent"
                             android:layout_height="55dp"
+                            android:layout_marginEnd="10dp"
+                            android:paddingEnd="35dp"
                             android:background="@drawable/rounded_edittext_background"
                             android:editable="false"
                             android:lines="1" />
@@ -464,13 +474,12 @@
                         android:layout_height="wrap_content"
                         android:text="Gender:"
                         android:textSize="20sp"
-                        android:layout_marginStart="15dp"
+                        android:layout_marginStart="5dp"
                         android:layout_marginBottom="10dp"
                         android:layout_marginTop="10dp"
                         android:textColor="@color/white_70"
                         android:textStyle="bold"
                         />
-
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/genderTextInputLayout"
@@ -478,13 +487,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
-
                         app:layout_constraintTop_toTopOf="parent">
 
                         <AutoCompleteTextView
                             android:id="@+id/gender"
                             android:layout_width="match_parent"
                             android:layout_height="55dp"
+                            android:paddingEnd="35dp"
                             android:background="@drawable/rounded_edittext_background"
                             android:editable="false"
                             android:lines="1" />
@@ -507,12 +516,13 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <AutoCompleteTextView
                     android:id="@+id/nstp"
+                    android:paddingEnd="35dp"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:background="@drawable/rounded_edittext_background"
@@ -535,6 +545,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:counterMaxLength="15"
+                app:counterTextColor="@color/white"
                 app:counterEnabled="true">
 
 
@@ -569,7 +580,9 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
+                app:counterMaxLength="80"
+                app:counterTextColor="@color/white"
+                app:counterEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Course"
@@ -602,7 +615,10 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="300dp">
+                android:layout_marginBottom="300dp"
+                app:counterMaxLength="10"
+                app:counterTextColor="@color/white"
+                app:counterEnabled="true">
 
 
                 <com.google.android.material.textfield.TextInputEditText

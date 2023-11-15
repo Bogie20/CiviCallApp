@@ -137,7 +137,11 @@ class EditProfile : AppCompatActivity() {
         }
 
 
-
+        setupAutoCompleteTextView(binding.usercategory)
+        setupAutoCompleteTextView(binding.campus)
+        setupAutoCompleteTextView(binding.gender)
+        setupAutoCompleteTextView(binding.nstp)
+        setupAutoCompleteTextView(binding.birthdate)
 
         fullMname = binding.mname.text.toString()
         fullLname = binding.Lname.text.toString()
@@ -149,9 +153,9 @@ class EditProfile : AppCompatActivity() {
         fullSrcode = binding.SrCode.text.toString()
 
         val maxLength = 80 // Max character limit for name fields
-        val maxContactLength = 20 // Max character limit for contact field
+        val maxContactLength = 15 // Max character limit for contact field
         val maxAddressLength = 255 // Max character limit for address field
-        // Create a map of EditText fields and their respective character limits
+
         val editTextsToLimit = mapOf(
             binding.fname to maxLength,
             binding.mname to maxLength,
@@ -232,7 +236,7 @@ class EditProfile : AppCompatActivity() {
     private fun addTextWatcher(editText: EditText, maxLength: Int) {
         editText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // Not used in this example
+
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -248,6 +252,25 @@ class EditProfile : AppCompatActivity() {
             }
         })
     }
+
+    private fun setupAutoCompleteTextView(autoCompleteTextView: AutoCompleteTextView) {
+        autoCompleteTextView.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Not used in this example
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Remove the error message when the user starts typing
+                autoCompleteTextView.error = null
+            }
+
+            override fun afterTextChanged(editable: Editable?) {
+                // Not used in this example
+            }
+        })
+    }
+
+
 
     private fun checkAndRequestPermissions() {
         if (ContextCompat.checkSelfPermission(
@@ -354,13 +377,32 @@ class EditProfile : AppCompatActivity() {
                 binding.Lname.error = "Please enter a valid last name"
             }
             if (!validateContactNumber()) {
-                binding.Contactline.error = "Invalid contact number"
+                binding.Contactline.error = "Enter valid contact number"
             }
             if (!validateEmeContactNumber()) {
-                binding.ContactEme.error = "Invalid contact number"
+                binding.ContactEme.error = "Enter valid contact number"
             }
-            !validateBirthday()
-
+            if (!validateUserType()) {
+                binding.usercategory.error = "Please enter a User Type"
+            }
+            if (!validateCampus()) {
+                binding.campus.error = "Please enter your Campus"
+            }
+            if (!validateBirthday()) {
+                binding.birthdate.error = "Please enter a valid Birthday"
+            }
+            if (!validateGender()) {
+                binding.gender.error = "Please enter your Gender"
+            }
+            if (!validateNstp()) {
+                binding.nstp.error = "Please enter your NSTP Program"
+            }
+            if (!validateCourse()) {
+                binding.Course.error = "Please enter your Course"
+            }
+            if (!validateSrCode()) {
+                binding.SrCode.error = "Please enter your SR-Code"
+            }
             if (!validateFirstName() || !validateMiddleName() || !validateLastName() || !validateAddress() || !validateBirthday() || !validateContactNumber() || !validateEmeContactNumber() || !validateCourse() || !validateSrCode() || !validateGender() || !validateUserType() || !validateCampus() || !validateNstp()) {
                 showCustomPopup("Please provide valid information for the following fields.")
                 return
@@ -568,7 +610,7 @@ class EditProfile : AppCompatActivity() {
 
         if (birthday.isEmpty()) {
             birthdateTextInputLayout.error = null
-            showCustomPopup("Date of Birth is Required")
+
             return false
         } else {
             val dobParts = birthday.split("/")
@@ -607,7 +649,7 @@ class EditProfile : AppCompatActivity() {
             binding.Contactline.error = "Please enter Contact Number"
             return false
         } else if (!isValidPhoneNumber(contactNumber)) {
-            binding.Contactline.error = "Invalid Contact Number"
+            binding.Contactline.error = "Enter valid Contact Number"
             return false
         } else {
             binding.Contactline.error = null
@@ -621,7 +663,7 @@ class EditProfile : AppCompatActivity() {
             binding.ContactEme.error = "Please enter Contact Number"
             return false
         } else if (!isValidPhoneNumber(emecontactNumber)) {
-            binding.ContactEme.error = "Invalid Contact Number"
+            binding.ContactEme.error = "Enter Valid Contact Number"
             return false
         } else {
             binding.ContactEme.error = null
@@ -642,21 +684,28 @@ class EditProfile : AppCompatActivity() {
             false
         }
     }
-    private fun validateFirstName(): Boolean {
-        val firstName = binding.fname.text.toString().trim()
+    private fun validateName(name: String, editText: EditText): Boolean {
         val regex = "^[a-zA-Z.\\s-]+$"
 
-        if (firstName.isEmpty()) {
-            binding.fname.error = "Required"
+        if (name.isEmpty()) {
+            editText.error = "Required"
             return false
-        } else if (!firstName.matches(regex.toRegex())) {
-            binding.fname.error =
-                "Only letters and symbols (, . -) are allowed"
+        } else if (!name.matches(regex.toRegex())) {
+            editText.error = "Only letters and symbols (, . -) are allowed"
             return false
         } else {
-            binding.fname.error = null
+            editText.error = null
             return true
         }
+    }
+    private fun validateFirstName(): Boolean {
+        return validateName(binding.fname.text.toString().trim(), binding.fname)
+    }
+    private fun validateMiddleName(): Boolean {
+        return validateName(binding.mname.text.toString().trim(), binding.mname)
+    }
+    private fun validateLastName(): Boolean {
+        return validateName(binding.Lname.text.toString().trim(), binding.Lname)
     }
 
     private fun validateAddress(): Boolean {
@@ -745,39 +794,7 @@ class EditProfile : AppCompatActivity() {
             return true
         }
     }
-    private fun validateMiddleName(): Boolean {
-        val middleName = binding.mname.text.toString().trim()
-        val regex = "^[a-zA-Z.\\s-]+$"
 
-        if (middleName.isEmpty()) {
-            binding.mname.error = "Required"
-            return false
-        } else if (!middleName.matches(regex.toRegex())) {
-            binding.mname.error =
-                "Only letters and symbols (, . -) are allowed"
-            return false
-        } else {
-            binding.mname.error = null
-            return true
-        }
-    }
-
-    private fun validateLastName(): Boolean {
-        val lastName = binding.Lname.text.toString().trim()
-        val regex = "^[a-zA-Z.\\s-]+$"
-
-        if (lastName.isEmpty()) {
-            binding.Lname.error = "Required"
-            return false
-        } else if (!lastName.matches(regex.toRegex())) {
-            binding.Lname.error =
-                "Only letters and symbols (, . -) are allowed"
-            return false
-        } else {
-            binding.lastNameTextInputLayout.error = null
-            return true
-        }
-    }
 
     private var isImageDialogShowing = false // Initialize the flag
 
