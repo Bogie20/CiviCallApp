@@ -53,7 +53,7 @@ class MainMenu : AppCompatActivity() {
         val calendar: TextView = findViewById(R.id.calendar)
         val logout: TextView = findViewById(R.id.logout)
         val verification1: TextView = findViewById(R.id.verification)
-        val AboutUs1: TextView = findViewById(R.id.AboutUs1)
+
         val feedback1: TextView = findViewById(R.id.feedback)
         val editProfileCardView:TextView= findViewById(R.id.editprofile)
 
@@ -120,11 +120,7 @@ class MainMenu : AppCompatActivity() {
             startActivity(intent)
         }
 
-        AboutUs1.setOnClickListener {
-            // Handle click for About Us menu item
-            val intent = Intent(this, AboutUs::class.java)
-            startActivity(intent)
-        }
+
 
         feedback1.setOnClickListener {
             // Handle click for Feedback menu item

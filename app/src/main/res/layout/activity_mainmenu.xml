@@ -243,19 +243,7 @@
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Setting" />
-    <TextView
-        android:id="@+id/AboutUs1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="140dp"
-        android:background="@drawable/menu_item_background"
-        android:text="About Us"
-        android:textColor="@android:color/white"
-        android:textSize="20dp"
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Setting" />
 
     <TextView
 

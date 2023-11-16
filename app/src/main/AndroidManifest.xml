@@ -28,9 +28,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".AccountVerification.ReflectImage"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".Otherproblem"
+            android:exported="true" />
+        <activity
+            android:name=".Userinterface"
+            android:exported="true" />
+        <activity
+            android:name=".TechnicalIssueReportProblems"
+            android:exported="true" />
+       <!-- <activity -->
+        <!-- android:name=".AccountVerification.ReflectImage" -->
+        <!-- android:exported="false" /> -->
+        <activity
+            android:name=".Reportproblems"
+            android:exported="true" />
         <activity
             android:name=".GoogleCalerndar"
             android:exported="true" />
@@ -61,9 +73,9 @@
         <activity
             android:name=".AccountVerification.UploadVerificationFile"
             android:exported="true" />
-            <activity
-                android:name=".AccountVerification.UploadPhoto"
-                android:exported="true" />
+        <activity
+            android:name=".AccountVerification.UploadPhoto"
+            android:exported="true" />
         <activity
             android:name=".AccountVerification.GovernmentId"
             android:exported="false" />

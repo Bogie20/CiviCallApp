@@ -158,50 +158,8 @@ android:text="Now you can effortlessly discover Nearby Volunteer Opportunities ,
                 android:layout_marginLeft="240dp">
 
             </TextView>
-            <TextView
-                android:id="@+id/more"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:layout_marginHorizontal="130dp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/inter_bold"
-                android:text="More information"
-                android:textSize="15dp" />
 
 
-
-
-            <TextView
-                android:id="@+id/Privacy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:layout_marginLeft="30dp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/inter_medium"
-                android:text="Privacy And Policies"
-                android:textSize="20dp" />
-            <TextView
-                android:id="@+id/Terms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="30dp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/inter_medium"
-                android:text="Terms Of Service"
-                android:textSize="20dp" />
-            <TextView
-                android:id="@+id/Fun"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="30dp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/inter_medium"
-                android:text="FAQ"
-                android:textSize="20dp" />
 
 
 

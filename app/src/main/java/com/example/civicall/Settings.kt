@@ -28,6 +28,11 @@ class Settings : AppCompatActivity() {
             val intent = Intent(this, ChangePassword::class.java)
             startActivity(intent)
         }
+        val Otherproblems = binding.reportproblem
+        Otherproblems.setOnClickListener {
+            val intent = Intent(this, Otherproblem::class.java)
+            startActivity(intent)
+        }
     }
 
 

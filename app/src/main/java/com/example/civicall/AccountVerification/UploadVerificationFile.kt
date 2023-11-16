@@ -118,7 +118,6 @@ class UploadVerificationFile : AppCompatActivity() {
             dialog.dismiss()
         }
 
-        dialogIconFlat.setImageResource(R.drawable.verificationimage)
 
         dialog.setOnDismissListener {
             isUploadConfirmationDialogShowing = false

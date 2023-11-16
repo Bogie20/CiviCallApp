@@ -199,7 +199,7 @@
                         android:drawableRight="@drawable/next_24"
                         android:layout_marginBottom="16dp"
                         android:fontFamily="@font/lexend_medium"
-                        android:text="Terms and Support"
+                        android:text="Privacy And Policies"
                         android:textColor="@color/DarkGray"
                         android:textSize="21sp" />
 
@@ -224,7 +224,7 @@
                         android:drawableRight="@drawable/next_24"
                         android:layout_marginBottom="16dp"
                         android:fontFamily="@font/lexend_medium"
-                        android:text="Profile Setting"
+                        android:text="Terms Of Service"
                         android:textColor="@color/DarkGray"
                         android:textSize="21sp" />
 
@@ -250,37 +250,14 @@
                         android:drawableRight="@drawable/next_24"
                         android:layout_marginBottom="16dp"
                         android:fontFamily="@font/lexend_medium"
-                        android:text="Forum Setting"
-                        android:textColor="@color/DarkGray"
-                        android:textSize="21sp" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="210dp"
-                    android:id="@+id/aboutus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:background="@drawable/highlight_linear">
-
-                    <TextView
-                        android:id="@+id/terms10"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:drawableRight="@drawable/next_24"
-                        android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/lexend_medium"
                         android:text="About Us"
                         android:textColor="@color/DarkGray"
                         android:textSize="21sp" />
 
 
                 </LinearLayout>
+
+
 
 
             </androidx.cardview.widget.CardView>
