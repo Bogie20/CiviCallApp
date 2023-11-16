@@ -43,6 +43,7 @@
                 android:id="@+id/dialog_icon_flat"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
+                android:scaleType="fitXY"
                 app:srcCompat="@drawable/needhelp" />
 
         </androidx.cardview.widget.CardView>
