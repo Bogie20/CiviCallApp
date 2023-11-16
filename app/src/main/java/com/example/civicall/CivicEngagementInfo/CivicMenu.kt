@@ -41,9 +41,7 @@ class CivicMenu : AppCompatActivity() {
             DataMain("A Guide for Strategic Advocacy"),
             DataMain("Digital Civic Engagement"),
             DataMain("Campus Initiative for Sustainability"),
-                    DataMain("TenSustainableGoals")
-
-
+            DataMain("17 Sustainable Goals")
         )
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewMain)

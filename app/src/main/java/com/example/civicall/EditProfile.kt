@@ -840,9 +840,6 @@ class EditProfile : AppCompatActivity() {
         isImageDialogShowing = true
     }
 
-
-
-
     private fun takePicture() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         takePictureLauncher.launch(intent)

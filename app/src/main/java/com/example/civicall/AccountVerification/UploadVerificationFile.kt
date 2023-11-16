@@ -3,12 +3,14 @@ package com.example.civicall.AccountVerification
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
@@ -18,18 +20,253 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContextCompat
+import android.Manifest
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.Environment
+import android.provider.MediaStore
+import android.util.Log
+import androidx.core.app.ActivityCompat
 import com.example.civicall.R
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 
 class UploadVerificationFile : AppCompatActivity() {
     private var fileUri: Uri? = null
     private lateinit var filenameTextView: TextView
+    private val REQUEST_CAMERA_PERMISSION = 1
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_upload_verification_file)
+        filenameTextView = findViewById(R.id.filename)
+
+        val uploadImage = findViewById<Button>(R.id.uploadcamera)
+        val uploadFileButton = findViewById<TextView>(R.id.underlineTextView)
+        val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
+        FirebaseStorage.getInstance()
+
+        val sendBtn = findViewById<TextView>(R.id.sendbtn)
+
+        sendBtn.setOnClickListener {
+            val selectedRadioButtonId = radioGroup.checkedRadioButtonId
+            if (selectedRadioButtonId == -1) {
+                Toast.makeText(
+                    this,
+                    "Please select the type of Document that you want to send",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                // Check if a file has been selected
+                val fileName = filenameTextView.text.toString()
+                if (fileName.isNotEmpty()) {
+                    val selectedCategory = getSelectedCategory()
+                    showUploadConfirmationDialog(fileUri!!, fileName, selectedCategory)
+                } else {
+                    Toast.makeText(this, "Please select a file first", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        uploadFileButton.setOnClickListener {
+            val selectedRadioButtonId = radioGroup.checkedRadioButtonId
+            if (selectedRadioButtonId == -1) {
+                Toast.makeText(
+                    this,
+                    "Please select the type of Document to Send",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+                intent.addCategory(Intent.CATEGORY_OPENABLE)
+                intent.type = "*/*"
+                intent.putExtra(
+                    Intent.EXTRA_MIME_TYPES, arrayOf(
+                        "application/pdf",
+                        "application/msword",
+                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        "image/jpeg",
+                        "image/png",
+                        "image/jpg"
+                    )
+                )
+                filePicker.launch(intent)
+            }
+        }
+        uploadImage.setOnClickListener {
+            showImageDialog()
+
+            checkAndRequestPermissions()
+        }
+    }
+    private fun checkAndRequestPermissions() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                REQUEST_CAMERA_PERMISSION
+            )
+        }
+    }
+    // Add this property to your activity class
+    private var capturedImageUri: Uri? = null
+
+    // Modify takePicture() function
+    private fun takePicture() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        takePictureLauncher.launch(intent)
+    }
+
+    // Modify chooseFromGallery() function
+    private fun chooseFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        selectImageLauncher.launch(intent)
+    }
+
+    private fun saveImageToGallery(imageBitmap: Bitmap): Uri {
+        val imagesFolder = File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "YourAppName")
+        if (!imagesFolder.exists()) {
+            imagesFolder.mkdirs()
+        }
+
+        val file = File(imagesFolder, "image_${System.currentTimeMillis()}.jpg")
+
+        try {
+            FileOutputStream(file).use { outStream ->
+                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream)
+                outStream.flush()
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        // Return the Uri of the saved image
+        return Uri.fromFile(file)
+    }
+
+    private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data: Intent? = result.data
+            if (data != null) {
+                val imageBitmap = data.extras?.get("data") as Bitmap
+
+                // Compress the image if needed
+                val compressedImageBitmap = compressBitmap(imageBitmap)
+
+                capturedImageUri = getImageUri(compressedImageBitmap)
+                showImagePreviewDialog(capturedImageUri!!)
+            }
+        }
+    }
+
+    private fun compressBitmap(originalBitmap: Bitmap): Bitmap {
+        val outStream = ByteArrayOutputStream()
+
+        // Compress the image with desired quality
+        originalBitmap.compress(Bitmap.CompressFormat.JPEG, 80, outStream)
+
+        // Convert the compressed image back to Bitmap
+        return BitmapFactory.decodeStream(ByteArrayInputStream(outStream.toByteArray()))
+    }
 
 
+    private val selectImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data: Intent? = result.data
+            if (data != null && data.data != null) {
+                capturedImageUri = data.data
+                showImagePreviewDialog(capturedImageUri!!)
+            }
+        }
+    }
+
+    private fun showImagePreviewDialog(imageUri: Uri) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_image, null)
+        val dialogIconFlat: AppCompatImageView = dialogView.findViewById(R.id.dialog_icon_flat)
+        val cancelButton: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        // Set the background to be transparent
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Load the original image without compression
+        val originalBitmap = MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
+        dialogIconFlat.setImageBitmap(originalBitmap)
+
+        cancelButton.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
+    }
+
+
+
+
+    private var isImageDialogShowing = false // Initialize the flag
+
+    private fun showImageDialog() {
+        // Check if the dialog is already showing, and if so, return early
+        if (isImageDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val dialogView = layoutInflater.inflate(R.layout.profileedit_popup, null)
+        val lytCameraPick = dialogView.findViewById<LinearLayout>(R.id.lytCameraPick)
+        val lytGalleryPick = dialogView.findViewById<LinearLayout>(R.id.lytGalleryPick)
+
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        // Set the background to be transparent
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        lytCameraPick.setOnClickListener {
+            takePicture()
+            alertDialog.dismiss() // Close the dialog after clicking "Take a photo"
+            // Reset the flag when dismissing the dialog
+            isImageDialogShowing = false
+        }
+
+        lytGalleryPick.setOnClickListener {
+            chooseFromGallery()
+            alertDialog.dismiss() // Close the dialog after clicking "Choose from gallery"
+            // Reset the flag when dismissing the dialog
+            isImageDialogShowing = false
+        }
+
+        alertDialog.setOnDismissListener {
+            // Reset the flag when dismissing the dialog
+            isImageDialogShowing = false
+        }
+
+        alertDialog.show()
+        // Set the flag to true when the dialog is displayed
+        isImageDialogShowing = true
+    }
     private val filePicker: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -51,6 +288,12 @@ class UploadVerificationFile : AppCompatActivity() {
     private fun updateUploadButtonText() {
         val uploadFileButton = findViewById<TextView>(R.id.underlineTextView)
         uploadFileButton.text = "Change File"
+    }
+    private fun getImageUri(inImage: Bitmap): Uri {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = MediaStore.Images.Media.insertImage(contentResolver, inImage, "Title", null)
+        return Uri.parse(path)
     }
 
     private fun getFileDisplayName(fileUri: Uri): String {
@@ -143,64 +386,6 @@ class UploadVerificationFile : AppCompatActivity() {
         }
 
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_upload_verification_file)
-        filenameTextView = findViewById(R.id.filename)
-
-        val uploadFileButton = findViewById<TextView>(R.id.underlineTextView)
-        val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
-        FirebaseStorage.getInstance()
-
-        val sendBtn = findViewById<TextView>(R.id.sendbtn)
-
-        sendBtn.setOnClickListener {
-            val selectedRadioButtonId = radioGroup.checkedRadioButtonId
-            if (selectedRadioButtonId == -1) {
-                Toast.makeText(
-                    this,
-                    "Please select the type of Document that you want to send",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                // Check if a file has been selected
-                val fileName = filenameTextView.text.toString()
-                if (fileName.isNotEmpty()) {
-                    val selectedCategory = getSelectedCategory()
-                    showUploadConfirmationDialog(fileUri!!, fileName, selectedCategory)
-                } else {
-                    Toast.makeText(this, "Please select a file first", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-        uploadFileButton.setOnClickListener {
-            val selectedRadioButtonId = radioGroup.checkedRadioButtonId
-            if (selectedRadioButtonId == -1) {
-                Toast.makeText(
-                    this,
-                    "Please select the type of Document to Send",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-                intent.addCategory(Intent.CATEGORY_OPENABLE)
-                intent.type = "*/*"
-                intent.putExtra(
-                    Intent.EXTRA_MIME_TYPES, arrayOf(
-                        "application/pdf",
-                        "application/msword",
-                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                        "image/jpeg",
-                        "image/png",
-                        "image/jpg"
-                    )
-                )
-                filePicker.launch(intent)
-            }
-        }
-    }
-
         private fun uploadFileToFirebase(fileUri: Uri, fileName: String, category: String) {
         val storage = FirebaseStorage.getInstance()
         val storageRef = storage.reference
