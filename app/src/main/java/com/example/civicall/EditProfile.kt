@@ -76,13 +76,10 @@ class EditProfile : AppCompatActivity() {
 
                 // Compress and save the image to gallery
                 val compressedImageBitmap = compressBitmap(imageBitmap)
-                val capturedImageUri = saveImageToGallery(compressedImageBitmap)
+                capturedImageUri = saveImageToGallery(compressedImageBitmap)
 
                 // Display the image in the ImageView
                 binding.profileImage.setImageURI(capturedImageUri)
-
-                // Upload the image to Firebase Storage and update the profile image
-                uploadProfileImage(capturedImageUri)
             }
         }
     }
@@ -468,9 +465,15 @@ class EditProfile : AppCompatActivity() {
                     showCustomPopupError("Failed to update profile")
                 }
 
-            if (selectedImageUri != null) {
-                uploadProfileImage(selectedImageUri!!)
-            }
+            uploadImages()
+        }
+    }
+    private fun uploadImages() {
+        if (selectedImageUri != null) {
+            uploadProfileImage(selectedImageUri!!)
+        }
+        if (capturedImageUri != null) {
+            uploadProfileImage(capturedImageUri!!)
         }
     }
 
@@ -504,6 +507,7 @@ class EditProfile : AppCompatActivity() {
         saveBtn.setOnClickListener {
             alertDialog.dismiss()
             dismissCustomDialog()
+
 
             updateProfile()
         }
@@ -887,13 +891,6 @@ class EditProfile : AppCompatActivity() {
         selectImageLauncher.launch(intent)
     }
 
-
-    private fun getImageUri(inImage: Bitmap): Uri {
-        val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path = MediaStore.Images.Media.insertImage(contentResolver, inImage, "Title", null)
-        return Uri.parse(path)
-    }
 
     private fun uploadProfileImage(imageUri: Uri) {
         val firebaseUser = firebaseAuth.currentUser
