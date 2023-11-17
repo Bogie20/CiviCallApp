@@ -321,7 +321,6 @@ class EditProfile : AppCompatActivity() {
     }
 
 
-
     private fun checkAndRequestPermissions() {
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -384,18 +383,14 @@ class EditProfile : AppCompatActivity() {
         binding.nstp.setText(user.nstp, false)
         binding.gender.setText(user.gender, false)
 
-        if (!user.ImageProfile.isNullOrEmpty()) {
-            // Load profile image using Glide
-            Glide.with(this)
-                .load(user.ImageProfile)
-                .placeholder(R.drawable.three) // Placeholder image resource
-                .error(R.drawable.three) // Image to display in case of an error
-                .into(binding.profileImage)
+        val profileImageUri = user.ImageProfile
+
+        if (profileImageUri.isNotEmpty()) {
+            // If there is a profile image, load it using Picasso
+            Picasso.get().load(profileImageUri).into(binding.profileImage)
         } else {
-            // If ImageProfile is empty or null, use a default placeholder image
-            Glide.with(this)
-                .load(R.drawable.three)
-                .into(binding.profileImage)
+            // If there is no profile image, set a placeholder drawable
+            Picasso.get().load(R.drawable.three).into(binding.profileImage)
         }
     }
 
