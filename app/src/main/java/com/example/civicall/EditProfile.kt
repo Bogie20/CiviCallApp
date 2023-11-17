@@ -33,6 +33,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import com.bumptech.glide.Glide
 import com.example.civicall.databinding.ActivityEditProfileBinding
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
@@ -384,7 +385,17 @@ class EditProfile : AppCompatActivity() {
         binding.gender.setText(user.gender, false)
 
         if (!user.ImageProfile.isNullOrEmpty()) {
-            Picasso.get().load(user.ImageProfile).into(binding.profileImage)
+            // Load profile image using Glide
+            Glide.with(this)
+                .load(user.ImageProfile)
+                .placeholder(R.drawable.three) // Placeholder image resource
+                .error(R.drawable.three) // Image to display in case of an error
+                .into(binding.profileImage)
+        } else {
+            // If ImageProfile is empty or null, use a default placeholder image
+            Glide.with(this)
+                .load(R.drawable.three)
+                .into(binding.profileImage)
         }
     }
 
