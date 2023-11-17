@@ -1,6 +1,8 @@
 package com.example.civicall
 
 import android.app.Activity
+import android.app.ProgressDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -12,6 +14,7 @@ import android.provider.MediaStore
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.civicall.databinding.ActivityOtherproblemBinding
 import com.google.android.gms.tasks.Task
@@ -73,9 +76,20 @@ class Otherproblem : AppCompatActivity() {
                 // No radio button is selected, show a message or take appropriate action
                 Toast.makeText(this, "Please select a category", Toast.LENGTH_SHORT).show()
             } else {
-                // A radio button is selected, proceed with sending the data to Firebase
-                sendDataToFirebase(imageUrl)
+                // A radio button is selected, check if the EditText has text
+                val userMessage = problemEditText.text.toString().trim()
+                if (userMessage.isEmpty()) {
+                    // EditText is empty, show a message or take appropriate action
+                    Toast.makeText(this, "Please enter a message", Toast.LENGTH_SHORT).show()
+                } else {
+                    // Both radio button and EditText have valid input, show a confirmation dialog before sending the report
+                    showSendConfirmationDialog()
+                }
             }
+        }
+
+        binding.RemoveButton.setOnClickListener {
+            showRemovePhotoConfirmationDialog()
         }
     }
 
@@ -132,25 +146,49 @@ class Otherproblem : AppCompatActivity() {
     }
 
     private fun uploadImageToFirebase(selectedImageUri: Uri, bitmap: Bitmap?) {
+        val progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Uploading")
+        progressDialog.setMessage("Please wait...")
+        progressDialog.show()
+
         GlobalScope.launch(Dispatchers.Main) {
-            val dateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault())
-            val currentDate = Date()
-            val imageName = dateFormat.format(currentDate) + ".png"
+            try {
+                val dateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault())
+                val currentDate = Date()
+                val imageName = dateFormat.format(currentDate) + ".png"
 
-            val byteArrayOutputStream = ByteArrayOutputStream()
-            bitmap?.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
-            val data = byteArrayOutputStream.toByteArray()
+                val byteArrayOutputStream = ByteArrayOutputStream()
+                bitmap?.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+                val data = byteArrayOutputStream.toByteArray()
 
-            // Upload image to Firebase Storage in the background
-            withContext(Dispatchers.IO) {
-                val imageRef = storageReference.child(imageName)
-                imageRef.putBytes(data).await()
-                imageUrl = imageRef.downloadUrl.await().toString()
+                // Upload image to Firebase Storage in the background
+                withContext(Dispatchers.IO) {
+                    val imageRef = storageReference.child(imageName)
+                    imageRef.putBytes(data).await()
+                    imageUrl = imageRef.downloadUrl.await().toString()
+                }
+
+                // Save the image URL to Firebase Realtime Database
+                // (Note: The actual saving will be done in the sendDataToFirebase function)
+
+            } finally {
+                progressDialog.dismiss()
             }
-
-            // Save the image URL to Firebase Realtime Database
-            // (Note: The actual saving will be done in the sendDataToFirebase function)
         }
+    }
+
+    private fun showSendConfirmationDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Confirmation")
+            .setMessage("Are you sure you want to send the report?")
+            .setPositiveButton("Yes") { _, _ ->
+                // User clicked Yes, proceed with sending the report
+                sendDataToFirebase(imageUrl)
+            }
+            .setNegativeButton("No") { _, _ ->
+                // User clicked No, do nothing
+            }
+            .show()
     }
 
     private fun sendDataToFirebase(imageUrl: String) {
@@ -235,5 +273,27 @@ class Otherproblem : AppCompatActivity() {
     private suspend fun <T> Task<T>.await(): T = suspendCoroutine { continuation ->
         addOnSuccessListener { result -> continuation.resume(result) }
         addOnFailureListener { e -> continuation.resumeWithException(e) }
+    }
+
+    private fun showRemovePhotoConfirmationDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Remove Photo")
+            .setMessage("Are you sure you want to remove the uploaded photo?")
+            .setPositiveButton("Yes") { _, _ ->
+                // User clicked Yes, remove the photo
+                removeUploadedPhoto()
+            }
+            .setNegativeButton("No") { _, _ ->
+                // User clicked No, do nothing
+            }
+            .show()
+    }
+
+    private fun removeUploadedPhoto() {
+        // Clear the image view
+        binding.showimage.setImageBitmap(null)
+
+        // Reset the imageUrl
+        imageUrl = ""
     }
 }
