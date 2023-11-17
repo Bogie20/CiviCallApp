@@ -127,7 +127,6 @@ class UploadVerificationFile : AppCompatActivity() {
     // Add this property to your activity class
     private var capturedImageUri: Uri? = null
 
-    // Modify takePicture() function
     private fun takePicture() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         takePictureLauncher.launch(intent)
@@ -167,25 +166,17 @@ class UploadVerificationFile : AppCompatActivity() {
             if (data != null) {
                 val imageBitmap = data.extras?.get("data") as Bitmap
 
-                // Compress the image if needed
+                // Compress and save the image to gallery
                 val compressedImageBitmap = compressBitmap(imageBitmap)
-
-                capturedImageUri = getImageUri(compressedImageBitmap)
+                capturedImageUri = saveImageToGallery(compressedImageBitmap)
                 showImagePreviewDialog(capturedImageUri!!)
             }
         }
     }
 
     private fun compressBitmap(originalBitmap: Bitmap): Bitmap {
-        val outStream = ByteArrayOutputStream()
-
-        // Compress the image with desired quality
-        originalBitmap.compress(Bitmap.CompressFormat.JPEG, 80, outStream)
-
-        // Convert the compressed image back to Bitmap
-        return BitmapFactory.decodeStream(ByteArrayInputStream(outStream.toByteArray()))
+        return originalBitmap
     }
-
 
     private val selectImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
@@ -210,9 +201,8 @@ class UploadVerificationFile : AppCompatActivity() {
         // Set the background to be transparent
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        // Load the original image without compression
-        val originalBitmap = MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
-        dialogIconFlat.setImageBitmap(originalBitmap)
+        // Load the original image without compression for display
+        dialogIconFlat.setImageURI(imageUri)
 
         cancelButton.setOnClickListener {
             alertDialog.dismiss()
@@ -220,8 +210,6 @@ class UploadVerificationFile : AppCompatActivity() {
 
         alertDialog.show()
     }
-
-
 
 
     private var isImageDialogShowing = false // Initialize the flag
@@ -386,7 +374,7 @@ class UploadVerificationFile : AppCompatActivity() {
         }
 
     }
-        private fun uploadFileToFirebase(fileUri: Uri, fileName: String, category: String) {
+    private fun uploadFileToFirebase(fileUri: Uri, fileName: String, category: String) {
         val storage = FirebaseStorage.getInstance()
         val storageRef = storage.reference
 

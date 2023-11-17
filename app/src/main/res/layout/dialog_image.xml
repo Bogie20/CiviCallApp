@@ -34,17 +34,18 @@
             android:backgroundTint="@color/white"
             app:cardCornerRadius="15dp"
             app:cardElevation="4dp"
+            android:layout_marginHorizontal="15dp"
             app:layout_constraintBottom_toTopOf="@+id/logoutMsg"
             app:layout_constraintTop_toBottomOf="@+id/ConfirmTitle"
-            tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="10dp">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/dialog_icon_flat"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:scaleType="fitXY"
+                android:layout_height="350dp"
+                android:scaleType="centerCrop"
                 app:srcCompat="@drawable/needhelp" />
+
 
         </androidx.cardview.widget.CardView>
 
@@ -55,7 +56,7 @@
             style="@style/grey16Light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="340dp"
+            android:layout_marginTop="390dp"
             android:gravity="center"
             android:layout_marginHorizontal="5dp"
             android:text="Are you sure you want to save these changes?"

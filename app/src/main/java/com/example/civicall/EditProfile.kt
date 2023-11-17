@@ -11,6 +11,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
@@ -40,6 +41,9 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 import java.util.Calendar
 import java.util.UUID
 
@@ -63,17 +67,49 @@ class EditProfile : AppCompatActivity() {
     private var isPopupShowing = false
     private lateinit var networkUtils: NetworkUtils
 
+    private var capturedImageUri: Uri? = null
+    private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data: Intent? = result.data
+            if (data != null) {
+                val imageBitmap = data.extras?.get("data") as Bitmap
 
-    private val takePictureLauncher: ActivityResultLauncher<Intent> =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val imageBitmap = result.data?.extras?.get("data") as Bitmap
-                selectedImageUri = getImageUri(imageBitmap)
-                binding.profileImage.setImageURI(selectedImageUri)
-            } else {
-                Log.e("TakePhoto", "Failed to capture photo. Result code: ${result.resultCode}")
+                // Compress and save the image to gallery
+                val compressedImageBitmap = compressBitmap(imageBitmap)
+                val capturedImageUri = saveImageToGallery(compressedImageBitmap)
+
+                // Display the image in the ImageView
+                binding.profileImage.setImageURI(capturedImageUri)
+
+                // Upload the image to Firebase Storage and update the profile image
+                uploadProfileImage(capturedImageUri)
             }
         }
+    }
+    private fun compressBitmap(originalBitmap: Bitmap): Bitmap {
+        return originalBitmap
+    }
+
+    private fun saveImageToGallery(imageBitmap: Bitmap): Uri {
+        val imagesFolder = File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "YourAppName")
+        if (!imagesFolder.exists()) {
+            imagesFolder.mkdirs()
+        }
+
+        val file = File(imagesFolder, "image_${System.currentTimeMillis()}.jpg")
+
+        try {
+            FileOutputStream(file).use { outStream ->
+                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream)
+                outStream.flush()
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        // Return the Uri of the saved image
+        return Uri.fromFile(file)
+    }
 
     private val selectImageLauncher: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -845,7 +881,6 @@ class EditProfile : AppCompatActivity() {
         takePictureLauncher.launch(intent)
     }
 
-
     private fun chooseFromGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
@@ -880,7 +915,6 @@ class EditProfile : AppCompatActivity() {
                 }
         }
     }
-
 
     private fun updateProfileImage(imageUrl: String) {
         database.child("ImageProfile").setValue(imageUrl)
@@ -920,6 +954,3 @@ data class User(
     val nstp: String = ""
 
 )
-
-
-
