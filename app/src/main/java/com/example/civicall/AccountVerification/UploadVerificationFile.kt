@@ -28,6 +28,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import androidx.core.app.ActivityCompat
+import androidx.core.content.FileProvider
 import com.example.civicall.R
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
@@ -44,7 +45,7 @@ class UploadVerificationFile : AppCompatActivity() {
     private var fileUri: Uri? = null
     private lateinit var filenameTextView: TextView
     private val REQUEST_CAMERA_PERMISSION = 1
-
+    private val FILE_PROVIDER_AUTHORITY = "com.example.civicall.fileprovider"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_verification_file)
@@ -124,59 +125,17 @@ class UploadVerificationFile : AppCompatActivity() {
             )
         }
     }
-    // Add this property to your activity class
+
     private var capturedImageUri: Uri? = null
 
-    private fun takePicture() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        takePictureLauncher.launch(intent)
-    }
 
-    // Modify chooseFromGallery() function
+
     private fun chooseFromGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         selectImageLauncher.launch(intent)
     }
 
-    private fun saveImageToGallery(imageBitmap: Bitmap): Uri {
-        val imagesFolder = File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "YourAppName")
-        if (!imagesFolder.exists()) {
-            imagesFolder.mkdirs()
-        }
-
-        val file = File(imagesFolder, "image_${System.currentTimeMillis()}.jpg")
-
-        try {
-            FileOutputStream(file).use { outStream ->
-                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream)
-                outStream.flush()
-            }
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-
-        // Return the Uri of the saved image
-        return Uri.fromFile(file)
-    }
-
-    private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val data: Intent? = result.data
-            if (data != null) {
-                val imageBitmap = data.extras?.get("data") as Bitmap
-
-                // Compress and save the image to gallery
-                val compressedImageBitmap = compressBitmap(imageBitmap)
-                capturedImageUri = saveImageToGallery(compressedImageBitmap)
-                showImagePreviewDialog(capturedImageUri!!)
-            }
-        }
-    }
-
-    private fun compressBitmap(originalBitmap: Bitmap): Bitmap {
-        return originalBitmap
-    }
 
     private val selectImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
@@ -184,6 +143,61 @@ class UploadVerificationFile : AppCompatActivity() {
             if (data != null && data.data != null) {
                 capturedImageUri = data.data
                 showImagePreviewDialog(capturedImageUri!!)
+            }
+        }
+    }
+    private val REQUEST_IMAGE_CAPTURE = 2
+
+    private fun takePicture() {
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+        // Ensure that there is a camera activity to handle the intent
+        if (cameraIntent.resolveActivity(packageManager) != null) {
+            // Create the File where the photo should go
+            val photoFile: File? = try {
+                createImageFile()
+            } catch (ex: IOException) {
+                // Error occurred while creating the File
+                Log.e("UploadVerificationFile", "Error creating image file", ex)
+                null
+            }
+
+            // Continue only if the File was successfully created
+            photoFile?.let {
+                val photoURI: Uri = FileProvider.getUriForFile(
+                    this,
+                    FILE_PROVIDER_AUTHORITY,
+                    it
+                )
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+
+                // Save the captured image URI to the class variable
+                capturedImageUri = photoURI
+
+                // Start the image capture intent
+                startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE)
+            }
+        }
+    }
+
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        // Create an image file name
+        val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(
+            "JPEG_${System.currentTimeMillis()}_", /* prefix */
+            ".jpg", /* suffix */
+            storageDir /* directory */
+        )
+    }
+
+    // Override onActivityResult to handle the result of the camera capture
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            capturedImageUri?.let {
+                // The image has been captured successfully, show the preview dialog
+                showImagePreviewDialog(it)
             }
         }
     }
@@ -277,13 +291,6 @@ class UploadVerificationFile : AppCompatActivity() {
         val uploadFileButton = findViewById<TextView>(R.id.underlineTextView)
         uploadFileButton.text = "Change File"
     }
-    private fun getImageUri(inImage: Bitmap): Uri {
-        val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path = MediaStore.Images.Media.insertImage(contentResolver, inImage, "Title", null)
-        return Uri.parse(path)
-    }
-
     private fun getFileDisplayName(fileUri: Uri): String {
         val cursor = contentResolver.query(fileUri, null, null, null, null)
         var fileName = ""
