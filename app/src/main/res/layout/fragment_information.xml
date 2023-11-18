@@ -161,7 +161,7 @@
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="100dp"
+                    android:layout_width="95dp"
                     android:layout_height="wrap_content"
                     android:scaleType="fitXY"
                     android:layout_alignParentEnd="true"
@@ -247,7 +247,7 @@
 
                 <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="100dp"
+                    android:layout_width="95dp"
                     android:layout_height="wrap_content"
                     android:src="@drawable/environmentissue"
                     android:scaleType="fitXY"
@@ -380,7 +380,7 @@
 
                 <ImageView
                     android:id="@+id/imageView8"
-                    android:layout_width="100dp"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:src="@drawable/contactemergen"
                     android:scaleType="fitXY"
