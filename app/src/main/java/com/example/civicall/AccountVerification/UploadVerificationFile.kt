@@ -14,6 +14,7 @@ import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -197,21 +198,20 @@ class UploadVerificationFile : AppCompatActivity() {
 
     private fun showImagePreviewDialog(imageUri: Uri) {
         val dialogView = layoutInflater.inflate(R.layout.dialog_image, null)
-        val dialogIconFlat: AppCompatImageView = dialogView.findViewById(R.id.dialog_icon_flat)
-        val cancelButton: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+        val dialogIconFlat: ImageView = dialogView.findViewById(R.id.reflect_image)
+        val closeButton: ImageView = dialogView.findViewById(R.id.closeIcon)
 
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
             .create()
         alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
 
-        // Set the background to be transparent
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        // Load the original image without compression for display
+
         dialogIconFlat.setImageURI(imageUri)
 
-        cancelButton.setOnClickListener {
+        closeButton.setOnClickListener {
             alertDialog.dismiss()
         }
 
