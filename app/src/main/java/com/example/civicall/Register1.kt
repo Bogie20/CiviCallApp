@@ -894,6 +894,8 @@ dismissCustomDialog()
         hashMap["campus"] = selectedCampus
         hashMap["verificationStatus"] = false
         hashMap["CurrentEngagement"] = 0
+        hashMap["activepts"] = 0
+        hashMap["finishactivity"] = 0
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, searchFragment)

@@ -89,6 +89,8 @@ class Login : AppCompatActivity() {
                    hashMap["campus"] = ""
                    hashMap["verificationStatus"] = false
                    hashMap["CurrentEngagement"] = 0
+                   hashMap["activepts"] = 0
+                   hashMap["finishactivity"] = 0
 
 
                    val ref = FirebaseDatabase.getInstance().getReference("Users")
@@ -185,18 +187,6 @@ class Login : AppCompatActivity() {
        }
        emailTextInputLayout = binding.emailTextInputLayout
        passwordTextInputLayout = binding.passwordTextInputLayout
-
-
-
-
-
-
-
-
-
-
-
-
        emailTextInputLayout.editText?.onFocusChangeListener =
            View.OnFocusChangeListener { _, hasFocus ->
                if (!hasFocus) {
@@ -211,14 +201,6 @@ class Login : AppCompatActivity() {
                }
            }
 
-
-
-
-
-
-
-
-       // Set a focus change listener for the password TextInputLayout
        passwordTextInputLayout.editText?.onFocusChangeListener =
            View.OnFocusChangeListener { _, hasFocus ->
                if (!hasFocus) {
@@ -243,10 +225,6 @@ class Login : AppCompatActivity() {
            }
        }
 
-
-
-
-// Set a focus change listener for the password EditText
        passwordEditText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
            if (!hasFocus) {
                password = passwordEditText.text.toString().trim()
@@ -256,10 +234,6 @@ class Login : AppCompatActivity() {
            }
        }
        var isDialogVisible = false // Add this flag
-
-
-
-
        binding.forgotPassword.setOnClickListener {
            if (!isDialogVisible) { // Check if the dialog is not already visible
                isDialogVisible = true // Set the flag to true
@@ -269,14 +243,7 @@ class Login : AppCompatActivity() {
                builder.setView(view)
                val dialog = builder.create()
 
-
-
-
-               // Set the animation after creating the dialog
                dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
-
-
-
 
                view.findViewById<Button>(R.id.resetbtn).setOnClickListener {
                    compareEmail(userEmail, dialog)
@@ -324,9 +291,6 @@ class Login : AppCompatActivity() {
    private fun compareEmail(email: EditText, dialog: Dialog) {
        val emailText = email.text.toString().trim()
 
-
-
-
        if (emailText.isEmpty()) {
            email.error = "Input Your Email First"
            return
@@ -346,10 +310,6 @@ class Login : AppCompatActivity() {
            }
        }
    }
-
-
-
-
    private fun dismissCustomDialog() {
        if (isPopupShowing) {
            // Dismiss the custom popup dialog
@@ -357,8 +317,6 @@ class Login : AppCompatActivity() {
            // alertDialog.dismiss()
            isPopupShowing = false
        }
-
-
 
 
        if (isProgressBarShowing) {
@@ -570,13 +528,6 @@ class Login : AppCompatActivity() {
        }
    }
 
-
-
-
-
-
-
-
    private fun loginUser() {
        showCustomProgressBar("Logging In...", 1500)
 
@@ -609,13 +560,6 @@ class Login : AppCompatActivity() {
                }
            }
    }
-
-
-
-
-
-
-
 
    private fun dismissCustomProgressBar() {
        // Dismiss the progress bar here

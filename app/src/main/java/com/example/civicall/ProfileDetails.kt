@@ -26,13 +26,16 @@ class ProfileDetails : AppCompatActivity() {
     private lateinit var networkUtils: NetworkUtils
     private lateinit var totalEngagementTextView: TextView
     private var postsListener: ValueEventListener? = null
+    private lateinit var activePtsTextView: TextView
+    private lateinit var finishactTextView: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfiledetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
-
+        activePtsTextView = findViewById(R.id.activepts)
+        finishactTextView = findViewById(R.id.finishact)
         totalEngagementTextView = findViewById(R.id.totaleng)
 
         binding.edit.setOnClickListener {
@@ -84,7 +87,10 @@ class ProfileDetails : AppCompatActivity() {
                 val campus = snapshot.child("campus").value
                 val nstp = snapshot.child("nstp").value
                 val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
-
+                val activePts = snapshot.child("activepts").value
+                val finishact = snapshot.child("finishactivity").value
+                finishactTextView.text = finishact.toString()
+                activePtsTextView.text = activePts.toString()
                 binding.firstName.text = firstName.toString()
                 binding.lastName.text = lastName.toString()
                 binding.email1.text = email.toString()
@@ -133,8 +139,6 @@ class ProfileDetails : AppCompatActivity() {
             ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val totalEngagementCount = dataSnapshot.getValue(Int::class.java) ?: 0
-
-                // Update the TotalEngagement count in the TextView
                 totalEngagementTextView.text = totalEngagementCount.toString()
             }
 
