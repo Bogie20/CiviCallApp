@@ -332,9 +332,6 @@ class Login : AppCompatActivity() {
            return
        }
 
-
-
-
        if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
            email.error = "Invalid Email"
            return
@@ -342,9 +339,6 @@ class Login : AppCompatActivity() {
        firebaseAuth.sendPasswordResetEmail(emailText).addOnCompleteListener { task ->
            if (task.isSuccessful) {
                showCustomChangedPassMessage("Check Your Email to change the Password", 3000, R.layout.dialog_happyface)
-
-
-
 
                dialog.dismiss()
            } else {
@@ -517,61 +511,36 @@ class Login : AppCompatActivity() {
        }
        dismissCustomDialog()
 
-
-
-
        val dialogBuilder = AlertDialog.Builder(this)
        val inflater = layoutInflater
        val dialogView = inflater.inflate(dialogLayout, null)
 
 
-
-
        dialogBuilder.setView(dialogView)
        val alertDialog = dialogBuilder.create()
 
-
-
-
-       // Set the animation style
        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideLeft
 
 
-
-
-       // Set the background to be transparent
        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-
-
-
        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message)
+
        messageTextView.text = message
-
-
-
-
        alertDialog.show()
 
-
-
-
-       // Set the variable to true to indicate that a dialog is showing
        isProgressShowing = true
        alertDialog.setOnDismissListener {
-           // Reset the flag when dismissing the dialog
+
            isProgressShowing = false
        }
-       // Dismiss the dialog after the specified duration
+
        Handler(Looper.getMainLooper()).postDelayed({
            alertDialog.dismiss()
-           // Set the variable to false when the dialog is dismissed
+
            isProgressShowing = false
        }, durationMillis)
    }
-
-
-
 
    private fun validateData() {
        email = emailTextInputLayout.editText?.text.toString().trim()
@@ -621,9 +590,6 @@ class Login : AppCompatActivity() {
            .addOnFailureListener { e ->
                // Dismiss the progress bar when there's an error
                dismissCustomProgressBar()
-
-
-
 
                if (e.message == "The email address is badly formatted.") {
                    // Handle invalid email format error

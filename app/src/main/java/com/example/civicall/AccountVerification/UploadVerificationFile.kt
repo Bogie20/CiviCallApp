@@ -10,10 +10,11 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -78,11 +79,22 @@ class UploadVerificationFile : AppCompatActivity() {
         }
         uploadFileButton.setOnClickListener {
             if (hasUserUploadedVerification) {
-                showToast("You already uploaded for verification. Please wait until admin verifies your account.")
+                showAlreadyJoin(
+                    "Verification submitted already. Pending admin approval",
+                    4000,
+                    "Verifying Account",
+                    R.drawable.papermani
+                )
+
             } else {
                 val selectedRadioButtonId = radioGroup.checkedRadioButtonId
                 if (selectedRadioButtonId == -1) {
-                    showToast("Please select the type of Document to Send")
+                    showAlreadyJoin(
+                        "Specify your file type for account verification.",
+                        4000,
+                        "Please select a document",
+                        R.drawable.selectdocu
+                    )
                 } else {
                     val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
                     intent.addCategory(Intent.CATEGORY_OPENABLE)
@@ -104,11 +116,21 @@ class UploadVerificationFile : AppCompatActivity() {
 
         uploadImage.setOnClickListener {
             if (hasUserUploadedVerification) {
-                showToast("You already uploaded for verification. Please wait until admin verifies your account.")
+                showAlreadyJoin(
+                    "Verification submitted already. Pending admin approval",
+                    4000,
+                    "Verifying Account",
+                    R.drawable.papermani
+                )
             } else {
                 val selectedRadioButtonId = radioGroup.checkedRadioButtonId
                 if (selectedRadioButtonId == -1) {
-                    showToast("Please select the type of Document that you want to send")
+                    showAlreadyJoin(
+                        "Specify your file type for account verification.",
+                        4000,
+                        "Please select a document",
+                        R.drawable.selectdocu
+                    )
                 } else {
                     showImageDialog()
                     checkAndRequestPermissions()
@@ -127,7 +149,12 @@ class UploadVerificationFile : AppCompatActivity() {
             currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
-                        showToast("You already uploaded for verification. Please wait until admin verifies your account.")
+                        showAlreadyJoin(
+                            "Verification submitted already. Pending admin approval",
+                            4000,
+                            "Verifying Account",
+                            R.drawable.papermani
+                        )
                         hasUserUploadedVerification = true
                     }
                 }
@@ -139,10 +166,46 @@ class UploadVerificationFile : AppCompatActivity() {
         }
     }
 
+    private var isAlreadyJoinDialogShowing = false
 
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    private fun showAlreadyJoin(message: String, durationMillis: Long, customSlideTitle: String?, customDialogImageResId: Int?) {
+        if (isAlreadyJoinDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val dialogView = layoutInflater.inflate(R.layout.dialog_happyface, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val slideTitle: AppCompatTextView = dialogView.findViewById(R.id.dialog_title_emotion)
+        val dialogImage: AppCompatImageView = dialogView.findViewById(R.id.img_icon_emotion)
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideLeft
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Use custom slideTitle if provided, otherwise use the default
+        slideTitle.text = customSlideTitle ?: "Verifying Account"
+
+        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message)
+        messageTextView.text = message
+        alertDialog.show()
+
+        // Use custom dialogImage if provided, otherwise use the default
+        dialogImage.setImageResource(customDialogImageResId ?: R.drawable.papermani)
+
+        isAlreadyJoinDialogShowing = true
+        alertDialog.setOnDismissListener {
+            isAlreadyJoinDialogShowing = false
+        }
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            alertDialog.dismiss()
+            isAlreadyJoinDialogShowing = false
+        }, durationMillis)
     }
+
+
     private fun checkAndRequestPermissions() {
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -472,7 +535,11 @@ class UploadVerificationFile : AppCompatActivity() {
 
             isUploadConfirmationDialogShowing = false
         }
+        if (isAlreadyJoinDialogShowing) {
 
+
+            isAlreadyJoinDialogShowing = false
+        }
 
     }
     private fun uploadFileToFirebase(fileUri: Uri, fileName: String, category: String) {
