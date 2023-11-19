@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="20dp"
-    android:background="@drawable/rounded_white_bg"
+    android:background="@drawable/rounded_forum"
     android:padding="10dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/userImage"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:src="@drawable/user"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,13 +29,22 @@
         app:layout_constraintStart_toEndOf="@+id/userImage"
         app:layout_constraintTop_toTopOf="@+id/userImage" />
 
-
+    <TextView
+        android:id="@+id/DateAndTime"
+        android:layout_marginLeft="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-1dp"
+    android:text="8h"
+    android:textColor="@color/colorPrimaryText"
+    app:layout_constraintStart_toStartOf="@+id/username"
+    app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <ImageButton
         android:id="@+id/postOptionsBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/trans"
+        android:background="@color/white"
         android:src="@drawable/ic_more"
         app:layout_constraintBottom_toBottomOf="@+id/username"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,18 +107,7 @@
         app:layout_constraintStart_toEndOf="@+id/likeBtn"
         app:layout_constraintTop_toTopOf="@+id/likeBtn" />
 
-    <ImageButton
-        android:layout_marginLeft="10dp"
-        android:paddingHorizontal="8dp"
-        android:id="@+id/shareBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:src="@drawable/baseline_share_24"
-        app:layout_constraintBottom_toBottomOf="@+id/like_count_textView"
-        app:layout_constraintStart_toEndOf="@+id/like_count_textView"
-        app:layout_constraintTop_toTopOf="@+id/like_count_textView"
-        app:tint="@color/colorPrimaryText" />
+
 
     <ImageButton
         android:paddingHorizontal="10dp"
@@ -118,23 +116,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:src="@drawable/comment_icon"
-        app:layout_constraintBottom_toBottomOf="@+id/shareBtn"
-        app:layout_constraintStart_toEndOf="@+id/shareBtn"
-        app:layout_constraintTop_toTopOf="@+id/shareBtn"
+        android:src="@drawable/comment_24"
+        app:layout_constraintBottom_toBottomOf="@+id/like_count_textView"
+        app:layout_constraintStart_toEndOf="@+id/like_count_textView"
+        app:layout_constraintTop_toTopOf="@+id/like_count_textView"
         app:tint="@color/colorPrimaryText" />
 
-    <TextView
-        android:id="@+id/genreText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:paddingLeft="10dp"
-        android:text="\#spirituality"
-        android:textColor="@color/colorSecondaryText"
-        app:layout_constraintBottom_toBottomOf="@+id/downloadButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view3" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

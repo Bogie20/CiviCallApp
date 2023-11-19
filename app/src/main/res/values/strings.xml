@@ -3,6 +3,8 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+    <string name="app_name1">Sort Filter RecyclerView</string>
+
     <string-array name="user_category">
         <item>Undergraduate Student</item>
         <item>Post-graduate Student</item>

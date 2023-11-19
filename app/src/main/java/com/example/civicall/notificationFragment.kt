@@ -1,64 +1,50 @@
 package com.example.civicall
-
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.civicall.Notification.NotificationAdapter
+import com.example.civicall.Notification.NotificationModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [notificationFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class notificationFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-            val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.animate_fade_enter)
-
-
-            view?.startAnimation(anim)
-        }
-    }
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var notificationAdapter: NotificationAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notification, container, false)
+        val view = inflater.inflate(R.layout.fragment_notification, container, false)
+
+        // Initialize RecyclerView
+        recyclerView = view.findViewById(R.id.recyclerViewNotifications)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // Sample data (replace with your actual data fetching logic)
+        val notificationList = getNotificationData()
+
+        // Initialize and set up the adapter
+        notificationAdapter = NotificationAdapter(notificationList)
+        recyclerView.adapter = notificationAdapter
+
+        // Apply animation to the RecyclerView
+        val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.animate_fade_enter)
+        recyclerView.startAnimation(anim)
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment notificationFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            notificationFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    // Sample method to get notification data (replace with your actual data fetching logic)
+    private fun getNotificationData(): List<NotificationModel> {
+        return listOf(
+            NotificationModel("Notification 1", "Campus A", "2023-11-17 12:00 PM"),
+            NotificationModel("Notification 2", "Campus B", "2023-11-18 02:30 PM"),
+            // Add more notifications as needed
+        )
     }
 }
