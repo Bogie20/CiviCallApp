@@ -56,7 +56,7 @@ class Otherproblem : AppCompatActivity() {
         // Firebase initialization
         FirebaseDatabase.getInstance().setPersistenceEnabled(true)
         FirebaseStorage.getInstance().reference
-        storageReference = FirebaseStorage.getInstance().getReference("images")
+        storageReference = FirebaseStorage.getInstance().getReference("SettingsReport")
         databaseReference = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
 
