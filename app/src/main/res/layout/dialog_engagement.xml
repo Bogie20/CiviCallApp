@@ -63,7 +63,6 @@
         android:layout_marginBottom="20dp"
         android:orientation="horizontal">
 
-        <!-- First Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/saveBtn"
             style="@style/yellowBtnStyle"

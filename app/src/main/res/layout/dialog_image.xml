@@ -62,7 +62,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/btn_red_selector"
-                android:text="Proceed" />
+                android:text="Upload" />
 
             <!-- Second Button -->
             <com.google.android.material.button.MaterialButton

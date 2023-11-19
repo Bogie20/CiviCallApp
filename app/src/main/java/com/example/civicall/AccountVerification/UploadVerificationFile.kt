@@ -55,9 +55,9 @@ class UploadVerificationFile : AppCompatActivity() {
         val uploadFileButton = findViewById<TextView>(R.id.underlineTextView)
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
         FirebaseStorage.getInstance()
-        checkUserVerificationStatus()
-        val sendBtn = findViewById<TextView>(R.id.sendbtn)
 
+        onResume()
+        val sendBtn = findViewById<TextView>(R.id.sendbtn)
         sendBtn.setOnClickListener {
             val selectedRadioButtonId = radioGroup.checkedRadioButtonId
             if (selectedRadioButtonId == -1) {
@@ -80,12 +80,11 @@ class UploadVerificationFile : AppCompatActivity() {
         uploadFileButton.setOnClickListener {
             if (hasUserUploadedVerification) {
                 showAlreadyJoin(
-                    "Verification submitted already. Pending admin approval",
+                    "Requirement submitted already",
                     4000,
-                    "Verifying Account",
+                    "Already Submit",
                     R.drawable.papermani
                 )
-
             } else {
                 val selectedRadioButtonId = radioGroup.checkedRadioButtonId
                 if (selectedRadioButtonId == -1) {
@@ -117,9 +116,9 @@ class UploadVerificationFile : AppCompatActivity() {
         uploadImage.setOnClickListener {
             if (hasUserUploadedVerification) {
                 showAlreadyJoin(
-                    "Verification submitted already. Pending admin approval",
+                    "Requirement submitted already",
                     4000,
-                    "Verifying Account",
+                    "Already Submit",
                     R.drawable.papermani
                 )
             } else {
@@ -137,8 +136,7 @@ class UploadVerificationFile : AppCompatActivity() {
                 }
             }
         }
-    }
-    private fun checkUserVerificationStatus() {
+    }private fun checkVerificationStatus() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
             val userId = currentUser.uid
@@ -157,6 +155,43 @@ class UploadVerificationFile : AppCompatActivity() {
                         )
                         hasUserUploadedVerification = true
                     }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("UploadVerificationFile", "Error checking user verification status: ${error.message}")
+                }
+            })
+        }
+    }
+    override fun onResume() {
+        super.onResume()
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            val userId = currentUser.uid
+            val database = FirebaseDatabase.getInstance()
+            val usersRef = database.getReference("Users")
+            val currentUserRef = usersRef.child(userId)
+
+            currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java)
+
+                        if (verificationStatus != null && verificationStatus) {
+                            // User is already verified, show the appropriate dialog
+                            showAlreadyJoin(
+                                "Your Account already verified",
+                                4000,
+                                "Already Verified",
+                                R.drawable.verifyacc
+                            )
+                            hasUserUploadedVerification = true
+                        } else {
+
+                            hasUserUploadedVerification = false
+                        }
+                    }
+                    checkVerificationStatus()
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -307,6 +342,7 @@ class UploadVerificationFile : AppCompatActivity() {
         val dialogIconFlat: ImageView = dialogView.findViewById(R.id.reflect_image)
         val closeButton: ImageView = dialogView.findViewById(R.id.closeIcon)
         val saveButton: Button = dialogView.findViewById(R.id.saveBtn)
+        val repickButton: Button = dialogView.findViewById(R.id.cancelBtn)
 
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
@@ -324,6 +360,14 @@ class UploadVerificationFile : AppCompatActivity() {
             uploadImageToFirebase(capturedImageUri!!, getSelectedCategory())
 
         }
+        repickButton.setOnClickListener {
+            // Dismiss the current dialog
+            alertDialog.dismiss()
+
+            // Reopen the image dialog
+            showImageDialog()
+        }
+
         alertDialog.show()
     }
     private fun uploadImageToFirebase(imageUri: Uri, category: String) {
@@ -334,7 +378,6 @@ class UploadVerificationFile : AppCompatActivity() {
         val fileRef =
             storageRef.child("User_Verification_File/${FirebaseAuth.getInstance().currentUser?.uid ?: ""}/$category/${timestamp}_image.jpg")
 
-        // Upload the image to Firebase Storage
         fileRef.putFile(imageUri)
             .addOnSuccessListener { uploadTask ->
 
@@ -386,22 +429,20 @@ class UploadVerificationFile : AppCompatActivity() {
 
         lytCameraPick.setOnClickListener {
             takePicture()
-            alertDialog.dismiss() // Close the dialog after clicking "Take a photo"
-            // Reset the flag when dismissing the dialog
+            alertDialog.dismiss()
             isImageDialogShowing = false
         }
 
-
         lytGalleryPick.setOnClickListener {
             chooseFromGallery()
-            alertDialog.dismiss() // Close the dialog after clicking "Choose from gallery"
-            // Reset the flag when dismissing the dialog
+            alertDialog.dismiss()
+
             isImageDialogShowing = false
         }
 
 
         alertDialog.setOnDismissListener {
-            // Reset the flag when dismissing the dialog
+
             isImageDialogShowing = false
         }
 
@@ -500,7 +541,6 @@ class UploadVerificationFile : AppCompatActivity() {
         confirmTitle.text = "Upload Confirmation"
         confirmationMessage.text = "Are you sure you want to upload the file for verification of your Account?"
 
-
         uploadBtn.text = "Upload"
         uploadBtn.setOnClickListener {
             dialog.dismiss()
@@ -578,4 +618,3 @@ class UploadVerificationFile : AppCompatActivity() {
             }
     }
 }
-
