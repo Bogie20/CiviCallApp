@@ -61,11 +61,12 @@ class UploadVerificationFile : AppCompatActivity() {
         sendBtn.setOnClickListener {
             val selectedRadioButtonId = radioGroup.checkedRadioButtonId
             if (selectedRadioButtonId == -1) {
-                Toast.makeText(
-                    this,
-                    "Please select the type of Document that you want to send",
-                    Toast.LENGTH_SHORT
-                ).show()
+                showAlreadyJoin(
+                    "Select a Type of Document to Upload",
+                    3000,
+                    "Select First",
+                    R.drawable.selectdocu
+                )
             } else {
                 // Check if a file has been selected
                 val fileName = filenameTextView.text.toString()
@@ -73,7 +74,12 @@ class UploadVerificationFile : AppCompatActivity() {
                     val selectedCategory = getSelectedCategory()
                     showUploadConfirmationDialog(fileUri!!, fileName, selectedCategory)
                 } else {
-                    Toast.makeText(this, "Please select a file first", Toast.LENGTH_SHORT).show()
+                    showAlreadyJoin(
+                        "Select a File First",
+                        3000,
+                        "Select",
+                        R.drawable.civicalllogo
+                    )
                 }
             }
         }
@@ -91,7 +97,7 @@ class UploadVerificationFile : AppCompatActivity() {
                     showAlreadyJoin(
                         "Specify your file type for account verification.",
                         4000,
-                        "Please select a document",
+                        "Select a Type",
                         R.drawable.selectdocu
                     )
                 } else {
@@ -127,7 +133,7 @@ class UploadVerificationFile : AppCompatActivity() {
                     showAlreadyJoin(
                         "Specify your file type for account verification.",
                         4000,
-                        "Please select a document",
+                        "Select a Type",
                         R.drawable.selectdocu
                     )
                 } else {
@@ -394,7 +400,12 @@ class UploadVerificationFile : AppCompatActivity() {
                     imageData["timestamp"] = timestamp // Save the timestamp
                     categoryRef.child("image").setValue(imageData)
 
-                    Toast.makeText(this, "Image uploaded successfully", Toast.LENGTH_SHORT).show()
+                    showAlreadyJoin(
+                        "Image Uploaded Successfully",
+                        3000,
+                        "Success",
+                        R.drawable.papermani
+                    )
                 }
             }
             .addOnFailureListener { exception ->
@@ -608,7 +619,12 @@ class UploadVerificationFile : AppCompatActivity() {
                     fileData["timestamp"] = timestamp // Save the timestamp
                     categoryRef.child(fileName).setValue(fileData)
 
-                    Toast.makeText(this, "File uploaded successfully", Toast.LENGTH_SHORT).show()
+                    showAlreadyJoin(
+                        "File Uploaded Successfully",
+                        3000,
+                        "Success",
+                        R.drawable.papermani
+                    )
                 }
             }
             .addOnFailureListener { exception ->
