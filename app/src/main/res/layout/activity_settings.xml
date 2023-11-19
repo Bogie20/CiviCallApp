@@ -92,9 +92,9 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/lexend_medium"
+                        android:fontFamily="@font/lexend"
                         android:text="Change Password"
-                        android:textColor="@color/DarkGray"
+                        android:textColor="@color/background2"
                         android:textSize="21sp"
                       android:drawableRight="@drawable/next_24" />
 
@@ -118,9 +118,9 @@
                         android:layout_marginTop="16dp"
                         android:drawableRight="@drawable/next_24"
                         android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/lexend_medium"
+                        android:fontFamily="@font/lexend"
                         android:text="Report Problems"
-                        android:textColor="@color/DarkGray"
+                        android:textColor="@color/background2"
                         android:textSize="21sp" />
 
 
@@ -147,9 +147,9 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/lexend_medium"
-                        android:text="Push Notifications "
-                        android:textColor="@color/DarkGray"
+                        android:fontFamily="@font/lexend"
+                        android:text="Push Notifications"
+                        android:textColor="@color/background2"
                         android:textSize="21sp" />
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/notificationSwitch"
@@ -207,9 +207,9 @@
                         android:layout_marginTop="16dp"
                         android:drawableRight="@drawable/next_24"
                         android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/lexend_medium"
+                        android:fontFamily="@font/lexend"
                         android:text="Privacy And Policies"
-                        android:textColor="@color/DarkGray"
+                        android:textColor="@color/background2"
                         android:textSize="21sp" />
 
 
@@ -232,9 +232,9 @@
                         android:layout_marginTop="16dp"
                         android:drawableRight="@drawable/next_24"
                         android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/lexend_medium"
+                        android:fontFamily="@font/lexend"
                         android:text="Terms Of Service"
-                        android:textColor="@color/DarkGray"
+                        android:textColor="@color/background2"
                         android:textSize="21sp" />
 
 
@@ -258,9 +258,9 @@
                         android:layout_marginTop="16dp"
                         android:drawableRight="@drawable/next_24"
                         android:layout_marginBottom="16dp"
-                        android:fontFamily="@font/lexend_medium"
+                        android:fontFamily="@font/lexend"
                         android:text="About Us"
-                        android:textColor="@color/DarkGray"
+                        android:textColor="@color/background2"
                         android:textSize="21sp" />
 
 

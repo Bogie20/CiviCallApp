@@ -96,9 +96,9 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:lineSpacingExtra="7dp"
-        android:fontFamily="@font/roboto_medium_italic"
+        android:fontFamily="@font/lexend"
         android:text="Civcall App is a powerful community  volunteer app design specifically for  students, providing them with a platform to make a positive impact in their community and beyond."
-        android:textColor="@color/black"
+        android:textColor="@color/background2"
         android:textSize="15dp" />
 
     <TextView
@@ -112,8 +112,8 @@ android:layout_below="@+id/civicallinfo1"
         android:layout_marginRight="25dp"
         android:lineSpacingExtra="7dp"
 android:text="Now you can effortlessly discover Nearby Volunteer Opportunities ,Refine result, invite your friends and share contributions with your school."
-        android:fontFamily="@font/roboto_medium_italic"
-        android:textColor="@color/black"
+        android:fontFamily="@font/lexend"
+        android:textColor="@color/background2"
         android:textSize="15dp" />
 
             <ImageView

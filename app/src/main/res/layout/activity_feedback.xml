@@ -160,18 +160,7 @@
         android:textColor="@color/white"
         android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/editTextText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/roboto_medium"
-        android:layout_below="@id/publishbtn"
-        android:layout_marginTop="10dp"
-        android:textSize="13dp"
-        android:text="Your Review will be posted to Google playstore"
-        android:textColor="@color/black"
-        />
+
 
 
 </RelativeLayout>

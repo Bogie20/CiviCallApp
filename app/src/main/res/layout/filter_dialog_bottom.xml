@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/splashstart_page"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="10sp"
+            android:fontFamily="@font/lexend"
+            android:gravity="center"
+            android:padding="10sp"
+            android:text="Search Filter"
+            android:textColor="@color/redpink"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginEnd="40sp"
+            android:layout_marginBottom="10sp"
+            android:fontFamily="@font/dmsans_medium"
+            android:gravity="left|start"
+            android:padding="10sp"
+            android:text="Category"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <!-- First TextView -->
+            <TextView
+                android:id="@+id/skipButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30sp"
+                android:layout_marginEnd="10sp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/skip_button"
+                android:fontFamily="@font/dmsans_regular"
+                android:gravity="center"
+                android:padding="10sp"
+                android:paddingTop="15sp"
+                android:paddingBottom="15sp"
+                android:text="Tree Planting"
+                android:textColor="@color/redpink"
+                android:textSize="17sp" />
+
+            <!-- Second TextView -->
+            <TextView
+                android:id="@+id/skipButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1sp"
+
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/skip_button"
+                android:fontFamily="@font/dmsans_regular"
+                android:gravity="center"
+                android:padding="10sp"
+                android:paddingTop="15sp"
+                android:paddingBottom="15sp"
+                android:text="Fund Raising"
+                android:textColor="@color/redpink"
+                android:textSize="17sp" />
+            <!-- Second TextView -->
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

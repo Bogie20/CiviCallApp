@@ -6,51 +6,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ForumsFragment">
 
-    <RadioGroup
-        android:id="@+id/rgUnits"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        android:padding="10dp"
-        android:background="@drawable/radio_tab_background"
-        android:orientation="horizontal"
-        tools:ignore="MissingConstraints">
 
-        <RadioButton
-            android:id="@+id/rbupcoming"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_weight="0.50"
-            android:background="@drawable/radio_button_selector"
-            android:button="@null"
-            android:checked="true"
-            android:gravity="center"
-            android:text="Discussion"
-            android:fontFamily="@font/dmsans_medium"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
 
-        <RadioButton
-            android:id="@+id/rbpast"
-            android:layout_width="0dp"
-            android:layout_height="35dp"
-            android:layout_weight="0.50"
-            android:background="@drawable/radio_button_selector"
-            android:button="@null"
-            android:checked="false"
-            android:gravity="center"
-            android:text="Message"
-            android:fontFamily="@font/dmsans_medium"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </RadioGroup>
+
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            app:iconifiedByDefault="false"
+            app:searchHintIcon="@null"
+            app:queryHint="Search..."
+            android:focusable="false"
+            app:searchIcon="@drawable/search_24"
+            android:background="@drawable/search_view_background"
+            />
+
+    <ImageView
+        android:id="@+id/filterIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="-30dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="12dp"
+        android:clickable="true"
+        android:padding="8dp"
+        android:src="@drawable/filter_25" />
+
     <androidx.recyclerview.widget.RecyclerView
+
         android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
-        android:layout_below="@+id/rgUnits"
+        android:layout_below="@+id/search"
         android:id="@+id/recyclerViewForum"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

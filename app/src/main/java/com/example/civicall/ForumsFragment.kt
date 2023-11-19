@@ -33,7 +33,7 @@ class ForumsFragment : Fragment() {
 
         // Set up the RecyclerView and the ForumAdapter
         val recyclerView: RecyclerView = binding.recyclerViewForum
-        val adapter = ForumAdapter(forumPosts) { forumModel ->
+        val adapter = ForumAdapter(forumPosts) { forumModel: Forummodel ->
             showCommentDialog(forumModel)
         }
 
@@ -74,3 +74,4 @@ class ForumsFragment : Fragment() {
         dialogBuilder.show()
     }
 }
+

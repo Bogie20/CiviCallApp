@@ -6,13 +6,12 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.civicall.Forum.Forummodel
 import com.example.civicall.R
 import de.hdodenhof.circleimageview.CircleImageView
 
 class ForumAdapter(
     private val forumPosts: List<Forummodel>,
-    private val onCommentClickListener: (Int) -> Unit // Change to take the post ID or any relevant data
+    private val onCommentClickListener: (Forummodel) -> Unit // Change to take the post ID or any relevant data
 ) : RecyclerView.Adapter<ForumAdapter.ForumViewHolder>() {
 
     // Inner ViewHolder class
@@ -50,6 +49,10 @@ class ForumAdapter(
             // Pass the post ID or any relevant data to the listener
             onCommentClickListener(currentPost.postId)
         }
+    }
+
+    private fun onCommentClickListener(postId: Int) {
+        TODO("Not yet implemented")
     }
 
     // Return the size of your dataset (invoked by the layout manager)
