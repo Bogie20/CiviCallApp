@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:text="Choose"
         android:textSize="25dp"
+        android:id="@+id/labelimage"
         android:layout_marginBottom="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/dialog_choose_text_color"

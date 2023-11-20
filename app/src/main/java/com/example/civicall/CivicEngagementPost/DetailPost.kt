@@ -343,7 +343,7 @@ class DetailPost : AppCompatActivity() {
         val dialogView = layoutInflater.inflate(R.layout.profileedit_popup, null)
         val lytCameraPick = dialogView.findViewById<LinearLayout>(R.id.lytCameraPick)
         val lytGalleryPick = dialogView.findViewById<LinearLayout>(R.id.lytGalleryPick)
-
+        val labelimage = dialogView.findViewById<TextView>(R.id.labelimage)
 
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
@@ -479,20 +479,29 @@ class DetailPost : AppCompatActivity() {
         val storageRef = storage.reference
         val timestamp = System.currentTimeMillis().toString()
 
-        val fileRef = storageRef.child("TransparencyProofImage/${FirebaseAuth.getInstance().currentUser?.uid ?: ""}/${timestamp}_image_amount.jpg")
+        val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
+        if (currentUserUid == null) {
+            // Handle the case where the current user UID is null
+            return
+        }
+
+        val fileRef = storageRef.child("TransparencyProofImage/$currentUserUid/${timestamp}_image_amount.jpg")
 
         fileRef.putFile(imageUri)
             .addOnSuccessListener { uploadTask ->
                 fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
                     // Image uploaded successfully
                     val database = FirebaseDatabase.getInstance()
-                    val usersRef = database.getReference("TransparencyImage")
-                    val currentUser = usersRef.child(FirebaseAuth.getInstance().currentUser?.uid ?: "")
+                    val engagementsRef = database.getReference("Upload Engagement")
+                    val currentUser = engagementsRef.child(key) // Assuming "key" is the current engagement key
+                    val transparencyImageRef = currentUser.child("TransparencyImage").child(currentUserUid).child("Proof")
+
                     val imageData = HashMap<String, Any>()
                     imageData["imageUri"] = downloadUri.toString()
                     imageData["amount"] = amount
                     imageData["timestamp"] = timestamp
-                    currentUser.child("Proof").setValue(imageData)
+
+                    transparencyImageRef.setValue(imageData)
 
                     showAlreadyJoin(
                         "Image Uploaded Successfully",
@@ -507,6 +516,7 @@ class DetailPost : AppCompatActivity() {
                 Toast.makeText(this, "Image upload failed: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
+
 
     private fun checkAndRequestPermissions() {
         if (ContextCompat.checkSelfPermission(
