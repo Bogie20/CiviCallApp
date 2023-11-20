@@ -257,7 +257,6 @@
                 android:layout_marginTop="80dp"
                 android:orientation="vertical">
 
-                <!-- Add the TextView with underline above the Button -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -268,7 +267,7 @@
                         android:id="@+id/underlineTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pick a Document"
+                        android:text="Choose a File"
                         android:textSize="18dp"
                         android:clickable="true"
                         android:textColor="@color/colorAccent"
@@ -282,11 +281,11 @@
                         android:layout_gravity="center"
                         android:layout_marginHorizontal="120dp"
                         android:layout_marginTop="20dp"
+                        android:fontFamily="@font/inter_bold"
                         android:background="@drawable/withstrokebutton"
-                        android:text="Open Camera"
+                        android:text="Select Image"
                         android:textAllCaps="false"
                         android:textColor="@android:color/white" />
-
 
                 </LinearLayout>
             </LinearLayout>

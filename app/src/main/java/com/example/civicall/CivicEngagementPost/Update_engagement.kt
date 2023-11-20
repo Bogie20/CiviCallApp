@@ -380,8 +380,8 @@ class Update_engagement: AppCompatActivity() {
                 paymentmethod,
                 paymentrecipient,
                 fundcollected,
-                false,
                 false
+
             )
 
 
@@ -422,7 +422,6 @@ class Update_engagement: AppCompatActivity() {
                 paymentmethod,
                 paymentrecipient,
                 fundcollected,
-                false,
                 false
             )
 

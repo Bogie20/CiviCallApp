@@ -190,12 +190,13 @@ class DetailPost : AppCompatActivity() {
                                                 }
                                             })
                                     } else {
-                                        // The post is not verified, show a toast message
-                                        Toast.makeText(
-                                            this@DetailPost,
-                                            "Hold on! This post is currently under verification. Please wait until it's approved by the admin.",
-                                            Toast.LENGTH_LONG
-                                        ).show()
+                                        showMessage(
+                                            "Kindly wait until the approval of this engagement",
+                                            4000,
+                                            "Hold on!",
+                                            R.drawable.approval,
+                                            R.layout.dialog_sadface
+                                        )
                                     }
                                 }
 
@@ -208,12 +209,14 @@ class DetailPost : AppCompatActivity() {
                                 }
                             })
                         } else {
-                            // The user is not verified, show a toast message
-                            Toast.makeText(
-                                this@DetailPost,
-                                "Oops! Your account is not verified. Please verify your account before joining.",
-                                Toast.LENGTH_LONG
-                            ).show()
+                            showMessage(
+                                "Please verify your account before joining",
+                                4000,
+                                "Oops!",
+                                R.drawable.notverified,
+                                R.layout.dialog_sadface
+                            )
+
                         }
                     }
 
@@ -349,7 +352,7 @@ class DetailPost : AppCompatActivity() {
             .setView(dialogView)
             .create()
         alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
-
+        labelimage.text = "Kindly choose your proof submission method"
 
         // Set the background to be transparent
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -494,20 +497,23 @@ class DetailPost : AppCompatActivity() {
                     val database = FirebaseDatabase.getInstance()
                     val engagementsRef = database.getReference("Upload Engagement")
                     val currentUser = engagementsRef.child(key) // Assuming "key" is the current engagement key
-                    val transparencyImageRef = currentUser.child("TransparencyImage").child(currentUserUid).child("Proof")
 
-                    val imageData = HashMap<String, Any>()
-                    imageData["imageUri"] = downloadUri.toString()
-                    imageData["amount"] = amount
-                    imageData["timestamp"] = timestamp
+                    // Directly set the values under UID without "Proof" node
+                    currentUser.child("TransparencyImage").child(currentUserUid).setValue(
+                        mapOf(
+                            "amount" to amount,
+                            "contributionStatus" to false,
+                            "imageUri" to downloadUri.toString(),
+                            "timestamp" to timestamp
+                        )
+                    )
 
-                    transparencyImageRef.setValue(imageData)
-
-                    showAlreadyJoin(
+                    showMessage(
                         "Image Uploaded Successfully",
                         3000,
                         "Success",
-                        R.drawable.papermani
+                        R.drawable.papermani,
+                        R.layout.dialog_happyface
                     )
                 }
             }
@@ -516,6 +522,7 @@ class DetailPost : AppCompatActivity() {
                 Toast.makeText(this, "Image upload failed: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
+
 
 
     private fun checkAndRequestPermissions() {
@@ -537,19 +544,27 @@ class DetailPost : AppCompatActivity() {
     }
     private var isAlreadyJoinDialogShowing = false
 
-    private fun showAlreadyJoin(message: String, durationMillis: Long, customSlideTitle: String?, customDialogImageResId: Int?) {
+    private fun showMessage(
+        message: String,
+        durationMillis: Long,
+        customSlideTitle: String?,
+        customDialogImageResId: Int?,
+        customDialogLayoutResId: Int?
+    ) {
         if (isAlreadyJoinDialogShowing) {
             return
         }
         dismissCustomDialog()
-        val dialogView = layoutInflater.inflate(R.layout.dialog_happyface, null)
+
+        // Use the custom layout resource ID if provided, otherwise use the default
+        val dialogView = layoutInflater.inflate(customDialogLayoutResId ?: R.layout.dialog_happyface, null)
+
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
             .create()
 
         val slideTitle: AppCompatTextView = dialogView.findViewById(R.id.dialog_title_emotion)
         val dialogImage: AppCompatImageView = dialogView.findViewById(R.id.img_icon_emotion)
-
         alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideLeft
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
@@ -572,6 +587,7 @@ class DetailPost : AppCompatActivity() {
             isAlreadyJoinDialogShowing = false
         }, durationMillis)
     }
+
 
     private var isJoinConfirmationDialogShowing = false
 
@@ -774,7 +790,7 @@ class DetailPost : AppCompatActivity() {
                 val category = dataSnapshot.getValue(String::class.java)
 
                 if (category == "Fund Raising" || category == "Donations") {
-                    joinButton.text = "Contribute?"
+                    joinButton.text = "Already Contribute?"
                 } else {
                     joinButton.text = "Join Now"
                 }

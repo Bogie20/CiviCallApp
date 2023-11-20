@@ -68,7 +68,7 @@
                 <ImageView
                     android:id="@+id/detailImage"
                     android:layout_width="match_parent"
-                    android:layout_height="230dp"
+                    android:layout_height="240dp"
                     android:scaleType="centerCrop"
                     android:background="@drawable/placeholder"
                     />
@@ -83,12 +83,14 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="12dp"
-                android:fontFamily="@font/dmsans_bolditalic"
+                android:fontFamily="@font/inter_bold"
                 android:gravity="center"
+                android:lineSpacingExtra="4dp"
                 android:text="ENVIRONMENTAL CLEAN UP"
                 android:textAllCaps="true"
                 android:textColor="@color/redpink"
-                android:textSize="21sp" />
+                android:textSize="21.5sp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -109,7 +111,7 @@
                 android:text="Explores the key survival techniques vital for those navigating the unpredictable and often challenging coastal regions of the Philippines."
                 android:textSize="15sp"
                 android:layout_marginHorizontal="20dp"
-                android:textColor="@color/background2"
+                android:textColor="@color/DarkGray"
                 android:layout_marginBottom="16dp"
                 android:gravity="start"
                 android:lineSpacingExtra="6dp"
@@ -135,7 +137,7 @@
                 android:text="Explores the key survival techniques vital for those navigating the unpredictable and often challenging coastal regions of the Philippines. From safe navigation to shelter construction, sustainable resource gathering, water purification, and fostering community cooperation, this comprehensive guide equips individuals with the knowledge needed to thrive in this unique and dynamic environment"
                 android:textSize="15sp"
                 android:layout_marginHorizontal="20dp"
-                android:textColor="@color/background2"
+                android:textColor="@color/DarkGray"
                 android:layout_marginBottom="16dp"
                 android:gravity="start"
                 android:lineSpacingExtra="6dp"
@@ -161,7 +163,7 @@
                 android:text="Explores the key survival techniques vital for those navigating the unpredictable and often challenging coastal regions of the Philippines. From safe navigation to shelter construction, sustainable resource gathering, water purification, and fostering community cooperation, this comprehensive guide equips individuals with the knowledge needed to thrive in this unique and dynamic environment"
                 android:textSize="15sp"
                 android:layout_marginHorizontal="20dp"
-                android:textColor="@color/background2"
+                android:textColor="@color/DarkGray"
                 android:layout_marginBottom="16dp"
                 android:gravity="start"
                 android:lineSpacingExtra="6dp"
@@ -280,7 +282,7 @@
                         android:layout_height="wrap_content"
                         android:text="Category:"
                         android:textSize="15sp"
-                        android:textColor="@color/DarkGray"
+                        android:textColor="@color/frutorial_title"
                         android:layout_marginEnd="8dp"
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
@@ -292,7 +294,7 @@
                         android:layout_height="wrap_content"
                         android:text="Tree Planting"
                         android:textSize="15sp"
-                        android:textColor="@color/redpink"
+                        android:textColor="@color/DarkGray"
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
                 </LinearLayout>
@@ -310,7 +312,7 @@
                         android:layout_height="wrap_content"
                         android:text="Active Points:"
                         android:textSize="15sp"
-                        android:textColor="@color/DarkGray"
+                        android:textColor="@color/frutorial_title"
                         android:layout_marginEnd="8dp"
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
@@ -322,7 +324,7 @@
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textSize="15sp"
-                        android:textColor="@color/redpink"
+                        android:textColor="@color/DarkGray"
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
                 </LinearLayout>
@@ -341,7 +343,7 @@
                         android:layout_height="wrap_content"
                         android:text="Target Participants:"
                         android:textSize="15sp"
-                        android:textColor="@color/DarkGray"
+                        android:textColor="@color/frutorial_title"
                         android:layout_marginEnd="8dp"
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
@@ -353,7 +355,7 @@
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textSize="15sp"
-                        android:textColor="@color/redpink"
+                        android:textColor="@color/DarkGray"
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
                 </LinearLayout>
@@ -372,7 +374,7 @@
                         android:layout_height="wrap_content"
                         android:text="Current Participants:"
                         android:textSize="15sp"
-                        android:textColor="@color/DarkGray"
+                        android:textColor="@color/frutorial_title"
                         android:layout_marginEnd="8dp"
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
@@ -384,7 +386,7 @@
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textSize="15sp"
-                        android:textColor="@color/redpink"
+                        android:textColor="@color/DarkGray"
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
                 </LinearLayout>
@@ -401,7 +403,7 @@
                         android:layout_height="wrap_content"
                         android:text="Target Campus:"
                         android:textSize="15sp"
-                        android:textColor="@color/DarkGray"
+                        android:textColor="@color/frutorial_title"
                         android:layout_marginEnd="8dp"
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
@@ -413,7 +415,7 @@
                         android:text="Campus"
                         android:textSize="15sp"
                         android:fontFamily="@font/inter_medium"
-                        android:textColor="@color/redpink"/>
+                        android:textColor="@color/DarkGray"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -450,7 +452,7 @@
                         android:layout_height="wrap_content"
                         android:text="Payment-Method:"
                         android:textSize="15sp"
-                        android:textColor="@color/DarkGray"
+                        android:textColor="@color/frutorial_title"
                         android:layout_marginEnd="8dp"
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
@@ -462,7 +464,7 @@
                         android:layout_height="wrap_content"
                         android:text="GCash"
                         android:textSize="15sp"
-                        android:textColor="@color/redpink"
+                        android:textColor="@color/DarkGray"
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
                 </LinearLayout>
@@ -480,7 +482,7 @@
                         android:layout_height="wrap_content"
                         android:text="Payment Recipient:"
                         android:textSize="15sp"
-                        android:textColor="@color/DarkGray"
+                        android:textColor="@color/frutorial_title"
                         android:layout_marginEnd="8dp"
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
@@ -492,7 +494,7 @@
                         android:layout_height="wrap_content"
                         android:text="09267383649"
                         android:textSize="15sp"
-                        android:textColor="@color/redpink"
+                        android:textColor="@color/DarkGray"
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
                     <ImageView
@@ -521,7 +523,7 @@
                         android:layout_height="wrap_content"
                         android:text="Fund Collected:"
                         android:textSize="15sp"
-                        android:textColor="@color/DarkGray"
+                        android:textColor="@color/frutorial_title"
                         android:layout_marginEnd="8dp"
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
@@ -532,7 +534,7 @@
                         android:layout_height="wrap_content"
                         android:text="₱ "
                         android:textSize="15sp"
-                        android:textColor="@color/redpink"
+                        android:textColor="@color/DarkGray"
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
                     <TextView
@@ -542,7 +544,7 @@
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textSize="15sp"
-                        android:textColor="@color/redpink"
+                        android:textColor="@color/DarkGray"
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
                 </LinearLayout>
@@ -616,14 +618,13 @@
                 android:layout_marginTop="50dp"
                 android:text=""
                  android:layout_marginBottom="50dp"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/inter_bold"
                 android:background="@drawable/button_shape"
                 android:backgroundTint="@color/redpink"
                 android:textColor="@color/white"
-                android:textSize="25sp">
+                android:textSize="20sp">
 
             </Button>
-
         </LinearLayout>
     </ScrollView>
     <RelativeLayout

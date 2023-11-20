@@ -62,11 +62,12 @@ class UploadVerificationFile : AppCompatActivity() {
         sendBtn.setOnClickListener {
             val selectedRadioButtonId = radioGroup.checkedRadioButtonId
             if (selectedRadioButtonId == -1) {
-                showAlreadyJoin(
+                showMessage(
                     "Select a Type of Document to Upload",
                     3000,
                     "Select First",
-                    R.drawable.selectdocu
+                    R.drawable.selectdocu,
+                    R.layout.dialog_sadface
                 )
             } else {
                 // Check if a file has been selected
@@ -75,31 +76,34 @@ class UploadVerificationFile : AppCompatActivity() {
                     val selectedCategory = getSelectedCategory()
                     showUploadConfirmationDialog(fileUri!!, fileName, selectedCategory)
                 } else {
-                    showAlreadyJoin(
+                    showMessage(
                         "Select a File First",
                         3000,
-                        "Select",
-                        R.drawable.civicalllogo
+                        "Select First",
+                        R.drawable.civicalllogo,
+                        R.layout.dialog_sadface
                     )
                 }
             }
         }
         uploadFileButton.setOnClickListener {
             if (hasUserUploadedVerification) {
-                showAlreadyJoin(
+                showMessage(
                     "Requirement submitted already",
                     4000,
                     "Already Submit",
-                    R.drawable.papermani
+                    R.drawable.papermani,
+                    R.layout.dialog_happyface
                 )
             } else {
                 val selectedRadioButtonId = radioGroup.checkedRadioButtonId
                 if (selectedRadioButtonId == -1) {
-                    showAlreadyJoin(
+                    showMessage(
                         "Specify your file type for account verification.",
                         4000,
-                        "Select a Type",
-                        R.drawable.selectdocu
+                        "Select First",
+                        R.drawable.selectdocu,
+                        R.layout.dialog_sadface
                     )
                 } else {
                     val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
@@ -109,10 +113,8 @@ class UploadVerificationFile : AppCompatActivity() {
                         Intent.EXTRA_MIME_TYPES, arrayOf(
                             "application/pdf",
                             "application/msword",
-                            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                            "image/jpeg",
-                            "image/png",
-                            "image/jpg"
+                            "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+
                         )
                     )
                     filePicker.launch(intent)
@@ -122,20 +124,23 @@ class UploadVerificationFile : AppCompatActivity() {
 
         uploadImage.setOnClickListener {
             if (hasUserUploadedVerification) {
-                showAlreadyJoin(
+                showMessage(
                     "Requirement submitted already",
                     4000,
                     "Already Submit",
-                    R.drawable.papermani
+                    R.drawable.papermani,
+                    R.layout.dialog_happyface
                 )
             } else {
                 val selectedRadioButtonId = radioGroup.checkedRadioButtonId
                 if (selectedRadioButtonId == -1) {
-                    showAlreadyJoin(
+                    showMessage(
                         "Specify your file type for account verification.",
                         4000,
                         "Select a Type",
-                        R.drawable.selectdocu
+                        R.drawable.selectdocu,
+                        R.layout.dialog_sadface
+
                     )
                 } else {
                     showImageDialog()
@@ -154,11 +159,12 @@ class UploadVerificationFile : AppCompatActivity() {
             currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
-                        showAlreadyJoin(
+                        showMessage(
                             "Verification submitted already. Pending admin approval",
                             4000,
                             "Verifying Account",
-                            R.drawable.papermani
+                            R.drawable.papermani,
+                            R.layout.dialog_happyface
                         )
                         hasUserUploadedVerification = true
                     }
@@ -186,11 +192,12 @@ class UploadVerificationFile : AppCompatActivity() {
 
                         if (verificationStatus != null && verificationStatus) {
                             // User is already verified, show the appropriate dialog
-                            showAlreadyJoin(
+                            showMessage(
                                 "Your Account already verified",
                                 4000,
                                 "Already Verified",
-                                R.drawable.verifyacc
+                                R.drawable.verifyacc,
+                                R.layout.dialog_happyface
                             )
                             hasUserUploadedVerification = true
                         } else {
@@ -210,19 +217,27 @@ class UploadVerificationFile : AppCompatActivity() {
 
     private var isAlreadyJoinDialogShowing = false
 
-    private fun showAlreadyJoin(message: String, durationMillis: Long, customSlideTitle: String?, customDialogImageResId: Int?) {
+    private fun showMessage(
+        message: String,
+        durationMillis: Long,
+        customSlideTitle: String?,
+        customDialogImageResId: Int?,
+        customDialogLayoutResId: Int?
+    ) {
         if (isAlreadyJoinDialogShowing) {
             return
         }
         dismissCustomDialog()
-        val dialogView = layoutInflater.inflate(R.layout.dialog_happyface, null)
+
+        // Use the custom layout resource ID if provided, otherwise use the default
+        val dialogView = layoutInflater.inflate(customDialogLayoutResId ?: R.layout.dialog_happyface, null)
+
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
             .create()
 
         val slideTitle: AppCompatTextView = dialogView.findViewById(R.id.dialog_title_emotion)
         val dialogImage: AppCompatImageView = dialogView.findViewById(R.id.img_icon_emotion)
-
         alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideLeft
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
@@ -240,12 +255,12 @@ class UploadVerificationFile : AppCompatActivity() {
         alertDialog.setOnDismissListener {
             isAlreadyJoinDialogShowing = false
         }
-
         Handler(Looper.getMainLooper()).postDelayed({
             alertDialog.dismiss()
             isAlreadyJoinDialogShowing = false
         }, durationMillis)
     }
+
 
 
     private fun checkAndRequestPermissions() {
@@ -384,11 +399,12 @@ class UploadVerificationFile : AppCompatActivity() {
                     imageData["timestamp"] = timestamp // Save the timestamp
                     categoryRef.child("image").setValue(imageData)
 
-                    showAlreadyJoin(
+                    showMessage(
                         "Image Uploaded Successfully",
                         3000,
                         "Success",
-                        R.drawable.papermani
+                        R.drawable.papermani,
+                        R.layout.dialog_happyface
                     )
                 }
             }
@@ -603,11 +619,12 @@ class UploadVerificationFile : AppCompatActivity() {
                     fileData["timestamp"] = timestamp // Save the timestamp
                     categoryRef.child(fileName).setValue(fileData)
 
-                    showAlreadyJoin(
+                    showMessage(
                         "File Uploaded Successfully",
                         3000,
                         "Success",
-                        R.drawable.papermani
+                        R.drawable.papermani,
+                        R.layout.dialog_happyface
                     )
                 }
             }

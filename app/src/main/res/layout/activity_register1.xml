@@ -399,7 +399,7 @@
                 android:layout_marginBottom="60dp"
                 android:background="@drawable/button_shape"
                 android:backgroundTint="@color/redpink"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/inter_bold"
                 android:text="Register"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
