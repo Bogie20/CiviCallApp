@@ -39,7 +39,6 @@ import com.example.civicall.databinding.ActivityDetailPostBinding
 
 class DetailPost : AppCompatActivity() {
     private lateinit var binding: ActivityDetailPostBinding
-
     private lateinit var detailStartDate: TextView
     private lateinit var detailEndDate: TextView
     private lateinit var detailTitle: TextView
@@ -97,6 +96,16 @@ class DetailPost : AppCompatActivity() {
         binding.backbtn.setOnClickListener {
             onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
+        val copyInq: ImageView = findViewById(R.id.copyinq)
+        val facilitatorInfo: TextView = findViewById(R.id.detailFaciInfo)
+
+        copyInq.setOnClickListener {
+            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clip = ClipData.newPlainText("Facilitator Information", facilitatorInfo.text)
+            clipboard.setPrimaryClip(clip)
+
+            Toast.makeText(this@DetailPost, "Copied to clipboard", Toast.LENGTH_SHORT).show()
         }
 
 
@@ -466,6 +475,7 @@ class DetailPost : AppCompatActivity() {
                     Toast.makeText(this@DetailPost, "Database error: " + databaseError.message, Toast.LENGTH_SHORT).show()
                 }
             })
+
             val parentLinearLayout = findViewById<LinearLayout>(R.id.paymentDetailsLayout)
 
             if (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donations") {
@@ -486,6 +496,28 @@ class DetailPost : AppCompatActivity() {
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.e("DetailPost", "Database error: " + databaseError.message)
                 Toast.makeText(this@DetailPost, "Database error: " + databaseError.message, Toast.LENGTH_SHORT).show()
+            }
+        })
+        val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+
+// Add this block to dynamically update joinButton text based on category changes
+        reference.child("category").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val category = dataSnapshot.getValue(String::class.java)
+
+                if (category == "Fund Raising" || category == "Donations") {
+                    joinButton.text = "Contribute?"
+                } else {
+                    joinButton.text = "Join Now"
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Toast.makeText(
+                    this@DetailPost,
+                    "Database error: " + databaseError.message,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }
@@ -657,8 +689,6 @@ class DetailPost : AppCompatActivity() {
                     }
                 })
             }
-
-            // Remove the post from the database
             reference.child(key).removeValue()
 
             Toast.makeText(this@DetailPost, "Deleted", Toast.LENGTH_SHORT).show()

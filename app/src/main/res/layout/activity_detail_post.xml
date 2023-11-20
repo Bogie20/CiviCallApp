@@ -246,17 +246,6 @@
                         android:fontFamily="@font/inter_medium"
                         android:textSize="15sp"
                         android:textColor="@color/DarkGray"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/detailcampus"
-                        android:layout_marginTop="5dp"
-                        android:layout_below="@id/detailEndDate"
-                        android:text="Campus"
-                        android:layout_toEndOf="@id/infoAndLocationIcon"
-                        android:fontFamily="@font/inter_medium"
-                        android:textSize="15sp"
-                        android:textColor="@color/DarkGray"/>
 
 
                 </RelativeLayout>
@@ -373,7 +362,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="start">
+                    android:gravity="start"
+                    android:layout_marginBottom="8dp">
 
                     <TextView
                         android:id="@+id/labelCurrentParty"
@@ -397,6 +387,33 @@
                         android:textColor="@color/redpink"
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="start">
+
+                    <TextView
+                        android:id="@+id/labelCampus"
+                        android:fontFamily="@font/lexend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Target Campus:"
+                        android:textSize="15sp"
+                        android:textColor="@color/DarkGray"
+                        android:layout_marginEnd="8dp"
+                        android:lineSpacingExtra="5dp"
+                        android:textAlignment="viewStart" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/detailcampus"
+                        android:text="Campus"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/inter_medium"
+                        android:textColor="@color/redpink"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -560,17 +577,36 @@
                 android:lineSpacingExtra="5dp"
                 android:textAlignment="viewStart" />
 
-            <TextView
-                android:id="@+id/detailFaciInfo"
-                android:fontFamily="@font/lexend"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="09267383912"
-                android:textSize="15sp"
-                android:textColor="@color/black"
-                android:lineSpacingExtra="5dp"
-                android:textAlignment="viewStart" />
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="start">
+
+                    <TextView
+                        android:id="@+id/detailFaciInfo"
+                        android:fontFamily="@font/lexend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="09267383912"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:lineSpacingExtra="5dp"
+                        android:textAlignment="viewStart" />
+
+                    <ImageView
+                        android:id="@+id/copyinq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/copy"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="8dp"
+                        android:contentDescription="Copy Icon"
+                        />
+                </LinearLayout>
+
+
+            </LinearLayout>
 
         <Button
                 android:id="@+id/joinButton"

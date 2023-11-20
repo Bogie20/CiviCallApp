@@ -307,6 +307,7 @@ class Upload_engagement : AppCompatActivity() {
         val instruction = uploadInstruction.text.toString()
         val introduction = uploadIntro.text.toString()
         val verificationStatus = false
+        val contributionStatus = false
 
         val user = FirebaseAuth.getInstance().currentUser
         val uploadersId = user?.uid
@@ -331,7 +332,8 @@ class Upload_engagement : AppCompatActivity() {
                 paymentmethod,
                 paymentrecipient,
                 fundcollected,
-                verificationStatus
+                verificationStatus,
+                contributionStatus
             )
 
             val baseKey = uploadTitle.text.toString()

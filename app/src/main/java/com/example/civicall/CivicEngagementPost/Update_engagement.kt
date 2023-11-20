@@ -357,7 +357,6 @@ class Update_engagement: AppCompatActivity() {
         instruction = updateInstruction.text.toString()
         introduction = updateIntro.text.toString()
 
-
         val user = FirebaseAuth.getInstance().currentUser
         val uploadersId = user?.uid
         if (uri != null) {
@@ -381,6 +380,7 @@ class Update_engagement: AppCompatActivity() {
                 paymentmethod,
                 paymentrecipient,
                 fundcollected,
+                false,
                 false
             )
 
@@ -422,6 +422,7 @@ class Update_engagement: AppCompatActivity() {
                 paymentmethod,
                 paymentrecipient,
                 fundcollected,
+                false,
                 false
             )
 
