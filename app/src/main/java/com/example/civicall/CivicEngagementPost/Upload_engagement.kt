@@ -48,8 +48,9 @@ class Upload_engagement : AppCompatActivity() {
     private lateinit var uploadCategory: AutoCompleteTextView
     private lateinit var uploadPaymentMethod: AutoCompleteTextView
     private lateinit var uploadFundCollected: EditText
-    private lateinit var uploadDateandTime: AutoCompleteTextView
+    private lateinit var uploadStartDate: AutoCompleteTextView
     private lateinit var uploadLocation: EditText
+    private lateinit var uploadEndDate: EditText
     private var imageURL: String? = null
     private var uri: Uri? = null
     private lateinit var binding: ActivityUploadEngagementBinding
@@ -60,7 +61,8 @@ class Upload_engagement : AppCompatActivity() {
         setContentView(binding.root)
 
         uploadImage = binding.uploadImage
-        uploadDateandTime = binding.uploadDateandTime
+        uploadStartDate = binding.uploadStartDate
+        uploadEndDate = binding.uploadEndDate
         uploadCategory = binding.uploadCategory
         uploadPaymentMethod = binding.uploadPaymentMethod
         uploadTitle = binding.uploadTitle
@@ -113,9 +115,23 @@ class Upload_engagement : AppCompatActivity() {
             }
         }
 
-        uploadDateandTime.setOnClickListener {
-            showDateTimePicker()
+        uploadStartDate.setOnClickListener {
+            showDateTimePicker(uploadStartDate, null)
         }
+
+        uploadEndDate.setOnClickListener {
+            // Parse the start date to a Calendar object for comparison
+            val startDateCalendar = Calendar.getInstance()
+            try {
+                val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
+                startDateCalendar.time = dateFormat.parse(uploadStartDate.text.toString())
+            } catch (e: ParseException) {
+                e.printStackTrace()
+            }
+
+            showDateTimePicker(uploadEndDate, startDateCalendar)
+        }
+
 
         val activityResultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -141,7 +157,7 @@ class Upload_engagement : AppCompatActivity() {
         }
     }
 
-    private fun showDateTimePicker() {
+    private fun showDateTimePicker(editText: EditText, startDate: Calendar?) {
         val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
         dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
@@ -156,40 +172,21 @@ class Upload_engagement : AppCompatActivity() {
                 val timePickerDialog = TimePickerDialog(
                     this,
                     { _, hourOfDay, minute ->
-                        val startCalendar = calendar.clone() as Calendar
-                        startCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                        startCalendar.set(Calendar.MINUTE, minute)
+                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                        calendar.set(Calendar.MINUTE, minute)
 
-                        val finishTimePickerDialog = TimePickerDialog(
-                            this,
-                            { _, finishHourOfDay, finishMinute ->
-                                val finishCalendar = startCalendar.clone() as Calendar
-                                finishCalendar.set(Calendar.HOUR_OF_DAY, finishHourOfDay)
-                                finishCalendar.set(Calendar.MINUTE, finishMinute)
-
-                                // Check if finish time is later than start time
-                                if (finishCalendar.after(startCalendar)) {
-                                    val formattedStartTime = dateFormat.format(startCalendar.time)
-                                    val formattedFinishTime = SimpleDateFormat(
-                                        "hh:mm a",
-                                        Locale.US
-                                    ).format(finishCalendar.time)
-
-                                    // Set the selected date and time text in the uploadDateandTime EditText
-                                    uploadDateandTime.setText("$formattedStartTime to $formattedFinishTime")
-                                } else {
-                                    Toast.makeText(
-                                        this@Upload_engagement,
-                                        "Finish time must be later than start time",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                            },
-                            calendar.get(Calendar.HOUR_OF_DAY),
-                            calendar.get(Calendar.MINUTE),
-                            false
-                        )
-                        finishTimePickerDialog.show()
+                        // Check if the selected end date is after the start date
+                        if (startDate != null && calendar.time.before(startDate.time)) {
+                            Toast.makeText(
+                                this@Upload_engagement,
+                                "End date must be after the start date",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            // Set the selected date and time text in the appropriate EditText
+                            val formattedDateTime = dateFormat.format(calendar.time)
+                            editText.setText(formattedDateTime)
+                        }
                     },
                     calendar.get(Calendar.HOUR_OF_DAY),
                     calendar.get(Calendar.MINUTE),
@@ -209,7 +206,7 @@ class Upload_engagement : AppCompatActivity() {
     private fun saveData() {
         // Validate if any of the required fields is empty
         if (uploadTitle.text.isNullOrBlank() ||
-            uploadDateandTime.text.isNullOrBlank() ||
+            uploadStartDate.text.isNullOrBlank() ||
             uploadLocation.text.isNullOrBlank() ||
             uploadFacilitator.text.isNullOrBlank() ||
             uploadFacilitatorInfo.text.isNullOrBlank() ||
@@ -254,7 +251,7 @@ class Upload_engagement : AppCompatActivity() {
                 imageURL = urlImage.toString()
 
                 // Check if the selected date and time are in the past
-                if (!isDateTimeInPast(uploadDateandTime.text.toString())) {
+                if (!isDateTimeInPast(uploadStartDate.text.toString())) {
                     // If the date and time are not in the past, proceed with data upload
                     uploadData()
                     dialog.dismiss()
@@ -294,7 +291,8 @@ class Upload_engagement : AppCompatActivity() {
 
     private fun uploadData() {
         val title = uploadTitle.text.toString()
-        val datetime = uploadDateandTime.text.toString()
+        val startdate = uploadStartDate.text.toString()
+        val enddate = uploadEndDate.text.toString()
         val location = uploadLocation.text.toString()
         val facilitator = uploadFacilitator.text.toString()
         val facilitatorinfo = uploadFacilitatorInfo.text.toString()
@@ -318,7 +316,8 @@ class Upload_engagement : AppCompatActivity() {
                 uploadersId,
                 category,
                 title,
-                datetime,
+                startdate,
+                enddate,
                 location,
                 imageURL!!,
                 campus,

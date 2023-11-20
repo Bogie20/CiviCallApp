@@ -10,17 +10,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.DrawableCompat.setTint
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
-import com.google.firebase.auth.FirebaseAuth
 
 class PostAdapter (private val context: Context, private var dataList: List<DataClass>) :
     RecyclerView.Adapter<MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.post_recycler, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.post_civicengagement, parent, false)
         return MyViewHolder(view)
 
     }
@@ -30,14 +28,16 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
 
         Glide.with(context).load(data.image).into(holder.recImage)
         holder.recTitle.text = data.title
-        holder.recDateandTime.text = data.dateandTime
+        holder.recStartDate.text = data.startDate
+        holder.recEndDate.text = data.endDate
         holder.recLocation.text = data.location
-        holder.recCampus.text = data.campus // Add this line
+        holder.recCampus.text = data.campus
 
         holder.recCard.setOnClickListener {
             val intent = Intent(context, DetailPost::class.java).apply {
                 putExtra("Image", data.image)
-                putExtra("Date&Time", data.dateandTime)
+                putExtra("StartDate", data.startDate)
+                putExtra("EndDate", data.endDate)
                 putExtra("Category", data.category)
                 putExtra("PaymentMethod", data.paymentMethod)
                 putExtra("FundCollected", data.fundcollected)
@@ -82,7 +82,8 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
 class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val recImage: ImageView = itemView.findViewById(R.id.recImage)
     val recCard: CardView = itemView.findViewById(R.id.recCard)
-    val recDateandTime: TextView = itemView.findViewById(R.id.civicDateandTime)
+    val recStartDate: TextView = itemView.findViewById(R.id.civicStartDate)
+    val recEndDate: TextView = itemView.findViewById(R.id.civicEndDate)
     val recLocation: TextView = itemView.findViewById(R.id.civicLocation)
     val recTitle: TextView = itemView.findViewById(R.id.civicTitle)
     val recCampus: TextView = itemView.findViewById(R.id.civicCampus)

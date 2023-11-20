@@ -40,7 +40,8 @@ import com.example.civicall.databinding.ActivityDetailPostBinding
 class DetailPost : AppCompatActivity() {
     private lateinit var binding: ActivityDetailPostBinding
 
-    private lateinit var detailDateandTime: TextView
+    private lateinit var detailStartDate: TextView
+    private lateinit var detailEndDate: TextView
     private lateinit var detailTitle: TextView
     private lateinit var detailFaciName: TextView
     private lateinit var detailFaciInfo: TextView
@@ -70,7 +71,8 @@ class DetailPost : AppCompatActivity() {
         setContentView(binding.root)
         val currentUser = FirebaseAuth.getInstance().currentUser
         val currentUserId = currentUser?.uid
-        detailDateandTime = findViewById(R.id.detailDateandTime)
+        detailStartDate = findViewById(R.id.detailStartDate)
+        detailEndDate = findViewById(R.id.detailEndDate)
         detailImage = findViewById(R.id.detailImage)
         detailCategory = findViewById(R.id.detailCategory)
         detailPaymentMethod = findViewById(R.id.detailPaymentMethod)
@@ -193,7 +195,8 @@ class DetailPost : AppCompatActivity() {
         bundle?.let {
             detailCategory.text = it.getString("Category")
             detailTitle.text = it.getString("Title")
-            detailDateandTime.text = it.getString("Date&Time")
+            detailStartDate.text = it.getString("StartDate")
+            detailEndDate.text = it.getString("EndDate")
             detailLocation.text = it.getString("Location")
             detailcampus.text = it.getString("Campus")
             detailPaymentMethod.text = it.getString("PaymentMethod")
@@ -272,7 +275,8 @@ class DetailPost : AppCompatActivity() {
             val intent = Intent(this@DetailPost, Update_engagement::class.java)
                 .putExtra("Category", detailCategory.text.toString())
                 .putExtra("Title", detailTitle.text.toString())
-                .putExtra("Date&Time", detailDateandTime.text.toString())
+                .putExtra("StartDate", detailStartDate.text.toString())
+                .putExtra("EndDate", detailEndDate.text.toString())
                 .putExtra("Location", detailLocation.text.toString())
                 .putExtra("Image", imageUrl)
                 .putExtra("PaymentMethod", detailPaymentMethod.text.toString())

@@ -4,7 +4,8 @@ class DataClass {
     var uploadersUID: String? = null
     var category: String? = null
     var title: String? = null
-    var dateandTime: String? = null
+    var startDate: String? = null
+    var endDate: String? = null
     var location: String? = null
     var image: String? = null
     var campus: String? = null
@@ -29,7 +30,8 @@ class DataClass {
         uploadersuid: String?,
         category: String?,
         title: String?,
-        dateandTime: String?,
+        startDate: String?,
+        endDate: String?,
         location: String?,
         image: String,
         campus: String?,
@@ -48,7 +50,8 @@ class DataClass {
         this.uploadersUID = uploadersuid
         this.category = category
         this.title = title
-        this.dateandTime = dateandTime
+        this.startDate = startDate
+        this.endDate = endDate
         this.location = location
         this.image = image
         this.campus = campus

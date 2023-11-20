@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -50,7 +50,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="60dp"
         android:layout_marginBottom="0dp"
         android:id="@+id/scrollview">
         <LinearLayout
@@ -109,7 +109,7 @@
                 android:text="Explores the key survival techniques vital for those navigating the unpredictable and often challenging coastal regions of the Philippines."
                 android:textSize="15sp"
                 android:layout_marginHorizontal="20dp"
-                android:textColor="@color/red"
+                android:textColor="@color/background2"
                 android:layout_marginBottom="16dp"
                 android:gravity="start"
                 android:lineSpacingExtra="6dp"
@@ -161,7 +161,7 @@
                 android:text="Explores the key survival techniques vital for those navigating the unpredictable and often challenging coastal regions of the Philippines. From safe navigation to shelter construction, sustainable resource gathering, water purification, and fostering community cooperation, this comprehensive guide equips individuals with the knowledge needed to thrive in this unique and dynamic environment"
                 android:textSize="15sp"
                 android:layout_marginHorizontal="20dp"
-                android:textColor="@color/black"
+                android:textColor="@color/background2"
                 android:layout_marginBottom="16dp"
                 android:gravity="start"
                 android:lineSpacingExtra="6dp"
@@ -205,24 +205,53 @@
                         android:fontFamily="@font/inter_medium"
                         android:textSize="15sp"
                         android:textColor="@color/DarkGray"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:id="@+id/linearstartdate"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/detailLocation"
+                        android:layout_toEndOf="@id/infoAndLocationIcon"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/detailStartDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Start Date"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/inter_medium"
+                            android:textSize="15sp"
+                            android:textColor="@color/DarkGray"/>
+
+                        <TextView
+                            android:id="@+id/extraTextRightOfStartTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="to"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/inter_medium"
+                            android:textSize="15sp"
+                            android:textColor="@color/DarkGray"/>
+                    </LinearLayout>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/detailDateandTime"
+                        android:id="@+id/detailEndDate"
                         android:layout_marginTop="5dp"
                         android:layout_toEndOf="@id/infoAndLocationIcon"
-                        android:layout_below="@id/detailLocation"
-                        android:text="DateandTime"
+                        android:layout_below="@id/linearstartdate"
+                        android:text="End Date"
                         android:fontFamily="@font/inter_medium"
                         android:textSize="15sp"
                         android:textColor="@color/DarkGray"/>
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/detailcampus"
                         android:layout_marginTop="5dp"
-                        android:layout_below="@id/detailDateandTime"
+                        android:layout_below="@id/detailEndDate"
                         android:text="Campus"
                         android:layout_toEndOf="@id/infoAndLocationIcon"
                         android:fontFamily="@font/inter_medium"

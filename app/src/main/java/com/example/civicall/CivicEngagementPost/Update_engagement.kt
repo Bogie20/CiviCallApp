@@ -43,7 +43,8 @@ class Update_engagement: AppCompatActivity() {
     private lateinit var updateIntro: EditText
     private lateinit var updateImage: ImageView
     private lateinit var updateButton: Button
-    private lateinit var updateDateandTime: AutoCompleteTextView
+    private lateinit var updateStartDate: AutoCompleteTextView
+    private lateinit var updateEndDate: AutoCompleteTextView
     private lateinit var updateTitle: EditText
     private lateinit var updateFundCollected: EditText
     private lateinit var updatePaymentRecipient: EditText
@@ -62,7 +63,8 @@ class Update_engagement: AppCompatActivity() {
     private var introduction: String = ""
     private var facilitator: String = ""
     private var facilitatorinfo: String = ""
-    private var dateandtime: String = ""
+    private var startdate: String = ""
+    private var enddate: String = ""
     private var location: String = ""
     private var targetparty: String = ""
     private var activepoints: String = ""
@@ -84,7 +86,8 @@ class Update_engagement: AppCompatActivity() {
         setContentView(binding.root)
 
         updateButton = binding.updateButton
-        updateDateandTime = binding.updateDateandTime
+        updateStartDate = binding.updateStartDate
+        updateEndDate = binding.updateEndDate
         updateImage = binding.updateImage
         updateLocation = binding.updateLocation
         updateTitle = binding.updateTitle
@@ -156,7 +159,8 @@ class Update_engagement: AppCompatActivity() {
             updatePaymentMethod.setText(bundle.getString("PaymentMethod"))
             updatePaymentRecipient.setText(bundle.getString("PaymentRecipient"))
             updateTitle.setText(bundle.getString("Title"))
-            updateDateandTime.setText(bundle.getString("Date&Time"))
+            updateStartDate.setText(bundle.getString("StartDate"))
+            updateEndDate.setText(bundle.getString("EndDate"))
             updateLocation.setText(bundle.getString("Location"))
             updateCampus.setText(bundle.getString("Campus"))
             updateObjective.setText(bundle.getString("Objective"))
@@ -177,13 +181,25 @@ class Update_engagement: AppCompatActivity() {
             photoPicker.type = "image/*"
             activityResultLauncher.launch(photoPicker)
         }
-
         updateButton.setOnClickListener {
             showUpdateConfirmation()
 
         }
-        updateDateandTime.setOnClickListener {
-            showDateTimePicker()
+        updateStartDate.setOnClickListener {
+            showDateTimePicker(updateStartDate, null)
+        }
+
+        updateEndDate.setOnClickListener {
+            // Parse the start date to a Calendar object for comparison
+            val startDateCalendar = Calendar.getInstance()
+            try {
+                val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
+                startDateCalendar.time = dateFormat.parse(updateStartDate.text.toString())
+            } catch (e: ParseException) {
+                e.printStackTrace()
+            }
+
+            showDateTimePicker(updateEndDate, startDateCalendar)
         }
     }
     private fun saveData() {
@@ -210,7 +226,7 @@ class Update_engagement: AppCompatActivity() {
                 val urlImage = uriTask.result
                 imageUrl = urlImage.toString()
 
-                if (!isDateTimeInPast(updateDateandTime.text.toString())) {
+                if (!isDateTimeInPast(updateStartDate.text.toString())) {
                     // If the date and time are not in the past, proceed with data upload
                     updateData()
                     dialog.dismiss()
@@ -233,7 +249,7 @@ class Update_engagement: AppCompatActivity() {
             }
         } else {
             // No new image selected, just update the data
-            if (!isDateTimeInPast(updateDateandTime.text.toString())) {
+            if (!isDateTimeInPast(updateStartDate.text.toString())) {
                 updateData()
                 dialog.dismiss()
             } else {
@@ -280,7 +296,7 @@ class Update_engagement: AppCompatActivity() {
         }
     }
 
-    private fun showDateTimePicker() {
+    private fun showDateTimePicker(editText: EditText, startDate: Calendar?) {
         val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
         dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
@@ -295,40 +311,21 @@ class Update_engagement: AppCompatActivity() {
                 val timePickerDialog = TimePickerDialog(
                     this,
                     { _, hourOfDay, minute ->
-                        val startCalendar = calendar.clone() as Calendar
-                        startCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                        startCalendar.set(Calendar.MINUTE, minute)
+                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                        calendar.set(Calendar.MINUTE, minute)
 
-                        val finishTimePickerDialog = TimePickerDialog(
-                            this,
-                            { _, finishHourOfDay, finishMinute ->
-                                val finishCalendar = startCalendar.clone() as Calendar
-                                finishCalendar.set(Calendar.HOUR_OF_DAY, finishHourOfDay)
-                                finishCalendar.set(Calendar.MINUTE, finishMinute)
-
-                                // Check if finish time is later than start time
-                                if (finishCalendar.after(startCalendar)) {
-                                    val formattedStartTime = dateFormat.format(startCalendar.time)
-                                    val formattedFinishTime = SimpleDateFormat(
-                                        "hh:mm a",
-                                        Locale.US
-                                    ).format(finishCalendar.time)
-
-                                    // Set the selected date and time text in the updateDateandTime AutoCompleteTextView
-                                    updateDateandTime.setText("$formattedStartTime to $formattedFinishTime")
-                                } else {
-                                    Toast.makeText(
-                                        this@Update_engagement,
-                                        "Finish time must be later than start time",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                            },
-                            calendar.get(Calendar.HOUR_OF_DAY),
-                            calendar.get(Calendar.MINUTE),
-                            false
-                        )
-                        finishTimePickerDialog.show()
+                        // Check if the selected end date is after the start date
+                        if (startDate != null && calendar.time.before(startDate.time)) {
+                            Toast.makeText(
+                                this@Update_engagement,
+                                "End date must be after the start date",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            // Set the selected date and time text in the appropriate EditText
+                            val formattedDateTime = dateFormat.format(calendar.time)
+                            editText.setText(formattedDateTime)
+                        }
                     },
                     calendar.get(Calendar.HOUR_OF_DAY),
                     calendar.get(Calendar.MINUTE),
@@ -343,9 +340,11 @@ class Update_engagement: AppCompatActivity() {
 
         datePickerDialog.show()
     }
+
     private fun updateData() {
         title = updateTitle.text.toString().trim()
-        dateandtime = updateDateandTime.text.toString().trim()
+        startdate = updateStartDate.text.toString().trim()
+        enddate = updateEndDate.text.toString().trim()
         location = updateLocation.text.toString()
         campus = updateCampus.text.toString()
         targetparty = updateTargetParty.text.toString()
@@ -367,7 +366,8 @@ class Update_engagement: AppCompatActivity() {
                 uploadersId,
                 category,
                 title,
-                dateandtime,
+                startdate,
+                enddate,
                 location,
                 imageUrl,
                 campus,
@@ -407,7 +407,8 @@ class Update_engagement: AppCompatActivity() {
                 uploadersId,
                 category,
                 title,
-                dateandtime,
+                startdate,
+                enddate,
                 location,
                 oldImageURL,
                 campus,
