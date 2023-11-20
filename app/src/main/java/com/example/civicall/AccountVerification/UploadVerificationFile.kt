@@ -47,6 +47,7 @@ class UploadVerificationFile : AppCompatActivity() {
     private val REQUEST_CAMERA_PERMISSION = 1
     private val FILE_PROVIDER_AUTHORITY = "com.example.civicall.fileprovider"
     private var hasUserUploadedVerification = false
+    private val REQUEST_IMAGE_CAPTURE = 2
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_verification_file)
@@ -268,7 +269,6 @@ class UploadVerificationFile : AppCompatActivity() {
 
     private var capturedImageUri: Uri? = null
 
-
     private fun chooseFromGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
@@ -284,26 +284,16 @@ class UploadVerificationFile : AppCompatActivity() {
             }
         }
     }
-    private val REQUEST_IMAGE_CAPTURE = 2
-
-
     private fun takePicture() {
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-
-
-        // Ensure that there is a camera activity to handle the intent
         if (cameraIntent.resolveActivity(packageManager) != null) {
-            // Create the File where the photo should go
+
             val photoFile: File? = try {
                 createImageFile()
             } catch (ex: IOException) {
-                // Error occurred while creating the File
                 Log.e("UploadVerificationFile", "Error creating image file", ex)
                 null
             }
-
-
-            // Continue only if the File was successfully created
             photoFile?.let {
                 val photoURI: Uri = FileProvider.getUriForFile(
                     this,
@@ -312,12 +302,7 @@ class UploadVerificationFile : AppCompatActivity() {
                 )
                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
 
-
-                // Save the captured image URI to the class variable
                 capturedImageUri = photoURI
-
-
-                // Start the image capture intent
                 startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE)
             }
         }
@@ -326,12 +311,11 @@ class UploadVerificationFile : AppCompatActivity() {
 
     @Throws(IOException::class)
     private fun createImageFile(): File {
-        // Create an image file name
         val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File.createTempFile(
-            "JPEG_${System.currentTimeMillis()}_", /* prefix */
-            ".jpg", /* suffix */
-            storageDir /* directory */
+            "JPEG_${System.currentTimeMillis()}_",
+            ".jpg",
+            storageDir
         )
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

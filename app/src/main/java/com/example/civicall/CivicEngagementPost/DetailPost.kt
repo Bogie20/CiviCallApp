@@ -1,13 +1,20 @@
 package com.example.civicall.CivicEngagementPost
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.os.Handler
+import android.os.Looper
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -15,18 +22,24 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
-import com.example.civicall.Dashboard
-import com.example.civicall.InformationFragment
+import android.Manifest
+import android.widget.EditText
 import com.example.civicall.R
+import com.example.civicall.databinding.ActivityDetailPostBinding
 import com.github.clans.fab.FloatingActionButton
 import com.github.clans.fab.FloatingActionMenu
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -35,7 +48,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.example.civicall.databinding.ActivityDetailPostBinding
+import java.io.File
+import java.io.IOException
 
 class DetailPost : AppCompatActivity() {
     private lateinit var binding: ActivityDetailPostBinding
@@ -64,6 +78,10 @@ class DetailPost : AppCompatActivity() {
     private var imageUrl = ""
     private var uploadersUID = ""
     private lateinit var joinButton: Button
+    private val REQUEST_CAMERA_PERMISSION = 1
+    private val FILE_PROVIDER_AUTHORITY = "com.example.civicall.fileprovider"
+    private val REQUEST_IMAGE_CAPTURE = 2
+    private var capturedImageUri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailPostBinding.inflate(layoutInflater)
@@ -126,7 +144,8 @@ class DetailPost : AppCompatActivity() {
                 val userRef = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId)
                 userRef.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(userSnapshot: DataSnapshot) {
-                        val userVerificationStatus = userSnapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
+                        val userVerificationStatus =
+                            userSnapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
 
                         if (userVerificationStatus) {
                             // The user is verified, proceed with checking post verification status
@@ -148,8 +167,17 @@ class DetailPost : AppCompatActivity() {
                                                         // The user has already joined, so ask if they want to cancel
                                                         showCancelConfirmationDialog(reference, currentUserId)
                                                     } else {
-                                                        // The user hasn't joined, so ask if they want to join
-                                                        showJoinConfirmationDialog(reference, currentUserId)
+                                                        // The user hasn't joined, so show the appropriate dialog
+                                                        if (detailCategory.text.toString() == "Fund Raising" ||
+                                                            detailCategory.text.toString() == "Donations"
+                                                        ) {
+                                                            // If the category is "Fund Raising" or "Donations", show the image dialog
+                                                            showImageDialog()
+                                                            checkAndRequestPermissions()
+                                                        } else {
+                                                            // Otherwise, show the join confirmation dialog
+                                                            showJoinConfirmationDialog(reference, currentUserId)
+                                                        }
                                                     }
                                                 }
 
@@ -199,6 +227,7 @@ class DetailPost : AppCompatActivity() {
                 })
             }
         }
+
 
         val bundle = intent.extras
         bundle?.let {
@@ -303,6 +332,235 @@ class DetailPost : AppCompatActivity() {
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
 
+    }
+    private var isImageDialogShowing = false
+
+    private fun showImageDialog() {
+        if (isImageDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val dialogView = layoutInflater.inflate(R.layout.profileedit_popup, null)
+        val lytCameraPick = dialogView.findViewById<LinearLayout>(R.id.lytCameraPick)
+        val lytGalleryPick = dialogView.findViewById<LinearLayout>(R.id.lytGalleryPick)
+
+
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+
+        // Set the background to be transparent
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+
+        lytCameraPick.setOnClickListener {
+            takePicture()
+            alertDialog.dismiss()
+            isImageDialogShowing = false
+        }
+
+        lytGalleryPick.setOnClickListener {
+            chooseFromGallery()
+            alertDialog.dismiss()
+
+            isImageDialogShowing = false
+        }
+
+
+        alertDialog.setOnDismissListener {
+
+            isImageDialogShowing = false
+        }
+
+
+        alertDialog.show()
+        // Set the flag to true when the dialog is displayed
+        isImageDialogShowing = true
+    }
+    private fun takePicture() {
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (cameraIntent.resolveActivity(packageManager) != null) {
+
+            val photoFile: File? = try {
+                createImageFile()
+            } catch (ex: IOException) {
+                Log.e("UploadVerificationFile", "Error creating image file", ex)
+                null
+            }
+            photoFile?.let {
+                val photoURI: Uri = FileProvider.getUriForFile(
+                    this,
+                    FILE_PROVIDER_AUTHORITY,
+                    it
+                )
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+
+                capturedImageUri = photoURI
+                startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE)
+            }
+        }
+    }
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(
+            "JPEG_${System.currentTimeMillis()}_",
+            ".jpg",
+            storageDir
+        )
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            capturedImageUri?.let {
+
+                showImagePreviewDialog(it)
+            }
+        }
+    }
+    private fun chooseFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        selectImageLauncher.launch(intent)
+    }
+    private val selectImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data: Intent? = result.data
+            if (data != null && data.data != null) {
+                capturedImageUri = data.data
+                showImagePreviewDialog(capturedImageUri!!)
+            }
+        }
+    }
+    private fun showImagePreviewDialog(imageUri: Uri) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_contribution, null)
+        val dialogIconFlat: ImageView = dialogView.findViewById(R.id.reflect_image)
+        val closeButton: ImageView = dialogView.findViewById(R.id.closeIcon)
+        val saveButton: Button = dialogView.findViewById(R.id.saveBtn)
+        val repickButton: Button = dialogView.findViewById(R.id.cancelBtn)
+        val amountEditText: TextInputEditText = dialogView.findViewById(R.id.amount)
+
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialogIconFlat.setImageURI(imageUri)
+
+        closeButton.setOnClickListener {
+            alertDialog.dismiss()
+        }
+        saveButton.setOnClickListener {
+            val amountText = amountEditText.text.toString().trim()
+            if (amountText.isNotEmpty()) {
+                alertDialog.dismiss()
+                uploadImageToFirebase(capturedImageUri!!, amountText)
+            } else {
+                Toast.makeText(this, "Please input the amount", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+        repickButton.setOnClickListener {
+            // Dismiss the current dialog
+            alertDialog.dismiss()
+
+            // Reopen the image dialog
+            showImageDialog()
+        }
+
+        alertDialog.show()
+    }
+    private fun uploadImageToFirebase(imageUri: Uri, amount: String) {
+        val storage = FirebaseStorage.getInstance()
+        val storageRef = storage.reference
+        val timestamp = System.currentTimeMillis().toString()
+
+        val fileRef = storageRef.child("TransparencyProofImage/${FirebaseAuth.getInstance().currentUser?.uid ?: ""}/${timestamp}_image_amount.jpg")
+
+        fileRef.putFile(imageUri)
+            .addOnSuccessListener { uploadTask ->
+                fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
+                    // Image uploaded successfully
+                    val database = FirebaseDatabase.getInstance()
+                    val usersRef = database.getReference("TransparencyImage")
+                    val currentUser = usersRef.child(FirebaseAuth.getInstance().currentUser?.uid ?: "")
+                    val imageData = HashMap<String, Any>()
+                    imageData["imageUri"] = downloadUri.toString()
+                    imageData["amount"] = amount
+                    imageData["timestamp"] = timestamp
+                    currentUser.child("Proof").setValue(imageData)
+
+                    showAlreadyJoin(
+                        "Image Uploaded Successfully",
+                        3000,
+                        "Success",
+                        R.drawable.papermani
+                    )
+                }
+            }
+            .addOnFailureListener { exception ->
+                // Handle unsuccessful uploads
+                Toast.makeText(this, "Image upload failed: ${exception.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun checkAndRequestPermissions() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                REQUEST_CAMERA_PERMISSION
+            )
+        }
+    }
+    private var isAlreadyJoinDialogShowing = false
+
+    private fun showAlreadyJoin(message: String, durationMillis: Long, customSlideTitle: String?, customDialogImageResId: Int?) {
+        if (isAlreadyJoinDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val dialogView = layoutInflater.inflate(R.layout.dialog_happyface, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val slideTitle: AppCompatTextView = dialogView.findViewById(R.id.dialog_title_emotion)
+        val dialogImage: AppCompatImageView = dialogView.findViewById(R.id.img_icon_emotion)
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideLeft
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Use custom slideTitle if provided, otherwise use the default
+        slideTitle.text = customSlideTitle ?: "Verifying Account"
+
+        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message)
+        messageTextView.text = message
+        alertDialog.show()
+
+        // Use custom dialogImage if provided, otherwise use the default
+        dialogImage.setImageResource(customDialogImageResId ?: R.drawable.papermani)
+
+        isAlreadyJoinDialogShowing = true
+        alertDialog.setOnDismissListener {
+            isAlreadyJoinDialogShowing = false
+        }
+        Handler(Looper.getMainLooper()).postDelayed({
+            alertDialog.dismiss()
+            isAlreadyJoinDialogShowing = false
+        }, durationMillis)
     }
 
     private var isJoinConfirmationDialogShowing = false
