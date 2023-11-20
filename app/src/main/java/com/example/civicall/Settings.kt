@@ -35,8 +35,8 @@ class Settings : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val otherproblems = binding.reportproblem
-        otherproblems.setOnClickListener {
+        val otherproblem = binding.otherproblem
+        otherproblem.setOnClickListener {
             val intent = Intent(this, Otherproblem::class.java)
             startActivity(intent)
         }

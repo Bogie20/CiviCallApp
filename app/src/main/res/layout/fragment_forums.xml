@@ -49,5 +49,24 @@
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         />
+    <ImageView
+        android:id="@+id/noPostsImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/img_6"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints" />
 
+    <TextView
+        android:id="@+id/noPostsText"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/noPostsImage"
+        android:textColor="@color/white"
+        android:fontFamily="@font/lexend_bold"
+        android:layout_centerHorizontal="true"
+        android:text="No posts found."
+        android:visibility="gone" />
 </RelativeLayout>

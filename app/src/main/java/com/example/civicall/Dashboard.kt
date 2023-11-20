@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.civicall.CivicEngagementPost.CivicPostFragment
 import com.example.civicall.CivicEngagementPost.Upload_engagement
 import com.example.civicall.databinding.ActivityDashboardBinding
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -19,6 +20,8 @@ import nl.joery.animatedbottombar.AnimatedBottomBar
 
 
 class Dashboard : AppCompatActivity() {
+    private lateinit var bottomSheetFragment: BottomSheetDialogFragment
+
     private lateinit var reference: DatabaseReference
     private lateinit var binding: ActivityDashboardBinding
     private lateinit var firebaseAuth: FirebaseAuth
@@ -30,6 +33,7 @@ class Dashboard : AppCompatActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
         userDataViewModel = ViewModelProvider(this).get(UserDataViewModel::class.java)
@@ -38,6 +42,8 @@ class Dashboard : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         checkUser()
         replaceFragment(CivicPostFragment())
+
+
         binding.bottomBar.setOnTabSelectListener(object : AnimatedBottomBar.OnTabSelectListener {
             override fun onTabSelected(
                 lastIndex: Int,
@@ -90,6 +96,10 @@ class Dashboard : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
+        binding.fab.setOnClickListener {
+            bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+        }
+
         binding.fab.setOnClickListener {
             val intent = Intent(this, Upload_engagement::class.java)
             startActivity(intent)
