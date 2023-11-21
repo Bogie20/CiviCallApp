@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FAF9F6"
     android:orientation="vertical"
     tools:context=".CivicEngagementPost.DetailPost">
     <androidx.cardview.widget.CardView
@@ -175,7 +176,7 @@
                     android:layout_marginTop="30dp"
                     android:orientation="horizontal"
                     android:padding="15dp"
-                    android:background="@color/grayback"
+                    android:background="#E5E4E2"
                     android:layout_gravity="center">
 
                     <ImageView
@@ -256,7 +257,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
-                android:background="@color/grayback"
+                android:background="#E5E4E2"
                 android:padding="16dp">
 
                 <TextView
@@ -426,7 +427,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
-                android:background="@color/grayback"
+                android:background="#E5E4E2"
                 android:padding="16dp">
 
                 <TextView
@@ -554,7 +555,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="10dp"
-                android:background="@color/grayback"
+                android:background="#E5E4E2"
                 android:padding="16dp">
 
             <TextView

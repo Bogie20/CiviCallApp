@@ -301,6 +301,8 @@ class Upload_engagement : AppCompatActivity() {
         val campus = binding.uploadCampus.text.toString()
         val category = binding.uploadCategory.text.toString()
         val fundcollected = if (uploadFundCollected.text.isNullOrBlank()) 0.0 else uploadFundCollected.text.toString().toDouble()
+
+        val formattedFundCollected = String.format("%.2f", fundcollected)
         val paymentmethod = binding.uploadPaymentMethod.text.toString()
         val paymentrecipient = uploadPaymentRecipient.text.toString()
         val objective = uploadObjective.text.toString()
@@ -330,7 +332,7 @@ class Upload_engagement : AppCompatActivity() {
                 activepoints,
                 paymentmethod,
                 paymentrecipient,
-                fundcollected,
+                formattedFundCollected.toDouble(),
                 verificationStatus
             )
 
