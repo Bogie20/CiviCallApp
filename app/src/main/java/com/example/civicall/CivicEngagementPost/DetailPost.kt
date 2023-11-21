@@ -506,7 +506,6 @@ class DetailPost : AppCompatActivity() {
                         )
                     )
 
-                    // Add a ValueEventListener to check for changes in contributionStatus
                     transparencyImageRef.child("contributionStatus").addValueEventListener(object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             val contributionStatus = dataSnapshot.getValue(Boolean::class.java) ?: false
@@ -515,8 +514,19 @@ class DetailPost : AppCompatActivity() {
                                 // Add the user's UID to the "Participants" node
                                 currentUser.child("Participants").child(currentUserUid).setValue(true)
 
-                                // Increment the fundcollected value
-                                currentUser.child("fundcollected").setValue(ServerValue.increment(amount.toDouble()))
+                                // Fetch the current fundcollected value
+                                currentUser.child("fundcollected").addListenerForSingleValueEvent(object : ValueEventListener {
+                                    override fun onDataChange(currentDataSnapshot: DataSnapshot) {
+                                        val currentFundCollected = currentDataSnapshot.getValue(Double::class.java) ?: 0.0
+
+                                        // Add the new amount to the current value and update fundcollected
+                                        currentUser.child("fundcollected").setValue(currentFundCollected + amount.toDouble())
+                                    }
+
+                                    override fun onCancelled(databaseError: DatabaseError) {
+                                        // Handle onCancelled
+                                    }
+                                })
                             }
                         }
 
@@ -524,6 +534,7 @@ class DetailPost : AppCompatActivity() {
                             // Handle onCancelled
                         }
                     })
+
 
                     showMessage(
                         "Image Uploaded Successfully",
