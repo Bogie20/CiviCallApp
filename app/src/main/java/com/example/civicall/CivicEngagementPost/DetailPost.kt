@@ -161,19 +161,21 @@ class DetailPost : AppCompatActivity() {
                                         dataSnapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
 
                                     if (verificationStatus) {
-                                        // ... rest of the logic for joining or canceling
                                         reference.child("Participants")
                                             .addListenerForSingleValueEvent(object : ValueEventListener {
-                                                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                                                    if (dataSnapshot.hasChild(currentUserId)) {
-                                                        // The user has already joined, so ask if they want to cancel
-                                                        showCancelConfirmationDialog(reference, currentUserId)
+                                                override fun onDataChange(participantsSnapshot: DataSnapshot) {
+                                                    if (participantsSnapshot.hasChild(currentUserId) &&
+                                                        (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donations")
+                                                    ) {
+                                                        // The user has already joined, so show the image dialog and request permissions
+                                                        showImageDialog()
+                                                        checkAndRequestPermissions()
                                                     } else {
-                                                        // The user hasn't joined, so show the appropriate dialog
+                                                        // The user hasn't joined
                                                         if (detailCategory.text.toString() == "Fund Raising" ||
                                                             detailCategory.text.toString() == "Donations"
                                                         ) {
-                                                            // If the category is "Fund Raising" or "Donations", show the image dialog
+                                                            // If the category is "Fund Raising" or "Donations" and the user hasn't joined, show the image dialog and request permissions
                                                             showImageDialog()
                                                             checkAndRequestPermissions()
                                                         } else {
@@ -193,10 +195,10 @@ class DetailPost : AppCompatActivity() {
                                             })
                                     } else {
                                         showMessage(
-                                            "Kindly wait until the approval of this engagement",
+                                            "Wait until admin verifies this post",
                                             4000,
-                                            "Hold on!",
-                                            R.drawable.approval,
+                                            "Oops!",
+                                            R.drawable.notverified,
                                             R.layout.dialog_sadface
                                         )
                                     }
@@ -218,7 +220,6 @@ class DetailPost : AppCompatActivity() {
                                 R.drawable.notverified,
                                 R.layout.dialog_sadface
                             )
-
                         }
                     }
 
@@ -232,7 +233,6 @@ class DetailPost : AppCompatActivity() {
                 })
             }
         }
-
 
         val bundle = intent.extras
         bundle?.let {
@@ -335,7 +335,6 @@ class DetailPost : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
-
     }
     private var isImageDialogShowing = false
 
@@ -377,8 +376,6 @@ class DetailPost : AppCompatActivity() {
 
             isImageDialogShowing = false
         }
-
-
         alertDialog.show()
         // Set the flag to true when the dialog is displayed
         isImageDialogShowing = true
