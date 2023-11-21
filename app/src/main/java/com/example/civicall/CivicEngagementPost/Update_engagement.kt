@@ -66,15 +66,15 @@ class Update_engagement: AppCompatActivity() {
     private var startdate: String = ""
     private var enddate: String = ""
     private var location: String = ""
-    private var targetparty: String = ""
-    private var activepoints: String = ""
+    private var targetparty: Int = 0
+    private var activepoints: Int = 0
     private var imageUrl: String = ""
     private var key: String = ""
     private var oldImageURL: String = ""
     private var campus: String = ""
     private var category: String = ""
     private var paymentmethod: String = ""
-    private var fundcollected: String = ""
+    private var fundcollected: Double = 0.0
     private var uri: Uri? = null
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference
@@ -347,8 +347,8 @@ class Update_engagement: AppCompatActivity() {
         enddate = updateEndDate.text.toString().trim()
         location = updateLocation.text.toString()
         campus = updateCampus.text.toString()
-        targetparty = updateTargetParty.text.toString()
-        activepoints = updateActivePoints.text.toString()
+        targetparty = updateTargetParty.text.toString().toInt()
+        activepoints = updateActivePoints.text.toString().toInt()
         category = updateCategory.text.toString()
         paymentmethod = updatePaymentMethod.text.toString()
         facilitator = updateFacilitator.text.toString()
@@ -356,6 +356,7 @@ class Update_engagement: AppCompatActivity() {
         objective = updateObjective.text.toString()
         instruction = updateInstruction.text.toString()
         introduction = updateIntro.text.toString()
+        fundcollected = updateFundCollected.text.toString().toDouble()
 
         val user = FirebaseAuth.getInstance().currentUser
         val uploadersId = user?.uid
@@ -381,9 +382,7 @@ class Update_engagement: AppCompatActivity() {
                 paymentrecipient,
                 fundcollected,
                 false
-
             )
-
 
             databaseReference.setValue(dataClass)
                 .addOnCompleteListener { task ->

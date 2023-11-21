@@ -1,5 +1,6 @@
 package com.example.civicall.CivicEngagementPost
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ClipData
@@ -15,6 +16,7 @@ import android.os.Environment
 import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
+import android.text.InputType
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -31,8 +33,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
-import android.Manifest
-import android.widget.EditText
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityDetailPostBinding
 import com.github.clans.fab.FloatingActionButton
@@ -45,6 +45,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ServerValue
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -82,6 +83,7 @@ class DetailPost : AppCompatActivity() {
     private val FILE_PROVIDER_AUTHORITY = "com.example.civicall.fileprovider"
     private val REQUEST_IMAGE_CAPTURE = 2
     private var capturedImageUri: Uri? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailPostBinding.inflate(layoutInflater)
@@ -242,14 +244,14 @@ class DetailPost : AppCompatActivity() {
             detailcampus.text = it.getString("Campus")
             detailPaymentMethod.text = it.getString("PaymentMethod")
             detailPaymentRecipient.text = it.getString("PaymentRecipient")
-            detailFundCollected.text = it.getString("FundCollected")
+            detailFundCollected.text = it.getDouble("FundCollected").toString()
             detailFaciName.text = it.getString("Facilitator")
             detailFaciInfo.text = it.getString("FacilitatorConEm")
             detailObjective.text = it.getString("Objective")
             detailInstruction.text = it.getString("Instruction")
             detailIntro.text = it.getString("Introduction")
-            detailTargetParty.text = it.getString("TargetParticipants")
-            detailActivePoints.text = it.getString("ActivePoints")
+            detailTargetParty.text = it.getInt("TargetParticipants").toString()
+            detailActivePoints.text = it.getInt("ActivePoints").toString()
             key = it.getString("Key") ?: ""
             imageUrl = it.getString("Image") ?: ""
             Glide.with(this).load(it.getString("Image")).into(detailImage)
@@ -271,7 +273,6 @@ class DetailPost : AppCompatActivity() {
                     }
                 }
             }
-
             override fun onCancelled(databaseError: DatabaseError) {
                 Toast.makeText(
                     this@DetailPost,
@@ -444,7 +445,7 @@ class DetailPost : AppCompatActivity() {
         val saveButton: Button = dialogView.findViewById(R.id.saveBtn)
         val repickButton: Button = dialogView.findViewById(R.id.cancelBtn)
         val amountEditText: TextInputEditText = dialogView.findViewById(R.id.amount)
-
+        amountEditText.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
             .create()
@@ -465,8 +466,6 @@ class DetailPost : AppCompatActivity() {
                 Toast.makeText(this, "Please input the amount", Toast.LENGTH_SHORT).show()
             }
         }
-
-
         repickButton.setOnClickListener {
             // Dismiss the current dialog
             alertDialog.dismiss()
@@ -474,6 +473,7 @@ class DetailPost : AppCompatActivity() {
             // Reopen the image dialog
             showImageDialog()
         }
+
 
         alertDialog.show()
     }
@@ -498,15 +498,31 @@ class DetailPost : AppCompatActivity() {
                     val engagementsRef = database.getReference("Upload Engagement")
                     val currentUser = engagementsRef.child(key) // Assuming "key" is the current engagement key
 
-                    // Directly set the values under UID without "Proof" node
-                    currentUser.child("TransparencyImage").child(currentUserUid).setValue(
+                    val transparencyImageRef = currentUser.child("TransparencyImage").child(currentUserUid)
+
+                    transparencyImageRef.setValue(
                         mapOf(
-                            "amount" to amount,
+                            "amount" to amount.toDouble(),
                             "contributionStatus" to false,
                             "imageUri" to downloadUri.toString(),
                             "timestamp" to timestamp
                         )
                     )
+
+                    // Add a ValueEventListener to check for changes in contributionStatus
+                    transparencyImageRef.child("contributionStatus").addValueEventListener(object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            val contributionStatus = dataSnapshot.getValue(Boolean::class.java) ?: false
+
+                            if (contributionStatus) {
+
+                                currentUser.child("fundcollected").setValue(ServerValue.increment(amount.toDouble()))
+                            }
+                        }
+                        override fun onCancelled(databaseError: DatabaseError) {
+                            // Handle onCancelled
+                        }
+                    })
 
                     showMessage(
                         "Image Uploaded Successfully",
@@ -522,7 +538,6 @@ class DetailPost : AppCompatActivity() {
                 Toast.makeText(this, "Image upload failed: ${exception.message}", Toast.LENGTH_SHORT).show()
             }
     }
-
 
 
     private fun checkAndRequestPermissions() {
@@ -784,7 +799,6 @@ class DetailPost : AppCompatActivity() {
         })
         val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
 
-// Add this block to dynamically update joinButton text based on category changes
         reference.child("category").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val category = dataSnapshot.getValue(String::class.java)
@@ -922,6 +936,7 @@ class DetailPost : AppCompatActivity() {
         }
 
     }
+
     private fun deletePost() {
         val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
         val storage: FirebaseStorage = FirebaseStorage.getInstance()
@@ -963,7 +978,6 @@ class DetailPost : AppCompatActivity() {
                             })
                         }
                     }
-
                     override fun onCancelled(databaseError: DatabaseError) {
                         val errorMessage = "Database error: ${databaseError.message}"
 
@@ -980,3 +994,4 @@ class DetailPost : AppCompatActivity() {
         })
     }
 }
+

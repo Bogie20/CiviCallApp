@@ -14,11 +14,11 @@ class DataClass {
     var facilitatorsName: String? = null
     var facilitatorsContactorEmail: String? = null
     var instruction: String? = null
-    var targetparty: String? = null
-    var activepoints: String? = null
+    var targetparty: Int = 0
+    var activepoints: Int = 0
     var paymentMethod: String? = null
     var paymentRecipient: String? = null
-    var fundcollected: String? = null
+    var fundcollected: Double = 0.0
     var verificationStatus: Boolean = false
 
     var key: String? = null
@@ -40,11 +40,11 @@ class DataClass {
         facilitatorsName: String?,
         facilitatorsContactorEmail: String?,
         instruction: String?,
-        targetparty: String?,
-        activepoints: String?,
+        targetparty: Int,
+        activepoints: Int,
         paymentMethod: String?,
         paymentRecipient: String?,
-        fundcollected: String?,
+        fundcollected: Double,
         verificationStatus: Boolean
 
     ) {
