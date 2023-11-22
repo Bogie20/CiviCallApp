@@ -16,7 +16,7 @@
         android:layout_marginEnd="20dp"
         app:iconifiedByDefault="false"
         app:searchHintIcon="@null"
-
+        android:backgroundTint="#FAF9F6"
         app:queryHint="Search..."
         android:focusable="false"
         app:searchIcon="@drawable/search_24"
