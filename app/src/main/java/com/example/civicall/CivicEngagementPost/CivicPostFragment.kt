@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -75,9 +76,13 @@ class CivicPostFragment : Fragment() {
 
                 if (dataList.isEmpty()) {
                     rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
+                    rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.VISIBLE
+
                     recyclerView.visibility = View.GONE
                 } else {
                     rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.GONE
+                    rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
+
                     recyclerView.visibility = View.VISIBLE
                     adapter.notifyDataSetChanged()
                 }

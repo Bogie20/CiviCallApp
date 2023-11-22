@@ -5,24 +5,15 @@
     android:layout_height="wrap_content"
     android:background="@drawable/splashstart_page">
 
-
-        <View
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:layout_width="100dp"
-            android:layout_height="2dp"
-            android:background="@color/redpink" >
-        </View>
-
     <TextView
         android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:text="Choose Post Option"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:textColor="@color/black"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/lexend_bold"/>
 
     <LinearLayout
@@ -30,23 +21,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/save"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:padding="4dp">
 
         <ImageView
-            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/engagement_add26"/>
+            android:src="@drawable/search_24"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
 
-            android:fontFamily="@font/lexend"
+            android:fontFamily="@font/lexend_medium"
             android:gravity="center"
             android:padding="5dp"
             android:text="Engagement"
@@ -63,23 +53,20 @@
         android:layout_below="@id/LayoutEdit"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
-        android:layout_marginBottom="10dp"
         android:padding="4dp">
 
         <ImageView
-            android:layout_marginLeft="10dp"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/forum_25"/>
+            android:src="@drawable/search_24"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
 
-            android:fontFamily="@font/lexend"
+            android:fontFamily="@font/lexend_medium"
             android:gravity="center"
             android:padding="5dp"
             android:text="Forum"

@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import com.example.civicall.AccountVerification.UploadVerificationFile
-import com.example.civicall.calendar.EventsCalendar
 import com.example.civicall.databinding.ActivityMainmenuBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -131,7 +130,7 @@ class MainMenu : AppCompatActivity() {
         }
         calendar.setOnClickListener {
             // Handle click for Feedback menu item
-            val intent = Intent(this, EventsCalendar::class.java)
+            val intent = Intent(this, EventCalendar::class.java)
             startActivity(intent)
         }
         editProfileCardView.setOnClickListener {
