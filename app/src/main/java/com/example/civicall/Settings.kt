@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
+import com.example.civicall.Notification.Notifications
 
 import com.example.civicall.databinding.ActivitySettingsBinding
 import com.google.android.material.switchmaterial.SwitchMaterial
@@ -54,6 +55,11 @@ class Settings : AppCompatActivity() {
         val forumsett = binding.forumsett
         forumsett.setOnClickListener {
             val intent = Intent(this, AboutUs::class.java)
+            startActivity(intent)
+        }
+        val notification = binding.notification
+        notification.setOnClickListener {
+            val intent = Intent(this, Notifications::class.java)
             startActivity(intent)
         }
 
