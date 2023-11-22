@@ -16,7 +16,6 @@ import com.example.civicall.R
 
 class PostAdapter (private val context: Context, private var dataList: List<DataClass>) :
     RecyclerView.Adapter<MyViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.post_civicengagement, parent, false)
         return MyViewHolder(view)

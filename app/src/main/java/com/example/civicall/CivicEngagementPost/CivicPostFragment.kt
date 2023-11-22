@@ -2,6 +2,8 @@ package com.example.civicall.CivicEngagementPost
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +12,14 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -32,6 +36,7 @@ class CivicPostFragment : Fragment() {
     private val dataList = ArrayList<DataClass>()
     private lateinit var adapter: PostAdapter
     private lateinit var searchView: SearchView
+    private lateinit var rootView: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,10 +49,14 @@ class CivicPostFragment : Fragment() {
         searchView = rootView.findViewById(R.id.search)
         searchView.clearFocus()
 
+        val filterIcon = rootView.findViewById<ImageView>(R.id.filterIcon)
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
 
         rootView.startAnimation(anim)
 
+        filterIcon.setOnClickListener {
+            showFilterDialog()
+        }
         val gridLayoutManager = GridLayoutManager(requireContext(), 1)
         recyclerView.layoutManager = gridLayoutManager
 
@@ -134,6 +143,91 @@ class CivicPostFragment : Fragment() {
 
         return rootView
     }
+    private var isFilterDialogShowing = false // Add this variable
+
+    private fun showFilterDialog() {
+        if (isFilterDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val dialogView = layoutInflater.inflate(R.layout.filter_dialog_bottom, null)
+        val alertDialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
+
+
+        val treeplant: TextView = dialogView.findViewById(R.id.TreePlanting)
+        val fund: TextView = dialogView.findViewById(R.id.FundRaising)
+        val donate: TextView = dialogView.findViewById(R.id.Donations)
+        val cleanup: TextView = dialogView.findViewById(R.id.CleanUpDrive)
+        val feed: TextView = dialogView.findViewById(R.id.FeedingProgram)
+        val relief: TextView = dialogView.findViewById(R.id.ReliefOperation)
+        val seminar: TextView = dialogView.findViewById(R.id.Seminar)
+        val teach: TextView = dialogView.findViewById(R.id.Teaching)
+        val allCategory: TextView = dialogView.findViewById(R.id.all)
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        treeplant.setOnClickListener {
+            filterByCategory("Tree Planting")
+            alertDialog.dismiss()
+        }
+        fund.setOnClickListener {
+            filterByCategory("Fund Raising")
+            alertDialog.dismiss()
+        }
+        donate.setOnClickListener {
+            filterByCategory("Donations")
+            alertDialog.dismiss()
+        }
+        cleanup.setOnClickListener {
+            filterByCategory("Clean Up Drive")
+            alertDialog.dismiss()
+        }
+        feed.setOnClickListener {
+            filterByCategory("Feeding Program")
+            alertDialog.dismiss()
+        }
+        relief.setOnClickListener {
+            filterByCategory("Relief Operations")
+            alertDialog.dismiss()
+        }
+        seminar.setOnClickListener {
+            filterByCategory("Seminar Training")
+            alertDialog.dismiss()
+        }
+        teach.setOnClickListener {
+            filterByCategory("Teaching Literacy")
+            alertDialog.dismiss()
+        }
+        allCategory.setOnClickListener {
+            alertDialog.dismiss()
+        }
+        alertDialog.setOnDismissListener{
+            isFilterDialogShowing = false
+        }
+
+        alertDialog.show()
+        isFilterDialogShowing =
+            true
+    }
+    private fun dismissCustomDialog() {
+        if (isFilterDialogShowing) {
+
+            isFilterDialogShowing = false
+        }
+    }
+    // Update the filterByCategory function
+    private fun filterByCategory(category: String) {
+        val filteredList = dataList.filter { it.category == category }
+
+        val filteredArrayList = ArrayList<DataClass>(filteredList)
+        adapter.searchDataList(filteredArrayList)
+
+    }
+
     private fun searchList(text: String) {
         val searchList = ArrayList<DataClass>()
         for (dataClass in dataList) {
