@@ -541,9 +541,12 @@
                     <TextView
                         android:id="@+id/detailFundCollected"
                         android:fontFamily="@font/lexend"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="25dp"
                         android:text="0"
+                        android:maxLines="1"
+                        android:ellipsize="end"
                         android:textSize="15sp"
                         android:textColor="@color/DarkGray"
                         android:lineSpacingExtra="5dp"

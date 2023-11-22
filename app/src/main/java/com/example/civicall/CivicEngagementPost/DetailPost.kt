@@ -177,15 +177,16 @@ class DetailPost : AppCompatActivity() {
                                                             // If the category is "Fund Raising" or "Donations" and the user hasn't joined, show the image dialog and request permissions
                                                             showImageDialog()
                                                             checkAndRequestPermissions()
+                                                        } else if (joinButton.text.toString() == "Cancel") {
+                                                            showCancelConfirmationDialog(reference, currentUserId)
                                                         } else {
-                                                            // Otherwise, show the join confirmation dialog
                                                             showJoinConfirmationDialog(reference, currentUserId)
                                                         }
                                                     }
                                                 }
 
                                                 override fun onCancelled(databaseError: DatabaseError) {
-                                                    showDatabaseErrorMessage(databaseError)
+                                                    // Handle onCancelled if needed
                                                 }
                                             })
                                     } else {
@@ -220,6 +221,7 @@ class DetailPost : AppCompatActivity() {
                 })
             }
         }
+
 
         val bundle = intent.extras
         bundle?.let {
@@ -471,6 +473,7 @@ class DetailPost : AppCompatActivity() {
         alertDialog.show()
     }
     private fun uploadImageToFirebase(imageUri: Uri, amount: String) {
+
         val storage = FirebaseStorage.getInstance()
         val storageRef = storage.reference
         val timestamp = System.currentTimeMillis().toString()
@@ -488,10 +491,10 @@ class DetailPost : AppCompatActivity() {
 
         transparencyImageRef.child("contributionStatus").addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val contributionStatus = dataSnapshot.getValue(Boolean::class.java) ?: false
+                val contributionStatus = dataSnapshot.getValue(Boolean::class.java) ?: true
 
                 if (!contributionStatus) {
-                    // User has already uploaded an image with contributionStatus true
+                    // User has already uploa an image with contributionStatus false
                     showMessage(
                         "Wait until admin verifies your previous upload",
                         4000,
@@ -499,7 +502,7 @@ class DetailPost : AppCompatActivity() {
                         R.drawable.notverified,
                         R.layout.dialog_sadface
                     )
-                } else {
+                }  else {
                     // User can proceed with the new image upload
                     fileRef.putFile(imageUri)
                         .addOnSuccessListener { uploadTask ->
@@ -529,9 +532,13 @@ class DetailPost : AppCompatActivity() {
                                                     override fun onDataChange(currentDataSnapshot: DataSnapshot) {
                                                         val currentFundCollected = currentDataSnapshot.getValue(Double::class.java) ?: 0.0
 
-                                                        // Add the new amount to the current value and update fundcollected
+                                                        val updatedFundCollected = currentFundCollected + amount.toDouble()
                                                         FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
-                                                            .child("fundcollected").setValue(currentFundCollected + amount.toDouble())
+                                                            .child("fundcollected").setValue(updatedFundCollected)
+
+                                                        val formattedFundCollected = String.format("%.2f", updatedFundCollected)
+                                                        detailFundCollected.text = "$formattedFundCollected"
+
                                                     }
 
                                                     override fun onCancelled(databaseError: DatabaseError) {
@@ -547,8 +554,8 @@ class DetailPost : AppCompatActivity() {
                                 })
 
                                 showMessage(
-                                    "Image Uploaded Successfully",
-                                    3000,
+                                    "Awaiting admin verification, thank you for your patience.",
+                                    4000,
                                     "Success",
                                     R.drawable.papermani,
                                     R.layout.dialog_happyface

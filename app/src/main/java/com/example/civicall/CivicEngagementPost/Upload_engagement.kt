@@ -11,6 +11,8 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.InputType
 import android.view.View
 import android.widget.ArrayAdapter
@@ -18,12 +20,19 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import com.example.civicall.Dashboard
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityUploadEngagementBinding
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.text.DateFormat
 import java.text.ParseException
@@ -153,11 +162,141 @@ class Upload_engagement : AppCompatActivity() {
         }
 
         saveButton.setOnClickListener {
-            saveData()
+            val auth = FirebaseAuth.getInstance()
+            val currentUser = auth.currentUser
+            if (currentUser != null) {
+                val uid = currentUser.uid
+
+                // Now you can use the uid in your Firebase Database reference
+                val currentUserRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+
+                currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val verificationStatus =
+                            snapshot.child("verificationStatus").getValue(Boolean::class.java)
+
+                        if (verificationStatus == false) {
+                            showMessage(
+                                "Please verify your account before uploading",
+                                4000,
+                                "Oops!",
+                                R.drawable.notverified,
+                                R.layout.dialog_sadface
+                            )
+                        } else {
+                            showConfirmationDialog()
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        // Handle the error as needed
+                    }
+                })
+            } else {
+                // Handle the case where the user is not signed in
+                // You might want to redirect the user to the login screen or perform some other action
+            }
         }
     }
+        private var isAlreadyJoinDialogShowing = false
 
-    private fun showDateTimePicker(editText: EditText, startDate: Calendar?) {
+    private fun showMessage(
+        message: String,
+        durationMillis: Long,
+        customSlideTitle: String?,
+        customDialogImageResId: Int?,
+        customDialogLayoutResId: Int?
+    ) {
+        if (isAlreadyJoinDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+
+        // Use the custom layout resource ID if provided, otherwise use the default
+        val dialogView = layoutInflater.inflate(customDialogLayoutResId ?: R.layout.dialog_happyface, null)
+
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val slideTitle: AppCompatTextView = dialogView.findViewById(R.id.dialog_title_emotion)
+        val dialogImage: AppCompatImageView = dialogView.findViewById(R.id.img_icon_emotion)
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideLeft
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Use custom slideTitle if provided, otherwise use the default
+        slideTitle.text = customSlideTitle ?: "Verifying Account"
+
+        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message)
+        messageTextView.text = message
+        alertDialog.show()
+
+        // Use custom dialogImage if provided, otherwise use the default
+        dialogImage.setImageResource(customDialogImageResId ?: R.drawable.papermani)
+
+        isAlreadyJoinDialogShowing = true
+        alertDialog.setOnDismissListener {
+            isAlreadyJoinDialogShowing = false
+        }
+        Handler(Looper.getMainLooper()).postDelayed({
+            alertDialog.dismiss()
+            isAlreadyJoinDialogShowing = false
+        }, durationMillis)
+    }
+
+    private var isSaveConfirmationDialogShowing = false
+
+    private fun showConfirmationDialog() {
+        if (isSaveConfirmationDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val confirmTitle: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
+        val logoutMsg: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
+        val saveBtn: MaterialButton = dialogView.findViewById(R.id.saveBtn)
+        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        confirmTitle.text = "Confirmation"
+        logoutMsg.text = "Are you certain you want to proceed with this upload?"
+
+        saveBtn.text = "Yes"
+        saveBtn.setOnClickListener {
+            alertDialog.dismiss()
+            dismissCustomDialog()
+            saveData()
+        }
+        cancelBtn.text = "Cancel"
+        cancelBtn.setOnClickListener {
+            isSaveConfirmationDialogShowing = false
+            alertDialog.dismiss()
+        }
+        alertDialog.setOnDismissListener{
+            isSaveConfirmationDialogShowing = false
+        }
+
+        alertDialog.show()
+        isSaveConfirmationDialogShowing =
+            true
+    }
+
+    private fun dismissCustomDialog() {
+        if (isSaveConfirmationDialogShowing) {
+            isSaveConfirmationDialogShowing = false
+
+        }
+    }
+        private fun showDateTimePicker(editText: EditText, startDate: Calendar?) {
         val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
         dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
@@ -241,7 +380,6 @@ class Upload_engagement : AppCompatActivity() {
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         dialog.show()
-
 
         storageReference.putFile(uri!!)
             .addOnSuccessListener { taskSnapshot ->
@@ -346,7 +484,7 @@ class Upload_engagement : AppCompatActivity() {
                 .setValue(dataClass)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(this@Upload_engagement, "Saved", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@Upload_engagement, "Success", Toast.LENGTH_SHORT).show()
                         finish()
                     }
                 }

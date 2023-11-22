@@ -579,55 +579,28 @@ class Login : AppCompatActivity() {
            return
        }
 
-
-
-
        val dialogBuilder = AlertDialog.Builder(this)
        val inflater = layoutInflater
        val dialogView = inflater.inflate(R.layout.dialog_error, null)
 
-
-
-
        dialogBuilder.setView(dialogView)
        val alertDialog = dialogBuilder.create()
 
-
-
-
-       // Set the animation style
        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
 
-
-
-
-       // Set the background to be transparent
        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-
-
-
        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message_flat)
        val okButton = dialogView.findViewById<Button>(R.id.btn_action_flat)
 
-
-
-
        messageTextView.text = message
-
-
-
 
        okButton.setOnClickListener {
            alertDialog.dismiss()
-           isPopupShowing = false // Set the variable to false when the pop-up is dismissed
+           isPopupShowing = false
        }
 
-
-
-
        alertDialog.show()
-       isPopupShowing = true // Set the variable to true when the pop-up is displayed
+       isPopupShowing = true
    }
    private fun showNoInternetPopup() {
        val builder = AlertDialog.Builder(this)
@@ -637,51 +610,28 @@ class Login : AppCompatActivity() {
        val dialog = builder.create()
        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
 
-
-
-
        view.findViewById<Button>(R.id.okbtns).setOnClickListener {
            dialog.dismiss()
        }
-
-
-
-
        if (dialog.window != null) {
            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
        }
 
-
-
-
        dialog.show()
    }
-
-
-
 
    private fun checkUser() {
        val messageTextView = progressDialog.findViewById<TextView>(R.id.messageTextView)
        messageTextView.text = "Checking User..."
 
-
-
-
        val firebaseUser = firebaseAuth.currentUser!!
        val ref = FirebaseDatabase.getInstance().getReference("Users")
-
-
-
-
        ref.child(firebaseUser.uid)
            .addListenerForSingleValueEvent(object : ValueEventListener {
                override fun onDataChange(snapshot: DataSnapshot) {
                    // Proceed to the Dashboard or any other desired activity
                    startActivity(Intent(this@Login, Dashboard::class.java))
                    finish()
-
-
-
 
                    if (isNewAccount) {
                        // User has just created an account, show the success message here
