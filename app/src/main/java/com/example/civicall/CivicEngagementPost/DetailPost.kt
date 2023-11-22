@@ -159,7 +159,6 @@ class DetailPost : AppCompatActivity() {
                                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                                     val verificationStatus =
                                         dataSnapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
-
                                     if (verificationStatus) {
                                         reference.child("Participants")
                                             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -186,11 +185,7 @@ class DetailPost : AppCompatActivity() {
                                                 }
 
                                                 override fun onCancelled(databaseError: DatabaseError) {
-                                                    Toast.makeText(
-                                                        this@DetailPost,
-                                                        "Database error: " + databaseError.message,
-                                                        Toast.LENGTH_SHORT
-                                                    ).show()
+                                                    showDatabaseErrorMessage(databaseError)
                                                 }
                                             })
                                     } else {
@@ -205,11 +200,7 @@ class DetailPost : AppCompatActivity() {
                                 }
 
                                 override fun onCancelled(databaseError: DatabaseError) {
-                                    Toast.makeText(
-                                        this@DetailPost,
-                                        "Database error: " + databaseError.message,
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                    showDatabaseErrorMessage(databaseError)
                                 }
                             })
                         } else {
@@ -224,11 +215,7 @@ class DetailPost : AppCompatActivity() {
                     }
 
                     override fun onCancelled(databaseError: DatabaseError) {
-                        Toast.makeText(
-                            this@DetailPost,
-                            "Database error: " + databaseError.message,
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        showDatabaseErrorMessage(databaseError)
                     }
                 })
             }
@@ -336,6 +323,15 @@ class DetailPost : AppCompatActivity() {
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
     }
+    private fun showDatabaseErrorMessage(databaseError: DatabaseError) {
+        Toast.makeText(
+            this@DetailPost,
+            "Database error: " + databaseError.message,
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+
     private var isImageDialogShowing = false
 
     private fun showImageDialog() {
