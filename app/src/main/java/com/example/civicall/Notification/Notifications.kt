@@ -40,7 +40,7 @@ class Notifications : AppCompatActivity() {
             val currentUser = FirebaseAuth.getInstance().currentUser
             val uid = currentUser?.uid
             val email = currentUser?.email
-            val currentEngagement = "CurrentEngagement" // Replace this with the actual data from the database
+            val currentEngagement = "CurrentEngagement"
             Toast.makeText(
                 this,
                 "Connected to Firebase\nUser UID: $uid\nEmail: $email\nCurrent Engagement: $currentEngagement",
@@ -53,7 +53,7 @@ class Notifications : AppCompatActivity() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val uid = currentUser?.uid
         val email = currentUser?.email
-        val currentEngagement = "CurrentEngagement" // Replace this with the actual data from the database
+        val currentEngagement = "CurrentEngagement"
         // Initialize RecyclerView
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -64,12 +64,12 @@ class Notifications : AppCompatActivity() {
         for ((index, engagement) in engagements.withIndex()) {
             val builder = NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle("Engagement: ${engagement.title}")
-                .setContentText("Starts on: ${engagement.startDate}")
+//                .setContentTitle("Engagement: ${engagement.title}")
+//                .setContentText("Starts on: ${engagement.startDate}")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
             with(NotificationManagerCompat.from(this)) {
-                notify(index, builder.build())
+//                notify(index, builder.build())
             }
         }
     }
