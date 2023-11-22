@@ -483,70 +483,90 @@ class DetailPost : AppCompatActivity() {
 
         val fileRef = storageRef.child("TransparencyProofImage/$currentUserUid/${timestamp}_image_amount.jpg")
 
-        fileRef.putFile(imageUri)
-            .addOnSuccessListener { uploadTask ->
-                fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
-                    // Image uploaded successfully
-                    val database = FirebaseDatabase.getInstance()
-                    val engagementsRef = database.getReference("Upload Engagement")
-                    val currentUser = engagementsRef.child(key) // Assuming "key" is the current engagement key
+        // Check if the user has already uploaded an image with contributionStatus false
+        val transparencyImageRef = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key).child("TransparencyImage").child(currentUserUid)
 
-                    val transparencyImageRef = currentUser.child("TransparencyImage").child(currentUserUid)
+        transparencyImageRef.child("contributionStatus").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val contributionStatus = dataSnapshot.getValue(Boolean::class.java) ?: false
 
-                    transparencyImageRef.setValue(
-                        mapOf(
-                            "amount" to amount.toDouble(),
-                            "contributionStatus" to false,
-                            "imageUri" to downloadUri.toString(),
-                            "timestamp" to timestamp
-                        )
+                if (!contributionStatus) {
+                    // User has already uploaded an image with contributionStatus true
+                    showMessage(
+                        "Wait until admin verifies your previous upload",
+                        4000,
+                        "Oops!",
+                        R.drawable.notverified,
+                        R.layout.dialog_sadface
                     )
+                } else {
+                    // User can proceed with the new image upload
+                    fileRef.putFile(imageUri)
+                        .addOnSuccessListener { uploadTask ->
+                            fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
+                                // Image uploaded successfully
+                                transparencyImageRef.setValue(
+                                    mapOf(
+                                        "amount" to amount.toDouble(),
+                                        "contributionStatus" to false,
+                                        "imageUri" to downloadUri.toString(),
+                                        "timestamp" to timestamp
+                                    )
+                                )
 
-                    transparencyImageRef.child("contributionStatus").addValueEventListener(object : ValueEventListener {
-                        override fun onDataChange(dataSnapshot: DataSnapshot) {
-                            val contributionStatus = dataSnapshot.getValue(Boolean::class.java) ?: false
+                                transparencyImageRef.child("contributionStatus").addValueEventListener(object : ValueEventListener {
+                                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                        val contributionStatus = dataSnapshot.getValue(Boolean::class.java) ?: false
 
-                            if (contributionStatus) {
-                                // Add the user's UID to the "Participants" node
-                                currentUser.child("Participants").child(currentUserUid).setValue(true)
+                                        if (contributionStatus) {
+                                            // Add the user's UID to the "Participants" node
+                                            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                                                .child("Participants").child(currentUserUid).setValue(true)
 
-                                // Fetch the current fundcollected value
-                                currentUser.child("fundcollected").addListenerForSingleValueEvent(object : ValueEventListener {
-                                    override fun onDataChange(currentDataSnapshot: DataSnapshot) {
-                                        val currentFundCollected = currentDataSnapshot.getValue(Double::class.java) ?: 0.0
+                                            // Fetch the current fundcollected value
+                                            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                                                .child("fundcollected").addListenerForSingleValueEvent(object : ValueEventListener {
+                                                    override fun onDataChange(currentDataSnapshot: DataSnapshot) {
+                                                        val currentFundCollected = currentDataSnapshot.getValue(Double::class.java) ?: 0.0
 
-                                        // Add the new amount to the current value and update fundcollected
-                                        currentUser.child("fundcollected").setValue(currentFundCollected + amount.toDouble())
+                                                        // Add the new amount to the current value and update fundcollected
+                                                        FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                                                            .child("fundcollected").setValue(currentFundCollected + amount.toDouble())
+                                                    }
+
+                                                    override fun onCancelled(databaseError: DatabaseError) {
+                                                        // Handle onCancelled
+                                                    }
+                                                })
+                                        }
                                     }
 
                                     override fun onCancelled(databaseError: DatabaseError) {
                                         // Handle onCancelled
                                     }
                                 })
+
+                                showMessage(
+                                    "Image Uploaded Successfully",
+                                    3000,
+                                    "Success",
+                                    R.drawable.papermani,
+                                    R.layout.dialog_happyface
+                                )
                             }
                         }
-
-                        override fun onCancelled(databaseError: DatabaseError) {
-                            // Handle onCancelled
+                        .addOnFailureListener { exception ->
+                            // Handle unsuccessful uploads
+                            Toast.makeText(this@DetailPost, "Image upload failed: ${exception.message}", Toast.LENGTH_SHORT).show()
                         }
-                    })
-
-
-                    showMessage(
-                        "Image Uploaded Successfully",
-                        3000,
-                        "Success",
-                        R.drawable.papermani,
-                        R.layout.dialog_happyface
-                    )
                 }
             }
-            .addOnFailureListener { exception ->
-                // Handle unsuccessful uploads
-                Toast.makeText(this, "Image upload failed: ${exception.message}", Toast.LENGTH_SHORT).show()
-            }
-    }
 
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle onCancelled
+            }
+        })
+    }
 
 
     private fun checkAndRequestPermissions() {
