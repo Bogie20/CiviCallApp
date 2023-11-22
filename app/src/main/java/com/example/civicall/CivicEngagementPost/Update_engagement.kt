@@ -15,6 +15,7 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import com.example.civicall.NetworkUtils
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -56,6 +57,7 @@ class Update_engagement: AppCompatActivity() {
     private lateinit var updateCampus: AutoCompleteTextView
     private lateinit var updateCategory: AutoCompleteTextView
     private lateinit var updatePaymentMethod: AutoCompleteTextView
+    private lateinit var networkUtils: NetworkUtils
     private var title: String = ""
     private var paymentrecipient: String = ""
     private var objective: String = ""
@@ -105,6 +107,8 @@ class Update_engagement: AppCompatActivity() {
         updateObjective = binding.updateObjective
         updateInstruction = binding.updateInstruction
         updateIntro = binding.updateIntro
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
 
         binding.backbtn.setOnClickListener {
             onBackPressed()
@@ -489,5 +493,9 @@ class Update_engagement: AppCompatActivity() {
 
             isSaveConfirmationDialogShowing = false
         }
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
     }
 }

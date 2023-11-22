@@ -25,6 +25,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.civicall.Dashboard
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityUploadEngagementBinding
 import com.google.android.material.button.MaterialButton
@@ -63,6 +64,7 @@ class Upload_engagement : AppCompatActivity() {
     private var imageURL: String? = null
     private var uri: Uri? = null
     private lateinit var binding: ActivityUploadEngagementBinding
+    private lateinit var networkUtils: NetworkUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,6 +90,8 @@ class Upload_engagement : AppCompatActivity() {
         uploadObjective = binding.uploadObjective
         uploadInstruction = binding.uploadInstruction
         uploadIntro = binding.uploadIntro
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
 
         binding.backbtn.setOnClickListener {
             onBackPressed()
@@ -494,5 +498,9 @@ class Upload_engagement : AppCompatActivity() {
                 }
 
         }
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
     }
 }

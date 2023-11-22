@@ -33,6 +33,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityDetailPostBinding
 import com.github.clans.fab.FloatingActionButton
@@ -83,7 +84,7 @@ class DetailPost : AppCompatActivity() {
     private val FILE_PROVIDER_AUTHORITY = "com.example.civicall.fileprovider"
     private val REQUEST_IMAGE_CAPTURE = 2
     private var capturedImageUri: Uri? = null
-
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailPostBinding.inflate(layoutInflater)
@@ -112,6 +113,8 @@ class DetailPost : AppCompatActivity() {
         fabMenu = findViewById(R.id.fabicon)
         joinButton = findViewById(R.id.joinButton)
         detailCurrentParty = findViewById(R.id.detailCurrentParty)
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
 
         binding.backbtn.setOnClickListener {
             onBackPressed()
@@ -536,9 +539,54 @@ class DetailPost : AppCompatActivity() {
                                                         FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
                                                             .child("fundcollected").setValue(updatedFundCollected)
 
-                                                        val formattedFundCollected = String.format("%.2f", updatedFundCollected)
-                                                        detailFundCollected.text = "$formattedFundCollected"
+                                                        // Fetch the activepoints value
+                                                        FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                                                            .child("activepoints").addListenerForSingleValueEvent(object : ValueEventListener {
+                                                                override fun onDataChange(activePointsSnapshot: DataSnapshot) {
+                                                                    val activePoints = activePointsSnapshot.getValue(Int::class.java) ?: 0
 
+                                                                    // Fetch the current user's UID
+                                                                    val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
+
+                                                                    if (currentUserUid != null) {
+                                                                        // Add the activepoints to the "Users" node
+                                                                        FirebaseDatabase.getInstance().getReference("Users").child(currentUserUid)
+                                                                            .child("activepts").addListenerForSingleValueEvent(object : ValueEventListener {
+                                                                                override fun onDataChange(userActivePointsSnapshot: DataSnapshot) {
+                                                                                    val userActivePoints = userActivePointsSnapshot.getValue(Int::class.java) ?: 0
+
+                                                                                    val updatedUserActivePoints = userActivePoints + activePoints
+                                                                                    FirebaseDatabase.getInstance().getReference("Users").child(currentUserUid)
+                                                                                        .child("activepts").setValue(updatedUserActivePoints)
+
+                                                                                    // Increment the finishactivity field by 1
+                                                                                    FirebaseDatabase.getInstance().getReference("Users").child(currentUserUid)
+                                                                                        .child("finishactivity").addListenerForSingleValueEvent(object : ValueEventListener {
+                                                                                            override fun onDataChange(finishActivitySnapshot: DataSnapshot) {
+                                                                                                val finishActivityCount = finishActivitySnapshot.getValue(Int::class.java) ?: 0
+                                                                                                val updatedFinishActivityCount = finishActivityCount + 1
+
+                                                                                                FirebaseDatabase.getInstance().getReference("Users").child(currentUserUid)
+                                                                                                    .child("finishactivity").setValue(updatedFinishActivityCount)
+                                                                                            }
+
+                                                                                            override fun onCancelled(databaseError: DatabaseError) {
+                                                                                                // Handle onCancelled
+                                                                                            }
+                                                                                        })
+                                                                                }
+
+                                                                                override fun onCancelled(databaseError: DatabaseError) {
+                                                                                    // Handle onCancelled
+                                                                                }
+                                                                            })
+                                                                    }
+                                                                }
+
+                                                                override fun onCancelled(databaseError: DatabaseError) {
+                                                                    // Handle onCancelled
+                                                                }
+                                                            })
                                                     }
 
                                                     override fun onCancelled(databaseError: DatabaseError) {
@@ -1047,5 +1095,9 @@ class DetailPost : AppCompatActivity() {
                 finish() // Finish the current activity and go back to the previous one
             })
         }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup() // Clean up when the activity is destroyed
+    }
     }
 
