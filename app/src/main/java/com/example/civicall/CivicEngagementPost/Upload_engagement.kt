@@ -120,6 +120,7 @@ class Upload_engagement : AppCompatActivity() {
             if (selectedCategory == "Fund Raising" || selectedCategory == "Donations") {
                 paymentMethodLayout.visibility = View.VISIBLE
                 paymentRecipientLayout.visibility = View.VISIBLE
+
             } else {
                 paymentMethodLayout.visibility = View.GONE
                 paymentRecipientLayout.visibility = View.GONE

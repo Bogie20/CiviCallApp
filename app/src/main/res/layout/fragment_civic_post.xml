@@ -33,6 +33,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/higlight_button"
         android:clickable="true"
         android:padding="8dp"
         android:src="@drawable/embudo_24" />

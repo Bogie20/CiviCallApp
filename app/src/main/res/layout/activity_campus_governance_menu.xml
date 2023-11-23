@@ -23,6 +23,7 @@
             android:contentDescription="Back to Previous"
             android:src="@drawable/backbtn"
             android:clickable="true"
+            android:background="@drawable/highlight_text"
             android:focusable="true"
             android:onClick="BackClick" />
 

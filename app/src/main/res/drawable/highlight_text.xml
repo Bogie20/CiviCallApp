@@ -2,7 +2,7 @@
     <!-- Pressed state -->
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="@color/grey" />
+            <solid android:color="@color/background" />
             <corners android:radius="8dp" />
             <padding
                 android:left="5dp"

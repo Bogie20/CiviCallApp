@@ -32,12 +32,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/save"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal"
         android:background="@drawable/highlight_linear"
         android:padding="4dp">
 
         <ImageView
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/engagement_add26"/>
@@ -62,14 +63,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/CivicEngagement"
-        android:layout_marginTop="10dp"
         android:orientation="horizontal"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/highlight_linear"
         android:padding="4dp">
 
         <ImageView
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

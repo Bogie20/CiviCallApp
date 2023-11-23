@@ -10,6 +10,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.ParseException
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -49,6 +50,10 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import java.util.TimeZone
 
 class DetailPost : AppCompatActivity() {
     private lateinit var binding: ActivityDetailPostBinding
@@ -925,34 +930,70 @@ class DetailPost : AppCompatActivity() {
             val reference: DatabaseReference =
                 FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
 
-            reference.child("Participants")
-                .addListenerForSingleValueEvent(object : ValueEventListener {
-                    @SuppressLint("SetTextI18n")
-                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        if (dataSnapshot.hasChild(currentUserId)) {
-                            joinButton.text = "Cancel"
-                        } else {
-                            joinButton.text = "Join Now"
+            reference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val verificationStatus = dataSnapshot.child("verificationStatus").getValue(Boolean::class.java)
+                    val endDate = dataSnapshot.child("endDate").getValue(String::class.java)
+
+                    if (verificationStatus == true) {
+                        // If verificationStatus is true, check if the current date is after the end date
+                        val currentDate = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).time
+                        val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
+                        dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+
+                        try {
+                            val endDateTime = dateFormat.parse(endDate)
+
+                            if (endDateTime != null && currentDate.after(endDateTime)) {
+                                // If the current date is after the end date, set text and disable the button
+                                joinButton.text = "Already Finish"
+                                joinButton.isEnabled = false
+                                return
+                            }
+                        } catch (e: ParseException) {
+                            e.printStackTrace()
                         }
                     }
 
-                    override fun onCancelled(databaseError: DatabaseError) {
-                        Toast.makeText(
-                            this@DetailPost,
-                            "Database error: " + databaseError.message,
-                            Toast.LENGTH_SHORT
-                        ).show()
+                    // Continue with the existing logic if verificationStatus is false or current date is before end date
+                    reference.child("Participants").addListenerForSingleValueEvent(object : ValueEventListener {
+                        @SuppressLint("SetTextI18n")
+                        override fun onDataChange(participantSnapshot: DataSnapshot) {
+                            if (participantSnapshot.hasChild(currentUserId)) {
+                                joinButton.text = "Cancel"
+                            } else {
+                                joinButton.text = "Join Now"
+                            }
+                        }
+
+                        override fun onCancelled(databaseError: DatabaseError) {
+                            Toast.makeText(
+                                this@DetailPost,
+                                "Database error: " + databaseError.message,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    })
+
+                    val parentLinearLayout = findViewById<LinearLayout>(R.id.paymentDetailsLayout)
+
+                    if (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donations") {
+                        parentLinearLayout.visibility = View.VISIBLE
+                    } else {
+                        parentLinearLayout.visibility = View.GONE
                     }
-                })
+                }
 
-            val parentLinearLayout = findViewById<LinearLayout>(R.id.paymentDetailsLayout)
-
-            if (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donations") {
-                parentLinearLayout.visibility = View.VISIBLE
-            } else {
-                parentLinearLayout.visibility = View.GONE
-            }
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Toast.makeText(
+                        this@DetailPost,
+                        "Database error: " + databaseError.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
         }
+
         val participantsReference: DatabaseReference =
             FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
                 .child("Participants")

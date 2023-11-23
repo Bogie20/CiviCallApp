@@ -26,6 +26,7 @@
             android:layout_marginVertical="8dp"
             android:contentDescription="Back to Previous"
             android:src="@drawable/backbtn"
+            android:background="@drawable/highlight_text"
             android:clickable="true"
             android:focusable="true"
             android:onClick="BackClick" />

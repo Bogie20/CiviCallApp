@@ -13,14 +13,12 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.civicall.CivicEngagementPost.CivicPostFragment
 import com.example.civicall.CivicEngagementPost.Upload_engagement
 import com.example.civicall.databinding.ActivityDashboardBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -76,7 +74,6 @@ class Dashboard : AppCompatActivity() {
                         binding.titleLarge.text = ""
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-                        launchAddEngagementActivity()
                     }
                     3 -> {
                         binding.titleLarge.text = "Forum"
@@ -95,7 +92,6 @@ class Dashboard : AppCompatActivity() {
             }
 
             override fun onTabReselected(index: Int, tab: AnimatedBottomBar.Tab) {
-                // Handle reselected tab if needed
             }
         })
 
@@ -124,7 +120,6 @@ class Dashboard : AppCompatActivity() {
             .setView(dialogView)
             .create()
 
-        // Set window animations and background
         alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideUp
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
@@ -156,11 +151,6 @@ class Dashboard : AppCompatActivity() {
 
             isOptionDialogShowing = false
         }
-    }
-    private fun launchAddEngagementActivity() {
-        val intent = Intent(this, add_engagement::class.java)
-        startActivity(intent)
-        // Add any animation transition if needed
     }
     private fun readData(uid: String) {
         reference = FirebaseDatabase.getInstance().getReference("Users")

@@ -27,7 +27,7 @@ class Reportproblems : AppCompatActivity() {
         }
 
         userInterfaceTextView.setOnClickListener {
-            openUserInterfaceActivity()
+//            openUserInterfaceActivity()
         }
 
         otherTextView.setOnClickListener {
@@ -46,10 +46,10 @@ class Reportproblems : AppCompatActivity() {
     /**
      * Opens the User Interface Issue activity.
      */
-    private fun openUserInterfaceActivity() {
-        val intent = Intent(this, Userinterface::class.java)
-        startActivity(intent)
-    }
+//    private fun openUserInterfaceActivity() {
+//        val intent = Intent(this, Userinterface::class.java)
+//        startActivity(intent)
+//    }
 
     /**
      * Opens the Other activity.

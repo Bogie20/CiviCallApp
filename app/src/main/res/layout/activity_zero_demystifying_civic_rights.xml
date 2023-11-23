@@ -13,20 +13,21 @@
         android:layout_height="60dp"
         android:background="@color/redpink"
         android:elevation="4dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/backbtn"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginVertical="8dp"
-            android:contentDescription="Back to Previous"
-            android:src="@drawable/backbtn"
             android:clickable="true"
+            android:contentDescription="Back to Previous"
             android:focusable="true"
-            android:onClick="BackClick" />
+            android:background="@drawable/highlight_text"
+            android:onClick="BackClick"
+            android:src="@drawable/backbtn" />
 
         <TextView
             android:id="@+id/titleTextView"

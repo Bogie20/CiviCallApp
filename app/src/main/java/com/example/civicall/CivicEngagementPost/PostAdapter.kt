@@ -105,7 +105,6 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
                 e.printStackTrace()
             }
         } else {
-            // If verificationStatus is false, set a drawable for an unverified post
             holder.recTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.notverifiedshield, 0)
             // Tint the drawable for unverified posts with the 'unverified' color
             holder.recTitle.compoundDrawables[2]?.setColorFilter(

@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.Forum.ForumAdapter
 import com.example.civicall.Forum.Forummodel
 import com.example.civicall.databinding.FragmentForumsBinding
-import com.example.civicall.databinding.CommentDialogBinding
 
 class ForumsFragment : Fragment() {
     private lateinit var binding: FragmentForumsBinding
@@ -39,7 +38,7 @@ class ForumsFragment : Fragment() {
         val noPostsText: TextView = binding.noPostsText
 
         val adapter = ForumAdapter(forumPosts) { forumModel: Forummodel ->
-            showCommentDialog(forumModel)
+//            showCommentDialog(forumModel)
         }
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -80,14 +79,14 @@ class ForumsFragment : Fragment() {
     }
 
     // Function to show the comment dialog
-    private fun showCommentDialog(forumModel: Forummodel) {
-        val dialogBinding = CommentDialogBinding.inflate(layoutInflater)
-        val dialogView = dialogBinding.root
-        val dialogBuilder = AlertDialog.Builder(requireContext())
-            .setView(dialogView)
-
-            .create()
-
-        dialogBuilder.show()
-    }
+//    private fun showCommentDialog(forumModel: Forummodel) {
+//        val dialogBinding = CommentDialogBinding.inflate(layoutInflater)
+//        val dialogView = dialogBinding.root
+//        val dialogBuilder = AlertDialog.Builder(requireContext())
+//            .setView(dialogView)
+//
+//            .create()
+//
+//        dialogBuilder.show()
+//    }
 }
