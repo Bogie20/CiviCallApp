@@ -1,15 +1,27 @@
-<!-- res/drawable/highlight_background.xml -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Pressed state -->
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="@color/redpink" />
+            <solid android:color="@color/grey" />
+            <corners android:radius="8dp" />
+            <padding
+                android:left="8dp"
+                android:top="8dp"
+                android:right="8dp"
+                android:bottom="8dp" />
         </shape>
+        <item>
+            <shape>
+                <solid android:color="@android:color/white" />
+                <corners android:radius="8dp" />
+            </shape>
+        </item>
     </item>
     <!-- Default state -->
     <item>
         <shape>
             <solid android:color="@android:color/transparent" />
+            <corners android:radius="8dp" />
         </shape>
     </item>
 </selector>
