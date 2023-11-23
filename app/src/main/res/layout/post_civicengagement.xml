@@ -39,7 +39,7 @@
             android:fontFamily="@font/inter_bold"
             android:text="ENVIRONMENT CLEANING PROGRAM"
             android:textColor="@color/DarkGray"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:maxLines="1"
             android:ellipsize="end"
             />

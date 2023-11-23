@@ -24,7 +24,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import com.example.civicall.Dashboard
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityUploadEngagementBinding
@@ -35,7 +34,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
-import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -184,7 +182,7 @@ class Upload_engagement : AppCompatActivity() {
                                 "Please verify your account before uploading",
                                 4000,
                                 "Oops!",
-                                R.drawable.notverified,
+                                R.drawable.notverifiedshield,
                                 R.layout.dialog_sadface
                             )
                         } else {

@@ -13,6 +13,11 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import java.util.TimeZone
 
 class PostAdapter (private val context: Context, private var dataList: List<DataClass>) :
     RecyclerView.Adapter<MyViewHolder>() {
@@ -31,7 +36,6 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
         holder.recEndDate.text = data.endDate
         holder.recLocation.text = data.location
         holder.recCampus.text = data.campus
-
         holder.recCard.setOnClickListener {
             val intent = Intent(context, DetailPost::class.java).apply {
                 putExtra("Image", data.image)
@@ -55,20 +59,62 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
             }
             context.startActivity(intent)
         }
+        val currentDate = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).time
+
         if (data.verificationStatus == true) {
-            holder.recTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.verificationtrue_icon, 0)
-            // Tint the drawable for verified posts
-            holder.recTitle.compoundDrawables[2]?.setColorFilter(ContextCompat.getColor(context, R.color.verified), PorterDuff.Mode.SRC_IN)
+            val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
+            dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+
+            try {
+                val startDate = dateFormat.parse(data.startDate)
+                val endDate = dateFormat.parse(data.endDate)
+
+                if (startDate != null && endDate != null) {
+                    if (currentDate.after(startDate) && currentDate.before(endDate)) {
+                        // If current date is between start and end date, set a drawable for playing
+                        holder.recTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.play, 0)
+                        // Tint the drawable with blue color
+                        holder.recTitle.compoundDrawables[2]?.setColorFilter(
+                            ContextCompat.getColor(context, R.color.blue),
+                            PorterDuff.Mode.SRC_IN
+                        )
+                    } else if (currentDate.after(endDate)) {
+                        // If current date is after the end date, set a drawable for finishing
+                        holder.recTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.finish, 0)
+                        // Tint the drawable with green color
+                        holder.recTitle.compoundDrawables[2]?.setColorFilter(
+                            ContextCompat.getColor(context, R.color.greenish),
+                            PorterDuff.Mode.SRC_IN
+                        )
+                    } else {
+                        // If current date is not between start and end date, set a drawable for verified posts
+                        holder.recTitle.setCompoundDrawablesWithIntrinsicBounds(
+                            0,
+                            0,
+                            R.drawable.verificationtrue_icon,
+                            0
+                        )
+                        // Tint the drawable for verified posts with the 'verified' color
+                        holder.recTitle.compoundDrawables[2]?.setColorFilter(
+                            ContextCompat.getColor(context, R.color.verified),
+                            PorterDuff.Mode.SRC_IN
+                        )
+                    }
+                }
+            } catch (e: ParseException) {
+                e.printStackTrace()
+            }
         } else {
             // If verificationStatus is false, set a drawable for an unverified post
-            holder.recTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.verificationfalse_icon, 0)
-            // Tint the drawable for unverified posts
-            holder.recTitle.compoundDrawables[2]?.setColorFilter(ContextCompat.getColor(context, R.color.unverified), PorterDuff.Mode.SRC_IN)
+            holder.recTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.notverifiedshield, 0)
+            // Tint the drawable for unverified posts with the 'unverified' color
+            holder.recTitle.compoundDrawables[2]?.setColorFilter(
+                ContextCompat.getColor(context, R.color.unverified),
+                PorterDuff.Mode.SRC_IN
+            )
         }
-
-    }
-
-    override fun getItemCount(): Int {
+        }
+        override fun getItemCount(): Int {
         return dataList.size
     }
 

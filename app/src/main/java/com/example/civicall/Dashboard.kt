@@ -4,15 +4,23 @@ package com.example.civicall
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.Gravity
+import android.view.WindowManager
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.civicall.CivicEngagementPost.CivicPostFragment
 import com.example.civicall.CivicEngagementPost.Upload_engagement
 import com.example.civicall.databinding.ActivityDashboardBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -101,13 +109,53 @@ class Dashboard : AppCompatActivity() {
         }
 
         binding.fab.setOnClickListener {
+            showOptionDialog()
+        }
+    }
+    private var isOptionDialogShowing = false // Add this variable
+
+    private fun showOptionDialog() {
+        if (isOptionDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val dialogView = layoutInflater.inflate(R.layout.bottom_sheet_filter, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        // Set window animations and background
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideUp
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Set the dialog position to the bottom
+        val layoutParams = alertDialog.window?.attributes
+        layoutParams?.gravity = Gravity.BOTTOM
+        layoutParams?.width = WindowManager.LayoutParams.MATCH_PARENT
+        alertDialog.window?.attributes = layoutParams
+
+        val civicpost: LinearLayout = dialogView.findViewById(R.id.CivicEngagement)
+
+        alertDialog.setOnDismissListener {
+            isOptionDialogShowing = false
+        }
+
+        civicpost.setOnClickListener {
+            alertDialog.dismiss()
             val intent = Intent(this, Upload_engagement::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-            // You can also add any transition animations if needed
         }
 
+        alertDialog.show()
+        isOptionDialogShowing = true
+    }
 
+    private fun dismissCustomDialog() {
+        if (isOptionDialogShowing) {
+
+            isOptionDialogShowing = false
+        }
     }
     private fun launchAddEngagementActivity() {
         val intent = Intent(this, add_engagement::class.java)

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="greenish">#00FF7F</color>
     <color name="grayback">#D9D9D9</color>
     <color name="darkred">#491616</color>
     <color name="purple_700">#FF3700B3</color>

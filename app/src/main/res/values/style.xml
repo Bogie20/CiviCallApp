@@ -193,7 +193,7 @@
 
     <style name="DialogAnimationSlideUp">
         <item name="android:windowEnterAnimation">@anim/animate_slide_up_enter</item>
-        <item name="android:windowExitAnimation">@anim/animate_slide_up_exit</item>
+        <item name="android:windowExitAnimation">@anim/animate_slide_down_exit</item>
     </style>
 
     <style name="DialogAnimationSlideDown">

@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
     android:background="@drawable/splashstart_page">
 
 
@@ -26,12 +27,13 @@
         android:fontFamily="@font/lexend_bold"/>
 
     <LinearLayout
-        android:id="@+id/LayoutEdit"
+        android:id="@+id/CivicEngagement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/save"
         android:layout_marginTop="30dp"
         android:orientation="horizontal"
+        android:background="@drawable/highlight_linear"
         android:padding="4dp">
 
         <ImageView
@@ -57,13 +59,14 @@
 
 
     <LinearLayout
-        android:id="@+id/LayoutEdit1"
+        android:id="@+id/Forum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/LayoutEdit"
+        android:layout_below="@id/CivicEngagement"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/highlight_linear"
         android:padding="4dp">
 
         <ImageView
