@@ -54,11 +54,9 @@ class Otherproblem : AppCompatActivity() {
         setContentView(binding.root)
 
         // Firebase initialization
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
-        FirebaseStorage.getInstance().reference
+        auth = FirebaseAuth.getInstance()
         storageReference = FirebaseStorage.getInstance().getReference("SettingsReport")
         databaseReference = FirebaseDatabase.getInstance()
-        auth = FirebaseAuth.getInstance()
 
         binding.UploadPhoto.setOnClickListener {
             openImagePicker()

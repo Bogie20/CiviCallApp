@@ -125,23 +125,160 @@
         android:text="Do you have any concern?"
         android:textColor="@color/black"
         />
+
+    <LinearLayout
+        android:id="@+id/buttonLine"
+        android:layout_below="@id/editTextText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <!-- First TextView -->
+            <TextView
+                android:id="@+id/TreePlanting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="10sp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/selected_background"
+                android:fontFamily="@font/dmsans_regular"
+                android:gravity="center"
+                android:padding="10sp"
+                android:paddingTop="15sp"
+                android:paddingBottom="15sp"
+                android:text="Tree Planting"
+                android:textColor="@color/redpink"
+                android:textSize="14sp"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
+            </LinearLayout>
+            <!-- Second TextView -->
+            <TextView
+                android:id="@+id/FundRaising"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1sp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/selected_background"
+                android:fontFamily="@font/dmsans_regular"
+                android:gravity="center"
+                android:padding="10sp"
+                android:paddingTop="15sp"
+                android:paddingBottom="15sp"
+                android:text="Fund Raising"
+                android:textColor="@color/redpink"
+                android:textSize="14sp"
+                android:clickable="true" />
+
+            <TextView
+                android:id="@+id/Donations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:layout_marginEnd="10sp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/selected_background"
+                android:fontFamily="@font/dmsans_regular"
+                android:gravity="center"
+                android:padding="10sp"
+                android:paddingTop="15sp"
+                android:paddingBottom="15sp"
+                android:text="Donations"
+                android:textColor="@color/redpink"
+                android:textSize="14sp"
+                android:clickable="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <!-- First TextView -->
+            <TextView
+                android:id="@+id/TreePlanting1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="10sp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/selected_background"
+                android:fontFamily="@font/dmsans_regular"
+                android:gravity="center"
+                android:padding="10sp"
+                android:clickable="true"
+                android:paddingTop="15sp"
+                android:paddingBottom="15sp"
+                android:text="Tree Planting"
+                android:textColor="@color/redpink"
+                android:textSize="14sp" />
+
+            <!-- Second TextView -->
+            <TextView
+                android:id="@+id/FundRaising2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1sp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/selected_background"
+                android:fontFamily="@font/dmsans_regular"
+                android:gravity="center"
+                android:padding="10sp"
+                android:clickable="true"
+                android:paddingTop="15sp"
+                android:paddingBottom="15sp"
+                android:text="Fund Raising"
+                android:textColor="@color/redpink"
+                android:textSize="14sp" />
+
+            <!-- Third TextView -->
+            <TextView
+                android:id="@+id/Donations3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:layout_marginEnd="10sp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/selected_background"
+                android:fontFamily="@font/dmsans_regular"
+                android:gravity="center"
+                android:padding="10sp"
+                android:clickable="true"
+                android:paddingTop="15sp"
+                android:paddingBottom="15sp"
+                android:text="Donations"
+                android:textColor="@color/redpink"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
     <EditText
         android:id="@+id/editTextTextMultiLine"
         android:fontFamily="@font/lexend_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ratingBar"
+        android:layout_below="@id/buttonLine"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="25dp"
         android:background="@drawable/edit_text_background"
         android:textColorHint="@color/instruction"
         android:ems="10"
         android:gravity="start|top"
         android:textSize="15dp"
-        android:hint="Enter your message here..."
+        android:hint="Other Suggestion here"
         android:inputType="textMultiLine"
-        android:lines="13"
+        android:lines="6"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"/>
 

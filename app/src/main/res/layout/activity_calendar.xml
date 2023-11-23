@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Calendar">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="415dp"
+        android:layout_height="70dp"
+        android:id="@+id/card"
+
+
+        app:cardBackgroundColor="@color/redpink"
+        app:cardCornerRadius="4dp">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+
+            <ImageView
+                android:id="@+id/back100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="Home Icon"
+                android:padding="6dp"
+
+                android:src="@drawable/menubutton"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="BackClick" />
+
+            <TextView
+                android:id="@+id/eventcalendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="25dp"
+
+                android:fontFamily="@font/oleo_script"
+                android:text="Schedule Calendar"
+                android:textColor="@color/white"
+                android:textSize="25dp" />
+
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <CalendarView
+        android:layout_below="@+id/card"
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calendarView"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        app:layoutManager="LinearLayoutManager" />
+</RelativeLayout>

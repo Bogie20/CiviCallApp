@@ -1,11 +1,10 @@
 package com.example.civicall.Notification
 
-import NotificationAdapter
+import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,13 +14,12 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
-import com.google.firebase.FirebaseApp
-import com.google.firebase.auth.FirebaseAuth
 
 class Notifications : AppCompatActivity() {
 
     companion object {
         const val CHANNEL_ID = "channelId"
+        private const val REQUEST_CODE_NOTIFICATION_PERMISSION = 123
     }
 
     private lateinit var recyclerView: RecyclerView
@@ -31,77 +29,93 @@ class Notifications : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notificationss)
 
-        FirebaseApp.initializeApp(this)
+        // Request push notification permission
+        requestNotificationPermission()
+    }
 
-        // Check if connected to Firebase
-        if (FirebaseApp.getApps(this).isEmpty()) {
-            Toast.makeText(this, "Not connected to Firebase", Toast.LENGTH_SHORT).show()
-        } else {
-            val currentUser = FirebaseAuth.getInstance().currentUser
-            val uid = currentUser?.uid
-            val email = currentUser?.email
-            val currentEngagement = "CurrentEngagement"
-            Toast.makeText(
+    private fun requestNotificationPermission() {
+        if (ActivityCompat.checkSelfPermission(
+                applicationContext,
+                Manifest.permission.RECEIVE_BOOT_COMPLETED
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // Request the permission
+            ActivityCompat.requestPermissions(
                 this,
-                "Connected to Firebase\nUser UID: $uid\nEmail: $email\nCurrent Engagement: $currentEngagement",
-                Toast.LENGTH_SHORT
-            ).show()
+                arrayOf(Manifest.permission.RECEIVE_BOOT_COMPLETED),
+                REQUEST_CODE_NOTIFICATION_PERMISSION
+            )
+        } else {
+            // Permission already granted, continue with initialization
+            initializeApp()
         }
+    }
 
-        createNotificationChannel()
-
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        val uid = currentUser?.uid
-        val email = currentUser?.email
-        val currentEngagement = "CurrentEngagement"
-        // Initialize RecyclerView
-        recyclerView = findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        notificationAdapter = NotificationAdapter(getNotificationItems()) // Implement this function
-        recyclerView.adapter = notificationAdapter
-
-        val engagements = getNotificationItems()
-        for ((index, engagement) in engagements.withIndex()) {
-            val builder = NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-//                .setContentTitle("Engagement: ${engagement.title}")
-//                .setContentText("Starts on: ${engagement.startDate}")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-
-            with(NotificationManagerCompat.from(this)) {
-//                notify(index, builder.build())
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE_NOTIFICATION_PERMISSION) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, continue with initialization
+                createNotificationChannel()
+                sendDefaultNotification()
+                initializeRecyclerView()
+            } else {
+                // Permission denied, handle accordingly
+                Toast.makeText(
+                    this,
+                    "Notification permission denied. Some features may not work.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
 
-    // Replace this function with your actual data retrieval logic
-    private fun getNotificationItems(): List<NotificationModel> {
-        val notificationList = mutableListOf<NotificationModel>()
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        val uid = currentUser?.uid
-        val email = currentUser?.email
-        val profileImageUrl = "https://example.com/profile.jpg" // Replace with the actual URL of the user's profile image
-
-        // Populate notificationList with your data
-        // Example:
-        notificationList.add(NotificationModel(uid ?: "", email ?: "",  profileImageUrl))
-        notificationList.add(NotificationModel(uid ?: "", email ?: "",  profileImageUrl))
-        // Add more items as needed
-        return notificationList
+    private fun initializeApp() {
+        createNotificationChannel()
+        sendDefaultNotification()
+        initializeRecyclerView()
     }
 
     private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (true) {
             val name = "Channel Name"
             val descriptionText = "Channel Description"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = descriptionText
             }
-
-            val notificationManager =
+            val notificationManager: NotificationManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
+    }
+
+    private fun sendDefaultNotification() {
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setContentTitle("Hello") // Set the title
+            .setContentText("CiviCall") // Set the text
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+        with(NotificationManagerCompat.from(applicationContext)) {
+            if (ActivityCompat.checkSelfPermission(
+                    applicationContext,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                return
+            }
+            notify(1, builder.build())
+        }
+    }
+
+    private fun initializeRecyclerView() {
+        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        notificationAdapter = NotificationAdapter(this, emptyList())
+        recyclerView.adapter = notificationAdapter
     }
 }
