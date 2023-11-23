@@ -80,7 +80,7 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
                         )
                     } else if (currentDate.after(endDate)) {
                         // If current date is after the end date, set a drawable for finishing
-                        holder.recTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.finish, 0)
+                        holder.recTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.finishnapo, 0)
                         // Tint the drawable with green color
                         holder.recTitle.compoundDrawables[2]?.setColorFilter(
                             ContextCompat.getColor(context, R.color.greenish),
