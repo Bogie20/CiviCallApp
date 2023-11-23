@@ -5,60 +5,88 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.civicall.Forum.ForumAdapter
+import com.example.civicall.Forum.Forummodel
+import com.example.civicall.databinding.FragmentForumsBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ForumsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ForumsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentForumsBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-            val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.animate_fade_enter)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentForumsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-            view?.startAnimation(anim)
+        // Sample data for Forummodel (replace this with your actual data)
+        val forumPosts: List<Forummodel> = getSampleForumData()
+
+        // Set up the RecyclerView and the ForumAdapter
+        val recyclerView: RecyclerView = binding.recyclerViewForum
+        val noPostsImage: ImageView = binding.noPostsImage
+        val noPostsText: TextView = binding.noPostsText
+
+        val adapter = ForumAdapter(forumPosts) { forumModel: Forummodel ->
+//            showCommentDialog(forumModel)
+        }
+
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
+
+        // Update visibility based on the data list
+        if (forumPosts.isEmpty()) {
+            noPostsImage.visibility = View.VISIBLE
+            noPostsText.visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+        } else {
+            noPostsImage.visibility = View.GONE
+            noPostsText.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+            adapter.notifyDataSetChanged()
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_forums, container, false)
+    // Replace this with your actual data fetching logic
+    private fun getSampleForumData(): List<Forummodel> {
+        // Sample data, replace this with your actual data fetching logic
+        val forumPosts = mutableListOf<Forummodel>()
+        forumPosts.add(
+            Forummodel(
+                postId = 1,
+                author = "Jane Doe",
+                title = "Sample Title",
+                content = "Your time is limited...",
+                timestamp = System.currentTimeMillis(),
+                quote = "Your time is limited, so don't waste it living someone else's life. " +
+                        "Don't be trapped by dogma – which is living with the results of other people's thinking."
+            )
+        )
+
+        // Add more forum posts if needed
+
+        return forumPosts // Don't forget to return the list
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ForumsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ForumsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+    // Function to show the comment dialog
+//    private fun showCommentDialog(forumModel: Forummodel) {
+//        val dialogBinding = CommentDialogBinding.inflate(layoutInflater)
+//        val dialogView = dialogBinding.root
+//        val dialogBuilder = AlertDialog.Builder(requireContext())
+//            .setView(dialogView)
+//
+//            .create()
+//
+//        dialogBuilder.show()
+//    }
 }

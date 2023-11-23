@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StartSplash">
+
+    <ImageView
+        android:id="@+id/volunteerImage"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:src="@drawable/volunteer3" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/splashstart_page"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="10sp"
+            android:fontFamily="@font/dmsans_bold"
+            android:gravity="center"
+            android:padding="10sp"
+            android:text="Lead by Example for the Next Generation"
+            android:textColor="@color/redpink"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40sp"
+            android:layout_marginEnd="40sp"
+            android:layout_marginBottom="10sp"
+            android:fontFamily="@font/dmsans_medium"
+            android:gravity="center"
+            android:padding="10sp"
+            android:text="Become a role model for the next generation. Inspire and guide them towards a brighter future."
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/skipButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30sp"
+            android:layout_marginEnd="30sp"
+            android:layout_marginBottom="15sp"
+            android:background="@drawable/skip_button"
+            android:fontFamily="@font/dmsans_regular"
+            android:gravity="center"
+            android:padding="10sp"
+            android:paddingTop="15sp"
+            android:paddingBottom="15sp"
+            android:text="Skip"
+            android:textColor="@color/redpink"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/nextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30sp"
+            android:layout_marginEnd="30sp"
+            android:layout_marginBottom="30sp"
+            android:background="@drawable/next_button"
+            android:fontFamily="@font/dmsans_regular"
+            android:gravity="center"
+            android:padding="10sp"
+            android:paddingTop="15sp"
+            android:paddingBottom="15sp"
+            android:text="Next"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

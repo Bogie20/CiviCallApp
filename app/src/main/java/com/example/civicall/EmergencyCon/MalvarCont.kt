@@ -1,20 +1,17 @@
 package com.example.civicall.EmergencyCon
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.ImageView
-import android.Manifest
-import android.net.Uri
 import android.widget.Toast
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
-import androidx.core.content.ContextCompat
-import java.util.*
+import java.util.Locale
 
 class MalvarCont : AppCompatActivity() {
 
@@ -22,13 +19,17 @@ class MalvarCont : AppCompatActivity() {
     private lateinit var searchView: SearchView
     private var mList = ArrayList<ContactData>()
     private lateinit var adapter: ContactAdapter
-
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_malvar_cont)
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
 
-        val backButton: ImageView = findViewById(R.id.backbutton)
+        val backButton: ImageView = findViewById(R.id.backbtn)
         backButton.setOnClickListener {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
             onBackPressed()
         }
         recyclerView = findViewById(R.id.recyclerView)
@@ -102,24 +103,6 @@ class MalvarCont : AppCompatActivity() {
         mList.add(ContactData("PNP MALVAR", R.drawable.pnp))
         mList.add(ContactData("PHILIPPINE RED CROSS\n"+ "DISTRICT 3 (TANAUAN)", R.drawable.redcross))
     }
-    private fun makePhoneCall(phoneNumber: String) {
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.CALL_PHONE
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:$phoneNumber"))
-            startActivity(intent)
-        } else {
-            // Request the CALL_PHONE permission
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.CALL_PHONE),
-                REQUEST_PHONE_PERMISSION
-            )
-        }
-    }
-
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_PHONE_PERMISSION) {
@@ -134,4 +117,9 @@ class MalvarCont : AppCompatActivity() {
     companion object {
         private const val REQUEST_PHONE_PERMISSION = 1
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_gravity="center"
+    android:gravity="center"
+    app:cardCornerRadius="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <View
+        android:layout_marginTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/redpink" >
+    </View>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center"
+        android:orientation="vertical"
+       >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="10sp"
+            android:fontFamily="@font/lexend"
+            android:gravity="center"
+            android:padding="10sp"
+            android:text="Search Filter"
+            android:textColor="@color/redpink"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:gravity="left"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10sp"
+        android:fontFamily="@font/dmsans_medium"
+
+        android:padding="10sp"
+        android:text="Category:"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        android:textStyle="normal" />
+</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <!-- First TextView -->
+            <TextView
+                android:id="@+id/TreePlanting"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="10sp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/skip_button"
+
+                android:fontFamily="@font/dmsans_regular"
+                android:gravity="center"
+                android:padding="10sp"
+               android:paddingVertical="15sp"
+                android:text="Tree Planting"
+                android:textColor="@color/redpink"
+                android:textSize="14sp" />
+
+            <!-- Second TextView -->
+            <TextView
+                android:id="@+id/FundRaising"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="1sp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/skip_button"
+                android:fontFamily="@font/dmsans_regular"
+                android:gravity="center"
+                android:padding="10sp"
+              android:paddingVertical="15sp"
+                android:text="Fund Raising"
+                android:textColor="@color/redpink"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/Donations"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="10sp"
+                android:layout_marginEnd="10sp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/skip_button"
+                android:fontFamily="@font/dmsans_regular"
+                android:gravity="center"
+                android:padding="10sp"
+                android:paddingVertical="15sp"
+                android:text="Donations"
+                android:textColor="@color/redpink"
+                android:textSize="14sp" />
+            <!-- Second TextView -->
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="1dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/CleanUpDrive"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="20sp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/skip_button"
+                android:fontFamily="@font/dmsans_regular"
+                android:gravity="center"
+                android:padding="10sp"
+                android:paddingVertical="15sp"
+                android:text="Clean up Drive"
+                android:textColor="@color/redpink"
+                android:textSize="12sp" />
+            <!-- Second TextView -->
+            <TextView
+                android:id="@+id/FeedingProgram"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="5sp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/skip_button"
+                android:fontFamily="@font/dmsans_regular"
+                android:gravity="center"
+                android:padding="10sp"
+                android:paddingVertical="15sp"
+                android:text="Feeding Program"
+                android:textColor="@color/redpink"
+                android:textSize="12sp" />
+            <TextView
+                android:id="@+id/ReliefOperation"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="5sp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/skip_button"
+                android:fontFamily="@font/dmsans_regular"
+                android:gravity="center"
+                android:padding="10sp"
+                android:paddingVertical="15sp"
+                android:maxLines="1"
+                android:text="Relief Operation"
+                android:textColor="@color/redpink"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/Seminar"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="20sp"
+                android:layout_marginBottom="20sp"
+                android:background="@drawable/skip_button"
+                android:fontFamily="@font/dmsans_regular"
+                android:gravity="center"
+                android:padding="10sp"
+                android:paddingVertical="15sp"
+                android:text="Seminar Training"
+                android:textColor="@color/redpink"
+                android:textSize="12sp" />
+            <!-- Second TextView -->
+            <TextView
+                android:id="@+id/Teaching"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="10sp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/skip_button"
+                android:fontFamily="@font/dmsans_regular"
+                android:gravity="center"
+                android:padding="10sp"
+                android:paddingVertical="15sp"
+                android:text="Teaching Literacy"
+                android:textColor="@color/redpink"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/all"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="10sp"
+                android:layout_marginBottom="15sp"
+                android:background="@drawable/skip_button"
+                android:fontFamily="@font/dmsans_regular"
+                android:gravity="center"
+                android:padding="10sp"
+              android:paddingVertical="15dp"
+                android:text="All Category"
+                android:textColor="@color/redpink"
+                android:textSize="12sp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

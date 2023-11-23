@@ -8,13 +8,16 @@
     android:background="@drawable/rounded_white_bg"
     android:padding="16dp">
 
-    <!-- Title Label ("Choose") -->
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Choose"
-        android:textSize="25dp"
+        android:textSize="23dp"
+        android:id="@+id/labelimage"
         android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:fontFamily="@font/oleo_script"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/dialog_choose_text_color"
         android:layout_gravity="center" />
@@ -33,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:background="@drawable/highlight_linear"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -58,6 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:background="@drawable/highlight_linear"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatImageView

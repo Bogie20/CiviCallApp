@@ -7,17 +7,22 @@ import android.widget.ImageView
 import com.example.civicall.databinding.ActivityAboutUsBinding
 
 class AboutUs : AppCompatActivity() {
-    private lateinit var binding: ActivityAboutUsBinding
-    private lateinit var BackClick: ImageView
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about_us)
-        BackClick = findViewById(R.id.back100)
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
 
-        BackClick.setOnClickListener {
-            // Open the "Menu" activity/form
-            val intent = Intent(this, Dashboard::class.java)
-            startActivity(intent)
+        val backButton: ImageView = findViewById(R.id.backbtn)
+        backButton.setOnClickListener {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
         }
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
     }
 }

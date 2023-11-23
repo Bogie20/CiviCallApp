@@ -10,14 +10,14 @@ import androidx.cardview.widget.CardView
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import com.example.civicall.CampusGovernanceInfo.CampusGovernanceMenu
-import com.example.civicall.CivicEngagementInfo.Civic
+import com.example.civicall.CivicEngagementInfo.CivicMenu
 import com.example.civicall.CivicRightsAndResponsibility.CivicRightsAndResponsibilityMenu
 import com.example.civicall.DisasterResponseInfo.DisasterResponseMenu
 import com.example.civicall.EmergencyCon.MainEmergencyContact
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import com.example.civicall.EnvironmentalandSocialIssueInfo.EnvironmentalAndSocialIssuesMenu
-import com.example.civicall.PublicHealtAwarenessInfo.healtawarenessinfoMenu
+import com.example.civicall.PublicHealtAwarenessInfo.HealthAwarenessMenu
 import com.example.civicall.SurvivalTipsInfo.SurvivalMenu
 
 class InformationFragment : Fragment() {
@@ -29,10 +29,7 @@ class InformationFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_information, container, false)
 
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.animate_fade_enter)
-
-
         view.startAnimation(anim)
-
         val cardview1 = view.findViewById<CardView>(R.id.cardview1)
         val cardview2 = view.findViewById<CardView>(R.id.cardview2)
         val cardview3 = view.findViewById<CardView>(R.id.cardview3)
@@ -43,10 +40,9 @@ class InformationFragment : Fragment() {
         val cardview8 = view.findViewById<CardView>(R.id.cardview8)
 
         cardview1.setOnClickListener {
-            val intent = Intent(requireContext(), Civic::class.java)
+            val intent = Intent(requireContext(), CivicMenu::class.java)
             startActivity(intent)
         }
-
         cardview2.setOnClickListener {
             val intent = Intent(requireContext(), DisasterResponseMenu::class.java)
             startActivity(intent)
@@ -69,7 +65,7 @@ class InformationFragment : Fragment() {
             startActivity(intent)
         }
         cardview7.setOnClickListener {
-            val intent = Intent(requireContext(), healtawarenessinfoMenu::class.java)
+            val intent = Intent(requireContext(), HealthAwarenessMenu::class.java)
             startActivity(intent)
         }
         cardview8.setOnClickListener {

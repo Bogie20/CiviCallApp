@@ -13,6 +13,12 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor">?android:attr/statusBarColor</item>
     </style>
+    <style name="ClickableText">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textColorHighlight">@color/redpink</item>
+        <item name="android:textColorLink">@color/colorAccent</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
     <style name="Theme.CiviCall.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -86,7 +92,7 @@
 
         <style name="roundedImageViewRounded">
             <item name="cornerFamily">rounded</item>
-            <item name="cornerSize">5%</item>
+            <item name="cornerSize">1%</item>
         </style>
     <style name="ElevatedHint">
         <item name="android:textColorHint">@android:color/darker_gray</item>
@@ -187,7 +193,7 @@
 
     <style name="DialogAnimationSlideUp">
         <item name="android:windowEnterAnimation">@anim/animate_slide_up_enter</item>
-        <item name="android:windowExitAnimation">@anim/animate_slide_up_exit</item>
+        <item name="android:windowExitAnimation">@anim/animate_slide_down_exit</item>
     </style>
 
     <style name="DialogAnimationSlideDown">
@@ -243,5 +249,13 @@
     <style name="GreenSnackbarText">
         <item name="android:textColor">@android:color/holo_green_dark</item>
     </style>
+<style name ="DialogAnimation1">
+
+    <item name ="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+    <item name ="android:windowExitAnimation">@anim/slide_out_bottom</item>
+
+
+</style>
+
 
 </resources>

@@ -21,14 +21,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/backgrounds/scenic" />
-        <TextView
-            android:id="@+id/fontSizeTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:layout_marginTop="8dp"
-            android:textColor="@android:color/black"
-            android:visibility="visible" />
+
         <TextView
             android:id="@+id/titleTextView"
             android:layout_width="match_parent"
@@ -52,16 +45,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:lineSpacingExtra="6dp"
             android:fontFamily="@font/lexend"
             android:gravity="start"
             android:layout_marginLeft="23dp"
             android:layout_marginRight="20dp"
-            android:text="  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
-        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
-        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
-        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
-        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
-        ornare ex. Sed rhoncus est ut libero porta lobortis."
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
+            volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
+            dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
+            litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
+            diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
+            ornare ex. Sed rhoncus est ut libero porta lobortis."
             android:textAlignment="viewStart"
             android:textColor="@color/black"
             android:textSize="13sp"

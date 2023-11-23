@@ -1,14 +1,22 @@
 package com.example.civicall
 
 import android.content.Intent
+import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.example.civicall.databinding.ActivityProfiledetailsBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 
 class ProfileDetails : AppCompatActivity() {
@@ -16,41 +24,39 @@ class ProfileDetails : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var networkUtils: NetworkUtils
-
+    private lateinit var totalEngagementTextView: TextView
+    private var postsListener: ValueEventListener? = null
+    private lateinit var activePtsTextView: TextView
+    private lateinit var finishactTextView: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Initialize binding before setting the content view
         binding = ActivityProfiledetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
-
+        activePtsTextView = findViewById(R.id.activepts)
+        finishactTextView = findViewById(R.id.finishact)
+        totalEngagementTextView = findViewById(R.id.totaleng)
 
         binding.edit.setOnClickListener {
             val intent = Intent(this, EditProfile::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-
         }
         // Initialize Firebase authentication instance
         firebaseAuth = FirebaseAuth.getInstance()
 
         // Check if the user is logged in
         checkUser()
-
         // Set up click listeners for UI elements
-
-        binding.back1.setOnClickListener {
+        binding.backbtn.setOnClickListener {
             val intent = Intent(this, MainMenu::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
-            overridePendingTransition(R.anim.animate_fade_enter,R.anim.animate_fade_exit)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
         }
-
-
     }
 
-    // Function to check if a user is logged in or not
     private fun checkUser() {
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser == null) {
@@ -80,7 +86,11 @@ class ProfileDetails : AppCompatActivity() {
                 val usertype = snapshot.child("userType").value
                 val campus = snapshot.child("campus").value
                 val nstp = snapshot.child("nstp").value
-
+                val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
+                val activePts = snapshot.child("activepts").value
+                val finishact = snapshot.child("finishactivity").value
+                finishactTextView.text = finishact.toString()
+                activePtsTextView.text = activePts.toString()
                 binding.firstName.text = firstName.toString()
                 binding.lastName.text = lastName.toString()
                 binding.email1.text = email.toString()
@@ -93,27 +103,51 @@ class ProfileDetails : AppCompatActivity() {
                 binding.campustxt.text = campus.toString()
                 binding.nstpnumtxt.text = nstp.toString()
 
-                val profileImage =
-                    binding.profileImage // Replace with your ImageView ID in the layout
-                // Load the profile image using Picasso library
-                if (imageProfile != null && imageProfile.toString().isNotEmpty()) {
-                    Picasso.get().load(imageProfile.toString()).into(profileImage)
-                }
-            }
-            else {
-                Toast.makeText(this, "User Not existed", Toast.LENGTH_LONG).show()
+                val profileImage = binding.profileImage // Replace with your ImageView ID in the layout
 
+                // Load the profile image using Picasso library with a placeholder
+                if (imageProfile != null && imageProfile.toString().isNotEmpty()) {
+                    Picasso.get()
+                        .load(imageProfile.toString())
+                        .placeholder(R.drawable.three)
+                        .into(profileImage)
+                } else {
+                    profileImage.setImageResource(R.drawable.three)
+                }
+                if (verificationStatus) {
+                    // If verificationStatus is true, set a drawable for a verified account
+                    binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verificationtrue_icon, 0, 0, 0)
+                    // Tint the drawable for verified accounts
+                    binding.email1.compoundDrawables[0]?.setColorFilter(ContextCompat.getColor(this, R.color.verified), PorterDuff.Mode.SRC_IN)
+                } else {
+                    // If verificationStatus is false, set a drawable for an unverified account
+                    binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verificationfalse_icon, 0, 0, 0)
+                    // Tint the drawable for unverified accounts
+                    binding.email1.compoundDrawables[0]?.setColorFilter(ContextCompat.getColor(this, R.color.unverifiedyellow), PorterDuff.Mode.SRC_IN)
+                }
+            } else {
+                Toast.makeText(this, "User Not existed", Toast.LENGTH_LONG).show()
             }
+
 
         }.addOnFailureListener {
             // Show a toast if there's a failure in fetching data
             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
         }
-    }
-    override fun onBackPressed() {
-        super.onBackPressed()
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+        userRef.child("CurrentEngagement").addListenerForSingleValueEvent(object :
+            ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val totalEngagementCount = dataSnapshot.getValue(Int::class.java) ?: 0
+                totalEngagementTextView.text = totalEngagementCount.toString()
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                val errorMessage = "Database error: ${databaseError.message}"
+                Log.e("ProfileDetails", errorMessage)
+                Toast.makeText(this@ProfileDetails, errorMessage, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
     override fun onDestroy() {
         super.onDestroy()
@@ -122,6 +156,3 @@ class ProfileDetails : AppCompatActivity() {
         networkUtils.cleanup()
     }
 }
-
-
-

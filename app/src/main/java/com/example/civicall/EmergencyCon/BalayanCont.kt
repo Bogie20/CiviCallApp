@@ -1,22 +1,21 @@
 package com.example.civicall.EmergencyCon
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import android.Manifest
-import android.content.Intent
-import androidx.core.content.ContextCompat
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
-import java.util.*
+import java.util.Locale
 
 class BalayanCont : AppCompatActivity() {
+    private lateinit var networkUtils: NetworkUtils
+
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
@@ -27,9 +26,14 @@ class BalayanCont : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_balayan_cont)
 
-        val backButton: ImageView = findViewById(R.id.backbutton)
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
+
+        val backButton: ImageView = findViewById(R.id.backbtn)
         backButton.setOnClickListener {
-            onBackPressed() // Simulate back button press
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
         }
 
         recyclerView = findViewById(R.id.recyclerView)
@@ -113,24 +117,6 @@ class BalayanCont : AppCompatActivity() {
 
 
     }
-    private fun makePhoneCall(phoneNumber: String) {
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.CALL_PHONE
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:$phoneNumber"))
-            startActivity(intent)
-        } else {
-
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.CALL_PHONE),
-                REQUEST_PHONE_PERMISSION
-            )
-        }
-    }
-
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_PHONE_PERMISSION) {
@@ -145,4 +131,10 @@ class BalayanCont : AppCompatActivity() {
     companion object {
         private const val REQUEST_PHONE_PERMISSION = 1
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

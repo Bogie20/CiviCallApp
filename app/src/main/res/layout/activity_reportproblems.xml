@@ -8,229 +8,219 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="415dp"
-        android:layout_height="100dp"
-        android:id="@+id/card"
-        app:cardBackgroundColor="@color/red"
-        app:cardCornerRadius="4dp">
+        android:id="@+id/titlecard"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:cardBackgroundColor="@color/redpink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/back100"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="Home Icon"
-                android:padding="6dp"
-                android:src="@drawable/baseline_arrow_circle_left_24"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="BackClick" />
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/eventcalendar"
-                android:layout_width="wrap_content"
+                android:id="@+id/titleLarge"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="16dp"
-                android:fontFamily="@font/lexend_semibold"
-                android:text="REPORT PROBLEMS"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/oleo_script"
+                android:gravity="center"
+                android:paddingLeft="30dp"
+                android:text="Report And Problems"
                 android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:textSize="23sp" />
 
         </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/profileburger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:background="@android:color/transparent"
+            android:contentDescription="Open Navigation Menu"
+            android:paddingLeft="13dp"
+            android:src="@drawable/menubutton" />
+
     </androidx.cardview.widget.CardView>
 
-    <ScrollView
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/fullscreen"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+android:layout_below="@id/textwelcome"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+android:layout_centerHorizontal="true"
+        android:background="@drawable/shape_settings"
+        android:backgroundTint="@color/white"
+
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:background="@drawable/img_2"
+
+            />
+
+
+    </androidx.cardview.widget.CardView>
+
+<LinearLayout
+
+    android:layout_below="@+id/titlecard"
+    android:id="@+id/textwelcome"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/titleLarge1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:fontFamily="@font/oleo_script"
+        android:gravity="center"
+        android:paddingLeft="30dp"
+        android:text="Welcome To Our App Please Report the Problems that you may encounter while using our App."
+        android:textColor="@color/redpink"
+        android:textSize="17sp" />
 
+
+</LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/fullscreen2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fullscreen"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/shape_settings"
+        android:backgroundTint="@color/white"
+
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp">
         <LinearLayout
 
-            android:backgroundTint="@color/newred"
-            android:id="@+id/fullscreen"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/shape_settings"
-            android:orientation="vertical">
 
+            android:id="@+id/textwelcome3"
 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-
-
-            <ImageView
-               android:layout_gravity="center"
-                android:background="@drawable/jhe"
-                android:layout_width="300dp"
-                android:layout_height="200dp"
-                android:layout_below="@+id/cardView"
-                android:layout_marginTop="30dp" />
 
             <TextView
-                android:layout_marginTop="20dp"
-                android:textColor="@color/white"
-                android:fontFamily="@font/lexend_medium"
-                android:textSize="20sp"
-                android:layout_gravity="center"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:text="Hello there, Tell me about the Problems  about the app"/>
-
-
-        <LinearLayout
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="20dp"
-            android:id="@+id/password"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/general"
-            android:background="@drawable/shape_settings"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-
-            >
-            <LinearLayout
                 android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_gravity="center"
-                android:orientation="vertical"
-                android:id="@+id/category"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content">
-            <TextView
+
                 android:fontFamily="@font/lexend_bold"
-                android:textSize="25sp"
+                android:layout_marginStart="10dp"
+
+                android:text="Category:"
                 android:textColor="@color/black"
-                android:text="Category"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"/>
+                android:textSize="26sp"/>
+
+
+        </LinearLayout>
+     <LinearLayout
+
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:id="@+id/TechnicalIssue1"
+         android:gravity="center_vertical"
+         android:orientation="horizontal"
+         android:background="@drawable/highlight_linear">
+
+
+         <TextView
+             android:layout_marginBottom="10dp"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginRight="20dp"
+            android:id="@+id/TechnicalIssue"
+             android:layout_marginTop="50dp"
+             android:drawableRight="@drawable/next_24"
+            android:fontFamily="@font/lexend"
+             android:layout_marginStart="10dp"
+
+             android:text="Technical Issue"
+             android:textColor="@color/black"
+             android:textSize="21sp"/>
+
+
+     </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="100dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@drawable/highlight_linear">
+
+
+            <TextView
+                android:layout_marginBottom="10dp"
+                android:id="@+id/UserInterface"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:padding="5dp"
+                android:layout_marginTop="10dp"
+                android:drawableRight="@drawable/next_24"
+                android:fontFamily="@font/lexend"
+                android:paddingTop="10dp"
+                android:layout_marginStart="10dp"
+                android:text="User Interface Issue"
+                android:textColor="@color/black"
+                android:textSize="21sp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@drawable/highlight_linear">
+
+
+            <TextView
+                android:id="@+id/other"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:padding="5dp"
+
+                android:drawableRight="@drawable/next_24"
+                android:fontFamily="@font/lexend"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:text="Other"
+                android:textColor="@color/black"
+                android:textSize="21sp"/>
+
+
         </LinearLayout>
 
 
-            <LinearLayout
-                android:id="@+id/nototification3"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="280dp"
-                android:layout_height="50dp"
-                android:layout_centerHorizontal="true"
-
-                android:background="@drawable/shape_settings"
-                android:orientation="vertical">
-
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:layout_marginLeft="20dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/lexend_bold"
-                        android:text="TECHNICAL ISSUE"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="15dp"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
-                    <ImageView
-                        android:layout_marginLeft="70dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="70dp"
-                        android:src="@drawable/next_24"/>
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/USER"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="280dp"
-                android:layout_height="50dp"
-                android:layout_centerHorizontal="true"
-
-                android:background="@drawable/shape_settings"
-                android:orientation="vertical">
-
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:layout_marginLeft="20dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/lexend_bold"
-                        android:text="USER INTERFACE ISSUE"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="15dp"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
-                    <ImageView
-                        android:layout_marginLeft="30dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="70dp"
-                        android:src="@drawable/next_24"/>
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginBottom="20dp"
-                android:id="@+id/OTHER"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="280dp"
-                android:layout_height="50dp"
-                android:layout_centerHorizontal="true"
-
-                android:background="@drawable/shape_settings"
-                android:orientation="vertical">
-
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:layout_marginLeft="20dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/lexend_bold"
-                        android:text="OTHERS"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="15dp"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
-                    <ImageView
-                        android:layout_marginLeft="153dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="70dp"
-                        android:src="@drawable/next_24"/>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-        </LinearLayout>
-
-
-    </ScrollView>
-
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>

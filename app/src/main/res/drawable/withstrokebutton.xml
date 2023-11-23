@@ -1,23 +1,19 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- The outermost <item> represents the default state -->
     <item>
+        <!-- The outer <layer-list> defines a list of drawable items -->
         <layer-list>
-            <item android:right="8dp" android:top="8dp">
-                <shape>
-                    <corners android:radius="7dp" />
-                    <solid android:color="@color/black" />
-                </shape>
-            </item>
+            <!-- The second <item> with bottom and left padding -->
             <item android:bottom="2dp" android:left="2dp">
+                <!-- A shape drawable with gradient background, border, and padding -->
                 <shape>
-                    <gradient android:angle="270"
-                        android:endColor="@color/newred" android:startColor="@color/newred" />
-                    <stroke android:width="1dp" android:color="@color/black" />
+                    <gradient android:angle="100"
+                        android:endColor="@color/newred"
+                        android:startColor="@color/newred" />
+
                     <corners android:radius="4dp" />
-                    <padding android:bottom="10dp" android:left="10dp"
-                        android:right="10dp" android:top="10dp" />
                 </shape>
             </item>
         </layer-list>
     </item>
-
 </selector>

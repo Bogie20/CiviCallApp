@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/card"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="235dp"
         android:background="@drawable/kurt1"
         app:cardCornerRadius="80dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,13 +25,11 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:fontFamily="@font/inter_bold"
+            android:fontFamily="@font/oleo_script"
             android:paddingBottom="-50dp"
             android:text="Menu"
-
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="23sp"
             app:layout_constraintBottom_toTopOf="@+id/profileImage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,6 +44,7 @@
             android:text="Profile Details"
             android:textColor="@color/white"
             android:textSize="14sp"
+            android:background="@drawable/highlight_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.859"
@@ -54,24 +53,27 @@
             app:layout_constraintVertical_bias="0.083" />
 
         <ImageView
-            android:id="@+id/back1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/backbtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginVertical="8dp"
             android:clickable="true"
-            android:contentDescription="Home Icon"
+            android:contentDescription="Back to Previous"
             android:focusable="true"
             android:onClick="BackClick"
-            android:padding="6dp"
-            android:src="@drawable/baseline_arrow_circle_left_24"
+            android:background="@drawable/highlight_text"
+            android:src="@drawable/backbtn"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.034" />
 
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profileImage"
-            android:layout_width="200dp"
+            android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="50dp"
             android:src="@drawable/profilenone"
             app:civ_border_color="@color/white"
             app:civ_border_width="2dp"
@@ -93,6 +95,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:id="@+id/linearName"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -101,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_bold"
                     android:gravity="center"
-                    android:text="FirstName"
+                    android:text="********"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -114,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/inter_bold"
-                    android:text="LastName"
+                    android:text="********"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -126,11 +130,18 @@
                 android:id="@+id/email1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/verify"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:layout_gravity="center"
                 android:fontFamily="@font/inter_bold"
-                android:text="Example@gmail.com"
+                android:text="*****************"
                 android:textColor="@color/white"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:drawablePadding="8dp"
+            />
+
 
 
         </LinearLayout>
@@ -150,7 +161,6 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:text="ACCOUNT VERIFICATION"
-
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/card" />
@@ -167,7 +177,6 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:text="SCHEDULE CALENDAR"
-
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/verification" />
@@ -201,7 +210,6 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:text="FEEDBACK"
-
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Engagement" />
@@ -218,24 +226,26 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:text="SETTINGS AND PRIVACY"
-
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/feedback" />
-
     <TextView
-        android:id="@+id/AboutUs1"
+        android:id="@+id/Recognition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/menu_item_background"
-        android:text="About Us"
+        android:drawableStart="@drawable/baseline_auto_awesome_24"
+        android:drawablePadding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textAllCaps="true"
+        android:text="Recognition"
         android:textColor="@android:color/white"
-        android:textSize="20dp"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Setting" />
+
 
     <TextView
 
@@ -243,15 +253,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/menu_item_background"
         android:drawableStart="@drawable/logoutprofile"
         android:drawablePadding="10dp"
         android:paddingStart="16dp"
         android:text="Log Out"
+        android:textAllCaps="true"
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Setting"
+        app:layout_constraintTop_toBottomOf="@id/Recognition"
 
         />
 

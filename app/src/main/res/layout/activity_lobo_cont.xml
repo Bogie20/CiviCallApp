@@ -23,12 +23,13 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/backbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="Home Icon"
-                android:padding="6dp"
-                android:src="@drawable/baseline_arrow_circle_left_24"
+                android:id="@+id/backbtn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginVertical="8dp"
+                android:contentDescription="Back to Previous"
+                android:src="@drawable/backbtn"
+                android:background="@drawable/highlight_text"
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="BackClick" />
@@ -37,11 +38,11 @@
                 android:id="@+id/civicall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:fontFamily="@font/inter_bold"
+                android:layout_marginLeft="40dp"
+                android:fontFamily="@font/oleo_script"
                 android:text="Lobo Emergency Contact"
                 android:textColor="@color/white"
-                android:textSize="20dp" />
+                android:textSize="23dp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

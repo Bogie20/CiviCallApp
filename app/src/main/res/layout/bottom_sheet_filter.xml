@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@drawable/splashstart_page">
+
+
+        <View
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_width="100dp"
+            android:layout_height="2dp"
+            android:background="@color/redpink" >
+        </View>
+
+    <TextView
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Choose Post Option"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/lexend_bold"/>
+
+    <LinearLayout
+        android:id="@+id/CivicEngagement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/save"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        android:background="@drawable/highlight_linear"
+        android:padding="4dp">
+
+        <ImageView
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/engagement_add26"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/inter_bold"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Engagement"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/Forum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/CivicEngagement"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/highlight_linear"
+        android:padding="4dp">
+
+        <ImageView
+            android:layout_marginLeft="20dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/forum_25"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/inter_bold"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Forum"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+    </LinearLayout>
+</RelativeLayout>

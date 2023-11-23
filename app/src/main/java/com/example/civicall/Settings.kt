@@ -1,51 +1,105 @@
 package com.example.civicall
 
+import android.provider.Settings
+
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
+import android.widget.Toast
+
+import androidx.appcompat.app.AppCompatActivity
+import com.example.civicall.Notification.Notifications
+
 import com.example.civicall.databinding.ActivitySettingsBinding
-import android.view.View
-import android.widget.Switch
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 class Settings : AppCompatActivity() {
-    private lateinit var notificationToggle: Switch
-    private lateinit var BackClick: View
-    private lateinit var binding:ActivitySettingsBinding
+
+    private lateinit var binding: ActivitySettingsBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        notificationToggle = binding.notificationToggle
-
-
-
-        // Initialize the BackClick view using view binding
-        val BackClick = binding.back100
-
-        // Set an OnCheckedChangeListener to detect switch state changes
-        notificationToggle.setOnCheckedChangeListener { _, isChecked ->
-            // Update the switch text when its state changes
-            updateSwitchText(isChecked)
+        val notificationSwitch = findViewById<SwitchMaterial>(R.id.notificationSwitch)
+        binding.backbtn.setOnClickListener {
+            onBackPressed()
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
 
-        // Handle the "Back" button click to navigate to the Dashboard activity
-        BackClick.setOnClickListener {
-            val intent = Intent(this, Dashboard::class.java)
+        val changepass = binding.changepass
+        changepass.setOnClickListener {
+            val intent = Intent(this, ChangePassword::class.java)
             startActivity(intent)
         }
-        val reportProblemsImageView = binding.reportProblemsImageView
-        reportProblemsImageView.setOnClickListener {
-            val intent = Intent(this, Reportproblems::class.java)
+
+        val otherproblem = binding.otherproblem
+        otherproblem.setOnClickListener {
+            val intent = Intent(this, Otherproblem::class.java)
             startActivity(intent)
         }
+        val termsandsupp = binding.termsandsupp
+        termsandsupp.setOnClickListener {
+            val intent = Intent(this, PrivacyAndPolicies::class.java)
+            startActivity(intent)
+        }
+        val profilestt = binding.profilesett
+        profilestt.setOnClickListener {
+            val intent = Intent(this, TermsAndConditions::class.java)
+            startActivity(intent)
+        }
+
+        val forumsett = binding.forumsett
+        forumsett.setOnClickListener {
+            val intent = Intent(this, AboutUs::class.java)
+            startActivity(intent)
+        }
+        val notification = binding.notification
+        notification.setOnClickListener {
+            val intent = Intent(this, Notifications::class.java)
+            startActivity(intent)
+        }
+
+
+        notificationSwitch.setOnCheckedChangeListener { _, isChecked ->
+            // Handle the switch state change here
+            if (isChecked) {
+                // Switch is ON
+                // Check if notification permission is granted
+                if (!isNotificationPermissionGranted()) {
+                    // Request notification permission
+                    requestNotificationPermission()
+                } else {
+                    // Permission is already granted, perform actions when the switch is turned on
+                    // (e.g., enable notifications)
+                }
+            } else {
+                // Switch is OFF
+                // Perform actions when the switch is turned off
+            }
+        }
+
+        // Your existing code...
     }
 
-    private fun updateSwitchText(isChecked: Boolean) {
-        if (isChecked) {
-            notificationToggle.text = "On"
-        } else {
-            notificationToggle.text = "Off"
-        }
+    private fun isNotificationPermissionGranted(): Boolean {
+        val notificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        return notificationManager.areNotificationsEnabled()
+    }
+
+    private fun requestNotificationPermission() {
+        val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+        intent.putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
+        startActivity(intent)
+        Toast.makeText(
+            this,
+            "Please grant notification permission for the app",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }
+

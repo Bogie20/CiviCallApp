@@ -4,15 +4,21 @@ package com.example.civicall
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.animation.AnimationUtils
+import android.view.Gravity
+import android.view.WindowManager
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.civicall.CivicEngagementPost.CivicPostFragment
 import com.example.civicall.CivicEngagementPost.Upload_engagement
 import com.example.civicall.databinding.ActivityDashboardBinding
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -20,6 +26,8 @@ import nl.joery.animatedbottombar.AnimatedBottomBar
 
 
 class Dashboard : AppCompatActivity() {
+    private lateinit var bottomSheetFragment: BottomSheetDialogFragment
+
     private lateinit var reference: DatabaseReference
     private lateinit var binding: ActivityDashboardBinding
     private lateinit var firebaseAuth: FirebaseAuth
@@ -31,6 +39,7 @@ class Dashboard : AppCompatActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
         userDataViewModel = ViewModelProvider(this).get(UserDataViewModel::class.java)
@@ -39,6 +48,8 @@ class Dashboard : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         checkUser()
         replaceFragment(CivicPostFragment())
+
+
         binding.bottomBar.setOnTabSelectListener(object : AnimatedBottomBar.OnTabSelectListener {
             override fun onTabSelected(
                 lastIndex: Int,
@@ -48,23 +59,32 @@ class Dashboard : AppCompatActivity() {
             ) {
                 when (newIndex) {
                     0 -> {
-                        binding.titleLarge.text = "Civic Engagement"
+                        binding.titleLarge.text = "Take Action: Join the Cause"
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         replaceFragment(CivicPostFragment())
                     }
                     1 -> {
                         binding.titleLarge.text = "Information Resources"
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         replaceFragment(InformationFragment())
                     }
                     2 -> {
                         binding.titleLarge.text = ""
-                        launchAddEngagementActivity()
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                     }
                     3 -> {
                         binding.titleLarge.text = "Forum"
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         replaceFragment(ForumsFragment())
                     }
                     4 -> {
                         binding.titleLarge.text = "Notifications"
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         replaceFragment(notificationFragment())
                     }
                 }
@@ -72,7 +92,6 @@ class Dashboard : AppCompatActivity() {
             }
 
             override fun onTabReselected(index: Int, tab: AnimatedBottomBar.Tab) {
-                // Handle reselected tab if needed
             }
         })
 
@@ -82,22 +101,56 @@ class Dashboard : AppCompatActivity() {
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
         binding.fab.setOnClickListener {
-            val intent = Intent(this, Upload_engagement::class.java)
-            startActivity(intent)
-            // You can also add any transition animations if needed
+            bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
         }
+
         binding.fab.setOnClickListener {
-            val intent = Intent(this, Upload_engagement::class.java)
-            startActivity(intent)
-            // You can also add any transition animations if needed
+            showOptionDialog()
+        }
+    }
+    private var isOptionDialogShowing = false // Add this variable
+
+    private fun showOptionDialog() {
+        if (isOptionDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val dialogView = layoutInflater.inflate(R.layout.bottom_sheet_filter, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideUp
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Set the dialog position to the bottom
+        val layoutParams = alertDialog.window?.attributes
+        layoutParams?.gravity = Gravity.BOTTOM
+        layoutParams?.width = WindowManager.LayoutParams.MATCH_PARENT
+        alertDialog.window?.attributes = layoutParams
+
+        val civicpost: LinearLayout = dialogView.findViewById(R.id.CivicEngagement)
+
+        alertDialog.setOnDismissListener {
+            isOptionDialogShowing = false
         }
 
+        civicpost.setOnClickListener {
+            alertDialog.dismiss()
+            val intent = Intent(this, Upload_engagement::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
 
+        alertDialog.show()
+        isOptionDialogShowing = true
     }
-    private fun launchAddEngagementActivity() {
-        val intent = Intent(this, add_engagement::class.java)
-        startActivity(intent)
-        // Add any animation transition if needed
+
+    private fun dismissCustomDialog() {
+        if (isOptionDialogShowing) {
+
+            isOptionDialogShowing = false
+        }
     }
     private fun readData(uid: String) {
         reference = FirebaseDatabase.getInstance().getReference("Users")

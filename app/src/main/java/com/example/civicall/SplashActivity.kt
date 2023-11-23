@@ -1,5 +1,6 @@
 package com.example.civicall
 
+import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -42,8 +43,10 @@ class SplashActivity : AppCompatActivity() {
     private fun checkuser() {
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser == null) {
-            // The user is not logged in, so redirect to the Login activity
-            startActivity(Intent(this, Login::class.java))
+
+            val intent = Intent(this, StartSplash::class.java)
+            val options = ActivityOptions.makeCustomAnimation(this, R.anim.fade_in, R.anim.fade_out).toBundle()
+            startActivity(intent, options)
             finish()
         } else {
             val ref = FirebaseDatabase.getInstance().getReference("Users")

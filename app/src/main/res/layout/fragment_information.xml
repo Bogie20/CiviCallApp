@@ -35,27 +35,28 @@
                 android:layout_marginBottom="2dp"
                 android:textColor="@color/white"/>
 
-            <!-- CardView 1 -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardview1"
-                android:layout_width="match_parent"
-                android:layout_height="125dp"
-                app:cardCornerRadius="15dp"
-                app:cardPreventCornerOverlap="true"
-                android:layout_marginTop="10dp">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardview1"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            app:cardCornerRadius="15dp"
+            app:cardPreventCornerOverlap="true"
+            android:layout_marginTop="10dp">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="125dp"
-                    android:background="@drawable/gradientbox"
-                    android:padding="10dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="125dp"
+                android:background="@drawable/gradientbox"
+                android:padding="10dp">
 
                     <TextView
                         android:id="@+id/textViewSub1Title"
                         android:text="Civic Engagement"
                         android:textSize="23dp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginEnd="90dp"
+                        android:maxLines="1"
                         android:layout_height="wrap_content"
                         style="@style/viewParent.headerText.HomeCardTitle" />
 
@@ -64,23 +65,24 @@
                         style="@style/viewParent.headerText.homeCardContent"
                         android:layout_marginTop="13dp"
                         android:textSize="10dp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="90dp"
                         android:layout_below="@id/textViewSub1Title"/>
 
                     <ImageView
                         android:id="@+id/imageView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/civic"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/civicengagement"
                         android:scaleType="fitXY"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardview2"
             android:layout_width="match_parent"
             android:layout_height="125dp"
@@ -99,8 +101,9 @@
                     android:id="@+id/textViewSub2Title"
                     android:text="Disaster Preparedness"
                     android:textSize="20dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="90dp"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
@@ -108,23 +111,24 @@
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:textSize="10dp"
-                    android:layout_width="wrap_content"
+                    android:layout_marginEnd="90dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textViewSub2Title"/>
 
                 <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/disaster"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/areyoupre"
                     android:scaleType="fitXY"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardview3"
             android:layout_width="match_parent"
             android:layout_height="125dp"
@@ -143,32 +147,33 @@
                     android:id="@+id/textViewSub3Title"
                     style="@style/viewParent.headerText.HomeCardTitle"
                     android:text="Survival Tips"
-                    android:layout_width="wrap_content"
+                    android:layout_marginEnd="90dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="23dp" />
 
                 <TextView
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_below="@id/textViewSub3Title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="90dp"
                     android:layout_marginTop="13dp"
                     android:text="&quot;In the midst of survival, our true\n strengths and abilities are revealed.&quot; \n- Les Stroud"
                     android:textSize="10dp" />
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:scaleType="fitXY"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/survive" />
+                    android:src="@drawable/survivaltips" />
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardview4"
             android:layout_width="match_parent"
             android:layout_height="125dp"
@@ -187,7 +192,8 @@
                     android:id="@+id/textViewSub4Title"
                     android:text="Civic Rights &amp; Responsibility"
                     android:textSize="18dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="90dp"
                     android:layout_height="wrap_content"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
@@ -196,22 +202,23 @@
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:textSize="10dp"
-                    android:layout_width="wrap_content"
+                    android:layout_marginEnd="90dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textViewSub4Title"/>
 
                 <ImageView
                     android:id="@+id/imageView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/civicr"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/civicrights"
                     android:scaleType="fitXY"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardview5"
             android:layout_width="match_parent"
             android:layout_height="125dp"
@@ -230,7 +237,8 @@
                     android:id="@+id/textViewSub5Title"
                     android:text="Environmental &amp; Social Issue"
                     android:textSize="18dp"
-                    android:layout_width="wrap_content"
+                    android:layout_marginEnd="90dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
@@ -239,23 +247,24 @@
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:textSize="10dp"
-                    android:layout_width="wrap_content"
+                    android:layout_marginEnd="90dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textViewSub5Title"/>
 
                 <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/environm"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/environmentissue"
                     android:scaleType="fitXY"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardview6"
             android:layout_width="match_parent"
             android:layout_height="125dp"
@@ -274,7 +283,8 @@
                     android:id="@+id/textViewSub6Title"
                     android:text="Campus Governance"
                     android:textSize="18dp"
-                    android:layout_width="wrap_content"
+                    android:layout_marginEnd="90dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
@@ -283,23 +293,24 @@
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:textSize="10dp"
-                    android:layout_width="wrap_content"
+                    android:layout_marginEnd="90dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textViewSub6Title"/>
 
                 <ImageView
                     android:id="@+id/imageView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/campus"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:src="@drawable/campusgov"
                     android:scaleType="fitXY"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardview7"
             android:layout_width="match_parent"
             android:layout_height="125dp"
@@ -318,7 +329,8 @@
                     android:id="@+id/textViewSub7Title"
                     android:text="Public Health Awareness"
                     android:textSize="18dp"
-                    android:layout_width="wrap_content"
+                    android:layout_marginEnd="90dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
@@ -327,23 +339,24 @@
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:textSize="10dp"
-                    android:layout_width="wrap_content"
+                    android:layout_marginEnd="90dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textViewSub7Title"/>
 
                 <ImageView
                     android:id="@+id/imageView7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/campusemerg"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/healthawa"
                     android:scaleType="fitXY"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardview8"
             android:layout_width="match_parent"
             android:layout_height="125dp"
@@ -363,8 +376,9 @@
                     android:id="@+id/textViewSub8Title"
                     android:text="Campus Emergency Contact"
                     android:textSize="18dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="90dp"
                     style="@style/viewParent.headerText.HomeCardTitle" />
 
                 <TextView
@@ -372,21 +386,22 @@
                     style="@style/viewParent.headerText.homeCardContent"
                     android:layout_marginTop="15dp"
                     android:textSize="10dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginEnd="90dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textViewSub8Title"/>
 
                 <ImageView
                     android:id="@+id/imageView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/iamready"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/contactemergen"
                     android:scaleType="fitXY"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true" />
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

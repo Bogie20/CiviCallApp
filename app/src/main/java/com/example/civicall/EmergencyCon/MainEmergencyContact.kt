@@ -1,16 +1,20 @@
 package com.example.civicall.EmergencyCon
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import java.util.*
 
 class MainEmergencyContact : AppCompatActivity() {
 
+    private lateinit var networkUtils: NetworkUtils
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
     private var mList = ArrayList<ContactData>()
@@ -19,7 +23,8 @@ class MainEmergencyContact : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_emergency_contact)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         recyclerView = findViewById(R.id.recyclerView)
         searchView = findViewById(R.id.searchView)
 
@@ -28,7 +33,12 @@ class MainEmergencyContact : AppCompatActivity() {
         addDataToList()
         adapter = MainContactAdapter(mList)
         recyclerView.adapter = adapter
-
+        val backButton: ImageView = findViewById(R.id.backbtn)
+        backButton.setOnClickListener {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
+        }
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -73,4 +83,9 @@ class MainEmergencyContact : AppCompatActivity() {
         mList.add(ContactData("ROSARIO CAMPUS", R.drawable.rosariosymbol))
         mList.add(ContactData("SAN JUAN CAMPUS", R.drawable.sanjuansymbol))
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

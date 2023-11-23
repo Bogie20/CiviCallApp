@@ -45,7 +45,7 @@
         android:id="@+id/headerWelcomeText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome Back"
+        android:text="Start Your Civic Journey"
         android:fontFamily="@font/oleo_script"
         android:textColor="@color/DarkGray"
         android:layout_marginTop="100dp"
@@ -155,16 +155,26 @@
         android:layout_below="@+id/img"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="217dp"
+        android:fontFamily="@font/inter_bold"
         android:layout_marginRight="30dp"
         android:background="@drawable/btn_red_selector"
         android:text="Login"
-        android:textAllCaps="false"
+        android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="25dp">
 
     </Button>
 
-
+    <TextView
+        android:id="@+id/continueWithText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnlogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Or Continue with"
+        android:textSize="15dp"
+        android:textColor="@color/DarkGray" />
 
     <LinearLayout
         android:layout_width="264dp"
@@ -172,18 +182,12 @@
         android:layout_below="@id/btnlogin"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="35dp"
         android:orientation="horizontal">
 
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/google_login_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            />
 
         <Button
-            android:id="@+id/new_googlebtn"
+            android:id="@+id/googlebtn"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:layout_weight="1"

@@ -13,11 +13,17 @@ import android.os.Looper
 import android.text.Editable
 import android.text.InputFilter
 import android.text.InputType
+import android.text.Spannable
+import android.text.SpannableString
 import android.text.TextWatcher
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.util.Patterns
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.CheckedTextView
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -201,10 +207,10 @@ class Register1 : AppCompatActivity() {
             activityRegister1Binding.birthdateTextInputLayout.error = "Date of Birth is Required"
             return false
         } else {
-            val dobParts = birthday.split(" / ")
+            val dobParts = birthday.split("/")
             if (dobParts.size == 3) {
-                val day = dobParts[0].toInt()
-                val month = dobParts[1].toInt()
+                val month = dobParts[0].toInt()
+                val day = dobParts[1].toInt()
                 val year = dobParts[2].toInt()
 
                 val calendar = Calendar.getInstance()
@@ -231,6 +237,7 @@ class Register1 : AppCompatActivity() {
             return true
         }
     }
+
     private fun validateCampus(): Boolean {
         val campus = activityRegister1Binding.campus.text.toString().trim()
 
@@ -307,6 +314,35 @@ class Register1 : AppCompatActivity() {
 
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
+
+        val termsAndPrivacyTextView: TextView = findViewById(R.id.rightTextView)
+
+        // Create a SpannableString
+        val spannableString = SpannableString("I have read and agree to the Terms and Conditions and Privacy Policy")
+
+        // Create ClickableSpan for Terms and Conditions
+        val termsClickableSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                // Handle click for Terms and Conditions
+                startActivity(Intent(this@Register1, TermsAndConditions::class.java))
+            }
+        }
+
+        spannableString.setSpan(termsClickableSpan, 29, 48, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(android.text.style.ForegroundColorSpan(resources.getColor(R.color.colorAccent)), 30, 49, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        // Create ClickableSpan for Privacy Policy
+        val privacyClickableSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                startActivity(Intent(this@Register1, PrivacyAndPolicies::class.java))
+            }
+        }
+
+        spannableString.setSpan(privacyClickableSpan, 54, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString.setSpan(android.text.style.ForegroundColorSpan(resources.getColor(R.color.colorAccent)), 54, spannableString.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        termsAndPrivacyTextView.text = spannableString
+        termsAndPrivacyTextView.movementMethod = LinkMovementMethod.getInstance()
 
         val contactNumber = activityRegister1Binding.Contactline
 
@@ -461,11 +497,12 @@ class Register1 : AppCompatActivity() {
         progressDialog.setTitle("Please wait...")
         progressDialog.setCanceledOnTouchOutside(false)
 
-        activityRegister1Binding.back.setOnClickListener {
+        activityRegister1Binding.backbtn.setOnClickListener {
             val intent = Intent(this, Login::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter,R.anim.animate_fade_exit)
+            onBackPressed()
         }
         val regbtn: Button = findViewById(R.id.Reg)
         regbtn.setOnClickListener {
@@ -487,8 +524,8 @@ class Register1 : AppCompatActivity() {
         birthday.setOnClickListener {
             val datePickerDialog = DatePickerDialog(
                 this,
-                DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                    val dateString = "$dayOfMonth / ${month + 1} / $year"
+                { _, year, month, dayOfMonth ->
+                    val dateString = "${month + 1}/${dayOfMonth}/${year}"
                     birthday.setText(dateString)
                 },
                 Myear,
@@ -498,7 +535,6 @@ class Register1 : AppCompatActivity() {
             datePickerDialog.show()
         }
 
-        // Ang ginagawa nito is habang nag tatype ka nawawala na agad yung error
         fun addTextChangeListenerWithDelay(editText: EditText, validationFunction: () -> Unit, delayMillis: Long) {
             val handler = Handler(Looper.getMainLooper())
 
@@ -530,6 +566,7 @@ class Register1 : AppCompatActivity() {
             activityRegister1Binding.birthdateTextInputLayout.error = null
         }, 500)
     }
+
     private var fname = ""
     private var Mname = ""
     private var lname = ""
@@ -571,12 +608,12 @@ class Register1 : AppCompatActivity() {
         activityRegister1Binding.usercateTextInputLayout.error = null
         activityRegister1Binding.spinnerSex.error = null
 
-        val checkBox = findViewById<CheckBox>(R.id.checkedTextView)
+        val checkedTextView = findViewById<CheckBox>(R.id.checkedTextView)
         val errorMessages = mutableListOf<String>()
         if (!validateFirstName() || !validateMiddleName() || !validateUserCategory() || !validateLastName() || !validateCampus() || !validateGender() || !validateAddress() || !validateBirthday() || !validatePasswordMatch() || !validateEmail() || !validatePassword() || !validateConfirmPassword() || !validateContactNumber()) {
             errorMessages.add("Please provide valid information for the following fields.")
         }
-        else if (!checkBox.isChecked()) {
+        else if (!checkedTextView.isChecked()) {
             errorMessages.add("Please Accept the terms and Condition")
         }
 
@@ -815,14 +852,13 @@ dismissCustomDialog()
         firebaseAuth.createUserWithEmailAndPassword(email, pass)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Account creation success
-                    // Call updateUserInfo to save user info after creating the account
                     updateUserInfo()
-                    // Now, navigate to the Login activity
+
                     val intent = Intent(this, Login::class.java)
-                    intent.putExtra("showSuccessPopup", true) // Set the flag to true
+                    intent.putExtra("showSuccessPopup", true)
                     startActivity(intent)
                     finish()
+                    firebaseAuth.signOut()
                 } else {
                     // Account creation failed
                     val errorMessage = task.exception?.message ?: "Unknown error occurred."
@@ -832,12 +868,13 @@ dismissCustomDialog()
     }
 
 
-    private fun updateUserInfo() {
 
+    private fun updateUserInfo() {
         val searchFragment = CivicPostFragment()
         val args = Bundle()
         args.putString("firstName", fname)
         searchFragment.arguments = args
+
         val timestamp = System.currentTimeMillis()
         val uid = firebaseAuth.uid
 
@@ -855,10 +892,15 @@ dismissCustomDialog()
         hashMap["userType"] = userCategory
         hashMap["timestamp"] = timestamp
         hashMap["campus"] = selectedCampus
+        hashMap["verificationStatus"] = false
+        hashMap["CurrentEngagement"] = 0
+        hashMap["activepts"] = 0
+        hashMap["finishactivity"] = 0
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, searchFragment)
             .commit()
+
         val ref = FirebaseDatabase.getInstance().getReference("Users")
         ref.child(uid!!)
             .setValue(hashMap)
@@ -872,11 +914,8 @@ dismissCustomDialog()
                 showCustomPopupError("Failed Saving User's Info due to ${e.message}")
             }
     }
-    override fun onBackPressed() {
-        super.onBackPressed()
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-    }
+
+
     override fun onDestroy() {
         super.onDestroy()
         networkUtils.cleanup() // Clean up when the activity is destroyed

@@ -8,35 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:909514632764:android:836de5930a5c5fc49e9d39",
-        "android_client_info": {
-          "package_name": "com.example.civicall"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "909514632764-ppm64vs3853gm5lhtbhd51i1sip3fgld.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCooH32tJpCHorztlJK3uYtoK687ZiCDlw"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "909514632764-ppm64vs3853gm5lhtbhd51i1sip3fgld.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:909514632764:android:2cfae0d6b9ea659c9e9d39",
         "android_client_info": {
           "package_name": "com.example.civicall"
@@ -44,7 +15,23 @@
       },
       "oauth_client": [
         {
-          "client_id": "909514632764-ppm64vs3853gm5lhtbhd51i1sip3fgld.apps.googleusercontent.com",
+          "client_id": "909514632764-u3gj4bljhhfb7ue7a3idu205qq467v0e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.civicall",
+            "certificate_hash": "a33572885cb9b5d204aed6e4cdbfe7c859f189d2"
+          }
+        },
+        {
+          "client_id": "909514632764-umlnmg4mjvb0m50oml0qqsnreh58mmah.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.civicall",
+            "certificate_hash": "68a38e8c9041b69c4cbc894f1168c44b2aa8f97e"
+          }
+        },
+        {
+          "client_id": "909514632764-4ht1m97eqbtk7fquo0ne4a4tgtr9hu1a.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -57,7 +44,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "909514632764-ppm64vs3853gm5lhtbhd51i1sip3fgld.apps.googleusercontent.com",
+              "client_id": "909514632764-4ht1m97eqbtk7fquo0ne4a4tgtr9hu1a.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

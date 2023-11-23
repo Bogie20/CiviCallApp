@@ -3,6 +3,8 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+    <string name="app_name1">Sort Filter RecyclerView</string>
+
     <string-array name="user_category">
         <item>Undergraduate Student</item>
         <item>Post-graduate Student</item>
@@ -12,6 +14,11 @@
         <item>Stakeholder</item>
         <item>Non-teaching Staff</item>
         <item>External Volunteer</item>
+    </string-array>
+    <string-array name="payment_category">
+        <item>GCash</item>
+        <item>Paymaya</item>
+        <item>Paypal</item>
     </string-array>
     <string-array name="nstp_category">
         <item>Reserve Officers Training Corps (ROTC)</item>
@@ -32,7 +39,16 @@
         <item>Rosario Campus</item>
         <item>San Juan Campus</item>
         <item>None</item>
-        <!-- Add more campuses here -->
+    </string-array>
+    <string-array name="engagement_category">
+        <item>Tree Planting</item>
+        <item>Fund Raising</item>
+        <item>Donations</item>
+        <item>Clean Up Drive</item>
+        <item>Feeding Program</item>
+        <item>Relief Operations</item>
+        <item>Seminar Training</item>
+        <item>Teaching Literacy</item>
     </string-array>
     <string name="app_name">CiviCall</string>
     <string name="title_activity_menu">Menu</string>
@@ -87,44 +103,24 @@
     <string name="previous">Previous</string>
 
     <string name="lorem_ipsum">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
-        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
-        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
-        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
-        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
-        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
-        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
-        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
-        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
-        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
-        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
-        bibendum, vel congue leo egestas.\n\n
-        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
-        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
-        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
-        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
-        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
-        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
-        est.\n\n
-        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
-        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
-        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
-        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
-        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
-        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
-        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
-        convallis.\n\n
-        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
-        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
-        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
-        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
-        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
-        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
-        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
+      Lorem ipsum dolor sit amet consectetur. Consectetur ultricies metus facilisi est eget amet condimentum
     </string>
 
     <string name="app_name_chatx">ChatX</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="uploadfile">
+
+
+        <u>Upload file</u>
+
+    </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="Retake">
+
+
+        <u>Retake Photo</u>
+
+    </string>
 
     <string name="password">Password</string>
     <string name="email">Email</string>
@@ -155,7 +151,13 @@
     <string name="title_activity_participant_tips">ParticipantTips</string>
     <string name="success">Success</string>
     <string name="makingthemost">Making the Most of your Civic Engagement Experience</string>
-    <string name="agreement">I have read and agree to the Terms of Service and Privacy Policy.</string>
+
 
     <string name="default_web_client_id">AIzaSyCooH32tJpCHorztlJK3uYtoK687ZiCDlw</string>
+    <string name="limitations2">We take the security of your information seriously. We employ industry-standard measures to protect against unauthorized access, alteration, disclosure, or destruction of your personal information.</string>
+    <string name="limitation1">The CiviCall app is designed exclusively for students and alumni of Batangas State University and The National Engineering University.</string>
+    <string name="security">We take the security of your information seriously. We employ industry-standard measures to protect against unauthorized access, alteration, disclosure, or destruction of your personal information.</string>
+    <string name="information">We do not share personal information with third parties unless required for legal reasons, system functionality, or with user consent.</string>
+    <string name="limitation3">Technical issues may arise, affecting user experience.</string>
+    <string name="title_activity_sustainable_development_goals">SustainableDevelopmentGoals</string>
 </resources>

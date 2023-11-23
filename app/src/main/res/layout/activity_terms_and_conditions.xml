@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TermsAndConditions">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/redpink"
+        android:elevation="4dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/backbtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginVertical="8dp"
+            android:contentDescription="Back to Previous"
+            android:src="@drawable/backbtn"
+            android:background="@drawable/highlight_text"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="BackClick" />
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/oleo_script"
+            android:text="TERMS AND CONDITIONS"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/relativeLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/termsTitle1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lexend_bold"
+                    android:padding="2dp"
+                    android:text="CiviCall App Terms And Condition"
+                    android:textColor="@color/black"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/termsTitles"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lexend"
+                    android:padding="2dp"
+                    android:text="Last Updated:09/11/23"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:src="@drawable/civicalllogo" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/termsTitle"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="20dp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/lexend_bold"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Introductions"
+                    android:textSize="22sp"
+                    android:padding="2dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:fontFamily="@font/lexend"
+                    android:lineSpacingExtra="3dp"
+                    android:textColor="@color/background2"
+                    android:id="@+id/textView4"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:text="Welcome to CiviCall, a digital civic engagement platform designed for students and alumni of Batangas State University. By using this application, you agree to abide by the following terms and conditions."
+                    android:textSize="16sp"
+                    android:padding="4dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/useofapp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/lexend_bold"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Use of the App"
+                    android:textSize="22sp"
+                    android:padding="2dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:fontFamily="@font/lexend"
+                    android:lineSpacingExtra="3dp"
+                    android:textColor="@color/background2"
+                    android:id="@+id/textView5"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:text="The CiviCall app is exclusively for Batangas State University TNEU. Any other users are not eligible to use the app unless it is allowed by the university."
+                    android:textSize="16sp"
+                    android:padding="4dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:fontFamily="@font/lexend"
+                    android:lineSpacingExtra="3dp"
+                    android:id="@+id/textView6"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="@color/background2"                    android:layout_weight="1"
+
+                    android:text="Users must register with their university credentials to access and use the app."
+                    android:textSize="16sp"
+                    android:padding="4dp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:fontFamily="@font/lexend"
+                    android:lineSpacingExtra="3dp"
+                    android:id="@+id/textView7"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="@color/background2"                    android:layout_weight="1"
+                    android:text="Users are responsible for their actions, posts, and interactions within the app. The app administrators hold the right to moderate and take action against any content deemed inappropriate."
+                    android:textSize="16sp"
+                    android:padding="4dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/title3"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/lexend_bold"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Features and Functions"
+                    android:textSize="22sp"
+                    android:padding="2dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:fontFamily="@font/lexend"
+                    android:lineSpacingExtra="3dp"
+                    android:id="@+id/textView8"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="@color/background2"
+                    android:layout_weight="1"
+                    android:text="CiviCall offers various features such as civic engagement opportunities, forums, notifications, and educational resources."
+                    android:textSize="16sp"
+                    android:padding="4dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:fontFamily="@font/lexend"
+                    android:lineSpacingExtra="3dp"
+                    android:id="@+id/textView9"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="@color/background2"
+                    android:layout_weight="1"
+                    android:text="Users can post, apply to, or join civic engagements, participate in forum discussions, give feedback, and access educational resources."
+                    android:textSize="16sp"
+                    android:padding="4dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:fontFamily="@font/lexend"
+                    android:lineSpacingExtra="3dp"
+                    android:id="@+id/textView10"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/background2"
+                    android:text="Super Admin and Sub-Admins are responsible for user management, forum moderation, post validation, and managing civic engagement opportunities."
+                    android:textSize="16sp"
+                    android:padding="4dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/title4"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/lexend_bold"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Liabilities and Limitations"
+                    android:textSize="22sp"
+                    android:padding="2dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:fontFamily="@font/lexend"
+                    android:lineSpacingExtra="3dp"
+                    android:id="@+id/textView11"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="@color/background2"
+                    android:layout_weight="1"
+
+
+                    android:text="The CiviCall app is designed exclusively for Batangas State University students and alumni. It may face technical issues or limitations, including connectivity requirements and compatibility limitations (only available on Android devices)."
+                    android:textSize="16sp"
+                    android:padding="4dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:fontFamily="@font/lexend"
+                    android:lineSpacingExtra="3dp"
+                    android:id="@+id/textView14"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/background2"
+                    android:text="Administrators hold the right to validate, reject, or archive user-generated content, and may take action against content that violates the app's guidelines."
+                    android:textSize="16sp"
+                    android:padding="4dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/title5"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/lexend_bold"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Disclaimers"
+                    android:textSize="22sp"
+                    android:padding="2dp" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:fontFamily="@font/lexend"
+                    android:lineSpacingExtra="3dp"
+                    android:id="@+id/textView13"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/background2"
+                    android:text="Users access and use CiviCall at their own risk. The app developers are not liable for any direct or indirect damages resulting from the app's use."
+                    android:textSize="16sp"
+                    android:padding="4dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:fontFamily="@font/lexend"
+                    android:lineSpacingExtra="3dp"
+                    android:id="@+id/textView15"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/background2"
+                    android:text="The app's availability is subject to technical constraints and may not be uninterrupted, timely, or error-free."
+                    android:textSize="16sp"
+                    android:padding="4dp" />
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/title6"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/lexend_bold"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Termination and Modifications"
+                    android:textSize="22sp"
+                    android:padding="2dp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:fontFamily="@font/lexend"
+                    android:lineSpacingExtra="3dp"
+                    android:id="@+id/textView16"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/background2"
+                    android:text="The app administrators reserve the right to terminate or suspend user accounts for violations of the app's terms and guidelines."
+                    android:textSize="16sp"
+                    android:padding="4dp" />
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:fontFamily="@font/lexend"
+                    android:lineSpacingExtra="3dp"
+                    android:id="@+id/textView17"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="@color/background2"
+                    android:layout_weight="1"
+
+                    android:text="CiviCall reserves the right to update or modify these terms and conditions. Users will be notified of any changes."
+                    android:textSize="16sp"
+                    android:padding="4dp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/title7"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/lexend_bold"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Acceptance of Terms"
+                    android:textSize="22sp"
+                    android:padding="2dp" />
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:fontFamily="@font/lexend"
+                    android:lineSpacingExtra="3dp"
+                    android:id="@+id/textView18"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/background2"
+                    android:text="CiviCall reserves the right to update or modify these terms and conditions. Users will be notified of any changes."
+                    android:textSize="16sp"
+                    android:padding="4dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/title8"
+                    android:layout_marginEnd="16dp"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/lexend_bold"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Contact Information"
+                    android:textSize="22sp"
+                    android:padding="2dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/background2"
+                    android:layout_marginBottom="30dp"
+                    android:text="For any queries or concerns regarding these terms, contact us at [09952969073]"
+                    android:textSize="16sp"
+                    android:padding="4dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="16dp">
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
