@@ -205,9 +205,10 @@ class CivicPostFragment : Fragment() {
             alertDialog.dismiss()
         }
         allCategory.setOnClickListener {
-            adapter.searchDataList(dataList)
+            filterByCategory("")
             alertDialog.dismiss()
         }
+
 
         alertDialog.setOnDismissListener{
             isFilterDialogShowing = false
@@ -224,14 +225,20 @@ class CivicPostFragment : Fragment() {
         }
     }
     private fun filterByCategory(category: String) {
-        val filteredList = dataList.filter { it.category == category }
-
-        if (filteredList.isEmpty()) {
-            showNoPostsMessage(category)
-        } else {
+        if (category.isEmpty()) {
+            // Show all categories
+            adapter.searchDataList(dataList)
             hideNoPostsMessage()
-            val filteredArrayList = ArrayList<DataClass>(filteredList)
-            adapter.searchDataList(filteredArrayList)
+        } else {
+            val filteredList = dataList.filter { it.category == category }
+
+            if (filteredList.isEmpty()) {
+                showNoPostsMessage(category)
+            } else {
+                hideNoPostsMessage()
+                val filteredArrayList = ArrayList<DataClass>(filteredList)
+                adapter.searchDataList(filteredArrayList)
+            }
         }
     }
 

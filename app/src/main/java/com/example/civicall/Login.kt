@@ -653,9 +653,6 @@ class Login : AppCompatActivity() {
        startActivityForResult(signInIntent, Req_Code, null)
    }
 
-
-
-
    @Suppress("DEPRECATION")
    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
        super.onActivityResult(requestCode, resultCode, data)
