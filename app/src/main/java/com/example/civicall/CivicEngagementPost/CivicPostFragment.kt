@@ -37,7 +37,8 @@ class CivicPostFragment : Fragment() {
     private lateinit var adapter: PostAdapter
     private lateinit var searchView: SearchView
     private lateinit var rootView: View
-
+    private lateinit var noPostsImage: ImageView
+    private lateinit var noPostsText: TextView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,7 +49,8 @@ class CivicPostFragment : Fragment() {
         recyclerView = rootView.findViewById(R.id.recyclerView)
         searchView = rootView.findViewById(R.id.search)
         searchView.clearFocus()
-
+        noPostsImage = rootView.findViewById(R.id.noPostsImage)
+        noPostsText = rootView.findViewById(R.id.noPostsText)
         val filterIcon = rootView.findViewById<ImageView>(R.id.filterIcon)
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
 
@@ -203,8 +205,10 @@ class CivicPostFragment : Fragment() {
             alertDialog.dismiss()
         }
         allCategory.setOnClickListener {
+            adapter.searchDataList(dataList)
             alertDialog.dismiss()
         }
+
         alertDialog.setOnDismissListener{
             isFilterDialogShowing = false
         }
@@ -219,13 +223,32 @@ class CivicPostFragment : Fragment() {
             isFilterDialogShowing = false
         }
     }
-    // Update the filterByCategory function
     private fun filterByCategory(category: String) {
         val filteredList = dataList.filter { it.category == category }
 
-        val filteredArrayList = ArrayList<DataClass>(filteredList)
-        adapter.searchDataList(filteredArrayList)
+        if (filteredList.isEmpty()) {
+            showNoPostsMessage(category)
+        } else {
+            hideNoPostsMessage()
+            val filteredArrayList = ArrayList<DataClass>(filteredList)
+            adapter.searchDataList(filteredArrayList)
+        }
+    }
 
+
+    private fun showNoPostsMessage(category: String) {
+        noPostsImage.setImageResource(R.drawable.nocategory)
+        noPostsText.text = "Sorry, the category \"$category\" is currently unavailable."
+        noPostsImage.visibility = View.VISIBLE
+        noPostsText.visibility = View.VISIBLE
+        recyclerView.visibility = View.GONE
+    }
+
+
+    private fun hideNoPostsMessage() {
+        noPostsImage.visibility = View.GONE
+        noPostsText.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
     }
 
     private fun searchList(text: String) {

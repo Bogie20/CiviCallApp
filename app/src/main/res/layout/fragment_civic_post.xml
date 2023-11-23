@@ -16,6 +16,7 @@
         android:layout_marginEnd="20dp"
         app:iconifiedByDefault="false"
         app:searchHintIcon="@null"
+        app:queryBackground="@null"
         android:backgroundTint="#FAF9F6"
         app:queryHint="Search..."
         android:focusable="false"
@@ -44,28 +45,38 @@
         android:layout_height="match_parent"
         android:layout_marginHorizontal="8dp"
         android:layout_below="@id/search"
+        android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+
     <ImageView
         android:id="@+id/noPostsImage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:src="@drawable/img_6"
+        android:layout_height="340dp"
+        android:layout_below="@id/search"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/posting"
         android:visibility="gone"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search" />
 
     <TextView
         android:id="@+id/noPostsText"
-        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/noPostsImage"
-        android:textColor="@color/white"
-        android:fontFamily="@font/lexend_bold"
+        android:layout_below="@+id/noPostsImage"
         android:layout_centerHorizontal="true"
-        android:text="No posts found."
+        android:layout_marginTop="1dp"
+        android:fontFamily="@font/lexend_bold"
+        android:gravity="center"
+        android:layout_marginHorizontal="10dp"
+        android:text="Where posts vanish, stories emerge. Your narrative begins here."
+        android:textColor="@color/white"
+        android:textSize="19sp"
         android:visibility="gone" />
+
 </RelativeLayout>
