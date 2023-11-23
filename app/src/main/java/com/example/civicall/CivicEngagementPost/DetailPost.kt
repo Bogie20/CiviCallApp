@@ -540,7 +540,6 @@ class DetailPost : AppCompatActivity() {
                                             "timestamp" to timestamp
                                         )
                                     )
-
                                     transparencyImageRef.child("contributionStatus").addValueEventListener(object : ValueEventListener {
                                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                                             val contributionStatus = dataSnapshot.getValue(Boolean::class.java) ?: false
