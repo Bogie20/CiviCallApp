@@ -554,6 +554,9 @@ class DetailPost : AppCompatActivity() {
                                                     override fun onDataChange(participantsSnapshot: DataSnapshot) {
                                                         // Update the "finishactivity" field in the "Users" node
                                                         updateUserFinishActivity(currentUserUid)
+
+                                                        // Decrease the "CurrentEngagement" in the "Users" node
+                                                        decreaseUserCurrentEngagement(currentUserUid)
                                                     }
 
                                                     override fun onCancelled(databaseError: DatabaseError) {
@@ -652,7 +655,21 @@ class DetailPost : AppCompatActivity() {
             }
         })
     }
+    private fun decreaseUserCurrentEngagement(uid: String) {
+        val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+        userRef.child("CurrentEngagement").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val currentEngagement = dataSnapshot.getValue(Int::class.java) ?: 0
+                if (currentEngagement > 0) {
+                    userRef.child("CurrentEngagement").setValue(currentEngagement - 1)
+                }
+            }
 
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle onCancelled
+            }
+        })
+    }
 
     private fun checkAndRequestPermissions() {
         if (ContextCompat.checkSelfPermission(
@@ -761,10 +778,14 @@ class DetailPost : AppCompatActivity() {
                             val isJoined = dataSnapshot.getValue(Boolean::class.java) ?: false
 
                             if (isJoined) {
-
+                                // The value is true, now update activepoints in "Users" node
                                 incrementActivePointsForUser(currentUserId)
 
+                                // Update finishactivity in "Users" node
                                 updateUserFinishActivity(currentUserId)
+
+
+                                decreaseUserCurrentEngagement(currentUserId)
 
                                 // Remove the ValueEventListener to avoid unnecessary updates
                                 participantsReference.removeEventListener(this)
@@ -785,6 +806,7 @@ class DetailPost : AppCompatActivity() {
             showJoinPopupSuccess()
             joinPost()
         }
+
 
         cancelBtn.text = "Cancel"
         cancelBtn.setOnClickListener {
