@@ -25,7 +25,6 @@ import com.squareup.picasso.Picasso
 
 class MainMenu : AppCompatActivity() {
 
-    private lateinit var BackClick: ImageView
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var binding: ActivityMainmenuBinding
@@ -128,11 +127,11 @@ class MainMenu : AppCompatActivity() {
             val intent = Intent(this, Feedback::class.java)
             startActivity(intent)
         }
-        calendar.setOnClickListener {
-            // Handle click for Feedback menu item
-            val intent = Intent(this, EventCalendar::class.java)
-            startActivity(intent)
-        }
+//        calendar.setOnClickListener {
+//            // Handle click for Feedback menu item
+//            val intent = Intent(this, EventCalendar::class.java)
+//            startActivity(intent)
+//        }
         editProfileCardView.setOnClickListener {
             val intent = Intent(this, ProfileDetails::class.java)
             startActivity(intent)

@@ -68,10 +68,12 @@
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:fontFamily="@font/oleo_script"
                 android:text="Sign-Up Now and Be a Part of Change"
                 android:textColor="@color/black"
-                android:textSize="23dp" />
+                android:textSize="22dp" />
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                     android:id="@+id/fnameTextInputLayout"
@@ -80,9 +82,7 @@
                     android:elevation="80dp"
                     android:autofillHints="name"
                     app:hintTextColor="@color/DarkGray"
-                    android:layout_marginTop="20dp"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="80"
+                   android:layout_marginVertical="12dp"
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -108,9 +108,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:hintTextColor="@color/DarkGray"
-                app:counterEnabled="true"
-                android:layout_marginTop="10dp"
-                app:counterMaxLength="80">
+                android:layout_marginVertical="12dp"
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Mname"
@@ -134,10 +133,8 @@
                 android:id="@+id/lastNameTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:hintTextColor="@color/DarkGray"
-                app:counterEnabled="true"
-                android:layout_marginTop="10dp"
-                app:counterMaxLength="80">
+                android:layout_marginVertical="12dp"
+                app:hintTextColor="@color/DarkGray">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Lname"
@@ -162,11 +159,8 @@
                 android:id="@+id/addressTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="50dp"
                 app:hintTextColor="@color/DarkGray"
-                app:counterEnabled="true"
-                android:layout_marginTop="10dp"
-                app:counterMaxLength="255">
+                android:layout_marginVertical="12dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/address"
@@ -193,7 +187,7 @@
                 android:layout_height="wrap_content"
                 app:hintTextColor="@color/DarkGray"
                 app:counterEnabled="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 app:counterMaxLength="11">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Contactline"
@@ -219,9 +213,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Campus"
                 app:helperTextTextColor="@color/red"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="10dp"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginVertical="12dp">
                 <AutoCompleteTextView
                     android:id="@+id/campus"
                     android:layout_width="match_parent"
@@ -236,9 +228,7 @@
                 android:layout_height="wrap_content"
                 android:hint="User Category"
                 app:helperTextTextColor="@color/red"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="10dp"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginVertical="12dp">
                 <AutoCompleteTextView
                     android:id="@+id/usercategory"
                     android:layout_width="match_parent"
@@ -248,8 +238,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="15dp"
+                android:layout_marginVertical="10dp"
                 >
 
             <com.google.android.material.textfield.TextInputLayout
@@ -258,9 +247,7 @@
                 android:layout_width="200dp"
                 android:layout_marginEnd="15dp"
                 android:layout_height="wrap_content"
-                android:hint="Date of Birth"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:hint="Date of Birth">
                 <AutoCompleteTextView
                     android:id="@+id/birthdate"
                     android:layout_width="match_parent"
@@ -291,11 +278,8 @@
                 android:id="@+id/emailTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="50dp"
                 app:hintTextColor="@color/DarkGray"
-                app:counterEnabled="true"
-                app:counterMaxLength="320"
-                android:layout_marginTop="15dp">
+                android:layout_marginVertical="12dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Emailline"
@@ -323,9 +307,7 @@
                 android:layout_height="wrap_content"
                 app:passwordToggleEnabled="true"
                 app:hintTextColor="@color/DarkGray"
-                app:counterEnabled="true"
-                android:layout_marginTop="10dp"
-                app:counterMaxLength="128">
+                android:layout_marginVertical="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/pass"
@@ -350,9 +332,7 @@
                 android:layout_height="wrap_content"
                 app:passwordToggleEnabled="true"
                 app:hintTextColor="@color/DarkGray"
-                app:counterEnabled="true"
-                android:layout_marginTop="10dp"
-                app:counterMaxLength="128">
+                android:layout_marginVertical="12dp">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/confirmPass"
                     android:layout_width="match_parent"

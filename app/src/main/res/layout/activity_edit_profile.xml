@@ -186,9 +186,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="name"
                 android:elevation="80dp"
-                app:counterMaxLength="80"
-                app:counterTextColor="@color/white"
-                app:counterEnabled="true"
+                android:layout_marginVertical="10dp"
                 app:hintTextColor="@color/DarkGray">
 
 
@@ -225,10 +223,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="name"
-                app:counterMaxLength="80"
-                app:counterTextColor="@color/white"
-                app:counterEnabled="true"
-                android:elevation="80dp">
+                android:layout_marginVertical="10dp"
+                app:counterTextColor="@color/white">
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -263,9 +259,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:counterMaxLength="80"
                 app:counterTextColor="@color/white"
-                app:counterEnabled="true">
+                android:layout_marginVertical="10dp">
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -301,10 +296,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:counterMaxLength="255"
                 app:counterTextColor="@color/white"
-                app:counterEnabled="true"
-                android:elevation="50dp">
+                android:layout_marginVertical="10dp">
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -342,9 +335,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:counterMaxLength="15"
-                app:counterTextColor="@color/white"
-                app:counterEnabled="true">
+                app:counterTextColor="@color/white">
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -380,8 +371,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginVertical="5dp">
                 <AutoCompleteTextView
                     android:id="@+id/usercategory"
                     android:layout_width="match_parent"
@@ -407,6 +397,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
                 <AutoCompleteTextView
@@ -421,8 +412,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginVertical="7dp">
 
                 <LinearLayout
                     android:layout_width="60dp"
@@ -508,6 +498,7 @@
                 android:layout_height="wrap_content"
                 android:text="NSTP Program:"
                 android:textSize="20sp"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/white_70"
@@ -518,9 +509,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginVertical="10dp">
 
                 <AutoCompleteTextView
                     android:id="@+id/nstp"
@@ -546,9 +535,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:counterMaxLength="15"
-                app:counterTextColor="@color/white"
-                app:counterEnabled="true">
+                android:layout_marginVertical="10dp"
+                app:counterTextColor="@color/white">
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -582,9 +570,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:counterMaxLength="80"
                 app:counterTextColor="@color/white"
-                app:counterEnabled="true">
+                android:layout_marginVertical="10dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Course"
@@ -618,10 +605,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="300dp"
-                app:counterMaxLength="10"
-                app:counterTextColor="@color/white"
-                app:counterEnabled="true">
-
+                android:layout_marginTop="10dp"
+                app:counterTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/SrCode"
