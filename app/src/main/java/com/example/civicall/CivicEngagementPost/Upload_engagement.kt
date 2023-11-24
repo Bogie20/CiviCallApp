@@ -201,7 +201,8 @@ class Upload_engagement : AppCompatActivity() {
             }
         }
     }
-        private var isAlreadyJoinDialogShowing = false
+
+    private var isAlreadyJoinDialogShowing = false
 
     private fun showMessage(
         message: String,
@@ -216,7 +217,8 @@ class Upload_engagement : AppCompatActivity() {
         dismissCustomDialog()
 
         // Use the custom layout resource ID if provided, otherwise use the default
-        val dialogView = layoutInflater.inflate(customDialogLayoutResId ?: R.layout.dialog_happyface, null)
+        val dialogView =
+            layoutInflater.inflate(customDialogLayoutResId ?: R.layout.dialog_happyface, null)
 
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
@@ -284,7 +286,7 @@ class Upload_engagement : AppCompatActivity() {
             isSaveConfirmationDialogShowing = false
             alertDialog.dismiss()
         }
-        alertDialog.setOnDismissListener{
+        alertDialog.setOnDismissListener {
             isSaveConfirmationDialogShowing = false
         }
 
@@ -299,7 +301,8 @@ class Upload_engagement : AppCompatActivity() {
 
         }
     }
-        private fun showDateTimePicker(editText: EditText, startDate: Calendar?) {
+
+    private fun showDateTimePicker(editText: EditText, startDate: Calendar?) {
         val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
         dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
@@ -441,7 +444,9 @@ class Upload_engagement : AppCompatActivity() {
         val activepoints = uploadActivePoints.text.toString().toInt()
         val campus = binding.uploadCampus.text.toString()
         val category = binding.uploadCategory.text.toString()
-        val fundcollected = if (uploadFundCollected.text.isNullOrBlank()) 0.0 else uploadFundCollected.text.toString().toDouble()
+        val fundcollected =
+            if (uploadFundCollected.text.isNullOrBlank()) 0.0 else uploadFundCollected.text.toString()
+                .toDouble()
 
         val formattedFundCollected = String.format("%.2f", fundcollected)
         val paymentmethod = binding.uploadPaymentMethod.text.toString()
@@ -455,49 +460,53 @@ class Upload_engagement : AppCompatActivity() {
         val uploadersId = user?.uid
 
         if (uploadersId != null) {
-            val dataClass = DataClass(
-                uploadersId,
-                category,
-                title,
-                startdate,
-                enddate,
-                location,
-                imageURL!!,
-                campus,
-                objective,
-                introduction,
-                facilitator,
-                facilitatorinfo,
-                instruction,
-                targetparty,
-                activepoints,
-                paymentmethod,
-                paymentrecipient,
-                formattedFundCollected.toDouble(),
-                verificationStatus
-            )
+            val postKey =
+                FirebaseDatabase.getInstance().getReference("Upload Engagement").push().key
 
-            val baseKey = uploadTitle.text.toString()
+            if (postKey != null) {
+                val dataClass = DataClass(
+                    uploadersId,
+                    category,
+                    title,
+                    startdate,
+                    enddate,
+                    location,
+                    imageURL!!,
+                    campus,
+                    objective,
+                    introduction,
+                    facilitator,
+                    facilitatorinfo,
+                    instruction,
+                    targetparty,
+                    activepoints,
+                    paymentmethod,
+                    paymentrecipient,
+                    formattedFundCollected.toDouble(),
+                    verificationStatus
+                )
 
-            val timestamp = System.currentTimeMillis().toString()
-
-            val postKey = "$baseKey-$timestamp"
-
-            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
-                .setValue(dataClass)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(this@Upload_engagement, "Success", Toast.LENGTH_SHORT).show()
-                        finish()
+                FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
+                    .setValue(dataClass)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(this@Upload_engagement, "Success", Toast.LENGTH_SHORT)
+                                .show()
+                            finish()
+                        }
                     }
-                }
-                .addOnFailureListener { e ->
-                    Toast.makeText(this@Upload_engagement, e.message.toString(), Toast.LENGTH_SHORT)
-                        .show()
-                }
-
+                    .addOnFailureListener { e ->
+                        Toast.makeText(
+                            this@Upload_engagement,
+                            e.message.toString(),
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+            }
         }
     }
+
     override fun onDestroy() {
         super.onDestroy()
         networkUtils.cleanup()

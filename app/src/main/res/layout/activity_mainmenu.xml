@@ -182,23 +182,6 @@
         app:layout_constraintTop_toBottomOf="@id/verification" />
 
     <TextView
-        android:id="@+id/Engagement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/menu_item_background"
-        android:drawableStart="@drawable/vol"
-        android:drawablePadding="8dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:text="CIVIC ENGAGEMENTS"
-
-        android:textColor="@android:color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/calendar" />
-
-    <TextView
         android:id="@+id/feedback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -212,7 +195,7 @@
         android:text="FEEDBACK"
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Engagement" />
+        app:layout_constraintTop_toBottomOf="@id/calendar" />
 
     <TextView
         android:id="@+id/Setting"

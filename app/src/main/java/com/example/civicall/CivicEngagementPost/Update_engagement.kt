@@ -360,13 +360,8 @@ class Update_engagement: AppCompatActivity() {
         objective = updateObjective.text.toString()
         instruction = updateInstruction.text.toString()
         introduction = updateIntro.text.toString()
-        val fundCollectedText = updateFundCollected.text.toString().trim()
+        val fundcollected = if (updateFundCollected.text.isNullOrBlank()) 0.0 else updateFundCollected.text.toString().toDouble()
 
-        fundcollected = if (fundCollectedText.isNotEmpty()) {
-            fundCollectedText.toDouble()
-        } else {
-            0.0
-        }
 
         val user = FirebaseAuth.getInstance().currentUser
         val uploadersId = user?.uid
