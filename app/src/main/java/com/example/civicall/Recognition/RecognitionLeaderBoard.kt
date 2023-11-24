@@ -1,9 +1,12 @@
 package com.example.civicall.Recognition
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.civicall.MainMenu
 import com.google.firebase.database.*
 import com.example.civicall.R
 
@@ -25,7 +28,15 @@ class RecognitionLeaderBoard : AppCompatActivity() {
         userList = mutableListOf()
         leaderboardAdapter = RecognitionAdapter(this, userList)
         recyclerView.adapter = leaderboardAdapter
+        val backbtn: ImageView = findViewById(R.id.backbtn)
 
+
+        backbtn.setOnClickListener {
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            onBackPressed()
+        }
         databaseReference = FirebaseDatabase.getInstance().reference.child("Users")
 
         databaseReference.orderByChild("activepts").addListenerForSingleValueEvent(object :

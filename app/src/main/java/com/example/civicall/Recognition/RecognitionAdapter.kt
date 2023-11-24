@@ -25,27 +25,30 @@ class RecognitionAdapter(private val context: Context, private val userList: Lis
         val user = userList[position]
 
         // Load image using Glide or any other image loading library
-        Glide.with(context).load(user.ImageProfile).into(holder.profilePic)
+        Glide.with(context)
+            .load(user.ImageProfile)
+            .placeholder(R.drawable.user)
+            .error(R.drawable.user)
+            .into(holder.profilePic)
 
         holder.nameRec.text = "${user.firstname} ${user.lastname}"
         holder.activePts.text = "${user.activepts} pts"
 
-        // Set the ranking number
-        holder.rankingNum.text = (position + 1).toString()
-
-        // Change the text color for the top 10 rankings to gold
+        // Set the ranking number only for top 10
         if (position < 10) {
+            holder.rankingNum.text = (position + 1).toString()
+            holder.rankingNum.visibility = View.VISIBLE
+            // Change the text color for the top 10 rankings to gold
             holder.rankingNum.setTextColor(ContextCompat.getColor(context, R.color.softGoldColor))
         } else {
-            // Reset the text color for other rankings
-            holder.rankingNum.setTextColor(ContextCompat.getColor(context, R.color.DarkGray))
+            // Hide ranking number for other rankings
+            holder.rankingNum.visibility = View.INVISIBLE
         }
 
-        // Set badge image based on activepts range
-        when (user.activepts) {
-            in 0..300 -> holder.badgeImageView.setImageResource(R.drawable.civicalllogo)
-            in 301..1000 -> holder.badgeImageView.setImageResource(R.drawable.landslide)
-            else -> holder.badgeImageView.setImageResource(R.drawable.batanggolden)
+        when {
+            user.activepts in 0..300 -> holder.badgeImageView.setImageResource(R.drawable.bronzes)
+            user.activepts in 301..999 -> holder.badgeImageView.setImageResource(R.drawable.silver)
+            else -> holder.badgeImageView.setImageResource(R.drawable.gold)
         }
     }
 
@@ -61,6 +64,3 @@ class RecognitionAdapter(private val context: Context, private val userList: Lis
         val badgeImageView: ImageView = itemView.findViewById(R.id.badge_25)
     }
 }
-
-
-
