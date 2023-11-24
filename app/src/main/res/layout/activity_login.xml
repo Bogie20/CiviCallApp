@@ -83,6 +83,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             app:hintTextColor="@color/DarkGray"
+            android:autofillHints="emailAddress"
             android:layout_marginTop="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -113,6 +114,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             app:passwordToggleEnabled="true"
+            android:autofillHints="password"
             app:hintTextColor="@color/DarkGray">
 
             <com.google.android.material.textfield.TextInputEditText

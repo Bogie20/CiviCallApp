@@ -189,7 +189,6 @@
                 android:layout_marginVertical="10dp"
                 app:hintTextColor="@color/DarkGray">
 
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/fname"
                     android:layout_width="match_parent"
@@ -204,8 +203,8 @@
                     android:paddingStart="20dp"
                     android:paddingEnd="30dp" />
 
-
             </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:id="@+id/label2"
                 android:layout_width="wrap_content"
@@ -263,6 +262,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:counterTextColor="@color/white"
+                android:autofillHints="name"
                 android:layout_marginVertical="10dp">
 
 

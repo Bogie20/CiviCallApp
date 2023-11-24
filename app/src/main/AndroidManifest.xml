@@ -14,16 +14,13 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-feature android:name="android.hardware.camera.any" />
-<!--        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"-->
-<!--            android:maxSdkVersion="32" />-->
-<!--    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
-<!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
-
-<!--        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"-->
-<!--            android:maxSdkVersion="32"-->
-<!--            tools:ignore="ScopedStorage" />-->
-
+    <uses-feature android:name="android.hardware.camera.any" /> <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" -->
+    <!-- android:maxSdkVersion="32" /> -->
+    <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> -->
+    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
+    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" -->
+    <!-- android:maxSdkVersion="32" -->
+    <!-- tools:ignore="ScopedStorage" /> -->
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
@@ -45,15 +42,16 @@
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
         <activity
+            android:name=".Recognition.RecognitionLeaderBoard"
+            android:exported="true" />
+        <activity
             android:name=".Notification.NotificationOne"
             android:exported="false" />
         <activity
             android:name=".Notification.Notifications"
-            android:exported="true" />
-<!--        <activity-->
-<!--            android:name=".CalendarView.CalendarEvents"-->
-<!--            android:exported="true" />-->
-
+            android:exported="true" /> <!-- <activity -->
+        <!-- android:name=".CalendarView.CalendarEvents" -->
+        <!-- android:exported="true" /> -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.civicall.fileprovider"
@@ -68,19 +66,10 @@
             android:name=".Otherproblem"
             android:exported="true" />
         <activity
-            android:name=".Userinterface"
-            android:exported="true" />
-        <activity
             android:name=".TechnicalIssueReportProblems"
             android:exported="true" />
         <activity
             android:name=".Reportproblems"
-            android:exported="true" />
-        <activity
-            android:name=".GoogleSignOut"
-            android:exported="true" />
-        <activity
-            android:name=".GoogleSignin"
             android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.TenSustainableGoals"
@@ -102,9 +91,6 @@
             android:exported="true" />
         <activity
             android:name=".AccountVerification.UploadVerificationFile"
-            android:exported="true" />
-        <activity
-            android:name=".AccountVerification.UploadPhoto"
             android:exported="true" />
         <activity
             android:name=".ChangePassword"

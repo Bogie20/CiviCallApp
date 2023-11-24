@@ -91,12 +91,12 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
                         holder.recTitle.setCompoundDrawablesWithIntrinsicBounds(
                             0,
                             0,
-                            R.drawable.verificationtrue_icon,
+                            R.drawable.verifiedalready,
                             0
                         )
                         // Tint the drawable for verified posts with the 'verified' color
                         holder.recTitle.compoundDrawables[2]?.setColorFilter(
-                            ContextCompat.getColor(context, R.color.verified),
+                            ContextCompat.getColor(context, R.color.verifiedblue),
                             PorterDuff.Mode.SRC_IN
                         )
                     }
@@ -105,7 +105,7 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
                 e.printStackTrace()
             }
         } else {
-            holder.recTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.notverifiedshield, 0)
+            holder.recTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.notveri, 0)
             // Tint the drawable for unverified posts with the 'unverified' color
             holder.recTitle.compoundDrawables[2]?.setColorFilter(
                 ContextCompat.getColor(context, R.color.unverified),
