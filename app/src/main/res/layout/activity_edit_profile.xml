@@ -161,8 +161,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginHorizontal="10dp"
             android:orientation="vertical"
             android:paddingHorizontal="1dp">
 
@@ -173,6 +172,7 @@
                 android:layout_height="wrap_content"
                 android:text="First Name:"
                 android:textSize="20sp"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/white_70"
@@ -214,6 +214,8 @@
                 android:textSize="20sp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
                 />
@@ -251,6 +253,7 @@
                 android:textSize="20sp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
                 />
@@ -288,6 +291,7 @@
                 android:textSize="20sp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
                 />
@@ -327,6 +331,7 @@
                 android:textSize="20sp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
                 />
@@ -335,7 +340,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:counterTextColor="@color/white">
+                app:counterTextColor="@color/white"
+                android:layout_marginVertical="10dp">
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -363,6 +369,7 @@
                 android:textSize="20sp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
                 />
@@ -371,7 +378,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp">
+                android:layout_marginVertical="10dp">
                 <AutoCompleteTextView
                     android:id="@+id/usercategory"
                     android:layout_width="match_parent"
@@ -386,9 +393,9 @@
                 android:layout_height="wrap_content"
                 android:text="Campus:"
                 android:textSize="20sp"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
                 />
@@ -428,7 +435,7 @@
                         android:textSize="20sp"
                         android:layout_marginStart="5dp"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:textColor="@color/white_70"
                         android:textStyle="bold"
                         />
@@ -468,7 +475,7 @@
                         android:textSize="20sp"
                         android:layout_marginStart="5dp"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:textColor="@color/white_70"
                         android:textStyle="bold"
                         />
@@ -498,9 +505,9 @@
                 android:layout_height="wrap_content"
                 android:text="NSTP Program:"
                 android:textSize="20sp"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="8dp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
                 />
@@ -525,6 +532,7 @@
                 android:layout_height="wrap_content"
                 android:text="No. in Case of Emergency:"
                 android:textSize="20sp"
+                android:layout_marginTop="5dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/white_70"
@@ -562,6 +570,7 @@
                 android:textSize="20sp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
                 />
@@ -596,6 +605,7 @@
                 android:textSize="20sp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
                 />

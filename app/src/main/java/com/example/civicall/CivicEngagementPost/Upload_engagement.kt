@@ -425,11 +425,10 @@ class Upload_engagement : AppCompatActivity() {
             val selectedDateTime = dateFormat.parse(dateTimeString)
             val currentDateTime = Calendar.getInstance().time
 
-            // Check if the selected date and time are in the past
             return selectedDateTime != null && selectedDateTime.before(currentDateTime)
         } catch (e: ParseException) {
             e.printStackTrace()
-            return true  // Handle the error as per your requirements
+            return true
         }
     }
 

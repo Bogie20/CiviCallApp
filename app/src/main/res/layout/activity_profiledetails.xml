@@ -349,7 +349,8 @@
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:gravity="center_vertical"
-                    android:text="Address"
+                    android:maxLines="1"
+                    android:hint=".................................................."
                     android:textColor="@color/DarkGray"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -403,7 +404,8 @@
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:gravity="center_vertical"
-                    android:text="09267383648"
+                    android:maxLines="1"
+                    android:hint=".................................................."
                     android:textColor="@color/DarkGray"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -455,7 +457,8 @@
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:gravity="center_vertical"
-                    android:text="JPLPC MALVAR"
+                    android:maxLines="1"
+                    android:hint=".................................................."
                     android:textColor="@color/DarkGray"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -508,7 +511,8 @@
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:gravity="center_vertical"
-                    android:text="Student"
+                    android:maxLines="1"
+                    android:hint=".................................................."
                     android:textColor="@color/DarkGray"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -571,7 +575,7 @@
                             android:layout_weight="1"
                             android:ellipsize="end"
                             android:gravity="center_vertical"
-                            android:text="20/03/2002"
+                            android:hint="mm/dd/yyyy"
                             android:textColor="@color/DarkGray"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -624,7 +628,7 @@
                             android:layout_weight="1"
                             android:ellipsize="end"
                             android:gravity="center_vertical"
-                            android:text="Male"
+                            android:hint="M/F"
                             android:paddingStart="20dp"
                             android:textColor="@color/DarkGray"
                             android:textSize="16sp" />
@@ -681,7 +685,8 @@
                     android:layout_weight="1"
                     android:ellipsize="end"
                     android:gravity="center_vertical"
-                    android:text="09267387312"
+                    android:maxLines="1"
+                    android:hint=".................................................."
                     android:textColor="@color/DarkGray"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -735,7 +740,8 @@
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:gravity="center_vertical"
-                android:text="09267387312"
+                android:maxLines="1"
+                android:hint=".................................................."
                 android:textColor="@color/DarkGray"
                 android:textSize="16sp" />
         </LinearLayout>
