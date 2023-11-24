@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import com.example.civicall.AccountVerification.UploadVerificationFile
+import com.example.civicall.Recognition.RecognitionLeaderBoard
 import com.example.civicall.databinding.ActivityMainmenuBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -51,6 +52,7 @@ class MainMenu : AppCompatActivity() {
         val calendar: TextView = findViewById(R.id.calendar)
         val logout: TextView = findViewById(R.id.logout)
         val verification1: TextView = findViewById(R.id.verification)
+        val leaderboard: TextView = findViewById(R.id.Recognition)
 
         val feedback1: TextView = findViewById(R.id.feedback)
         val editProfileCardView:TextView= findViewById(R.id.editprofile)
@@ -132,6 +134,12 @@ class MainMenu : AppCompatActivity() {
         }
         editProfileCardView.setOnClickListener {
             val intent = Intent(this, ProfileDetails::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
+
+        leaderboard.setOnClickListener {
+            val intent = Intent(this, RecognitionLeaderBoard::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }

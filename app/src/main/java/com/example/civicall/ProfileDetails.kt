@@ -102,10 +102,26 @@ class ProfileDetails : AppCompatActivity() {
                 binding.usertypetxt.text = usertype.toString()
                 binding.campustxt.text = campus.toString()
                 binding.nstpnumtxt.text = nstp.toString()
+                val badgeImageView: ImageView = findViewById(R.id.badge_25)
 
-                val profileImage = binding.profileImage // Replace with your ImageView ID in the layout
+                val activePtsInt = activePts.toString().toInt()
 
-                // Load the profile image using Picasso library with a placeholder
+                when {
+                    activePtsInt in 0..300 -> {
+                        badgeImageView.setImageResource(R.drawable.bronzes)
+                    }
+                    activePtsInt in 301..999 -> {
+                        badgeImageView.setImageResource(R.drawable.silver)
+                    }
+                    activePtsInt in 1000..9999 -> {
+                        badgeImageView.setImageResource(R.drawable.gold)
+                    }
+                    else -> {
+                        badgeImageView.setImageResource(R.drawable.platinum)
+                    }
+                }
+                val profileImage = binding.profileImage
+
                 if (imageProfile != null && imageProfile.toString().isNotEmpty()) {
                     Picasso.get()
                         .load(imageProfile.toString())
