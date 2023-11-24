@@ -23,13 +23,7 @@
     <!-- android:maxSdkVersion="32" -->
     <!-- tools:ignore="ScopedStorage" /> -->
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-feature android:name="android.hardware.camera.any" /> <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" -->
-    <!-- android:maxSdkVersion="32" /> -->
-    <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> -->
-    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
-    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" -->
-    <!-- android:maxSdkVersion="32" -->
-    <!-- tools:ignore="ScopedStorage" /> -->
+    <uses-feature android:name="android.hardware.camera.any" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
@@ -54,7 +48,6 @@
         <activity
             android:name=".Recognition.RecognitionLeaderBoard"
             android:exported="true" />
-        tools:targetApi="31" >
         <activity
             android:name=".Calendar"
             android:exported="true" />
@@ -404,12 +397,6 @@
         <activity
             android:name=".EmergencyCon.BalayanCont"
             android:exported="true" /> <!-- Emergency Contact End -->
-        <activity
-            android:name=".Add_activities2"
-            android:exported="true" />
-        <activity
-            android:name=".add_engagement"
-            android:exported="true" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"
