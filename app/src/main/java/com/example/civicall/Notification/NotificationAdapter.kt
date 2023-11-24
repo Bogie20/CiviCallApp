@@ -1,3 +1,6 @@
+package com.example.civicall.Notification
+
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -5,39 +8,38 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.civicall.Notification.NotificationModel
 import com.example.civicall.R
-class NotificationAdapter(private val notificationList: List<NotificationModel>) :
+import com.google.android.material.imageview.ShapeableImageView
 
-    RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
-    class NotificationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val profileImage: ImageView = itemView.findViewById(R.id.recImage)
-        val uidTextView: TextView = itemView.findViewById(R.id.dateandTime)
-        val emailTextView: TextView = itemView.findViewById(R.id.recTitle)
+class NotificationAdapter(private val context: Context, private var notificationList: List<NotificationModel>) : RecyclerView.Adapter<NotificationAdapter.ViewHolder>() {
 
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val recTitle: TextView = itemView.findViewById(R.id.recTitle)
+        val dateandTime: TextView = itemView.findViewById(R.id.dateandTime)
+        val recImage: ShapeableImageView = itemView.findViewById(R.id.recImage)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.notification_recycler_item, parent, false)
-        return NotificationViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.notification_recycler_item, parent, false)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
-        val currentItem = notificationList[position]
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val notification = notificationList[position]
 
-        // Load profile image using Glide
-        // Load profile image using Glide
-        Glide.with(holder.profileImage.context)
+        holder.recTitle.text = notification.rectitle
+        holder.dateandTime.text = notification.dateandTime
 
-
-            .load(currentItem.profileImageUrl)
-            .into(holder.profileImage)
-
-        holder.uidTextView.text = currentItem.uid
-        holder.emailTextView.text = currentItem.email
-
+        // Set the default image to the ShapeableImageView
+        holder.recImage.setImageResource(R.drawable.img_5)
     }
 
-    override fun getItemCount() = notificationList.size
+    override fun getItemCount(): Int {
+        return notificationList.size
+    }
+
+    fun updateData(newNotificationList: List<NotificationModel>) {
+        notificationList = newNotificationList
+        notifyDataSetChanged()
+    }
 }

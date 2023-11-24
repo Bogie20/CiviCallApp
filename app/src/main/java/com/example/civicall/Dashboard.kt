@@ -85,7 +85,7 @@ class Dashboard : AppCompatActivity() {
                         binding.titleLarge.text = "Notifications"
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-                        replaceFragment(notificationFragment())
+                        replaceFragment(OneNotificationFragment())
                     }
                 }
 

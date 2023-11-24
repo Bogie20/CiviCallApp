@@ -1,11 +1,9 @@
 package com.example.civicall
 
-import EventCalendar
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.PorterDuff
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -127,11 +125,11 @@ class MainMenu : AppCompatActivity() {
             val intent = Intent(this, Feedback::class.java)
             startActivity(intent)
         }
-//        calendar.setOnClickListener {
-//            // Handle click for Feedback menu item
-//            val intent = Intent(this, EventCalendar::class.java)
-//            startActivity(intent)
-//        }
+        calendar.setOnClickListener {
+            // Handle click for Feedback menu item
+            val intent = Intent(this, Calendar::class.java)
+            startActivity(intent)
+        }
         editProfileCardView.setOnClickListener {
             val intent = Intent(this, ProfileDetails::class.java)
             startActivity(intent)
