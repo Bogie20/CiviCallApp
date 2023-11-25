@@ -35,7 +35,7 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
         holder.recStartDate.text = data.startDate
         holder.recEndDate.text = data.endDate
         holder.recLocation.text = data.location
-        holder.recCampus.text = data.campus
+        holder.recCategory.text = data.category
         holder.recCard.setOnClickListener {
             val intent = Intent(context, DetailPost::class.java).apply {
                 putExtra("Image", data.image)
@@ -130,5 +130,5 @@ class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val recEndDate: TextView = itemView.findViewById(R.id.civicEndDate)
     val recLocation: TextView = itemView.findViewById(R.id.civicLocation)
     val recTitle: TextView = itemView.findViewById(R.id.civicTitle)
-    val recCampus: TextView = itemView.findViewById(R.id.civicCampus)
+    val recCategory: TextView = itemView.findViewById(R.id.civicCategory)
 }

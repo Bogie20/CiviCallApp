@@ -8,13 +8,23 @@
     android:background="@drawable/rounded_forum"
     android:padding="10dp">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <androidx.cardview.widget.CardView
         android:id="@+id/userImage"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:src="@drawable/user"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:cardCornerRadius="100dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/profilePic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/user" />
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/username"
@@ -58,19 +68,33 @@
         android:background="@color/lineColor"
         app:layout_constraintTop_toBottomOf="@+id/userImage" />
 
-    <TextView
-        android:id="@+id/bookQuoteTextView"
+    <!-- Add an ImageView below view2 -->
+    <ImageView
+        android:id="@+id/postImage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:src="@drawable/mdrrmo"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/postInputtxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:includeFontPadding="false"
+        android:layout_marginTop="10dp"
         android:text="Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking."
         android:textColor="@color/colorPrimaryText"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
+        app:layout_constraintTop_toBottomOf="@+id/postImage" />
 
 
 
@@ -80,12 +104,12 @@
         android:layout_height="1dp"
         android:layout_marginTop="15dp"
         android:background="@color/lineColor"
-        app:layout_constraintTop_toBottomOf="@+id/bookQuoteTextView"
+        app:layout_constraintTop_toBottomOf="@+id/postInputtxt"
         tools:layout_editor_absoluteX="10dp" />
 
 
     <ImageButton
-        android:id="@+id/likeBtn"
+        android:id="@+id/heartBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="5dp"
@@ -103,24 +127,36 @@
         android:layout_marginTop="3dp"
         android:textColor="@color/colorPrimaryText"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/likeBtn"
-        app:layout_constraintStart_toEndOf="@+id/likeBtn"
-        app:layout_constraintTop_toTopOf="@+id/likeBtn" />
+        app:layout_constraintBottom_toBottomOf="@+id/heartBtn"
+        app:layout_constraintStart_toEndOf="@+id/heartBtn"
+        app:layout_constraintTop_toTopOf="@+id/heartBtn" />
 
 
 
     <ImageButton
         android:paddingHorizontal="10dp"
-        android:layout_marginLeft="6dp"
-        android:id="@+id/downloadButton"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/commentBtn"
+        android:paddingTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:src="@drawable/comment_24"
+        android:src="@drawable/comment_icon"
         app:layout_constraintBottom_toBottomOf="@+id/like_count_textView"
         app:layout_constraintStart_toEndOf="@+id/like_count_textView"
         app:layout_constraintTop_toTopOf="@+id/like_count_textView"
         app:tint="@color/colorPrimaryText" />
+    <TextView
+        android:id="@+id/commentcount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="27"
+        android:layout_marginTop="3dp"
+        android:textColor="@color/colorPrimaryText"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/heartBtn"
+        app:layout_constraintStart_toEndOf="@+id/commentBtn"
+        app:layout_constraintTop_toTopOf="@+id/heartBtn" />
 
 
 

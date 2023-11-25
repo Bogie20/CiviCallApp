@@ -35,7 +35,7 @@ android:layout_marginHorizontal="5dp"
             app:cardCornerRadius="100dp"
             android:layout_marginStart="5dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="15dp">
 
             <ImageView
                 android:id="@+id/profilePic"
@@ -89,7 +89,7 @@ android:layout_marginHorizontal="5dp"
             android:id="@+id/badge_25"
             android:layout_width="37dp"
             android:layout_height="37dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="35dp"
             android:layout_marginBottom="10dp"
             android:scaleType="centerCrop"
             android:src="@drawable/bronzes" />

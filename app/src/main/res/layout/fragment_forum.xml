@@ -4,36 +4,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ForumsFragment">
+    tools:context=".Forum.ForumFragment">
 
-
-
-
-
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            app:iconifiedByDefault="false"
-            app:searchHintIcon="@null"
-            app:queryHint="Search..."
-            android:focusable="false"
-            app:searchIcon="@drawable/search_24"
-            android:background="@drawable/search_view_background"
-            />
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingEnd="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:iconifiedByDefault="false"
+        app:searchHintIcon="@null"
+        app:queryBackground="@null"
+        android:backgroundTint="#FAF9F6"
+        app:queryHint="Search..."
+        android:focusable="false"
+        app:searchIcon="@drawable/search_24"
+        android:background="@drawable/search_view_background"
+        />
 
     <ImageView
+
         android:id="@+id/filterIcon"
         android:layout_width="wrap_content"
         android:layout_height="-30dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="28dp"
+        android:background="@drawable/higlight_button"
         android:clickable="true"
         android:padding="8dp"
         android:src="@drawable/filter_25" />
