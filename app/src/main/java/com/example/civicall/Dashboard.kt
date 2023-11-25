@@ -17,6 +17,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.civicall.CivicEngagementPost.CivicPostFragment
 import com.example.civicall.CivicEngagementPost.Upload_engagement
+import com.example.civicall.Forum.ForumFragment
+import com.example.civicall.Forum.ForumUpload
 import com.example.civicall.databinding.ActivityDashboardBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
@@ -79,7 +81,7 @@ class Dashboard : AppCompatActivity() {
                         binding.titleLarge.text = "Forum"
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-                        replaceFragment(ForumsFragment())
+                        replaceFragment(ForumFragment())
                     }
                     4 -> {
                         binding.titleLarge.text = "Notifications"
@@ -141,7 +143,13 @@ class Dashboard : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
-
+        val forum: LinearLayout = dialogView.findViewById(R.id.Forum)
+        forum.setOnClickListener {
+            alertDialog.dismiss()
+            val intent = Intent(this, ForumUpload::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
         alertDialog.show()
         isOptionDialogShowing = true
     }

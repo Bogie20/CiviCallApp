@@ -4,6 +4,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -11,6 +13,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.InputType
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
@@ -22,7 +26,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
-import com.example.civicall.databinding.ActivityForumUploadBinding
+import com.example.civicall.databinding.ActivityUploadEngagementBinding
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -30,27 +34,60 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import java.util.TimeZone
 
 class ForumUpload : AppCompatActivity() {
 
-    private lateinit var forumImage: ImageView
+    private lateinit var uploadImage: ImageView
     private lateinit var saveButton: Button
-    private lateinit var forumText: EditText
+    private lateinit var uploadTitle: EditText
+    private lateinit var uploadFacilitator: EditText
+    private lateinit var uploadFacilitatorInfo: EditText
+    private lateinit var uploadPaymentRecipient: EditText
+    private lateinit var uploadTargetParty: EditText
+    private lateinit var uploadActivePoints: EditText
+    private lateinit var uploadObjective: EditText
+    private lateinit var uploadInstruction: EditText
+    private lateinit var uploadIntro: EditText
+    private lateinit var uploadCategory: AutoCompleteTextView
+    private lateinit var uploadPaymentMethod: AutoCompleteTextView
+    private lateinit var uploadFundCollected: EditText
+    private lateinit var uploadStartDate: AutoCompleteTextView
+    private lateinit var uploadLocation: EditText
+    private lateinit var uploadEndDate: EditText
     private var imageURL: String? = null
     private var uri: Uri? = null
-    private lateinit var forumCategory: AutoCompleteTextView
-    private lateinit var binding: ActivityForumUploadBinding
+    private lateinit var binding: ActivityUploadEngagementBinding
     private lateinit var networkUtils: NetworkUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityForumUploadBinding.inflate(layoutInflater)
+        binding = ActivityUploadEngagementBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        forumImage = binding.postImage
-        forumText = binding.postText
-        forumCategory = binding.forumCategory
-        saveButton = binding.btnPost
+        uploadImage = binding.uploadImage
+        uploadStartDate = binding.uploadStartDate
+        uploadEndDate = binding.uploadEndDate
+        uploadCategory = binding.uploadCategory
+        uploadPaymentMethod = binding.uploadPaymentMethod
+        uploadTitle = binding.uploadTitle
+        uploadPaymentRecipient = binding.uploadPaymentRecipient
+        uploadTargetParty = binding.uploadTargetParty
+        uploadFundCollected = binding.uploadFundCollected
+        uploadTargetParty.inputType = InputType.TYPE_CLASS_NUMBER
+        uploadActivePoints = binding.uploadActivePoints
+        uploadActivePoints.inputType = InputType.TYPE_CLASS_NUMBER
+        uploadFacilitator = binding.uploadFacilitator
+        uploadFacilitatorInfo = binding.uploadFacilitatorInfo
+        uploadLocation = binding.uploadLocation
+        saveButton = binding.uploadButton
+        uploadObjective = binding.uploadObjective
+        uploadInstruction = binding.uploadInstruction
+        uploadIntro = binding.uploadIntro
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
 
@@ -59,11 +96,53 @@ class ForumUpload : AppCompatActivity() {
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
 
-        val categoryDropdown = binding.forumCategory
+        val campusDropdown = binding.uploadCampus
+        val campusArray = resources.getStringArray(R.array.allowed_campuses)
+        val adaptercampus = ArrayAdapter(this, R.layout.dropdown_item, campusArray)
+        (campusDropdown as? AutoCompleteTextView)?.setAdapter(adaptercampus)
+
+        val paymentDropdown = binding.uploadPaymentMethod
+        val paymentArray = resources.getStringArray(R.array.payment_category)
+        val adapterpayment = ArrayAdapter(this, R.layout.dropdown_item, paymentArray)
+        (paymentDropdown as? AutoCompleteTextView)?.setAdapter(adapterpayment)
+
+        val categoryDropdown = binding.uploadCategory
         val categoryArray = resources.getStringArray(R.array.engagement_category)
         val adaptercategory = ArrayAdapter(this, R.layout.dropdown_item, categoryArray)
         (categoryDropdown as? AutoCompleteTextView)?.setAdapter(adaptercategory)
 
+        val paymentMethodLayout = binding.PaymentTextInputLayout
+        val paymentRecipientLayout = binding.PaymentRecepientTextInputLayout
+
+        categoryDropdown.setOnItemClickListener { _, _, position, _ ->
+            val selectedCategory = categoryArray[position]
+
+            if (selectedCategory == "Fund Raising" || selectedCategory == "Donations") {
+                paymentMethodLayout.visibility = View.VISIBLE
+                paymentRecipientLayout.visibility = View.VISIBLE
+
+            } else {
+                paymentMethodLayout.visibility = View.GONE
+                paymentRecipientLayout.visibility = View.GONE
+            }
+        }
+
+        uploadStartDate.setOnClickListener {
+            showDateTimePicker(uploadStartDate, null)
+        }
+
+        uploadEndDate.setOnClickListener {
+            // Parse the start date to a Calendar object for comparison
+            val startDateCalendar = Calendar.getInstance()
+            try {
+                val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
+                startDateCalendar.time = dateFormat.parse(uploadStartDate.text.toString())
+            } catch (e: ParseException) {
+                e.printStackTrace()
+            }
+
+            showDateTimePicker(uploadEndDate, startDateCalendar)
+        }
 
 
         val activityResultLauncher = registerForActivityResult(
@@ -72,14 +151,14 @@ class ForumUpload : AppCompatActivity() {
             if (result.resultCode == Activity.RESULT_OK) {
                 val data = result.data
                 uri = data?.data
-                forumImage.setImageURI(uri)
+                uploadImage.setImageURI(uri)
             } else {
                 Toast.makeText(this@ForumUpload, "No Image Selected", Toast.LENGTH_SHORT)
                     .show()
             }
         }
 
-        forumImage.setOnClickListener {
+        uploadImage.setOnClickListener {
             val photoPicker = Intent(Intent.ACTION_PICK)
             photoPicker.type = "image/*"
             activityResultLauncher.launch(photoPicker)
@@ -113,9 +192,12 @@ class ForumUpload : AppCompatActivity() {
                     }
 
                     override fun onCancelled(error: DatabaseError) {
+                        // Handle the error as needed
                     }
                 })
             } else {
+                // Handle the case where the user is not signed in
+                // You might want to redirect the user to the login screen or perform some other action
             }
         }
     }
@@ -220,21 +302,77 @@ class ForumUpload : AppCompatActivity() {
         }
     }
 
+    private fun showDateTimePicker(editText: EditText, startDate: Calendar?) {
+        val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
+        dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            { _, year, month, dayOfMonth ->
+                calendar.set(Calendar.YEAR, year)
+                calendar.set(Calendar.MONTH, month)
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                val timePickerDialog = TimePickerDialog(
+                    this,
+                    { _, hourOfDay, minute ->
+                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                        calendar.set(Calendar.MINUTE, minute)
+
+                        // Check if the selected end date is after the start date
+                        if (startDate != null && calendar.time.before(startDate.time)) {
+                            Toast.makeText(
+                                this@ForumUpload,
+                                "End date must be after the start date",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            // Set the selected date and time text in the appropriate EditText
+                            val formattedDateTime = dateFormat.format(calendar.time)
+                            editText.setText(formattedDateTime)
+                        }
+                    },
+                    calendar.get(Calendar.HOUR_OF_DAY),
+                    calendar.get(Calendar.MINUTE),
+                    false
+                )
+                timePickerDialog.show()
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+
+        datePickerDialog.show()
+    }
+
+
     private fun saveData() {
-        if (forumText.text.isNullOrBlank()||forumCategory.text.isNullOrBlank()
+        // Validate if any of the required fields is empty
+        if (uploadTitle.text.isNullOrBlank() ||
+            uploadStartDate.text.isNullOrBlank() ||
+            uploadLocation.text.isNullOrBlank() ||
+            uploadFacilitator.text.isNullOrBlank() ||
+            uploadFacilitatorInfo.text.isNullOrBlank() ||
+            uploadTargetParty.text.isNullOrBlank() ||
+            binding.uploadCampus.text.isNullOrBlank() ||
+            binding.uploadCategory.text.isNullOrBlank() ||
+            uploadObjective.text.isNullOrBlank() ||
+            uploadInstruction.text.isNullOrBlank() ||
+            uploadIntro.text.isNullOrBlank() ||
+            uri == null
         ) {
             Toast.makeText(
                 this@ForumUpload,
-                "Please fill you Input first",
+                "Please fill in all the required information",
                 Toast.LENGTH_SHORT
             ).show()
             return
-        }else{
-            uploadData()
         }
 
         val storageReference = FirebaseStorage.getInstance().getReference()
-            .child("Poster Civic Images").child(uri?.lastPathSegment!!)
+            .child("Forum Post Images").child(uri?.lastPathSegment!!)
 
         val builder = AlertDialog.Builder(this@ForumUpload)
         builder.setCancelable(false)
@@ -256,6 +394,19 @@ class ForumUpload : AppCompatActivity() {
                 val urlImage = uriTask.result
                 imageURL = urlImage.toString()
 
+                // Check if the selected date and time are in the past
+                if (!isDateTimeInPast(uploadStartDate.text.toString())) {
+                    // If the date and time are not in the past, proceed with data upload
+                    uploadData()
+                    dialog.dismiss()
+                } else {
+                    dialog.dismiss()
+                    Toast.makeText(
+                        this@ForumUpload,
+                        "Selected date and time are in the past",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
             .addOnFailureListener { e ->
                 dialog.dismiss()
@@ -267,31 +418,74 @@ class ForumUpload : AppCompatActivity() {
             }
     }
 
+    private fun isDateTimeInPast(dateTimeString: String): Boolean {
+        try {
+            val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
+            dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+            val selectedDateTime = dateFormat.parse(dateTimeString)
+            val currentDateTime = Calendar.getInstance().time
+
+            return selectedDateTime != null && selectedDateTime.before(currentDateTime)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+            return true
+        }
+    }
 
     private fun uploadData() {
-        val postinputs = forumText.text.toString()
-        val postTime = binding.postTime.text.toString()
-        val category = binding.forumCategory.text.toString()
+        val title = uploadTitle.text.toString()
+        val startdate = uploadStartDate.text.toString()
+        val enddate = uploadEndDate.text.toString()
+        val location = uploadLocation.text.toString()
+        val facilitator = uploadFacilitator.text.toString()
+        val facilitatorinfo = uploadFacilitatorInfo.text.toString()
+        val targetparty = uploadTargetParty.text.toString().toInt()
+        val activepoints = uploadActivePoints.text.toString().toInt()
+        val campus = binding.uploadCampus.text.toString()
+        val category = binding.uploadCategory.text.toString()
+        val fundcollected =
+            if (uploadFundCollected.text.isNullOrBlank()) 0.0 else uploadFundCollected.text.toString()
+                .toDouble()
+
+        val formattedFundCollected = String.format("%.2f", fundcollected)
+        val paymentmethod = binding.uploadPaymentMethod.text.toString()
+        val paymentrecipient = uploadPaymentRecipient.text.toString()
+        val objective = uploadObjective.text.toString()
+        val instruction = uploadInstruction.text.toString()
+        val introduction = uploadIntro.text.toString()
         val verificationStatus = false
 
         val user = FirebaseAuth.getInstance().currentUser
-        val uploaderUid = user?.uid
+        val uploadersId = user?.uid
 
-        if (uploaderUid != null) {
+        if (uploadersId != null) {
             val postKey =
-                FirebaseDatabase.getInstance().getReference("Upload Engagement").push().key
+                FirebaseDatabase.getInstance().getReference("Forum Post").push().key
 
             if (postKey != null) {
                 val dataClass = DataClassForum(
-                    uploaderUid,
+                    uploadersId,
                     category,
-                    postinputs,
-                    postTime,
+                    title,
+                    startdate,
+                    enddate,
+                    location,
                     imageURL!!,
+                    campus,
+                    objective,
+                    introduction,
+                    facilitator,
+                    facilitatorinfo,
+                    instruction,
+                    targetparty,
+                    activepoints,
+                    paymentmethod,
+                    paymentrecipient,
+                    formattedFundCollected.toDouble(),
                     verificationStatus
                 )
 
-                FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
+                FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
                     .setValue(dataClass)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {

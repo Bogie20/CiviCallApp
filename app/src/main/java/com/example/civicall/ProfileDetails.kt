@@ -132,7 +132,7 @@ class ProfileDetails : AppCompatActivity() {
                 }
                 if (verificationStatus) {
                     // If verificationStatus is true, set a drawable for a verified account
-                    binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verificationtrue_icon, 0, 0, 0)
+                    binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verifiedalready, 0, 0, 0)
                     // Tint the drawable for verified accounts
                     binding.email1.compoundDrawables[0]?.setColorFilter(ContextCompat.getColor(this, R.color.verified), PorterDuff.Mode.SRC_IN)
                 } else {

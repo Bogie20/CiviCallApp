@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Forum.ForumUpload">
+    tools:context=".Forum.ForumUpdatePost">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
@@ -38,9 +38,9 @@
                 android:id="@+id/civicall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
+                android:layout_marginLeft="75dp"
                 android:fontFamily="@font/oleo_script"
-                android:text="Provide Opportunity"
+                android:text="UPDATE POST"
                 android:textColor="@color/white"
                 android:textSize="23dp" />
 
@@ -77,7 +77,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter Details"
+                    android:text="Changed Data"
                     android:textAlignment="center"
                     android:textColor="@color/red"
                     android:textSize="30sp" />
@@ -90,7 +90,7 @@
                     app:cardElevation="3dp">
 
                     <ImageView
-                        android:id="@+id/uploadImage"
+                        android:id="@+id/updateImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"
@@ -109,7 +109,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <AutoCompleteTextView
-                        android:id="@+id/uploadCategory"
+                        android:id="@+id/updateCategory"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:editable="false" />
@@ -125,7 +125,7 @@
                     app:hintTextColor="@color/DarkGray">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadTitle"
+                        android:id="@+id/updateTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="15dp"
@@ -151,7 +151,7 @@
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadIntro"
+                        android:id="@+id/updateIntro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="15dp"
@@ -177,7 +177,7 @@
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadObjective"
+                        android:id="@+id/updateObjective"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="15dp"
@@ -202,7 +202,7 @@
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadInstruction"
+                        android:id="@+id/updateInstruction"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="15dp"
@@ -228,7 +228,7 @@
                     app:hintTextColor="@color/DarkGray">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadLocation"
+                        android:id="@+id/updateLocation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="15dp"
@@ -256,12 +256,11 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <AutoCompleteTextView
-                        android:id="@+id/uploadStartDate"
+                        android:id="@+id/updateStartDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:editable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/enddateTextInputLayout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -274,7 +273,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <AutoCompleteTextView
-                        android:id="@+id/uploadEndDate"
+                        android:id="@+id/updateEndDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:editable="false" />
@@ -291,7 +290,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <AutoCompleteTextView
-                        android:id="@+id/uploadCampus"
+                        android:id="@+id/updateCampus"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:editable="false" />
@@ -307,7 +306,7 @@
                     app:hintTextColor="@color/DarkGray">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadTargetParty"
+                        android:id="@+id/updateTargetParty"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:drawablePadding="15dp"
@@ -327,11 +326,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:autofillHints="name"
                     android:elevation="80dp"
                     app:hintTextColor="@color/DarkGray">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadActivePoints"
+                        android:id="@+id/updateActivePoints"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:drawablePadding="15dp"
@@ -356,7 +356,7 @@
                     app:hintTextColor="@color/DarkGray">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadFacilitator"
+                        android:id="@+id/updateFacilitator"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:drawablePadding="15dp"
@@ -381,7 +381,7 @@
                     app:hintTextColor="@color/DarkGray">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadFacilitatorInfo"
+                        android:id="@+id/updateFacilitatorInfo"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:drawablePadding="15dp"
@@ -408,7 +408,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <AutoCompleteTextView
-                        android:id="@+id/uploadPaymentMethod"
+                        android:id="@+id/updatePaymentMethod"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:editable="false" />
@@ -425,7 +425,7 @@
                     app:hintTextColor="@color/DarkGray">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadPaymentRecipient"
+                        android:id="@+id/updatePaymentRecipient"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:drawablePadding="15dp"
@@ -452,13 +452,13 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <AutoCompleteTextView
-                        android:id="@+id/uploadFundCollected"
+                        android:id="@+id/updateFundCollected"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:editable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <Button
-                    android:id="@+id/uploadButton"
+                    android:id="@+id/updateButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -469,7 +469,7 @@
                     android:textAllCaps="true"
                     android:background="@drawable/button_shape"
                     android:backgroundTint="@color/redpink"
-                    android:text="Request"
+                    android:text="Update"
                     android:textColor="@color/white"
                     android:textSize="25sp">
 

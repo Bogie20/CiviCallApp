@@ -40,9 +40,9 @@ class ForumFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_forum, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_civic_post, container, false)
 
-        recyclerView = rootView.findViewById(R.id.recyclerViewForum)
+        recyclerView = rootView.findViewById(R.id.recyclerView)
         searchView = rootView.findViewById(R.id.search)
         searchView.clearFocus()
         noPostsImage = rootView.findViewById(R.id.noPostsImage)
@@ -66,7 +66,7 @@ class ForumFragment : Fragment() {
         adapter = ForumAdapter(requireContext(), dataList)
         recyclerView.adapter = adapter
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
+        databaseReference = FirebaseDatabase.getInstance().getReference("Forum Post")
         dialog.show()
         eventListener = databaseReference.addValueEventListener(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
@@ -257,7 +257,7 @@ class ForumFragment : Fragment() {
     private fun searchList(text: String) {
         val searchList = ArrayList<DataClassForum>()
         for (dataClass in dataList) {
-            if (dataClass?.postinputs?.toLowerCase()?.contains(text.toLowerCase()) == true) {
+            if (dataClass?.title?.toLowerCase()?.contains(text.toLowerCase()) == true) {
                 searchList.add(dataClass)
             }
         }
