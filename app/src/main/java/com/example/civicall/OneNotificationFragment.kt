@@ -63,16 +63,11 @@ class OneNotificationFragment : Fragment(), ValueEventListener {
 
                     // Check if the user's UID is in the participants list
                     val participantsSnapshot = engagementSnapshot.child("Participants")
-                    if (participantsSnapshot.hasChild(currentUserUid)) {
-                        val userParticipationSnapshot = participantsSnapshot.child(currentUserUid)
-                        val userParticipation = userParticipationSnapshot.getValue(Boolean::class.java) ?: false
 
-                        // Check if the user has participated in this engagement
-                        if (userParticipation) {
-                            // Create a NotificationModel object with the retrieved values
-                            val notificationModel = NotificationModel(title, startDate)
-                            notificationList.add(notificationModel)
-                        }
+                    if (participantsSnapshot.hasChild(currentUserUid)) {
+                        // Always create a NotificationModel object with the retrieved values
+                        val notificationModel = NotificationModel(title, startDate)
+                        notificationList.add(notificationModel)
                     }
                 }
 
