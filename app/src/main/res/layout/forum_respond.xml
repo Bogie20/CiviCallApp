@@ -8,13 +8,23 @@
     android:background="@drawable/rounded_forum"
     android:padding="10dp">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <androidx.cardview.widget.CardView
         android:id="@+id/userImage"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:src="@drawable/user"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:cardCornerRadius="100dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/profilePic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/user" />
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/username"
@@ -22,7 +32,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="10dp"
         android:includeFontPadding="false"
-        android:text="Jane Doe"
+        android:text="Kurt Bryant Arpilleda"
         android:textColor="@color/colorPrimaryText"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/userImage"
@@ -40,15 +50,6 @@
         app:layout_constraintStart_toStartOf="@+id/username"
         app:layout_constraintTop_toBottomOf="@+id/username" />
 
-    <ImageButton
-        android:id="@+id/postOptionsBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:src="@drawable/ic_more"
-        app:layout_constraintBottom_toBottomOf="@+id/username"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/username" />
 
     <View
         android:id="@+id/view2"
@@ -73,7 +74,6 @@
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
 
-
     <View
         android:id="@+id/view3"
         android:layout_width="match_parent"
@@ -84,45 +84,103 @@
         tools:layout_editor_absoluteX="10dp" />
 
     <ImageButton
-        android:id="@+id/likeBtn"
+        android:id="@+id/heartBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="108dp"
-        android:background="@android:color/transparent"
         android:paddingTop="5dp"
         android:paddingRight="8dp"
+        android:layout_marginStart="240dp"
+        android:background="@android:color/transparent"
         android:src="@drawable/like_icon_outline"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <TextView
         android:id="@+id/like_count_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="40dp"
         android:text="27"
+        android:layout_marginTop="3dp"
         android:textColor="@color/colorPrimaryText"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/likeBtn"
-        app:layout_constraintEnd_toStartOf="@+id/downloadButton"
-        app:layout_constraintTop_toTopOf="@+id/likeBtn"
-        app:layout_constraintVertical_bias="0.285" />
+        app:layout_constraintBottom_toBottomOf="@+id/heartBtn"
+        app:layout_constraintStart_toEndOf="@+id/heartBtn"
+        app:layout_constraintTop_toTopOf="@+id/heartBtn" />
+
+
 
     <ImageButton
-        android:id="@+id/downloadButton"
+        android:paddingHorizontal="10dp"
+        android:layout_marginStart="15dp"
+        android:id="@+id/commentBtn"
+        android:paddingTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:background="@android:color/transparent"
-        android:paddingHorizontal="10dp"
         android:src="@drawable/comment_icon"
         app:layout_constraintBottom_toBottomOf="@+id/like_count_textView"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/like_count_textView"
         app:layout_constraintTop_toTopOf="@+id/like_count_textView"
-        app:layout_constraintVertical_bias="0.0"
         app:tint="@color/colorPrimaryText" />
+    <TextView
+        android:id="@+id/commentcount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="27"
+        android:layout_marginTop="3dp"
+        android:textColor="@color/colorPrimaryText"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/heartBtn"
+        app:layout_constraintStart_toEndOf="@+id/commentBtn"
+        app:layout_constraintTop_toTopOf="@+id/heartBtn" />
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.github.clans.fab.FloatingActionMenu
+            android:id="@+id/fabicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="20dp"
+            app:menu_colorNormal="@android:color/transparent"
+            app:menu_colorPressed="@color/background"
+            app:menu_fab_size="mini"
+            app:fab_showShadow="false"
+            app:menu_icon="@drawable/ic_more"
+            app:menu_openDirection="down">
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/reportButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/report"
+                app:fab_colorNormal="@color/reportcolor"
+                app:fab_showShadow="true"
+                app:fab_size="mini" />
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/editButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/edit"
+                app:fab_colorNormal="@color/blue"
+                app:fab_showShadow="true"
+                app:fab_size="mini" />
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/deleteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/delete"
+                app:fab_colorNormal="@color/redpink"
+                app:fab_showShadow="true"
+                app:fab_size="mini" />
+        </com.github.clans.fab.FloatingActionMenu>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
