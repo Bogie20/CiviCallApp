@@ -49,8 +49,6 @@ class ForumUpload : AppCompatActivity() {
     private lateinit var uploadActivePoints: EditText
     private lateinit var uploadCategory: AutoCompleteTextView
     private lateinit var uploadFundCollected: EditText
-    private lateinit var uploadStartDate: AutoCompleteTextView
-    private lateinit var uploadEndDate: EditText
     private var imageURL: String? = null
     private var uri: Uri? = null
     private lateinit var binding: ActivityForumUploadBinding
@@ -62,8 +60,6 @@ class ForumUpload : AppCompatActivity() {
         setContentView(binding.root)
 
         uploadPostImage = binding.uploadPostImage
-        uploadStartDate = binding.uploadStartDate
-        uploadEndDate = binding.uploadEndDate
         uploadCategory = binding.uploadCategory
         uploadPostText = binding.uploadPostText
         uploadTargetParty = binding.uploadTargetParty
@@ -105,24 +101,6 @@ class ForumUpload : AppCompatActivity() {
                 paymentRecipientLayout.visibility = View.GONE
             }
         }
-
-        uploadStartDate.setOnClickListener {
-            showDateTimePicker(uploadStartDate, null)
-        }
-
-        uploadEndDate.setOnClickListener {
-            // Parse the start date to a Calendar object for comparison
-            val startDateCalendar = Calendar.getInstance()
-            try {
-                val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
-                startDateCalendar.time = dateFormat.parse(uploadStartDate.text.toString())
-            } catch (e: ParseException) {
-                e.printStackTrace()
-            }
-
-            showDateTimePicker(uploadEndDate, startDateCalendar)
-        }
-
 
         val activityResultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -281,56 +259,8 @@ class ForumUpload : AppCompatActivity() {
         }
     }
 
-    private fun showDateTimePicker(editText: EditText, startDate: Calendar?) {
-        val calendar = Calendar.getInstance()
-        val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
-        dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
-
-        val datePickerDialog = DatePickerDialog(
-            this,
-            { _, year, month, dayOfMonth ->
-                calendar.set(Calendar.YEAR, year)
-                calendar.set(Calendar.MONTH, month)
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-
-                val timePickerDialog = TimePickerDialog(
-                    this,
-                    { _, hourOfDay, minute ->
-                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                        calendar.set(Calendar.MINUTE, minute)
-
-                        // Check if the selected end date is after the start date
-                        if (startDate != null && calendar.time.before(startDate.time)) {
-                            Toast.makeText(
-                                this@ForumUpload,
-                                "End date must be after the start date",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } else {
-                            // Set the selected date and time text in the appropriate EditText
-                            val formattedDateTime = dateFormat.format(calendar.time)
-                            editText.setText(formattedDateTime)
-                        }
-                    },
-                    calendar.get(Calendar.HOUR_OF_DAY),
-                    calendar.get(Calendar.MINUTE),
-                    false
-                )
-                timePickerDialog.show()
-            },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
-        )
-
-        datePickerDialog.show()
-    }
-
-
     private fun saveData() {
-        // Validate if any of the required fields is empty
         if (uploadPostText.text.isNullOrBlank() ||
-            uploadStartDate.text.isNullOrBlank() ||
             uploadTargetParty.text.isNullOrBlank() ||
             binding.uploadCampus.text.isNullOrBlank() ||
             binding.uploadCategory.text.isNullOrBlank() ||
@@ -367,19 +297,7 @@ class ForumUpload : AppCompatActivity() {
                 val urlImage = uriTask.result
                 imageURL = urlImage.toString()
 
-                // Check if the selected date and time are in the past
-                if (!isDateTimeInPast(uploadStartDate.text.toString())) {
-                    // If the date and time are not in the past, proceed with data upload
                     uploadData()
-                    dialog.dismiss()
-                } else {
-                    dialog.dismiss()
-                    Toast.makeText(
-                        this@ForumUpload,
-                        "Selected date and time are in the past",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
             }
             .addOnFailureListener { e ->
                 dialog.dismiss()
@@ -391,24 +309,8 @@ class ForumUpload : AppCompatActivity() {
             }
     }
 
-    private fun isDateTimeInPast(dateTimeString: String): Boolean {
-        try {
-            val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
-            dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
-            val selectedDateTime = dateFormat.parse(dateTimeString)
-            val currentDateTime = Calendar.getInstance().time
-
-            return selectedDateTime != null && selectedDateTime.before(currentDateTime)
-        } catch (e: ParseException) {
-            e.printStackTrace()
-            return true
-        }
-    }
-
     private fun uploadData() {
         val postText = uploadPostText.text.toString()
-        val startdate = uploadStartDate.text.toString()
-        val enddate = uploadEndDate.text.toString()
         val targetparty = uploadTargetParty.text.toString().toInt()
         val activepoints = uploadActivePoints.text.toString().toInt()
         val campus = binding.uploadCampus.text.toString()
@@ -432,8 +334,6 @@ class ForumUpload : AppCompatActivity() {
                     uploadersId,
                     category,
                     postText,
-                    startdate,
-                    enddate,
                     imageURL!!,
                     campus,
                     targetparty,

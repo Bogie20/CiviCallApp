@@ -41,8 +41,6 @@ class ForumUpdate: AppCompatActivity() {
 
     private lateinit var updateImage: ImageView
     private lateinit var updateButton: Button
-    private lateinit var updateStartDate: AutoCompleteTextView
-    private lateinit var updateEndDate: AutoCompleteTextView
     private lateinit var updateTitle: EditText
     private lateinit var updateFundCollected: EditText
     private lateinit var updateTargetParty: EditText
@@ -51,8 +49,6 @@ class ForumUpdate: AppCompatActivity() {
     private lateinit var updateCategory: AutoCompleteTextView
     private lateinit var networkUtils: NetworkUtils
     private var title: String = ""
-    private var startdate: String = ""
-    private var enddate: String = ""
     private var targetparty: Int = 0
     private var activepoints: Int = 0
     private var imageUrl: String = ""
@@ -71,8 +67,6 @@ class ForumUpdate: AppCompatActivity() {
         setContentView(binding.root)
 
         updateButton = binding.updateButton
-        updateStartDate = binding.updateStartDate
-        updateEndDate = binding.updateEndDate
         updateImage = binding.updateImage
         updateTitle = binding.updateTitle
         updateFundCollected = binding.updateFundCollected
@@ -135,8 +129,6 @@ class ForumUpdate: AppCompatActivity() {
         if (bundle != null) {
             Glide.with(this@ForumUpdate).load(bundle.getString("PostImage")).into(updateImage)
             updateCategory.setText(bundle.getString("Category"))
-            updateStartDate.setText(bundle.getString("StartDate"))
-            updateEndDate.setText(bundle.getString("EndDate"))
             updateCampus.setText(bundle.getString("Campus"))
             updateTargetParty.setText(bundle.getString("TargetParticipants"))
             updateActivePoints.setText(bundle.getString("ActivePoints"))
@@ -154,22 +146,6 @@ class ForumUpdate: AppCompatActivity() {
         updateButton.setOnClickListener {
             showUpdateConfirmation()
 
-        }
-        updateStartDate.setOnClickListener {
-            showDateTimePicker(updateStartDate, null)
-        }
-
-        updateEndDate.setOnClickListener {
-            // Parse the start date to a Calendar object for comparison
-            val startDateCalendar = Calendar.getInstance()
-            try {
-                val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
-                startDateCalendar.time = dateFormat.parse(updateStartDate.text.toString())
-            } catch (e: ParseException) {
-                e.printStackTrace()
-            }
-
-            showDateTimePicker(updateEndDate, startDateCalendar)
         }
     }
     private fun saveData() {
@@ -196,37 +172,14 @@ class ForumUpdate: AppCompatActivity() {
                 val urlImage = uriTask.result
                 imageUrl = urlImage.toString()
 
-                if (!isDateTimeInPast(updateStartDate.text.toString())) {
-                    // If the date and time are not in the past, proceed with data upload
                     updateData()
-                    dialog.dismiss()
-                } else {
-                    dialog.dismiss()
-                    Toast.makeText(
-                        this@ForumUpdate,
-                        "Selected date and time are in the past",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+
             }.addOnFailureListener { e ->
                 dialog.dismiss()
                 // Handle the image upload failure, e.g., show an error message
                 Toast.makeText(
                     this@ForumUpdate,
                     "Image upload failed: ${e.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        } else {
-            // No new image selected, just update the data
-            if (!isDateTimeInPast(updateStartDate.text.toString())) {
-                updateData()
-                dialog.dismiss()
-            } else {
-                dialog.dismiss()
-                Toast.makeText(
-                    this@ForumUpdate,
-                    "Selected date and time are in the past",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -251,70 +204,8 @@ class ForumUpdate: AppCompatActivity() {
     }
 
 
-    private fun isDateTimeInPast(dateTimeString: String): Boolean {
-        try {
-            val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
-            dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
-            val selectedDateTime = dateFormat.parse(dateTimeString)
-            val currentDateTime = Calendar.getInstance().time
-
-            // Check if the selected date and time are in the past
-            return selectedDateTime != null && selectedDateTime.before(currentDateTime)
-        } catch (e: ParseException) {
-            e.printStackTrace()
-            return true  // Handle the error as per your requirements
-        }
-    }
-
-    private fun showDateTimePicker(editText: EditText, startDate: Calendar?) {
-        val calendar = Calendar.getInstance()
-        val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
-        dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
-
-        val datePickerDialog = DatePickerDialog(
-            this,
-            { _, year, month, dayOfMonth ->
-                calendar.set(Calendar.YEAR, year)
-                calendar.set(Calendar.MONTH, month)
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-
-                val timePickerDialog = TimePickerDialog(
-                    this,
-                    { _, hourOfDay, minute ->
-                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                        calendar.set(Calendar.MINUTE, minute)
-
-                        // Check if the selected end date is after the start date
-                        if (startDate != null && calendar.time.before(startDate.time)) {
-                            Toast.makeText(
-                                this@ForumUpdate,
-                                "End date must be after the start date",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } else {
-                            // Set the selected date and time text in the appropriate EditText
-                            val formattedDateTime = dateFormat.format(calendar.time)
-                            editText.setText(formattedDateTime)
-                        }
-                    },
-                    calendar.get(Calendar.HOUR_OF_DAY),
-                    calendar.get(Calendar.MINUTE),
-                    false
-                )
-                timePickerDialog.show()
-            },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
-        )
-
-        datePickerDialog.show()
-    }
-
     private fun updateData() {
         title = updateTitle.text.toString().trim()
-        startdate = updateStartDate.text.toString().trim()
-        enddate = updateEndDate.text.toString().trim()
         campus = updateCampus.text.toString()
         targetparty = updateTargetParty.text.toString().toInt()
         activepoints = updateActivePoints.text.toString().toInt()
@@ -330,8 +221,6 @@ class ForumUpdate: AppCompatActivity() {
                 uploadersId,
                 category,
                 title,
-                startdate,
-                enddate,
                 imageUrl,
                 campus,
                 targetparty,
@@ -362,8 +251,6 @@ class ForumUpdate: AppCompatActivity() {
                 uploadersId,
                 category,
                 title,
-                startdate,
-                enddate,
                 oldImageURL,
                 campus,
                 targetparty,

@@ -57,8 +57,6 @@ import java.util.TimeZone
 
 class ForumComment : AppCompatActivity() {
     private lateinit var binding: ActivityForumCommentBinding
-    private lateinit var detailStartDate: TextView
-    private lateinit var detailEndDate: TextView
     private lateinit var detailTitle: TextView
     private lateinit var detailImage: ImageView
     private lateinit var detailTargetParty: TextView
@@ -85,8 +83,6 @@ class ForumComment : AppCompatActivity() {
         setContentView(binding.root)
         val currentUser = FirebaseAuth.getInstance().currentUser
         val currentUserId = currentUser?.uid
-        detailStartDate = findViewById(R.id.detailStartDate)
-        detailEndDate = findViewById(R.id.detailEndDate)
         detailImage = findViewById(R.id.detailImage)
         detailCategory = findViewById(R.id.detailCategory)
         detailTitle = findViewById(R.id.detailTitle)
@@ -227,8 +223,6 @@ class ForumComment : AppCompatActivity() {
         bundle?.let {
             detailCategory.text = it.getString("Category")
             detailTitle.text = it.getString("PostText")
-            detailStartDate.text = it.getString("StartDate")
-            detailEndDate.text = it.getString("EndDate")
             detailcampus.text = it.getString("Campus")
             detailFundCollected.text = it.getDouble("FundCollected").toString()
             detailTargetParty.text = it.getInt("TargetParticipants").toString()
@@ -299,8 +293,6 @@ class ForumComment : AppCompatActivity() {
             val intent = Intent(this@ForumComment, ForumUpdate::class.java)
                 .putExtra("Category", detailCategory.text.toString())
                 .putExtra("PostText", detailTitle.text.toString())
-                .putExtra("StartDate", detailStartDate.text.toString())
-                .putExtra("EndDate", detailEndDate.text.toString())
                 .putExtra("PostImage", imageUrl)
                 .putExtra("Campus", detailcampus.text.toString())
                 .putExtra("TargetParticipants", detailTargetParty.text.toString())

@@ -4,8 +4,6 @@ class DataClassForum {
     var uploadersUID: String? = null
     var category: String? = null
     var postText: String? = null
-    var startDate: String? = null
-    var endDate: String? = null
     var postImage: String? = null
     var campus: String? = null
     var targetparty: Int = 0
@@ -22,8 +20,6 @@ class DataClassForum {
         uploadersuid: String?,
         category: String?,
         postText: String?,
-        startDate: String?,
-        endDate: String?,
         postImage: String,
         campus: String?,
         targetparty: Int,
@@ -35,8 +31,6 @@ class DataClassForum {
         this.uploadersUID = uploadersuid
         this.category = category
         this.postText = postText
-        this.startDate = startDate
-        this.endDate = endDate
         this.postImage = postImage
         this.campus = campus
         this.targetparty = targetparty

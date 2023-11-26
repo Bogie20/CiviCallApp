@@ -27,8 +27,6 @@ class ForumAdapter (private val context: Context, private var dataList: List<Dat
         holder.commentbutton.setOnClickListener {
             val intent = Intent(context, ForumComment::class.java).apply {
                 putExtra("PostImage", data.postImage)
-                putExtra("StartDate", data.startDate)
-                putExtra("EndDate", data.endDate)
                 putExtra("Category", data.category)
                 putExtra("FundCollected", data.fundcollected)
                 putExtra("PostText", data.postText)
