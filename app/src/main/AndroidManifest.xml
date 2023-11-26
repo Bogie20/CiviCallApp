@@ -48,6 +48,9 @@
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
         <activity
+            android:name=".Forum.ForumUpdate"
+            android:exported="false" />
+        <activity
             android:name=".Forum.ForumComment"
             android:exported="false" />
         <activity

@@ -40,9 +40,9 @@ class ForumFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_civic_post, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_forum, container, false)
 
-        recyclerView = rootView.findViewById(R.id.recyclerView)
+        recyclerView = rootView.findViewById(R.id.recyclerViewForum)
         searchView = rootView.findViewById(R.id.search)
         searchView.clearFocus()
         noPostsImage = rootView.findViewById(R.id.noPostsImage)
@@ -257,7 +257,7 @@ class ForumFragment : Fragment() {
     private fun searchList(text: String) {
         val searchList = ArrayList<DataClassForum>()
         for (dataClass in dataList) {
-            if (dataClass?.title?.toLowerCase()?.contains(text.toLowerCase()) == true) {
+            if (dataClass?.postText?.toLowerCase()?.contains(text.toLowerCase()) == true) {
                 searchList.add(dataClass)
             }
         }

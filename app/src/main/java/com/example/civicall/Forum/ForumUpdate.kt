@@ -24,7 +24,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
-import com.example.civicall.databinding.ActivityUpdateEngagementBinding
+import com.example.civicall.databinding.ActivityForumUpdateBinding
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -37,7 +37,7 @@ import java.util.Calendar
 import java.util.Locale
 import java.util.TimeZone
 
-class ForumUpdatePost: AppCompatActivity() {
+class ForumUpdate: AppCompatActivity() {
 
     private lateinit var updateObjective: EditText
     private lateinit var updateInstruction: EditText
@@ -76,15 +76,14 @@ class ForumUpdatePost: AppCompatActivity() {
     private var campus: String = ""
     private var category: String = ""
     private var paymentmethod: String = ""
-    private var fundcollected: Double = 0.0
     private var uri: Uri? = null
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference
-    private lateinit var binding: ActivityUpdateEngagementBinding
+    private lateinit var binding: ActivityForumUpdateBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityUpdateEngagementBinding.inflate(layoutInflater)
+        binding = ActivityForumUpdateBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         updateButton = binding.updateButton
@@ -151,18 +150,18 @@ class ForumUpdatePost: AppCompatActivity() {
                 uri = data?.data
                 updateImage.setImageURI(uri)
             } else {
-                Toast.makeText(this@ForumUpdatePost, "No Image Selected", Toast.LENGTH_SHORT)
+                Toast.makeText(this@ForumUpdate, "No Image Selected", Toast.LENGTH_SHORT)
                     .show()
             }
         }
 
         val bundle = intent.extras
         if (bundle != null) {
-            Glide.with(this@ForumUpdatePost).load(bundle.getString("Image")).into(updateImage)
+            Glide.with(this@ForumUpdate).load(bundle.getString("PostImage")).into(updateImage)
             updateCategory.setText(bundle.getString("Category"))
             updatePaymentMethod.setText(bundle.getString("PaymentMethod"))
             updatePaymentRecipient.setText(bundle.getString("PaymentRecipient"))
-            updateTitle.setText(bundle.getString("Title"))
+            updateTitle.setText(bundle.getString("PostText"))
             updateStartDate.setText(bundle.getString("StartDate"))
             updateEndDate.setText(bundle.getString("EndDate"))
             updateLocation.setText(bundle.getString("Location"))
@@ -175,7 +174,7 @@ class ForumUpdatePost: AppCompatActivity() {
             updateFacilitator.setText(bundle.getString("Facilitator"))
             updateFacilitatorInfo.setText(bundle.getString("FacilitatorConEm"))
             key = bundle.getString("Key")!!
-            oldImageURL = bundle.getString("Image")!!
+            oldImageURL = bundle.getString("PostImage")!!
         }
         databaseReference =
             FirebaseDatabase.getInstance().getReference("Forum Post").child(key)
@@ -207,7 +206,7 @@ class ForumUpdatePost: AppCompatActivity() {
         }
     }
     private fun saveData() {
-        val builder = AlertDialog.Builder(this@ForumUpdatePost)
+        val builder = AlertDialog.Builder(this@ForumUpdate)
         builder.setCancelable(false)
         val inflater = layoutInflater
         val loadingLayout = inflater.inflate(R.layout.loading_layout, null)
@@ -237,7 +236,7 @@ class ForumUpdatePost: AppCompatActivity() {
                 } else {
                     dialog.dismiss()
                     Toast.makeText(
-                        this@ForumUpdatePost,
+                        this@ForumUpdate,
                         "Selected date and time are in the past",
                         Toast.LENGTH_SHORT
                     ).show()
@@ -246,7 +245,7 @@ class ForumUpdatePost: AppCompatActivity() {
                 dialog.dismiss()
                 // Handle the image upload failure, e.g., show an error message
                 Toast.makeText(
-                    this@ForumUpdatePost,
+                    this@ForumUpdate,
                     "Image upload failed: ${e.message}",
                     Toast.LENGTH_SHORT
                 ).show()
@@ -259,7 +258,7 @@ class ForumUpdatePost: AppCompatActivity() {
             } else {
                 dialog.dismiss()
                 Toast.makeText(
-                    this@ForumUpdatePost,
+                    this@ForumUpdate,
                     "Selected date and time are in the past",
                     Toast.LENGTH_SHORT
                 ).show()
@@ -321,7 +320,7 @@ class ForumUpdatePost: AppCompatActivity() {
                         // Check if the selected end date is after the start date
                         if (startDate != null && calendar.time.before(startDate.time)) {
                             Toast.makeText(
-                                this@ForumUpdatePost,
+                                this@ForumUpdate,
                                 "End date must be after the start date",
                                 Toast.LENGTH_SHORT
                             ).show()
@@ -398,11 +397,11 @@ class ForumUpdatePost: AppCompatActivity() {
                                 FirebaseStorage.getInstance().getReferenceFromUrl(oldImageURL)
                             reference.delete()
                         }
-                        Toast.makeText(this@ForumUpdatePost, "Updated", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@ForumUpdate, "Updated", Toast.LENGTH_SHORT).show()
                         finish()
                     }
                 }.addOnFailureListener { e ->
-                    Toast.makeText(this@ForumUpdatePost, e.message.toString(), Toast.LENGTH_SHORT)
+                    Toast.makeText(this@ForumUpdate, e.message.toString(), Toast.LENGTH_SHORT)
                         .show()
                 }
         } else {
@@ -433,11 +432,11 @@ class ForumUpdatePost: AppCompatActivity() {
             databaseReference.setValue(dataClass)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(this@ForumUpdatePost, "Updated", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@ForumUpdate, "Updated", Toast.LENGTH_SHORT).show()
                         finish()
                     }
                 }.addOnFailureListener { e ->
-                    Toast.makeText(this@ForumUpdatePost, e.message.toString(), Toast.LENGTH_SHORT)
+                    Toast.makeText(this@ForumUpdate, e.message.toString(), Toast.LENGTH_SHORT)
                         .show()
                 }
         }

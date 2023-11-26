@@ -242,7 +242,7 @@ class ForumComment : AppCompatActivity() {
         val bundle = intent.extras
         bundle?.let {
             detailCategory.text = it.getString("Category")
-            detailTitle.text = it.getString("Title")
+            detailTitle.text = it.getString("PostText")
             detailStartDate.text = it.getString("StartDate")
             detailEndDate.text = it.getString("EndDate")
             detailLocation.text = it.getString("Location")
@@ -258,8 +258,8 @@ class ForumComment : AppCompatActivity() {
             detailTargetParty.text = it.getInt("TargetParticipants").toString()
             detailActivePoints.text = it.getInt("ActivePoints").toString()
             key = it.getString("Key") ?: ""
-            imageUrl = it.getString("Image") ?: ""
-            Glide.with(this).load(it.getString("Image")).into(detailImage)
+            imageUrl = it.getString("PostImage") ?: ""
+            Glide.with(this).load(it.getString("PostImage")).into(detailImage)
         }
 
         val databaseReference: DatabaseReference =
@@ -320,13 +320,13 @@ class ForumComment : AppCompatActivity() {
         }
 
         editButton.setOnClickListener {
-            val intent = Intent(this@ForumComment, ForumUpdatePost::class.java)
+            val intent = Intent(this@ForumComment, ForumUpdate::class.java)
                 .putExtra("Category", detailCategory.text.toString())
-                .putExtra("Title", detailTitle.text.toString())
+                .putExtra("PostText", detailTitle.text.toString())
                 .putExtra("StartDate", detailStartDate.text.toString())
                 .putExtra("EndDate", detailEndDate.text.toString())
                 .putExtra("Location", detailLocation.text.toString())
-                .putExtra("Image", imageUrl)
+                .putExtra("PostImage", imageUrl)
                 .putExtra("PaymentMethod", detailPaymentMethod.text.toString())
                 .putExtra("PaymentRecipient", detailPaymentRecipient.text.toString())
                 .putExtra("Facilitator", detailFaciName.text.toString())

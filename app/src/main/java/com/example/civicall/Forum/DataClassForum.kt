@@ -3,11 +3,11 @@ package com.example.civicall.Forum
 class DataClassForum {
     var uploadersUID: String? = null
     var category: String? = null
-    var title: String? = null
+    var postText: String? = null
     var startDate: String? = null
     var endDate: String? = null
     var location: String? = null
-    var image: String? = null
+    var postImage: String? = null
     var campus: String? = null
     var objective: String? = null
     var intro: String? = null
@@ -29,11 +29,11 @@ class DataClassForum {
     constructor(
         uploadersuid: String?,
         category: String?,
-        title: String?,
+        postText: String?,
         startDate: String?,
         endDate: String?,
         location: String?,
-        image: String,
+        postImage: String,
         campus: String?,
         objective: String,
         intro: String?,
@@ -50,11 +50,11 @@ class DataClassForum {
     ) {
         this.uploadersUID = uploadersuid
         this.category = category
-        this.title = title
+        this.postText = postText
         this.startDate = startDate
         this.endDate = endDate
         this.location = location
-        this.image = image
+        this.postImage = postImage
         this.campus = campus
         this.objective = objective
         this.intro = intro

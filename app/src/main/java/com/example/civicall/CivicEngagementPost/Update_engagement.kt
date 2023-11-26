@@ -76,7 +76,6 @@ class Update_engagement: AppCompatActivity() {
     private var campus: String = ""
     private var category: String = ""
     private var paymentmethod: String = ""
-    private var fundcollected: Double = 0.0
     private var uri: Uri? = null
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference

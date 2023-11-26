@@ -26,7 +26,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
-import com.example.civicall.databinding.ActivityUploadEngagementBinding
+import com.example.civicall.databinding.ActivityForumUploadBinding
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -42,9 +42,9 @@ import java.util.TimeZone
 
 class ForumUpload : AppCompatActivity() {
 
-    private lateinit var uploadImage: ImageView
+    private lateinit var uploadPostImage: ImageView
     private lateinit var saveButton: Button
-    private lateinit var uploadTitle: EditText
+    private lateinit var uploadPostText: EditText
     private lateinit var uploadFacilitator: EditText
     private lateinit var uploadFacilitatorInfo: EditText
     private lateinit var uploadPaymentRecipient: EditText
@@ -61,20 +61,20 @@ class ForumUpload : AppCompatActivity() {
     private lateinit var uploadEndDate: EditText
     private var imageURL: String? = null
     private var uri: Uri? = null
-    private lateinit var binding: ActivityUploadEngagementBinding
+    private lateinit var binding: ActivityForumUploadBinding
     private lateinit var networkUtils: NetworkUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityUploadEngagementBinding.inflate(layoutInflater)
+        binding = ActivityForumUploadBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        uploadImage = binding.uploadImage
+        uploadPostImage = binding.uploadPostImage
         uploadStartDate = binding.uploadStartDate
         uploadEndDate = binding.uploadEndDate
         uploadCategory = binding.uploadCategory
         uploadPaymentMethod = binding.uploadPaymentMethod
-        uploadTitle = binding.uploadTitle
+        uploadPostText = binding.uploadPostText
         uploadPaymentRecipient = binding.uploadPaymentRecipient
         uploadTargetParty = binding.uploadTargetParty
         uploadFundCollected = binding.uploadFundCollected
@@ -151,14 +151,14 @@ class ForumUpload : AppCompatActivity() {
             if (result.resultCode == Activity.RESULT_OK) {
                 val data = result.data
                 uri = data?.data
-                uploadImage.setImageURI(uri)
+                uploadPostImage.setImageURI(uri)
             } else {
                 Toast.makeText(this@ForumUpload, "No Image Selected", Toast.LENGTH_SHORT)
                     .show()
             }
         }
 
-        uploadImage.setOnClickListener {
+        uploadPostImage.setOnClickListener {
             val photoPicker = Intent(Intent.ACTION_PICK)
             photoPicker.type = "image/*"
             activityResultLauncher.launch(photoPicker)
@@ -350,7 +350,7 @@ class ForumUpload : AppCompatActivity() {
 
     private fun saveData() {
         // Validate if any of the required fields is empty
-        if (uploadTitle.text.isNullOrBlank() ||
+        if (uploadPostText.text.isNullOrBlank() ||
             uploadStartDate.text.isNullOrBlank() ||
             uploadLocation.text.isNullOrBlank() ||
             uploadFacilitator.text.isNullOrBlank() ||
@@ -433,7 +433,7 @@ class ForumUpload : AppCompatActivity() {
     }
 
     private fun uploadData() {
-        val title = uploadTitle.text.toString()
+        val postText = uploadPostText.text.toString()
         val startdate = uploadStartDate.text.toString()
         val enddate = uploadEndDate.text.toString()
         val location = uploadLocation.text.toString()
@@ -466,7 +466,7 @@ class ForumUpload : AppCompatActivity() {
                 val dataClass = DataClassForum(
                     uploadersId,
                     category,
-                    title,
+                    postText,
                     startdate,
                     enddate,
                     location,

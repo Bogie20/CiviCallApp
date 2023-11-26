@@ -90,7 +90,7 @@
                     app:cardElevation="3dp">
 
                     <ImageView
-                        android:id="@+id/uploadImage"
+                        android:id="@+id/uploadPostImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"
@@ -125,7 +125,7 @@
                     app:hintTextColor="@color/DarkGray">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadTitle"
+                        android:id="@+id/uploadPostText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="15dp"
