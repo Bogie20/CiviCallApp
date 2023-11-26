@@ -24,7 +24,6 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.post_civicengagement, parent, false)
         return MyViewHolder(view)
-
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -116,7 +115,6 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
         override fun getItemCount(): Int {
         return dataList.size
     }
-
     fun searchDataList(searchList: ArrayList<DataClass>) {
         dataList = searchList
         notifyDataSetChanged()

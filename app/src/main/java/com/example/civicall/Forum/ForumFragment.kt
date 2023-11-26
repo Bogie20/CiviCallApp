@@ -75,7 +75,7 @@ class ForumFragment : Fragment() {
                 for (itemSnapshot in snapshot.children) {
                     val dataClass = itemSnapshot.getValue(DataClassForum::class.java)
                     dataClass?.key = itemSnapshot.key
-                    dataClass?.let { dataList.add(it) }
+                    dataClass?.let { dataList.add(0, it) } // Add the new item at the beginning of the list
                 }
 
                 adapter.notifyDataSetChanged()

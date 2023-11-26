@@ -152,6 +152,7 @@
             app:menu_colorNormal="@android:color/transparent"
             app:menu_colorPressed="@color/background"
             app:menu_fab_size="mini"
+            app:menu_buttonSpacing="-3dp"
             app:fab_showShadow="false"
             app:menu_icon="@drawable/ic_more"
             app:menu_openDirection="down">

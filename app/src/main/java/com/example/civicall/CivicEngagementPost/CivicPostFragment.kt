@@ -75,7 +75,7 @@ class CivicPostFragment : Fragment() {
                 for (itemSnapshot in snapshot.children) {
                     val dataClass = itemSnapshot.getValue(DataClass::class.java)
                     dataClass?.key = itemSnapshot.key
-                    dataClass?.let { dataList.add(it) }
+                    dataClass?.let { dataList.add(0, it) }
                 }
 
                 adapter.notifyDataSetChanged()
@@ -95,13 +95,13 @@ class CivicPostFragment : Fragment() {
                 }
 
                 dialog.dismiss()
-
             }
 
             override fun onCancelled(error: DatabaseError) {
                 dialog.dismiss()
             }
         })
+
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
