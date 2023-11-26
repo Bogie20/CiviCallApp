@@ -42,13 +42,10 @@ class ForumUpdate: AppCompatActivity() {
     private lateinit var updateImage: ImageView
     private lateinit var updateButton: Button
     private lateinit var updateTitle: EditText
-    private lateinit var updateFundCollected: EditText
-    private lateinit var updateActivePoints: EditText
     private lateinit var updateCampus: AutoCompleteTextView
     private lateinit var updateCategory: AutoCompleteTextView
     private lateinit var networkUtils: NetworkUtils
     private var title: String = ""
-    private var activepoints: Int = 0
     private var imageUrl: String = ""
     private var key: String = ""
     private var oldImageURL: String = ""
@@ -67,9 +64,6 @@ class ForumUpdate: AppCompatActivity() {
         updateButton = binding.updateButton
         updateImage = binding.updateImage
         updateTitle = binding.updateTitle
-        updateFundCollected = binding.updateFundCollected
-        updateActivePoints = binding.updateActivePoints
-        updateActivePoints.inputType = InputType.TYPE_CLASS_NUMBER
         updateCampus = binding.updateCampus
         updateCategory = binding.updateCategory
         networkUtils = NetworkUtils(this)
@@ -127,7 +121,6 @@ class ForumUpdate: AppCompatActivity() {
             updateCategory.setText(bundle.getString("Category"))
             updateCampus.setText(bundle.getString("Campus"))
             updateTitle.setText(bundle.getString("PostText"))
-            updateActivePoints.setText(bundle.getString("ActivePoints"))
             key = bundle.getString("Key")!!
             oldImageURL = bundle.getString("PostImage")!!
         }
@@ -203,9 +196,7 @@ class ForumUpdate: AppCompatActivity() {
     private fun updateData() {
         title = updateTitle.text.toString().trim()
         campus = updateCampus.text.toString()
-        activepoints = updateActivePoints.text.toString().toInt()
         category = updateCategory.text.toString()
-        val fundcollected = if (updateFundCollected.text.isNullOrBlank()) 0.0 else updateFundCollected.text.toString().toDouble()
 
 
         val user = FirebaseAuth.getInstance().currentUser
@@ -218,8 +209,6 @@ class ForumUpdate: AppCompatActivity() {
                 title,
                 imageUrl,
                 campus,
-                activepoints,
-                fundcollected,
                 false
             )
 
@@ -247,8 +236,6 @@ class ForumUpdate: AppCompatActivity() {
                 title,
                 oldImageURL,
                 campus,
-                activepoints,
-                fundcollected,
                 false
             )
 

@@ -45,9 +45,7 @@ class ForumUpload : AppCompatActivity() {
     private lateinit var uploadPostImage: ImageView
     private lateinit var saveButton: Button
     private lateinit var uploadPostText: EditText
-    private lateinit var uploadActivePoints: EditText
     private lateinit var uploadCategory: AutoCompleteTextView
-    private lateinit var uploadFundCollected: EditText
     private var imageURL: String? = null
     private var uri: Uri? = null
     private lateinit var binding: ActivityForumUploadBinding
@@ -61,9 +59,6 @@ class ForumUpload : AppCompatActivity() {
         uploadPostImage = binding.uploadPostImage
         uploadCategory = binding.uploadCategory
         uploadPostText = binding.uploadPostText
-        uploadFundCollected = binding.uploadFundCollected
-        uploadActivePoints = binding.uploadActivePoints
-        uploadActivePoints.inputType = InputType.TYPE_CLASS_NUMBER
         saveButton = binding.uploadButton
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
@@ -307,14 +302,8 @@ class ForumUpload : AppCompatActivity() {
 
     private fun uploadData() {
         val postText = uploadPostText.text.toString()
-        val activepoints = uploadActivePoints.text.toString().toInt()
         val campus = binding.uploadCampus.text.toString()
         val category = binding.uploadCategory.text.toString()
-        val fundcollected =
-            if (uploadFundCollected.text.isNullOrBlank()) 0.0 else uploadFundCollected.text.toString()
-                .toDouble()
-
-        val formattedFundCollected = String.format("%.2f", fundcollected)
         val verificationStatus = false
 
         val user = FirebaseAuth.getInstance().currentUser
@@ -331,8 +320,6 @@ class ForumUpload : AppCompatActivity() {
                     postText,
                     imageURL!!,
                     campus,
-                    activepoints,
-                    formattedFundCollected.toDouble(),
                     verificationStatus
                 )
 

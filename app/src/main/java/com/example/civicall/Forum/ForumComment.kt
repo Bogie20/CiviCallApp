@@ -59,10 +59,8 @@ class ForumComment : AppCompatActivity() {
     private lateinit var binding: ActivityForumCommentBinding
     private lateinit var detailTitle: TextView
     private lateinit var detailImage: ImageView
-    private lateinit var detailActivePoints: TextView
     private lateinit var detailcampus: TextView
     private lateinit var detailCategory: TextView
-    private lateinit var detailFundCollected: TextView
     private lateinit var detailCurrentParty: TextView
     private lateinit var deleteButton: FloatingActionButton
     private lateinit var editButton: FloatingActionButton
@@ -85,8 +83,6 @@ class ForumComment : AppCompatActivity() {
         detailImage = findViewById(R.id.detailImage)
         detailCategory = findViewById(R.id.detailCategory)
         detailTitle = findViewById(R.id.detailTitle)
-        detailActivePoints = findViewById(R.id.detailActivePoints)
-        detailFundCollected = findViewById(R.id.detailFundCollected)
         deleteButton = findViewById(R.id.deleteButton)
         editButton = findViewById(R.id.editButton)
         detailcampus = findViewById(R.id.detailcampus)
@@ -222,8 +218,6 @@ class ForumComment : AppCompatActivity() {
             detailCategory.text = it.getString("Category")
             detailTitle.text = it.getString("PostText")
             detailcampus.text = it.getString("Campus")
-            detailFundCollected.text = it.getDouble("FundCollected").toString()
-            detailActivePoints.text = it.getInt("ActivePoints").toString()
             key = it.getString("Key") ?: ""
             imageUrl = it.getString("PostImage") ?: ""
             Glide.with(this).load(it.getString("PostImage")).into(detailImage)
@@ -292,7 +286,6 @@ class ForumComment : AppCompatActivity() {
                 .putExtra("PostText", detailTitle.text.toString())
                 .putExtra("PostImage", imageUrl)
                 .putExtra("Campus", detailcampus.text.toString())
-                .putExtra("ActivePoints", detailActivePoints.text.toString())
                 .putExtra("Key", key)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
@@ -523,24 +516,6 @@ class ForumComment : AppCompatActivity() {
 
                                             incrementActivePointsForUser(currentUserUid)
 
-
-                                            FirebaseDatabase.getInstance().getReference("Forum Post").child(key)
-                                                .child("fundcollected").addListenerForSingleValueEvent(object : ValueEventListener {
-                                                    override fun onDataChange(currentDataSnapshot: DataSnapshot) {
-                                                        val currentFundCollected = currentDataSnapshot.getValue(Double::class.java) ?: 0.0
-
-                                                        val updatedFundCollected = currentFundCollected + amount.toDouble()
-                                                        FirebaseDatabase.getInstance().getReference("Forum Post").child(key)
-                                                            .child("fundcollected").setValue(updatedFundCollected)
-
-                                                        val formattedFundCollected = String.format("%.2f", updatedFundCollected)
-                                                        detailFundCollected.text = "$formattedFundCollected"
-                                                    }
-
-                                                    override fun onCancelled(databaseError: DatabaseError) {
-                                                        // Handle onCancelled
-                                                    }
-                                                })
                                         }
                                     }
 

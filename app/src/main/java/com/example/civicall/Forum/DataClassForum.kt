@@ -6,8 +6,6 @@ class DataClassForum {
     var postText: String? = null
     var postImage: String? = null
     var campus: String? = null
-    var activepoints: Int = 0
-    var fundcollected: Double = 0.0
     var verificationStatus: Boolean = false
 
     var key: String? = null
@@ -21,8 +19,6 @@ class DataClassForum {
         postText: String?,
         postImage: String,
         campus: String?,
-        activepoints: Int,
-        fundcollected: Double,
         verificationStatus: Boolean
 
     ) {
@@ -31,8 +27,6 @@ class DataClassForum {
         this.postText = postText
         this.postImage = postImage
         this.campus = campus
-        this.activepoints = activepoints
-        this.fundcollected = fundcollected
         this.verificationStatus = verificationStatus
     }
 
