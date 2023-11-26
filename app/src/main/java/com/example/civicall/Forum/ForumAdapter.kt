@@ -30,7 +30,6 @@ class ForumAdapter (private val context: Context, private var dataList: List<Dat
                 putExtra("Category", data.category)
                 putExtra("FundCollected", data.fundcollected)
                 putExtra("PostText", data.postText)
-                putExtra("TargetParticipants", data.targetparty)
                 putExtra("ActivePoints", data.activepoints)
                 putExtra("Key", data.key)
                 putExtra("Campus", data.campus)

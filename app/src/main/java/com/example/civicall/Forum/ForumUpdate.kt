@@ -43,13 +43,11 @@ class ForumUpdate: AppCompatActivity() {
     private lateinit var updateButton: Button
     private lateinit var updateTitle: EditText
     private lateinit var updateFundCollected: EditText
-    private lateinit var updateTargetParty: EditText
     private lateinit var updateActivePoints: EditText
     private lateinit var updateCampus: AutoCompleteTextView
     private lateinit var updateCategory: AutoCompleteTextView
     private lateinit var networkUtils: NetworkUtils
     private var title: String = ""
-    private var targetparty: Int = 0
     private var activepoints: Int = 0
     private var imageUrl: String = ""
     private var key: String = ""
@@ -70,8 +68,6 @@ class ForumUpdate: AppCompatActivity() {
         updateImage = binding.updateImage
         updateTitle = binding.updateTitle
         updateFundCollected = binding.updateFundCollected
-        updateTargetParty = binding.updateTargetParty
-        updateTargetParty.inputType = InputType.TYPE_CLASS_NUMBER
         updateActivePoints = binding.updateActivePoints
         updateActivePoints.inputType = InputType.TYPE_CLASS_NUMBER
         updateCampus = binding.updateCampus
@@ -130,7 +126,7 @@ class ForumUpdate: AppCompatActivity() {
             Glide.with(this@ForumUpdate).load(bundle.getString("PostImage")).into(updateImage)
             updateCategory.setText(bundle.getString("Category"))
             updateCampus.setText(bundle.getString("Campus"))
-            updateTargetParty.setText(bundle.getString("TargetParticipants"))
+            updateTitle.setText(bundle.getString("PostText"))
             updateActivePoints.setText(bundle.getString("ActivePoints"))
             key = bundle.getString("Key")!!
             oldImageURL = bundle.getString("PostImage")!!
@@ -172,18 +168,18 @@ class ForumUpdate: AppCompatActivity() {
                 val urlImage = uriTask.result
                 imageUrl = urlImage.toString()
 
-                    updateData()
-
-            }.addOnFailureListener { e ->
-                dialog.dismiss()
-                // Handle the image upload failure, e.g., show an error message
-                Toast.makeText(
-                    this@ForumUpdate,
-                    "Image upload failed: ${e.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
             }
+                .addOnFailureListener { e ->
+                    dialog.dismiss()
+                    // Handle the image upload failure, e.g., show an error message
+                    Toast.makeText(
+                        this@ForumUpdate,
+                        "Image upload failed: ${e.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
         }
+        updateData()
     }
     private fun showCampusSelectionDialog() {
         val campuscategoryArray = resources.getStringArray(R.array.allowed_campuses)
@@ -207,7 +203,6 @@ class ForumUpdate: AppCompatActivity() {
     private fun updateData() {
         title = updateTitle.text.toString().trim()
         campus = updateCampus.text.toString()
-        targetparty = updateTargetParty.text.toString().toInt()
         activepoints = updateActivePoints.text.toString().toInt()
         category = updateCategory.text.toString()
         val fundcollected = if (updateFundCollected.text.isNullOrBlank()) 0.0 else updateFundCollected.text.toString().toDouble()
@@ -223,7 +218,6 @@ class ForumUpdate: AppCompatActivity() {
                 title,
                 imageUrl,
                 campus,
-                targetparty,
                 activepoints,
                 fundcollected,
                 false
@@ -253,7 +247,6 @@ class ForumUpdate: AppCompatActivity() {
                 title,
                 oldImageURL,
                 campus,
-                targetparty,
                 activepoints,
                 fundcollected,
                 false

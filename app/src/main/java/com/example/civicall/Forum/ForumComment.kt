@@ -59,7 +59,6 @@ class ForumComment : AppCompatActivity() {
     private lateinit var binding: ActivityForumCommentBinding
     private lateinit var detailTitle: TextView
     private lateinit var detailImage: ImageView
-    private lateinit var detailTargetParty: TextView
     private lateinit var detailActivePoints: TextView
     private lateinit var detailcampus: TextView
     private lateinit var detailCategory: TextView
@@ -86,7 +85,6 @@ class ForumComment : AppCompatActivity() {
         detailImage = findViewById(R.id.detailImage)
         detailCategory = findViewById(R.id.detailCategory)
         detailTitle = findViewById(R.id.detailTitle)
-        detailTargetParty = findViewById(R.id.detailTargetParty)
         detailActivePoints = findViewById(R.id.detailActivePoints)
         detailFundCollected = findViewById(R.id.detailFundCollected)
         deleteButton = findViewById(R.id.deleteButton)
@@ -225,7 +223,6 @@ class ForumComment : AppCompatActivity() {
             detailTitle.text = it.getString("PostText")
             detailcampus.text = it.getString("Campus")
             detailFundCollected.text = it.getDouble("FundCollected").toString()
-            detailTargetParty.text = it.getInt("TargetParticipants").toString()
             detailActivePoints.text = it.getInt("ActivePoints").toString()
             key = it.getString("Key") ?: ""
             imageUrl = it.getString("PostImage") ?: ""
@@ -295,7 +292,6 @@ class ForumComment : AppCompatActivity() {
                 .putExtra("PostText", detailTitle.text.toString())
                 .putExtra("PostImage", imageUrl)
                 .putExtra("Campus", detailcampus.text.toString())
-                .putExtra("TargetParticipants", detailTargetParty.text.toString())
                 .putExtra("ActivePoints", detailActivePoints.text.toString())
                 .putExtra("Key", key)
             startActivity(intent)

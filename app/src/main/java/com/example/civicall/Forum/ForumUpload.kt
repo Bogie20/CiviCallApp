@@ -45,7 +45,6 @@ class ForumUpload : AppCompatActivity() {
     private lateinit var uploadPostImage: ImageView
     private lateinit var saveButton: Button
     private lateinit var uploadPostText: EditText
-    private lateinit var uploadTargetParty: EditText
     private lateinit var uploadActivePoints: EditText
     private lateinit var uploadCategory: AutoCompleteTextView
     private lateinit var uploadFundCollected: EditText
@@ -62,9 +61,7 @@ class ForumUpload : AppCompatActivity() {
         uploadPostImage = binding.uploadPostImage
         uploadCategory = binding.uploadCategory
         uploadPostText = binding.uploadPostText
-        uploadTargetParty = binding.uploadTargetParty
         uploadFundCollected = binding.uploadFundCollected
-        uploadTargetParty.inputType = InputType.TYPE_CLASS_NUMBER
         uploadActivePoints = binding.uploadActivePoints
         uploadActivePoints.inputType = InputType.TYPE_CLASS_NUMBER
         saveButton = binding.uploadButton
@@ -261,7 +258,6 @@ class ForumUpload : AppCompatActivity() {
 
     private fun saveData() {
         if (uploadPostText.text.isNullOrBlank() ||
-            uploadTargetParty.text.isNullOrBlank() ||
             binding.uploadCampus.text.isNullOrBlank() ||
             binding.uploadCategory.text.isNullOrBlank() ||
             uri == null
@@ -297,7 +293,7 @@ class ForumUpload : AppCompatActivity() {
                 val urlImage = uriTask.result
                 imageURL = urlImage.toString()
 
-                    uploadData()
+                uploadData()
             }
             .addOnFailureListener { e ->
                 dialog.dismiss()
@@ -311,7 +307,6 @@ class ForumUpload : AppCompatActivity() {
 
     private fun uploadData() {
         val postText = uploadPostText.text.toString()
-        val targetparty = uploadTargetParty.text.toString().toInt()
         val activepoints = uploadActivePoints.text.toString().toInt()
         val campus = binding.uploadCampus.text.toString()
         val category = binding.uploadCategory.text.toString()
@@ -336,7 +331,6 @@ class ForumUpload : AppCompatActivity() {
                     postText,
                     imageURL!!,
                     campus,
-                    targetparty,
                     activepoints,
                     formattedFundCollected.toDouble(),
                     verificationStatus
