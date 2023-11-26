@@ -86,6 +86,9 @@
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:layout_marginTop="10dp"
+            android:padding="7dp"
+            android:lineSpacingExtra="4dp"
+            android:fontFamily="@font/lexend"
             android:text="Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking."
             android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"
@@ -175,13 +178,20 @@
             android:layout_marginBottom="20dp"
             android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
-            app:menu_colorNormal="@color/offwhite"
+            app:menu_colorNormal="@color/white"
             app:menu_colorPressed="@color/background"
             app:menu_fab_size="mini"
             app:fab_showShadow="false"
             app:menu_icon="@drawable/ic_more"
             app:menu_openDirection="down">
-
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/reportButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/report"
+                app:fab_colorNormal="@color/reportcolor"
+                app:fab_showShadow="true"
+                app:fab_size="mini" />
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/editButton"
                 android:layout_width="wrap_content"
