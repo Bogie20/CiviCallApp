@@ -39,35 +39,20 @@ import java.util.TimeZone
 
 class ForumUpdate: AppCompatActivity() {
 
-    private lateinit var updateObjective: EditText
-    private lateinit var updateInstruction: EditText
-    private lateinit var updateIntro: EditText
     private lateinit var updateImage: ImageView
     private lateinit var updateButton: Button
     private lateinit var updateStartDate: AutoCompleteTextView
     private lateinit var updateEndDate: AutoCompleteTextView
     private lateinit var updateTitle: EditText
     private lateinit var updateFundCollected: EditText
-    private lateinit var updatePaymentRecipient: EditText
-    private lateinit var updateFacilitator: EditText
     private lateinit var updateTargetParty: EditText
     private lateinit var updateActivePoints: EditText
-    private lateinit var updateFacilitatorInfo: EditText
-    private lateinit var updateLocation: EditText
     private lateinit var updateCampus: AutoCompleteTextView
     private lateinit var updateCategory: AutoCompleteTextView
-    private lateinit var updatePaymentMethod: AutoCompleteTextView
     private lateinit var networkUtils: NetworkUtils
     private var title: String = ""
-    private var paymentrecipient: String = ""
-    private var objective: String = ""
-    private var instruction: String = ""
-    private var introduction: String = ""
-    private var facilitator: String = ""
-    private var facilitatorinfo: String = ""
     private var startdate: String = ""
     private var enddate: String = ""
-    private var location: String = ""
     private var targetparty: Int = 0
     private var activepoints: Int = 0
     private var imageUrl: String = ""
@@ -75,7 +60,6 @@ class ForumUpdate: AppCompatActivity() {
     private var oldImageURL: String = ""
     private var campus: String = ""
     private var category: String = ""
-    private var paymentmethod: String = ""
     private var uri: Uri? = null
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference
@@ -90,22 +74,14 @@ class ForumUpdate: AppCompatActivity() {
         updateStartDate = binding.updateStartDate
         updateEndDate = binding.updateEndDate
         updateImage = binding.updateImage
-        updateLocation = binding.updateLocation
         updateTitle = binding.updateTitle
         updateFundCollected = binding.updateFundCollected
-        updatePaymentRecipient = binding.updatePaymentRecipient
         updateTargetParty = binding.updateTargetParty
         updateTargetParty.inputType = InputType.TYPE_CLASS_NUMBER
         updateActivePoints = binding.updateActivePoints
         updateActivePoints.inputType = InputType.TYPE_CLASS_NUMBER
-        updateFacilitator = binding.updateFacilitator
-        updateFacilitatorInfo = binding.updateFacilitatorInfo
         updateCampus = binding.updateCampus
         updateCategory = binding.updateCategory
-        updatePaymentMethod = binding.updatePaymentMethod
-        updateObjective = binding.updateObjective
-        updateInstruction = binding.updateInstruction
-        updateIntro = binding.updateIntro
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
 
@@ -159,20 +135,11 @@ class ForumUpdate: AppCompatActivity() {
         if (bundle != null) {
             Glide.with(this@ForumUpdate).load(bundle.getString("PostImage")).into(updateImage)
             updateCategory.setText(bundle.getString("Category"))
-            updatePaymentMethod.setText(bundle.getString("PaymentMethod"))
-            updatePaymentRecipient.setText(bundle.getString("PaymentRecipient"))
-            updateTitle.setText(bundle.getString("PostText"))
             updateStartDate.setText(bundle.getString("StartDate"))
             updateEndDate.setText(bundle.getString("EndDate"))
-            updateLocation.setText(bundle.getString("Location"))
             updateCampus.setText(bundle.getString("Campus"))
-            updateObjective.setText(bundle.getString("Objective"))
-            updateInstruction.setText(bundle.getString("Instruction"))
-            updateIntro.setText(bundle.getString("Introduction"))
             updateTargetParty.setText(bundle.getString("TargetParticipants"))
             updateActivePoints.setText(bundle.getString("ActivePoints"))
-            updateFacilitator.setText(bundle.getString("Facilitator"))
-            updateFacilitatorInfo.setText(bundle.getString("FacilitatorConEm"))
             key = bundle.getString("Key")!!
             oldImageURL = bundle.getString("PostImage")!!
         }
@@ -348,17 +315,10 @@ class ForumUpdate: AppCompatActivity() {
         title = updateTitle.text.toString().trim()
         startdate = updateStartDate.text.toString().trim()
         enddate = updateEndDate.text.toString().trim()
-        location = updateLocation.text.toString()
         campus = updateCampus.text.toString()
         targetparty = updateTargetParty.text.toString().toInt()
         activepoints = updateActivePoints.text.toString().toInt()
         category = updateCategory.text.toString()
-        paymentmethod = updatePaymentMethod.text.toString()
-        facilitator = updateFacilitator.text.toString()
-        facilitatorinfo = updateFacilitatorInfo.text.toString()
-        objective = updateObjective.text.toString()
-        instruction = updateInstruction.text.toString()
-        introduction = updateIntro.text.toString()
         val fundcollected = if (updateFundCollected.text.isNullOrBlank()) 0.0 else updateFundCollected.text.toString().toDouble()
 
 
@@ -372,18 +332,10 @@ class ForumUpdate: AppCompatActivity() {
                 title,
                 startdate,
                 enddate,
-                location,
                 imageUrl,
                 campus,
-                objective,
-                introduction,
-                facilitator,
-                facilitatorinfo,
-                instruction,
                 targetparty,
                 activepoints,
-                paymentmethod,
-                paymentrecipient,
                 fundcollected,
                 false
             )
@@ -412,18 +364,10 @@ class ForumUpdate: AppCompatActivity() {
                 title,
                 startdate,
                 enddate,
-                location,
                 oldImageURL,
                 campus,
-                objective,
-                introduction,
-                facilitator,
-                facilitatorinfo,
-                instruction,
                 targetparty,
                 activepoints,
-                paymentmethod,
-                paymentrecipient,
                 fundcollected,
                 false
             )

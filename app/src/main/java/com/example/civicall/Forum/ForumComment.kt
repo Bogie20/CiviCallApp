@@ -60,19 +60,11 @@ class ForumComment : AppCompatActivity() {
     private lateinit var detailStartDate: TextView
     private lateinit var detailEndDate: TextView
     private lateinit var detailTitle: TextView
-    private lateinit var detailFaciName: TextView
-    private lateinit var detailFaciInfo: TextView
-    private lateinit var detailLocation: TextView
     private lateinit var detailImage: ImageView
     private lateinit var detailTargetParty: TextView
     private lateinit var detailActivePoints: TextView
-    private lateinit var detailObjective: TextView
-    private lateinit var detailInstruction: TextView
-    private lateinit var detailIntro: TextView
     private lateinit var detailcampus: TextView
     private lateinit var detailCategory: TextView
-    private lateinit var detailPaymentMethod: TextView
-    private lateinit var detailPaymentRecipient: TextView
     private lateinit var detailFundCollected: TextView
     private lateinit var detailCurrentParty: TextView
     private lateinit var deleteButton: FloatingActionButton
@@ -97,20 +89,12 @@ class ForumComment : AppCompatActivity() {
         detailEndDate = findViewById(R.id.detailEndDate)
         detailImage = findViewById(R.id.detailImage)
         detailCategory = findViewById(R.id.detailCategory)
-        detailPaymentMethod = findViewById(R.id.detailPaymentMethod)
         detailTitle = findViewById(R.id.detailTitle)
         detailTargetParty = findViewById(R.id.detailTargetParty)
         detailActivePoints = findViewById(R.id.detailActivePoints)
-        detailFaciName = findViewById(R.id.detailFaciName)
-        detailFaciInfo = findViewById(R.id.detailFaciInfo)
-        detailObjective = findViewById(R.id.detailDesc)
-        detailInstruction = findViewById(R.id.detailInstruction)
-        detailPaymentRecipient = findViewById(R.id.detailPaymentRecipient)
         detailFundCollected = findViewById(R.id.detailFundCollected)
-        detailIntro = findViewById(R.id.detailIntro)
         deleteButton = findViewById(R.id.deleteButton)
         editButton = findViewById(R.id.editButton)
-        detailLocation = findViewById(R.id.detailLocation)
         detailcampus = findViewById(R.id.detailcampus)
         fabMenu = findViewById(R.id.fabicon)
         joinButton = findViewById(R.id.joinButton)
@@ -245,16 +229,8 @@ class ForumComment : AppCompatActivity() {
             detailTitle.text = it.getString("PostText")
             detailStartDate.text = it.getString("StartDate")
             detailEndDate.text = it.getString("EndDate")
-            detailLocation.text = it.getString("Location")
             detailcampus.text = it.getString("Campus")
-            detailPaymentMethod.text = it.getString("PaymentMethod")
-            detailPaymentRecipient.text = it.getString("PaymentRecipient")
             detailFundCollected.text = it.getDouble("FundCollected").toString()
-            detailFaciName.text = it.getString("Facilitator")
-            detailFaciInfo.text = it.getString("FacilitatorConEm")
-            detailObjective.text = it.getString("Objective")
-            detailInstruction.text = it.getString("Instruction")
-            detailIntro.text = it.getString("Introduction")
             detailTargetParty.text = it.getInt("TargetParticipants").toString()
             detailActivePoints.text = it.getInt("ActivePoints").toString()
             key = it.getString("Key") ?: ""
@@ -325,16 +301,8 @@ class ForumComment : AppCompatActivity() {
                 .putExtra("PostText", detailTitle.text.toString())
                 .putExtra("StartDate", detailStartDate.text.toString())
                 .putExtra("EndDate", detailEndDate.text.toString())
-                .putExtra("Location", detailLocation.text.toString())
                 .putExtra("PostImage", imageUrl)
-                .putExtra("PaymentMethod", detailPaymentMethod.text.toString())
-                .putExtra("PaymentRecipient", detailPaymentRecipient.text.toString())
-                .putExtra("Facilitator", detailFaciName.text.toString())
-                .putExtra("FacilitatorConEm", detailFaciInfo.text.toString())
                 .putExtra("Campus", detailcampus.text.toString())
-                .putExtra("Objective", detailObjective.text.toString())
-                .putExtra("Instruction", detailInstruction.text.toString())
-                .putExtra("Introduction", detailIntro.text.toString())
                 .putExtra("TargetParticipants", detailTargetParty.text.toString())
                 .putExtra("ActivePoints", detailActivePoints.text.toString())
                 .putExtra("Key", key)

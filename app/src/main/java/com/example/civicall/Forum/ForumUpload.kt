@@ -45,19 +45,11 @@ class ForumUpload : AppCompatActivity() {
     private lateinit var uploadPostImage: ImageView
     private lateinit var saveButton: Button
     private lateinit var uploadPostText: EditText
-    private lateinit var uploadFacilitator: EditText
-    private lateinit var uploadFacilitatorInfo: EditText
-    private lateinit var uploadPaymentRecipient: EditText
     private lateinit var uploadTargetParty: EditText
     private lateinit var uploadActivePoints: EditText
-    private lateinit var uploadObjective: EditText
-    private lateinit var uploadInstruction: EditText
-    private lateinit var uploadIntro: EditText
     private lateinit var uploadCategory: AutoCompleteTextView
-    private lateinit var uploadPaymentMethod: AutoCompleteTextView
     private lateinit var uploadFundCollected: EditText
     private lateinit var uploadStartDate: AutoCompleteTextView
-    private lateinit var uploadLocation: EditText
     private lateinit var uploadEndDate: EditText
     private var imageURL: String? = null
     private var uri: Uri? = null
@@ -73,21 +65,13 @@ class ForumUpload : AppCompatActivity() {
         uploadStartDate = binding.uploadStartDate
         uploadEndDate = binding.uploadEndDate
         uploadCategory = binding.uploadCategory
-        uploadPaymentMethod = binding.uploadPaymentMethod
         uploadPostText = binding.uploadPostText
-        uploadPaymentRecipient = binding.uploadPaymentRecipient
         uploadTargetParty = binding.uploadTargetParty
         uploadFundCollected = binding.uploadFundCollected
         uploadTargetParty.inputType = InputType.TYPE_CLASS_NUMBER
         uploadActivePoints = binding.uploadActivePoints
         uploadActivePoints.inputType = InputType.TYPE_CLASS_NUMBER
-        uploadFacilitator = binding.uploadFacilitator
-        uploadFacilitatorInfo = binding.uploadFacilitatorInfo
-        uploadLocation = binding.uploadLocation
         saveButton = binding.uploadButton
-        uploadObjective = binding.uploadObjective
-        uploadInstruction = binding.uploadInstruction
-        uploadIntro = binding.uploadIntro
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
 
@@ -100,11 +84,6 @@ class ForumUpload : AppCompatActivity() {
         val campusArray = resources.getStringArray(R.array.allowed_campuses)
         val adaptercampus = ArrayAdapter(this, R.layout.dropdown_item, campusArray)
         (campusDropdown as? AutoCompleteTextView)?.setAdapter(adaptercampus)
-
-        val paymentDropdown = binding.uploadPaymentMethod
-        val paymentArray = resources.getStringArray(R.array.payment_category)
-        val adapterpayment = ArrayAdapter(this, R.layout.dropdown_item, paymentArray)
-        (paymentDropdown as? AutoCompleteTextView)?.setAdapter(adapterpayment)
 
         val categoryDropdown = binding.uploadCategory
         val categoryArray = resources.getStringArray(R.array.engagement_category)
@@ -352,15 +331,9 @@ class ForumUpload : AppCompatActivity() {
         // Validate if any of the required fields is empty
         if (uploadPostText.text.isNullOrBlank() ||
             uploadStartDate.text.isNullOrBlank() ||
-            uploadLocation.text.isNullOrBlank() ||
-            uploadFacilitator.text.isNullOrBlank() ||
-            uploadFacilitatorInfo.text.isNullOrBlank() ||
             uploadTargetParty.text.isNullOrBlank() ||
             binding.uploadCampus.text.isNullOrBlank() ||
             binding.uploadCategory.text.isNullOrBlank() ||
-            uploadObjective.text.isNullOrBlank() ||
-            uploadInstruction.text.isNullOrBlank() ||
-            uploadIntro.text.isNullOrBlank() ||
             uri == null
         ) {
             Toast.makeText(
@@ -436,9 +409,6 @@ class ForumUpload : AppCompatActivity() {
         val postText = uploadPostText.text.toString()
         val startdate = uploadStartDate.text.toString()
         val enddate = uploadEndDate.text.toString()
-        val location = uploadLocation.text.toString()
-        val facilitator = uploadFacilitator.text.toString()
-        val facilitatorinfo = uploadFacilitatorInfo.text.toString()
         val targetparty = uploadTargetParty.text.toString().toInt()
         val activepoints = uploadActivePoints.text.toString().toInt()
         val campus = binding.uploadCampus.text.toString()
@@ -448,11 +418,6 @@ class ForumUpload : AppCompatActivity() {
                 .toDouble()
 
         val formattedFundCollected = String.format("%.2f", fundcollected)
-        val paymentmethod = binding.uploadPaymentMethod.text.toString()
-        val paymentrecipient = uploadPaymentRecipient.text.toString()
-        val objective = uploadObjective.text.toString()
-        val instruction = uploadInstruction.text.toString()
-        val introduction = uploadIntro.text.toString()
         val verificationStatus = false
 
         val user = FirebaseAuth.getInstance().currentUser
@@ -469,18 +434,10 @@ class ForumUpload : AppCompatActivity() {
                     postText,
                     startdate,
                     enddate,
-                    location,
                     imageURL!!,
                     campus,
-                    objective,
-                    introduction,
-                    facilitator,
-                    facilitatorinfo,
-                    instruction,
                     targetparty,
                     activepoints,
-                    paymentmethod,
-                    paymentrecipient,
                     formattedFundCollected.toDouble(),
                     verificationStatus
                 )
