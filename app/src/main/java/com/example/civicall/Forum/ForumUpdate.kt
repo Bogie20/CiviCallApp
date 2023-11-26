@@ -160,7 +160,7 @@ class ForumUpdate: AppCompatActivity() {
                 while (!uriTask.isComplete);
                 val urlImage = uriTask.result
                 imageUrl = urlImage.toString()
-
+                updateData()
             }
                 .addOnFailureListener { e ->
                     dialog.dismiss()
@@ -172,7 +172,7 @@ class ForumUpdate: AppCompatActivity() {
                     ).show()
                 }
         }
-        updateData()
+
     }
     private fun showCampusSelectionDialog() {
         val campuscategoryArray = resources.getStringArray(R.array.allowed_campuses)
