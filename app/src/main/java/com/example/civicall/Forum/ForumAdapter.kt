@@ -48,7 +48,7 @@ class ForumAdapter (private val context: Context, private var dataList: List<Dat
 
 class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val forumImage: ImageView = itemView.findViewById(R.id.postImage)
-    val commentbutton: AppCompatImageButton = itemView.findViewById(R.id.commentBtn) as AppCompatImageButton
+    val commentbutton: AppCompatImageButton = itemView.findViewById(R.id.commentBtn)
     val forumText: TextView = itemView.findViewById(R.id.postInputtxt)
-
+   
 }

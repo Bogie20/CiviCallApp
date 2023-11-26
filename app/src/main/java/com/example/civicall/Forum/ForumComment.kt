@@ -172,8 +172,6 @@ class ForumComment : AppCompatActivity() {
                 ).show()
             }
         })
-
-
         deleteButton.setOnClickListener {
 
             showDeleteConfirmationDialog()

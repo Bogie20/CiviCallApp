@@ -237,8 +237,6 @@ class ForumFragment : Fragment() {
             }
         }
     }
-
-
     private fun showNoPostsMessage(category: String) {
         noPostsImage.setImageResource(R.drawable.nocategory)
         noPostsText.text = "Sorry, the category \"$category\" is currently unavailable."
