@@ -7,20 +7,60 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
+import com.github.clans.fab.FloatingActionButton
+import com.github.clans.fab.FloatingActionMenu
+import com.google.firebase.database.FirebaseDatabase
 
-class ForumAdapter (private val context: Context, private var dataList: List<DataClassForum>) :
-    RecyclerView.Adapter<MyViewHolderForum>() {
+class ForumAdapter(
+    private val context: Context,
+    private var dataList: List<DataClassForum>,
+    private val currentUserUid: String?
+) : RecyclerView.Adapter<MyViewHolderForum>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolderForum {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.forum_post_view, parent, false)
         return MyViewHolderForum(view)
+    }
 
+    private fun showDeleteConfirmationDialog(postKey: String) {
+        val alertDialog = AlertDialog.Builder(context)
+            .setTitle("Delete Post")
+            .setMessage("Are you sure you want to delete this post?")
+            .setPositiveButton("Yes") { _, _ ->
+                // Delete the post from Firebase
+                deletePost(postKey)
+            }
+            .setNegativeButton("No", null)
+            .create()
+
+        alertDialog.show()
+    }
+
+    private fun deletePost(postKey: String) {
+        // Implement the logic to delete the post from Firebase
+        // For example:
+        val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+        postRef.removeValue()
+        // Optionally, you can notify the adapter that the data set has changed
+        notifyDataSetChanged()
     }
     override fun onBindViewHolder(holder: MyViewHolderForum, position: Int) {
         val data = dataList[position]
+        Glide.with(context).load(data.postImage).into(holder.forumImage)
+        holder.forumText.text = data.postText
+
+        val isCurrentUserPost = data.uploadersUID == currentUserUid || (data.uploadersUID == null && currentUserUid == null)
+
+        holder.editButton.visibility = View.GONE
+        holder.deleteButton.visibility = View.GONE
+
+        holder.updateFABVisibility(isCurrentUserPost)
 
         Glide.with(context).load(data.postImage).into(holder.forumImage)
         holder.forumText.text = data.postText
@@ -34,8 +74,23 @@ class ForumAdapter (private val context: Context, private var dataList: List<Dat
             }
             context.startActivity(intent)
         }
-
+        holder.editButton.setOnClickListener {
+            // Launch ForumUpdate activity with necessary data
+            val intent = Intent(context, ForumUpdate::class.java).apply {
+                putExtra("Key", data.key)
+                putExtra("PostImage", data.postImage)
+                putExtra("Category", data.category)
+                putExtra("PostText", data.postText)
+                putExtra("Campus", data.campus)
+            }
+            context.startActivity(intent)
+        }
+        holder.deleteButton.setOnClickListener {
+            // Handle the deletion of the post (e.g., show a confirmation dialog)
+            data.key?.let { showDeleteConfirmationDialog(it) }
+        }
     }
+
     override fun getItemCount(): Int {
         return dataList.size
     }
@@ -50,5 +105,40 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val forumImage: ImageView = itemView.findViewById(R.id.postImage)
     val commentbutton: AppCompatImageButton = itemView.findViewById(R.id.commentBtn)
     val forumText: TextView = itemView.findViewById(R.id.postInputtxt)
-   
+    val editButton: FloatingActionButton = itemView.findViewById(R.id.editButton)
+    val deleteButton: FloatingActionButton = itemView.findViewById(R.id.deleteButton)
+    init {
+        val cardView: CardView = itemView.findViewById(R.id.recCard)
+        val fabMenu: FloatingActionMenu = itemView.findViewById(R.id.fabicon)
+
+        cardView.setOnClickListener {
+            if (fabMenu.isOpened) {
+                fabMenu.close(true)
+            }
+        }
+
+        val reportButton: FloatingActionButton = itemView.findViewById(R.id.reportButton)
+        val editButton: FloatingActionButton = itemView.findViewById(R.id.editButton)
+        val deleteButton: FloatingActionButton = itemView.findViewById(R.id.deleteButton)
+
+        val fabList = listOf(reportButton, editButton, deleteButton)
+
+        for (fab in fabList) {
+            fab.setOnClickListener {
+            }
+        }
+    }
+    fun updateFABVisibility(isCurrentUserPost: Boolean) {
+        editButton.visibility = View.GONE
+        deleteButton.visibility = View.GONE
+
+        if (isCurrentUserPost) {
+            editButton.visibility = View.VISIBLE
+            deleteButton.visibility = View.VISIBLE
+        } else {
+            editButton.visibility = View.GONE
+            deleteButton.visibility = View.GONE
+        }
+    }
 }
+

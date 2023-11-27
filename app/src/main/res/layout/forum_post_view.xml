@@ -179,7 +179,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
-            app:menu_buttonSpacing="-3dp"
+            app:menu_buttonSpacing="3dp"
             app:menu_backgroundColor="@android:color/transparent"
             app:menu_colorNormal="@android:color/transparent"
             app:menu_colorPressed="@color/background"
@@ -194,12 +194,14 @@
                 android:src="@drawable/report"
                 app:fab_colorNormal="@color/reportcolor"
                 app:fab_showShadow="true"
+                android:visibility="gone"
                 app:fab_size="mini" />
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/editButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/edit"
+                android:visibility="gone"
                 app:fab_colorNormal="@color/blue"
                 app:fab_showShadow="true"
                 app:fab_size="mini" />
@@ -209,6 +211,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/delete"
+                android:visibility="gone"
                 app:fab_colorNormal="@color/redpink"
                 app:fab_showShadow="true"
                 app:fab_size="mini" />

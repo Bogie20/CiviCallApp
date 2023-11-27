@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -62,8 +63,9 @@ class ForumFragment : Fragment() {
         builder.setCancelable(false)
         val dialog = builder.create()
         dialog.show()
+        val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
-        adapter = ForumAdapter(requireContext(), dataList)
+        adapter = ForumAdapter(requireContext(), dataList, currentUserId)
         recyclerView.adapter = adapter
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Forum Post")
