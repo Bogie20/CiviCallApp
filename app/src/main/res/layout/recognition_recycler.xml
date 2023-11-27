@@ -41,7 +41,7 @@ android:layout_marginHorizontal="5dp"
                 android:id="@+id/profilePic"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@drawable/user" />
         </androidx.cardview.widget.CardView>
 

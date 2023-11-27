@@ -95,13 +95,13 @@ class ProfileDetails : AppCompatActivity() {
                 binding.lastName.text = lastName.toString()
                 binding.email1.text = email.toString()
                 binding.mobilenumtxt.text = contact.toString()
-                binding.emergencynumtxt.text = Emecontact.toString()
+                binding.emergencynumtxt.text = Emecontact?.toString() ?: ""
                 binding.addresstxt.text = address.toString()
                 binding.dateofbirthtxt.text = birthday.toString()
                 binding.gendertxt.text = gender.toString()
                 binding.usertypetxt.text = usertype.toString()
                 binding.campustxt.text = campus.toString()
-                binding.nstpnumtxt.text = nstp.toString()
+                binding.nstpnumtxt.text = nstp?.toString() ?: ""
                 val badgeImageView: ImageView = findViewById(R.id.badge_25)
 
                 val activePtsInt = activePts.toString().toInt()
