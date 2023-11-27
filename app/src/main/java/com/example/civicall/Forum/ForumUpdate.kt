@@ -73,31 +73,9 @@ class ForumUpdate: AppCompatActivity() {
             onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
-        val paymentDropdown = binding.updatePaymentMethod
-        val paymentArray = resources.getStringArray(R.array.payment_category)
-        val adapterpayment = ArrayAdapter(this, R.layout.dropdown_item, paymentArray)
-        (paymentDropdown as? AutoCompleteTextView)?.setAdapter(adapterpayment)
-
-        val categoryDropdown = binding.updateCategory
-        val categoryArray = resources.getStringArray(R.array.engagement_category)
-        val adaptercategory = ArrayAdapter(this, R.layout.dropdown_item, categoryArray)
-        (categoryDropdown as? AutoCompleteTextView)?.setAdapter(adaptercategory)
-
-        val paymentMethodLayout = binding.PaymentTextInputLayout
-        val paymentRecipientLayout = binding.PaymentRecepientTextInputLayout
-
-        categoryDropdown.setOnItemClickListener { _, _, position, _ ->
-            val selectedCategory = categoryArray[position]
-
-            if (selectedCategory == "Fund Raising" || selectedCategory == "Donations") {
-                paymentMethodLayout.visibility = View.VISIBLE
-                paymentRecipientLayout.visibility = View.VISIBLE
-            } else {
-                paymentMethodLayout.visibility = View.GONE
-                paymentRecipientLayout.visibility = View.GONE
-            }
+        updateCategory.setOnClickListener {
+            showCategorySelectionDialog()
         }
-
         updateCampus.setOnClickListener {
             showCampusSelectionDialog()
         }
@@ -195,7 +173,23 @@ class ForumUpdate: AppCompatActivity() {
         alertDialog.show()
     }
 
+    private fun showCategorySelectionDialog() {
+        val categoryArray = resources.getStringArray(R.array.engagement_category)
 
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Select Category")
+        builder.setItems(categoryArray) { _, which ->
+            val selectedCategory = categoryArray[which]
+            updateCategory.setText(selectedCategory)
+        }
+
+        val alertDialog = builder.create()
+
+        // Apply window animations and background styling here
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        alertDialog.show()
+    }
     private fun updateData() {
         title = updateTitle.text.toString().trim()
         campus = updateCampus.text.toString()
