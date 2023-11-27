@@ -6,85 +6,186 @@
     android:layout_height="match_parent"
     tools:context=".Forum.ForumUpload">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:cardBackgroundColor="@color/redpink"
-        app:cardCornerRadius="4dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/backbtn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginVertical="8dp"
-                android:contentDescription="Back to Previous"
-                android:src="@drawable/backbtn"
-                android:background="@drawable/highlight_text"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="BackClick" />
-
-            <TextView
-                android:id="@+id/civicall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="70dp"
-                android:fontFamily="@font/oleo_script"
-                android:text="Provide Opportunity"
-                android:textColor="@color/white"
-                android:textSize="23dp" />
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card"
-        app:layout_constraintVertical_bias="0.0">
-
         <androidx.cardview.widget.CardView
+            android:id="@+id/card"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginHorizontal="20dp"
-            app:cardCornerRadius="30dp"
-            app:cardElevation="20dp">
+            android:layout_height="60dp"
+            app:cardBackgroundColor="@color/redpink"
+            app:cardCornerRadius="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="150dp"
-                android:background="@drawable/border_design"
-                android:orientation="vertical"
-                android:padding="20dp">
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/backbtn"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginVertical="8dp"
+                    android:contentDescription="Back to Previous"
+                    android:src="@drawable/backbtn"
+                    android:background="@drawable/highlight_text"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="BackClick" />
 
                 <TextView
+                    android:id="@+id/civicall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:fontFamily="@font/oleo_script"
+                    android:text="Add Post Discussion"
+                    android:textColor="@color/white"
+                    android:textSize="23dp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layout_constraintTop_toBottomOf="@id/card">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter Details"
-                    android:textAlignment="center"
-                    android:textColor="@color/red"
-                    android:textSize="30sp" />
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp">
 
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/userImage"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        app:cardCornerRadius="100dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:scaleType="centerCrop"
+                        app:civ_border_color="@color/colorPrimary"
+                        app:civ_border_width="1dp"
+                        android:layout_margin="3dp"
+                        android:layout_gravity="start"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/profilePic"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/user" />
+                    </androidx.cardview.widget.CardView>
+
+
+                    <TextView
+                        android:id="@+id/publish_my_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:lines="1"
+                        android:text="Kurt Bryant Arpilleda"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:layout_margin="3dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/userImage"
+
+                        />
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_marginVertical="5dp"
+                        app:cardCornerRadius="6dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintStart_toEndOf="@id/userImage"
+                        app:layout_constraintTop_toBottomOf="@id/publish_my_name"
+
+                        >
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/custom_shape">
+
+                            <RelativeLayout
+                                android:id="@+id/publish_btn_anyone"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="?attr/selectableItemBackground"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:gravity="center">
+
+
+                                <TextView
+                                    android:id="@+id/text_anyone"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:ellipsize="end"
+                                    android:lines="1"
+                                    android:text="JPLPC MALVAR"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                                <ImageButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginHorizontal="20dp"
+                                    android:layout_marginStart="39dp"
+                                    android:layout_marginTop="2dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:layout_marginBottom="2dp"
+                                    android:paddingTop="15dp"
+                                    android:layout_toEndOf="@+id/text_anyone"
+                                    android:backgroundTint="@color/white"
+                                    android:paddingHorizontal="-10dp"
+                                    android:src="@drawable/ic_arrow_drop_down" />
+
+                                <ImageButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:paddingHorizontal="9dp"
+                                    android:backgroundTint="@android:color/transparent"
+                                    android:src="@drawable/ic_public" />
+
+                            </RelativeLayout>
+
+                        </FrameLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <View android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/background2"
+                    android:layout_marginVertical="3dp"
+                    android:layout_marginHorizontal="10dp"
+                    />
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="220dp"
+                    android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="10dp"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="3dp">
@@ -97,6 +198,20 @@
                         android:src="@drawable/jherimyimage" />
 
                 </androidx.cardview.widget.CardView>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="What do you want to talk about?"
+                    android:padding="20dp"
+                    android:textSize="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:gravity="top"
+                    android:background="@drawable/comment_background"
+                    android:id="@+id/uploadPostText"
+                    android:lines="15"
+                    android:elevation="1dp"
+                    />
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/categoryTextInputLayout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -104,6 +219,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:hint="Category"
+                    android:layout_marginHorizontal="10dp"
                     app:helperTextTextColor="@color/red"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -115,344 +231,19 @@
                         android:editable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/titleTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:autofillHints="name"
-                    android:elevation="80dp"
-                    app:hintTextColor="@color/DarkGray">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadPostText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="15dp"
-                        android:ellipsize="end"
-                        android:lineSpacingExtra="6dp"
-                        android:paddingVertical="25dp"
-                        android:hint="Title"
-                        android:inputType="textMultiLine"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="30dp"
-                        app:hintTextColor="@color/DarkGray" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/introductionTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:elevation="80dp"
-                    app:hintTextColor="@color/DarkGray"
-
-                    >
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadIntro"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="15dp"
-                        android:ellipsize="end"
-                        android:hint="Introduction"
-                        android:lineSpacingExtra="6dp"
-                        android:inputType="textMultiLine"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="30dp"
-                        android:paddingBottom="100dp"
-                        app:hintTextColor="@color/DarkGray" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/descriptionTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:elevation="80dp"
-                    app:hintTextColor="@color/DarkGray"
-
-                    >
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadObjective"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="15dp"
-                        android:ellipsize="end"
-                        android:hint="Description"
-                        android:inputType="textMultiLine"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="30dp"
-                        android:paddingBottom="100dp"
-                        app:hintTextColor="@color/DarkGray" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/instructionTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:elevation="80dp"
-                    app:hintTextColor="@color/DarkGray"
-
-                    >
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadInstruction"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="15dp"
-                        android:ellipsize="end"
-                        android:hint="Instruction"
-                        android:lineSpacingExtra="6dp"
-                        android:inputType="textMultiLine"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="30dp"
-                        android:paddingBottom="100dp"
-                        app:hintTextColor="@color/DarkGray" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/locationTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:autofillHints="name"
-                    android:elevation="80dp"
-                    app:hintTextColor="@color/DarkGray">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadLocation"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="15dp"
-                        android:ellipsize="end"
-                        android:hint="Location"
-                        android:lineSpacingExtra="6dp"
-                        android:paddingVertical="25dp"
-                        android:inputType="textMultiLine"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="30dp"
-                        app:hintTextColor="@color/DarkGray" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/startdateTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:hint="Start Date"
-                    app:helperTextTextColor="@color/red"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/uploadStartDate"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:editable="false" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/enddateTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:hint="End Date"
-                    app:helperTextTextColor="@color/red"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/uploadEndDate"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:editable="false" />
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/campusTextInputLayout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:hint="Target Campus"
+                    android:layout_marginHorizontal="10dp"
                     app:helperTextTextColor="@color/red"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <AutoCompleteTextView
                         android:id="@+id/uploadCampus"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:editable="false" />
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/targetpartyTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:autofillHints="name"
-                    android:elevation="80dp"
-                    app:hintTextColor="@color/DarkGray">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadTargetParty"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:drawablePadding="15dp"
-                        android:ellipsize="end"
-                        android:hint="Target Participants"
-                        android:inputType="text"
-                        android:lines="1"
-                        android:maxLines="1"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="30dp"
-                        app:hintTextColor="@color/DarkGray" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/activeptsTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:elevation="80dp"
-                    app:hintTextColor="@color/DarkGray">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadActivePoints"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:drawablePadding="15dp"
-                        android:ellipsize="end"
-                        android:hint="Active Points"
-                        android:inputType="text"
-                        android:lines="1"
-                        android:maxLines="1"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="30dp"
-                        app:hintTextColor="@color/DarkGray" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/facilitateTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:autofillHints="name"
-                    android:elevation="80dp"
-                    app:hintTextColor="@color/DarkGray">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadFacilitator"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:drawablePadding="15dp"
-                        android:ellipsize="end"
-                        android:hint="Facilitator's Name"
-                        android:inputType="text"
-                        android:lines="1"
-                        android:maxLines="1"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="30dp"
-                        app:hintTextColor="@color/DarkGray" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/facilitateInfoTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:autofillHints="name"
-                    android:elevation="80dp"
-                    app:hintTextColor="@color/DarkGray">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadFacilitatorInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:drawablePadding="15dp"
-                        android:ellipsize="end"
-                        android:hint="Facilitator's Contact or Email"
-                        android:inputType="text"
-                        android:lines="1"
-                        android:maxLines="1"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="30dp"
-                        app:hintTextColor="@color/DarkGray" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/PaymentTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:visibility="gone"
-                    android:hint="Payment Method"
-                    app:helperTextTextColor="@color/red"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/uploadPaymentMethod"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:editable="false" />
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/PaymentRecepientTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:autofillHints="name"
-                    android:visibility="gone"
-                    android:elevation="80dp"
-                    app:hintTextColor="@color/DarkGray">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/uploadPaymentRecipient"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:drawablePadding="15dp"
-                        android:ellipsize="end"
-                        android:hint="Payment Recipient Code/Number"
-                        android:inputType="text"
-                        android:lines="1"
-                        android:maxLines="1"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="30dp"
-                        app:hintTextColor="@color/DarkGray" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/FundCollectedTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:visibility="gone"
-                    android:hint="Payment Method"
-                    app:helperTextTextColor="@color/red"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/uploadFundCollected"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:editable="false" />
@@ -464,12 +255,12 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="50dp"
                     android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="60dp"
+                    android:layout_marginBottom="100dp"
                     android:fontFamily="@font/roboto_medium"
                     android:textAllCaps="true"
                     android:background="@drawable/button_shape"
                     android:backgroundTint="@color/redpink"
-                    android:text="Request"
+                    android:text="Post"
                     android:textColor="@color/white"
                     android:textSize="25sp">
 
@@ -477,8 +268,48 @@
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </ScrollView>
 
-    </ScrollView>
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="115dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.github.clans.fab.FloatingActionMenu
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            app:menu_fab_size="normal"
+            android:id="@+id/fabicon"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="10dp"
+            app:menu_colorPressed="@color/red"
+            app:menu_colorNormal="@color/redpink"
+            app:menu_icon="@drawable/addimage"
+            app:menu_openDirection="up"
+            app:menu_showShadow="true">
+            <com.github.clans.fab.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editButton"
+                android:src="@drawable/edit"
+                app:fab_showShadow="true"
+                app:fab_colorNormal="@color/blue"
+                app:fab_size="mini"/>
+            <com.github.clans.fab.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/deleteButton"
+                android:src="@drawable/delete"
+                app:fab_showShadow="true"
+                app:fab_colorNormal="@color/redpink"
+                app:fab_size="mini"/>
+        </com.github.clans.fab.FloatingActionMenu>
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

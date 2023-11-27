@@ -78,22 +78,6 @@ class ForumUpload : AppCompatActivity() {
         val adaptercategory = ArrayAdapter(this, R.layout.dropdown_item, categoryArray)
         (categoryDropdown as? AutoCompleteTextView)?.setAdapter(adaptercategory)
 
-        val paymentMethodLayout = binding.PaymentTextInputLayout
-        val paymentRecipientLayout = binding.PaymentRecepientTextInputLayout
-
-        categoryDropdown.setOnItemClickListener { _, _, position, _ ->
-            val selectedCategory = categoryArray[position]
-
-            if (selectedCategory == "Fund Raising" || selectedCategory == "Donations") {
-                paymentMethodLayout.visibility = View.VISIBLE
-                paymentRecipientLayout.visibility = View.VISIBLE
-
-            } else {
-                paymentMethodLayout.visibility = View.GONE
-                paymentRecipientLayout.visibility = View.GONE
-            }
-        }
-
         val activityResultLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
