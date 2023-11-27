@@ -401,7 +401,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:visibility="gone"
                     android:hint="Payment Method"
                     app:helperTextTextColor="@color/red"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -420,7 +419,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:autofillHints="name"
-                    android:visibility="gone"
                     android:elevation="80dp"
                     app:hintTextColor="@color/DarkGray">
 

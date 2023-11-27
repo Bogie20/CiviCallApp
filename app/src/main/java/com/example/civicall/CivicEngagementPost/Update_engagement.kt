@@ -8,7 +8,9 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputType
+import android.text.TextWatcher
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -118,13 +120,35 @@ class Update_engagement: AppCompatActivity() {
         val adapterpayment = ArrayAdapter(this, R.layout.dropdown_item, paymentArray)
         (paymentDropdown as? AutoCompleteTextView)?.setAdapter(adapterpayment)
 
-        updateCategory.setOnClickListener {
-            showCategorySelectionDialog()
-        }
+        val paymentTextInputLayout = binding.PaymentTextInputLayout
+        val paymentRecepientTextInputLayout = binding.PaymentRecepientTextInputLayout
 
+        updateCategory.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Not needed, but required by the interface
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Not needed, but required by the interface
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                val selectedCategory = s.toString()
+                if (selectedCategory == "Fund Raising" || selectedCategory == "Donations") {
+                    paymentTextInputLayout.visibility = View.VISIBLE
+                    paymentRecepientTextInputLayout.visibility = View.VISIBLE
+                } else {
+                    paymentTextInputLayout.visibility = View.GONE
+                    paymentRecepientTextInputLayout.visibility = View.GONE
+                }
+            }
+        })
 
         updateCampus.setOnClickListener {
             showCampusSelectionDialog()
+        }
+        updateCategory.setOnClickListener {
+            showCategorySelectionDialog()
         }
 
         val activityResultLauncher = registerForActivityResult(
@@ -285,8 +309,6 @@ class Update_engagement: AppCompatActivity() {
 
         alertDialog.show()
     }
-
-
     private fun isDateTimeInPast(dateTimeString: String): Boolean {
         try {
             val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
@@ -357,6 +379,7 @@ class Update_engagement: AppCompatActivity() {
         activepoints = updateActivePoints.text.toString().toInt()
         category = updateCategory.text.toString()
         paymentmethod = updatePaymentMethod.text.toString()
+        paymentrecipient = updatePaymentRecipient.text.toString()
         facilitator = updateFacilitator.text.toString()
         facilitatorinfo = updateFacilitatorInfo.text.toString()
         objective = updateObjective.text.toString()
