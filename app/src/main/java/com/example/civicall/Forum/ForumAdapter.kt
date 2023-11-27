@@ -2,6 +2,7 @@ package com.example.civicall.Forum
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
@@ -191,6 +192,7 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val hideButton: FloatingActionButton = itemView.findViewById(R.id.hideButton)
     val profilePic: ImageView = itemView.findViewById(R.id.profilePic)
     val userName: TextView = itemView.findViewById(R.id.userName)
+
     fun updateFABVisibility(data: DataClassForum, isCurrentUserPost: Boolean) {
         if (!data.postImage.isNullOrBlank()) {
             forumImage.visibility = View.VISIBLE
@@ -216,7 +218,6 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     init {
         val cardView: CardView = itemView.findViewById(R.id.recCard)
         val fabMenu: FloatingActionMenu = itemView.findViewById(R.id.fabMenu)
-
         cardView.setOnClickListener {
             if (fabMenu.isOpened) {
                 fabMenu.close(true)

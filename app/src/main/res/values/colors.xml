@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="goldColor">#FFD700</color>
+    <color name="transparent">#00000000</color>
     <color name="softGoldColor">#FBC740</color>
     <color name="greenish">#00FF7F</color>
     <color name="grayback">#D9D9D9</color>

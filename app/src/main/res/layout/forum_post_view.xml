@@ -198,7 +198,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
             app:menu_buttonSpacing="0dp"
-            app:menu_colorNormal="@color/white"
+            app:menu_colorNormal="@color/transparent"
             app:menu_colorPressed="@color/background"
             app:menu_fab_size="mini"
             app:fab_showShadow="false"
