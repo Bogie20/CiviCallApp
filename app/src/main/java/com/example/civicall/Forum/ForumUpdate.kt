@@ -22,6 +22,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityForumUpdateBinding
@@ -42,6 +43,7 @@ class ForumUpdate: AppCompatActivity() {
     private lateinit var updateImage: ImageView
     private lateinit var updateButton: Button
     private lateinit var updateTitle: EditText
+    private lateinit var cardImage: CardView
     private lateinit var updateCampus: AutoCompleteTextView
     private lateinit var updateCategory: AutoCompleteTextView
     private lateinit var networkUtils: NetworkUtils
@@ -65,6 +67,7 @@ class ForumUpdate: AppCompatActivity() {
         updateImage = binding.updateImage
         updateTitle = binding.updateTitle
         updateCampus = binding.updateCampus
+        cardImage = binding.cardImage
         updateCategory = binding.updateCategory
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
@@ -101,6 +104,12 @@ class ForumUpdate: AppCompatActivity() {
             updateTitle.setText(bundle.getString("PostText"))
             key = bundle.getString("Key")!!
             oldImageURL = bundle.getString("PostImage")!!
+
+            if (oldImageURL.isNotEmpty()) {
+                Glide.with(this@ForumUpdate).load(bundle.getString("PostImage")).into(updateImage)
+            } else {
+                cardImage.visibility = View.GONE
+            }
         }
         databaseReference =
             FirebaseDatabase.getInstance().getReference("Forum Post").child(key)
