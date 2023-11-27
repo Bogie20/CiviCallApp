@@ -113,7 +113,7 @@ class ForumAdapter(
         holder.reportButton.visibility = View.GONE
         holder.hideButton.visibility = View.GONE
 
-        holder.updateFABVisibility(isCurrentUserPost)
+        holder.updateFABVisibility(data, isCurrentUserPost)
 
         Glide.with(context).load(data.postImage).into(holder.forumImage)
         holder.forumText.text = data.postText
@@ -144,6 +144,7 @@ class ForumAdapter(
         }
     }
 
+
     override fun getItemCount(): Int {
         return dataList.size
     }
@@ -162,6 +163,29 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val deleteButton: FloatingActionButton = itemView.findViewById(R.id.deleteButton)
     val reportButton: FloatingActionButton = itemView.findViewById(R.id.reportButton)
     val hideButton: FloatingActionButton = itemView.findViewById(R.id.hideButton)
+
+    fun updateFABVisibility(data: DataClassForum, isCurrentUserPost: Boolean) {
+        if (!data.postImage.isNullOrBlank()) {
+            forumImage.visibility = View.VISIBLE
+            Glide.with(itemView.context).load(data.postImage).into(forumImage)
+        } else {
+            forumImage.visibility = View.GONE
+        }
+
+        editButton.visibility = View.GONE
+        deleteButton.visibility = View.GONE
+        hideButton.visibility = View.GONE
+        reportButton.visibility = View.GONE
+
+        if (isCurrentUserPost) {
+            editButton.visibility = View.VISIBLE
+            deleteButton.visibility = View.VISIBLE
+        } else {
+            hideButton.visibility = View.VISIBLE
+            reportButton.visibility = View.VISIBLE
+        }
+    }
+
     init {
         val cardView: CardView = itemView.findViewById(R.id.recCard)
         val fabMenu: FloatingActionMenu = itemView.findViewById(R.id.fabMenu)
@@ -180,23 +204,8 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         for (fab in fabList) {
             fab.setOnClickListener {
+                // Your implementation here
             }
         }
     }
-    fun updateFABVisibility(isCurrentUserPost: Boolean) {
-        editButton.visibility = View.GONE
-        deleteButton.visibility = View.GONE
-        hideButton.visibility = View.GONE
-        reportButton.visibility = View.GONE
-        if (isCurrentUserPost) {
-            editButton.visibility = View.VISIBLE
-            deleteButton.visibility = View.VISIBLE
-        } else {
-            editButton.visibility = View.GONE
-            deleteButton.visibility = View.GONE
-            hideButton.visibility = View.VISIBLE
-            reportButton.visibility = View.VISIBLE
-        }
-    }
 }
-

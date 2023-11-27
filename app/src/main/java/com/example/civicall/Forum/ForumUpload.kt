@@ -19,14 +19,19 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.cardview.widget.CardView
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityForumUploadBinding
+import com.github.clans.fab.FloatingActionButton
+import com.github.clans.fab.FloatingActionMenu
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -44,6 +49,7 @@ class ForumUpload : AppCompatActivity() {
 
     private lateinit var uploadPostImage: ImageView
     private lateinit var saveButton: Button
+    private lateinit var cardImage: CardView
     private lateinit var uploadPostText: EditText
     private lateinit var uploadCategory: AutoCompleteTextView
     private var imageURL: String? = null
@@ -57,22 +63,33 @@ class ForumUpload : AppCompatActivity() {
         setContentView(binding.root)
 
         uploadPostImage = binding.uploadPostImage
+        cardImage = binding.cardImage
         uploadCategory = binding.uploadCategory
         uploadPostText = binding.uploadPostText
         saveButton = binding.uploadButton
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
+        cardImage.visibility = View.GONE
 
         binding.backbtn.setOnClickListener {
             onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
-
-        val campusDropdown = binding.uploadCampus
+        val dropdownButton: ImageButton = findViewById(R.id.dropdown)
+        val campusPickTextView: TextView = findViewById(R.id.campusPick)
         val campusArray = resources.getStringArray(R.array.allowed_campuses)
-        val adaptercampus = ArrayAdapter(this, R.layout.dropdown_item, campusArray)
-        (campusDropdown as? AutoCompleteTextView)?.setAdapter(adaptercampus)
-
+        val popupMenu = PopupMenu(this, dropdownButton)
+        campusArray.forEach { campus ->
+            popupMenu.menu.add(campus)
+        }
+        dropdownButton.setOnClickListener {
+            popupMenu.setOnMenuItemClickListener { menuItem ->
+                // Handle the selected campus
+                campusPickTextView.text = menuItem.title
+                true
+            }
+            popupMenu.show()
+        }
         val categoryDropdown = binding.uploadCategory
         val categoryArray = resources.getStringArray(R.array.engagement_category)
         val adaptercategory = ArrayAdapter(this, R.layout.dropdown_item, categoryArray)
@@ -84,15 +101,20 @@ class ForumUpload : AppCompatActivity() {
             if (result.resultCode == Activity.RESULT_OK) {
                 val data = result.data
                 uri = data?.data
-                uploadPostImage.setImageURI(uri)
+                if (uri != null) {
+                    uploadPostImage.setImageURI(uri)
+                    cardImage.visibility = View.VISIBLE
+                }
             } else {
-                Toast.makeText(this@ForumUpload, "No Image Selected", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(this@ForumUpload, "No Image Selected", Toast.LENGTH_SHORT).show()
             }
         }
 
-        uploadPostImage.setOnClickListener {
-            val photoPicker = Intent(Intent.ACTION_PICK)
+
+        val fabIcon = findViewById<FloatingActionButton>(R.id.fabicon)
+
+        fabIcon.setOnClickListener {
+            val photoPicker = Intent(Intent.ACTION_GET_CONTENT)
             photoPicker.type = "image/*"
             activityResultLauncher.launch(photoPicker)
         }
@@ -237,9 +259,8 @@ class ForumUpload : AppCompatActivity() {
 
     private fun saveData() {
         if (uploadPostText.text.isNullOrBlank() ||
-            binding.uploadCampus.text.isNullOrBlank() ||
-            binding.uploadCategory.text.isNullOrBlank() ||
-            uri == null
+            binding.campusPick.text.isNullOrBlank() ||
+            binding.uploadCategory.text.isNullOrBlank()
         ) {
             Toast.makeText(
                 this@ForumUpload,
@@ -249,44 +270,52 @@ class ForumUpload : AppCompatActivity() {
             return
         }
 
-        val storageReference = FirebaseStorage.getInstance().getReference()
-            .child("Forum Post Images").child(uri?.lastPathSegment!!)
+        // Check if an image is selected
+        if (uri == null) {
+            // No image selected, proceed without uploading an image
+            uploadData(null)
+        } else {
+            // Image is selected, proceed with image upload
+            val storageReference = FirebaseStorage.getInstance().getReference()
+                .child("Forum Post Images").child(uri?.lastPathSegment!!)
 
-        val builder = AlertDialog.Builder(this@ForumUpload)
-        builder.setCancelable(false)
-        val inflater = layoutInflater
-        val loadingLayout = inflater.inflate(R.layout.loading_layout, null)
-        builder.setView(loadingLayout)
-        val dialog = builder.create()
+            val builder = AlertDialog.Builder(this@ForumUpload)
+            builder.setCancelable(false)
+            val inflater = layoutInflater
+            val loadingLayout = inflater.inflate(R.layout.loading_layout, null)
+            builder.setView(loadingLayout)
+            val dialog = builder.create()
 
-        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+            dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
 
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        dialog.show()
+            dialog.show()
 
-        storageReference.putFile(uri!!)
-            .addOnSuccessListener { taskSnapshot ->
-                val uriTask = taskSnapshot.storage.downloadUrl
-                while (!uriTask.isComplete);
-                val urlImage = uriTask.result
-                imageURL = urlImage.toString()
+            storageReference.putFile(uri!!)
+                .addOnSuccessListener { taskSnapshot ->
+                    val uriTask = taskSnapshot.storage.downloadUrl
+                    while (!uriTask.isComplete);
+                    val urlImage = uriTask.result
+                    imageURL = urlImage.toString()
 
-                uploadData()
-            }
-            .addOnFailureListener { e ->
-                dialog.dismiss()
-                Toast.makeText(
-                    this@ForumUpload,
-                    "Failed to upload image: ${e.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+                    // Proceed to upload other data along with the image URL
+                    uploadData(imageURL)
+                }
+                .addOnFailureListener { e ->
+                    dialog.dismiss()
+                    Toast.makeText(
+                        this@ForumUpload,
+                        "Failed to upload image: ${e.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+        }
     }
 
-    private fun uploadData() {
+    private fun uploadData(imageUrl: String?) {
         val postText = uploadPostText.text.toString()
-        val campus = binding.uploadCampus.text.toString()
+        val campus = binding.campusPick.text.toString()
         val category = binding.uploadCategory.text.toString()
         val verificationStatus = false
 
@@ -302,7 +331,7 @@ class ForumUpload : AppCompatActivity() {
                     uploadersId,
                     category,
                     postText,
-                    imageURL!!,
+                    imageUrl.orEmpty(),
                     campus,
                     verificationStatus
                 )
@@ -327,6 +356,7 @@ class ForumUpload : AppCompatActivity() {
             }
         }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

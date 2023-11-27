@@ -131,15 +131,15 @@
 
 
                                 <TextView
-                                    android:id="@+id/text_anyone"
+                                    android:id="@+id/campusPick"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_centerInParent="true"
-                                    android:layout_marginStart="5dp"
+                                    android:layout_marginStart="1dp"
                                     android:layout_marginEnd="10dp"
                                     android:ellipsize="end"
                                     android:lines="1"
-                                    android:text="JPLPC MALVAR"
+                                    android:text="Campus"
                                     android:textColor="@color/black"
                                     android:textSize="16sp"
                                     android:textStyle="bold" />
@@ -151,10 +151,11 @@
                                     android:layout_marginHorizontal="20dp"
                                     android:layout_marginStart="39dp"
                                     android:layout_marginTop="2dp"
+                                    android:id="@+id/dropdown"
                                     android:layout_marginEnd="5dp"
                                     android:layout_marginBottom="2dp"
                                     android:paddingTop="15dp"
-                                    android:layout_toEndOf="@+id/text_anyone"
+                                    android:layout_toEndOf="@+id/campusPick"
                                     android:backgroundTint="@color/white"
                                     android:paddingHorizontal="-10dp"
                                     android:src="@drawable/ic_arrow_drop_down" />
@@ -185,9 +186,11 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="220dp"
+                    android:id="@+id/cardImage"
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="10dp"
                     app:cardCornerRadius="12dp"
+                    android:visibility="gone"
                     app:cardElevation="3dp">
 
                     <ImageView
@@ -230,24 +233,6 @@
                         android:layout_height="60dp"
                         android:editable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/campusTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:hint="Target Campus"
-                    android:layout_marginHorizontal="10dp"
-                    app:helperTextTextColor="@color/red"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/uploadCampus"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:editable="false" />
-                </com.google.android.material.textfield.TextInputLayout>
                 <Button
                     android:id="@+id/uploadButton"
                     android:layout_width="match_parent"
@@ -286,7 +271,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             app:menu_fab_size="normal"
-            android:id="@+id/fabicon"
+            android:id="@+id/fabMenu"
             android:layout_marginBottom="20dp"
             android:layout_marginEnd="10dp"
             app:menu_colorPressed="@color/red"
@@ -295,21 +280,22 @@
             app:menu_openDirection="up"
             app:menu_showShadow="true">
             <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/cameraButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/editButton"
-                android:src="@drawable/edit"
+                android:src="@drawable/addphoto"
+                app:fab_colorNormal="@color/dialog_warning_darker"
                 app:fab_showShadow="true"
-                app:fab_colorNormal="@color/blue"
-                app:fab_size="mini"/>
+                app:fab_size="mini" />
             <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fabicon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/deleteButton"
-                android:src="@drawable/delete"
+                android:src="@drawable/addimage"
+                app:fab_colorNormal="@color/reportcolor"
                 app:fab_showShadow="true"
-                app:fab_colorNormal="@color/redpink"
-                app:fab_size="mini"/>
+                app:fab_size="mini" />
         </com.github.clans.fab.FloatingActionMenu>
+
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
