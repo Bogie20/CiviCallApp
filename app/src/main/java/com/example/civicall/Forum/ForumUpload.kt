@@ -21,6 +21,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
@@ -38,6 +39,7 @@ import com.example.civicall.R
 import com.example.civicall.User
 import com.example.civicall.databinding.ActivityForumUploadBinding
 import com.github.clans.fab.FloatingActionButton
+import com.github.clans.fab.FloatingActionMenu
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -51,13 +53,13 @@ import java.io.IOException
 class ForumUpload : AppCompatActivity() {
     private val REQUEST_CAMERA_PERMISSION = 1
     private val FILE_PROVIDER_AUTHORITY = "com.example.civicall.fileprovider"
-    private var hasUserUploadedVerification = false
     private var capturedImageUri: Uri? = null
     private val REQUEST_IMAGE_CAPTURE = 2
     private val REQUEST_IMAGE_PICK = 3
     private lateinit var uploadPostImage: ImageView
     private lateinit var saveButton: Button
     private lateinit var cardImage: CardView
+    private lateinit var fabMenu: FloatingActionMenu
     private lateinit var uploadPostText: EditText
     private lateinit var uploadCategory: AutoCompleteTextView
     private var imageURL: String? = null
@@ -77,8 +79,13 @@ class ForumUpload : AppCompatActivity() {
         saveButton = binding.uploadButton
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
+        fabMenu = findViewById(R.id.fabMenu)
         cardImage.visibility = View.GONE
+        val bodyLayout: LinearLayout = findViewById(R.id.linearbody)
 
+        bodyLayout.setOnClickListener {
+            fabMenu.close(true)
+        }
         binding.backbtn.setOnClickListener {
             onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
@@ -370,12 +377,21 @@ class ForumUpload : AppCompatActivity() {
 
     private fun saveData() {
         if (uploadPostText.text.isNullOrBlank() ||
-            binding.campusPick.text.isNullOrBlank() ||
             binding.uploadCategory.text.isNullOrBlank()
         ) {
             Toast.makeText(
                 this@ForumUpload,
                 "Please fill in all the required information",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
+        // Check if the campus is selected
+        if (binding.campusPick.text.toString().equals("Select a Campus", ignoreCase = true)) {
+            Toast.makeText(
+                this@ForumUpload,
+                "Please select a campus",
                 Toast.LENGTH_SHORT
             ).show()
             return
