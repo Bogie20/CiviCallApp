@@ -118,25 +118,10 @@ class Update_engagement: AppCompatActivity() {
         val adapterpayment = ArrayAdapter(this, R.layout.dropdown_item, paymentArray)
         (paymentDropdown as? AutoCompleteTextView)?.setAdapter(adapterpayment)
 
-        val categoryDropdown = binding.updateCategory
-        val categoryArray = resources.getStringArray(R.array.engagement_category)
-        val adaptercategory = ArrayAdapter(this, R.layout.dropdown_item, categoryArray)
-        (categoryDropdown as? AutoCompleteTextView)?.setAdapter(adaptercategory)
-
-        val paymentMethodLayout = binding.PaymentTextInputLayout
-        val paymentRecipientLayout = binding.PaymentRecepientTextInputLayout
-
-        categoryDropdown.setOnItemClickListener { _, _, position, _ ->
-            val selectedCategory = categoryArray[position]
-
-            if (selectedCategory == "Fund Raising" || selectedCategory == "Donations") {
-                paymentMethodLayout.visibility = View.VISIBLE
-                paymentRecipientLayout.visibility = View.VISIBLE
-            } else {
-                paymentMethodLayout.visibility = View.GONE
-                paymentRecipientLayout.visibility = View.GONE
-            }
+        updateCategory.setOnClickListener {
+            showCategorySelectionDialog()
         }
+
 
         updateCampus.setOnClickListener {
             showCampusSelectionDialog()
@@ -176,6 +161,7 @@ class Update_engagement: AppCompatActivity() {
             key = bundle.getString("Key")!!
             oldImageURL = bundle.getString("Image")!!
         }
+
         databaseReference =
             FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
 
@@ -273,6 +259,23 @@ class Update_engagement: AppCompatActivity() {
         builder.setItems(campuscategoryArray) { _, which ->
             val selectedCampus = campuscategoryArray[which]
             updateCampus.setText(selectedCampus)
+        }
+
+        val alertDialog = builder.create()
+
+        // Apply window animations and background styling here
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        alertDialog.show()
+    }
+    private fun showCategorySelectionDialog() {
+        val categoryArray = resources.getStringArray(R.array.engagement_category)
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Select Category")
+        builder.setItems(categoryArray) { _, which ->
+            val selectedCategory = categoryArray[which]
+            updateCategory.setText(selectedCategory)
         }
 
         val alertDialog = builder.create()

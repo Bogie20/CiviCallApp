@@ -113,7 +113,7 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val hideButton: FloatingActionButton = itemView.findViewById(R.id.hideButton)
     init {
         val cardView: CardView = itemView.findViewById(R.id.recCard)
-        val fabMenu: FloatingActionMenu = itemView.findViewById(R.id.fabicon)
+        val fabMenu: FloatingActionMenu = itemView.findViewById(R.id.fabMenu)
 
         cardView.setOnClickListener {
             if (fabMenu.isOpened) {
@@ -143,6 +143,8 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
         } else {
             editButton.visibility = View.GONE
             deleteButton.visibility = View.GONE
+            hideButton.visibility = View.VISIBLE
+            reportButton.visibility = View.VISIBLE
         }
     }
 }

@@ -155,13 +155,14 @@ class ForumUpdate: AppCompatActivity() {
             storageReference = FirebaseStorage.getInstance().reference.child("Forum Post Images")
                 .child(uri?.lastPathSegment!!)
 
-            storageReference.putFile(uri!!).addOnSuccessListener { taskSnapshot ->
-                val uriTask = taskSnapshot.storage.downloadUrl
-                while (!uriTask.isComplete);
-                val urlImage = uriTask.result
-                imageUrl = urlImage.toString()
-                updateData()
-            }
+            storageReference.putFile(uri!!)
+                .addOnSuccessListener { taskSnapshot ->
+                    // Use the new method to get the download URL
+                    taskSnapshot.storage.downloadUrl.addOnSuccessListener { url ->
+                        imageUrl = url.toString()
+                        updateData()
+                    }
+                }
                 .addOnFailureListener { e ->
                     dialog.dismiss()
                     // Handle the image upload failure, e.g., show an error message
@@ -171,6 +172,8 @@ class ForumUpdate: AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+        } else {
+            updateData()
         }
 
     }
