@@ -2,19 +2,24 @@ package com.example.civicall.Forum
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
 import com.github.clans.fab.FloatingActionButton
 import com.github.clans.fab.FloatingActionMenu
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.database.FirebaseDatabase
 
 class ForumAdapter(
@@ -27,29 +32,72 @@ class ForumAdapter(
         val view = LayoutInflater.from(parent.context).inflate(R.layout.forum_post_view, parent, false)
         return MyViewHolderForum(view)
     }
+    private var isDeleteConfirmationDialogShowing = false
 
     private fun showDeleteConfirmationDialog(postKey: String) {
+        if (isDeleteConfirmationDialogShowing) {
+            return
+        }
+
+        dismissCustomDialog()
+
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_confirmation, null)
         val alertDialog = AlertDialog.Builder(context)
-            .setTitle("Delete Post")
-            .setMessage("Are you sure you want to delete this post?")
-            .setPositiveButton("Yes") { _, _ ->
-                // Delete the post from Firebase
-                deletePost(postKey)
-            }
-            .setNegativeButton("No", null)
+            .setView(dialogView)
             .create()
 
+        val confirmTitle: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
+        val logoutMsg: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
+        val saveBtn: MaterialButton = dialogView.findViewById(R.id.saveBtn)
+        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        confirmTitle.text = "Confirmation"
+        logoutMsg.text = "Are you sure you want to delete your post?"
+
+        saveBtn.text = "Delete"
+        saveBtn.setOnClickListener {
+            alertDialog.dismiss()
+            dismissCustomDialog()
+
+            // Pass the postKey to the deletePost function
+            deletePost(postKey)
+        }
+
+        cancelBtn.text = "Cancel"
+        cancelBtn.setOnClickListener {
+            isDeleteConfirmationDialogShowing = false // Reset the flag
+            alertDialog.dismiss()
+            // User clicked "Cancel," do nothing or provide feedback
+        }
+
+        alertDialog.setOnDismissListener {
+            isDeleteConfirmationDialogShowing = false
+        }
+
         alertDialog.show()
+        isDeleteConfirmationDialogShowing = true
     }
 
+    // Add the dismissCustomDialog function
+    private fun dismissCustomDialog() {
+        if (isDeleteConfirmationDialogShowing) {
+            isDeleteConfirmationDialogShowing = false
+        }
+    }
+
+
     private fun deletePost(postKey: String) {
-        // Implement the logic to delete the post from Firebase
-        // For example:
         val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
         postRef.removeValue()
-        // Optionally, you can notify the adapter that the data set has changed
+
         notifyDataSetChanged()
+
+        Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
     }
+
     override fun onBindViewHolder(holder: MyViewHolderForum, position: Int) {
         val data = dataList[position]
         Glide.with(context).load(data.postImage).into(holder.forumImage)

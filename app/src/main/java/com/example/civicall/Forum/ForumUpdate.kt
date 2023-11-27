@@ -283,7 +283,6 @@ class ForumUpdate: AppCompatActivity() {
         cancelBtn.setOnClickListener {
             isSaveConfirmationDialogShowing = false // Reset the flag
             alertDialog.dismiss()
-            // User clicked "Cancel," do nothing or provide feedback
         }
         alertDialog.setOnDismissListener{
             isSaveConfirmationDialogShowing = false
