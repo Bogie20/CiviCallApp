@@ -1,19 +1,19 @@
 package com.example.civicall.Forum
 
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
+import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.os.Handler
 import android.os.Looper
-import android.text.InputType
+import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -24,14 +24,20 @@ import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
+import com.bumptech.glide.Glide
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
+import com.example.civicall.User
 import com.example.civicall.databinding.ActivityForumUploadBinding
 import com.github.clans.fab.FloatingActionButton
-import com.github.clans.fab.FloatingActionMenu
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -39,14 +45,16 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
-import java.util.TimeZone
+import java.io.File
+import java.io.IOException
 
 class ForumUpload : AppCompatActivity() {
-
+    private val REQUEST_CAMERA_PERMISSION = 1
+    private val FILE_PROVIDER_AUTHORITY = "com.example.civicall.fileprovider"
+    private var hasUserUploadedVerification = false
+    private var capturedImageUri: Uri? = null
+    private val REQUEST_IMAGE_CAPTURE = 2
+    private val REQUEST_IMAGE_PICK = 3
     private lateinit var uploadPostImage: ImageView
     private lateinit var saveButton: Button
     private lateinit var cardImage: CardView
@@ -74,6 +82,39 @@ class ForumUpload : AppCompatActivity() {
         binding.backbtn.setOnClickListener {
             onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
+        val profilePic: ImageView = findViewById(R.id.profilePic)
+        val uploaderName: TextView = findViewById(R.id.uploaderName)
+        val fabCamera: FloatingActionButton = findViewById(R.id.cameraButton)
+
+        fabCamera.setOnClickListener {
+            takePicture()
+            checkAndRequestPermissions()
+        }
+        val auth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            val uid = currentUser.uid
+            val currentUserRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+            currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val userData = snapshot.getValue(User::class.java)
+                        if (userData != null) {
+                            // Set ImageProfile
+                            Glide.with(this@ForumUpload).load(userData.ImageProfile).into(profilePic)
+
+                            // Set firstname with lastname
+                            val fullName = "${userData.firstname} ${userData.lastname}"
+                            uploaderName.text = fullName
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle the error as needed
+                }
+            })
         }
         val dropdownButton: ImageButton = findViewById(R.id.dropdown)
         val campusPickTextView: TextView = findViewById(R.id.campusPick)
@@ -156,7 +197,77 @@ class ForumUpload : AppCompatActivity() {
             }
         }
     }
+    private fun checkAndRequestPermissions() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                REQUEST_CAMERA_PERMISSION
+            )
+        }
+    }
+    private fun takePicture() {
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (cameraIntent.resolveActivity(packageManager) != null) {
 
+            val photoFile: File? = try {
+                createImageFile()
+            } catch (ex: IOException) {
+                Log.e("UploadVerificationFile", "Error creating image file", ex)
+                null
+            }
+            photoFile?.let {
+                val photoURI: Uri = FileProvider.getUriForFile(
+                    this,
+                    FILE_PROVIDER_AUTHORITY,
+                    it
+                )
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+
+                capturedImageUri = photoURI
+                startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE)
+            }
+        }
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            // Check if the capturedImageUri is not null
+            capturedImageUri?.let {
+                // The image has been captured successfully, load it into the uploadPostImage ImageView
+                Glide.with(this).load(it).into(uploadPostImage)
+                cardImage.visibility = View.VISIBLE
+                // Assign capturedImageUri to uri
+                uri = it
+            }
+        }
+        if (requestCode == REQUEST_IMAGE_PICK && resultCode == RESULT_OK) {
+            data?.data?.let {
+                uri = it
+                // Load the selected image into the uploadPostImage ImageView
+                Glide.with(this).load(uri).into(uploadPostImage)
+                cardImage.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(
+            "JPEG_${System.currentTimeMillis()}_",
+            ".jpg",
+            storageDir
+        )
+    }
     private var isAlreadyJoinDialogShowing = false
 
     private fun showMessage(
