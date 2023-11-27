@@ -117,6 +117,7 @@ class ForumAdapter(
 
         Glide.with(context).load(data.postImage).into(holder.forumImage)
         holder.forumText.text = data.postText
+        holder.forumCategory.text = "# ${data.category}"
         holder.commentbutton.setOnClickListener {
             val intent = Intent(context, ForumComment::class.java).apply {
                 putExtra("PostImage", data.postImage)
@@ -157,6 +158,7 @@ class ForumAdapter(
 
 class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val forumImage: ImageView = itemView.findViewById(R.id.postImage)
+    val forumCategory: TextView = itemView.findViewById(R.id.hashtag)
     val commentbutton: AppCompatImageButton = itemView.findViewById(R.id.commentBtn)
     val forumText: TextView = itemView.findViewById(R.id.postInputtxt)
     val editButton: FloatingActionButton = itemView.findViewById(R.id.editButton)
