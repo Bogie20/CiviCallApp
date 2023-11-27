@@ -59,6 +59,8 @@ class ForumAdapter(
 
         holder.editButton.visibility = View.GONE
         holder.deleteButton.visibility = View.GONE
+        holder.reportButton.visibility = View.GONE
+        holder.hideButton.visibility = View.GONE
 
         holder.updateFABVisibility(isCurrentUserPost)
 
@@ -107,6 +109,8 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val forumText: TextView = itemView.findViewById(R.id.postInputtxt)
     val editButton: FloatingActionButton = itemView.findViewById(R.id.editButton)
     val deleteButton: FloatingActionButton = itemView.findViewById(R.id.deleteButton)
+    val reportButton: FloatingActionButton = itemView.findViewById(R.id.reportButton)
+    val hideButton: FloatingActionButton = itemView.findViewById(R.id.hideButton)
     init {
         val cardView: CardView = itemView.findViewById(R.id.recCard)
         val fabMenu: FloatingActionMenu = itemView.findViewById(R.id.fabicon)
@@ -131,7 +135,8 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun updateFABVisibility(isCurrentUserPost: Boolean) {
         editButton.visibility = View.GONE
         deleteButton.visibility = View.GONE
-
+        hideButton.visibility = View.GONE
+        reportButton.visibility = View.GONE
         if (isCurrentUserPost) {
             editButton.visibility = View.VISIBLE
             deleteButton.visibility = View.VISIBLE
