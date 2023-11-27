@@ -320,7 +320,6 @@ class ForumUpload : AppCompatActivity() {
                     postText,
                     imageURL!!,
                     campus,
-                    hiddenByUsers = null,
                     verificationStatus
                 )
 

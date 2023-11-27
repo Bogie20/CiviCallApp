@@ -59,7 +59,7 @@
         android:layout_below="@id/search"
         android:layout_centerVertical="true"
         android:layout_marginTop="80dp"
-        android:src="@drawable/posting"
+        android:src="@drawable/forumplceholder"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +75,7 @@
         android:fontFamily="@font/lexend_bold"
         android:gravity="center"
         android:layout_marginHorizontal="10dp"
-        android:text="Where posts vanish, stories emerge. Your narrative begins here."
+        android:text="Where discussions come alive, stories unfold. Your community journey begins here."
         android:textColor="@color/white"
         android:textSize="19sp"
         android:visibility="gone" />

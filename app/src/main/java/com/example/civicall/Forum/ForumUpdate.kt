@@ -206,7 +206,6 @@ class ForumUpdate: AppCompatActivity() {
                 title,
                 imageUrl,
                 campus,
-                hiddenByUsers = null,
                 false
             )
 
@@ -234,7 +233,6 @@ class ForumUpdate: AppCompatActivity() {
                 title,
                 oldImageURL,
                 campus,
-                hiddenByUsers = null,
                 false
             )
             databaseReference.setValue(dataClass)
