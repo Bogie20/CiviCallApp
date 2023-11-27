@@ -32,8 +32,11 @@ class ForumAdapter(
         val view = LayoutInflater.from(parent.context).inflate(R.layout.forum_post_view, parent, false)
         return MyViewHolderForum(view)
     }
+
+    // Add this variable to your ForumAdapter class
     private var isDeleteConfirmationDialogShowing = false
 
+    // Update the showDeleteConfirmationDialog function
     private fun showDeleteConfirmationDialog(postKey: String) {
         if (isDeleteConfirmationDialogShowing) {
             return
