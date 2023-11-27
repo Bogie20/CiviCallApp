@@ -171,31 +171,32 @@ class MainMenu : AppCompatActivity() {
                     val verificationStatus = it.child("verificationStatus").value
                     val imageProfile = it.child("ImageProfile").value
 
-                    binding.firstName.text = fname.toString()
-                    binding.lastName.text = lname.toString()
+                    val fullNameTextView: TextView = findViewById(R.id.fullName)
+
+                    if (fname != null && lname != null) {
+                        val fullName = "$fname $lname"
+                        fullNameTextView.text = fullName
+                    }
+
                     binding.email1.text = email.toString()
 
-                    val profileImage = binding.profileImage // Replace with your ImageView ID in the layout
+                    val profileImage = binding.profileImage
 
                     // Load the profile image using Picasso library
                     if (imageProfile != null && imageProfile.toString().isNotEmpty()) {
                         Picasso.get()
                             .load(imageProfile.toString())
-                            .placeholder(R.drawable.three) // Replace with the resource ID of your placeholder image
+                            .placeholder(R.drawable.three)
                             .into(profileImage)
                     } else {
-                        // If no image URL is available, set the placeholder directly
                         profileImage.setImageResource(R.drawable.three)
                     }
 
                     if (verificationStatus == true) {
-                        // If verificationStatus is true, set a drawable for a verified account
                         binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verifiedalready, 0, 0, 0)
-                        // Tint the drawable for verified accounts
                         binding.email1.compoundDrawables[0]?.setColorFilter(ContextCompat.getColor(this, R.color.verified), PorterDuff.Mode.SRC_IN)
                     } else {
                         binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verificationfalse_icon, 0, 0, 0)
-                        // Tint the drawable for unverified accounts
                         binding.email1.compoundDrawables[0]?.setColorFilter(ContextCompat.getColor(this, R.color.unverifiedyellow), PorterDuff.Mode.SRC_IN)
                     }
 

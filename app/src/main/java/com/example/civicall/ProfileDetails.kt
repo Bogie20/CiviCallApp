@@ -91,8 +91,8 @@ class ProfileDetails : AppCompatActivity() {
                 val finishact = snapshot.child("finishactivity").value
                 finishactTextView.text = finishact.toString()
                 activePtsTextView.text = activePts.toString()
-                binding.firstName.text = firstName.toString()
-                binding.lastName.text = lastName.toString()
+                val fullNameTextView: TextView = findViewById(R.id.fullName)
+                fullNameTextView.text = "$firstName $lastName"
                 binding.email1.text = email.toString()
                 binding.mobilenumtxt.text = contact.toString()
                 binding.emergencynumtxt.text = Emecontact?.toString() ?: ""
