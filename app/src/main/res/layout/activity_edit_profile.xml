@@ -137,7 +137,7 @@
                 android:fontFamily="@font/inter_bold"
                 android:text="Example@gmail.com"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
 
         </LinearLayout>
