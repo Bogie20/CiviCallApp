@@ -17,10 +17,14 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
+import com.example.civicall.User
 import com.github.clans.fab.FloatingActionButton
 import com.github.clans.fab.FloatingActionMenu
 import com.google.android.material.button.MaterialButton
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class ForumAdapter(
     private val context: Context,
@@ -107,7 +111,27 @@ class ForumAdapter(
         holder.forumText.text = data.postText
 
         val isCurrentUserPost = data.uploadersUID == currentUserUid || (data.uploadersUID == null && currentUserUid == null)
+        val uploaderUid = data.uploadersUID
+        if (uploaderUid != null) {
+            val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uploaderUid)
+            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val uploaderData = snapshot.getValue(User::class.java)
+                        if (uploaderData != null) {
+                            // Set uploader image profile
+                            Glide.with(context).load(uploaderData.ImageProfile).into(holder.profilePic)
 
+                            // Set uploader full name
+                            val fullName = "${uploaderData.firstname} ${uploaderData.lastname}"
+                            holder.userName.text = fullName
+                        }
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
+        }
         holder.editButton.visibility = View.GONE
         holder.deleteButton.visibility = View.GONE
         holder.reportButton.visibility = View.GONE
@@ -165,7 +189,8 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val deleteButton: FloatingActionButton = itemView.findViewById(R.id.deleteButton)
     val reportButton: FloatingActionButton = itemView.findViewById(R.id.reportButton)
     val hideButton: FloatingActionButton = itemView.findViewById(R.id.hideButton)
-
+    val profilePic: ImageView = itemView.findViewById(R.id.profilePic)
+    val userName: TextView = itemView.findViewById(R.id.userName)
     fun updateFABVisibility(data: DataClassForum, isCurrentUserPost: Boolean) {
         if (!data.postImage.isNullOrBlank()) {
             forumImage.visibility = View.VISIBLE
