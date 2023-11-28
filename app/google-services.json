@@ -15,19 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "909514632764-u3gj4bljhhfb7ue7a3idu205qq467v0e.apps.googleusercontent.com",
+          "client_id": "909514632764-83hn3f5moccevt62pe21e6htejkd2rk3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.civicall",
-            "certificate_hash": "a33572885cb9b5d204aed6e4cdbfe7c859f189d2"
-          }
-        },
-        {
-          "client_id": "909514632764-umlnmg4mjvb0m50oml0qqsnreh58mmah.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.civicall",
-            "certificate_hash": "68a38e8c9041b69c4cbc894f1168c44b2aa8f97e"
+            "certificate_hash": "4d880501087d42449e8d4ea15ca6184f58315c1e"
           }
         },
         {

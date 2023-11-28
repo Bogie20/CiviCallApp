@@ -113,7 +113,7 @@
                         android:id="@+id/uploadCategory"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:fontFamily="lexend"
+                        android:fontFamily="@font/lexend"
                         android:editable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -158,8 +158,8 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="15dp"
                         android:hint="Introduction"
-                        android:fontFamily="lexend"
                         android:lineSpacingExtra="6dp"
+                        android:fontFamily="@font/lexend"
                         android:inputType="textMultiLine"
                         android:paddingStart="20dp"
                         android:paddingEnd="30dp"
@@ -184,7 +184,7 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="15dp"
                         android:hint="Description"
-                        android:fontFamily="lexend"
+                        android:fontFamily="@font/lexend"
                         android:inputType="textMultiLine"
                         android:paddingStart="20dp"
                         android:paddingEnd="30dp"
