@@ -1,8 +1,5 @@
 package com.example.civicall
 
-
-
-
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
@@ -36,10 +33,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-
-
-
-
 class Login : AppCompatActivity() {
    private lateinit var binding: ActivityLoginBinding
    private lateinit var firebaseAuth: FirebaseAuth
@@ -127,22 +120,12 @@ class Login : AppCompatActivity() {
        networkUtils.initialize()
        val showSuccessPopup = intent.getBooleanExtra("showSuccessPopup", false)
 
-
-
-
        FirebaseApp.initializeApp(this)
-
-
-
 
        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
            .requestIdToken(getString(R.string.default_web_client_id))
            .requestEmail()
            .build()
-
-
-
-
        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
        firebaseAuth = FirebaseAuth.getInstance()
 
@@ -151,23 +134,12 @@ class Login : AppCompatActivity() {
            signInGoogle()
        }
 
-
-
-
        if (showSuccessPopup) {
            // Display the "Account Created Successfully!" popup
            showCustomPopupSuccess("Account Created Successfully!")
        }
-
-
-
-
-       // Initialize your email and password EditText fields
        emailEditText = binding.emailLogin
        passwordEditText = binding.passwordText
-
-
-
 
        binding.signUpTV.setOnClickListener {
            val intent = Intent(this, Register1::class.java)
@@ -175,10 +147,6 @@ class Login : AppCompatActivity() {
            startActivity(intent)
            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
        }
-
-
-
-
        binding.btnlogin.setOnClickListener {
            validateData()
        }
@@ -501,15 +469,8 @@ class Login : AppCompatActivity() {
        email = emailTextInputLayout.editText?.text.toString().trim()
        password = passwordTextInputLayout.editText?.text.toString().trim()
 
-
-
-
        val emailMaxLength = 320
        val passwordMaxLength = 128
-
-
-
-
        if (email.isEmpty()) {
            emailEditText.error = "Please input your email"
        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
@@ -683,15 +644,15 @@ class Login : AppCompatActivity() {
 
         firebaseAuth.fetchSignInMethodsForEmail(account.email!!)
             .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val signInMethods = task.result?.signInMethods
-                    if (signInMethods != null && signInMethods.isNotEmpty()) {
+                val signInMethods = task.result?.signInMethods
+                if (signInMethods != null && signInMethods.isNotEmpty()) {
+                    val isEmailPasswordProvider = signInMethods.contains(EmailAuthProvider.EMAIL_PASSWORD_SIGN_IN_METHOD)
+                    if (isEmailPasswordProvider) {
                         showCustomPopupError("Account with this email already exists.")
 
                         mGoogleSignInClient.signOut().addOnCompleteListener {
                         }
                     } else {
-                        // User with this email doesn't exist, proceed with sign-in
                         firebaseAuth.signInWithCredential(credential)
                             .addOnCompleteListener { signInTask ->
                                 if (signInTask.isSuccessful) {
@@ -702,10 +663,8 @@ class Login : AppCompatActivity() {
                                     editor.putString("username", account.displayName.toString())
                                     editor.apply()
 
-                                    // Set the URL of the user's profile picture
                                     profileImageUri = account.photoUrl?.toString()
 
-                                    // Update the user information in the Firebase Realtime Database
                                     updateUserInfo(account)
                                 } else {
                                     // Handle sign-in failure
