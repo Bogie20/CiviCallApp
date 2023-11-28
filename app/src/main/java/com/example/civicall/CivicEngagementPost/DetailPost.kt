@@ -124,7 +124,7 @@ class DetailPost : AppCompatActivity() {
             fabMenu.close(true)
         }
         binding.backbtn.setOnClickListener {
-            onBackPressed()
+            super.onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
         val copyInq: ImageView = findViewById(R.id.copyinq)

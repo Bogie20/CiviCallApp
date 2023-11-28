@@ -85,7 +85,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="210dp"
                     android:layout_marginTop="10dp"
                     app:cardCornerRadius="12dp"
                     android:id="@+id/cardImage"
@@ -95,10 +95,25 @@
                         android:id="@+id/updateImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="fitXY"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/jherimyimage" />
 
                 </androidx.cardview.widget.CardView>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:hint="Edit Here"
+                        android:padding="20dp"
+                        android:textSize="20dp"
+                        android:lineSpacingExtra="4dp"
+                        android:layout_marginTop="25dp"
+                        android:gravity="top"
+                        android:background="@drawable/comment_background"
+                        android:id="@+id/updatePostText"
+                        android:lines="15"
+                        android:elevation="1dp"
+                        />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/categoryTextInputLayout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -117,31 +132,6 @@
                         android:editable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/titleTextInputLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:elevation="80dp"
-                    app:hintTextColor="@color/DarkGray"
-                    >
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/updateTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="15dp"
-                        android:ellipsize="end"
-                        android:hint="Edit Here"
-                        android:lineSpacingExtra="6dp"
-                        android:inputType="textMultiLine"
-                        android:paddingStart="20dp"
-                        android:paddingEnd="30dp"
-                        android:paddingBottom="100dp"
-                        app:hintTextColor="@color/DarkGray" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/campusTextInputLayout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
@@ -158,6 +148,8 @@
                         android:layout_height="60dp"
                         android:editable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+
                 <Button
                     android:id="@+id/updateButton"
                     android:layout_width="match_parent"

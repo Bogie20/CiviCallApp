@@ -42,12 +42,12 @@ class ForumUpdate: AppCompatActivity() {
 
     private lateinit var updateImage: ImageView
     private lateinit var updateButton: Button
-    private lateinit var updateTitle: EditText
+    private lateinit var updatePostText: EditText
     private lateinit var cardImage: CardView
     private lateinit var updateCampus: AutoCompleteTextView
     private lateinit var updateCategory: AutoCompleteTextView
     private lateinit var networkUtils: NetworkUtils
-    private var title: String = ""
+    private var text: String = ""
     private var imageUrl: String = ""
     private var key: String = ""
     private var oldImageURL: String = ""
@@ -65,7 +65,7 @@ class ForumUpdate: AppCompatActivity() {
 
         updateButton = binding.updateButton
         updateImage = binding.updateImage
-        updateTitle = binding.updateTitle
+        updatePostText = binding.updatePostText
         updateCampus = binding.updateCampus
         cardImage = binding.cardImage
         updateCategory = binding.updateCategory
@@ -73,7 +73,7 @@ class ForumUpdate: AppCompatActivity() {
         networkUtils.initialize()
 
         binding.backbtn.setOnClickListener {
-            onBackPressed()
+            super.onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
         updateCategory.setOnClickListener {
@@ -101,7 +101,7 @@ class ForumUpdate: AppCompatActivity() {
             Glide.with(this@ForumUpdate).load(bundle.getString("PostImage")).into(updateImage)
             updateCategory.setText(bundle.getString("Category"))
             updateCampus.setText(bundle.getString("Campus"))
-            updateTitle.setText(bundle.getString("PostText"))
+            updatePostText.setText(bundle.getString("PostText"))
             key = bundle.getString("Key")!!
             oldImageURL = bundle.getString("PostImage")!!
 
@@ -200,7 +200,7 @@ class ForumUpdate: AppCompatActivity() {
         alertDialog.show()
     }
     private fun updateData() {
-        title = updateTitle.text.toString().trim()
+        text = updatePostText.text.toString().trim()
         campus = updateCampus.text.toString()
         category = updateCategory.text.toString()
 
@@ -212,7 +212,7 @@ class ForumUpdate: AppCompatActivity() {
             val dataClass = DataClassForum(
                 uploadersId,
                 category,
-                title,
+                text,
                 imageUrl,
                 campus,
                 false
@@ -239,7 +239,7 @@ class ForumUpdate: AppCompatActivity() {
             val dataClass = DataClassForum(
                 uploadersId,
                 category,
-                title,
+                text,
                 oldImageURL,
                 campus,
                 false
