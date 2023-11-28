@@ -21,9 +21,9 @@
         <item>Paypal</item>
     </string-array>
     <string-array name="nstp_category">
-        <item>Reserve Officers Training Corps (ROTC)</item>
-        <item>Civic Welfare Training Service (CWTS)</item>
-        <item>Literacy Training Service (LTS)</item>
+        <item>Reserve Officers Training Corps</item>
+        <item>Civic Welfare Training Service</item>
+        <item>Literacy Training Service</item>
         <item>None</item>
     </string-array>
     <string-array name="allowed_campuses">

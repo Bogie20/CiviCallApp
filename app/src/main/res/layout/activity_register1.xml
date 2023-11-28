@@ -93,6 +93,7 @@
                         android:drawablePadding="15dp"
                         android:hint="First Name"
                         android:lines="1"
+                        android:fontFamily="@font/lexend"
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:inputType="text"
@@ -120,6 +121,7 @@
                     android:drawablePadding="15dp"
                     android:hint="Middle Name"
                     android:lines="1"
+                    android:fontFamily="@font/lexend"
                     android:inputType="text"
                     app:hintTextColor="@color/DarkGray"
                     android:paddingEnd="30dp"
@@ -146,6 +148,7 @@
                     android:drawablePadding="15dp"
                     android:hint="Last Name"
                     android:lines="1"
+                    android:fontFamily="@font/lexend"
                     android:inputType="text"
                     app:hintTextColor="@color/DarkGray"
                     android:paddingEnd="30dp"
@@ -174,6 +177,7 @@
                     android:hint="Address"
                     android:inputType="text"
                     android:lines="1"
+                    android:fontFamily="@font/lexend"
                     android:maxLines="1"
                     android:paddingStart="20dp"
                     android:paddingEnd="30dp"
@@ -199,6 +203,7 @@
                     android:drawablePadding="15dp"
                     android:hint="Mobile Number"
                     android:lines="1"
+                    android:fontFamily="@font/lexend"
                     android:ellipsize="end"
                     android:maxLines="1"
                     app:hintTextColor="@color/DarkGray"
@@ -218,6 +223,7 @@
                 android:layout_marginVertical="12dp">
                 <AutoCompleteTextView
                     android:id="@+id/campus"
+                    android:fontFamily="@font/lexend"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:editable="false"/>
@@ -235,6 +241,7 @@
                     android:id="@+id/usercategory"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:fontFamily="@font/lexend"
                     android:editable="false"/>
             </com.google.android.material.textfield.TextInputLayout>
             <LinearLayout
@@ -254,6 +261,7 @@
                     android:id="@+id/birthdate"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
+                    android:fontFamily="@font/lexend"
                     android:lines="1"
                     android:editable="false" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -270,6 +278,7 @@
                     android:id="@+id/spinnerSex"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
+                    android:fontFamily="@font/lexend"
                     android:lines="1"
                     android:editable="false" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -292,6 +301,7 @@
                     android:drawablePadding="15dp"
                     android:hint="Email"
                     android:lines="1"
+                    android:fontFamily="@font/lexend"
                     android:inputType="text"
                     android:ellipsize="end"
                     android:maxLines="1"
@@ -320,6 +330,7 @@
                     android:drawableStart="@drawable/baseline_lock_24"
                     android:drawablePadding="15dp"
                     android:hint="Password"
+                    android:fontFamily="@font/lexend"
                     android:lines="1"
                     android:paddingEnd="30dp"
                     android:inputType="textPassword"
@@ -348,6 +359,7 @@
                     android:hint="Confirm Password"
                     android:inputType="textPassword"
                     android:paddingEnd="30dp"
+                    android:fontFamily="@font/lexend"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:singleLine="true"
