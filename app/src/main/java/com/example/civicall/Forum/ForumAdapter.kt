@@ -120,8 +120,12 @@ class ForumAdapter(
                     if (snapshot.exists()) {
                         val uploaderData = snapshot.getValue(Users::class.java)
                         if (uploaderData != null) {
-                            // Set uploader image profile
-                            Glide.with(context).load(uploaderData.ImageProfile).into(holder.profilePic)
+                            // Set uploader image profile with a placeholder
+                            Glide.with(context)
+                                .load(uploaderData.ImageProfile)
+                                .placeholder(R.drawable.user)
+                                .error(R.drawable.user)
+                                .into(holder.profilePic)
 
                             // Set uploader full name
                             val fullName = "${uploaderData.firstname} ${uploaderData.lastname}"
@@ -129,7 +133,9 @@ class ForumAdapter(
                         }
                     }
                 }
+
                 override fun onCancelled(error: DatabaseError) {
+                    // Handle onCancelled as needed
                 }
             })
         }

@@ -110,9 +110,11 @@ class ForumUpload : AppCompatActivity() {
                     if (snapshot.exists()) {
                         val userData = snapshot.getValue(Users::class.java)
                         if (userData != null) {
-                            // Set ImageProfile
-                            Glide.with(this@ForumUpload).load(userData.ImageProfile).into(profilePic)
-
+                            Glide.with(this@ForumUpload)
+                                .load(userData.ImageProfile)
+                                .placeholder(R.drawable.user)
+                                .error(R.drawable.user)
+                                .into(profilePic)
                             // Set firstname with lastname
                             val fullName = "${userData.firstname} ${userData.lastname}"
                             uploaderName.text = fullName
