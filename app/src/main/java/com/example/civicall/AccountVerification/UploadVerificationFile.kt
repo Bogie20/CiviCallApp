@@ -55,6 +55,7 @@ class UploadVerificationFile : AppCompatActivity() {
         val uploadImage = findViewById<Button>(R.id.uploadcamera)
         val uploadFileButton = findViewById<TextView>(R.id.underlineTextView)
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
+        val backbtn = findViewById<ImageView>(R.id.backbtn)
         FirebaseStorage.getInstance()
 
         onResume()
@@ -86,6 +87,7 @@ class UploadVerificationFile : AppCompatActivity() {
                 }
             }
         }
+
         uploadFileButton.setOnClickListener {
             if (hasUserUploadedVerification) {
                 showMessage(
@@ -147,6 +149,10 @@ class UploadVerificationFile : AppCompatActivity() {
                     checkAndRequestPermissions()
                 }
             }
+        }
+        backbtn.setOnClickListener {
+            super.onBackPressed()
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
     }private fun checkVerificationStatus() {
         val currentUser = FirebaseAuth.getInstance().currentUser

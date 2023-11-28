@@ -18,7 +18,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
-import com.example.civicall.User
+import com.example.civicall.Users
 import com.github.clans.fab.FloatingActionButton
 import com.github.clans.fab.FloatingActionMenu
 import com.google.android.material.button.MaterialButton
@@ -118,7 +118,7 @@ class ForumAdapter(
             userRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
-                        val uploaderData = snapshot.getValue(User::class.java)
+                        val uploaderData = snapshot.getValue(Users::class.java)
                         if (uploaderData != null) {
                             // Set uploader image profile
                             Glide.with(context).load(uploaderData.ImageProfile).into(holder.profilePic)

@@ -16,16 +16,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageButton
-            android:id="@+id/profileburger"
-            android:layout_width="wrap_content"
-            android:paddingLeft="13dp"
-            android:layout_marginTop="7dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|left"
-            android:background="@android:color/transparent"
-            android:src="@drawable/menubutton"
-            android:contentDescription="Open Navigation Menu" />
+        <ImageView
+            android:id="@+id/backbtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginVertical="8dp"
+            android:contentDescription="Back to Previous"
+            android:src="@drawable/backbtn"
+            android:background="@drawable/highlight_text"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="BackClick" />
 
         <TextView
             android:id="@+id/titleTextView"
@@ -41,10 +42,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="13dp"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/lexend_bold"
             android:text="Send"
+            android:background="@drawable/highlight_text"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -270,6 +272,7 @@
                         android:text="Choose a File"
                         android:textSize="18dp"
                         android:clickable="true"
+                        android:background="@drawable/highlight_linear"
                         android:textColor="@color/colorAccent"
                         android:layout_marginTop="10dp"
                         android:textStyle="bold"/>

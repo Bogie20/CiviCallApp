@@ -50,11 +50,10 @@ class ProfileDetails : AppCompatActivity() {
         checkUser()
         // Set up click listeners for UI elements
         binding.backbtn.setOnClickListener {
-            val intent = Intent(this, MainMenu::class.java)
-            startActivity(intent)
+            super.onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-            onBackPressed()
         }
+
     }
 
     private fun checkUser() {

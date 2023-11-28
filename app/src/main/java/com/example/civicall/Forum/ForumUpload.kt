@@ -36,7 +36,7 @@ import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
-import com.example.civicall.User
+import com.example.civicall.Users
 import com.example.civicall.databinding.ActivityForumUploadBinding
 import com.github.clans.fab.FloatingActionButton
 import com.github.clans.fab.FloatingActionMenu
@@ -106,7 +106,7 @@ class ForumUpload : AppCompatActivity() {
             currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
-                        val userData = snapshot.getValue(User::class.java)
+                        val userData = snapshot.getValue(Users::class.java)
                         if (userData != null) {
                             // Set ImageProfile
                             Glide.with(this@ForumUpload).load(userData.ImageProfile).into(profilePic)

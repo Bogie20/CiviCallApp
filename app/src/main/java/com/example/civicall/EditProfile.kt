@@ -6,7 +6,6 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -21,7 +20,6 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -33,7 +31,6 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import com.bumptech.glide.Glide
 import com.example.civicall.databinding.ActivityEditProfileBinding
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
@@ -42,9 +39,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
-import java.io.ByteArrayOutputStream
 import java.io.File
-import java.io.FileOutputStream
 import java.io.IOException
 import java.util.Calendar
 import java.util.UUID
@@ -270,10 +265,8 @@ class EditProfile : AppCompatActivity() {
         }
 
         binding.backbtn.setOnClickListener {
-            val intent = Intent(this, ProfileDetails::class.java)
-            startActivity(intent)
+            super.onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-            onBackPressed()
         }
 
         binding.profileImage.setOnClickListener {
@@ -354,7 +347,7 @@ class EditProfile : AppCompatActivity() {
     private fun readData() {
         database.get().addOnSuccessListener { snapshot ->
             if (snapshot.exists()) {
-                val user = snapshot.getValue(User::class.java)
+                val user = snapshot.getValue(Users::class.java)
                 if (user != null) {
                     displayUserData(user)
                 }
@@ -366,7 +359,7 @@ class EditProfile : AppCompatActivity() {
         }
     }
 
-    private fun displayUserData(user: User) {
+    private fun displayUserData(user: Users) {
         binding.email1.text = user.email
         binding.fname.text = Editable.Factory.getInstance().newEditable(user.firstname)
         binding.mname.text = Editable.Factory.getInstance().newEditable(user.middlename)
@@ -951,21 +944,3 @@ class EditProfile : AppCompatActivity() {
 
 
 
-data class User(
-    val firstname: String = "",
-    val middlename: String = "",
-    val lastname: String = "",
-    val address: String = "",
-    val course: String = "",
-    val srcode: String = "",
-    val phoneno: String = "",
-    val userType: String = "",
-    val campus: String = "",
-    val birthday: String = "",
-    val gender: String = "",
-    val email: String = "",
-    val ImageProfile: String = "",
-    val ContactEme: String = "",
-    val nstp: String = ""
-
-)
