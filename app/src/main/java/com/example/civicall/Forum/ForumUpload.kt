@@ -19,10 +19,12 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupMenu
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -123,21 +125,21 @@ class ForumUpload : AppCompatActivity() {
                 }
             })
         }
-        val dropdownButton: ImageButton = findViewById(R.id.dropdown)
+        val selectCampus: RelativeLayout = findViewById(R.id.relativeSelect)
         val campusPickTextView: TextView = findViewById(R.id.campusPick)
         val campusArray = resources.getStringArray(R.array.allowed_campuses)
-        val popupMenu = PopupMenu(this, dropdownButton)
+        val popupMenu = PopupMenu(this, selectCampus)
         campusArray.forEach { campus ->
             popupMenu.menu.add(campus)
         }
-        dropdownButton.setOnClickListener {
+        selectCampus.setOnClickListener {
             popupMenu.setOnMenuItemClickListener { menuItem ->
-                // Handle the selected campus
                 campusPickTextView.text = menuItem.title
                 true
             }
             popupMenu.show()
         }
+
         val categoryDropdown = binding.uploadCategory
         val categoryArray = resources.getStringArray(R.array.engagement_category)
         val adaptercategory = ArrayAdapter(this, R.layout.dropdown_item, categoryArray)
