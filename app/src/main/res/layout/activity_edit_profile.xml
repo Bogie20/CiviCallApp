@@ -187,6 +187,7 @@
                 android:autofillHints="name"
                 android:elevation="80dp"
                 android:layout_marginVertical="10dp"
+                app:hintEnabled="false"
                 app:hintTextColor="@color/DarkGray">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -198,6 +199,7 @@
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
                     android:inputType="text"
+                    android:hint="Enter your First Name"
                     android:lines="1"
                     android:maxLines="1"
                     android:paddingStart="20dp"
@@ -214,7 +216,6 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
-
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
                 />
@@ -224,6 +225,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="name"
+                app:hintEnabled="false"
                 android:layout_marginVertical="10dp"
                 app:counterTextColor="@color/white">
 
@@ -238,6 +240,7 @@
                     android:ellipsize="end"
                     android:inputType="text"
                     android:lines="1"
+                    android:hint="Enter your Middle Name"
                     android:maxLines="1"
                     android:paddingStart="20dp"
                     android:paddingEnd="30dp" />
@@ -262,6 +265,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:counterTextColor="@color/white"
+                app:hintEnabled="false"
                 android:autofillHints="name"
                 android:layout_marginVertical="10dp">
 
@@ -276,6 +280,7 @@
                     android:ellipsize="end"
                     android:inputType="text"
                     android:lines="1"
+                    android:hint="Enter your Last Name"
                     android:maxLines="1"
                     android:paddingStart="20dp"
                     android:paddingEnd="30dp"
@@ -301,6 +306,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:counterTextColor="@color/white"
+                app:hintEnabled="false"
                 android:layout_marginVertical="10dp">
 
 
@@ -312,6 +318,7 @@
                     android:drawableStart="@drawable/sharelocation"
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
+                   android:hint="Enter your Address"
                     android:inputType="text"
                     android:lines="1"
                     android:maxLines="1"
@@ -341,7 +348,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:counterTextColor="@color/white"
-                android:layout_marginVertical="10dp">
+                app:hintEnabled="false"
+                app:counterMaxLength="11"
+                app:counterEnabled="true"
+                android:layout_marginTop="10dp">
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -353,6 +363,7 @@
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
                     android:lines="1"
+                    android:hint="Enter your Mobile Number"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:paddingStart="20dp"
@@ -369,7 +380,6 @@
                 android:textSize="20sp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
                 />
@@ -378,11 +388,13 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:hintEnabled="false"
                 android:layout_marginVertical="10dp">
                 <AutoCompleteTextView
                     android:id="@+id/usercategory"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:hint="Enter User Type"
                     android:paddingEnd="35dp"
                     android:background="@drawable/rounded_edittext_background"
                     android:editable="false"/>
@@ -405,6 +417,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
+                app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
                 <AutoCompleteTextView
@@ -412,6 +425,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:paddingEnd="35dp"
+                    android:hint="Enter your Campus"
                     android:background="@drawable/rounded_edittext_background"
                     android:editable="false"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -444,6 +458,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        app:hintEnabled="false"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -452,6 +467,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="55dp"
                             android:layout_marginEnd="10dp"
+                            android:hint="mm/dd/yyyy"
                             android:paddingEnd="35dp"
                             android:background="@drawable/rounded_edittext_background"
                             android:editable="false"
@@ -485,6 +501,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        app:hintEnabled="false"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -493,6 +510,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="55dp"
                             android:paddingEnd="35dp"
+                            android:hint="M/F"
                             android:background="@drawable/rounded_edittext_background"
                             android:editable="false"
                             android:lines="1" />
@@ -507,7 +525,7 @@
                 android:textSize="20sp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
                 />
@@ -516,6 +534,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:hintEnabled="false"
                 android:layout_marginVertical="10dp">
 
                 <AutoCompleteTextView
@@ -523,6 +542,7 @@
                     android:paddingEnd="35dp"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:hint="Enter NSTP"
                     android:background="@drawable/rounded_edittext_background"
                     android:editable="false" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -532,7 +552,7 @@
                 android:layout_height="wrap_content"
                 android:text="No. in Case of Emergency:"
                 android:textSize="20sp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/white_70"
@@ -543,7 +563,10 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
+                app:hintEnabled="false"
+                app:counterMaxLength="11"
+                app:counterEnabled="true"
+                android:layout_marginTop="10dp"
                 app:counterTextColor="@color/white">
 
 
@@ -556,6 +579,7 @@
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
                     android:lines="1"
+                    android:hint="Number in Case of Emergency"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:paddingStart="20dp"
@@ -570,7 +594,6 @@
                 android:textSize="20sp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
                 />
@@ -579,6 +602,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:hintEnabled="false"
                 app:counterTextColor="@color/white"
                 android:layout_marginVertical="10dp">
 
@@ -590,6 +614,7 @@
                     android:drawableStart="@drawable/course_icon"
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
+                    android:hint="Enter your Course"
                     android:lines="1"
                     android:maxLines="1"
                     android:singleLine="true"
@@ -615,6 +640,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="300dp"
+                app:hintEnabled="false"
                 android:layout_marginTop="10dp"
                 app:counterTextColor="@color/white">
 
@@ -626,6 +652,7 @@
                     android:drawableStart="@drawable/sr_code"
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
+                    android:hint="Enter your SR-Code"
                     android:lines="1"
                     android:maxLines="1"
                     android:singleLine="true"
