@@ -146,9 +146,6 @@ class Login : AppCompatActivity() {
        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
        firebaseAuth = FirebaseAuth.getInstance()
 
-
-
-
        binding.googlebtn.setOnClickListener {
            Toast.makeText(this, "Logging In", Toast.LENGTH_SHORT).show()
            signInGoogle()
@@ -681,38 +678,57 @@ class Login : AppCompatActivity() {
        }
    }
 
-   private fun updateUI(account: GoogleSignInAccount) {
-       val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-       firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
-           if (task.isSuccessful) {
-               val sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
-               val editor = sharedPreferences.edit()
-               editor.putString("email", account.email.toString())
-               editor.putString("username", account.displayName.toString())
-               editor.apply()
+    private fun updateUI(account: GoogleSignInAccount) {
+        val credential = GoogleAuthProvider.getCredential(account.idToken, null)
 
+        firebaseAuth.fetchSignInMethodsForEmail(account.email!!)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val signInMethods = task.result?.signInMethods
+                    if (signInMethods != null && signInMethods.isNotEmpty()) {
+                        showCustomPopupError("Account with this email already exists.")
 
+                        mGoogleSignInClient.signOut().addOnCompleteListener {
+                        }
+                    } else {
+                        // User with this email doesn't exist, proceed with sign-in
+                        firebaseAuth.signInWithCredential(credential)
+                            .addOnCompleteListener { signInTask ->
+                                if (signInTask.isSuccessful) {
+                                    // User signed in successfully
+                                    val sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+                                    val editor = sharedPreferences.edit()
+                                    editor.putString("email", account.email.toString())
+                                    editor.putString("username", account.displayName.toString())
+                                    editor.apply()
 
+                                    // Set the URL of the user's profile picture
+                                    profileImageUri = account.photoUrl?.toString()
 
-               // Set the URL of the user's profile picture
-               profileImageUri = account.photoUrl?.toString()
+                                    // Update the user information in the Firebase Realtime Database
+                                    updateUserInfo(account)
+                                } else {
+                                    // Handle sign-in failure
+                                    Toast.makeText(
+                                        this,
+                                        "Google Sign-In failed: ${signInTask.exception?.message}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+                    }
+                } else {
+                    // Handle task failure
+                    Toast.makeText(
+                        this,
+                        "Error checking email existence: ${task.exception?.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+    }
 
-
-
-
-               // Update the user information in the Firebase Realtime Database
-               updateUserInfo(account)
-           }
-
-
-
-
-       }   }
-
-
-
-
-   override fun onBackPressed() {
+    override fun onBackPressed() {
        super.onBackPressed()
        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
