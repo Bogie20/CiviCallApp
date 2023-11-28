@@ -205,6 +205,7 @@ class ForumUpdate: AppCompatActivity() {
         category = updateCategory.text.toString()
 
 
+
         val user = FirebaseAuth.getInstance().currentUser
         val uploadersId = user?.uid
         if (uri != null) {
@@ -215,6 +216,7 @@ class ForumUpdate: AppCompatActivity() {
                 text,
                 imageUrl,
                 campus,
+                emptyList(),
                 false
             )
 
@@ -242,6 +244,7 @@ class ForumUpdate: AppCompatActivity() {
                 text,
                 oldImageURL,
                 campus,
+                emptyList(),
                 false
             )
             databaseReference.setValue(dataClass)

@@ -51,6 +51,19 @@ class ForumFragment : Fragment() {
         val filterIcon = rootView.findViewById<ImageView>(R.id.filterIcon)
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
 
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val layoutManager = recyclerView.layoutManager as GridLayoutManager
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+                val viewHolder = recyclerView.findViewHolderForAdapterPosition(firstVisibleItemPosition)
+
+                if (viewHolder is MyViewHolderForum) {
+                    viewHolder.closeFabMenu()
+                }
+            }
+        })
         rootView.startAnimation(anim)
 
         filterIcon.setOnClickListener {

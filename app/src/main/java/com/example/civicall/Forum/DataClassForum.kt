@@ -6,9 +6,7 @@ class DataClassForum {
     var postText: String? = null
     var postImage: String? = null
     var campus: String? = null
-//    var firstname: String? = null
-//    var lastname: String? = null
-//    var ImageProfile: String? =null
+    var hiddenByUserIds: List<String>? = null
     var verificationStatus: Boolean = false
 
     var key: String? = null
@@ -22,9 +20,7 @@ class DataClassForum {
         postText: String?,
         postImage: String,
         campus: String?,
-//        firstname: String?,
-//        lastname: String?,
-//        ImageProfile: String?,
+        hiddenByUserIds: List<String>?,
         verificationStatus: Boolean
 
     ) {
@@ -33,9 +29,7 @@ class DataClassForum {
         this.postText = postText
         this.postImage = postImage
         this.campus = campus
-//        this.firstname = firstname
-//        this.lastname = lastname
-//        this.ImageProfile = ImageProfile
+        this.hiddenByUserIds = hiddenByUserIds
         this.verificationStatus = verificationStatus
     }
 

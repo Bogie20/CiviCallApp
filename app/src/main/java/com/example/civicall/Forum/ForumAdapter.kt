@@ -220,7 +220,13 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
             reportButton.visibility = View.VISIBLE
         }
     }
-
+    fun closeFabMenu() {
+        // Close the fabMenu if it's open
+        val fabMenu: FloatingActionMenu = itemView.findViewById(R.id.fabMenu)
+        if (fabMenu.isOpened) {
+            fabMenu.close(true)
+        }
+    }
     init {
         val cardView: CardView = itemView.findViewById(R.id.recCard)
         val fabMenu: FloatingActionMenu = itemView.findViewById(R.id.fabMenu)

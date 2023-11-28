@@ -449,6 +449,7 @@ class ForumUpload : AppCompatActivity() {
         val campus = binding.campusPick.text.toString()
         val category = binding.uploadCategory.text.toString()
         val verificationStatus = false
+        val isHidden = false
 
         val user = FirebaseAuth.getInstance().currentUser
         val uploadersId = user?.uid
@@ -464,6 +465,7 @@ class ForumUpload : AppCompatActivity() {
                     postText,
                     imageUrl.orEmpty(),
                     campus,
+                    emptyList(),
                     verificationStatus
                 )
 
