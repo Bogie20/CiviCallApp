@@ -32,10 +32,8 @@ class RecognitionLeaderBoard : AppCompatActivity() {
 
 
         backbtn.setOnClickListener {
-            val intent = Intent(this, MainMenu::class.java)
-            startActivity(intent)
+            super.onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-            onBackPressed()
         }
         databaseReference = FirebaseDatabase.getInstance().reference.child("Users")
 

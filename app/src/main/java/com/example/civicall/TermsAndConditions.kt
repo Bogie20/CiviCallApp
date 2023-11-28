@@ -14,10 +14,8 @@ class TermsAndConditions : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.backbtn.setOnClickListener {
-            val intent = Intent(this, Register1::class.java)
-            startActivity(intent)
-            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-            onBackPressed()
+                super.onBackPressed()
+                overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            }
         }
     }
-}

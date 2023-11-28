@@ -26,9 +26,9 @@ class Settings : AppCompatActivity() {
 
         val notificationSwitch = findViewById<SwitchMaterial>(R.id.notificationSwitch)
         binding.backbtn.setOnClickListener {
-            onBackPressed()
-            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-        }
+                super.onBackPressed()
+                overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            }
 
         val changepass = binding.changepass
         changepass.setOnClickListener {

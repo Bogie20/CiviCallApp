@@ -16,7 +16,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class Feedback : AppCompatActivity() {
-    private lateinit var BackClick: ImageView
+    private lateinit var backbtn: ImageView
     private lateinit var editTextText2: TextView
     private lateinit var ratingBar: RatingBar
     private lateinit var database: FirebaseDatabase
@@ -26,11 +26,16 @@ class Feedback : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feedback)
 
-        BackClick = findViewById(R.id.profileburger)
         editTextMultiline = findViewById(R.id.editTextTextMultiLine)
         editTextText2 = findViewById(R.id.editTextText2)
         ratingBar = findViewById(R.id.ratingBar)
+        backbtn = findViewById(R.id.backbtn)
 
+
+        backbtn.setOnClickListener {
+            super.onBackPressed()
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
         ratingBar.setOnRatingBarChangeListener { _, rating: Float, _ ->
             when (rating.toInt()) {
                 0 -> editTextText2.setText(R.string.very_dissatisfied)
@@ -42,11 +47,6 @@ class Feedback : AppCompatActivity() {
             }
         }
 
-        BackClick.setOnClickListener {
-            val intent = Intent(this, MainMenu::class.java)
-            startActivity(intent)
-            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-        }
 
         val popupButton: Button = findViewById(R.id.publishbtn)
         popupButton.setOnClickListener {
