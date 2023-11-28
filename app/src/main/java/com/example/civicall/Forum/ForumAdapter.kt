@@ -2,7 +2,6 @@ package com.example.civicall.Forum
 
 import android.content.Context
 import android.content.Intent
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
@@ -105,6 +104,50 @@ class ForumAdapter(
 
         Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
     }
+    private fun updateHiddenState(postKey: String?, isHidden: Boolean) {
+        if (postKey != null && currentUserUid != null) {
+            // Save hidden state locally
+            saveHiddenState(postKey, isHidden)
+
+            // Update hidden state in Firebase
+            val userHiddenPostsRef = FirebaseDatabase.getInstance().getReference("UserHiddenPosts").child(currentUserUid)
+            userHiddenPostsRef.child(postKey).setValue(isHidden)
+        }
+    }
+    private fun saveHiddenState(postKey: String, isHidden: Boolean) {
+        val sharedPreferences = context.getSharedPreferences("HiddenPosts", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("$currentUserUid-$postKey", isHidden)
+        editor.apply()
+    }
+    private fun getHiddenState(postKey: String, callback: (Boolean) -> Unit) {
+        // Check local hidden state first
+        val hiddenState = getLocalHiddenState(postKey)
+        if (hiddenState != null) {
+            callback.invoke(hiddenState)
+        } else {
+            // Fetch from Firebase if not found locally
+            val userHiddenPostsRef = FirebaseDatabase.getInstance().getReference("UserHiddenPosts")
+            currentUserUid?.let {
+                userHiddenPostsRef.child(it)
+            }
+            userHiddenPostsRef.child(postKey).addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val isHidden = snapshot.getValue(Boolean::class.java) ?: false
+                    callback.invoke(isHidden)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle onCancelled as needed
+                }
+            })
+        }
+    }
+
+    private fun getLocalHiddenState(postKey: String): Boolean? {
+        val sharedPreferences = context.getSharedPreferences("HiddenPosts", Context.MODE_PRIVATE)
+        return sharedPreferences.getBoolean("$currentUserUid-$postKey", false)
+    }
 
     override fun onBindViewHolder(holder: MyViewHolderForum, position: Int) {
         val data = dataList[position]
@@ -138,6 +181,62 @@ class ForumAdapter(
                     // Handle onCancelled as needed
                 }
             })
+        }
+        getHiddenState(data.key ?: "") { isHidden ->
+            data.isHidden = isHidden
+
+            // Update the visibility of forumImage and forumText
+            if (data.isHidden) {
+                // The post is marked as hidden, hide forumImage and forumText
+                holder.forumImage.visibility = View.GONE
+                holder.forumText.visibility = View.GONE
+            } else {
+                // The post is not hidden, set visibility based on other conditions
+                if (!data.postImage.isNullOrBlank()) {
+                    holder.forumImage.visibility = View.VISIBLE
+                    Glide.with(holder.itemView.context).load(data.postImage!!).into(holder.forumImage)
+                } else {
+                    holder.forumImage.visibility = View.GONE
+                }
+
+                if (!data.postText.isNullOrBlank()) {
+                    holder.forumText.visibility = View.VISIBLE
+                    holder.forumText.text = data.postText
+                } else {
+                    holder.forumText.visibility = View.GONE
+                }
+            }
+        }
+        holder.hideButton.setOnClickListener {
+            // Toggle the visibility state of forumImage and forumText
+            data.isHidden = !data.isHidden
+
+            // Update the visibility of forumImage and forumText
+            if (data.isHidden) {
+                holder.forumImage.visibility = View.GONE
+                holder.forumText.visibility = View.GONE
+            } else {
+                // The post is not hidden, set visibility based on other conditions
+                if (!data.postImage.isNullOrBlank()) {
+                    holder.forumImage.visibility = View.VISIBLE
+                    Glide.with(context).load(data.postImage).into(holder.forumImage)
+                } else {
+                    holder.forumImage.visibility = View.GONE
+                }
+
+                if (!data.postText.isNullOrBlank()) {
+                    holder.forumText.visibility = View.VISIBLE
+                    holder.forumText.text = data.postText
+                } else {
+                    holder.forumText.visibility = View.GONE
+                }
+            }
+
+            // Update the visibility of hideButton
+            holder.hideButton.visibility = View.VISIBLE
+
+            // Update the hidden state in the Firebase Realtime Database
+            updateHiddenState(data.key, data.isHidden)
         }
         holder.editButton.visibility = View.GONE
         holder.deleteButton.visibility = View.GONE
@@ -200,11 +299,25 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val userName: TextView = itemView.findViewById(R.id.userName)
 
     fun updateFABVisibility(data: DataClassForum, isCurrentUserPost: Boolean) {
-        if (!data.postImage.isNullOrBlank()) {
-            forumImage.visibility = View.VISIBLE
-            Glide.with(itemView.context).load(data.postImage).into(forumImage)
-        } else {
+        if (data.isHidden) {
+            // The post is marked as hidden, hide forumImage and forumText
             forumImage.visibility = View.GONE
+            forumText.visibility = View.GONE
+        } else {
+            // The post is not hidden, set visibility based on other conditions
+            if (!data.postImage.isNullOrBlank()) {
+                forumImage.visibility = View.VISIBLE
+                Glide.with(itemView.context).load(data.postImage).into(forumImage)
+            } else {
+                forumImage.visibility = View.GONE
+            }
+
+            if (!data.postText.isNullOrBlank()) {
+                forumText.visibility = View.VISIBLE
+                forumText.text = data.postText
+            } else {
+                forumText.visibility = View.GONE
+            }
         }
 
         editButton.visibility = View.GONE
@@ -219,9 +332,9 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
             hideButton.visibility = View.VISIBLE
             reportButton.visibility = View.VISIBLE
         }
+
     }
-    fun closeFabMenu() {
-        // Close the fabMenu if it's open
+        fun closeFabMenu() {
         val fabMenu: FloatingActionMenu = itemView.findViewById(R.id.fabMenu)
         if (fabMenu.isOpened) {
             fabMenu.close(true)

@@ -6,7 +6,7 @@ class DataClassForum {
     var postText: String? = null
     var postImage: String? = null
     var campus: String? = null
-    var hiddenByUserIds: List<String>? = null
+    var isHidden: Boolean = false
     var verificationStatus: Boolean = false
 
     var key: String? = null
@@ -20,7 +20,7 @@ class DataClassForum {
         postText: String?,
         postImage: String,
         campus: String?,
-        hiddenByUserIds: List<String>?,
+        isHidden: Boolean,
         verificationStatus: Boolean
 
     ) {
@@ -29,7 +29,7 @@ class DataClassForum {
         this.postText = postText
         this.postImage = postImage
         this.campus = campus
-        this.hiddenByUserIds = hiddenByUserIds
+        this.isHidden = isHidden
         this.verificationStatus = verificationStatus
     }
 

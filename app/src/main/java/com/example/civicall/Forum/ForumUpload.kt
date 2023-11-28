@@ -465,7 +465,7 @@ class ForumUpload : AppCompatActivity() {
                     postText,
                     imageUrl.orEmpty(),
                     campus,
-                    emptyList(),
+                    false,
                     verificationStatus
                 )
 
