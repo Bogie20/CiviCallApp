@@ -79,6 +79,7 @@
                     android:layout_height="wrap_content"
                     android:text="Enter Details"
                     android:textAlignment="center"
+                    android:fontFamily="@font/inter_semibold"
                     android:textColor="@color/red"
                     android:textSize="30sp" />
 
@@ -112,6 +113,7 @@
                         android:id="@+id/uploadCategory"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
+                        android:fontFamily="lexend"
                         android:editable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -129,10 +131,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="15dp"
-                        android:ellipsize="end"
                         android:lineSpacingExtra="6dp"
                         android:paddingVertical="25dp"
                         android:hint="Title"
+                        android:fontFamily="@font/lexend"
                         android:inputType="textMultiLine"
                         android:paddingStart="20dp"
                         android:paddingEnd="30dp"
@@ -155,8 +157,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="15dp"
-                        android:ellipsize="end"
                         android:hint="Introduction"
+                        android:fontFamily="lexend"
                         android:lineSpacingExtra="6dp"
                         android:inputType="textMultiLine"
                         android:paddingStart="20dp"
@@ -181,8 +183,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="15dp"
-                        android:ellipsize="end"
                         android:hint="Description"
+                        android:fontFamily="lexend"
                         android:inputType="textMultiLine"
                         android:paddingStart="20dp"
                         android:paddingEnd="30dp"
@@ -206,7 +208,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="15dp"
-                        android:ellipsize="end"
+                       android:fontFamily="@font/lexend"
                         android:hint="Instruction"
                         android:lineSpacingExtra="6dp"
                         android:inputType="textMultiLine"
@@ -233,6 +235,7 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="15dp"
                         android:ellipsize="end"
+                        android:fontFamily="@font/lexend"
                         android:hint="Location"
                         android:lineSpacingExtra="6dp"
                         android:paddingVertical="25dp"
@@ -258,6 +261,7 @@
                     <AutoCompleteTextView
                         android:id="@+id/uploadStartDate"
                         android:layout_width="match_parent"
+                        android:fontFamily="@font/lexend"
                         android:layout_height="wrap_content"
                         android:editable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -275,6 +279,7 @@
 
                     <AutoCompleteTextView
                         android:id="@+id/uploadEndDate"
+                        android:fontFamily="@font/lexend"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:editable="false" />
@@ -293,6 +298,7 @@
                     <AutoCompleteTextView
                         android:id="@+id/uploadCampus"
                         android:layout_width="match_parent"
+                        android:fontFamily="@font/lexend"
                         android:layout_height="60dp"
                         android:editable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -311,7 +317,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:drawablePadding="15dp"
-                        android:ellipsize="end"
+                        android:fontFamily="@font/lexend"
                         android:hint="Target Participants"
                         android:inputType="text"
                         android:lines="1"
@@ -336,6 +342,7 @@
                         android:layout_height="60dp"
                         android:drawablePadding="15dp"
                         android:ellipsize="end"
+                        android:fontFamily="@font/lexend"
                         android:hint="Active Points"
                         android:inputType="text"
                         android:lines="1"
@@ -361,6 +368,7 @@
                         android:layout_height="60dp"
                         android:drawablePadding="15dp"
                         android:ellipsize="end"
+                        android:fontFamily="@font/lexend"
                         android:hint="Facilitator's Name"
                         android:inputType="text"
                         android:lines="1"
@@ -389,6 +397,7 @@
                         android:hint="Facilitator's Contact or Email"
                         android:inputType="text"
                         android:lines="1"
+                        android:fontFamily="@font/lexend"
                         android:maxLines="1"
                         android:paddingStart="20dp"
                         android:paddingEnd="30dp"
@@ -411,6 +420,7 @@
                         android:id="@+id/uploadPaymentMethod"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
+                        android:fontFamily="@font/lexend"
                         android:editable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -432,6 +442,7 @@
                         android:ellipsize="end"
                         android:hint="Payment Recipient Code/Number"
                         android:inputType="text"
+                        android:fontFamily="@font/lexend"
                         android:lines="1"
                         android:maxLines="1"
                         android:paddingStart="20dp"
@@ -455,6 +466,7 @@
                         android:id="@+id/uploadFundCollected"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
+                        android:fontFamily="@font/lexend"
                         android:editable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <Button

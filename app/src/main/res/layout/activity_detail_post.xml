@@ -87,7 +87,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="12dp"
-                android:fontFamily="@font/inter_bold"
+                android:fontFamily="@font/inter_semibold"
                 android:gravity="center"
                 android:lineSpacingExtra="4dp"
                 android:text="ENVIRONMENTAL CLEAN UP"
@@ -208,7 +208,7 @@
                         android:text="Location"
                         android:layout_marginTop="3dp"
                         android:lineSpacingExtra="6dp"
-                        android:fontFamily="@font/inter_medium"
+                        android:fontFamily="@font/lexend"
                         android:textSize="15sp"
                         android:textColor="@color/DarkGray"/>
                     <LinearLayout
@@ -225,7 +225,7 @@
                             android:layout_height="wrap_content"
                             android:text="Start Date"
                             android:layout_marginTop="5dp"
-                            android:fontFamily="@font/inter_medium"
+                            android:fontFamily="@font/lexend"
                             android:textSize="15sp"
                             android:textColor="@color/DarkGray"/>
 
@@ -236,7 +236,7 @@
                             android:layout_marginStart="8dp"
                             android:text="to"
                             android:layout_marginTop="5dp"
-                            android:fontFamily="@font/inter_medium"
+                            android:fontFamily="@font/lexend"
                             android:textSize="15sp"
                             android:textColor="@color/DarkGray"/>
                     </LinearLayout>
@@ -249,7 +249,7 @@
                         android:layout_toEndOf="@id/infoAndLocationIcon"
                         android:layout_below="@id/linearstartdate"
                         android:text="End Date"
-                        android:fontFamily="@font/inter_medium"
+                        android:fontFamily="@font/lexend"
                         android:textSize="15sp"
                         android:textColor="@color/DarkGray"/>
 
@@ -418,7 +418,7 @@
                         android:id="@+id/detailcampus"
                         android:text="Campus"
                         android:textSize="15sp"
-                        android:fontFamily="@font/inter_medium"
+                        android:fontFamily="@font/lexend"
                         android:textColor="@color/DarkGray"/>
                 </LinearLayout>
             </LinearLayout>
