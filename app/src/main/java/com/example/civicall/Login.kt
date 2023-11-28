@@ -130,7 +130,6 @@ class Login : AppCompatActivity() {
        firebaseAuth = FirebaseAuth.getInstance()
 
        binding.googlebtn.setOnClickListener {
-           Toast.makeText(this, "Logging In", Toast.LENGTH_SHORT).show()
            signInGoogle()
        }
 
@@ -630,10 +629,9 @@ class Login : AppCompatActivity() {
                updateUI(account)
            }
        } catch (e: ApiException) {
-           // Print the status code and error message for debugging
            Toast.makeText(
                this,
-               "Google Sign-In failed: Status Code ${e.statusCode}, ${e.localizedMessage}",
+               "Google Sign-In Cancelled",
                Toast.LENGTH_SHORT
            ).show()
        }
