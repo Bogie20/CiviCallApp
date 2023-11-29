@@ -52,7 +52,7 @@ class ForumComment : AppCompatActivity() {
         bundle?.let {
             detailCategory.text = "# ${it.getString("Category")}"
             detailText.text = it.getString("PostText")
-            campusTxt.text = it.getString("Campus")
+            campusTxt.text = " " + it.getString("Campus")
             key = it.getString("Key") ?: ""
             postKey = it.getString("Key") ?: ""
             imageUrl = it.getString("PostImage") ?: ""
