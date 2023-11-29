@@ -4,10 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -16,11 +19,13 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.civicall.CivicEngagementPost.Upload_engagement
 import com.example.civicall.R
 import com.example.civicall.Users
 import com.github.clans.fab.FloatingActionButton
 import com.github.clans.fab.FloatingActionMenu
 import com.google.android.material.button.MaterialButton
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -31,7 +36,6 @@ class ForumAdapter(
     private var dataList: List<DataClassForum>,
     private val currentUserUid: String?
 ) : RecyclerView.Adapter<MyViewHolderForum>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolderForum {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.forum_post_view, parent, false)
         return MyViewHolderForum(view)
@@ -87,12 +91,156 @@ class ForumAdapter(
         alertDialog.show()
         isDeleteConfirmationDialogShowing = true
     }
+    private var isOptionDialogShowing = false
 
-    // Add the dismissCustomDialog function
+    private fun showReportDialog(postKey: String) {
+        if (isOptionDialogShowing) {
+            return
+        }
+
+        dismissCustomDialog()
+
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_report_user, null)
+        val alertDialog = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .create()
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideUp
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val layoutParams = alertDialog.window?.attributes
+        layoutParams?.gravity = Gravity.BOTTOM
+        layoutParams?.width = WindowManager.LayoutParams.MATCH_PARENT
+        alertDialog.window?.attributes = layoutParams
+
+        val Spam: LinearLayout = dialogView.findViewById(R.id.spam)
+        val HateSpeech: LinearLayout = dialogView.findViewById(R.id.hateSpeech)
+        val FalseInfo: LinearLayout = dialogView.findViewById(R.id.falseInfo)
+        val Harassment: LinearLayout = dialogView.findViewById(R.id.harassment)
+        val NotConnect: LinearLayout = dialogView.findViewById(R.id.notConnected)
+        val Nudity: LinearLayout = dialogView.findViewById(R.id.nudity)
+        val Violence: LinearLayout = dialogView.findViewById(R.id.violence)
+        val Other: LinearLayout = dialogView.findViewById(R.id.other)
+
+        alertDialog.setOnDismissListener {
+            isOptionDialogShowing = false
+        }
+
+        Spam.setOnClickListener {
+            alertDialog.dismiss()
+            isOptionDialogShowing = false
+            showConfirmationDialog(postKey, "Spam")
+        }
+
+        HateSpeech.setOnClickListener {
+            alertDialog.dismiss()
+            isOptionDialogShowing = false
+            showConfirmationDialog(postKey, "Hate Speech")
+        }
+
+        FalseInfo.setOnClickListener {
+            alertDialog.dismiss()
+            isOptionDialogShowing = false
+            showConfirmationDialog(postKey, "False Information")
+        }
+
+        Harassment.setOnClickListener {
+            alertDialog.dismiss()
+            isOptionDialogShowing = false
+            showConfirmationDialog(postKey, "Harassment")
+        }
+
+        NotConnect.setOnClickListener {
+            alertDialog.dismiss()
+            isOptionDialogShowing = false
+            showConfirmationDialog(postKey, "Not Connected")
+        }
+
+        Nudity.setOnClickListener {
+            alertDialog.dismiss()
+            isOptionDialogShowing = false
+            showConfirmationDialog(postKey, "Nudity")
+        }
+
+        Violence.setOnClickListener {
+            alertDialog.dismiss()
+            isOptionDialogShowing = false
+            showConfirmationDialog(postKey, "Violence")
+        }
+
+        Other.setOnClickListener {
+            alertDialog.dismiss()
+            isOptionDialogShowing = false
+            showConfirmationDialog(postKey, "Other")
+        }
+
+        alertDialog.show()
+        isOptionDialogShowing = true
+    }
+
+    private fun showConfirmationDialog(postKey: String, reportType: String) {
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_confirmation, null)
+        val alertDialog = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .create()
+
+        val confirmTitle: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
+        val logoutMsg: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
+        val saveBtn: MaterialButton = dialogView.findViewById(R.id.saveBtn)
+        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        confirmTitle.text = "Confirmation"
+        logoutMsg.text = "Are you sure you want to report this post as $reportType?"
+
+        saveBtn.text = "Report"
+        saveBtn.setOnClickListener {
+            alertDialog.dismiss()
+            dismissCustomDialog()
+
+            // Pass the postKey and reportType to the reportPost function
+            reportPost(postKey, reportType)
+        }
+
+        cancelBtn.text = "Cancel"
+        cancelBtn.setOnClickListener {
+            isDeleteConfirmationDialogShowing = false // Reset the flag
+            alertDialog.dismiss()
+            // User clicked "Cancel," do nothing or provide feedback
+        }
+
+        alertDialog.setOnDismissListener {
+            isDeleteConfirmationDialogShowing = false
+        }
+
+        alertDialog.show()
+        isDeleteConfirmationDialogShowing = true
+    }
     private fun dismissCustomDialog() {
         if (isDeleteConfirmationDialogShowing) {
             isDeleteConfirmationDialogShowing = false
         }
+        if (isOptionDialogShowing) {
+            isOptionDialogShowing = false
+        }
+    }
+    private fun reportPost(postKey: String, reportType: String) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val currentUserUid = currentUser?.uid
+
+        val postReportRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey).child("PostReport")
+
+        val userReportRef = currentUserUid?.let { postReportRef.child(it) }
+
+        userReportRef?.setValue(reportType)
+            ?.addOnSuccessListener {
+                Toast.makeText(context, "Reported successfully", Toast.LENGTH_SHORT).show()
+            }
+            ?.addOnFailureListener {
+                Toast.makeText(context, "Failed to report", Toast.LENGTH_SHORT).show()
+            }
     }
 
 
@@ -272,6 +420,10 @@ class ForumAdapter(
         holder.deleteButton.setOnClickListener {
             // Handle the deletion of the post (e.g., show a confirmation dialog)
             data.key?.let { showDeleteConfirmationDialog(it) }
+        }
+        holder.reportButton.setOnClickListener {
+            // Handle the deletion of the post (e.g., show a confirmation dialog)
+            data.key?.let { showReportDialog(it) }
         }
     }
 

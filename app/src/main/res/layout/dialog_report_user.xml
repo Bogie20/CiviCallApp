@@ -6,7 +6,6 @@
     android:layout_gravity="bottom"
     android:background="@drawable/splashstart_page">
 
-
     <View
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
@@ -39,7 +38,7 @@
             android:layout_marginBottom="5dp"
             android:background="@color/lineColor" />
         <LinearLayout
-            android:id="@+id/report1"
+            android:id="@+id/spam"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -66,7 +65,7 @@
             android:layout_marginBottom="5dp"
             android:background="@color/lineColor" />
         <LinearLayout
-            android:id="@+id/report2"
+            android:id="@+id/hateSpeech"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -92,7 +91,7 @@
             android:layout_marginBottom="5dp"
             android:background="@color/lineColor" />
         <LinearLayout
-            android:id="@+id/report3"
+            android:id="@+id/falseInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -118,7 +117,7 @@
             android:layout_marginBottom="5dp"
             android:background="@color/lineColor" />
         <LinearLayout
-            android:id="@+id/report4"
+            android:id="@+id/harassment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -144,7 +143,7 @@
             android:layout_marginBottom="5dp"
             android:background="@color/lineColor" />
         <LinearLayout
-            android:id="@+id/report5"
+            android:id="@+id/notConnected"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -170,7 +169,7 @@
             android:layout_marginBottom="5dp"
             android:background="@color/lineColor" />
         <LinearLayout
-            android:id="@+id/report6"
+            android:id="@+id/nudity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -196,7 +195,7 @@
             android:layout_marginBottom="5dp"
             android:background="@color/lineColor" />
         <LinearLayout
-            android:id="@+id/report7"
+            android:id="@+id/violence"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -222,7 +221,7 @@
             android:layout_marginBottom="5dp"
             android:background="@color/lineColor" />
         <LinearLayout
-            android:id="@+id/report8"
+            android:id="@+id/other"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
