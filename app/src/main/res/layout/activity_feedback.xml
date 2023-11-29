@@ -44,7 +44,7 @@
                 android:id="@+id/feed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="70dp"
                 android:fontFamily="@font/oleo_script"
                 android:text="Give Feedback"
                 android:textColor="@color/white"
@@ -60,8 +60,6 @@
 
     <TextView
         android:id="@+id/feed1"
-
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/card"
@@ -132,7 +130,7 @@
     <LinearLayout
         android:id="@+id/buttonLine"
         android:layout_below="@id/editTextText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -144,7 +142,7 @@
             android:layout_marginStart="20sp"
             android:layout_marginEnd="10sp"
             android:layout_marginBottom="15sp"
-            android:background="@drawable/selected_background"
+            android:background="@drawable/skip_button"
             android:fontFamily="@font/dmsans_regular"
             android:gravity="center"
             android:padding="10sp"
@@ -164,7 +162,7 @@
                 android:layout_marginStart="10sp"
                 android:layout_marginEnd="10sp"
                 android:layout_marginBottom="15sp"
-                android:background="@drawable/selected_background"
+                android:background="@drawable/skip_button"
                 android:fontFamily="@font/dmsans_regular"
                 android:gravity="center"
                 android:padding="10sp"
@@ -176,7 +174,25 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:focusableInTouchMode="true" />
-
+        <TextView
+            android:id="@+id/fix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10sp"
+            android:layout_marginEnd="10sp"
+            android:layout_marginBottom="15sp"
+            android:background="@drawable/skip_button"
+            android:fontFamily="@font/dmsans_regular"
+            android:gravity="center"
+            android:padding="10sp"
+            android:paddingTop="15sp"
+            android:paddingBottom="15sp"
+            android:text="Fix bug"
+            android:textColor="@color/redpink"
+            android:textSize="14sp"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
             </LinearLayout>
             <!-- Second TextView -->
 
@@ -195,7 +211,7 @@
             android:layout_marginStart="20sp"
             android:layout_marginEnd="10sp"
             android:layout_marginBottom="15sp"
-            android:background="@drawable/selected_background"
+            android:background="@drawable/skip_button"
             android:fontFamily="@font/dmsans_regular"
             android:gravity="center"
             android:padding="10sp"
@@ -207,34 +223,6 @@
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true" />
-        <!-- First TextView -->
-        <TextView
-            android:id="@+id/fix"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10sp"
-            android:layout_marginEnd="10sp"
-            android:layout_marginBottom="15sp"
-            android:background="@drawable/selected_background"
-            android:fontFamily="@font/dmsans_regular"
-            android:gravity="center"
-            android:padding="10sp"
-            android:paddingTop="15sp"
-            android:paddingBottom="15sp"
-            android:text="Fix bug"
-            android:textColor="@color/redpink"
-            android:textSize="14sp"
-            android:clickable="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true" />
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/lolo1"
-        android:layout_below="@id/lolo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
         <TextView
             android:id="@+id/error"
             android:layout_width="wrap_content"
@@ -242,7 +230,7 @@
             android:layout_marginStart="20sp"
             android:layout_marginEnd="10sp"
             android:layout_marginBottom="15sp"
-            android:background="@drawable/selected_background"
+            android:background="@drawable/skip_button"
             android:fontFamily="@font/dmsans_regular"
             android:gravity="center"
             android:padding="10sp"
@@ -255,6 +243,14 @@
             android:focusable="true"
             android:focusableInTouchMode="true" />
         <!-- First TextView -->
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lolo1"
+        android:layout_below="@id/lolo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
     </LinearLayout>
 
