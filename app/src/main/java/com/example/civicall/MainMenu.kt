@@ -47,7 +47,6 @@ class MainMenu : AppCompatActivity() {
             val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-            super.onBackPressed()
         }
 
         val setting: TextView = findViewById(R.id.Setting)
@@ -209,5 +208,11 @@ class MainMenu : AppCompatActivity() {
 
         // Cleanup to unregister the network callback
         networkUtils.cleanup()
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, Dashboard::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
 }

@@ -53,7 +53,6 @@ class ProfileDetails : AppCompatActivity() {
             val intent = Intent(this, MainMenu::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-            super.onBackPressed()
         }
 
     }
@@ -173,5 +172,11 @@ class ProfileDetails : AppCompatActivity() {
 
         // Cleanup to unregister the network callback
         networkUtils.cleanup()
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainMenu::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
 }
