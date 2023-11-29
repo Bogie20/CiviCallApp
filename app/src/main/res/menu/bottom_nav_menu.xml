@@ -20,13 +20,13 @@
 
     <item
         android:id="@+id/menu_item_4"
-        android:title="Forums"
+        android:title="Forum"
         android:icon="@drawable/forumsymbol"
         />
 
     <item
         android:id="@+id/menu_item_5"
-        android:title="Notification"
+        android:title="Notif"
         android:icon="@drawable/notification"
         />
 

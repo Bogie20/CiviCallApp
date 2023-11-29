@@ -48,10 +48,12 @@ class ProfileDetails : AppCompatActivity() {
 
         // Check if the user is logged in
         checkUser()
-        // Set up click listeners for UI elements
+
         binding.backbtn.setOnClickListener {
-            super.onBackPressed()
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            super.onBackPressed()
         }
 
     }
@@ -71,6 +73,7 @@ class ProfileDetails : AppCompatActivity() {
 
     private fun readData(uid: String) {
         database = FirebaseDatabase.getInstance().getReference("Users")
+        database.keepSynced(true)
         database.child(uid).get().addOnSuccessListener { snapshot ->
             if (snapshot.exists()) {
                 val firstName = snapshot.child("firstname").value
@@ -150,6 +153,7 @@ class ProfileDetails : AppCompatActivity() {
             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
         }
         val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+        database.keepSynced(true)
         userRef.child("CurrentEngagement").addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {

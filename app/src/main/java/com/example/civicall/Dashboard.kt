@@ -67,7 +67,7 @@ class Dashboard : AppCompatActivity() {
                         replaceFragment(CivicPostFragment())
                     }
                     1 -> {
-                        binding.titleLarge.text = "Information Resources"
+                        binding.titleLarge.text = "Educational Resources"
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         replaceFragment(InformationFragment())
@@ -78,13 +78,13 @@ class Dashboard : AppCompatActivity() {
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                     }
                     3 -> {
-                        binding.titleLarge.text = "Forum"
+                        binding.titleLarge.text = "Open Forum"
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         replaceFragment(ForumFragment())
                     }
                     4 -> {
-                        binding.titleLarge.text = "Notifications"
+                        binding.titleLarge.text = "Notification"
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         replaceFragment(OneNotificationFragment())

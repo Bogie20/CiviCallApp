@@ -375,7 +375,7 @@
                         android:fontFamily="@font/lexend"
                         android:gravity="center_vertical"
                         android:maxLines="1"
-                        android:hint=".................................................."
+                        android:hint="............................................................................."
                         android:textColor="@color/DarkGray"
                         android:textSize="16sp" />
                 </LinearLayout>
@@ -431,7 +431,7 @@
                         android:fontFamily="@font/lexend"
                         android:gravity="center_vertical"
                         android:maxLines="1"
-                        android:hint=".................................................."
+                        android:hint="............................................................................."
                         android:textColor="@color/DarkGray"
                         android:textSize="16sp" />
                 </LinearLayout>
@@ -485,7 +485,7 @@
                         android:fontFamily="@font/lexend"
                         android:gravity="center_vertical"
                         android:maxLines="1"
-                        android:hint=".................................................."
+                        android:hint="............................................................................."
                         android:textColor="@color/DarkGray"
                         android:textSize="16sp" />
                 </LinearLayout>
@@ -540,7 +540,7 @@
                         android:fontFamily="@font/lexend"
                         android:gravity="center_vertical"
                         android:maxLines="1"
-                        android:hint=".................................................."
+                        android:hint="............................................................................."
                         android:textColor="@color/DarkGray"
                         android:textSize="16sp" />
                 </LinearLayout>
@@ -717,7 +717,7 @@
                         android:gravity="center_vertical"
                         android:maxLines="1"
                         android:fontFamily="@font/lexend"
-                        android:hint=".................................................."
+                        android:hint="............................................................................."
                         android:textColor="@color/DarkGray"
                         android:textSize="16sp" />
                 </LinearLayout>
@@ -773,7 +773,7 @@
                         android:fontFamily="@font/lexend"
                         android:gravity="center_vertical"
                         android:maxLines="1"
-                        android:hint=".................................................."
+                        android:hint="............................................................................."
                         android:textColor="@color/DarkGray"
                         android:textSize="16sp" />
                 </LinearLayout>

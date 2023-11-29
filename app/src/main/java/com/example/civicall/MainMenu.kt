@@ -44,8 +44,10 @@ class MainMenu : AppCompatActivity() {
         checkUser()
 
         binding.backbtn.setOnClickListener {
-            super.onBackPressed()
+            val intent = Intent(this, Dashboard::class.java)
+            startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            super.onBackPressed()
         }
 
         val setting: TextView = findViewById(R.id.Setting)

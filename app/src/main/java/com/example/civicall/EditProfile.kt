@@ -265,8 +265,10 @@ class EditProfile : AppCompatActivity() {
         }
 
         binding.backbtn.setOnClickListener {
-            super.onBackPressed()
+            val intent = Intent(this, ProfileDetails::class.java)
+            startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+            super.onBackPressed()
         }
 
         binding.profileImage.setOnClickListener {
@@ -340,6 +342,7 @@ class EditProfile : AppCompatActivity() {
         } else {
             val uid = firebaseUser.uid
             database = FirebaseDatabase.getInstance().reference.child("Users").child(uid)
+            database.keepSynced(true)
             readData()
         }
     }
@@ -393,7 +396,7 @@ class EditProfile : AppCompatActivity() {
         if (firebaseUser != null) {
             val uid = firebaseUser.uid
             database = FirebaseDatabase.getInstance().reference.child("Users").child(uid)
-
+            database.keepSynced(true)
             // Your code to update the user's profile data
             val updatedFirstName = binding.fname.text.toString()
             val updatedMiddleName = binding.mname.text.toString()
