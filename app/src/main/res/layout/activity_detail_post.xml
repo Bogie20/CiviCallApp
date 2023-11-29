@@ -87,11 +87,12 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="12dp"
-                android:fontFamily="@font/inter_semibold"
+                android:fontFamily="@font/anton"
                 android:gravity="center"
                 android:lineSpacingExtra="4dp"
                 android:text="ENVIRONMENTAL CLEAN UP"
                 android:textAllCaps="true"
+                android:letterSpacing="0.09"
                 android:textColor="@color/redpink"
                 android:textSize="21.5sp" />
 
