@@ -60,7 +60,7 @@
         app:layout_constraintTop_toBottomOf="@+id/userImage" />
 
     <TextView
-        android:id="@+id/bookQuoteTextView"
+        android:id="@+id/textRespond"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
