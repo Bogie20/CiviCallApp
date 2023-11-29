@@ -3,9 +3,12 @@ package com.example.civicall.Forum
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
@@ -16,6 +19,9 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class ForumComment : AppCompatActivity() {
     private lateinit var binding: ActivityForumCommentBinding
@@ -29,6 +35,11 @@ class ForumComment : AppCompatActivity() {
     private var imageUrl = ""
     private lateinit var postKey: String
     private lateinit var networkUtils: NetworkUtils
+    private lateinit var commentEditText: EditText
+    private lateinit var sendIcon: ImageView
+    private lateinit var commentsRecyclerView: RecyclerView
+    private lateinit var commentsAdapter: CommentAdapter
+    private val commentList: MutableList<Comment> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityForumCommentBinding.inflate(layoutInflater)
@@ -59,9 +70,68 @@ class ForumComment : AppCompatActivity() {
             Glide.with(this).load(it.getString("PostImage")).into(detailImage)
             loadUploaderData(postKey)
         }
+        commentEditText = findViewById(R.id.comment_editText)
+        sendIcon = findViewById(R.id.comment_send_icon)
+        commentsRecyclerView = findViewById(R.id.comments_recyclerView)
 
+        sendIcon.setOnClickListener {
+            val commentText = commentEditText.text.toString().trim()
+            if (commentText.isNotEmpty()) {
+                addCommentToDatabase(commentText)
+            }
+        }
+
+        // Setup RecyclerView
+        commentsAdapter = CommentAdapter(commentList)
+        commentsRecyclerView.layoutManager = LinearLayoutManager(this)
+        commentsRecyclerView.adapter = commentsAdapter
+
+        // Load existing comments
+        loadCommentsFromDatabase()
+    }
+    private fun addCommentToDatabase(commentText: String) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val commenterUID = currentUser?.uid ?: ""
+        val commentTime = SimpleDateFormat("MM/dd/yyyy HH:mm:ss z", Locale.getDefault())
+            .format(Calendar.getInstance().time)
+
+        val comment = Comment(commentText, commenterUID, commentTime)
+
+        // Assuming you have a reference to the comments node under each post
+        val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+            .child("comments")
+            .push()
+
+        commentsRef.setValue(comment).addOnSuccessListener {
+            commentEditText.text.clear()
+            // You can optionally update the UI here if needed
+        }.addOnFailureListener {
+            // Handle failure if needed
+            Log.e("ForumComment", "Failed to add comment: ${it.message}")
+        }
     }
 
+    private fun loadCommentsFromDatabase() {
+        val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+            .child("comments")
+
+        commentsRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                commentList.clear()
+                for (commentSnapshot in snapshot.children) {
+                    val comment = commentSnapshot.getValue(Comment::class.java)
+                    comment?.let {
+                        commentList.add(it)
+                    }
+                }
+                commentsAdapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("ForumComment", "Comments data retrieval cancelled: ${error.message}")
+            }
+        })
+    }
     private fun loadUploaderData(postKey: String) {
         val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
         postRef.addListenerForSingleValueEvent(object : ValueEventListener {

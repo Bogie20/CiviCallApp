@@ -219,7 +219,8 @@ class ForumUpdate: AppCompatActivity() {
                 imageUrl,
                 campus,
                 false,
-                postTime
+                postTime,
+
             )
 
             databaseReference.setValue(dataClass)
