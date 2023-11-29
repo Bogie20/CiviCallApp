@@ -116,7 +116,7 @@
             android:layout_marginEnd="15dp"
             android:textAllCaps="true"
             android:fontFamily="@font/inter_medium"
-            android:text="JPLPC-MALVAR CAMPUS"
+            android:text="Category"
             android:textColor="@color/DarkGray"
             android:textSize="12sp"
             android:maxLines="1"
