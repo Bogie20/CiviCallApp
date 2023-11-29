@@ -7,6 +7,10 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -15,6 +19,12 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class Notifications : AppCompatActivity() {
 
@@ -25,6 +35,7 @@ class Notifications : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var notificationAdapter: NotificationAdapter
+    private lateinit var currentUserUid: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +43,19 @@ class Notifications : AppCompatActivity() {
 
         // Request push notification permission
         requestNotificationPermission()
+
+        // Initialize currentUserUid
+        currentUserUid = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+
+        // Create notification channel and send default notification
+        createNotificationChannel()
+        sendDefaultNotification()
+
+        // Initialize recyclerView
+        initializeRecyclerView()
+
+        // Get notification items
+        getNotificationItems()
     }
 
     private fun requestNotificationPermission() {
@@ -61,9 +85,7 @@ class Notifications : AppCompatActivity() {
         if (requestCode == REQUEST_CODE_NOTIFICATION_PERMISSION) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission granted, continue with initialization
-                createNotificationChannel()
-                sendDefaultNotification()
-                initializeRecyclerView()
+                initializeApp()
             } else {
                 // Permission denied, handle accordingly
                 Toast.makeText(
@@ -76,13 +98,15 @@ class Notifications : AppCompatActivity() {
     }
 
     private fun initializeApp() {
-        createNotificationChannel()
-        sendDefaultNotification()
+        // Initialize recyclerView
         initializeRecyclerView()
+
+        // Get notification items
+        getNotificationItems()
     }
 
     private fun createNotificationChannel() {
-        if (true) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "Channel Name"
             val descriptionText = "Channel Description"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
@@ -115,8 +139,52 @@ class Notifications : AppCompatActivity() {
 
     private fun initializeRecyclerView() {
         recyclerView = findViewById(R.id.recyclerView)
+
+        // Remove the recyclerView from its current parent if it has one
+        val parent = recyclerView.parent as? ViewGroup
+        parent?.removeView(recyclerView)
+
         recyclerView.layoutManager = LinearLayoutManager(this)
         notificationAdapter = NotificationAdapter(this, emptyList())
         recyclerView.adapter = notificationAdapter
+    }
+
+    private fun getNotificationItems() {
+        FirebaseApp.initializeApp(this)
+
+        val database = FirebaseDatabase.getInstance()
+        val ref = database.getReference("Upload Engagement")
+
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val notificationList = mutableListOf<NotificationModel>()
+
+                for (engagementSnapshot in dataSnapshot.children) {
+                    val startDate =
+                        engagementSnapshot.child("startDate")?.getValue(String::class.java) ?: ""
+                    val title =
+                        engagementSnapshot.child("title")?.getValue(String::class.java) ?: ""
+
+                    val participantsSnapshot = engagementSnapshot.child("Participants")
+
+                    if (participantsSnapshot.hasChild(currentUserUid)) {
+                        val category =
+                            engagementSnapshot.child("category")?.getValue(String::class.java) ?: ""
+                        val status = engagementSnapshot.child("status")?.getValue(String::class.java) ?: ""
+
+                        val notificationModel =
+                            NotificationModel("", "","", startDate, title, category, status)
+                        notificationList.add(notificationModel)
+                    }
+                }
+
+                // Update the adapter with the new data
+                notificationAdapter.updateData(notificationList)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle database error
+            }
+        })
     }
 }

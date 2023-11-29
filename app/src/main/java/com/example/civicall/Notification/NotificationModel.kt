@@ -1,8 +1,13 @@
 package com.example.civicall.Notification
 
 data class NotificationModel(
-    val rectitle: String,
-    val dateandTime: String,
+    val id: String,
+    val recImage: String,
 
+    val imageUrl: String,
+    val startDate: String,
+    val title: String,
 
+    val category: String,
+val status:String// Add this property for event category
 )

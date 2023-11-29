@@ -16,4 +16,11 @@ class Calendar : AppCompatActivity() {
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
     }
+
+    companion object {
+        fun getInstance(): Any {
+            // Add your implementation here
+            return Any()
+        }
+    }
 }

@@ -21,7 +21,11 @@ class Feedback : AppCompatActivity() {
     private lateinit var ratingBar: RatingBar
     private lateinit var database: FirebaseDatabase
     private lateinit var editTextMultiline: TextView
-
+    private lateinit var none: TextView
+    private lateinit var thank: TextView
+    private lateinit var very: TextView
+    private lateinit var fix: TextView
+    private lateinit var error: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feedback)
@@ -30,6 +34,26 @@ class Feedback : AppCompatActivity() {
         editTextText2 = findViewById(R.id.editTextText2)
         ratingBar = findViewById(R.id.ratingBar)
         backbtn = findViewById(R.id.backbtn)
+       none = findViewById(R.id.none)
+        thank = findViewById(R.id.thank)
+        very = findViewById(R.id.very)
+        fix = findViewById(R.id.fix)
+        error = findViewById(R.id.error)
+        error.setOnClickListener {
+            handleCategorySelection("Fix Error")
+        }
+        fix.setOnClickListener {
+            handleCategorySelection("Fix bug")
+        }
+        very.setOnClickListener {
+            handleCategorySelection("The App is Very Functional")
+        }
+        none.setOnClickListener {
+            handleCategorySelection("none")
+        }
+        thank.setOnClickListener {
+            handleCategorySelection("Thank you for asking")
+        }
 
 
         backbtn.setOnClickListener {
@@ -63,6 +87,14 @@ class Feedback : AppCompatActivity() {
 
         // Initialize the Realtime Database instance
         database = FirebaseDatabase.getInstance()
+    }
+
+    private fun handleCategorySelection(category: String) {
+        // Your existing logic for handling category selection
+
+        // Set the selected category in the editTextText2 TextView
+        editTextMultiline.text = category
+
     }
 
     private fun submitFeedback() {
