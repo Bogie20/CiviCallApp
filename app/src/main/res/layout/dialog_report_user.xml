@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="400dp"
+    android:layout_height="610dp"
     android:layout_gravity="bottom"
     android:background="@drawable/splashstart_page">
 
@@ -32,10 +32,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="60dp">
-
-        <!-- First LinearLayout -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/lineColor" />
         <LinearLayout
-            android:id="@+id/termsandsupp"
+            android:id="@+id/report1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -43,24 +47,26 @@
             android:background="@drawable/highlight_linear">
 
             <TextView
-                android:id="@+id/terms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:paddingEnd="10dp"
                 android:drawableRight="@drawable/next_24"
-                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/lexend"
-                android:text="Privacy And Policies"
+                android:text="Spam"
                 android:textColor="@color/background2"
                 android:textSize="21sp" />
 
         </LinearLayout>
 
-        <!-- Second LinearLayout -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/lineColor" />
         <LinearLayout
-            android:id="@+id/profilesett"
+            android:id="@+id/report2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -68,24 +74,25 @@
             android:background="@drawable/highlight_linear">
 
             <TextView
-                android:id="@+id/title7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:paddingEnd="10dp"
                 android:drawableRight="@drawable/next_24"
-                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/lexend"
-                android:text="Terms Of Service"
+                android:text="Hate Speech"
                 android:textColor="@color/background2"
                 android:textSize="21sp" />
 
         </LinearLayout>
-
-        <!-- Third LinearLayout -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/lineColor" />
         <LinearLayout
-            android:id="@+id/forumsett"
+            android:id="@+id/report3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -93,21 +100,153 @@
             android:background="@drawable/highlight_linear">
 
             <TextView
-                android:id="@+id/title4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:drawableRight="@drawable/next_24"
-                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/lexend"
-                android:text="About Us"
+                android:text="False Information"
                 android:paddingEnd="10dp"
                 android:textColor="@color/background2"
                 android:textSize="21sp" />
 
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/lineColor" />
+        <LinearLayout
+            android:id="@+id/report4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@drawable/highlight_linear">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:drawableRight="@drawable/next_24"
+                android:fontFamily="@font/lexend"
+                android:text="Harassment"
+                android:paddingEnd="10dp"
+                android:textColor="@color/background2"
+                android:textSize="21sp" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/lineColor" />
+        <LinearLayout
+            android:id="@+id/report5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@drawable/highlight_linear">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:drawableRight="@drawable/next_24"
+                android:fontFamily="@font/lexend"
+                android:text="Not Connected"
+                android:paddingEnd="10dp"
+                android:textColor="@color/background2"
+                android:textSize="21sp" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/lineColor" />
+        <LinearLayout
+            android:id="@+id/report6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@drawable/highlight_linear">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:drawableRight="@drawable/next_24"
+                android:fontFamily="@font/lexend"
+                android:text="Nudity"
+                android:paddingEnd="10dp"
+                android:textColor="@color/background2"
+                android:textSize="21sp" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/lineColor" />
+        <LinearLayout
+            android:id="@+id/report7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@drawable/highlight_linear">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:drawableRight="@drawable/next_24"
+                android:fontFamily="@font/lexend"
+                android:text="Violence"
+                android:paddingEnd="10dp"
+                android:textColor="@color/background2"
+                android:textSize="21sp" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/lineColor" />
+        <LinearLayout
+            android:id="@+id/report8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@drawable/highlight_linear">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:drawableRight="@drawable/next_24"
+                android:fontFamily="@font/lexend"
+                android:text="Other"
+                android:paddingEnd="10dp"
+                android:textColor="@color/background2"
+                android:textSize="21sp" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/lineColor" />
     </LinearLayout>
 
 
