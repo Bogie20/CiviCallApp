@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.civicall.R
 
 
-class RecognitionAdapter(private val context: Context, private val userList: List<Users>) :
+class RecognitionAdapter(private val context: Context, private val userList: List<User>) :
     RecyclerView.Adapter<RecognitionAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

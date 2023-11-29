@@ -15,6 +15,7 @@ import com.example.civicall.AccountVerification.UploadVerificationFile
 import com.example.civicall.Recognition.RecognitionLeaderBoard
 import com.example.civicall.databinding.ActivityMainmenuBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
@@ -29,6 +30,7 @@ class MainMenu : AppCompatActivity() {
     private lateinit var binding: ActivityMainmenuBinding
     private var isLogoutDialogShown = false
     private lateinit var networkUtils: NetworkUtils
+    private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,11 +79,8 @@ class MainMenu : AppCompatActivity() {
 
                 logout.text = "Yes"
                 logout.setOnClickListener {
-                    // Handle click for the "Yes, Logout" button
-                    // Sign out from Firebase
                     firebaseAuth.signOut()
 
-                    // Sign out from Google
                     val googleSignInClient = GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_SIGN_IN)
                     googleSignInClient.signOut().addOnCompleteListener {
                         // Redirect to the login screen after successful sign-out
@@ -105,8 +104,6 @@ class MainMenu : AppCompatActivity() {
                 dialog.show()
             }
         }
-
-
         verification1.setOnClickListener {
             // Handle click for menu item 2
             val intent = Intent(this, UploadVerificationFile::class.java)
@@ -117,8 +114,6 @@ class MainMenu : AppCompatActivity() {
             val intent = Intent(this, Settings::class.java)
             startActivity(intent)
         }
-
-
 
         feedback1.setOnClickListener {
             // Handle click for Feedback menu item

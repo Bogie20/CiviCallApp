@@ -1,21 +1,23 @@
 package com.example.civicall.Recognition
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.civicall.MainMenu
-import com.google.firebase.database.*
 import com.example.civicall.R
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
 class RecognitionLeaderBoard : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var leaderboardAdapter: RecognitionAdapter
-    private lateinit var userList: MutableList<Users>
+    private lateinit var userList: MutableList<User>
     private lateinit var databaseReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +26,7 @@ class RecognitionLeaderBoard : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recognitionRecycler)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        FirebaseDatabase.getInstance().purgeOutstandingWrites()
 
         userList = mutableListOf()
         leaderboardAdapter = RecognitionAdapter(this, userList)
@@ -36,13 +39,14 @@ class RecognitionLeaderBoard : AppCompatActivity() {
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
         databaseReference = FirebaseDatabase.getInstance().reference.child("Users")
+        databaseReference.keepSynced(true)
 
         databaseReference.orderByChild("activepts").addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 userList.clear()
                 for (snapshot in dataSnapshot.children) {
-                    val user = snapshot.getValue(Users::class.java)
+                    val user = snapshot.getValue(User::class.java)
                     user?.let {
                         userList.add(it)
                     }

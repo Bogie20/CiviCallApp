@@ -1,6 +1,6 @@
 package com.example.civicall.Recognition
 
-data class Users(
+data class User(
     val uid: String = "",
     val ImageProfile: String = "",
     val firstname: String = "",
