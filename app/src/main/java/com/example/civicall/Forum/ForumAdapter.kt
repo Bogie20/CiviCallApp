@@ -401,15 +401,18 @@ class ForumAdapter(
         holder.forumText.text = data.postText
         holder.forumCategory.text = "# ${data.category}"
         holder.commentbutton.setOnClickListener {
+
             val intent = Intent(context, ForumComment::class.java).apply {
                 putExtra("PostImage", data.postImage)
                 putExtra("Category", data.category)
                 putExtra("PostText", data.postText)
                 putExtra("Key", data.key)
                 putExtra("Campus", data.campus)
+                putExtra("PostTime", data.postTime)
             }
             context.startActivity(intent)
         }
+
         holder.editButton.setOnClickListener {
             // Launch ForumUpdate activity with necessary data
             val intent = Intent(context, ForumUpdate::class.java).apply {

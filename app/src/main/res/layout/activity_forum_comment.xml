@@ -74,7 +74,7 @@
                         android:id="@+id/profilePic"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="fitXY"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/user" />
                 </androidx.cardview.widget.CardView>
 
@@ -87,17 +87,20 @@
                     android:text="Kurt Bryant Arpilleda"
                     android:textColor="@color/colorPrimaryText"
                     android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
                     app:layout_constraintBottom_toBottomOf="@+id/userImage"
                     app:layout_constraintStart_toEndOf="@+id/userImage"
                     app:layout_constraintTop_toTopOf="@+id/userImage" />
 
                 <TextView
-                    android:id="@+id/DateAndTime"
+                    android:id="@+id/campustxt"
                     android:layout_marginLeft="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="-1dp"
-                    android:text="8h"
+                    android:layout_marginTop="3dp"
+                    android:text="Campus"
+                    android:textSize="14dp"
+                    android:drawableStart="@drawable/earth"
                     android:textColor="@color/colorPrimaryText"
                     app:layout_constraintStart_toStartOf="@+id/username"
                     app:layout_constraintTop_toBottomOf="@+id/username" />
@@ -107,7 +110,7 @@
                     android:id="@+id/view2"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:background="@color/lineColor"
                     app:layout_constraintTop_toBottomOf="@+id/userImage" />
                 <ImageView
@@ -166,27 +169,14 @@
                         android:maxLines="1"
                         android:ellipsize="end"
                         android:paddingEnd="5dp"
+                        android:paddingStart="7dp"
                         android:fontFamily="@font/lexend"
                         android:text="Tree Planting"
                         android:layout_marginTop="6dp"
                         android:textColor="@color/colorSecondaryText"
                         android:textSize="14sp"
                         android:layout_weight="1" />
-                    <TextView
-                        android:id="@+id/detailcampus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:lineSpacingExtra="4dp"
-                        android:gravity="start"
-                        android:maxLines="1"
-                        android:ellipsize="end"
-                        android:paddingEnd="5dp"
-                        android:fontFamily="@font/lexend"
-                        android:text="Tree Planting"
-                        android:layout_marginTop="6dp"
-                        android:textColor="@color/colorSecondaryText"
-                        android:textSize="14sp"
-                        android:layout_weight="1" />
+
                     <ImageButton
                         android:id="@+id/heartBtn"
                         android:layout_width="wrap_content"
@@ -231,16 +221,25 @@
 
 
                 </LinearLayout>
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/lineColor"
+                    app:layout_constraintTop_toBottomOf="@+id/likeCommentLayout"
+                    tools:layout_editor_absoluteX="10dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/comments_recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="400dp"
                 android:layout_margin="8dp"
                 app:layout_constraintBottom_toTopOf="@id/comment_editText"
                 app:layout_constraintTop_toBottomOf="@+id/response"
                 tools:layout_editor_absoluteX="8dp" />
+
         </LinearLayout>
     </ScrollView>
     <EditText
@@ -251,9 +250,9 @@
         android:background="@drawable/comment_background"
         android:gravity="start"
         android:lineSpacingExtra="4dp"
-        android:paddingEnd="40dp"
+        android:paddingEnd="45dp"
         android:hint="@string/enter_comment"
-       android:paddingBottom="16dp"
+        android:paddingBottom="16dp"
         android:paddingTop="16dp"
         android:paddingStart="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
