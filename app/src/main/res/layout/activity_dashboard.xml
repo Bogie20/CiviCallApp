@@ -16,7 +16,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/titlecard"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             app:cardBackgroundColor="@color/redpink">
 
             <LinearLayout
@@ -27,7 +27,7 @@
                     android:id="@+id/titleLarge"
                     android:paddingLeft="30dp"
                     android:gravity="center"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="12dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/oleo_script"
@@ -74,7 +74,7 @@
         <nl.joery.animatedbottombar.AnimatedBottomBar
             android:id="@+id/bottom_bar"
             android:layout_width="match_parent"
-            android:layout_height="46dp"
+            android:layout_height="48dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -2,13 +2,13 @@
 
     <item
         android:id="@+id/menu_item_1"
-        android:title="Home"
-        android:icon="@drawable/baseline_home_24"
+        android:title="Civic"
+        android:icon="@drawable/volunteernow"
         />
 
     <item
         android:id="@+id/menu_item_2"
-        android:title="Info"
+        android:title="Info's"
         android:icon="@drawable/bookinfo"
         />
 
@@ -26,7 +26,7 @@
 
     <item
         android:id="@+id/menu_item_5"
-        android:title="Notif"
+        android:title="Notify"
         android:icon="@drawable/notification"
         />
 
