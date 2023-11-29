@@ -927,10 +927,10 @@ class EditProfile : AppCompatActivity() {
     private fun updateProfileImage(imageUrl: String) {
         database.child("ImageProfile").setValue(imageUrl)
             .addOnSuccessListener {
-                Toast.makeText(this, "Profile Image updated successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Profile Picture updated successfully", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Failed to update profile image", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Failed to update profile picture", Toast.LENGTH_SHORT).show()
             }
     }
     override fun onDestroy() {
