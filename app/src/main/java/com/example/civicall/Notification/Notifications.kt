@@ -46,6 +46,16 @@ class Notifications : AppCompatActivity() {
 
         // Initialize currentUserUid
         currentUserUid = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+
+        // Create notification channel and send default notification
+        createNotificationChannel()
+        sendDefaultNotification()
+
+        // Initialize recyclerView
+        initializeRecyclerView()
+
+        // Get notification items
+        getNotificationItems()
     }
 
     private fun requestNotificationPermission() {
@@ -75,9 +85,7 @@ class Notifications : AppCompatActivity() {
         if (requestCode == REQUEST_CODE_NOTIFICATION_PERMISSION) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission granted, continue with initialization
-                createNotificationChannel()
-                sendDefaultNotification()
-                initializeRecyclerView()
+                initializeApp()
             } else {
                 // Permission denied, handle accordingly
                 Toast.makeText(
@@ -90,9 +98,10 @@ class Notifications : AppCompatActivity() {
     }
 
     private fun initializeApp() {
-        createNotificationChannel()
-        sendDefaultNotification()
+        // Initialize recyclerView
         initializeRecyclerView()
+
+        // Get notification items
         getNotificationItems()
     }
 
@@ -144,7 +153,7 @@ class Notifications : AppCompatActivity() {
         FirebaseApp.initializeApp(this)
 
         val database = FirebaseDatabase.getInstance()
-        val ref = database.getReference("Upload Engagement") // Replace "engagement" with the appropriate path to your data
+        val ref = database.getReference("Upload Engagement")
 
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -152,15 +161,19 @@ class Notifications : AppCompatActivity() {
 
                 for (engagementSnapshot in dataSnapshot.children) {
                     val startDate =
-                        engagementSnapshot.child("startDate").getValue(String::class.java) ?: ""
-                    val title = engagementSnapshot.child("title").getValue(String::class.java) ?: ""
+                        engagementSnapshot.child("startDate")?.getValue(String::class.java) ?: ""
+                    val title =
+                        engagementSnapshot.child("title")?.getValue(String::class.java) ?: ""
 
-                    // Check if the user's UID is in the participants list
                     val participantsSnapshot = engagementSnapshot.child("Participants")
 
                     if (participantsSnapshot.hasChild(currentUserUid)) {
-                        // Always create a NotificationModel object with the retrieved values
-                        val notificationModel = NotificationModel(title, startDate)
+                        val category =
+                            engagementSnapshot.child("category")?.getValue(String::class.java) ?: ""
+                        val status = engagementSnapshot.child("status")?.getValue(String::class.java) ?: ""
+
+                        val notificationModel =
+                            NotificationModel("", "","", startDate, title, category, status)
                         notificationList.add(notificationModel)
                     }
                 }

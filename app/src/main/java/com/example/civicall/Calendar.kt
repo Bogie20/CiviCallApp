@@ -8,4 +8,11 @@ class Calendar : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendar)
     }
+
+    companion object {
+        fun getInstance(): Any {
+            // Add your implementation here
+            return Any()
+        }
+    }
 }

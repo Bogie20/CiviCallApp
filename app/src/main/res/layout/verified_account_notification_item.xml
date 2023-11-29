@@ -24,13 +24,13 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_5"
+            android:src="@drawable/img_3"
             app:shapeAppearanceOverlay="@style/roundedImageViewRounded"/>
 
         <!-- Move the categoryTextView above the recTitle -->
 
         <TextView
-            android:id="@+id/categoryTextView"
+            android:id="@+id/userType"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,41 +39,27 @@
             android:layout_marginTop="-65dp"
             android:layout_toEndOf="@id/recImage"
             android:fontFamily="@font/lexend_medium"
-            android:text="Event Category"
+            android:text="userType"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
         <TextView
 
-            android:id="@+id/recTitle"
+            android:id="@+id/VerificationStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_below="@id/userType"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="5dp"
-            android:layout_below="@id/categoryTextView"
-            android:layout_marginStart="20dp"
             android:layout_toEndOf="@id/recImage"
             android:fontFamily="@font/lexend"
             android:lineSpacingExtra="4dp"
             android:maxLines="3"
-            android:text="Title"
+            android:text="VerificationStatus"
             android:textColor="@color/blue"
-            android:textSize="13sp"/>
+            android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/dateandTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/recTitle"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="12dp"
-            android:layout_toEndOf="@id/recImage"
-            android:ellipsize="end"
-
-            android:maxLines="1"
-            android:text="Date and Time"
-            android:textColor="@color/black"
-            android:textSize="11sp"/>
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
