@@ -24,7 +24,6 @@ class RecognitionAdapter(private val context: Context, private val userList: Lis
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user = userList[position]
 
-        // Load image using Glide or any other image loading library
         Glide.with(context)
             .load(user.ImageProfile)
             .placeholder(R.drawable.user)

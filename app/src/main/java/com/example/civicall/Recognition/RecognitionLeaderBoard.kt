@@ -47,7 +47,7 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                         userList.add(it)
                     }
                 }
-                userList.reverse() // If you want to display in descending order
+                userList.reverse()
                 leaderboardAdapter.notifyDataSetChanged()
             }
 
