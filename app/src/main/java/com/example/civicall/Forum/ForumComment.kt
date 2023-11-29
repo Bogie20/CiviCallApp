@@ -22,6 +22,7 @@ import com.google.firebase.database.ValueEventListener
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import java.util.TimeZone
 
 class ForumComment : AppCompatActivity() {
     private lateinit var binding: ActivityForumCommentBinding
@@ -92,14 +93,17 @@ class ForumComment : AppCompatActivity() {
     private fun addCommentToDatabase(commentText: String) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val commenterUID = currentUser?.uid ?: ""
-        val commentTime = SimpleDateFormat("MM/dd/yyyy HH:mm:ss z", Locale.getDefault())
+        val commentTime = SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault())
+            .apply {
+                timeZone = TimeZone.getTimeZone("Asia/Manila")
+            }
             .format(Calendar.getInstance().time)
 
         val comment = Comment(commentText, commenterUID, commentTime)
 
         // Assuming you have a reference to the comments node under each post
         val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
-            .child("comments")
+            .child("Comments")
             .push()
 
         commentsRef.setValue(comment).addOnSuccessListener {
@@ -113,7 +117,7 @@ class ForumComment : AppCompatActivity() {
 
     private fun loadCommentsFromDatabase() {
         val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
-            .child("comments")
+            .child("Comments")
 
         commentsRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
