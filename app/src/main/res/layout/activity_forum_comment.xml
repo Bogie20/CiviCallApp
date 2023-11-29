@@ -5,50 +5,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/offwhite"
-    android:orientation="vertical"
     tools:context=".Forum.ForumComment">
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/redpink"
-        app:cardCornerRadius="4dp"
+        android:layout_height="60dp"
+        android:background="@color/redpink"
+        android:elevation="4dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+        app:layout_constraintEnd_toEndOf="parent">
 
-            <ImageView
-                android:id="@+id/backbtn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginVertical="8dp"
-                android:contentDescription="Back to Previous"
-                android:src="@drawable/backbtn"
-                android:clickable="true"
-                android:background="@drawable/highlight_text"
-                android:focusable="true"
-                android:onClick="BackClick" />
+        <ImageView
+            android:id="@+id/backbtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginVertical="8dp"
+            android:contentDescription="Back to Previous"
+            android:src="@drawable/backbtn"
+            android:background="@drawable/highlight_text"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="BackClick" />
 
-            <TextView
-                android:id="@+id/civicall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:fontFamily="@font/oleo_script"
-                android:text="CIVIC ENGAGEMENT DETAILS"
-                android:textColor="@color/white"
-                android:textAllCaps="true"
-                android:textSize="20dp" />
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/oleo_script"
+            android:text="Comments"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
 
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
+    </RelativeLayout>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -58,619 +49,225 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/linearbody"
             android:orientation="vertical">
-            <androidx.cardview.widget.CardView
-                android:backgroundTint="@color/white"
-                android:layout_marginBottom="10dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="1dp"
-                app:cardElevation="4dp">
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rounded_forum"
+                android:padding="10dp"
+                android:id="@+id/response"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/userImage"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:cardCornerRadius="100dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    tools:ignore="MissingConstraints">
+
+                    <ImageView
+                        android:id="@+id/profilePic"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/user" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:includeFontPadding="false"
+                    android:text="Kurt Bryant Arpilleda"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/userImage"
+                    app:layout_constraintStart_toEndOf="@+id/userImage"
+                    app:layout_constraintTop_toTopOf="@+id/userImage" />
+
+                <TextView
+                    android:id="@+id/DateAndTime"
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-1dp"
+                    android:text="8h"
+                    android:textColor="@color/colorPrimaryText"
+                    app:layout_constraintStart_toStartOf="@+id/username"
+                    app:layout_constraintTop_toBottomOf="@+id/username" />
+
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/lineColor"
+                    app:layout_constraintTop_toBottomOf="@+id/userImage" />
                 <ImageView
                     android:id="@+id/detailImage"
                     android:layout_width="match_parent"
-                    android:layout_height="240dp"
+                    android:layout_height="250dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/mdrrmo"
+                    android:layout_marginBottom="20dp"
                     android:scaleType="centerCrop"
-                    android:background="@drawable/placeholder"
-                    />
-
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/detailTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="12dp"
-                android:fontFamily="@font/inter_bold"
-                android:gravity="center"
-                android:lineSpacingExtra="4dp"
-                android:text="ENVIRONMENTAL CLEAN UP"
-                android:textAllCaps="true"
-                android:textColor="@color/redpink"
-                android:textSize="21.5sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Introduction:"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/inter_bold"
-                android:textSize="20sp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="15dp"
-                android:textColor="@color/redpink"/>
-            <TextView
-
-                android:id="@+id/detailIntro"
-                android:fontFamily="@font/lexend"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Explores the key survival techniques vital for those navigating the unpredictable and often challenging coastal regions of the Philippines."
-                android:textSize="15sp"
-                android:layout_marginHorizontal="20dp"
-                android:textColor="@color/DarkGray"
-                android:layout_marginBottom="16dp"
-                android:gravity="start"
-                android:lineSpacingExtra="6dp"
-
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Objective:"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/inter_bold"
-                android:textSize="20sp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="15dp"
-                android:textColor="@color/redpink"/>
-            <TextView
-
-                android:id="@+id/detailDesc"
-                android:fontFamily="@font/lexend"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Explores the key survival techniques vital for those navigating the unpredictable and often challenging coastal regions of the Philippines. From safe navigation to shelter construction, sustainable resource gathering, water purification, and fostering community cooperation, this comprehensive guide equips individuals with the knowledge needed to thrive in this unique and dynamic environment"
-                android:textSize="15sp"
-                android:layout_marginHorizontal="20dp"
-                android:textColor="@color/DarkGray"
-                android:layout_marginBottom="16dp"
-                android:gravity="start"
-                android:lineSpacingExtra="6dp"
-
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Instruction:"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/inter_bold"
-                android:textSize="20sp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="15dp"
-                android:textColor="@color/redpink"/>
-            <TextView
-
-                android:id="@+id/detailInstruction"
-                android:fontFamily="@font/lexend"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Explores the key survival techniques vital for those navigating the unpredictable and often challenging coastal regions of the Philippines. From safe navigation to shelter construction, sustainable resource gathering, water purification, and fostering community cooperation, this comprehensive guide equips individuals with the knowledge needed to thrive in this unique and dynamic environment"
-                android:textSize="15sp"
-                android:layout_marginHorizontal="20dp"
-                android:textColor="@color/DarkGray"
-                android:layout_marginBottom="16dp"
-                android:gravity="start"
-                android:lineSpacingExtra="6dp"
-
-                />
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:orientation="horizontal"
-                android:padding="15dp"
-                android:background="#E5E4E2"
-                android:layout_gravity="center">
-
-                <ImageView
-                    android:id="@+id/infoAndLocationIcon"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    android:src="@drawable/civicalllogo"
-                    android:layout_marginEnd="8dp"/>
-
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view2" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/detailText"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/infoText"
-                    android:layout_toEndOf="@id/infoAndLocationIcon"
-                    android:text="Information:"
-                    android:fontFamily="@font/inter_bold"
-                    android:textSize="21sp"
-                    android:textColor="@color/redpink"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/detailLocation"
-                    android:layout_toEndOf="@id/infoAndLocationIcon"
-                    android:layout_below="@id/infoText"
-                    android:text="Location"
-                    android:layout_marginTop="3dp"
-                    android:lineSpacingExtra="6dp"
-                    android:fontFamily="@font/inter_medium"
+                    android:includeFontPadding="false"
+                    android:layout_marginTop="10dp"
+                    android:padding="7dp"
+                    android:lineSpacingExtra="4dp"
+                    android:fontFamily="@font/lexend"
+                    android:text="Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking."
+                    android:textColor="@color/colorPrimaryText"
                     android:textSize="15sp"
-                    android:textColor="@color/DarkGray"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.157"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/detailImage" />
+
+
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/lineColor"
+                    app:layout_constraintTop_toBottomOf="@+id/detailText"
+                    tools:layout_editor_absoluteX="10dp" />
+
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:id="@+id/linearstartdate"
+                    android:id="@+id/likeCommentLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/detailLocation"
-                    android:layout_toEndOf="@id/infoAndLocationIcon"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/detailStartDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Start Date"
-                        android:layout_marginTop="5dp"
-                        android:fontFamily="@font/inter_medium"
-                        android:textSize="15sp"
-                        android:textColor="@color/DarkGray"/>
-
-                    <TextView
-                        android:id="@+id/extraTextRightOfStartTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="to"
-                        android:layout_marginTop="5dp"
-                        android:fontFamily="@font/inter_medium"
-                        android:textSize="15sp"
-                        android:textColor="@color/DarkGray"/>
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/detailEndDate"
                     android:layout_marginTop="5dp"
-                    android:layout_toEndOf="@id/infoAndLocationIcon"
-                    android:layout_below="@id/linearstartdate"
-                    android:text="End Date"
-                    android:fontFamily="@font/inter_medium"
-                    android:textSize="15sp"
-                    android:textColor="@color/DarkGray"/>
-
-
-            </RelativeLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
-                android:background="#E5E4E2"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/labelEngagementDetails"
-                    android:text="Engagement Details:"
-                    android:fontFamily="@font/inter_bold"
-                    android:textSize="15sp"
-                    android:textColor="@color/redpink"
-                    android:layout_marginBottom="8dp" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="start"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:id="@+id/labelcategory"
-                        android:fontFamily="@font/lexend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Category:"
-                        android:textSize="15sp"
-                        android:textColor="@color/frutorial_title"
-                        android:layout_marginEnd="8dp"
-                        android:lineSpacingExtra="5dp"
-                        android:textAlignment="viewStart" />
-
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view3">
                     <TextView
                         android:id="@+id/detailCategory"
-                        android:fontFamily="@font/lexend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tree Planting"
-                        android:textSize="15sp"
-                        android:textColor="@color/DarkGray"
-                        android:lineSpacingExtra="5dp"
-                        android:textAlignment="viewStart" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="start"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:id="@+id/labelActivepointsCategory"
-                        android:fontFamily="@font/lexend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Active Points:"
-                        android:textSize="15sp"
-                        android:textColor="@color/frutorial_title"
-                        android:layout_marginEnd="8dp"
-                        android:lineSpacingExtra="5dp"
-                        android:textAlignment="viewStart" />
-
-                    <TextView
-                        android:id="@+id/detailActivePoints"
-                        android:fontFamily="@font/lexend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textSize="15sp"
-                        android:textColor="@color/DarkGray"
-                        android:lineSpacingExtra="5dp"
-                        android:textAlignment="viewStart" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="start"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:id="@+id/labelTargetParty"
-                        android:fontFamily="@font/lexend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Target Participants:"
-                        android:textSize="15sp"
-                        android:textColor="@color/frutorial_title"
-                        android:layout_marginEnd="8dp"
-                        android:lineSpacingExtra="5dp"
-                        android:textAlignment="viewStart" />
-
-                    <TextView
-                        android:id="@+id/detailTargetParty"
-                        android:fontFamily="@font/lexend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textSize="15sp"
-                        android:textColor="@color/DarkGray"
-                        android:lineSpacingExtra="5dp"
-                        android:textAlignment="viewStart" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="start"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:id="@+id/labelCurrentParty"
-                        android:fontFamily="@font/lexend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Current Participants:"
-                        android:textSize="15sp"
-                        android:textColor="@color/frutorial_title"
-                        android:layout_marginEnd="8dp"
-                        android:lineSpacingExtra="5dp"
-                        android:textAlignment="viewStart" />
-
-                    <TextView
-                        android:id="@+id/detailCurrentParty"
-                        android:fontFamily="@font/lexend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textSize="15sp"
-                        android:textColor="@color/DarkGray"
-                        android:lineSpacingExtra="5dp"
-                        android:textAlignment="viewStart" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="start">
-
-                    <TextView
-                        android:id="@+id/labelCampus"
-                        android:fontFamily="@font/lexend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Target Campus:"
-                        android:textSize="15sp"
-                        android:textColor="@color/frutorial_title"
-                        android:layout_marginEnd="8dp"
-                        android:lineSpacingExtra="5dp"
-                        android:textAlignment="viewStart" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/detailcampus"
-                        android:text="Campus"
-                        android:textSize="15sp"
-                        android:fontFamily="@font/inter_medium"
-                        android:textColor="@color/DarkGray"/>
-                </LinearLayout>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/paymentDetailsLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
-                android:background="#E5E4E2"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/labelMonetaryDetails"
-                    android:text="Contribute Via the Details Below:"
-                    android:fontFamily="@font/inter_bold"
-                    android:textSize="15sp"
-                    android:textColor="@color/redpink"
-                    android:layout_marginBottom="8dp" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="start"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:id="@+id/labelPayment"
-                        android:fontFamily="@font/lexend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Payment-Method:"
-                        android:textSize="15sp"
-                        android:textColor="@color/frutorial_title"
-                        android:layout_marginEnd="8dp"
-                        android:lineSpacingExtra="5dp"
-                        android:textAlignment="viewStart" />
-
-                    <TextView
-                        android:id="@+id/detailPaymentMethod"
-                        android:fontFamily="@font/lexend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="GCash"
-                        android:textSize="15sp"
-                        android:textColor="@color/DarkGray"
-                        android:lineSpacingExtra="5dp"
-                        android:textAlignment="viewStart" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="start"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:id="@+id/labelPaymentRecipient"
-                        android:fontFamily="@font/lexend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Payment Recipient:"
-                        android:textSize="15sp"
-                        android:textColor="@color/frutorial_title"
-                        android:layout_marginEnd="8dp"
-                        android:lineSpacingExtra="5dp"
-                        android:textAlignment="viewStart" />
-
-                    <TextView
-                        android:id="@+id/detailPaymentRecipient"
-                        android:fontFamily="@font/lexend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="09267383649"
-                        android:textSize="15sp"
-                        android:textColor="@color/DarkGray"
-                        android:lineSpacingExtra="5dp"
-                        android:textAlignment="viewStart" />
-                    <ImageView
-                        android:id="@+id/copyIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/copy"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="8dp"
-                        android:contentDescription="Copy Icon"
-                        />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="start">
-
-                    <TextView
-                        android:id="@+id/labelFundCollected"
-                        android:fontFamily="@font/lexend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Fund Collected:"
-                        android:textSize="15sp"
-                        android:textColor="@color/frutorial_title"
-                        android:layout_marginEnd="8dp"
-                        android:lineSpacingExtra="5dp"
-                        android:textAlignment="viewStart" />
-                    <TextView
-                        android:id="@+id/pesosign"
-                        android:fontFamily="@font/lexend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="₱ "
-                        android:textSize="15sp"
-                        android:textColor="@color/DarkGray"
-                        android:lineSpacingExtra="5dp"
-                        android:textAlignment="viewStart" />
-                    <TextView
-                        android:id="@+id/detailFundCollected"
-                        android:fontFamily="@font/lexend"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="25dp"
-                        android:text="0"
+                        android:lineSpacingExtra="4dp"
+                        android:gravity="start"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:textSize="15sp"
-                        android:textColor="@color/DarkGray"
-                        android:lineSpacingExtra="5dp"
-                        android:textAlignment="viewStart" />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
-                android:background="#E5E4E2"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/labelMoredetails"
-                    android:text="For More Details:"
-                    android:fontFamily="@font/inter_bold"
-                    android:textSize="15sp"
-                    android:textColor="@color/redpink"
-                    android:layout_marginBottom="8dp" />
-
-                <TextView
-                    android:id="@+id/detailFaciName"
-                    android:fontFamily="@font/lexend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Kurt Bryant C. Arpilleda"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:layout_marginBottom="8dp"
-                    android:lineSpacingExtra="5dp"
-                    android:textAlignment="viewStart" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="start">
+                        android:paddingEnd="5dp"
+                        android:fontFamily="@font/lexend"
+                        android:text="Tree Planting"
+                        android:layout_marginTop="6dp"
+                        android:textColor="@color/colorSecondaryText"
+                        android:textSize="14sp"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/detailcampus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="4dp"
+                        android:gravity="start"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:paddingEnd="5dp"
+                        android:fontFamily="@font/lexend"
+                        android:text="Tree Planting"
+                        android:layout_marginTop="6dp"
+                        android:textColor="@color/colorSecondaryText"
+                        android:textSize="14sp"
+                        android:layout_weight="1" />
+                    <ImageButton
+                        android:id="@+id/heartBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingRight="8dp"
+                        android:layout_marginStart="10dp"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/like_icon_outline" />
 
                     <TextView
-                        android:id="@+id/detailFaciInfo"
-                        android:fontFamily="@font/lexend"
+                        android:id="@+id/like_count_textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="09267383912"
-                        android:textSize="15sp"
-                        android:textColor="@color/black"
-                        android:lineSpacingExtra="5dp"
-                        android:textAlignment="viewStart" />
+                        android:text="27"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginStart="5dp"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textStyle="bold" />
 
-                    <ImageView
-                        android:id="@+id/copyinq"
+                    <ImageButton
+                        android:paddingHorizontal="10dp"
+                        android:id="@+id/commentBtn"
+                        android:paddingTop="5dp"
+                        android:layout_marginStart="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/copy"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="8dp"
-                        android:contentDescription="Copy Icon"
-                        />
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/comment_icon"
+                        app:tint="@color/colorPrimaryText" />
+
+                    <TextView
+                        android:id="@+id/commentcount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="27"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textStyle="bold" />
+
+
                 </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/joinButton"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/comments_recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="50dp"
-                android:text=""
-                android:layout_marginBottom="50dp"
-                android:fontFamily="@font/inter_bold"
-                android:background="@drawable/button_shape"
-                android:backgroundTint="@color/redpink"
-                android:textColor="@color/white"
-                android:textSize="20sp">
-
-            </Button>
+                android:layout_height="0dp"
+                android:layout_margin="8dp"
+                app:layout_constraintBottom_toTopOf="@id/comment_editText"
+                app:layout_constraintTop_toBottomOf="@+id/response"
+                tools:layout_editor_absoluteX="8dp" />
         </LinearLayout>
     </ScrollView>
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/comment_editText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="115dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/comment_background"
+        android:gravity="start"
+        android:lineSpacingExtra="4dp"
+        android:paddingEnd="40dp"
+        android:hint="@string/enter_comment"
+       android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:paddingStart="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
-        <com.github.clans.fab.FloatingActionMenu
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            app:menu_fab_size="normal"
-            android:id="@+id/fabicon"
-            android:layout_marginBottom="20dp"
-            android:layout_marginEnd="10dp"
-            app:menu_colorPressed="@color/red"
-            app:menu_colorNormal="@color/redpink"
-            app:menu_icon="@drawable/ic_more"
-            app:menu_openDirection="down"
-            app:menu_showShadow="true">
-            <com.github.clans.fab.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/editButton"
-                android:src="@drawable/edit"
-                app:fab_showShadow="true"
-                app:fab_colorNormal="@color/blue"
-                app:fab_size="mini"/>
-            <com.github.clans.fab.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/deleteButton"
-                android:src="@drawable/delete"
-                app:fab_showShadow="true"
-                app:fab_colorNormal="@color/redpink"
-                app:fab_size="mini"/>
-        </com.github.clans.fab.FloatingActionMenu>
-    </RelativeLayout>
+    <ImageView
+        android:id="@+id/comment_send_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/send_24"
+        app:layout_constraintBottom_toBottomOf="@id/comment_editText"
+        app:layout_constraintEnd_toEndOf="@id/comment_editText"
+        app:layout_constraintTop_toTopOf="@id/comment_editText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

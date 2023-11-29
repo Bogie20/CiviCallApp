@@ -1,308 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true"
+    tools:context=".Forum.main.Main.CommentsActivityForums">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:cardBackgroundColor="@color/redpink"
-        app:cardCornerRadius="4dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/backbtn"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginVertical="8dp"
-                android:contentDescription="Back to Previous"
-                android:src="@drawable/backbtn"
-                android:background="@drawable/highlight_text"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="BackClick" />
-
-            <TextView
-                android:id="@+id/civicall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="90dp"
-                android:fontFamily="@font/oleo_script"
-                android:text="Add Post"
-                android:textColor="@color/white"
-                android:textSize="23dp" />
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/comments_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <!-- The scrollable part -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:padding="10dp">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/userImage"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            app:cardCornerRadius="100dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:scaleType="centerCrop"
-            app:civ_border_color="@color/colorPrimary"
-            app:civ_border_width="1dp"
-            android:layout_margin="3dp"
-            android:layout_gravity="start"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/profilePic"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/user" />
-        </androidx.cardview.widget.CardView>
-
-
-        <TextView
-            android:id="@+id/publish_my_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:lines="1"
-            android:text="Kurt Bryant Arpilleda"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_margin="3dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/userImage"
-
-            />
-
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="150dp"
-            android:layout_height="35dp"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="5dp"
-            app:cardCornerRadius="6dp"
-            app:cardElevation="0dp"
-            app:layout_constraintStart_toEndOf="@id/userImage"
-            app:layout_constraintTop_toBottomOf="@id/publish_my_name"
-
-            >
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/custom_shape">
-
-                <RelativeLayout
-                    android:id="@+id/publish_btn_anyone"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center">
-
-
-                    <TextView
-                        android:id="@+id/text_anyone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:ellipsize="end"
-                        android:lines="1"
-                        android:text="anyone"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="2dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginEnd="2dp"
-                        android:layout_marginBottom="2dp"
-                        android:layout_toEndOf="@id/text_anyone"
-                        android:backgroundTint="@color/white"
-                        android:src="@drawable/ic_arrow_drop_down"
-                        app:tint="@color/black" />
-
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="2dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginEnd="2dp"
-                        android:layout_marginBottom="2dp"
-                        android:backgroundTint="?attr/selectableItemBackground"
-                        android:src="@drawable/ic_public"
-                        app:tint="@color/black" />
-
-                </RelativeLayout>
-
-            </FrameLayout>
-
-        </androidx.cardview.widget.CardView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <View android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/background"
-        android:layout_marginVertical="3dp"
-        android:layout_marginHorizontal="10dp"
-        />
-
-    <ImageView
-        android:id="@+id/uploadPostImage"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="24dp"
-        android:padding="8dp"
-        android:scaleType="center"
-        android:visibility="visible"
-        android:src="@drawable/placeholder_image"
-        app:layout_constraintBottom_toTopOf="@id/uploadPostText"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toTopOf="@id/comment_editText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
+        android:id="@+id/comment_editText"
         android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/comment_background"
+        android:gravity="start"
+        android:hint="@string/enter_comment"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/comment_send_icon"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:hint="What do you want to talk about?"
-        android:padding="20dp"
-        android:textSize="20dp"
-        android:gravity="top"
-        android:id="@+id/uploadPostText"
-        android:lines="15"
-        android:elevation="1dp"
-        />
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/categoryTextInputLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="Category"
-                app:helperTextTextColor="@color/red"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginEnd="16dp"
 
-                <AutoCompleteTextView
-                    android:id="@+id/uploadCategory"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:editable="false" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/campusTextInputLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="Target Campus"
-                app:helperTextTextColor="@color/red"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <AutoCompleteTextView
-                    android:id="@+id/uploadCampus"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:editable="false" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <Button
-                android:id="@+id/uploadButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="15dp"
-
-                android:fontFamily="@font/roboto_medium"
-                android:textAllCaps="true"
-                android:background="@drawable/button_shape"
-                android:backgroundTint="@color/redpink"
-                android:text="Request"
-                android:textColor="@color/white"
-                android:textSize="25sp">
-
-            </Button>
-
-        </LinearLayout>
-
-    </ScrollView>
+        android:src="@drawable/send_24"
+        app:layout_constraintBottom_toBottomOf="@id/comment_editText"
+        app:layout_constraintEnd_toEndOf="@id/comment_editText"
+        app:layout_constraintTop_toTopOf="@id/comment_editText" />
 
 
-        <com.github.clans.fab.FloatingActionMenu
-            android:id="@+id/fabMenu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="20dp"
-            android:layout_marginEnd="10dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="10dp"
-            app:menu_buttonSpacing="0dp"
-            app:fab_colorNormal="@color/redpink"
-            app:menu_backgroundColor="@android:color/transparent"
-            app:menu_colorPressed="@color/background"
-            app:menu_fab_size="mini"
-            app:fab_showShadow="false"
-
-            app:menu_icon="@drawable/addphoto"
-            app:menu_openDirection="down">
-            <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/hideButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/hideye"
-                app:fab_colorNormal="@color/dialog_warning_darker"
-                app:fab_showShadow="true"
-                app:fab_size="mini" />
-            <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/reportButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/report"
-                app:fab_colorNormal="@color/reportcolor"
-                app:fab_showShadow="true"
-                app:fab_size="mini" />
-
-        </com.github.clans.fab.FloatingActionMenu>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
