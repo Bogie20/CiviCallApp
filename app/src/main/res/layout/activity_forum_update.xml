@@ -104,7 +104,8 @@
                         android:layout_height="wrap_content"
                         android:hint="Edit Here"
                         android:padding="20dp"
-                        android:textSize="20sp"
+                        android:textSize="17sp"
+                        android:fontFamily="@font/lexend"
                         android:lineSpacingExtra="4dp"
                         android:layout_marginTop="25dp"
                         android:gravity="top"
@@ -120,7 +121,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
-                    android:hint="Category"
+                    android:hint="Discussion Category"
                     app:helperTextTextColor="@color/red"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -129,6 +130,7 @@
                         android:id="@+id/updateCategory"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
+                        android:fontFamily="@font/lexend"
                         android:editable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -146,6 +148,7 @@
                         android:id="@+id/updateCampus"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
+                        android:fontFamily="@font/lexend"
                         android:editable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
 
