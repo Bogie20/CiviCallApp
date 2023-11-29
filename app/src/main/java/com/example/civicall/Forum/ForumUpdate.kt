@@ -35,6 +35,7 @@ import com.google.firebase.storage.StorageReference
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
@@ -208,6 +209,7 @@ class ForumUpdate: AppCompatActivity() {
 
         val user = FirebaseAuth.getInstance().currentUser
         val uploadersId = user?.uid
+        val postTime = getCurrentDateTime()
         if (uri != null) {
 
             val dataClass = DataClassForum(
@@ -217,7 +219,7 @@ class ForumUpdate: AppCompatActivity() {
                 imageUrl,
                 campus,
                 false,
-                false
+                postTime
             )
 
             databaseReference.setValue(dataClass)
@@ -245,7 +247,7 @@ class ForumUpdate: AppCompatActivity() {
                 oldImageURL,
                 campus,
                 false,
-                false
+                postTime
             )
             databaseReference.setValue(dataClass)
                 .addOnCompleteListener { task ->
@@ -258,6 +260,12 @@ class ForumUpdate: AppCompatActivity() {
                         .show()
                 }
         }
+    }
+    private fun getCurrentDateTime(): String {
+        val timeZone = TimeZone.getTimeZone("Asia/Manila")
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        simpleDateFormat.timeZone = timeZone
+        return simpleDateFormat.format(Date())
     }
     private var isSaveConfirmationDialogShowing = false // Add this variable
 

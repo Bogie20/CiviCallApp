@@ -51,6 +51,10 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 class ForumUpload : AppCompatActivity() {
     private val REQUEST_CAMERA_PERMISSION = 1
@@ -448,8 +452,6 @@ class ForumUpload : AppCompatActivity() {
         val postText = uploadPostText.text.toString()
         val campus = binding.campusPick.text.toString()
         val category = binding.uploadCategory.text.toString()
-        val verificationStatus = false
-        val isHidden = false
 
         val user = FirebaseAuth.getInstance().currentUser
         val uploadersId = user?.uid
@@ -459,6 +461,7 @@ class ForumUpload : AppCompatActivity() {
                 FirebaseDatabase.getInstance().getReference("Forum Post").push().key
 
             if (postKey != null) {
+                val currentTime = getCurrentDateTime()
                 val dataClass = DataClassForum(
                     uploadersId,
                     category,
@@ -466,7 +469,7 @@ class ForumUpload : AppCompatActivity() {
                     imageUrl.orEmpty(),
                     campus,
                     false,
-                    verificationStatus
+                    currentTime
                 )
 
                 FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
@@ -489,7 +492,12 @@ class ForumUpload : AppCompatActivity() {
             }
         }
     }
-
+    private fun getCurrentDateTime(): String {
+        val timeZone = TimeZone.getTimeZone("Asia/Manila")
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        simpleDateFormat.timeZone = timeZone
+        return simpleDateFormat.format(Date())
+    }
 
     override fun onDestroy() {
         super.onDestroy()

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.text.format.DateUtils
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -30,6 +31,9 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.TimeZone
 
 class ForumAdapter(
     private val context: Context,
@@ -425,6 +429,7 @@ class ForumAdapter(
             // Handle the deletion of the post (e.g., show a confirmation dialog)
             data.key?.let { showReportDialog(it) }
         }
+        holder.updateTimeText(data.postTime)
     }
 
 
@@ -449,7 +454,7 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val hideButton: FloatingActionButton = itemView.findViewById(R.id.hideButton)
     val profilePic: ImageView = itemView.findViewById(R.id.profilePic)
     val userName: TextView = itemView.findViewById(R.id.userName)
-
+    val timeRec: TextView = itemView.findViewById(R.id.timeRec)
     fun updateFABVisibility(data: DataClassForum, isCurrentUserPost: Boolean) {
         if (data.isHidden) {
             // The post is marked as hidden, hide forumImage and forumText
@@ -485,6 +490,31 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
             reportButton.visibility = View.VISIBLE
         }
 
+    }
+    fun updateTimeText(postTime: String?) {
+        postTime?.let {
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+
+            dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+
+            val date = dateFormat.parse(postTime)
+            val currentTime = System.currentTimeMillis()
+
+            val timeAgo = DateUtils.getRelativeTimeSpanString(date?.time ?: 0, currentTime, DateUtils.MINUTE_IN_MILLIS)
+
+            val formattedTime = when {
+                timeAgo.toString().contains("minute") -> "${timeAgo.toString().split(" ")[0]}m"
+                timeAgo.toString().contains("hour") -> "${timeAgo.toString().split(" ")[0]}h"
+                timeAgo.toString().contains("day") -> "${timeAgo.toString().split(" ")[0]}d"
+                timeAgo.toString().contains("week") -> "${timeAgo.toString().split(" ")[0]}w"
+                timeAgo.toString().contains("month") -> "${timeAgo.toString().split(" ")[0]}month"
+                timeAgo.toString().contains("year") -> "${timeAgo.toString().split(" ")[0]}y"
+                else -> timeAgo.toString()
+            }
+
+            // Set the formatted time to your TextView
+            timeRec.text = formattedTime
+        }
     }
         fun closeFabMenu() {
         val fabMenu: FloatingActionMenu = itemView.findViewById(R.id.fabMenu)
