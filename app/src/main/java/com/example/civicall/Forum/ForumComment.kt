@@ -86,8 +86,8 @@ class ForumComment : AppCompatActivity() {
                 userRef.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         if (snapshot.exists()) {
-                            val verificationStatus = snapshot.child("verificationStatus").getValue(String::class.java)
-                            if (verificationStatus == "true") {
+                            val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java)
+                            if (verificationStatus == true) {
                                 // User is verified, allow commenting
                                 if (commentText.isNotEmpty()) {
                                     addCommentToDatabase(commentText)
