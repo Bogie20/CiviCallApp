@@ -114,6 +114,7 @@ class ForumAdapter(
             })
         }
     }
+
     private var isOptionDialogShowing = false
 
     private fun showReportDialog(postKey: String) {
@@ -428,6 +429,9 @@ class ForumAdapter(
                 putExtra("Key", data.key)
                 putExtra("Campus", data.campus)
                 putExtra("PostTime", data.postTime)
+                putExtra("CommentCount", data.commentCount)
+                putExtra("UpReactCount", data.upReactCount)
+                putExtra("DownReactCount", data.downReactCount)
             }
             context.startActivity(intent)
         }
@@ -659,6 +663,7 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun updateCommentCount(commentCount: Int) {
         commentCountTextView.text = formatCount(commentCount)
     }
+
 
     fun updateTimeText(postTime: String?) {
         postTime?.let {

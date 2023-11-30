@@ -70,6 +70,12 @@ class ForumComment : AppCompatActivity() {
             postKey = it.getString("Key") ?: ""
             imageUrl = it.getString("PostImage") ?: ""
             Glide.with(this).load(it.getString("PostImage")).into(detailImage)
+            val commentCount = it.getInt("CommentCount", 0)
+            val upReactCount = it.getInt("UpReactCount", 0)
+            val downReactCount = it.getInt("DownReactCount", 0)
+            binding.commentcount.text = commentCount.toString()
+            binding.upcount.text = upReactCount.toString()
+            binding.downcount.text = downReactCount.toString()
             loadUploaderData(postKey)
         }
         commentEditText = findViewById(R.id.comment_editText)
