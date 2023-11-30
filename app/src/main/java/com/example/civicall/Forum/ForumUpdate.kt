@@ -220,6 +220,7 @@ class ForumUpdate: AppCompatActivity() {
                 campus,
                 false,
                 postTime,
+                0
 
             )
 
@@ -248,7 +249,8 @@ class ForumUpdate: AppCompatActivity() {
                 oldImageURL,
                 campus,
                 false,
-                postTime
+                postTime,
+                0
             )
             databaseReference.setValue(dataClass)
                 .addOnCompleteListener { task ->

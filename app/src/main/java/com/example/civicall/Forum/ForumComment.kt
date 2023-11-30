@@ -128,6 +128,8 @@ class ForumComment : AppCompatActivity() {
                         commentList.add(it)
                     }
                 }
+                commentList.reverse()
+
                 commentsAdapter.notifyDataSetChanged()
             }
 
@@ -136,6 +138,7 @@ class ForumComment : AppCompatActivity() {
             }
         })
     }
+
     private fun loadUploaderData(postKey: String) {
         val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
         postRef.addListenerForSingleValueEvent(object : ValueEventListener {

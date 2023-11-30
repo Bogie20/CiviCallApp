@@ -8,6 +8,7 @@ class DataClassForum {
     var campus: String? = null
     var isHidden: Boolean = false
     var postTime: String? = null
+    var commentCount: Int = 0
     var key: String? = null
         set(value) {
             field = value
@@ -20,7 +21,8 @@ class DataClassForum {
         postImage: String,
         campus: String?,
         isHidden: Boolean,
-        postTime: String
+        postTime: String,
+        commentCount: Int
 
     ) {
         this.uploadersUID = uploadersuid
@@ -30,6 +32,7 @@ class DataClassForum {
         this.campus = campus
         this.isHidden = isHidden
         this.postTime = postTime
+        this.commentCount = commentCount
     }
 
     constructor() {}

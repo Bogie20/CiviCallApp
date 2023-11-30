@@ -461,7 +461,7 @@ class ForumUpload : AppCompatActivity() {
                 FirebaseDatabase.getInstance().getReference("Forum Post").push().key
 
             if (postKey != null) {
-                val currentTime = getCurrentDateTime()
+                val postTime = getCurrentDateTime()
                 val dataClass = DataClassForum(
                     uploadersId,
                     category,
@@ -469,7 +469,8 @@ class ForumUpload : AppCompatActivity() {
                     imageUrl.orEmpty(),
                     campus,
                     false,
-                    currentTime
+                    postTime,
+                    0
                 )
 
                 FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
