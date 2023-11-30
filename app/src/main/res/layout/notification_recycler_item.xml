@@ -15,29 +15,32 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/recImage"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/notifImage"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:background="@drawable/border_design"
+            app:cardCornerRadius="100dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="15dp">
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/recImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:scaleType="centerCrop"
             android:src="@drawable/img_5"
-            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"/>
-
-        <!-- Move the categoryTextView above the recTitle -->
+           />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/categoryTextView"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/recImage"
+            android:layout_below="@id/notifImage"
             android:layout_marginStart="18dp"
-            android:layout_marginTop="-65dp"
-            android:layout_toEndOf="@id/recImage"
+            android:layout_marginTop="-70dp"
+            android:layout_toEndOf="@id/notifImage"
             android:fontFamily="@font/lexend_medium"
             android:text="Event Category"
             android:textColor="@color/black"
@@ -52,7 +55,7 @@
             android:layout_marginBottom="5dp"
             android:layout_below="@id/categoryTextView"
             android:layout_marginStart="20dp"
-            android:layout_toEndOf="@id/recImage"
+            android:layout_toEndOf="@id/notifImage"
             android:fontFamily="@font/lexend"
             android:lineSpacingExtra="4dp"
             android:maxLines="3"
@@ -67,7 +70,7 @@
             android:layout_below="@id/recTitle"
             android:layout_marginStart="20dp"
             android:layout_marginBottom="12dp"
-            android:layout_toEndOf="@id/recImage"
+            android:layout_toEndOf="@id/notifImage"
             android:ellipsize="end"
 
             android:maxLines="1"

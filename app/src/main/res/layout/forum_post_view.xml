@@ -126,7 +126,7 @@
                 android:paddingTop="5dp"
                 android:paddingRight="5dp"
                 android:layout_marginStart="5dp"
-                android:background="@android:color/transparent"
+                android:background="@drawable/highlight_linear"
                 android:src="@drawable/upreact" />
 
             <TextView
@@ -146,7 +146,7 @@
                 android:paddingTop="5dp"
                 android:paddingRight="5dp"
                 android:layout_marginStart="10dp"
-                android:background="@android:color/transparent"
+                android:background="@drawable/highlight_linear"
                 android:src="@drawable/downreact" />
 
             <TextView

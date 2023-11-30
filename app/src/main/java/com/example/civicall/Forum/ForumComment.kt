@@ -89,7 +89,10 @@ class ForumComment : AppCompatActivity() {
 
         // Load existing comments
         loadCommentsFromDatabase()
+
+
     }
+
     private fun addCommentToDatabase(commentText: String) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val commenterUID = currentUser?.uid ?: ""

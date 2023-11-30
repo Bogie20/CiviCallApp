@@ -542,14 +542,33 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // Update the reactType in the database
         val reactRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey).child("React")
         currentUserUid?.let {
-            reactRef.child(it).setValue(reactType)
-                .addOnSuccessListener {
+            val userReactRef = reactRef.child(it)
+
+            // Fetch the current reactType to determine whether to set or remove the reaction
+            userReactRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val currentReactType = snapshot.getValue(String::class.java)
+
+                    // Check if the user has already reacted with the same type
+                    if (currentReactType == reactType) {
+                        // User wants to unselect the reaction, so remove the reactType from the database
+                        userReactRef.removeValue()
+                    } else {
+                        // User wants to select a new reaction or change the current one
+                        userReactRef.setValue(reactType)
+                    }
+
                     // Update the drawable after successful update
                     updateDrawable(postKey)
 
                     // Update the react counts
                     updateReactCounts(postKey)
                 }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle onCancelled as needed
+                }
+            })
         }
     }
 
@@ -594,9 +613,16 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
     }
     fun updateReactCountUI(upReactCount: Int, downReactCount: Int) {
-        // Update the up and down react counts in the UI
-        upCount.text = upReactCount.toString()
-        downCount.text = downReactCount.toString()
+        // Format the counts and update the UI
+        upCount.text = formatCount(upReactCount)
+        downCount.text = formatCount(downReactCount)
+    }
+    private fun formatCount(count: Int): String {
+        return when {
+            count < 1000 -> count.toString()
+            count < 1000000 -> String.format(Locale.getDefault(), "%.1fk", count / 1000.0)
+            else -> String.format(Locale.getDefault(), "%.1fm", count / 1000000.0)
+        }
     }
 
     private fun updateReactCounts(postKey: String) {
@@ -631,7 +657,7 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
         })
     }
     fun updateCommentCount(commentCount: Int) {
-        commentCountTextView.text = commentCount.toString()
+        commentCountTextView.text = formatCount(commentCount)
     }
 
     fun updateTimeText(postTime: String?) {
