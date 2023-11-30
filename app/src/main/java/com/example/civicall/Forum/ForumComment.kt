@@ -114,7 +114,6 @@ class ForumComment : AppCompatActivity() {
             Log.e("ForumComment", "Failed to add comment: ${it.message}")
         }
     }
-
     private fun loadCommentsFromDatabase() {
         val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
             .child("Comments")

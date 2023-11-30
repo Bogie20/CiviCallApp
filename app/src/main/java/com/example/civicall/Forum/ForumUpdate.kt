@@ -220,6 +220,9 @@ class ForumUpdate: AppCompatActivity() {
                 campus,
                 false,
                 postTime,
+                0,
+                null,
+                0,
                 0
 
             )
@@ -250,6 +253,9 @@ class ForumUpdate: AppCompatActivity() {
                 campus,
                 false,
                 postTime,
+                0,
+                null,
+                0,
                 0
             )
             databaseReference.setValue(dataClass)

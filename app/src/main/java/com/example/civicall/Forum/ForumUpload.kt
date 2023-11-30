@@ -470,6 +470,9 @@ class ForumUpload : AppCompatActivity() {
                     campus,
                     false,
                     postTime,
+                    0,
+                    null,
+                    0,
                     0
                 )
 

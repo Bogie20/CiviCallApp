@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -452,6 +453,8 @@ class ForumAdapter(
         }
         holder.updateTimeText(data.postTime)
         fetchCommentCount(data.key, holder)
+        holder.updateReactButtons(data.key ?: "")
+        holder.updateReactCountUI(data.upReactCount, data.downReactCount)
     }
 
 
@@ -478,7 +481,10 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val userName: TextView = itemView.findViewById(R.id.userName)
     val timeRec: TextView = itemView.findViewById(R.id.timeRec)
     val commentCountTextView: TextView = itemView.findViewById(R.id.commentcount)
-
+    val upReact: ImageButton = itemView.findViewById(R.id.upBtn)
+    val downReact: ImageButton = itemView.findViewById(R.id.downBtn)
+    val upCount: TextView = itemView.findViewById(R.id.up_count)
+    val downCount: TextView = itemView.findViewById(R.id.down_count)
     fun updateFABVisibility(data: DataClassForum, isCurrentUserPost: Boolean) {
         if (data.isHidden) {
             // The post is marked as hidden, hide forumImage and forumText
@@ -514,6 +520,115 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
             reportButton.visibility = View.VISIBLE
         }
 
+    }
+    fun updateReactButtons(postKey: String) {
+        upReact.setOnClickListener {
+            // Handle up react
+            handleReact(postKey, "up")
+        }
+
+        downReact.setOnClickListener {
+            // Handle down react
+            handleReact(postKey, "down")
+        }
+
+        // Update the drawable based on the reactType
+        updateDrawable(postKey)
+    }
+    private fun handleReact(postKey: String, reactType: String) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val currentUserUid = currentUser?.uid
+
+        // Update the reactType in the database
+        val reactRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey).child("React")
+        currentUserUid?.let {
+            reactRef.child(it).setValue(reactType)
+                .addOnSuccessListener {
+                    // Update the drawable after successful update
+                    updateDrawable(postKey)
+
+                    // Update the react counts
+                    updateReactCounts(postKey)
+                }
+        }
+    }
+
+
+    private fun updateDrawable(postKey: String) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val currentUserUid = currentUser?.uid
+
+        // Fetch the reactType from the database
+        val reactRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey).child("React")
+        currentUserUid?.let {
+            reactRef.child(it).addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val reactType = snapshot.getValue(String::class.java)
+                    // Update the drawable based on the reactType
+                    setDrawable(reactType)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle onCancelled as needed
+                }
+            })
+        }
+    }
+
+    private fun setDrawable(reactType: String?) {
+        // Update the drawable based on the reactType
+        when (reactType) {
+            "up" -> {
+                // Set drawable for up react
+                upReact.setImageResource(R.drawable.upselect)
+                downReact.setImageResource(R.drawable.downreact)
+            }
+            "down" -> {
+                upReact.setImageResource(R.drawable.upreact)
+                downReact.setImageResource(R.drawable.downselect)
+            }
+            else -> {
+                upReact.setImageResource(R.drawable.upreact)
+                downReact.setImageResource(R.drawable.downreact)
+            }
+        }
+    }
+    fun updateReactCountUI(upReactCount: Int, downReactCount: Int) {
+        // Update the up and down react counts in the UI
+        upCount.text = upReactCount.toString()
+        downCount.text = downReactCount.toString()
+    }
+
+    private fun updateReactCounts(postKey: String) {
+        val reactRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey).child("React")
+
+        reactRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var upReactCount = 0
+                var downReactCount = 0
+
+                for (childSnapshot in snapshot.children) {
+                    val reactType = childSnapshot.getValue(String::class.java)
+                    if (reactType == "up") {
+                        upReactCount++
+                    } else if (reactType == "down") {
+                        downReactCount++
+                    }
+                }
+
+                // Update the up and down react counts in the database
+                val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+                postRef.child("upReactCount").setValue(upReactCount)
+                postRef.child("downReactCount").setValue(downReactCount)
+
+                // Update the UI with the new counts
+                updateReactCountUI(upReactCount, downReactCount)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle onCancelled as needed
+            }
+        })
     }
     fun updateCommentCount(commentCount: Int) {
         commentCountTextView.text = commentCount.toString()
