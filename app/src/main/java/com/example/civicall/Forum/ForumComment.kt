@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -77,10 +78,24 @@ class ForumComment : AppCompatActivity() {
 
         sendIcon.setOnClickListener {
             val commentText = commentEditText.text.toString().trim()
-            if (commentText.isNotEmpty()) {
-                addCommentToDatabase(commentText)
+
+            // Check if the user is verified before allowing them to comment
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            if (currentUser != null && currentUser.isEmailVerified) {
+                if (commentText.isNotEmpty()) {
+                    addCommentToDatabase(commentText)
+                }
+            } else {
+                // Show a message to the user that they need to verify their email
+                // You can replace this with your own logic or UI elements
+                Toast.makeText(
+                    this@ForumComment,
+                    "Please verify your email before joining in to discussion.",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
+
 
         // Setup RecyclerView
         commentsAdapter = CommentAdapter(commentList)
