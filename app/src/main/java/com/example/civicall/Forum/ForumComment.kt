@@ -81,20 +81,34 @@ class ForumComment : AppCompatActivity() {
 
             // Check if the user is verified before allowing them to comment
             val currentUser = FirebaseAuth.getInstance().currentUser
-            if (currentUser != null && currentUser.isEmailVerified) {
-                if (commentText.isNotEmpty()) {
-                    addCommentToDatabase(commentText)
-                }
-            } else {
-                // Show a message to the user that they need to verify their email
-                // You can replace this with your own logic or UI elements
-                Toast.makeText(
-                    this@ForumComment,
-                    "Please verify your email before joining in to discussion.",
-                    Toast.LENGTH_LONG
-                ).show()
+            if (currentUser != null) {
+                val userRef = FirebaseDatabase.getInstance().getReference("Users").child(currentUser.uid)
+                userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            val verificationStatus = snapshot.child("verificationStatus").getValue(String::class.java)
+                            if (verificationStatus == "true") {
+                                // User is verified, allow commenting
+                                if (commentText.isNotEmpty()) {
+                                    addCommentToDatabase(commentText)
+                                }
+                            } else {
+                                Toast.makeText(
+                                    this@ForumComment,
+                                    "Please verify your account before commenting.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.e("ForumComment", "User data retrieval cancelled: ${error.message}")
+                    }
+                })
             }
         }
+
 
 
         // Setup RecyclerView
