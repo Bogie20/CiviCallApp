@@ -135,7 +135,7 @@
                 android:src="@drawable/upreact" />
 
             <TextView
-                android:id="@+id/like_count_textView"
+                android:id="@+id/up_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
@@ -155,7 +155,7 @@
                 android:src="@drawable/downreact" />
 
             <TextView
-                android:id="@+id/downcount"
+                android:id="@+id/down_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"

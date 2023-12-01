@@ -1,6 +1,6 @@
 package com.example.civicall.Forum
 
-data class Comment(
+data class DataComment(
     val commentText: String = "",
     val commenterUID: String = "",
     val commentTime: String = "",

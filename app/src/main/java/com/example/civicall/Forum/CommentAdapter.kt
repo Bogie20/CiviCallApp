@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
 
-class CommentAdapter(private val commentList: List<Comment>) :
+class CommentAdapter(private val commentList: List<DataComment>) :
     RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
         val view =
@@ -45,7 +45,7 @@ class CommentAdapter(private val commentList: List<Comment>) :
         private val userName: TextView = itemView.findViewById(R.id.userName)
         private val timeRec: TextView = itemView.findViewById(R.id.timeRec)
 
-        fun bind(comment: Comment) {
+        fun bind(comment: DataComment) {
             // Set the comment text
             val commentText = "${comment.commentText}"
             textRespond.text = commentText

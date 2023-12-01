@@ -48,7 +48,7 @@ class ForumComment : AppCompatActivity() {
     private lateinit var postMain: ConstraintLayout
     private lateinit var hideButton: FloatingActionButton
     private var isPostMainVisible: Boolean = true
-    private val commentList: MutableList<Comment> = mutableListOf()
+    private val commentList: MutableList<DataComment> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -158,7 +158,7 @@ class ForumComment : AppCompatActivity() {
             }
             .format(Calendar.getInstance().time)
 
-        val comment = Comment(commentText, commenterUID, commentTime)
+        val comment = DataComment(commentText, commenterUID, commentTime)
 
         // Assuming you have a reference to the comments node under each post
         val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
@@ -181,7 +181,7 @@ class ForumComment : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 commentList.clear()
                 for (commentSnapshot in snapshot.children) {
-                    val comment = commentSnapshot.getValue(Comment::class.java)
+                    val comment = commentSnapshot.getValue(DataComment::class.java)
                     comment?.let {
                         commentList.add(it)
                     }
