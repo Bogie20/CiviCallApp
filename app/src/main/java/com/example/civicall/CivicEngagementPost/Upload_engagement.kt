@@ -1,5 +1,6 @@
 package com.example.civicall.CivicEngagementPost
 
+import android.Manifest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import android.app.Activity
@@ -7,6 +8,7 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -24,6 +26,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityUploadEngagementBinding
@@ -61,6 +65,7 @@ class Upload_engagement : AppCompatActivity() {
     private lateinit var uploadEndDate: EditText
     private var imageURL: String? = null
     private var uri: Uri? = null
+    private val REQUEST_CAMERA_PERMISSION = 1
     private lateinit var binding: ActivityUploadEngagementBinding
     private lateinit var networkUtils: NetworkUtils
 
@@ -159,9 +164,7 @@ class Upload_engagement : AppCompatActivity() {
         }
 
         uploadImage.setOnClickListener {
-            val photoPicker = Intent(Intent.ACTION_PICK)
-            photoPicker.type = "image/*"
-            activityResultLauncher.launch(photoPicker)
+           checkAndRequestPermissions()
         }
 
         saveButton.setOnClickListener {
@@ -201,6 +204,68 @@ class Upload_engagement : AppCompatActivity() {
             }
         }
     }
+    private fun checkAndRequestPermissions() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ),
+                REQUEST_CAMERA_PERMISSION
+            )
+        } else {
+            launchGalleryIntent()
+        }
+    }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_CAMERA_PERMISSION -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Camera permission granted, proceed with taking a picture
+                    launchGalleryIntent()
+                } else {
+                    // Camera permission denied, handle accordingly
+                    Toast.makeText(
+                        this,
+                        "Camera permission denied. Go to your Phone Setting to Allow it.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+        }
+    }
+    private fun launchGalleryIntent() {
+        val photoPicker = Intent(Intent.ACTION_GET_CONTENT)
+        photoPicker.type = "image/*"
+        activityResultLauncher.launch(photoPicker)
+    }
+    private val activityResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data = result.data
+                uri = data?.data
+                if (uri != null) {
+                    uploadImage.setImageURI(uri)
+                }
+            } else {
+                Toast.makeText(this@Upload_engagement, "No Image Selected", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     private var isAlreadyJoinDialogShowing = false
 
