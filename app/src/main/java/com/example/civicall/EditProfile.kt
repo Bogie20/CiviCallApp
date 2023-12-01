@@ -949,7 +949,6 @@ class EditProfile : AppCompatActivity() {
         startActivity(intent)
         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
-
 }
 
 

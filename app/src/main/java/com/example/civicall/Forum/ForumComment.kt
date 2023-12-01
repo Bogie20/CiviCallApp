@@ -1,5 +1,6 @@
 package com.example.civicall.Forum
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -78,7 +79,7 @@ class ForumComment : AppCompatActivity() {
             }
         }
         binding.backbtn.setOnClickListener {
-            onBackPressed()
+            super.onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
         val bundle = intent.extras

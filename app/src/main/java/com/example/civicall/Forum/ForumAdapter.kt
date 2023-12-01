@@ -21,7 +21,6 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.civicall.CivicEngagementPost.Upload_engagement
 import com.example.civicall.R
 import com.example.civicall.Users
 import com.github.clans.fab.FloatingActionButton
@@ -40,6 +39,7 @@ class ForumAdapter(
     private val context: Context,
     private var dataList: List<DataClassForum>,
     private val currentUserUid: String?
+
 ) : RecyclerView.Adapter<MyViewHolderForum>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolderForum {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.forum_post_view, parent, false)
@@ -386,16 +386,17 @@ class ForumAdapter(
                 }
             }
         }
+
         holder.hideButton.setOnClickListener {
-            // Toggle the visibility state of forumImage and forumText
             data.isHidden = !data.isHidden
 
-            // Update the visibility of forumImage and forumText
             if (data.isHidden) {
+                holder.hideButton.setImageResource(R.drawable.unhide)
                 holder.forumImage.visibility = View.GONE
                 holder.forumText.visibility = View.GONE
+
             } else {
-                // The post is not hidden, set visibility based on other conditions
+                holder.hideButton.setImageResource(R.drawable.hideye)
                 if (!data.postImage.isNullOrBlank()) {
                     holder.forumImage.visibility = View.VISIBLE
                     Glide.with(context).load(data.postImage).into(holder.forumImage)
@@ -499,27 +500,6 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val upCount: TextView = itemView.findViewById(R.id.up_count)
     val downCount: TextView = itemView.findViewById(R.id.down_count)
     fun updateFABVisibility(data: DataClassForum, isCurrentUserPost: Boolean) {
-        if (data.isHidden) {
-            // The post is marked as hidden, hide forumImage and forumText
-            forumImage.visibility = View.GONE
-            forumText.visibility = View.GONE
-        } else {
-            // The post is not hidden, set visibility based on other conditions
-            if (!data.postImage.isNullOrBlank()) {
-                forumImage.visibility = View.VISIBLE
-                Glide.with(itemView.context).load(data.postImage).into(forumImage)
-            } else {
-                forumImage.visibility = View.GONE
-            }
-
-            if (!data.postText.isNullOrBlank()) {
-                forumText.visibility = View.VISIBLE
-                forumText.text = data.postText
-            } else {
-                forumText.visibility = View.GONE
-            }
-        }
-
         editButton.visibility = View.GONE
         deleteButton.visibility = View.GONE
         hideButton.visibility = View.GONE

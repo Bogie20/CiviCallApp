@@ -45,6 +45,9 @@
             android:text="Kurt Bryant Arpilleda"
             android:textColor="@color/colorPrimaryText"
             android:textStyle="bold"
+            android:paddingEnd="100dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="@+id/userImage"
             app:layout_constraintStart_toEndOf="@+id/userImage"
@@ -97,9 +100,6 @@
             app:layout_constraintHorizontal_bias="0.157"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/postImage" />
-
-
-
         <View
             android:id="@+id/view3"
             android:layout_width="match_parent"
