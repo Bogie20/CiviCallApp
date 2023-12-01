@@ -129,4 +129,4 @@ class CommentAdapter(private val commentList: List<DataComment>) :
             }
         }
     }
-    }
+}

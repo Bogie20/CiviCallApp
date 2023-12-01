@@ -6,7 +6,7 @@ data class DataComment(
     val commentTime: String = "",
     val upReactCount: Int = 0,
     val downReactCount: Int = 0,
-    val reactType: String? = null
+    val reactType: String? = null,
 )
 
 
