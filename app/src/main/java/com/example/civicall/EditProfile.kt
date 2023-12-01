@@ -352,7 +352,7 @@ class EditProfile : AppCompatActivity() {
                     // Camera permission denied, handle accordingly
                     Toast.makeText(
                         this,
-                        "Camera permission denied. Go to your Phone Setting to Allow it.",
+                        "Camera Permission denied. Go to your Phone Setting to Allow it.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }

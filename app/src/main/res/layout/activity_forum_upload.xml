@@ -295,7 +295,7 @@
                 app:fab_showShadow="true"
                 app:fab_size="mini" />
             <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/fabicon"
+                android:id="@+id/galleryButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/addimage"

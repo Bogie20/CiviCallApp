@@ -101,7 +101,7 @@ class ForumUpload : AppCompatActivity() {
         val fabCamera: FloatingActionButton = findViewById(R.id.cameraButton)
 
         fabCamera.setOnClickListener {
-            checkAndRequestPermissions()
+            checkAndRequestPermissions(true)
         }
         val auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
@@ -150,28 +150,12 @@ class ForumUpload : AppCompatActivity() {
         val adaptercategory = ArrayAdapter(this, R.layout.dropdown_item, categoryArray)
         (categoryDropdown as? AutoCompleteTextView)?.setAdapter(adaptercategory)
 
-        val activityResultLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
-        ) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data = result.data
-                uri = data?.data
-                if (uri != null) {
-                    uploadPostImage.setImageURI(uri)
-                    cardImage.visibility = View.VISIBLE
-                }
-            } else {
-                Toast.makeText(this@ForumUpload, "No Image Selected", Toast.LENGTH_SHORT).show()
-            }
-        }
 
 
-        val fabIcon = findViewById<FloatingActionButton>(R.id.fabicon)
+        val fabGallery = findViewById<FloatingActionButton>(R.id.galleryButton)
 
-        fabIcon.setOnClickListener {
-            val photoPicker = Intent(Intent.ACTION_GET_CONTENT)
-            photoPicker.type = "image/*"
-            activityResultLauncher.launch(photoPicker)
+        fabGallery.setOnClickListener {
+            checkAndRequestPermissions(false)
         }
 
         saveButton.setOnClickListener {
@@ -211,7 +195,29 @@ class ForumUpload : AppCompatActivity() {
             }
         }
     }
-    private fun checkAndRequestPermissions() {
+    private fun launchGalleryIntent() {
+        val photoPicker = Intent(Intent.ACTION_GET_CONTENT)
+        photoPicker.type = "image/*"
+        activityResultLauncher.launch(photoPicker)
+    }
+    private val activityResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data = result.data
+                uri = data?.data
+                if (uri != null) {
+                    uploadPostImage.setImageURI(uri)
+                    cardImage.visibility = View.VISIBLE
+                }
+            } else {
+                Toast.makeText(this@ForumUpload, "No Image Selected", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    private fun checkAndRequestPermissions(isCameraRequest: Boolean) {
+        val requestCode =
+            if (isCameraRequest) REQUEST_CAMERA_PERMISSION else REQUEST_IMAGE_PICK
+
         if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.CAMERA
@@ -227,11 +233,15 @@ class ForumUpload : AppCompatActivity() {
                     Manifest.permission.CAMERA,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE
                 ),
-                REQUEST_CAMERA_PERMISSION
+                requestCode
             )
         } else {
-            // Permission already granted, proceed with taking a picture
-            takePicture()
+            // Permission already granted, proceed with launching the appropriate intent
+            if (isCameraRequest) {
+                takePicture()
+            } else {
+                launchGalleryIntent()
+            }
         }
     }
     override fun onRequestPermissionsResult(
@@ -249,12 +259,24 @@ class ForumUpload : AppCompatActivity() {
                     // Camera permission denied, handle accordingly
                     Toast.makeText(
                         this,
-                        "Camera permission denied. Go to your Phone Setting to Allow it.",
+                        "Camera Permission denied. Go to your Phone Setting to Allow it.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
             }
-
+            REQUEST_IMAGE_PICK -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Gallery permission granted, proceed with launching the gallery intent
+                    launchGalleryIntent()
+                } else {
+                    // Gallery permission denied, handle accordingly
+                    Toast.makeText(
+                        this,
+                        "Camera Permission denied. Go to your Phone Setting to Allow it.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
         }
     }
 
