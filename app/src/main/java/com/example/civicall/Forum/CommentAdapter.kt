@@ -93,26 +93,30 @@ class CommentAdapter(private val commentList: List<Comment>) :
                     )
 
                     val formattedTime = when {
-                        timeAgo.toString().contains("minute") -> "${
-                            timeAgo.toString().split(" ")[0]
-                        }m"
+                        timeAgo.toString().contains("minute") ->
+                            "${timeAgo.toString().split(" ")[0]}m"
 
-                        timeAgo.toString().contains("hour") -> "${
-                            timeAgo.toString().split(" ")[0]
-                        }h"
+                        timeAgo.toString().contains("hour") ->
+                            "${timeAgo.toString().split(" ")[0]}h"
 
-                        timeAgo.toString().contains("day") -> "${timeAgo.toString().split(" ")[0]}d"
-                        timeAgo.toString().contains("week") -> "${
-                            timeAgo.toString().split(" ")[0]
-                        }w"
+                        timeAgo.toString().contains("day") -> {
+                            if (timeAgo.toString().contains("Yesterday")) {
+                                "1d"
+                            } else {
+                                "${timeAgo.toString().split(" ")[0]}d"
+                            }
+                        }
+                        timeAgo.toString().contains("week") ->
+                            "${timeAgo.toString().split(" ")[0]}w"
 
-                        timeAgo.toString().contains("month") -> "${
-                            timeAgo.toString().split(" ")[0]
-                        }month"
-
-                        timeAgo.toString().contains("year") -> "${
-                            timeAgo.toString().split(" ")[0]
-                        }y"
+                        timeAgo.toString().contains("month") -> {
+                            val dateFormat = SimpleDateFormat("MMM dd", Locale.getDefault())
+                            date?.let { dateFormat.format(it) } ?: ""
+                        }
+                        timeAgo.toString().contains("year") -> {
+                            val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
+                            date?.let { dateFormat.format(it) } ?: ""
+                        }
 
                         else -> timeAgo.toString()
                     }

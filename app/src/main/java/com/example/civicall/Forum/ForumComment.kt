@@ -8,6 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet.Constraint
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -15,6 +17,7 @@ import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import com.example.civicall.Users
 import com.example.civicall.databinding.ActivityForumCommentBinding
+import com.github.clans.fab.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -41,7 +44,11 @@ class ForumComment : AppCompatActivity() {
     private lateinit var sendIcon: ImageView
     private lateinit var commentsRecyclerView: RecyclerView
     private lateinit var commentsAdapter: CommentAdapter
+    private lateinit var postMain: ConstraintLayout
+    private lateinit var hideButton: FloatingActionButton
+    private var isPostMainVisible: Boolean = true
     private val commentList: MutableList<Comment> = mutableListOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityForumCommentBinding.inflate(layoutInflater)
@@ -56,7 +63,20 @@ class ForumComment : AppCompatActivity() {
         fullName = findViewById(R.id.username)
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
+        hideButton = findViewById(R.id.hideButton)
+        postMain = findViewById(R.id.postMain)
 
+        hideButton.setOnClickListener {
+            isPostMainVisible = !isPostMainVisible
+
+            if (isPostMainVisible) {
+                postMain.visibility = View.VISIBLE
+                hideButton.setImageResource(R.drawable.hideye)
+            } else {
+                postMain.visibility = View.GONE
+                hideButton.setImageResource(R.drawable.unhide)
+            }
+        }
         binding.backbtn.setOnClickListener {
             onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)

@@ -104,8 +104,15 @@ class ForumAdapter(
             commentsRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val commentCount = snapshot.childrenCount.toInt()
-                    // Update the comment count in the ViewHolder
-                    holder.updateCommentCount(commentCount)
+
+                    // Assuming holder.adapterPosition is the position of the item in the adapter
+                    if (holder.adapterPosition != RecyclerView.NO_POSITION) {
+                        val data = dataList[holder.adapterPosition]
+                        data.commentCount = commentCount
+
+                        // Update the UI in the corresponding ViewHolder
+                        holder.updateCommentCount(commentCount)
+                    }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -410,6 +417,8 @@ class ForumAdapter(
             // Update the hidden state in the Firebase Realtime Database
             updateHiddenState(data.key, data.isHidden)
         }
+
+
         holder.editButton.visibility = View.GONE
         holder.deleteButton.visibility = View.GONE
         holder.reportButton.visibility = View.GONE
@@ -679,12 +688,26 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val formattedTime = when {
                 timeAgo.toString().contains("minute") -> "${timeAgo.toString().split(" ")[0]}m"
                 timeAgo.toString().contains("hour") -> "${timeAgo.toString().split(" ")[0]}h"
-                timeAgo.toString().contains("day") -> "${timeAgo.toString().split(" ")[0]}d"
+                timeAgo.toString().contains("day") -> {
+                    // Check if it's Yesterday and replace it with "1d"
+                    if (timeAgo.toString().contains("Yesterday")) {
+                        "1d"
+                    } else {
+                        "${timeAgo.toString().split(" ")[0]}d"
+                    }
+                }
                 timeAgo.toString().contains("week") -> "${timeAgo.toString().split(" ")[0]}w"
-                timeAgo.toString().contains("month") -> "${timeAgo.toString().split(" ")[0]}month"
-                timeAgo.toString().contains("year") -> "${timeAgo.toString().split(" ")[0]}y"
+                timeAgo.toString().contains("month") -> {
+                    val dateFormat = SimpleDateFormat("MMM dd", Locale.getDefault())
+                    date?.let { dateFormat.format(it) } ?: ""
+                }
+                timeAgo.toString().contains("year") -> {
+                    val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
+                    date?.let { dateFormat.format(it) } ?: ""
+                }
                 else -> timeAgo.toString()
             }
+
 
             // Set the formatted time to your TextView
             timeRec.text = formattedTime

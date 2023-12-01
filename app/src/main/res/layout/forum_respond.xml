@@ -185,9 +185,9 @@
             android:layout_marginTop="10dp"
             app:menu_buttonSpacing="0dp"
             app:menu_colorNormal="@color/transparent"
-            app:menu_colorPressed="@color/background"
+            app:menu_colorPressed="@color/grey"
             app:menu_fab_size="mini"
-            app:fab_showShadow="false"
+            app:menu_shadowColor="@color/transparent"
             app:menu_icon="@drawable/ic_more"
             app:menu_openDirection="down">
             <com.github.clans.fab.FloatingActionButton
