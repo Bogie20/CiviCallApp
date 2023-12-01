@@ -46,9 +46,14 @@ class RecognitionLeaderBoard : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 userList.clear()
                 for (snapshot in dataSnapshot.children) {
-                    val user = snapshot.getValue(User::class.java)
-                    user?.let {
-                        userList.add(it)
+                    val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java)
+
+                    if (verificationStatus == true) {
+                        // Now, you can fetch the other user details if needed
+                        val user = snapshot.getValue(User::class.java)
+                        user?.let {
+                            userList.add(it)
+                        }
                     }
                 }
                 userList.reverse()
@@ -59,6 +64,7 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                 // Handle error
             }
         })
+
     }
 }
 
