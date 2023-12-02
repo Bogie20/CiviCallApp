@@ -140,13 +140,13 @@ class ForumComment : AppCompatActivity() {
 
         commentsAdapter = CommentAdapter(postKey, emptyMap())
         commentsRecyclerView.layoutManager = LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.reverseLayout = true
+        layoutManager.stackFromEnd = true
+        commentsRecyclerView.layoutManager = layoutManager
         commentsRecyclerView.adapter = commentsAdapter
 
-// Load existing comments
-        loadCommentsFromDatabase()
 
-
-        // Load existing comments
         loadCommentsFromDatabase()
 
 
@@ -173,7 +173,8 @@ class ForumComment : AppCompatActivity() {
         commentKey?.let { key ->
             commentData[key] = comment
         }
-
+        val itemCount = commentsAdapter.itemCount
+        commentsRecyclerView.scrollToPosition(itemCount - 1)
         commentsRef.updateChildren(commentData).addOnSuccessListener {
             commentEditText.text.clear()
         }.addOnFailureListener {
@@ -199,8 +200,6 @@ class ForumComment : AppCompatActivity() {
                         }
                     }
                 }
-
-                // Update the existing adapter with the new data
                 commentsAdapter.updateData(commentMap)
             }
 
