@@ -200,8 +200,8 @@ class ForumComment : AppCompatActivity() {
                     }
                 }
 
-                commentsAdapter = CommentAdapter(postKey, commentMap)
-                commentsRecyclerView.adapter = commentsAdapter
+                // Update the existing adapter with the new data
+                commentsAdapter.updateData(commentMap)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -209,7 +209,6 @@ class ForumComment : AppCompatActivity() {
             }
         })
     }
-
 
 
     private fun loadUploaderData(postKey: String) {

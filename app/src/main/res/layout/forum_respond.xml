@@ -214,7 +214,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/edit"
-                android:visibility="gone"
                 app:fab_colorNormal="@color/blue"
                 app:fab_showShadow="true"
                 app:fab_size="mini" />
@@ -224,7 +223,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/delete"
-                android:visibility="gone"
                 app:fab_colorNormal="@color/redpink"
                 app:fab_showShadow="true"
                 app:fab_size="mini" />

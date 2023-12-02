@@ -19,9 +19,12 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
 
-class CommentAdapter(private val postKey: String, private val commentMap: Map<String, DataComment>) :
+class CommentAdapter(private val postKey: String, private var commentMap: Map<String, DataComment>) :
     RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
-
+    fun updateData(newData: Map<String, DataComment>) {
+        commentMap = newData
+        notifyDataSetChanged()
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.forum_respond, parent, false)

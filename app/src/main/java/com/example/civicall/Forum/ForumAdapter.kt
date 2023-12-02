@@ -78,7 +78,6 @@
                 alertDialog.dismiss()
                 dismissCustomDialog()
 
-                // Pass the postKey to the deletePost function
                 deletePost(postKey)
             }
 
@@ -273,7 +272,6 @@
                     Toast.makeText(context, "Failed to report", Toast.LENGTH_SHORT).show()
                 }
         }
-
 
         private fun deletePost(postKey: String) {
             val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
