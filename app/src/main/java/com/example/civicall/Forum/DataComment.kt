@@ -1,14 +1,19 @@
 package com.example.civicall.Forum
 
 data class DataComment(
-    val commentText: String = "",
-    val commenterUID: String = "",
-    val commentTime: String = "",
-    val upReactCount: Int = 0,
-    val downReactCount: Int = 0,
-    val reactType: String? = null,
-)
-
-
-
-
+    var commentText: String? = null,
+    var commenterUID: String? = null,
+    var commentTime: String? = null,
+    var upReactCount: Int = 0,
+    var downReactCount: Int = 0,
+    var key: String? = null,
+    var reactComment: Map<String, Boolean> = mapOf()
+) {
+    constructor(
+        commentText: String?,
+        commenterUID: String?,
+        commentTime: String?,
+        upReactCount: Int,
+        downReactCount: Int
+    ) : this(commentText, commenterUID, commentTime, upReactCount, downReactCount, null)
+}

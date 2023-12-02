@@ -138,10 +138,13 @@ class ForumComment : AppCompatActivity() {
 
 
 
-        // Setup RecyclerView
-        commentsAdapter = CommentAdapter(commentList)
+        commentsAdapter = CommentAdapter(postKey, emptyMap())
         commentsRecyclerView.layoutManager = LinearLayoutManager(this)
         commentsRecyclerView.adapter = commentsAdapter
+
+// Load existing comments
+        loadCommentsFromDatabase()
+
 
         // Load existing comments
         loadCommentsFromDatabase()
@@ -163,32 +166,42 @@ class ForumComment : AppCompatActivity() {
         // Assuming you have a reference to the comments node under each post
         val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
             .child("Comments")
-            .push()
+        val commentKey = commentsRef.push().key
 
-        commentsRef.setValue(comment).addOnSuccessListener {
+        // Use the generated key to store the comment
+        val commentData: MutableMap<String, Any?> = mutableMapOf()
+        commentKey?.let { key ->
+            commentData[key] = comment
+        }
+
+        commentsRef.updateChildren(commentData).addOnSuccessListener {
             commentEditText.text.clear()
-            // You can optionally update the UI here if needed
         }.addOnFailureListener {
             // Handle failure if needed
             Log.e("ForumComment", "Failed to add comment: ${it.message}")
         }
     }
+
+
     private fun loadCommentsFromDatabase() {
         val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
             .child("Comments")
 
         commentsRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                commentList.clear()
+                val commentMap: MutableMap<String, DataComment> = mutableMapOf()
                 for (commentSnapshot in snapshot.children) {
+                    val commentKey = commentSnapshot.key
                     val comment = commentSnapshot.getValue(DataComment::class.java)
-                    comment?.let {
-                        commentList.add(it)
+                    commentKey?.let { key ->
+                        comment?.let {
+                            commentMap[key] = it
+                        }
                     }
                 }
-                commentList.reverse()
 
-                commentsAdapter.notifyDataSetChanged()
+                commentsAdapter = CommentAdapter(postKey, commentMap)
+                commentsRecyclerView.adapter = commentsAdapter
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -196,6 +209,8 @@ class ForumComment : AppCompatActivity() {
             }
         })
     }
+
+
 
     private fun loadUploaderData(postKey: String) {
         val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
