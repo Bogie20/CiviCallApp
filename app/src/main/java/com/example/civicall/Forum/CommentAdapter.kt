@@ -52,6 +52,7 @@ class CommentAdapter(private val postKey: String, private val commentMap: Map<St
         private val upCount: TextView = itemView.findViewById(R.id.up_count)
         private val downCount: TextView = itemView.findViewById(R.id.down_count)
 
+
         fun bind(comment: DataComment) {
             val commentText = "${comment.commentText}"
             textRespond.text = commentText
