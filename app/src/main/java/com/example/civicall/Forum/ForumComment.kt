@@ -163,12 +163,10 @@ class ForumComment : AppCompatActivity() {
 
         val comment = DataComment(commentText, commenterUID, commentTime)
 
-        // Assuming you have a reference to the comments node under each post
         val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
             .child("Comments")
         val commentKey = commentsRef.push().key
 
-        // Use the generated key to store the comment
         val commentData: MutableMap<String, Any?> = mutableMapOf()
         commentKey?.let { key ->
             commentData[key] = comment

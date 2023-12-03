@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
 import com.example.civicall.Users
+import com.github.clans.fab.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.text.ParseException
@@ -29,6 +30,7 @@ class CommentAdapter(private val postKey: String, private var commentMap: Map<St
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.forum_respond, parent, false)
         return CommentViewHolder(view)
+
     }
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
@@ -38,6 +40,7 @@ class CommentAdapter(private val postKey: String, private var commentMap: Map<St
             holder.bind(comment)
             holder.updateTimeText(comment.commentTime)
             holder.updateReactButtons(postKey, commentKey)
+
         }
     }
 
@@ -54,9 +57,31 @@ class CommentAdapter(private val postKey: String, private var commentMap: Map<St
         private val downReact: ImageButton = itemView.findViewById(R.id.downBtn)
         private val upCount: TextView = itemView.findViewById(R.id.up_count)
         private val downCount: TextView = itemView.findViewById(R.id.down_count)
-
+        val editButton: FloatingActionButton = itemView.findViewById(R.id.editButton)
+        val deleteButton: FloatingActionButton = itemView.findViewById(R.id.deleteButton)
+        val reportButton: FloatingActionButton = itemView.findViewById(R.id.reportButton)
+        val hideButton: FloatingActionButton = itemView.findViewById(R.id.hideButton)
 
         fun bind(comment: DataComment) {
+
+
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            val currentUserUid = currentUser?.uid
+
+            if (currentUserUid == comment.commenterUID) {
+
+                editButton.visibility = View.VISIBLE
+                deleteButton.visibility = View.VISIBLE
+                reportButton.visibility = View.GONE
+                hideButton.visibility = View.GONE
+            } else {
+
+                editButton.visibility = View.GONE
+                deleteButton.visibility = View.GONE
+                reportButton.visibility = View.VISIBLE
+                hideButton.visibility = View.VISIBLE
+            }
+
             val commentText = "${comment.commentText}"
             textRespond.text = commentText
             updateReactCountUI(comment.upReactCount, comment.downReactCount)

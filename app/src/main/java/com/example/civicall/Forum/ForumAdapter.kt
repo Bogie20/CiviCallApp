@@ -151,11 +151,14 @@
             val Nudity: LinearLayout = dialogView.findViewById(R.id.nudity)
             val Violence: LinearLayout = dialogView.findViewById(R.id.violence)
             val Other: LinearLayout = dialogView.findViewById(R.id.other)
+            val closeButton: ImageView = dialogView.findViewById(R.id.closeIcon)
 
             alertDialog.setOnDismissListener {
                 isOptionDialogShowing = false
             }
-
+            closeButton.setOnClickListener {
+                alertDialog.dismiss()
+            }
             Spam.setOnClickListener {
                 alertDialog.dismiss()
                 isOptionDialogShowing = false
@@ -183,7 +186,7 @@
             NotConnect.setOnClickListener {
                 alertDialog.dismiss()
                 isOptionDialogShowing = false
-                showConfirmationDialog(postKey, "Not Connected")
+                showConfirmationDialog(postKey, "Not Relevant")
             }
 
             Nudity.setOnClickListener {

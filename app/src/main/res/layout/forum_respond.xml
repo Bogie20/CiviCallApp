@@ -198,6 +198,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/hideye"
+                android:visibility="gone"
                 app:fab_colorNormal="@color/dialog_warning_darker"
                 app:fab_showShadow="true"
                 app:fab_size="mini" />
@@ -206,6 +207,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/report"
+                android:visibility="gone"
                 app:fab_colorNormal="@color/reportcolor"
                 app:fab_showShadow="true"
                 app:fab_size="mini" />
@@ -214,6 +216,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/edit"
+                android:visibility="gone"
                 app:fab_colorNormal="@color/blue"
                 app:fab_showShadow="true"
                 app:fab_size="mini" />
@@ -225,6 +228,7 @@
                 android:src="@drawable/delete"
                 app:fab_colorNormal="@color/redpink"
                 app:fab_showShadow="true"
+                android:visibility="gone"
                 app:fab_size="mini" />
         </com.github.clans.fab.FloatingActionMenu>
     </RelativeLayout>
