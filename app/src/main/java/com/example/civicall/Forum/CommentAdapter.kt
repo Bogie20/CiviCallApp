@@ -399,10 +399,12 @@ class CommentAdapter(
                 // Set the current post key before launching the CommentEdit activity
                 DataRepository.currentPostKey = postKey
 
-                // Launch CommentEdit activity with necessary data
                 val intent = Intent(context, CommentEdit::class.java).apply {
                     putExtra("CommentKey", comment.commentKey)
                     putExtra("CommentText", comment.commentText)
+                    putExtra("CommentTime", comment.commentTime)
+                    putExtra("UpCount", comment.upReactCount)
+                    putExtra("DownCount", comment.downReactCount)
                 }
                 context.startActivity(intent)
             }

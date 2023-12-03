@@ -28,6 +28,10 @@ class CommentEdit : AppCompatActivity() {
     private var text: String = ""
     private var commentKey: String = ""
     private var postKey: String = ""
+    private var commentTime: String = ""
+    private var upReact: Int = 0
+    private var downReact: Int = 0
+
     private lateinit var databaseReference: DatabaseReference
     private var progressDialog: ProgressDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,8 +53,12 @@ class CommentEdit : AppCompatActivity() {
         if (bundle != null) {
             updatePostComment.setText(bundle.getString("CommentText"))
             commentKey = bundle.getString("CommentKey")!!
+            commentTime = bundle.getString("CommentTime")!!
+            upReact = bundle.getInt("UpCount", 0)
+            downReact = bundle.getInt("DownCount", 0)
             postKey = CommentAdapter.DataRepository.currentPostKey ?: ""
         }
+
         databaseReference = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey) .child("Comments").child(commentKey)
 
         updateButton.setOnClickListener {
@@ -82,10 +90,10 @@ class CommentEdit : AppCompatActivity() {
             val dataClass = DataComment(
                 text,
                 commenterUID,
-                null,
-                null,
-                0,
-                0,
+                commentTime,
+                commentKey,
+                upReact,
+                downReact,
                 null,
                 false,
                 mapOf(),

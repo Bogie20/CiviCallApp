@@ -639,8 +639,6 @@
         fun updateCommentCount(commentCount: Int) {
             commentCountTextView.text = formatCount(commentCount)
         }
-
-
         fun updateTimeText(postTime: String?) {
             postTime?.let {
                 val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
