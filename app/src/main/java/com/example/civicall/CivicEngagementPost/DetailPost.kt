@@ -46,6 +46,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ServerValue
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
@@ -482,7 +483,6 @@ class DetailPost : AppCompatActivity() {
             alertDialog.dismiss()
         }
         saveButton.setOnClickListener {
-            joinPost()
             val amountText = amountEditText.text.toString().trim()
             if (amountText.isNotEmpty()) {
                 alertDialog.dismiss()
@@ -533,7 +533,7 @@ class DetailPost : AppCompatActivity() {
                             R.layout.dialog_sadface
                         )
                     } else {
-                        // User can proceed with the new image upload
+                        joinPost()
                         fileRef.putFile(imageUri)
                             .addOnSuccessListener { uploadTask ->
                                 fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
@@ -927,6 +927,13 @@ class DetailPost : AppCompatActivity() {
 
     val currentUser = FirebaseAuth.getInstance().currentUser
     val currentUserId = currentUser?.uid
+    private fun updateCurrentEngagement(uid: String?) {
+        if (uid != null) {
+            val userReference: DatabaseReference =
+                FirebaseDatabase.getInstance().getReference("Users").child(uid)
+            userReference.child("CurrentEngagement").setValue(ServerValue.increment(-1))
+        }
+    }
     override fun onResume() {
         super.onResume()
 
@@ -940,7 +947,6 @@ class DetailPost : AppCompatActivity() {
                     val endDate = dataSnapshot.child("endDate").getValue(String::class.java)
 
                     if (verificationStatus == true) {
-                        // If verificationStatus is true, check if the current date is after the end date
                         val currentDate = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).time
                         val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
                         dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
@@ -949,7 +955,23 @@ class DetailPost : AppCompatActivity() {
                             val endDateTime = dateFormat.parse(endDate)
 
                             if (endDateTime != null && currentDate.after(endDateTime)) {
-                                // If the current date is after the end date, set text and disable the button
+                                val participantsReference: DatabaseReference =
+                                    FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                                        .child("Participants")
+
+                                participantsReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                                    override fun onDataChange(participantSnapshot: DataSnapshot) {
+                                        for (participant in participantSnapshot.children) {
+                                            val participantUid = participant.key
+                                            updateCurrentEngagement(participantUid)
+                                        }
+                                    }
+
+                                    override fun onCancelled(participantsError: DatabaseError) {
+                                    }
+                                })
+
+                                // Set text and disable the button
                                 joinButton.text = "Already Finish"
                                 joinButton.isEnabled = false
                                 return
@@ -958,6 +980,7 @@ class DetailPost : AppCompatActivity() {
                             e.printStackTrace()
                         }
                     }
+
 
                     // Continue with the existing logic if verificationStatus is false or current date is before end date
                     reference.child("Participants").addListenerForSingleValueEvent(object : ValueEventListener {
