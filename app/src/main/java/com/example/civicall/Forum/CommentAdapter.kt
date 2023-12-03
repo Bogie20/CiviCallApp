@@ -25,9 +25,11 @@ class CommentAdapter(private val postKey: String, private var commentMap: Map<St
     RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
     private val currentUser = FirebaseAuth.getInstance().currentUser
     private val currentUserUid = currentUser?.uid
+
     init {
         setHasStableIds(true)
     }
+
     override fun getItemId(position: Int): Long {
         // Use stable IDs based on comment keys to prevent view recycling issues
         return commentMap.keys.toList()[position].hashCode().toLong()
