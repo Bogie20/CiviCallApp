@@ -32,7 +32,7 @@ class RecognitionAdapter(private val context: Context, private val userList: Lis
 
         holder.nameRec.text = "${user.firstname} ${user.lastname}"
         holder.activePts.text = "${user.activepts} pts"
-
+        holder.campus.text = user.campus
         // Set the ranking number only for top 10
         if (position < 10) {
             holder.rankingNum.text = (position + 1).toString()
@@ -60,6 +60,7 @@ class RecognitionAdapter(private val context: Context, private val userList: Lis
         val profilePic: ImageView = itemView.findViewById(R.id.profilePic)
         val nameRec: TextView = itemView.findViewById(R.id.nameRec)
         val activePts: TextView = itemView.findViewById(R.id.activepts)
+        val campus: TextView = itemView.findViewById(R.id.userCampus)
         val rankingNum: TextView = itemView.findViewById(R.id.rankingnum)
         val badgeImageView: ImageView = itemView.findViewById(R.id.badge_25)
     }

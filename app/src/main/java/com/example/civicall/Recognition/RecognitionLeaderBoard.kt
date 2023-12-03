@@ -3,6 +3,7 @@ package com.example.civicall.Recognition
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -25,6 +26,9 @@ class RecognitionLeaderBoard : AppCompatActivity() {
     private lateinit var userList: MutableList<User>
     private lateinit var databaseReference: DatabaseReference
     private lateinit var campusTitleTextView: TextView
+    private lateinit var noPostsImage: ImageView
+    private lateinit var noPostsText: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recognition_leader_board)
@@ -32,7 +36,8 @@ class RecognitionLeaderBoard : AppCompatActivity() {
         recyclerView = findViewById(R.id.recognitionRecycler)
         recyclerView.layoutManager = LinearLayoutManager(this)
         FirebaseDatabase.getInstance().purgeOutstandingWrites()
-
+        noPostsImage = findViewById(R.id.noPostsImage)
+        noPostsText = findViewById(R.id.noPostsText)
         userList = mutableListOf()
         leaderboardAdapter = RecognitionAdapter(this, userList)
         recyclerView.adapter = leaderboardAdapter
@@ -247,6 +252,13 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                     userList.addAll(users)
 
                     leaderboardAdapter.notifyDataSetChanged()
+
+                    // Handle no posts
+                    if (users.isEmpty()) {
+                        showNoPostsMessage(selectedCampus)
+                    } else {
+                        hideNoPostsMessage()
+                    }
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -254,5 +266,19 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                 }
             })
         }
+    }
+
+    private fun showNoPostsMessage(campus: String) {
+        noPostsImage.setImageResource(R.drawable.leaderboard)
+        noPostsText.text = "There are no lists from \"$campus\" that are currently available."
+        noPostsImage.visibility = View.VISIBLE
+        noPostsText.visibility = View.VISIBLE
+        recyclerView.visibility = View.GONE
+    }
+
+    private fun hideNoPostsMessage() {
+        noPostsImage.visibility = View.GONE
+        noPostsText.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
     }
 }
