@@ -91,7 +91,7 @@ class CommentAdapter(
 
     private var isOptionDialogShowing = false
 
-    private fun showReportDialog(postKey: String) {
+    private fun showReportDialog(commentKey: String) {
         if (isOptionDialogShowing) {
             return
         }
@@ -130,56 +130,56 @@ class CommentAdapter(
         Spam.setOnClickListener {
             alertDialog.dismiss()
             isOptionDialogShowing = false
-            showConfirmationDialog(postKey, "Spam")
+            showConfirmationDialog(commentKey, "Spam")
         }
 
         HateSpeech.setOnClickListener {
             alertDialog.dismiss()
             isOptionDialogShowing = false
-            showConfirmationDialog(postKey, "Hate Speech")
+            showConfirmationDialog(commentKey, "Hate Speech")
         }
 
         FalseInfo.setOnClickListener {
             alertDialog.dismiss()
             isOptionDialogShowing = false
-            showConfirmationDialog(postKey, "False Information")
+            showConfirmationDialog(commentKey, "False Information")
         }
 
         Harassment.setOnClickListener {
             alertDialog.dismiss()
             isOptionDialogShowing = false
-            showConfirmationDialog(postKey, "Harassment")
+            showConfirmationDialog(commentKey, "Harassment")
         }
 
         NotConnect.setOnClickListener {
             alertDialog.dismiss()
             isOptionDialogShowing = false
-            showConfirmationDialog(postKey, "Not Relevant")
+            showConfirmationDialog(commentKey, "Not Relevant")
         }
 
         Nudity.setOnClickListener {
             alertDialog.dismiss()
             isOptionDialogShowing = false
-            showConfirmationDialog(postKey, "Nudity")
+            showConfirmationDialog(commentKey, "Nudity")
         }
 
         Violence.setOnClickListener {
             alertDialog.dismiss()
             isOptionDialogShowing = false
-            showConfirmationDialog(postKey, "Violence")
+            showConfirmationDialog(commentKey, "Violence")
         }
 
         Other.setOnClickListener {
             alertDialog.dismiss()
             isOptionDialogShowing = false
-            showConfirmationDialog(postKey, "Other")
+            showConfirmationDialog(commentKey, "Other")
         }
 
         alertDialog.show()
         isOptionDialogShowing = true
     }
 
-    private fun showConfirmationDialog(postKey: String, reportType: String) {
+    private fun showConfirmationDialog(commentKey: String, reportType: String) {
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_confirmation, null)
         val alertDialog = AlertDialog.Builder(context)
             .setView(dialogView)
@@ -202,7 +202,7 @@ class CommentAdapter(
             dismissCustomDialog()
 
             // Pass the postKey and reportType to the reportPost function
-            reportPost(postKey, reportType)
+            reportPost(commentKey, reportType)
         }
 
         cancelBtn.text = "Cancel"
@@ -227,13 +227,17 @@ class CommentAdapter(
             isOptionDialogShowing = false
         }
     }
-    private fun reportPost(postKey: String, reportType: String) {
+    private fun reportPost(commentKey: String, reportType: String) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val currentUserUid = currentUser?.uid
 
-        val postReportRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey).child("PostReport")
+        val commentReportRef = FirebaseDatabase.getInstance().getReference("Forum Post")
+            .child(postKey)
+            .child("Comments")
+            .child(commentKey)
+            .child("CommentReport")
 
-        val userReportRef = currentUserUid?.let { postReportRef.child(it) }
+        val userReportRef = currentUserUid?.let { commentReportRef.child(it) }
 
         userReportRef?.setValue(reportType)
             ?.addOnSuccessListener {
@@ -243,6 +247,7 @@ class CommentAdapter(
                 Toast.makeText(context, "Failed to report", Toast.LENGTH_SHORT).show()
             }
     }
+
 
     @SuppressLint("NotifyDataSetChanged")
     fun deleteComment(commentKey: String) {
@@ -260,16 +265,24 @@ class CommentAdapter(
                 Toast.makeText(context, "Failed to delete comment", Toast.LENGTH_SHORT).show()
             }
     }
-    private fun updateHiddenState(postKey: String?, isHidden: Boolean) {
-        if (postKey != null && currentUserUid != null) {
+    private fun updateHiddenState(commentKey: String?, isHidden: Boolean) {
+        if (commentKey != null && currentUserUid != null) {
             // Save hidden state locally
-            saveHiddenState(postKey, isHidden)
+            saveHiddenState(commentKey, isHidden)
 
-            // Update hidden state in Firebase
-            val userHiddenPostsRef = FirebaseDatabase.getInstance().getReference("UserHiddenComments").child(currentUserUid)
-            userHiddenPostsRef.child(postKey).setValue(isHidden)
+            // Update hidden state in Firebase for the specific comment
+            val userHiddenCommentsRef = FirebaseDatabase.getInstance().getReference("UserHiddenComments")
+                .child(currentUserUid)
+                .child(postKey)  // Assuming postKey is available, adjust accordingly if needed
+                .child(commentKey)
+
+            userHiddenCommentsRef.setValue(isHidden)
         }
     }
+    object DataRepository {
+        var currentPostKey: String? = null
+    }
+
     private fun saveHiddenState(postKey: String, isHidden: Boolean) {
         val sharedPreferences = context.getSharedPreferences("HiddenComments", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -381,8 +394,12 @@ class CommentAdapter(
                 // Update the hidden state in the Firebase Realtime Database
                 updateHiddenState(comment.commentKey, comment.isHidden)
             }
+
             holder.editButton.setOnClickListener {
-                // Launch ForumUpdate activity with necessary data
+                // Set the current post key before launching the CommentEdit activity
+                DataRepository.currentPostKey = postKey
+
+                // Launch CommentEdit activity with necessary data
                 val intent = Intent(context, CommentEdit::class.java).apply {
                     putExtra("CommentKey", comment.commentKey)
                     putExtra("CommentText", comment.commentText)
@@ -396,7 +413,9 @@ class CommentAdapter(
             }
             holder.reportButton.setOnClickListener {
                 // Handle the deletion of the post (e.g., show a confirmation dialog)
-                comment.commentKey?.let { showReportDialog(it) }
+                comment.commentKey?.let {
+                    showReportDialog(it)
+                }
             }
         }
     }
@@ -416,7 +435,7 @@ class CommentAdapter(
         private val downCount: TextView = itemView.findViewById(R.id.down_count)
         val editButton: FloatingActionButton = itemView.findViewById(R.id.editButton)
         val deleteButton: FloatingActionButton = itemView.findViewById(R.id.deleteButton)
-        val reportButton: FloatingActionButton = itemView.findViewById(R.id.reportButton)
+        var reportButton: FloatingActionButton = itemView.findViewById(R.id.reportBtn)
         val hideButton: FloatingActionButton = itemView.findViewById(R.id.hideButton)
         val commentText: TextView = itemView.findViewById(R.id.textRespond)
         var isUpSelected = false

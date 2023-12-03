@@ -1,5 +1,7 @@
 package com.example.civicall.Forum
 
+import android.app.ProgressDialog
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -17,22 +19,21 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-class CommentEdit: AppCompatActivity() {
+class CommentEdit : AppCompatActivity() {
 
+    private lateinit var binding: ActivityCommentEditBinding
     private lateinit var updateButton: Button
     private lateinit var updatePostComment: EditText
     private lateinit var networkUtils: NetworkUtils
     private var text: String = ""
-    private var key: String = ""
+    private var commentKey: String = ""
+    private var postKey: String = ""
     private lateinit var databaseReference: DatabaseReference
-    private lateinit var binding: ActivityCommentEditBinding
-
+    private var progressDialog: ProgressDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCommentEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
 
         updateButton = binding.updateButton
         updatePostComment = binding.updatePostComment
@@ -47,16 +48,16 @@ class CommentEdit: AppCompatActivity() {
         val bundle = intent.extras
         if (bundle != null) {
             updatePostComment.setText(bundle.getString("CommentText"))
-            key = bundle.getString("Key")!!
+            commentKey = bundle.getString("CommentKey")!!
+            postKey = CommentAdapter.DataRepository.currentPostKey ?: ""
         }
-        databaseReference =
-            FirebaseDatabase.getInstance().getReference("Forum Post").child(key)
+        databaseReference = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey) .child("Comments").child(commentKey)
 
         updateButton.setOnClickListener {
             showUpdateConfirmation()
-
         }
     }
+
     private fun saveData() {
         val builder = AlertDialog.Builder(this@CommentEdit)
         builder.setCancelable(false)
@@ -71,18 +72,13 @@ class CommentEdit: AppCompatActivity() {
 
         dialog.show()
 
-            updateData()
 
-    }
-
-    private fun updateData() {
-        text = updatePostComment.text?.toString()?.trim() ?: ""
+        text = updatePostComment.text.toString().trim()
 
         val user = FirebaseAuth.getInstance().currentUser
         val commenterUID = user?.uid
 
-        if (text != null) {
-
+        if (text.isNotEmpty()) {
             val dataClass = DataComment(
                 text,
                 commenterUID,
@@ -100,21 +96,16 @@ class CommentEdit: AppCompatActivity() {
                     if (task.isSuccessful) {
                         Toast.makeText(this@CommentEdit, "Updated", Toast.LENGTH_SHORT).show()
                         finish()
+                    } else {
+                        Toast.makeText(this@CommentEdit, task.exception?.message.toString(), Toast.LENGTH_SHORT).show()
                     }
-                }.addOnFailureListener { e ->
-                    Toast.makeText(this@CommentEdit, e.message.toString(), Toast.LENGTH_SHORT)
-                        .show()
                 }
+        } else {
+            Toast.makeText(this@CommentEdit, "Please enter a valid comment", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private var isSaveConfirmationDialogShowing = false
-
     private fun showUpdateConfirmation() {
-        if (isSaveConfirmationDialogShowing) {
-            return
-        }
-        dismissCustomDialog()
         val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
@@ -125,10 +116,7 @@ class CommentEdit: AppCompatActivity() {
         val saveBtn: MaterialButton = dialogView.findViewById(R.id.saveBtn)
         val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
 
-
         alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
-
-
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         confirmTitle.text = "Confirmation"
@@ -137,29 +125,21 @@ class CommentEdit: AppCompatActivity() {
         saveBtn.text = "Update"
         saveBtn.setOnClickListener {
             alertDialog.dismiss()
-            dismissCustomDialog()
-
             saveData()
         }
+
         cancelBtn.text = "Cancel"
         cancelBtn.setOnClickListener {
-            isSaveConfirmationDialogShowing = false // Reset the flag
             alertDialog.dismiss()
         }
-        alertDialog.setOnDismissListener{
-            isSaveConfirmationDialogShowing = false
+
+        alertDialog.setOnDismissListener {
+            // Handle dismissal if needed
         }
 
         alertDialog.show()
-        isSaveConfirmationDialogShowing =
-            true
     }
-    private fun dismissCustomDialog() {
-        if (isSaveConfirmationDialogShowing) {
 
-            isSaveConfirmationDialogShowing = false
-        }
-    }
     override fun onDestroy() {
         super.onDestroy()
         networkUtils.cleanup()

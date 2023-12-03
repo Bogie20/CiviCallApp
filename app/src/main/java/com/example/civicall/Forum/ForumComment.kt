@@ -163,7 +163,6 @@ class ForumComment : AppCompatActivity() {
         val commentKey = commentsRef.push().key
 
         val comment = DataComment(commentText, commenterUID, commentTime, commentKey)
-
         val commentData: MutableMap<String, Any?> = mutableMapOf()
         commentKey?.let { key ->
             commentData[key] = comment
