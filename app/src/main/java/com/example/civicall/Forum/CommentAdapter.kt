@@ -230,10 +230,16 @@ class CommentAdapter(private val postKey: String, private var commentMap: Map<St
                 // Fetch the current reactType to determine whether to set or remove the reaction
                 userReactRef.setValue(reactType)
 
+                // Update the drawable immediately after toggling the state
+                isUpSelected = reactType == "up"
+                isDownSelected = reactType == "down"
+                updateDrawable(postKey, commentKey)
+
                 // Update the counts
                 updateReactCounts(commentRef)
             }
         }
+
 
         private fun updateDrawable(postKey: String, commentKey: String) {
             val currentUser = FirebaseAuth.getInstance().currentUser
