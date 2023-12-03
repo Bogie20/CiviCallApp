@@ -200,21 +200,16 @@ class CommentAdapter(private val postKey: String, private var commentMap: Map<St
 
         fun updateReactButtons(postKey: String, commentKey: String) {
             upReact.setOnClickListener {
-                // Toggle the state and handle up react
-                isUpSelected = !isUpSelected
-                isDownSelected = false // Deselect down button
-                handleReact(postKey, commentKey, if (isUpSelected) "up" else "")
+                handleReact(postKey, commentKey, "up")
             }
 
             downReact.setOnClickListener {
-                // Toggle the state and handle down react
-                isDownSelected = !isDownSelected
-                isUpSelected = false // Deselect up button
-                handleReact(postKey, commentKey, if (isDownSelected) "down" else "")
+                handleReact(postKey, commentKey, "down")
             }
 
             updateDrawable(postKey, commentKey)
         }
+
 
         private fun handleReact(postKey: String, commentKey: String, reactType: String) {
             val currentUser = FirebaseAuth.getInstance().currentUser
@@ -228,15 +223,29 @@ class CommentAdapter(private val postKey: String, private var commentMap: Map<St
                 val userReactRef = commentRef.child("ReactComment").child(it)
 
                 // Fetch the current reactType to determine whether to set or remove the reaction
-                userReactRef.setValue(reactType)
+                userReactRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val currentReactType = snapshot.getValue(String::class.java)
 
-                // Update the drawable immediately after toggling the state
-                isUpSelected = reactType == "up"
-                isDownSelected = reactType == "down"
-                updateDrawable(postKey, commentKey)
+                        // Toggle the state based on the current reactType
+                        when (currentReactType) {
+                            reactType -> {
+                                // If the current reactType is the same as the new one, remove the reaction
+                                userReactRef.removeValue()
+                                updateReactCounts(commentRef)
+                            }
+                            else -> {
+                                // If the current reactType is different, set the new reaction
+                                userReactRef.setValue(reactType)
+                                updateReactCounts(commentRef)
+                            }
+                        }
+                    }
 
-                // Update the counts
-                updateReactCounts(commentRef)
+                    override fun onCancelled(error: DatabaseError) {
+                        // Handle onCancelled as needed
+                    }
+                })
             }
         }
 

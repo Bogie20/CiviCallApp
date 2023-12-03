@@ -418,8 +418,6 @@
                 // Update the hidden state in the Firebase Realtime Database
                 updateHiddenState(data.key, data.isHidden)
             }
-
-
             holder.editButton.visibility = View.GONE
             holder.deleteButton.visibility = View.GONE
             holder.reportButton.visibility = View.GONE
