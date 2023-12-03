@@ -5,5 +5,6 @@ data class User(
     val ImageProfile: String = "",
     val firstname: String = "",
     val lastname: String = "",
-    val activepts: Int = 0
+    val activepts: Int = 0,
+    val campus: String = ""
 )
