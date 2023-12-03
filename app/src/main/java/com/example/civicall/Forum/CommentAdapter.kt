@@ -1,5 +1,6 @@
 package com.example.civicall.Forum
 
+import android.annotation.SuppressLint
 import android.text.format.DateUtils
 import android.util.Log
 import android.view.LayoutInflater
@@ -22,6 +23,16 @@ import java.util.TimeZone
 
 class CommentAdapter(private val postKey: String, private var commentMap: Map<String, DataComment>) :
     RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
+    private val currentUser = FirebaseAuth.getInstance().currentUser
+    private val currentUserUid = currentUser?.uid
+    init {
+        setHasStableIds(true)
+    }
+    override fun getItemId(position: Int): Long {
+        // Use stable IDs based on comment keys to prevent view recycling issues
+        return commentMap.keys.toList()[position].hashCode().toLong()
+    }
+    @SuppressLint("NotifyDataSetChanged")
     fun updateData(newData: Map<String, DataComment>) {
         commentMap = newData
         notifyDataSetChanged()
@@ -30,7 +41,6 @@ class CommentAdapter(private val postKey: String, private var commentMap: Map<St
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.forum_respond, parent, false)
         return CommentViewHolder(view)
-
     }
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
@@ -40,7 +50,19 @@ class CommentAdapter(private val postKey: String, private var commentMap: Map<St
             holder.bind(comment)
             holder.updateTimeText(comment.commentTime)
             holder.updateReactButtons(postKey, commentKey)
-
+            holder.editButton.visibility = View.GONE
+            holder.deleteButton.visibility = View.GONE
+            holder.reportButton.visibility = View.GONE
+            holder.hideButton.visibility = View.GONE
+            holder.upReact.isPressed = holder.isUpSelected
+            holder.downReact.isPressed = holder.isDownSelected
+            if (currentUserUid == comment.commenterUID) {
+                holder.editButton.visibility = View.VISIBLE
+                holder.deleteButton.visibility = View.VISIBLE
+            } else {
+                holder.reportButton.visibility = View.VISIBLE
+                holder.hideButton.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -48,22 +70,28 @@ class CommentAdapter(private val postKey: String, private var commentMap: Map<St
         return commentMap.size
     }
 
-    class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textRespond: TextView = itemView.findViewById(R.id.textRespond)
         private val profilePic: ImageView = itemView.findViewById(R.id.profilePic)
         private val userName: TextView = itemView.findViewById(R.id.userName)
         private val timeRec: TextView = itemView.findViewById(R.id.timeRec)
-        private val upReact: ImageButton = itemView.findViewById(R.id.upBtn)
-        private val downReact: ImageButton = itemView.findViewById(R.id.downBtn)
+        val upReact: ImageButton = itemView.findViewById(R.id.upBtn)
+        val downReact: ImageButton = itemView.findViewById(R.id.downBtn)
         private val upCount: TextView = itemView.findViewById(R.id.up_count)
         private val downCount: TextView = itemView.findViewById(R.id.down_count)
         val editButton: FloatingActionButton = itemView.findViewById(R.id.editButton)
         val deleteButton: FloatingActionButton = itemView.findViewById(R.id.deleteButton)
         val reportButton: FloatingActionButton = itemView.findViewById(R.id.reportButton)
         val hideButton: FloatingActionButton = itemView.findViewById(R.id.hideButton)
+        var isUpSelected = false
+        var isDownSelected = false
 
         fun bind(comment: DataComment) {
+            val currentUserReact = comment.currentUserReact // Replace with the actual variable that stores the user's reaction
+            isUpSelected = currentUserReact == "up"
+            isDownSelected = currentUserReact == "down"
 
+            updateReactCountUI(comment.upReactCount, comment.downReactCount)
 
             val currentUser = FirebaseAuth.getInstance().currentUser
             val currentUserUid = currentUser?.uid
@@ -172,13 +200,17 @@ class CommentAdapter(private val postKey: String, private var commentMap: Map<St
 
         fun updateReactButtons(postKey: String, commentKey: String) {
             upReact.setOnClickListener {
-                // Handle up react
-                handleReact(postKey, commentKey, "up")
+                // Toggle the state and handle up react
+                isUpSelected = !isUpSelected
+                isDownSelected = false // Deselect down button
+                handleReact(postKey, commentKey, if (isUpSelected) "up" else "")
             }
 
             downReact.setOnClickListener {
-                // Handle down react
-                handleReact(postKey, commentKey, "down")
+                // Toggle the state and handle down react
+                isDownSelected = !isDownSelected
+                isUpSelected = false // Deselect up button
+                handleReact(postKey, commentKey, if (isDownSelected) "down" else "")
             }
 
             updateDrawable(postKey, commentKey)
@@ -226,6 +258,7 @@ class CommentAdapter(private val postKey: String, private var commentMap: Map<St
             }
         }
 
+
         private fun setDrawable(reactType: String?) {
             // Update the drawable based on the reactType
             when (reactType) {
@@ -244,6 +277,8 @@ class CommentAdapter(private val postKey: String, private var commentMap: Map<St
                 }
             }
         }
+
+
 
         private fun updateReactCounts(commentRef: DatabaseReference) {
             commentRef.child("ReactComment").addListenerForSingleValueEvent(object : ValueEventListener {

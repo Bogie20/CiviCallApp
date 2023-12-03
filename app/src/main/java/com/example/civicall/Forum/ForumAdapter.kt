@@ -56,7 +56,6 @@
             }
 
             dismissCustomDialog()
-
             val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_confirmation, null)
             val alertDialog = AlertDialog.Builder(context)
                 .setView(dialogView)
@@ -525,8 +524,6 @@
                 // Handle down react
                 handleReact(postKey, "down")
             }
-
-            // Update the drawable based on the reactType
             updateDrawable(postKey)
         }
         private fun handleReact(postKey: String, reactType: String) {
@@ -543,19 +540,12 @@
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val currentReactType = snapshot.getValue(String::class.java)
 
-                        // Check if the user has already reacted with the same type
                         if (currentReactType == reactType) {
-                            // User wants to unselect the reaction, so remove the reactType from the database
                             userReactRef.removeValue()
                         } else {
-                            // User wants to select a new reaction or change the current one
                             userReactRef.setValue(reactType)
                         }
-
-                        // Update the drawable after successful update
                         updateDrawable(postKey)
-
-                        // Update the react counts
                         updateReactCounts(postKey)
                     }
 
@@ -565,8 +555,6 @@
                 })
             }
         }
-
-
         private fun updateDrawable(postKey: String) {
             val currentUser = FirebaseAuth.getInstance().currentUser
             val currentUserUid = currentUser?.uid

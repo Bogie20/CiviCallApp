@@ -185,7 +185,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="20dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             app:menu_buttonSpacing="0dp"
             app:menu_colorNormal="@color/transparent"
             app:menu_colorPressed="@color/grey"

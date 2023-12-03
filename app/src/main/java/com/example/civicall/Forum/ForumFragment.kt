@@ -33,7 +33,6 @@ class ForumFragment : Fragment() {
     private val dataList = ArrayList<DataClassForum>()
     private lateinit var adapter: ForumAdapter
     private lateinit var searchView: SearchView
-    private lateinit var rootView: View
     private lateinit var noPostsImage: ImageView
     private lateinit var noPostsText: TextView
     override fun onCreateView(
