@@ -447,7 +447,6 @@ class CommentAdapter(
         var isDownSelected = false
         init {
             cardView.setOnClickListener {
-                // Close the FAB menu
                 closeFabMenu()
             }
         }

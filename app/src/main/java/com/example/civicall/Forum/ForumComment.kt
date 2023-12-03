@@ -150,7 +150,6 @@ class ForumComment : AppCompatActivity() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
-                    // Close the FAB menu when the user starts scrolling
                     closeFabMenu()
                 }
             }
