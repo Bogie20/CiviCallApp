@@ -19,11 +19,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
 import com.example.civicall.Users
 import com.github.clans.fab.FloatingActionButton
+import com.github.clans.fab.FloatingActionMenu
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -428,6 +430,7 @@ class CommentAdapter(
 
     inner class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textRespond: TextView = itemView.findViewById(R.id.textRespond)
+        private val cardView: CardView = itemView.findViewById(R.id.recCard)
         private val profilePic: ImageView = itemView.findViewById(R.id.profilePic)
         private val userName: TextView = itemView.findViewById(R.id.userName)
         private val timeRec: TextView = itemView.findViewById(R.id.timeRec)
@@ -442,7 +445,16 @@ class CommentAdapter(
         val commentText: TextView = itemView.findViewById(R.id.textRespond)
         var isUpSelected = false
         var isDownSelected = false
-
+        init {
+            cardView.setOnClickListener {
+                // Close the FAB menu
+                closeFabMenu()
+            }
+        }
+        private fun closeFabMenu() {
+            val fabMenu: FloatingActionMenu = itemView.findViewById(R.id.fabMenu)
+            fabMenu.close(true)
+        }
         fun bind(comment: DataComment) {
             val currentUserReact = comment.currentUserReact // Replace with the actual variable that stores the user's reaction
             isUpSelected = currentUserReact == "up"
@@ -686,7 +698,6 @@ class CommentAdapter(
             upCount.text = formatCount(upReactCount)
             downCount.text = formatCount(downReactCount)
         }
-
         private fun formatCount(count: Int): String {
             return when {
                 count < 1000 -> count.toString()

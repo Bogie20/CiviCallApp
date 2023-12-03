@@ -17,6 +17,7 @@ import com.example.civicall.R
 import com.example.civicall.Users
 import com.example.civicall.databinding.ActivityForumCommentBinding
 import com.github.clans.fab.FloatingActionButton
+import com.github.clans.fab.FloatingActionMenu
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -145,9 +146,21 @@ class ForumComment : AppCompatActivity() {
 
         loadCommentsFromDatabase()
 
+        commentsRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                    // Close the FAB menu when the user starts scrolling
+                    closeFabMenu()
+                }
+            }
+        })
 
     }
-
+    private fun closeFabMenu() {
+        val fabMenu: FloatingActionMenu = findViewById(R.id.fabMenu)
+        fabMenu.close(true)
+    }
     private fun addCommentToDatabase(commentText: String) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val commenterUID = currentUser?.uid ?: ""
@@ -163,6 +176,7 @@ class ForumComment : AppCompatActivity() {
         val commentKey = commentsRef.push().key
 
         val comment = DataComment(commentText, commenterUID, commentTime, commentKey)
+
         val commentData: MutableMap<String, Any?> = mutableMapOf()
         commentKey?.let { key ->
             commentData[key] = comment
