@@ -95,6 +95,24 @@ class ForumAdapter(
         alertDialog.show()
         isDeleteConfirmationDialogShowing = true
     }
+    private fun fetchCommentCount(postKey: String?, holder: MyViewHolderForum) {
+        if (postKey != null) {
+            val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+                .child("Comments")
+
+            commentsRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val commentCount = snapshot.childrenCount.toInt()
+                    // Update the comment count in the ViewHolder
+                    holder.updateCommentCount(commentCount)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle onCancelled as needed
+                }
+            })
+        }
+    }
     private var isOptionDialogShowing = false
 
     private fun showReportDialog(postKey: String) {
@@ -433,6 +451,7 @@ class ForumAdapter(
             data.key?.let { showReportDialog(it) }
         }
         holder.updateTimeText(data.postTime)
+        fetchCommentCount(data.key, holder)
     }
 
 
@@ -458,6 +477,8 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val profilePic: ImageView = itemView.findViewById(R.id.profilePic)
     val userName: TextView = itemView.findViewById(R.id.userName)
     val timeRec: TextView = itemView.findViewById(R.id.timeRec)
+    val commentCountTextView: TextView = itemView.findViewById(R.id.commentcount)
+
     fun updateFABVisibility(data: DataClassForum, isCurrentUserPost: Boolean) {
         if (data.isHidden) {
             // The post is marked as hidden, hide forumImage and forumText
@@ -494,6 +515,10 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
 
     }
+    fun updateCommentCount(commentCount: Int) {
+        commentCountTextView.text = commentCount.toString()
+    }
+
     fun updateTimeText(postTime: String?) {
         postTime?.let {
             val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())

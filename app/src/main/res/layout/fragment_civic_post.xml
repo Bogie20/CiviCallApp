@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:paddingEnd="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginHorizontal="10dp"
         app:iconifiedByDefault="false"
         app:searchHintIcon="@null"
         app:queryBackground="@null"
@@ -36,7 +35,7 @@
         android:background="@drawable/higlight_button"
         android:clickable="true"
         android:padding="8dp"
-        android:src="@drawable/embudo_24" />
+        android:src="@drawable/filter_25" />
 
 
 
@@ -46,6 +45,7 @@
         android:layout_height="match_parent"
         android:layout_marginHorizontal="8dp"
         android:layout_below="@id/search"
+        android:layout_marginBottom="15dp"
         android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

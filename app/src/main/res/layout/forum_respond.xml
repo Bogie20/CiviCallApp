@@ -115,33 +115,52 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:gravity="end"
             android:orientation="horizontal"
+            android:gravity="end"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view3">
 
             <ImageButton
-                android:id="@+id/heartBtn"
+                android:id="@+id/upBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:paddingRight="8dp"
+                android:paddingRight="5dp"
                 android:layout_marginStart="10dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/like_icon_outline" />
+                android:src="@drawable/upreact" />
 
             <TextView
                 android:id="@+id/like_count_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="7dp"
                 android:layout_marginStart="5dp"
                 android:textColor="@color/colorPrimaryText"
                 android:textStyle="bold" />
 
+            <ImageButton
+                android:id="@+id/downBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:layout_marginStart="10dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/downreact" />
+
+            <TextView
+                android:id="@+id/downcount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_marginTop="7dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/colorPrimaryText"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
