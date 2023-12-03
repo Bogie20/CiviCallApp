@@ -25,6 +25,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 class Notifications : AppCompatActivity() {
 
@@ -158,29 +162,38 @@ class Notifications : AppCompatActivity() {
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val notificationList = mutableListOf<NotificationModel>()
-
+                val currentDate = Date()
+                val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mma", Locale("en", "PH"))
                 for (engagementSnapshot in dataSnapshot.children) {
-                    val startDate =
-                        engagementSnapshot.child("startDate")?.getValue(String::class.java) ?: ""
-                    val title =
-                        engagementSnapshot.child("title")?.getValue(String::class.java) ?: ""
+                    val startDateStr = engagementSnapshot.child("startDate")?.getValue(String::class.java) ?: ""
 
-                    val participantsSnapshot = engagementSnapshot.child("Participants")
+                    // Parse the startDate string into a Date object
+                    val startDate = dateFormat.parse(startDateStr)
 
-                    if (participantsSnapshot.hasChild(currentUserUid)) {
-                        val category =
-                            engagementSnapshot.child("category")?.getValue(String::class.java) ?: ""
-                        val status = engagementSnapshot.child("status")?.getValue(String::class.java) ?: ""
+                    // Check if the startDate is in the future
+                    if (startDate != null && startDate.after(currentDate)) {
+                        val title = engagementSnapshot.child("title")?.getValue(String::class.java) ?: ""
 
-                        val notificationModel =
-                            NotificationModel("", "","", startDate, title, category, status)
-                        notificationList.add(notificationModel)
+                        val participantsSnapshot = engagementSnapshot.child("Participants")
+
+                        if (participantsSnapshot.hasChild(currentUserUid)) {
+                            val category = engagementSnapshot.child("category")?.getValue(String::class.java) ?: ""
+                            val status = engagementSnapshot.child("status")?.getValue(String::class.java) ?: ""
+
+                            val notificationModel = NotificationModel("", "", "", startDateStr, title, category, status)
+                            notificationList.add(notificationModel)
+                        }
                     }
                 }
 
+
                 // Update the adapter with the new data
                 notificationAdapter.updateData(notificationList)
-            }
+
+
+        }
+
+
 
             override fun onCancelled(databaseError: DatabaseError) {
                 // Handle database error
