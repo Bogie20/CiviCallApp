@@ -205,8 +205,6 @@ class ForumUpdate: AppCompatActivity() {
         campus = updateCampus.text.toString()
         category = updateCategory.text.toString()
 
-
-
         val user = FirebaseAuth.getInstance().currentUser
         val uploadersId = user?.uid
         val postTime = getCurrentDateTime()

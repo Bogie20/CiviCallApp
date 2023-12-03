@@ -228,7 +228,6 @@
                 android:src="@drawable/delete"
                 app:fab_colorNormal="@color/redpink"
                 app:fab_showShadow="true"
-                android:visibility="gone"
                 app:fab_size="mini" />
         </com.github.clans.fab.FloatingActionMenu>
     </RelativeLayout>

@@ -1,19 +1,30 @@
 package com.example.civicall.Forum
 
+import android.content.Context
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.text.format.DateUtils
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
 import com.example.civicall.Users
 import com.github.clans.fab.FloatingActionButton
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.text.ParseException
@@ -21,10 +32,278 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
 
-class CommentAdapter(private val postKey: String, private var commentMap: Map<String, DataComment>) :
-    RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
+class CommentAdapter(
+    private val context: Context,
+    private val postKey: String,
+    private var commentMap: Map<String, DataComment>
+) : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
     private val currentUser = FirebaseAuth.getInstance().currentUser
     private val currentUserUid = currentUser?.uid
+
+
+    private var isDeleteConfirmationDialogShowing = false
+
+    // Update the showDeleteConfirmationDialog function
+    private fun showDeleteConfirmationDialog(commentKey: String) {
+        if (isDeleteConfirmationDialogShowing) {
+            return
+        }
+
+        dismissCustomDialog()
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_confirmation, null)
+        val alertDialog = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .create()
+
+        val confirmTitle: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
+        val logoutMsg: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
+        val saveBtn: MaterialButton = dialogView.findViewById(R.id.saveBtn)
+        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        confirmTitle.text = "Confirmation"
+        logoutMsg.text = "Are you sure you want to delete your post?"
+
+        saveBtn.text = "Delete"
+        saveBtn.setOnClickListener {
+            alertDialog.dismiss()
+            dismissCustomDialog()
+
+            deleteComment(commentKey)
+        }
+
+        cancelBtn.text = "Cancel"
+        cancelBtn.setOnClickListener {
+            isDeleteConfirmationDialogShowing = false // Reset the flag
+            alertDialog.dismiss()
+            // User clicked "Cancel," do nothing or provide feedback
+        }
+
+        alertDialog.setOnDismissListener {
+            isDeleteConfirmationDialogShowing = false
+        }
+
+        alertDialog.show()
+        isDeleteConfirmationDialogShowing = true
+    }
+
+    private var isOptionDialogShowing = false
+
+    private fun showReportDialog(postKey: String) {
+        if (isOptionDialogShowing) {
+            return
+        }
+
+        dismissCustomDialog()
+
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_report_user, null)
+        val alertDialog = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .create()
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideUp
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val layoutParams = alertDialog.window?.attributes
+        layoutParams?.gravity = Gravity.BOTTOM
+        layoutParams?.width = WindowManager.LayoutParams.MATCH_PARENT
+        alertDialog.window?.attributes = layoutParams
+
+        val Spam: LinearLayout = dialogView.findViewById(R.id.spam)
+        val HateSpeech: LinearLayout = dialogView.findViewById(R.id.hateSpeech)
+        val FalseInfo: LinearLayout = dialogView.findViewById(R.id.falseInfo)
+        val Harassment: LinearLayout = dialogView.findViewById(R.id.harassment)
+        val NotConnect: LinearLayout = dialogView.findViewById(R.id.notConnected)
+        val Nudity: LinearLayout = dialogView.findViewById(R.id.nudity)
+        val Violence: LinearLayout = dialogView.findViewById(R.id.violence)
+        val Other: LinearLayout = dialogView.findViewById(R.id.other)
+        val closeButton: ImageView = dialogView.findViewById(R.id.closeIcon)
+
+        alertDialog.setOnDismissListener {
+            isOptionDialogShowing = false
+        }
+        closeButton.setOnClickListener {
+            alertDialog.dismiss()
+        }
+        Spam.setOnClickListener {
+            alertDialog.dismiss()
+            isOptionDialogShowing = false
+            showConfirmationDialog(postKey, "Spam")
+        }
+
+        HateSpeech.setOnClickListener {
+            alertDialog.dismiss()
+            isOptionDialogShowing = false
+            showConfirmationDialog(postKey, "Hate Speech")
+        }
+
+        FalseInfo.setOnClickListener {
+            alertDialog.dismiss()
+            isOptionDialogShowing = false
+            showConfirmationDialog(postKey, "False Information")
+        }
+
+        Harassment.setOnClickListener {
+            alertDialog.dismiss()
+            isOptionDialogShowing = false
+            showConfirmationDialog(postKey, "Harassment")
+        }
+
+        NotConnect.setOnClickListener {
+            alertDialog.dismiss()
+            isOptionDialogShowing = false
+            showConfirmationDialog(postKey, "Not Relevant")
+        }
+
+        Nudity.setOnClickListener {
+            alertDialog.dismiss()
+            isOptionDialogShowing = false
+            showConfirmationDialog(postKey, "Nudity")
+        }
+
+        Violence.setOnClickListener {
+            alertDialog.dismiss()
+            isOptionDialogShowing = false
+            showConfirmationDialog(postKey, "Violence")
+        }
+
+        Other.setOnClickListener {
+            alertDialog.dismiss()
+            isOptionDialogShowing = false
+            showConfirmationDialog(postKey, "Other")
+        }
+
+        alertDialog.show()
+        isOptionDialogShowing = true
+    }
+
+    private fun showConfirmationDialog(postKey: String, reportType: String) {
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_confirmation, null)
+        val alertDialog = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .create()
+
+        val confirmTitle: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
+        val logoutMsg: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
+        val saveBtn: MaterialButton = dialogView.findViewById(R.id.saveBtn)
+        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        confirmTitle.text = "Confirmation"
+        logoutMsg.text = "Are you sure you want to report this post as $reportType?"
+
+        saveBtn.text = "Report"
+        saveBtn.setOnClickListener {
+            alertDialog.dismiss()
+            dismissCustomDialog()
+
+            // Pass the postKey and reportType to the reportPost function
+            reportPost(postKey, reportType)
+        }
+
+        cancelBtn.text = "Cancel"
+        cancelBtn.setOnClickListener {
+            isDeleteConfirmationDialogShowing = false // Reset the flag
+            alertDialog.dismiss()
+            // User clicked "Cancel," do nothing or provide feedback
+        }
+
+        alertDialog.setOnDismissListener {
+            isDeleteConfirmationDialogShowing = false
+        }
+
+        alertDialog.show()
+        isDeleteConfirmationDialogShowing = true
+    }
+    private fun dismissCustomDialog() {
+        if (isDeleteConfirmationDialogShowing) {
+            isDeleteConfirmationDialogShowing = false
+        }
+        if (isOptionDialogShowing) {
+            isOptionDialogShowing = false
+        }
+    }
+    private fun reportPost(postKey: String, reportType: String) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val currentUserUid = currentUser?.uid
+
+        val postReportRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey).child("PostReport")
+
+        val userReportRef = currentUserUid?.let { postReportRef.child(it) }
+
+        userReportRef?.setValue(reportType)
+            ?.addOnSuccessListener {
+                Toast.makeText(context, "Reported successfully", Toast.LENGTH_SHORT).show()
+            }
+            ?.addOnFailureListener {
+                Toast.makeText(context, "Failed to report", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun deleteComment(commentKey: String) {
+        val commentRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+            .child("Comments").child(commentKey)
+
+        commentRef.removeValue()
+            .addOnSuccessListener {
+                // Comment successfully deleted from the database
+                notifyDataSetChanged()
+                Toast.makeText(context, "Comment Deleted", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                // Failed to delete the comment
+                Toast.makeText(context, "Failed to delete comment", Toast.LENGTH_SHORT).show()
+            }
+    }
+    private fun updateHiddenState(postKey: String?, isHidden: Boolean) {
+        if (postKey != null && currentUserUid != null) {
+            // Save hidden state locally
+            saveHiddenState(postKey, isHidden)
+
+            // Update hidden state in Firebase
+            val userHiddenPostsRef = FirebaseDatabase.getInstance().getReference("UserHiddenComments").child(currentUserUid)
+            userHiddenPostsRef.child(postKey).setValue(isHidden)
+        }
+    }
+    private fun saveHiddenState(postKey: String, isHidden: Boolean) {
+        val sharedPreferences = context.getSharedPreferences("HiddenComments", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("$currentUserUid-$postKey", isHidden)
+        editor.apply()
+    }
+    private fun getHiddenState(postKey: String, callback: (Boolean) -> Unit) {
+        // Check local hidden state first
+        val hiddenState = getLocalHiddenState(postKey)
+        if (hiddenState != null) {
+            callback.invoke(hiddenState)
+        } else {
+            // Fetch from Firebase if not found locally
+            val userHiddenPostsRef = FirebaseDatabase.getInstance().getReference("UserHiddenComments")
+            currentUserUid?.let {
+                userHiddenPostsRef.child(it)
+            }
+            userHiddenPostsRef.child(postKey).addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val isHidden = snapshot.getValue(Boolean::class.java) ?: false
+                    callback.invoke(isHidden)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle onCancelled as needed
+                }
+            })
+        }
+    }
+
+    private fun getLocalHiddenState(postKey: String): Boolean? {
+        val sharedPreferences = context.getSharedPreferences("HiddenComments", Context.MODE_PRIVATE)
+        return sharedPreferences.getBoolean("$currentUserUid-$postKey", false)
+    }
 
     init {
         setHasStableIds(true)
@@ -65,6 +344,60 @@ class CommentAdapter(private val postKey: String, private var commentMap: Map<St
                 holder.reportButton.visibility = View.VISIBLE
                 holder.hideButton.visibility = View.VISIBLE
             }
+            getHiddenState(comment.commentKey ?: "") { isHidden ->
+                comment.isHidden = isHidden
+
+                // Update the visibility of forumImage and forumText
+                if (comment.isHidden) {
+                    holder.commentText.visibility = View.GONE
+                } else {
+                    if (!comment.commentText.isNullOrBlank()) {
+                        holder.commentText.visibility = View.VISIBLE
+                        holder.commentText.text = comment.commentText
+                    } else {
+                        holder.commentText.visibility = View.GONE
+                    }
+                }
+            }
+
+            holder.hideButton.setOnClickListener {
+                comment.isHidden = !comment.isHidden
+
+                if (comment.isHidden) {
+                    holder.hideButton.setImageResource(R.drawable.unhide)
+                    holder.commentText.visibility = View.GONE
+
+                } else {
+                    holder.hideButton.setImageResource(R.drawable.hideye)
+                    if (!comment.commentText.isNullOrBlank()) {
+                        holder.commentText.visibility = View.VISIBLE
+                        holder.commentText.text = comment.commentText
+                    } else {
+                        holder.commentText.visibility = View.GONE
+                    }
+                }
+                holder.hideButton.visibility = View.VISIBLE
+
+                // Update the hidden state in the Firebase Realtime Database
+                updateHiddenState(comment.commentKey, comment.isHidden)
+            }
+            holder.editButton.setOnClickListener {
+                // Launch ForumUpdate activity with necessary data
+                val intent = Intent(context, CommentEdit::class.java).apply {
+                    putExtra("CommentKey", comment.commentKey)
+                    putExtra("CommentText", comment.commentText)
+                }
+                context.startActivity(intent)
+            }
+            holder.deleteButton.setOnClickListener {
+                comment.commentKey?.let {
+                    showDeleteConfirmationDialog(it)
+                }
+            }
+            holder.reportButton.setOnClickListener {
+                // Handle the deletion of the post (e.g., show a confirmation dialog)
+                comment.commentKey?.let { showReportDialog(it) }
+            }
         }
     }
 
@@ -85,6 +418,7 @@ class CommentAdapter(private val postKey: String, private var commentMap: Map<St
         val deleteButton: FloatingActionButton = itemView.findViewById(R.id.deleteButton)
         val reportButton: FloatingActionButton = itemView.findViewById(R.id.reportButton)
         val hideButton: FloatingActionButton = itemView.findViewById(R.id.hideButton)
+        val commentText: TextView = itemView.findViewById(R.id.textRespond)
         var isUpSelected = false
         var isDownSelected = false
 

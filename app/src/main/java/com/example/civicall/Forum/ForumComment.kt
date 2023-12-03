@@ -1,6 +1,5 @@
 package com.example.civicall.Forum
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,7 +9,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet.Constraint
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -49,7 +47,7 @@ class ForumComment : AppCompatActivity() {
     private lateinit var hideButton: FloatingActionButton
     private var isPostMainVisible: Boolean = true
     private val commentList: MutableList<DataComment> = mutableListOf()
-
+    private lateinit var commentKey: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityForumCommentBinding.inflate(layoutInflater)
@@ -87,7 +85,7 @@ class ForumComment : AppCompatActivity() {
             detailCategory.text = "# ${it.getString("Category")}"
             detailText.text = it.getString("PostText")
             campusTxt.text = " " + it.getString("Campus")
-            key = it.getString("Key") ?: ""
+            commentKey = it.getString("CommentKey") ?: ""
             postKey = it.getString("Key") ?: ""
             imageUrl = it.getString("PostImage") ?: ""
             Glide.with(this).load(it.getString("PostImage")).into(detailImage)
@@ -136,9 +134,7 @@ class ForumComment : AppCompatActivity() {
             }
         }
 
-
-
-        commentsAdapter = CommentAdapter(postKey, emptyMap())
+        commentsAdapter = CommentAdapter(this, postKey, emptyMap())
         commentsRecyclerView.layoutManager = LinearLayoutManager(this)
         val layoutManager = LinearLayoutManager(this)
         layoutManager.reverseLayout = true
@@ -161,11 +157,12 @@ class ForumComment : AppCompatActivity() {
             }
             .format(Calendar.getInstance().time)
 
-        val comment = DataComment(commentText, commenterUID, commentTime)
 
         val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
             .child("Comments")
         val commentKey = commentsRef.push().key
+
+        val comment = DataComment(commentText, commenterUID, commentTime, commentKey)
 
         val commentData: MutableMap<String, Any?> = mutableMapOf()
         commentKey?.let { key ->
