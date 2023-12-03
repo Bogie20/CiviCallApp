@@ -101,8 +101,6 @@ class CivicPostFragment : Fragment() {
                 dialog.dismiss()
             }
         })
-
-
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -237,17 +235,13 @@ class CivicPostFragment : Fragment() {
             }
         }
     }
-
-
     private fun showNoPostsMessage(category: String) {
-        noPostsImage.setImageResource(R.drawable.nocategory)
+        noPostsImage.setImageResource(R.drawable.notinlist)
         noPostsText.text = "Sorry, the category \"$category\" is currently unavailable."
         noPostsImage.visibility = View.VISIBLE
         noPostsText.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
     }
-
-
     private fun hideNoPostsMessage() {
         noPostsImage.visibility = View.GONE
         noPostsText.visibility = View.GONE

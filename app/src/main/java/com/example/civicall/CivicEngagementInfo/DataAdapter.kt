@@ -1,5 +1,6 @@
 package com.example.civicall.CivicEngagementInfo
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ScaleGestureDetector
 import android.view.View
@@ -23,6 +24,7 @@ class DataAdapter(private val dataList: List<DataItem>) :
         itemClickListener = listener
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
         val paragraphTextView: TextView = itemView.findViewById(R.id.paragraphTextView)
@@ -98,8 +100,8 @@ class DataAdapter(private val dataList: List<DataItem>) :
         // Use Picasso to load the image from the imageLink
         Picasso.get()
             .load(currentItem.imageLink)
-            .placeholder(R.drawable.placeholder) // You can use a placeholder image while the URL image is loading
-            .error(R.drawable.placeholdererror) // You can specify an error image in case the URL image fails to load
+            .placeholder(R.drawable.placeholder)
+            .error(R.drawable.placeholder)
             .into(holder.imageView)
     }
 
