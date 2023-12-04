@@ -21,6 +21,7 @@ import com.github.clans.fab.FloatingActionMenu
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import java.text.SimpleDateFormat
@@ -49,6 +50,10 @@ class ForumComment : AppCompatActivity() {
     private var isPostMainVisible: Boolean = true
     private val commentList: MutableList<DataComment> = mutableListOf()
     private lateinit var commentKey: String
+    private lateinit var commentCountTextView: TextView
+    private lateinit var upReactCountRef: DatabaseReference
+    private lateinit var downReactCountRef: DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityForumCommentBinding.inflate(layoutInflater)
@@ -65,6 +70,7 @@ class ForumComment : AppCompatActivity() {
         networkUtils.initialize()
         hideButton = findViewById(R.id.hideButton)
         postMain = findViewById(R.id.postMain)
+        commentCountTextView = findViewById(R.id.commentcount)
 
         hideButton.setOnClickListener {
             isPostMainVisible = !isPostMainVisible
@@ -97,6 +103,12 @@ class ForumComment : AppCompatActivity() {
             binding.upcount.text = upReactCount.toString()
             binding.downcount.text = downReactCount.toString()
             loadUploaderData(postKey)
+            upReactCountRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey).child("upReactCount")
+            downReactCountRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey).child("downReactCount")
+
+            // Add listeners for real-time updates
+            addUpReactCountListener()
+            addDownReactCountListener()
         }
         commentEditText = findViewById(R.id.comment_editText)
         sendIcon = findViewById(R.id.comment_send_icon)
@@ -149,16 +161,46 @@ class ForumComment : AppCompatActivity() {
         commentsRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
-                    closeFabMenu()
-                }
+                closeFabMenu()
             }
         })
+
 
     }
     private fun closeFabMenu() {
         val fabMenu: FloatingActionMenu = findViewById(R.id.fabMenu)
         fabMenu.close(true)
+    }
+    private fun addUpReactCountListener() {
+        upReactCountRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val upReactCount = snapshot.getValue(Int::class.java)
+                    // Update your UI or perform any actions with the updated upReactCount
+                    binding.upcount.text = upReactCount.toString()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("ForumComment", "UpReactCount data retrieval cancelled: ${error.message}")
+            }
+        })
+    }
+
+    private fun addDownReactCountListener() {
+        downReactCountRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    val downReactCount = snapshot.getValue(Int::class.java)
+                    // Update your UI or perform any actions with the updated downReactCount
+                    binding.downcount.text = downReactCount.toString()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("ForumComment", "DownReactCount data retrieval cancelled: ${error.message}")
+            }
+        })
     }
     private fun addCommentToDatabase(commentText: String) {
         val currentUser = FirebaseAuth.getInstance().currentUser
@@ -208,6 +250,9 @@ class ForumComment : AppCompatActivity() {
                     }
                 }
                 commentsAdapter.updateData(commentMap)
+
+                // Update the CommentCount in real-time
+                commentCountTextView.text = commentMap.size.toString()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -215,7 +260,6 @@ class ForumComment : AppCompatActivity() {
             }
         })
     }
-
 
     private fun loadUploaderData(postKey: String) {
         val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
