@@ -108,8 +108,9 @@
                             val data = dataList[holder.adapterPosition]
                             data.commentCount = commentCount
 
-                            // Update the UI in the corresponding ViewHolder
                             holder.updateCommentCount(commentCount)
+                            val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+                            postRef.child("commentCount").setValue(commentCount)
                         }
                     }
 
