@@ -931,9 +931,26 @@ class DetailPost : AppCompatActivity() {
         if (uid != null) {
             val userReference: DatabaseReference =
                 FirebaseDatabase.getInstance().getReference("Users").child(uid)
-            userReference.child("CurrentEngagement").setValue(ServerValue.increment(-1))
+
+            // Retrieve the current value of "CurrentEngagement"
+            userReference.child("CurrentEngagement").addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val currentEngagement = dataSnapshot.getValue(Long::class.java) ?: 0
+
+                    // Calculate the new value (ensure it doesn't go below 0)
+                    val newEngagement = maxOf(0, currentEngagement - 1)
+
+                    // Update the value in the database
+                    userReference.child("CurrentEngagement").setValue(newEngagement)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Handle onCancelled for "CurrentEngagement"
+                }
+            })
         }
     }
+
     override fun onResume() {
         super.onResume()
 
@@ -961,17 +978,27 @@ class DetailPost : AppCompatActivity() {
 
                                 participantsReference.addListenerForSingleValueEvent(object : ValueEventListener {
                                     override fun onDataChange(participantSnapshot: DataSnapshot) {
+                                        var updatedParticipantCount = 0
+
                                         for (participant in participantSnapshot.children) {
                                             val participantUid = participant.key
-                                            updateCurrentEngagement(participantUid)
+                                            val participantValue = participant.getValue(Boolean::class.java)
+
+                                            if (participantUid != null && participantValue == false) {
+                                                updateCurrentEngagement(participantUid)
+                                            } else {
+                                                updatedParticipantCount++
+                                            }
                                         }
+
+                                        // Update the participant count in UI
+                                        detailCurrentParty.text = "$updatedParticipantCount"
                                     }
 
                                     override fun onCancelled(participantsError: DatabaseError) {
+                                        // Handle onCancelled for Participants
                                     }
                                 })
-
-                                // Set text and disable the button
                                 joinButton.text = "Already Finish"
                                 joinButton.isEnabled = false
                                 return
@@ -981,8 +1008,6 @@ class DetailPost : AppCompatActivity() {
                         }
                     }
 
-
-                    // Continue with the existing logic if verificationStatus is false or current date is before end date
                     reference.child("Participants").addListenerForSingleValueEvent(object : ValueEventListener {
                         @SuppressLint("SetTextI18n")
                         override fun onDataChange(participantSnapshot: DataSnapshot) {
