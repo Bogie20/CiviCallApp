@@ -6,6 +6,7 @@ import android.view.ScaleGestureDetector
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
@@ -29,13 +30,13 @@ class DataAdapter(private val dataList: List<DataItem>) :
         val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
         val paragraphTextView: TextView = itemView.findViewById(R.id.paragraphTextView)
         val imageView: ImageView = itemView.findViewById(R.id.feed_post_image)
-        val referenceTextView: TextView = itemView.findViewById(R.id.reference)
+        val linearBtn: LinearLayout = itemView.findViewById(R.id.linearBtn)
 
         var currentItem: DataItem? = null
         private var scaleFactor = 1.0f
 
         init {
-            referenceTextView.setOnClickListener {
+            linearBtn.setOnClickListener {
                 itemClickListener?.onReferenceClick(bindingAdapterPosition)
             }
 
@@ -86,7 +87,7 @@ class DataAdapter(private val dataList: List<DataItem>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_data, parent, false)
+            .inflate(R.layout.item_educ_resource, parent, false)
         return ViewHolder(itemView)
     }
 

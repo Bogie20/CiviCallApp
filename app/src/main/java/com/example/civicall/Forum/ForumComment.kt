@@ -172,7 +172,7 @@ class ForumComment : AppCompatActivity() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
 
-                val layoutManager = recyclerView.layoutManager as GridLayoutManager
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
                 val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
                 val viewHolder =
                     recyclerView.findViewHolderForAdapterPosition(firstVisibleItemPosition)
@@ -184,14 +184,20 @@ class ForumComment : AppCompatActivity() {
         })
     }
 
-
+    private fun formatCount(count: Int): String {
+        return when {
+            count < 1000 -> count.toString()
+            count < 1000000 -> String.format(Locale.getDefault(), "%.1fk", count / 1000.0)
+            else -> String.format(Locale.getDefault(), "%.1fm", count / 1000000.0)
+        }
+    }
     private fun addUpReactCountListener() {
         upReactCountRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val upReactCount = snapshot.getValue(Int::class.java)
-                    // Update your UI or perform any actions with the updated upReactCount
-                    binding.upcount.text = upReactCount.toString()
+                    // Update your UI or perform any actions with the formatted upReactCount
+                    binding.upcount.text = formatCount(upReactCount ?: 0)
                 }
             }
 
@@ -206,8 +212,8 @@ class ForumComment : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val downReactCount = snapshot.getValue(Int::class.java)
-                    // Update your UI or perform any actions with the updated downReactCount
-                    binding.downcount.text = downReactCount.toString()
+                    // Update your UI or perform any actions with the formatted downReactCount
+                    binding.downcount.text = formatCount(downReactCount ?: 0)
                 }
             }
 
@@ -265,8 +271,8 @@ class ForumComment : AppCompatActivity() {
                 }
                 commentsAdapter.updateData(commentMap)
 
-                // Update the CommentCount in real-time
-                commentCountTextView.text = commentMap.size.toString()
+                // Update the CommentCount in real-time with formatted count
+                commentCountTextView.text = formatCount(commentMap.size)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -274,6 +280,7 @@ class ForumComment : AppCompatActivity() {
             }
         })
     }
+
 
     private fun loadUploaderData(postKey: String) {
         val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)

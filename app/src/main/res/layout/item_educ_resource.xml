@@ -48,48 +48,53 @@
             android:lineSpacingExtra="6dp"
             android:fontFamily="@font/lexend"
             android:gravity="start"
-            android:layout_marginLeft="23dp"
-            android:layout_marginRight="20dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
-            volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
-            dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
-            litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
-            diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
-            ornare ex. Sed rhoncus est ut libero porta lobortis."
+            android:layout_marginHorizontal="20dp"
+            android:text="@string/lorem"
             android:textAlignment="viewStart"
             android:textColor="@color/black"
             android:textSize="13sp"
             app:layout_constraintTop_toBottomOf="@id/titleTextView"
             tools:layout_editor_absoluteX="20dp" />
 
-        <TextView
-            android:id="@+id/reference"
+        <LinearLayout
+            android:id="@+id/linearBtn"
             android:layout_width="wrap_content"
-            android:layout_height="18dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/lexend_semibold"
-            android:text="More Details"
-            android:textColor="@color/DarkGray"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.852"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/paragraphTextView" />
-
-        <ImageView
-            android:id="@+id/post_like_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/highlight_button"
+            android:gravity="end"
             android:layout_marginBottom="20dp"
-            android:src="@drawable/arrowforward"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/reference"
-            app:layout_constraintTop_toBottomOf="@id/paragraphTextView"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintHorizontal_bias="1.000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/paragraphTextView">
 
+            <TextView
+                android:id="@+id/reference"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/lexend_semibold"
+                android:paddingLeft="10dp"
+                android:text="More Details"
+                android:textColor="@color/DarkGray"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/post_like_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="9dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/arrowforward"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/reference"
+                app:layout_constraintTop_toBottomOf="@id/paragraphTextView"
+                app:layout_constraintVertical_bias="0.0" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

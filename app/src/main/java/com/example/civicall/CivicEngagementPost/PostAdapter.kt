@@ -22,7 +22,7 @@ import java.util.TimeZone
 class PostAdapter (private val context: Context, private var dataList: List<DataClass>) :
     RecyclerView.Adapter<MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.post_civicengagement, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_civicengagement, parent, false)
         return MyViewHolder(view)
     }
 

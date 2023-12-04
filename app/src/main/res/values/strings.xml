@@ -165,4 +165,5 @@
     <string name="information">We do not share personal information with third parties unless required for legal reasons, system functionality, or with user consent.</string>
     <string name="limitation3">Technical issues may arise, affecting user experience.</string>
     <string name="title_activity_sustainable_development_goals">SustainableDevelopmentGoals</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a, ornare ex. Sed rhoncus est ut libero porta lobortis.</string>
 </resources>

@@ -255,7 +255,8 @@ class DetailPost : AppCompatActivity() {
             detailcampus.text = it.getString("Campus")
             detailPaymentMethod.text = it.getString("PaymentMethod")
             detailPaymentRecipient.text = it.getString("PaymentRecipient")
-            detailFundCollected.text = it.getDouble("FundCollected").toString()
+            val formattedFundCollected = String.format("%.2f", it.getDouble("FundCollected") ?: 0.0)
+            detailFundCollected.text = formattedFundCollected
             detailFaciName.text = it.getString("Facilitator")
             detailFaciInfo.text = it.getString("FacilitatorConEm")
             detailObjective.text = it.getString("Objective")
