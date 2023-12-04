@@ -450,9 +450,11 @@ class CommentAdapter(
                 closeFabMenu()
             }
         }
-        private fun closeFabMenu() {
+        fun closeFabMenu() {
             val fabMenu: FloatingActionMenu = itemView.findViewById(R.id.fabMenu)
-            fabMenu.close(true)
+            if (fabMenu.isOpened) {
+                fabMenu.close(true)
+            }
         }
         fun bind(comment: DataComment) {
             val currentUserReact = comment.currentUserReact // Replace with the actual variable that stores the user's reaction

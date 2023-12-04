@@ -9,6 +9,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.widget.NestedScrollView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -103,8 +105,12 @@ class ForumComment : AppCompatActivity() {
             binding.upcount.text = upReactCount.toString()
             binding.downcount.text = downReactCount.toString()
             loadUploaderData(postKey)
-            upReactCountRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey).child("upReactCount")
-            downReactCountRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey).child("downReactCount")
+            upReactCountRef =
+                FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+                    .child("upReactCount")
+            downReactCountRef =
+                FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+                    .child("downReactCount")
 
             // Add listeners for real-time updates
             addUpReactCountListener()
@@ -120,11 +126,13 @@ class ForumComment : AppCompatActivity() {
             // Check if the user is verified before allowing them to comment
             val currentUser = FirebaseAuth.getInstance().currentUser
             if (currentUser != null) {
-                val userRef = FirebaseDatabase.getInstance().getReference("Users").child(currentUser.uid)
+                val userRef =
+                    FirebaseDatabase.getInstance().getReference("Users").child(currentUser.uid)
                 userRef.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         if (snapshot.exists()) {
-                            val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java)
+                            val verificationStatus =
+                                snapshot.child("verificationStatus").getValue(Boolean::class.java)
                             if (verificationStatus == true) {
                                 // User is verified, allow commenting
                                 if (commentText.isNotEmpty()) {
@@ -158,20 +166,25 @@ class ForumComment : AppCompatActivity() {
 
         loadCommentsFromDatabase()
 
+        val commentsRecyclerView: RecyclerView = findViewById(R.id.comments_recyclerView)
+
         commentsRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
-                    closeFabMenu()
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val layoutManager = recyclerView.layoutManager as GridLayoutManager
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+                val viewHolder =
+                    recyclerView.findViewHolderForAdapterPosition(firstVisibleItemPosition)
+
+                if (viewHolder is CommentAdapter.CommentViewHolder) {
+                    viewHolder.closeFabMenu()
                 }
             }
         })
+    }
 
-    }
-    private fun closeFabMenu() {
-        val fabMenu: FloatingActionMenu = findViewById(R.id.fabMenu)
-        fabMenu.close(true)
-    }
+
     private fun addUpReactCountListener() {
         upReactCountRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

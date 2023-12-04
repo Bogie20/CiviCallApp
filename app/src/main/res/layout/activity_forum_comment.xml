@@ -48,7 +48,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="0dp"
-        android:id="@+id/scrollview">
+        android:id="@+id/nestedScroll">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
