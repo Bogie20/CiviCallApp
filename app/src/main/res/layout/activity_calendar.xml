@@ -60,7 +60,6 @@
         android:layout_marginTop="10dp"
         android:orientation="vertical">
     <CalendarView
-        android:layout_below="@+id/card"
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -68,10 +67,9 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_below="@+id/calendarView"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="10dp"
+        android:layout_marginHorizontal="5dp"
         app:layoutManager="LinearLayoutManager" />
     </LinearLayout>
     </androidx.core.widget.NestedScrollView>

@@ -17,12 +17,12 @@
             android:id="@+id/engagementImage"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="10dp"
             android:scaleType="centerCrop"
             android:src="@drawable/imagevolunteer"
-            app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
+            app:shapeAppearanceOverlay="@style/roundedImage" />
         <LinearLayout
             android:layout_width="230dp"
             android:layout_height="130dp"
@@ -36,13 +36,13 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="60dp"
             android:lineSpacingExtra="2dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:maxLines="2"
             android:ellipsize="end"
             android:fontFamily="@font/lexend_bold"
             android:text="Titled"
             android:textColor="@color/black"
-            android:textSize="15sp" />
+            android:textSize="13sp" />
 
 
         <TextView
@@ -56,7 +56,7 @@
             android:maxLines="2"
             android:text="Location"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
         <TextView
             android:id="@+id/dateandTime"
             android:layout_width="215dp"
@@ -68,7 +68,7 @@
             android:maxLines="2"
             android:text="Date and Time"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -76,10 +76,10 @@
             android:layout_height="130dp"
             android:layout_toEndOf="@id/linearInfo">
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/badge_25"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="45dp"
+                android:id="@+id/iconIndicator"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginBottom="10dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/check_24" />

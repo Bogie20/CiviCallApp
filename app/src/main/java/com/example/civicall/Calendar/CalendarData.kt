@@ -5,4 +5,5 @@ data class CalendarData(
     val recTitle: String,
     val location: String,
     val dateAndTime: String,
+    val postKey: String
 )

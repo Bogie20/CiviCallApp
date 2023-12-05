@@ -79,14 +79,16 @@ class CalendarActivity : AppCompatActivity() {
                 val participantsSnapshot = snapshot.child("Participants")
                 val startDate = snapshot.child("startDate").value.toString()
                 val endDate = snapshot.child("endDate").value.toString()
-
                 if (participantsSnapshot.hasChild(currentUserUid) && isDateInRange(selectedDate, startDate, endDate)) {
+                    val postKey = FirebaseDatabase.getInstance().getReference("Upload Engagement").push().key ?: ""
                     val engagementData = CalendarData(
                         snapshot.child("image").value.toString(),
                         snapshot.child("title").value.toString(),
                         snapshot.child("location").value.toString(),
-                        "$startDate - $endDate"
+                        "$startDate - $endDate",
+                        postKey
                     )
+
                     engagementList.add(engagementData)
                     calendarAdapter.notifyItemInserted(engagementList.size - 1)
                 }

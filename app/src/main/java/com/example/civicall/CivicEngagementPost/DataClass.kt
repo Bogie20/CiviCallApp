@@ -20,7 +20,7 @@ class DataClass {
     var paymentRecipient: String? = null
     var fundcollected: Double = 0.0
     var verificationStatus: Boolean = false
-
+    var postKey: String? = null
     var key: String? = null
         set(value) {
             field = value
@@ -45,7 +45,8 @@ class DataClass {
         paymentMethod: String?,
         paymentRecipient: String?,
         fundcollected: Double,
-        verificationStatus: Boolean
+        verificationStatus: Boolean,
+        postKey: String?
 
     ) {
         this.uploadersUID = uploadersuid
@@ -67,6 +68,7 @@ class DataClass {
         this.paymentRecipient = paymentRecipient
         this.fundcollected = fundcollected
         this.verificationStatus = verificationStatus
+        this.postKey = postKey
     }
 
     constructor() {}
