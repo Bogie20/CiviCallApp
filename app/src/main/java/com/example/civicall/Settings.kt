@@ -86,7 +86,7 @@ class Settings : AppCompatActivity(), ValueEventListener {
 
         val forumsett = binding.forumsett
         forumsett.setOnClickListener {
-            val intent = Intent(this, Trial::class.java)
+            val intent = Intent(this, AboutUs::class.java)
             startActivity(intent)
         }
 
