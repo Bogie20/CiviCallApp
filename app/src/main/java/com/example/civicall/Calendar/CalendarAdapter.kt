@@ -78,7 +78,6 @@ class CalendarAdapter(private val engagementList: List<CalendarData>) :
                 val participantsRef = FirebaseDatabase.getInstance().getReference("Upload Engagement")
                     .child(engagementId)
                     .child("Participants")
-                participantsRef.setValue(true)
                 participantsRef.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(participantsSnapshot: DataSnapshot) {
                         val hasAttended = participantsSnapshot.child(currentUserUid).getValue(Boolean::class.java) ?: false
