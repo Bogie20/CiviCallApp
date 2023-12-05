@@ -1,6 +1,5 @@
 package com.example.civicall.Notification
-import com.bumptech.glide.annotation.GlideModule
-import com.bumptech.glide.module.AppGlideModule
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
 import com.google.android.material.imageview.ShapeableImageView
 import com.squareup.picasso.Picasso
-import java.text.SimpleDateFormat
-import java.util.*
+
 
 class NotificationAdapter(private val context: Context, private var notificationList: List<NotificationModel>) : RecyclerView.Adapter<NotificationAdapter.ViewHolder>() {
 
