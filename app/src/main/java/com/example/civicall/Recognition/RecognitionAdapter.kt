@@ -17,7 +17,7 @@ class RecognitionAdapter(private val context: Context, private val userList: Lis
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.recognition_recycler, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.recognition_item, parent, false)
         return ViewHolder(view)
     }
 

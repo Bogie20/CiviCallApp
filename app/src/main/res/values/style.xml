@@ -92,7 +92,7 @@
 
         <style name="roundedImageViewRounded">
             <item name="cornerFamily">rounded</item>
-            <item name="cornerSize">1%</item>
+            <item name="cornerSize">10%</item>
         </style>
     <style name="ElevatedHint">
         <item name="android:textColorHint">@android:color/darker_gray</item>
