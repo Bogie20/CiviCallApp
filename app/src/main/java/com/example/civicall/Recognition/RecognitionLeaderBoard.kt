@@ -217,7 +217,7 @@ class RecognitionLeaderBoard : AppCompatActivity() {
 
             // Update the text based on the selected campus
             campusTitleTextView.text = when {
-                selectedCampus.isEmpty() -> "BatStateU TNEU Overall Champions"
+                selectedCampus.isEmpty() -> "\"BatStateU TNEU Civic Champions\""
                 else -> selectedCampus
             }
 

@@ -497,10 +497,7 @@ class DetailPost : AppCompatActivity() {
             alertDialog.dismiss()
 
             showImageDialog()
-
         }
-
-
         alertDialog.show()
     }
 

@@ -38,15 +38,15 @@ class MainContactAdapter(var mList: List<ContactData>) :
         holder.cardView.setOnClickListener {
             val context = holder.itemView.context
             when (position) {
-                0 -> context.startActivity(Intent(context, BalayanCont::class.java))
-                1 -> context.startActivity(Intent(context, LemeryCont::class.java))
-                2 -> context.startActivity(Intent(context, LipaCont::class.java))
-                3 -> context.startActivity(Intent(context, LoboCont::class.java))
-                4 -> context.startActivity(Intent(context, MabiniCont::class.java))
-                5 -> context.startActivity(Intent(context, MalvarCont::class.java))
-                6 -> context.startActivity(Intent(context, NasugbuCont::class.java))
-                7 -> context.startActivity(Intent(context, PabloBorbon1Cont::class.java))
-                8 -> context.startActivity(Intent(context, PabloBorbon2Cont::class.java))
+                0 -> context.startActivity(Intent(context, PabloBorbon2Cont::class.java))
+                1 -> context.startActivity(Intent(context, BalayanCont::class.java))
+                2 -> context.startActivity(Intent(context, LemeryCont::class.java))
+                3 -> context.startActivity(Intent(context, LipaCont::class.java))
+                4 -> context.startActivity(Intent(context, LoboCont::class.java))
+                5 -> context.startActivity(Intent(context, MabiniCont::class.java))
+                6 -> context.startActivity(Intent(context, PabloBorbon1Cont::class.java))
+                7 -> context.startActivity(Intent(context, MalvarCont::class.java))
+                8 -> context.startActivity(Intent(context, NasugbuCont::class.java))
                 9 -> context.startActivity(Intent(context, RosarioCont::class.java))
                 10 -> context.startActivity(Intent(context, SanJuanCont::class.java))
             }
