@@ -1,5 +1,4 @@
 package com.example.civicall
-
 import android.Manifest
 import android.app.NotificationChannel
 import android.provider.Settings
@@ -20,6 +19,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.civicall.Notification.Notifications
+import com.example.civicall.NotificationsToken.TokenRegistration
 import com.example.civicall.databinding.ActivitySettingsBinding
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.FirebaseApp
@@ -31,6 +31,7 @@ import com.google.firebase.database.ValueEventListener
 import java.util.concurrent.atomic.AtomicInteger
 
 class Settings : AppCompatActivity(), ValueEventListener {
+
     private lateinit var currentUserUid: String
     private lateinit var notificationSwitch: SwitchCompat
     private lateinit var binding: ActivitySettingsBinding
@@ -38,6 +39,8 @@ class Settings : AppCompatActivity(), ValueEventListener {
     private val verificationNotificationCount = AtomicInteger(0)
     private val notificationList =
         mutableListOf<NotificationCompat.Builder>() // List to store notifications
+
+    private lateinit var tokenRegistration: TokenRegistration
 
     companion object {
         private const val CHANNEL_ID = "channelId"
@@ -52,6 +55,8 @@ class Settings : AppCompatActivity(), ValueEventListener {
 
         currentUserUid = FirebaseAuth.getInstance().currentUser?.uid ?: ""
         sharedPreferences = getPreferences(Context.MODE_PRIVATE)
+
+        tokenRegistration = TokenRegistration()
 
         binding.backbtn.setOnClickListener {
             super.onBackPressed()
@@ -93,6 +98,7 @@ class Settings : AppCompatActivity(), ValueEventListener {
             if (isChecked) {
                 requestNotificationPermission()
                 getNotificationItems()
+                tokenRegistration.registerToken()
             } else {
                 // Disable notifications
                 // You may want to cancel existing notifications here
@@ -246,6 +252,9 @@ class Settings : AppCompatActivity(), ValueEventListener {
 
         // Add the builder to the list
         notificationList.add(builder)
+
+        // Show verification notification immediately
+        showAllNotifications()
     }
 
     private fun dismissVerificationNotification() {
@@ -272,6 +281,7 @@ class Settings : AppCompatActivity(), ValueEventListener {
     override fun onCancelled(error: DatabaseError) {
         Toast.makeText(this, "Data retrieval cancelled", Toast.LENGTH_SHORT).show()
     }
+
     private var totalNotificationsShown = 0
 
     // Function to show all notifications at once
@@ -288,4 +298,5 @@ class Settings : AppCompatActivity(), ValueEventListener {
 
         // Clear the list after showing notifications
         notificationList.clear()
-    }}
+    }
+}
