@@ -1,17 +1,21 @@
 package com.example.civicall.Calendar
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.CalendarView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.civicall.MainMenu
 import com.example.civicall.R
 import com.google.firebase.auth.FirebaseAuth
+import com.example.civicall.databinding.ActivityCalendarBinding
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 class CalendarActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityCalendarBinding
     private lateinit var calendarView: CalendarView
     private lateinit var recyclerView: RecyclerView
     private lateinit var calendarAdapter: CalendarAdapter
@@ -23,11 +27,16 @@ class CalendarActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_calendar)
+        binding = ActivityCalendarBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         calendarView = findViewById(R.id.calendarView)
         recyclerView = findViewById(R.id.recyclerView)
-
+        binding.backbtn.setOnClickListener {
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
         auth = FirebaseAuth.getInstance()
         databaseReference = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
 
@@ -37,11 +46,21 @@ class CalendarActivity : AppCompatActivity() {
         recyclerView.adapter = calendarAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        // Highlight the current date
+        val currentDate = Calendar.getInstance()
+        calendarView.date = currentDate.timeInMillis
+
+        // Load engagements for the current date
+        val formattedCurrentDate = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(currentDate.time)
+        loadEngagements(formattedCurrentDate)
+
+        // Set the OnDateChangeListener
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             val selectedDate = "${month + 1}/$dayOfMonth/$year"
             loadEngagements(selectedDate)
         }
     }
+
 
     private fun loadEngagements(selectedDate: String) {
         val currentUserUid = auth.currentUser?.uid ?: return
@@ -103,5 +122,11 @@ class CalendarActivity : AppCompatActivity() {
 
         // Check if selectedDate is within the range
         return selectedDateTime in startDateTime..endDateTime
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainMenu::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
 }

@@ -97,6 +97,10 @@
     <style name="ElevatedHint">
         <item name="android:textColorHint">@android:color/darker_gray</item>
     </style>
+    <style name="HighlightedDayTextAppearance">
+        <item name="android:textColor">@color/highlighted_day_text_color</item>
+
+    </style>
 
 
 
