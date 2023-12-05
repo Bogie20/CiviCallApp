@@ -141,7 +141,7 @@ class ForumComment : AppCompatActivity() {
                             } else {
                                 Toast.makeText(
                                     this@ForumComment,
-                                    "Please verify your account before commenting.",
+                                    "Please verify your account before joining the discussion.",
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }

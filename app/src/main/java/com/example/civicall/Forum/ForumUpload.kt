@@ -55,7 +55,7 @@ import java.util.Locale
 import java.util.TimeZone
 
 class ForumUpload : AppCompatActivity() {
-    private val REQUEST_CAMERA_PERMISSION = 1
+    private val REQUEST_CAMERA_PERMISSION = 2
     private val FILE_PROVIDER_AUTHORITY = "com.example.civicall.fileprovider"
     private var capturedImageUri: Uri? = null
     private val REQUEST_IMAGE_CAPTURE = 2

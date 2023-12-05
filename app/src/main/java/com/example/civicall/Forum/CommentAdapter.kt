@@ -585,6 +585,33 @@ class CommentAdapter(
             val currentUser = FirebaseAuth.getInstance().currentUser
             val currentUserUid = currentUser?.uid
 
+            // Check if the user has verificationStatus set to true
+            currentUserUid?.let {
+                val userRef = FirebaseDatabase.getInstance().getReference("Users").child(it)
+                userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
+
+                        if (verificationStatus) {
+                            // If verificationStatus is true, allow the user to react
+                            updateReact(postKey, commentKey, reactType)
+                        } else {
+                            // If verificationStatus is false, show a message or take appropriate action
+                            Toast.makeText(itemView.context, "You need to be verified to react.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        // Handle onCancelled as needed
+                    }
+                })
+            }
+        }
+
+        private fun updateReact(postKey: String, commentKey: String, reactType: String) {
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            val currentUserUid = currentUser?.uid
+
             // Update the reactType and count in the database
             val commentRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
                 .child("Comments").child(commentKey)
@@ -618,7 +645,6 @@ class CommentAdapter(
                 })
             }
         }
-
 
         private fun updateDrawable(postKey: String, commentKey: String) {
             val currentUser = FirebaseAuth.getInstance().currentUser

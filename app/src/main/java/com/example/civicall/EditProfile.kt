@@ -51,7 +51,7 @@ class EditProfile : AppCompatActivity() {
     private lateinit var storage: FirebaseStorage
     private lateinit var imageRef: StorageReference
     private var selectedImageUri: Uri? = null
-    private val REQUEST_CAMERA_PERMISSION = 1
+    private val REQUEST_CAMERA_PERMISSION = 2
     private lateinit var firebaseAuth: FirebaseAuth
     private var fullFname: String = ""
     private var fullMname: String = ""

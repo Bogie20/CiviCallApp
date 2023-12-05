@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".Forum.ForumComment">
 
-
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -331,7 +330,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="20dp"
             android:layout_marginEnd="10dp"
-            app:menu_buttonSpacing="0dp"
+            app:menu_buttonSpacing="10dp"
             android:layout_marginTop="4dp"
             app:menu_colorNormal="@color/transparent"
             app:menu_colorPressed="@color/grey"

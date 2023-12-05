@@ -65,7 +65,7 @@ class Upload_engagement : AppCompatActivity() {
     private lateinit var uploadEndDate: EditText
     private var imageURL: String? = null
     private var uri: Uri? = null
-    private val REQUEST_CAMERA_PERMISSION = 1
+    private val REQUEST_CAMERA_PERMISSION = 2
     private lateinit var binding: ActivityUploadEngagementBinding
     private lateinit var networkUtils: NetworkUtils
 
