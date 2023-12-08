@@ -87,6 +87,9 @@ class ProfileDetails : AppCompatActivity() {
                 val usertype = snapshot.child("userType").value
                 val campus = snapshot.child("campus").value
                 val nstp = snapshot.child("nstp").value
+                val course = snapshot.child("course").value
+                val yearandSection = snapshot.child("yearandSection").value
+                val srcode = snapshot.child("srcode").value
                 val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
                 val activePts = snapshot.child("activepts").value
                 val finishact = snapshot.child("finishactivity").value
@@ -98,6 +101,9 @@ class ProfileDetails : AppCompatActivity() {
                 binding.mobilenumtxt.text = contact.toString()
                 binding.emergencynumtxt.text = Emecontact?.toString() ?: ""
                 binding.addresstxt.text = address.toString()
+                binding.coursetxt.text = course.toString()
+                binding.yearandsecttxt.text = yearandSection.toString()
+                binding.srCodetxt.text = srcode.toString()
                 binding.dateofbirthtxt.text = birthday.toString()
                 binding.gendertxt.text = gender.toString()
                 binding.usertypetxt.text = usertype.toString()

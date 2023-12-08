@@ -606,13 +606,50 @@
             </com.google.android.material.textfield.TextInputLayout>
             <TextView
                 android:id="@+id/label13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SR-CODE:"
+                android:textSize="20sp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/white_70"
+                android:textStyle="bold"
+                />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/SrCodeTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="false"
+                android:layout_marginTop="10dp"
+                app:counterTextColor="@color/white">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/SrCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:drawableStart="@drawable/sr_code"
+                    android:drawablePadding="15dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/lexend"
+                    android:hint="Enter your SR-Code"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="30dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/label14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Course:"
                 android:textSize="20sp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
                 />
@@ -622,8 +659,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:hintEnabled="false"
-                app:counterTextColor="@color/white"
-                android:layout_marginVertical="10dp">
+                android:layout_marginTop="10dp"
+                app:counterTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Course"
@@ -641,39 +678,38 @@
                     android:paddingStart="20dp"
                     android:paddingEnd="30dp" />
             </com.google.android.material.textfield.TextInputLayout>
-
             <TextView
-                android:id="@+id/label14"
+                android:id="@+id/label15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SR-CODE:"
+                android:text="Year &amp; Section:"
                 android:textSize="20sp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/white_70"
                 android:textStyle="bold"
                 />
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/SrCodeTextInputLayout"
+                android:id="@+id/YearandSectTextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="300dp"
                 app:hintEnabled="false"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="300dp"
                 app:counterTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/SrCode"
+                    android:id="@+id/yearandsect"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:background="@drawable/rounded_edittext_background"
-                    android:drawableStart="@drawable/sr_code"
+                    android:drawableStart="@drawable/course_icon"
                     android:drawablePadding="15dp"
                     android:ellipsize="end"
                     android:fontFamily="@font/lexend"
-                    android:hint="Enter your SR-Code"
+                    android:hint="Enter your Year &amp; Section"
                     android:lines="1"
                     android:maxLines="1"
                     android:singleLine="true"

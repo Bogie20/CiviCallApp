@@ -750,7 +750,6 @@
                 android:lines="1"
                 app:cardCornerRadius="10dp"
                 android:maxLines="1"
-                android:layout_marginBottom="300dp"
                 android:layout_marginHorizontal="10dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="30dp"
@@ -769,6 +768,169 @@
                         app:tint="@color/DarkGray" />
                     <TextView
                         android:id="@+id/nstpnumtxt"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/lexend"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:hint="............................................................................."
+                        android:textColor="@color/DarkGray"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/label13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Course:"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white_70"
+                android:textStyle="bold"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/coursecard"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:drawablePadding="15dp"
+                android:ellipsize="end"
+                android:inputType="text"
+                android:lines="1"
+                app:cardCornerRadius="10dp"
+                android:maxLines="1"
+                android:layout_marginHorizontal="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="30dp"
+                app:hintTextColor="@color/DarkGray">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/course_icon"
+                        android:layout_gravity="center"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        app:tint="@color/DarkGray" />
+                    <TextView
+                        android:id="@+id/coursetxt"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/lexend"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:hint="............................................................................."
+                        android:textColor="@color/DarkGray"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/label14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Year and Section:"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white_70"
+                android:textStyle="bold"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/yearandsectcard"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:drawablePadding="15dp"
+                android:ellipsize="end"
+                android:inputType="text"
+                android:lines="1"
+                app:cardCornerRadius="10dp"
+                android:maxLines="1"
+                android:layout_marginHorizontal="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="30dp"
+                app:hintTextColor="@color/DarkGray">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/course_icon"
+                        android:layout_gravity="center"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        app:tint="@color/DarkGray" />
+                    <TextView
+                        android:id="@+id/yearandsecttxt"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/lexend"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:hint="............................................................................."
+                        android:textColor="@color/DarkGray"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/label15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SR-Code:"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white_70"
+                android:textStyle="bold"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/srCodecard"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:drawablePadding="15dp"
+                android:ellipsize="end"
+                android:inputType="text"
+                android:lines="1"
+                app:cardCornerRadius="10dp"
+                android:maxLines="1"
+                android:layout_marginBottom="300dp"
+                android:layout_marginHorizontal="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="30dp"
+                app:hintTextColor="@color/DarkGray">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/course_icon"
+                        android:layout_gravity="center"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        app:tint="@color/DarkGray" />
+                    <TextView
+                        android:id="@+id/srCodetxt"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"

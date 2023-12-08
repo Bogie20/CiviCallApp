@@ -60,6 +60,7 @@ class EditProfile : AppCompatActivity() {
     private var fullMobileNumber: String = ""
     private var fullEmeMobileNumber: String = ""
     private var fullCourse: String = ""
+    private var fullYearSect: String = ""
     private var fullSrcode: String = ""
     private var isPopupShowing = false
     private val FILE_PROVIDER_AUTHORITY = "com.example.civicall.fileprovider"
@@ -195,6 +196,7 @@ class EditProfile : AppCompatActivity() {
         fullEmeMobileNumber = binding.ContactEme.text.toString()
         fullFname = binding.fname.text.toString()
         fullCourse = binding.Course.text.toString()
+        fullYearSect = binding.yearandsect.text.toString()
         fullSrcode = binding.SrCode.text.toString()
 
         val maxLength = 80 // Max character limit for name fields
@@ -206,6 +208,7 @@ class EditProfile : AppCompatActivity() {
             binding.mname to maxLength,
             binding.Lname to maxLength,
             binding.Course to maxLength,
+            binding.yearandsect to maxLength,
             binding.address to maxAddressLength,
             binding.Contactline to maxContactLength,
             binding.ContactEme to maxContactLength,
@@ -238,7 +241,11 @@ class EditProfile : AppCompatActivity() {
                 binding.Course.setSelection(fullCourse.length)
             }
         }
-
+        binding.yearandsect.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                binding.yearandsect.setSelection(fullYearSect.length)
+            }
+        }
         binding.address.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 binding.address.setSelection(fullAddress.length)
@@ -394,6 +401,7 @@ class EditProfile : AppCompatActivity() {
         binding.mname.text = Editable.Factory.getInstance().newEditable(user.middlename)
         binding.Lname.text = Editable.Factory.getInstance().newEditable(user.lastname)
         binding.Course.text = Editable.Factory.getInstance().newEditable(user.course)
+        binding.yearandsect.text = Editable.Factory.getInstance().newEditable(user.yearandSection)
         binding.address.text = Editable.Factory.getInstance().newEditable(user.address)
         binding.SrCode.text = Editable.Factory.getInstance().newEditable(user.srcode)
         binding.Contactline.text = Editable.Factory.getInstance().newEditable(user.phoneno)
@@ -430,6 +438,7 @@ class EditProfile : AppCompatActivity() {
             val updatedAddress = binding.address.text.toString()
             val updatedContact = binding.Contactline.text.toString()
             val updatedCourse = binding.Course.text.toString()
+            val updatedYearandSect = binding.yearandsect.text.toString()
             val updatedSrCode = binding.SrCode.text.toString()
             val updatedUserType = binding.usercategory.text.toString()
             val updatedCampus = binding.campus.text.toString()
@@ -477,10 +486,13 @@ class EditProfile : AppCompatActivity() {
             if (!validateCourse()) {
                 binding.Course.error = "Please enter your Course"
             }
+            if (!validateYearSect()) {
+                binding.yearandsect.error = "Please enter your Year and Section"
+            }
             if (!validateSrCode()) {
                 binding.SrCode.error = "Please enter your SR-Code"
             }
-            if (!validateFirstName() || !validateMiddleName() || !validateLastName() || !validateAddress() || !validateBirthday() || !validateContactNumber() || !validateEmeContactNumber() || !validateCourse() || !validateSrCode() || !validateGender() || !validateUserType() || !validateCampus() || !validateNstp()) {
+            if (!validateFirstName() || !validateMiddleName() || !validateLastName() || !validateAddress() || !validateBirthday() || !validateContactNumber() || !validateEmeContactNumber() || !validateCourse() || !validateSrCode() || !validateGender() || !validateUserType() || !validateCampus() || !validateNstp() || !validateYearSect()) {
                 showCustomPopup("Please provide valid information for the following fields.")
                 return
             }
@@ -490,6 +502,7 @@ class EditProfile : AppCompatActivity() {
                 "middlename" to updatedMiddleName,
                 "lastname" to updatedLastName,
                 "course" to updatedCourse,
+                "yearandSection" to updatedYearandSect,
                 "srcode" to updatedSrCode,
                 "address" to updatedAddress,
                 "phoneno" to updatedContact,
@@ -817,6 +830,20 @@ class EditProfile : AppCompatActivity() {
             return false
         } else {
             binding.Course.error = null
+            return true
+        }
+    }
+    private fun validateYearSect(): Boolean {
+        val yearandSect = binding.yearandsect.text.toString().trim()
+
+        if (yearandSect.isEmpty()) {
+            binding.yearandsect.error = "Year and Section field is required"
+            return false
+        } else if (yearandSect.length < 8) {
+            binding.yearandsect.error = "It is too short"
+            return false
+        } else {
+            binding.yearandsect.error = null
             return true
         }
     }
