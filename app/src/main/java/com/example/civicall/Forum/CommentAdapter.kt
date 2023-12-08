@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
@@ -330,14 +331,16 @@ class CommentAdapter(
     }
     @SuppressLint("NotifyDataSetChanged")
     fun updateData(newData: Map<String, DataComment>) {
+        val diffResult = DiffUtil.calculateDiff(CommentDiffCallback(commentMap, newData))
         commentMap = newData
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.forum_respond, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.forum_respond, parent, false)
         return CommentViewHolder(view)
     }
+
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
         val commentKey = commentMap.keys.toList()[position]
@@ -495,12 +498,15 @@ class CommentAdapter(
                         if (userSnapshot.exists()) {
                             val userData = userSnapshot.getValue(Users::class.java)
                             userData?.let {
-                                // Set commenter's profile picture with a placeholder
-                                Glide.with(itemView.context)
+
+                                Glide.with(itemView.context.applicationContext)  // Use application context
+                                    .asBitmap()
                                     .load(it.ImageProfile)
                                     .placeholder(R.drawable.user)
                                     .error(R.drawable.user)
                                     .into(profilePic)
+
+
 
                                 // Set commenter's full name
                                 val fullNameText = "${it.firstname} ${it.lastname}"

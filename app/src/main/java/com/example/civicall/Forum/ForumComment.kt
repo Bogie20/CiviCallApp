@@ -231,7 +231,6 @@ class ForumComment : AppCompatActivity() {
             }
             .format(Calendar.getInstance().time)
 
-
         val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
             .child("Comments")
         val commentKey = commentsRef.push().key
@@ -242,15 +241,19 @@ class ForumComment : AppCompatActivity() {
         commentKey?.let { key ->
             commentData[key] = comment
         }
+
         val itemCount = commentsAdapter.itemCount
-        commentsRecyclerView.scrollToPosition(itemCount - 1)
         commentsRef.updateChildren(commentData).addOnSuccessListener {
             commentEditText.text.clear()
+
+            // Scroll to the newly added comment
+            commentsRecyclerView.scrollToPosition(itemCount)
         }.addOnFailureListener {
             // Handle failure if needed
             Log.e("ForumComment", "Failed to add comment: ${it.message}")
         }
     }
+
 
 
     private fun loadCommentsFromDatabase() {

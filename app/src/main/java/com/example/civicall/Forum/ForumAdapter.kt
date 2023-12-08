@@ -262,11 +262,8 @@
         private fun reportPost(postKey: String, reportType: String) {
             val currentUser = FirebaseAuth.getInstance().currentUser
             val currentUserUid = currentUser?.uid
-
             val postReportRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey).child("PostReport")
-
             val userReportRef = currentUserUid?.let { postReportRef.child(it) }
-
             userReportRef?.setValue(reportType)
                 ?.addOnSuccessListener {
                     Toast.makeText(context, "Reported successfully", Toast.LENGTH_SHORT).show()
@@ -323,12 +320,10 @@
                 })
             }
         }
-
         private fun getLocalHiddenState(postKey: String): Boolean? {
             val sharedPreferences = context.getSharedPreferences("HiddenPosts", Context.MODE_PRIVATE)
             return sharedPreferences.getBoolean("$currentUserUid-$postKey", false)
         }
-
         override fun onBindViewHolder(holder: MyViewHolderForum, position: Int) {
             val data = dataList[position]
             Glide.with(context).load(data.postImage).into(holder.forumImage)
@@ -364,8 +359,6 @@
             }
             getHiddenState(data.key ?: "") { isHidden ->
                 data.isHidden = isHidden
-
-                // Update the visibility of forumImage and forumText
                 if (data.isHidden) {
                     // The post is marked as hidden, hide forumImage and forumText
                     holder.forumImage.visibility = View.GONE
@@ -387,7 +380,6 @@
                     }
                 }
             }
-
             holder.hideButton.setOnClickListener {
                 data.isHidden = !data.isHidden
 
@@ -395,7 +387,6 @@
                     holder.hideButton.setImageResource(R.drawable.unhide)
                     holder.forumImage.visibility = View.GONE
                     holder.forumText.visibility = View.GONE
-
                 } else {
                     holder.hideButton.setImageResource(R.drawable.hideye)
                     if (!data.postImage.isNullOrBlank()) {
@@ -412,11 +403,7 @@
                         holder.forumText.visibility = View.GONE
                     }
                 }
-
-                // Update the visibility of hideButton
                 holder.hideButton.visibility = View.VISIBLE
-
-                // Update the hidden state in the Firebase Realtime Database
                 updateHiddenState(data.key, data.isHidden)
             }
             holder.editButton.visibility = View.GONE
@@ -469,18 +456,14 @@
             holder.updateReactButtons(data.key ?: "")
             holder.updateReactCountUI(data.upReactCount, data.downReactCount)
         }
-
-
         override fun getItemCount(): Int {
             return dataList.size
         }
-
         fun searchDataList(searchList: ArrayList<DataClassForum>) {
             dataList = searchList
             notifyDataSetChanged()
         }
     }
-
     class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val forumImage: ImageView = itemView.findViewById(R.id.postImage)
         val forumCategory: TextView = itemView.findViewById(R.id.hashtag)
@@ -633,15 +616,12 @@
                 else -> String.format(Locale.getDefault(), "%.1fm", count / 1000000.0)
             }
         }
-
         private fun updateReactCounts(postKey: String) {
             val reactRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey).child("React")
-
             reactRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     var upReactCount = 0
                     var downReactCount = 0
-
                     for (childSnapshot in snapshot.children) {
                         val reactType = childSnapshot.getValue(String::class.java)
                         if (reactType == "up") {
@@ -650,18 +630,12 @@
                             downReactCount++
                         }
                     }
-
-                    // Update the up and down react counts in the database
                     val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
                     postRef.child("upReactCount").setValue(upReactCount)
                     postRef.child("downReactCount").setValue(downReactCount)
-
-                    // Update the UI with the new counts
                     updateReactCountUI(upReactCount, downReactCount)
                 }
-
                 override fun onCancelled(error: DatabaseError) {
-                    // Handle onCancelled as needed
                 }
             })
         }
@@ -673,7 +647,6 @@
                 val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
 
                 dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
-
                 val date = dateFormat.parse(postTime)
                 val currentTime = System.currentTimeMillis()
 
