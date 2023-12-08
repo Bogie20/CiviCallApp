@@ -1,7 +1,9 @@
 package com.example.civicall.Calendar
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.CalendarView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -60,8 +62,19 @@ class CalendarActivity : AppCompatActivity() {
             loadEngagements(selectedDate)
         }
     }
+    private fun updateNoItemViewsVisibility() {
+        if (engagementList.isEmpty()) {
+            // No items in the list, make the views visible
+            binding.noimage.visibility = View.VISIBLE
+            binding.noimagetext.visibility = View.VISIBLE
+        } else {
+            // There are items in the list, make the views gone
+            binding.noimage.visibility = View.GONE
+            binding.noimagetext.visibility = View.GONE
+        }
+    }
 
-
+    @SuppressLint("NotifyDataSetChanged")
     private fun loadEngagements(selectedDate: String) {
         val currentUserUid = auth.currentUser?.uid ?: return
 
@@ -92,6 +105,9 @@ class CalendarActivity : AppCompatActivity() {
                     engagementList.add(engagementData)
                     calendarAdapter.notifyItemInserted(engagementList.size - 1)
                 }
+
+                // Update visibility based on the presence of items in the RecyclerView
+                updateNoItemViewsVisibility()
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -99,8 +115,7 @@ class CalendarActivity : AppCompatActivity() {
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {
-                // Handle removal if necessary
-                // You may want to remove the corresponding item from the list and notify the adapter
+                updateNoItemViewsVisibility()
             }
 
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
@@ -111,7 +126,11 @@ class CalendarActivity : AppCompatActivity() {
                 // Handle onCancelled
             }
         })
+
+        // Update visibility initially
+        updateNoItemViewsVisibility()
     }
+
 
     private fun isDateInRange(selectedDate: String, startDate: String, endDate: String): Boolean {
         // Convert selectedDate, startDate, and endDate to Date objects or another suitable format
