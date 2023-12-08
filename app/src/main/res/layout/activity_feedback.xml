@@ -268,28 +268,38 @@
         android:ems="10"
         android:gravity="start|top"
         android:textSize="15dp"
-        android:hint="Other Suggestion here"
+        android:hint="Enter Here"
         android:inputType="textMultiLine"
         android:lines="6"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"/>
 
+    <TextView
+        android:id="@+id/belowText"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextTextMultiLine"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/lexend_medium"
+        android:text="*You can provide feedback once a week"
+        android:textColor="@color/instruction"
+        android:textSize="15dp" />
 
     <Button
         android:id="@+id/publishbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/belowText"
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="25dp"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="75dp"
         android:background="@drawable/button_shape"
         android:fontFamily="@font/inter_bold"
         android:text="Publish feedback"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="20dp" />
-
-
-
 
 </RelativeLayout>

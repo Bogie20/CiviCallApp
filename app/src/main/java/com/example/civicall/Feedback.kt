@@ -2,18 +2,30 @@ package com.example.civicall
 
 import PopupFragment
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatTextView
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 class Feedback : AppCompatActivity() {
     private lateinit var backbtn: ImageView
@@ -34,11 +46,12 @@ class Feedback : AppCompatActivity() {
         editTextText2 = findViewById(R.id.editTextText2)
         ratingBar = findViewById(R.id.ratingBar)
         backbtn = findViewById(R.id.backbtn)
-       none = findViewById(R.id.none)
+        none = findViewById(R.id.none)
         thank = findViewById(R.id.thank)
         very = findViewById(R.id.very)
         fix = findViewById(R.id.fix)
         error = findViewById(R.id.error)
+
         error.setOnClickListener {
             handleCategorySelection("Fix Error")
         }
@@ -49,7 +62,7 @@ class Feedback : AppCompatActivity() {
             handleCategorySelection("The App is Very Functional")
         }
         none.setOnClickListener {
-            handleCategorySelection("none")
+            handleCategorySelection("None so far")
         }
         thank.setOnClickListener {
             handleCategorySelection("Thank you for asking")
@@ -82,13 +95,64 @@ class Feedback : AppCompatActivity() {
         val submitButton: Button = findViewById(R.id.publishbtn)
         submitButton.setOnClickListener {
             // Handle the feedback submission here
-            submitFeedback()
+            showConfirmationDialog()
         }
 
         // Initialize the Realtime Database instance
         database = FirebaseDatabase.getInstance()
     }
+    private var isSaveConfirmationDialogShowing = false
 
+    private fun showConfirmationDialog() {
+        if (isSaveConfirmationDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val confirmTitle: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
+        val logoutMsg: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
+        val saveBtn: MaterialButton = dialogView.findViewById(R.id.saveBtn)
+        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        confirmTitle.text = "Confirmation"
+        logoutMsg.text = "Are you certain you want to send this feedback?"
+
+        saveBtn.text = "Yes"
+        saveBtn.setOnClickListener {
+            alertDialog.dismiss()
+            dismissCustomDialog()
+            submitFeedback()
+        }
+        cancelBtn.text = "Cancel"
+        cancelBtn.setOnClickListener {
+            isSaveConfirmationDialogShowing = false
+            alertDialog.dismiss()
+        }
+        alertDialog.setOnDismissListener {
+            isSaveConfirmationDialogShowing = false
+        }
+
+        alertDialog.show()
+        isSaveConfirmationDialogShowing =
+            true
+    }
+
+    private fun dismissCustomDialog() {
+        if (isSaveConfirmationDialogShowing) {
+            isSaveConfirmationDialogShowing = false
+
+        }
+    }
     private fun handleCategorySelection(category: String) {
         // Your existing logic for handling category selection
 
@@ -96,7 +160,19 @@ class Feedback : AppCompatActivity() {
         editTextMultiline.text = category
 
     }
+    private var isToastShowing = false
 
+    private fun showToast(message: String) {
+        if (!isToastShowing) {
+            Toast.makeText(this@Feedback, message, Toast.LENGTH_SHORT).show()
+            isToastShowing = true
+
+            // Delay resetting the flag to allow the user to dismiss the Toast
+            Handler(Looper.getMainLooper()).postDelayed({
+                isToastShowing = false
+            }, 2000)
+        }
+    }
     private fun submitFeedback() {
         // Check if the user is authenticated
         val currentUser = FirebaseAuth.getInstance().currentUser
@@ -114,24 +190,65 @@ class Feedback : AppCompatActivity() {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if (dataSnapshot.exists()) {
                         // Feedback already exists, update it
-                        dataSnapshot.ref.updateChildren(
-                            mapOf(
-                                "rating" to feedbackRating.toDouble(),
-                                "message" to feedbackMessage,
-                                "Comments" to commenttext
-                            )
-                        ).addOnSuccessListener {
-                            // Feedback updated successfully
+                        val lastFormattedTimestamp =
+                            dataSnapshot.child("formattedTimestamp").getValue(String::class.java)
+
+                        if (lastFormattedTimestamp != null) {
+                            val cooldownPeriod =
+                                7 * 24 * 60 * 60 * 1000 // Set your cooldown period (each week)
+                            val currentTime = System.currentTimeMillis()
+
+                            // Parse the last formatted timestamp to a Date object
+                            val sdf = SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault())
+                            sdf.timeZone = TimeZone.getTimeZone("Asia/Manila")
+
+                            try {
+                                val lastTimestampDate = sdf.parse(lastFormattedTimestamp)
+
+                                if (currentTime - lastTimestampDate.time < cooldownPeriod) {
+                                    // User has provided feedback too soon, reject new feedback
+                                    showToast(
+                                        "You can provide feedback only once a week.",
+                                    )
+                                } else {
+                                    // Proceed with feedback update
+                                    dataSnapshot.ref.updateChildren(
+                                        mapOf(
+                                            "rating" to feedbackRating.toDouble(),
+                                            "message" to feedbackMessage,
+                                            "comments" to commenttext,
+                                            "formattedTimestamp" to sdf.format(Date()) // Update formatted timestamp
+                                        )
+                                    ).addOnSuccessListener {
+                                        // Feedback updated successfully
+                                        Toast.makeText(
+                                            this@Feedback,
+                                            "Feedback updated successfully",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }.addOnFailureListener { e ->
+                                        // Handle the error if feedback update fails
+                                        Toast.makeText(
+                                            this@Feedback,
+                                            "Failed to update feedback",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                }
+                            } catch (e: ParseException) {
+                                // Handle parsing exception
+                                e.printStackTrace()
+                                Toast.makeText(
+                                    this@Feedback,
+                                    "Error parsing timestamp",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        } else {
+                            // Handle case where formattedTimestamp is null
                             Toast.makeText(
                                 this@Feedback,
-                                "Feedback updated successfully",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }.addOnFailureListener { e ->
-                            // Handle the error if feedback update fails
-                            Toast.makeText(
-                                this@Feedback,
-                                "Failed to update feedback",
+                                "Formatted timestamp is null",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -142,30 +259,37 @@ class Feedback : AppCompatActivity() {
                         usersRef.addListenerForSingleValueEvent(object : ValueEventListener {
                             override fun onDataChange(dataSnapshot: DataSnapshot) {
                                 if (dataSnapshot.exists()) {
-                                    val firstName = dataSnapshot.child("firstName").getValue(String::class.java)
+                                    val firstName =
+                                        dataSnapshot.child("firstName").getValue(String::class.java)
 
                                     // Create a feedback data model for the Realtime Database
+                                    val sdf =
+                                        SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault())
+                                    sdf.timeZone = TimeZone.getTimeZone("Asia/Manila")
+
                                     val feedbackDataRealtime = hashMapOf(
                                         "rating" to feedbackRating.toDouble(),
                                         "message" to feedbackMessage,
                                         "firstName" to firstName,
-                                        "comments" to commenttext
+                                        "comments" to commenttext,
+                                        "formattedTimestamp" to sdf.format(Date()) // Add formatted timestamp
                                     )
-                                    feedbackRef.setValue(feedbackDataRealtime).addOnSuccessListener {
-                                        // Feedback added successfully to the Realtime Database
-                                        Toast.makeText(
-                                            this@Feedback,
-                                            "Feedback submitted successfully",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    }.addOnFailureListener { e ->
-                                        // Handle the error if feedback submission fails
-                                        Toast.makeText(
-                                            this@Feedback,
-                                            "Failed to submit feedback",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    }
+                                    feedbackRef.setValue(feedbackDataRealtime)
+                                        .addOnSuccessListener {
+                                            // Feedback added successfully to the Realtime Database
+                                            Toast.makeText(
+                                                this@Feedback,
+                                                "Feedback submitted successfully",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }.addOnFailureListener { e ->
+                                            // Handle the error if feedback submission fails
+                                            Toast.makeText(
+                                                this@Feedback,
+                                                "Failed to submit feedback",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
                                 }
                             }
 
