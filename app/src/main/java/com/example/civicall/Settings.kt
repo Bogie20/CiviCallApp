@@ -18,10 +18,8 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.example.civicall.Notification.Notifications
 import com.example.civicall.NotificationsToken.TokenRegistration
 import com.example.civicall.databinding.ActivitySettingsBinding
-import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -59,7 +57,8 @@ class Settings : AppCompatActivity(), ValueEventListener {
         tokenRegistration = TokenRegistration()
 
         binding.backbtn.setOnClickListener {
-            super.onBackPressed()
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
 
@@ -70,7 +69,7 @@ class Settings : AppCompatActivity(), ValueEventListener {
         }
         val otherproblem = binding.otherproblem
         otherproblem.setOnClickListener {
-            val intent = Intent(this, Otherproblem::class.java)
+            val intent = Intent(this, ReportProblem::class.java)
             startActivity(intent)
         }
         val termsandsupp = binding.termsandsupp
@@ -298,5 +297,11 @@ class Settings : AppCompatActivity(), ValueEventListener {
 
         // Clear the list after showing notifications
         notificationList.clear()
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainMenu::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
 }

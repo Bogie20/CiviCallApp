@@ -2,8 +2,8 @@ package com.example.civicall
 
 import android.app.Activity
 import android.app.ProgressDialog
-import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -16,7 +16,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.civicall.databinding.ActivityOtherproblemBinding
+import com.example.civicall.databinding.ActivityReportProblemBinding
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -31,26 +31,36 @@ import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import android.Manifest
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.google.android.material.button.MaterialButton
+import kotlinx.coroutines.DelicateCoroutinesApi
+import java.util.TimeZone
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-class Otherproblem : AppCompatActivity() {
-    private lateinit var binding: ActivityOtherproblemBinding
+class ReportProblem : AppCompatActivity() {
+    private lateinit var binding: ActivityReportProblemBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var storageReference: StorageReference
     private lateinit var databaseReference: FirebaseDatabase
     private lateinit var problemEditText: EditText
     private var imageUrl: String = ""
     private var lastReportTimestamp: Long = 0
-
+    private val REQUEST_CAMERA_PERMISSION = 2
     private val PICK_IMAGE_REQUEST = 1
     private val desiredCardViewWidth = 300 // Adjust as needed
     private val desiredCardViewHeight = 200 // Adjust as needed
-
+    private var selectedImageUri: Uri? = null
+    private var scaledBitmap: Bitmap? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityOtherproblemBinding.inflate(layoutInflater)
+        binding = ActivityReportProblemBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Firebase initialization
@@ -59,11 +69,13 @@ class Otherproblem : AppCompatActivity() {
         databaseReference = FirebaseDatabase.getInstance()
 
         binding.UploadPhoto.setOnClickListener {
-            openImagePicker()
+            checkAndRequestPermissions()
         }
 
-        binding.profileburger.setOnClickListener {
-            onBackPressed()
+        binding.backbtn.setOnClickListener {
+            val intent = Intent(this, Settings::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
 
         problemEditText = findViewById(R.id.ProblemText)
@@ -81,7 +93,7 @@ class Otherproblem : AppCompatActivity() {
                     Toast.makeText(this, "Please enter a message", Toast.LENGTH_SHORT).show()
                 } else {
                     // Both radio button and EditText have valid input, show a confirmation dialog before sending the report
-                    showSendConfirmationDialog()
+                    showConfirmationDialog()
                 }
             }
         }
@@ -90,7 +102,51 @@ class Otherproblem : AppCompatActivity() {
             showRemovePhotoConfirmationDialog()
         }
     }
+    private fun checkAndRequestPermissions() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ),
+                REQUEST_CAMERA_PERMISSION
+            )
+        } else {
+            openImagePicker()
+        }
+    }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_CAMERA_PERMISSION -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Camera permission granted, proceed with taking a picture
+                    openImagePicker()
+                } else {
+                    // Camera permission denied, handle accordingly
+                    Toast.makeText(
+                        this,
+                        "Camera permission denied. Go to your Phone Setting to Allow it.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
 
+        }
+    }
     private fun openImagePicker() {
         val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST)
@@ -100,8 +156,7 @@ class Otherproblem : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
-            val selectedImageUri = data.data
-            // Resize the selected image and set it to the ImageView in the CardView
+            selectedImageUri = data.data
             resizeAndSetImage(selectedImageUri)
         }
     }
@@ -124,7 +179,7 @@ class Otherproblem : AppCompatActivity() {
                 // Use the maximum ratio to ensure the entire CardView is covered by the image
                 val scaleFactor = if (widthRatio > heightRatio) widthRatio else heightRatio
 
-                val scaledBitmap = BitmapFactory.Options().run {
+                scaledBitmap = BitmapFactory.Options().run {
                     inSampleSize = scaleFactor.toInt()
                     inJustDecodeBounds = false
                     contentResolver.openInputStream(selectedImageUri)?.use { stream ->
@@ -134,26 +189,36 @@ class Otherproblem : AppCompatActivity() {
 
                 binding.showimage.scaleType = ImageView.ScaleType.CENTER_CROP
                 binding.showimage.setImageBitmap(scaledBitmap)
-
-                // Upload image to Firebase
-                uploadImageToFirebase(selectedImageUri, scaledBitmap)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
     }
 
-    private fun uploadImageToFirebase(selectedImageUri: Uri, bitmap: Bitmap?) {
-        val progressDialog = ProgressDialog(this)
-        progressDialog.setTitle("Uploading")
-        progressDialog.setMessage("Please wait...")
-        progressDialog.show()
+
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun uploadImageToFirebase(selectedImageUri: Uri?, bitmap: Bitmap?) {
+        val builder = AlertDialog.Builder(this@ReportProblem)
+        builder.setCancelable(false)
+        val inflater = layoutInflater
+        val loadingLayout = inflater.inflate(R.layout.loading_layout, null)
+        builder.setView(loadingLayout)
+        val dialog = builder.create()
+
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        dialog.show()
 
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                val dateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault())
+                val dateFormat = SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault())
+                dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+
                 val currentDate = Date()
-                val imageName = dateFormat.format(currentDate) + ".png"
+                val formattedDate = dateFormat.format(currentDate)
+                val imageName = formattedDate.replace("/", "").replace(":", "") + ".png"
 
                 val byteArrayOutputStream = ByteArrayOutputStream()
                 bitmap?.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
@@ -165,34 +230,68 @@ class Otherproblem : AppCompatActivity() {
                     imageRef.putBytes(data).await()
                     imageUrl = imageRef.downloadUrl.await().toString()
                 }
-
-                // Save the image URL to Firebase Realtime Database
-                // (Note: The actual saving will be done in the sendDataToFirebase function)
-
             } finally {
-                progressDialog.dismiss()
+                dialog.dismiss()
             }
         }
     }
 
-    private fun showSendConfirmationDialog() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Confirmation")
-            .setMessage("Are you sure you want to send the report?")
-            .setPositiveButton("Yes") { _, _ ->
-                // User clicked Yes, proceed with sending the report
-                sendDataToFirebase(imageUrl)
-            }
-            .setNegativeButton("No") { _, _ ->
-                // User clicked No, do nothing
-            }
-            .show()
+    private var isSaveConfirmationDialogShowing = false
+
+    private fun showConfirmationDialog() {
+        if (isSaveConfirmationDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val confirmTitle: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
+        val logoutMsg: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
+        val saveBtn: MaterialButton = dialogView.findViewById(R.id.saveBtn)
+        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        confirmTitle.text = "Confirmation"
+        logoutMsg.text = "Are you certain you want to proceed with this Report?"
+
+        saveBtn.text = "Yes"
+        saveBtn.setOnClickListener {
+            alertDialog.dismiss()
+            dismissCustomDialog()
+
+            uploadImageToFirebase(selectedImageUri, scaledBitmap)
+            sendDataToFirebase(imageUrl)
+        }
+        cancelBtn.text = "Cancel"
+        cancelBtn.setOnClickListener {
+            isSaveConfirmationDialogShowing = false
+            alertDialog.dismiss()
+        }
+        alertDialog.setOnDismissListener {
+            isSaveConfirmationDialogShowing = false
+        }
+
+        alertDialog.show()
+        isSaveConfirmationDialogShowing =
+            true
+    }
+
+    private fun dismissCustomDialog() {
+        if (isSaveConfirmationDialogShowing) {
+            isSaveConfirmationDialogShowing = false
+
+        }
     }
 
     private fun sendDataToFirebase(imageUrl: String) {
-        // The logic for sending data to Firebase is here
-        // (Note: This function is now called from the binding.sendbutton.setOnClickListener)
-        // Get the selected radio button ID
         val selectedRadioButtonId = binding.radioGroup.checkedRadioButtonId
 
         // Determine the category based on the selected radio button
@@ -206,12 +305,11 @@ class Otherproblem : AppCompatActivity() {
         // Get the UID and first name of the current user
         val user = auth.currentUser
         val uid = user?.uid ?: "YOUR_UID_HERE"
-        val firstName = user?.displayName ?: "Unknown"
+        val fullName = user?.displayName ?: "Unknown"
 
         // Get the message from the EditText
         val userMessage = problemEditText.text.toString().trim()
 
-        // Save data to Firebase Realtime Database
         val databaseRef = databaseReference.reference
         val problemRef = databaseRef.child("ReportedProblems").child(category).push()
 
@@ -219,34 +317,35 @@ class Otherproblem : AppCompatActivity() {
         checkIfAlreadyReported(uid, category) { alreadyReported ->
             if (!alreadyReported) {
                 // User hasn't reported a problem today, proceed with saving data
+                val dateFormat = SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault())
+                dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+                val formattedDate = dateFormat.format(System.currentTimeMillis())
+
                 val problemData = mapOf(
                     "imageUrl" to imageUrl,
                     "message" to userMessage,
-                    "timestamp" to ServerValue.TIMESTAMP,
+                    "timestamp" to formattedDate,
                     "uid" to uid,
-                    "firstName" to firstName
+                    "fullName" to fullName
                 )
 
                 problemRef.updateChildren(problemData)
                     .addOnSuccessListener {
-                        // Image and data uploaded successfully
-                        // Show a success message
-                        Toast.makeText(this@Otherproblem, "Report sent successfully", Toast.LENGTH_SHORT).show()
-
-                        // Delayed execution to clear UI components after the toast message
                         Handler(Looper.getMainLooper()).postDelayed({
+                            Toast.makeText(this@ReportProblem, "Report sent successfully", Toast.LENGTH_SHORT).show()
                             clearReportForm()
-                        }, 2000) // Delay for 2000 milliseconds (adjust as needed)
+                        }, 5000)
                     }
                     .addOnFailureListener { e ->
                         e.printStackTrace()
                     }
             } else {
                 // User has already reported a problem today, show a message
-                Toast.makeText(this@Otherproblem, "You have already reported a problem today", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ReportProblem, "You have already reported a problem today", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
 
     private fun clearReportForm() {
         // Clear the image
@@ -293,5 +392,11 @@ class Otherproblem : AppCompatActivity() {
 
         // Reset the imageUrl
         imageUrl = ""
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, Settings::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
 }

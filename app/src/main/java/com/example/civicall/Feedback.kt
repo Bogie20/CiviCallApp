@@ -53,10 +53,10 @@ class Feedback : AppCompatActivity() {
         error = findViewById(R.id.error)
 
         error.setOnClickListener {
-            handleCategorySelection("Fix Error")
+            handleCategorySelection("Great app, but I found a suggestion")
         }
         fix.setOnClickListener {
-            handleCategorySelection("Fix bug")
+            handleCategorySelection("Awesome app, just a small improvement idea")
         }
         very.setOnClickListener {
             handleCategorySelection("The App is Very Functional")

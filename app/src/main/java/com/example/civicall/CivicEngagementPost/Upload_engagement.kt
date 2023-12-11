@@ -149,20 +149,6 @@ class Upload_engagement : AppCompatActivity() {
             showDateTimePicker(uploadEndDate, startDateCalendar)
         }
 
-
-        val activityResultLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
-        ) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data = result.data
-                uri = data?.data
-                uploadImage.setImageURI(uri)
-            } else {
-                Toast.makeText(this@Upload_engagement, "No Image Selected", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        }
-
         uploadImage.setOnClickListener {
            checkAndRequestPermissions()
         }

@@ -5,8 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-
     tools:context=".Feedback">
 
 
@@ -18,7 +16,6 @@
         android:layout_centerHorizontal="true"
         app:cardBackgroundColor="@color/redpink"
         app:cardCornerRadius="4dp">
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -93,12 +90,6 @@
         android:layout_centerHorizontal="true"
         android:progressBackgroundTint="#858687"
         android:progressTint="#FFC107" />
-
-
-
-
-
-
     <TextView
         android:fontFamily="@font/lexend_medium"
         android:id="@+id/editTextText2"
@@ -139,7 +130,7 @@
             android:id="@+id/none"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20sp"
+            android:layout_marginStart="10sp"
             android:layout_marginEnd="3sp"
             android:layout_marginBottom="15sp"
             android:background="@drawable/skip_button"
@@ -187,7 +178,9 @@
             android:padding="10sp"
             android:paddingTop="15sp"
             android:paddingBottom="15sp"
-            android:text="Fix bug"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="Improvement"
             android:textColor="@color/redpink"
             android:textSize="14sp"
             android:clickable="true"
@@ -208,7 +201,7 @@
             android:id="@+id/very"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20sp"
+            android:layout_marginStart="10sp"
             android:layout_marginEnd="3sp"
             android:layout_marginBottom="15sp"
             android:background="@drawable/skip_button"
@@ -236,7 +229,7 @@
             android:padding="10sp"
             android:paddingTop="15sp"
             android:paddingBottom="15sp"
-            android:text="Fix Error"
+            android:text="Suggestion"
             android:textColor="@color/redpink"
             android:textSize="14sp"
             android:clickable="true"
@@ -260,9 +253,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/lolo1"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="25dp"
+    android:layout_margin="15dp"
+        android:padding="15dp"
         android:background="@drawable/edit_text_background"
         android:textColorHint="@color/instruction"
         android:ems="10"

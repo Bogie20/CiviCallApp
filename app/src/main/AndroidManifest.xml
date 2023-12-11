@@ -97,7 +97,7 @@
         </provider>
 
         <activity
-            android:name=".Otherproblem"
+            android:name=".ReportProblem"
             android:exported="true" />
         <activity
             android:name=".TechnicalIssueReportProblems"

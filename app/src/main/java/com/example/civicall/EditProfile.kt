@@ -4,6 +4,7 @@ package com.example.civicall
 import android.Manifest
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -11,6 +12,7 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
@@ -492,6 +494,18 @@ class EditProfile : AppCompatActivity() {
             if (!validateSrCode()) {
                 binding.SrCode.error = "Please enter your SR-Code"
             }
+            val builder = AlertDialog.Builder(this@EditProfile)
+            builder.setCancelable(false)
+            val inflater = layoutInflater
+            val loadingLayout = inflater.inflate(R.layout.loading_layout, null)
+            builder.setView(loadingLayout)
+            val dialog = builder.create()
+
+            dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+
             if (!validateFirstName() || !validateMiddleName() || !validateLastName() || !validateAddress() || !validateBirthday() || !validateContactNumber() || !validateEmeContactNumber() || !validateCourse() || !validateSrCode() || !validateGender() || !validateUserType() || !validateCampus() || !validateNstp() || !validateYearSect()) {
                 showCustomPopup("Please provide valid information for the following fields.")
                 return
@@ -513,16 +527,28 @@ class EditProfile : AppCompatActivity() {
                 "ContactEme" to updatedContactEme,
                 "nstp" to updatedNstp,
             )
+            dialog.show()
 
             database.updateChildren(updateData)
                 .addOnSuccessListener {
-                    showCustomPopupSuccess("Profile updated successfully")
+                    // Delay the dismissal of the progress bar for 2 seconds (2000 milliseconds)
+                    Handler().postDelayed({
+                        dialog.dismiss()
+                        showCustomPopupSuccess("Profile updated successfully")
+                    }, 2000)
                 }
                 .addOnFailureListener {
-                    showCustomPopupError("Failed to update profile")
+                    // Delay the dismissal of the progress bar for 2 seconds (2000 milliseconds)
+                    Handler().postDelayed({
+                        dialog.dismiss()
+                        showCustomPopupError("Failed to update profile")
+                    }, 2000)
                 }
-
-            uploadImages()
+                .addOnCompleteListener {
+                    // This block will be executed whether the update is successful or fails
+                    // You can add any additional logic here
+                    uploadImages()
+                }
         }
     }
     private fun uploadImages() {
