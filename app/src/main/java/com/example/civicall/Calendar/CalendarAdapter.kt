@@ -43,7 +43,7 @@ class CalendarAdapter(private val engagementList: List<CalendarData>) :
         holder.recTitle.text = engagementData.recTitle
         holder.location.text = engagementData.location
         holder.dateAndTime.text = engagementData.dateAndTime
-
+        holder.engagementId = engagementData.postKey
         val currentDate = Calendar.getInstance(timeZone).time
         val sdf = SimpleDateFormat("MM/dd/yyyy HH:mm", Locale.getDefault()).apply {
             timeZone = this@CalendarAdapter.timeZone
@@ -51,53 +51,51 @@ class CalendarAdapter(private val engagementList: List<CalendarData>) :
         val startDate = sdf.parse(engagementData.dateAndTime.split(" - ")[0]) ?: Date()
         val endDate = sdf.parse(engagementData.dateAndTime.split(" - ")[1]) ?: Date()
 
-        setIndicatorIcon(holder, currentDate, startDate, endDate, engagementData.postKey)
+        setIndicatorIcon(holder, currentDate, startDate, endDate)
+
+        val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
+        val engagementId = holder.engagementId
+        if (currentUserUid != null && engagementId != null) {
+            val participantsRef = FirebaseDatabase.getInstance().getReference("Upload Engagement")
+                .child(engagementId)
+                .child("Participants")
+
+            participantsRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(participantsSnapshot: DataSnapshot) {
+                    val hasAttended = participantsSnapshot.child(currentUserUid).getValue(Boolean::class.java)
+                        ?: false
+
+                    if (currentDate.after(endDate)) {
+                        if (!hasAttended) {
+                            setIndicatorIconWithColor(holder, R.drawable.finishnapo, ContextCompat.getColor(holder.itemView.context, R.color.greenish))
+                        } else {
+                            setIndicatorIconWithColor(holder, R.drawable.broken, ContextCompat.getColor(holder.itemView.context, R.color.red))
+                        }
+                    } else {
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Handle onCancelled
+                }
+            })
+
+        }
     }
 
     private fun setIndicatorIcon(
         holder: ViewHolder,
         currentDate: Date,
         startDate: Date,
-        endDate: Date,
-        engagementId: String?
+        endDate: Date
     ) {
         val nearColor = ContextCompat.getColor(holder.itemView.context, R.color.redpink)
         val ongoingColor = ContextCompat.getColor(holder.itemView.context, R.color.blue)
-        val finishColor = ContextCompat.getColor(holder.itemView.context, R.color.greenish)
-        val notAttendedColor = ContextCompat.getColor(holder.itemView.context, R.color.red)
 
         if (currentDate.before(startDate)) {
-            // Engagement is near
             setIndicatorIconWithColor(holder, R.drawable.near, nearColor)
         } else if (currentDate in startDate..endDate) {
-            // Engagement is ongoing
             setIndicatorIconWithColor(holder, R.drawable.play, ongoingColor)
-        } else {
-            val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
-            if (currentUserUid != null && engagementId != null) {
-                val participantsRef = FirebaseDatabase.getInstance().getReference("Upload Engagement")
-                    .child(engagementId)
-                    .child("Participants")
-                participantsRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(participantsSnapshot: DataSnapshot) {
-                        val hasAttended = participantsSnapshot.child(currentUserUid).getValue(Boolean::class.java) ?: false
-
-                        if (currentDate.after(endDate)) {
-                            // Engagement has ended
-                            if (!hasAttended) {
-                                setIndicatorIconWithColor(holder, R.drawable.finishnapo, finishColor)
-                            } else {
-                                setIndicatorIconWithColor(holder, R.drawable.broken, notAttendedColor)
-                            }
-                        }
-                    }
-
-                    override fun onCancelled(databaseError: DatabaseError) {
-                        // Handle onCancelled
-                    }
-                })
-
-            }
         }
     }
 
@@ -105,7 +103,8 @@ class CalendarAdapter(private val engagementList: List<CalendarData>) :
         holder.indicatorIcon.setImageResource(iconRes)
         holder.indicatorIcon.setColorFilter(color)
     }
-            override fun getItemCount(): Int {
+
+    override fun getItemCount(): Int {
         return engagementList.size
     }
 
@@ -115,5 +114,6 @@ class CalendarAdapter(private val engagementList: List<CalendarData>) :
         val location: TextView = itemView.findViewById(R.id.location)
         val dateAndTime: TextView = itemView.findViewById(R.id.dateandTime)
         val indicatorIcon: ShapeableImageView = itemView.findViewById(R.id.iconIndicator)
+        var engagementId: String? = null
     }
 }
