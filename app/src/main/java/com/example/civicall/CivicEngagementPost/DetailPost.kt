@@ -999,6 +999,7 @@ class DetailPost : AppCompatActivity() {
                                 })
                                 joinButton.text = "Already Finish"
                                 joinButton.isEnabled = false
+                                updatePaymentDetailsVisibility()
                                 return
                             }
                         } catch (e: ParseException) {
@@ -1025,13 +1026,7 @@ class DetailPost : AppCompatActivity() {
                         }
                     })
 
-                    val parentLinearLayout = findViewById<LinearLayout>(R.id.paymentDetailsLayout)
-
-                    if (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donations") {
-                        parentLinearLayout.visibility = View.VISIBLE
-                    } else {
-                        parentLinearLayout.visibility = View.GONE
-                    }
+                    updatePaymentDetailsVisibility()
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -1164,6 +1159,16 @@ class DetailPost : AppCompatActivity() {
                 })
         }
     }
+    private fun updatePaymentDetailsVisibility() {
+        val parentLinearLayout = findViewById<LinearLayout>(R.id.paymentDetailsLayout)
+
+        if (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donations") {
+            parentLinearLayout.visibility = View.VISIBLE
+        } else {
+            parentLinearLayout.visibility = View.GONE
+        }
+    }
+
 
     private var isSaveConfirmationDialogShowing = false // Add this variable
 
