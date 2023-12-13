@@ -1,6 +1,6 @@
 package com.example.civicall.Calendar
 
-import android.util.Log
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.civicall.CivicEngagementPost.DataClass
 import com.example.civicall.R
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.auth.FirebaseAuth
@@ -32,6 +31,7 @@ class CalendarAdapter(private val engagementList: List<CalendarData>) :
         return ViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val engagementData = engagementList[position]
 
@@ -42,14 +42,15 @@ class CalendarAdapter(private val engagementList: List<CalendarData>) :
             .into(holder.engagementImage)
         holder.recTitle.text = engagementData.recTitle
         holder.location.text = engagementData.location
-        holder.dateAndTime.text = engagementData.dateAndTime
+        holder.startDateAndEndDate.text =
+            "${engagementData.startDate} - ${engagementData.endDate}"  // Updated line
         holder.engagementId = engagementData.postKey
         val currentDate = Calendar.getInstance(timeZone).time
         val sdf = SimpleDateFormat("MM/dd/yyyy HH:mm", Locale.getDefault()).apply {
             timeZone = this@CalendarAdapter.timeZone
         }
-        val startDate = sdf.parse(engagementData.dateAndTime.split(" - ")[0]) ?: Date()
-        val endDate = sdf.parse(engagementData.dateAndTime.split(" - ")[1]) ?: Date()
+        val startDate = sdf.parse(engagementData.startDate) ?: Date()  // Updated line
+        val endDate = sdf.parse(engagementData.endDate) ?: Date()  // Updated line
 
         setIndicatorIcon(holder, currentDate, startDate, endDate)
 
@@ -62,16 +63,28 @@ class CalendarAdapter(private val engagementList: List<CalendarData>) :
 
             participantsRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(participantsSnapshot: DataSnapshot) {
-                    val hasAttended = participantsSnapshot.child(currentUserUid).getValue(Boolean::class.java)
-                        ?: false
+                    val hasAttended =
+                        participantsSnapshot.child(currentUserUid).getValue(Boolean::class.java)
+                            ?: false
 
                     if (currentDate.after(endDate)) {
-                        if (!hasAttended) {
-                            setIndicatorIconWithColor(holder, R.drawable.finishnapo, ContextCompat.getColor(holder.itemView.context, R.color.greenish))
+                      if (!hasAttended) {
+                          setIndicatorIconWithColor(
+                              holder,
+                              R.drawable.broken,
+                              ContextCompat.getColor(holder.itemView.context, R.color.red)
+                          )
                         } else {
-                            setIndicatorIconWithColor(holder, R.drawable.broken, ContextCompat.getColor(holder.itemView.context, R.color.red))
+                          setIndicatorIconWithColor(
+                              holder,
+                              R.drawable.finishnapo,
+                              ContextCompat.getColor(holder.itemView.context, R.color.greenish)
+                          )
                         }
                     } else {
+                        // Handle the case when the current date is not after endDate
+                        // Set indicator icon based on startDate, endDate, and currentDate
+                        setIndicatorIcon(holder, currentDate, startDate, endDate)
                     }
                 }
 
@@ -79,10 +92,8 @@ class CalendarAdapter(private val engagementList: List<CalendarData>) :
                     // Handle onCancelled
                 }
             })
-
         }
     }
-
     private fun setIndicatorIcon(
         holder: ViewHolder,
         currentDate: Date,
@@ -112,7 +123,7 @@ class CalendarAdapter(private val engagementList: List<CalendarData>) :
         val engagementImage: ImageView = itemView.findViewById(R.id.engagementImage)
         val recTitle: TextView = itemView.findViewById(R.id.recTitle)
         val location: TextView = itemView.findViewById(R.id.location)
-        val dateAndTime: TextView = itemView.findViewById(R.id.dateandTime)
+        val startDateAndEndDate: TextView = itemView.findViewById(R.id.dateandTime)
         val indicatorIcon: ShapeableImageView = itemView.findViewById(R.id.iconIndicator)
         var engagementId: String? = null
     }

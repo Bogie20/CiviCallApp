@@ -93,15 +93,18 @@ class CalendarActivity : AppCompatActivity() {
                 val startDate = snapshot.child("startDate").value.toString()
                 val endDate = snapshot.child("endDate").value.toString()
                 if (participantsSnapshot.hasChild(currentUserUid) && isDateInRange(selectedDate, startDate, endDate)) {
-                    val postKey = FirebaseDatabase.getInstance().getReference("Upload Engagement").push().key ?: ""
+                    val postKey = snapshot.key ?: ""
+                    val hasAttended = participantsSnapshot.child(currentUserUid).getValue(Boolean::class.java) ?: false
+
                     val engagementData = CalendarData(
                         snapshot.child("image").value.toString(),
                         snapshot.child("title").value.toString(),
                         snapshot.child("location").value.toString(),
-                        "$startDate - $endDate",
-                        postKey
+                        startDate,
+                        endDate,
+                        postKey,
+                        hasAttended
                     )
-
                     engagementList.add(engagementData)
                     calendarAdapter.notifyItemInserted(engagementList.size - 1)
                 }
@@ -111,7 +114,28 @@ class CalendarActivity : AppCompatActivity() {
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                // Handle changes if necessary
+                val participantsSnapshot = snapshot.child("Participants")
+                val currentUserUid = auth.currentUser?.uid
+
+                if (currentUserUid != null && participantsSnapshot.hasChild(currentUserUid)) {
+                    val hasAttended = participantsSnapshot.child(currentUserUid).getValue(Boolean::class.java) ?: false
+                    val startDate = snapshot.child("startDate").value.toString()
+                    val endDate = snapshot.child("endDate").value.toString()
+
+                    if (isDateInRange(selectedDate, startDate, endDate)) {
+                        // Find the position of the changed item in the list
+                        val position = engagementList.indexOfFirst { it.postKey == snapshot.key }
+
+                        if (position != -1) {
+                            // Update the engagement data and notify the adapter
+                            engagementList[position].apply {
+                                // Update the hasAttended value
+                                this.hasAttended = hasAttended
+                            }
+                            calendarAdapter.notifyItemChanged(position)
+                        }
+                    }
+                }
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {
