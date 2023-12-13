@@ -218,7 +218,7 @@
             android:layout_marginTop="10dp"
             app:menu_buttonSpacing="0dp"
             app:menu_colorNormal="@color/transparent"
-            app:menu_colorPressed="@color/grey"
+            app:menu_colorPressed="@color/redpink"
             app:menu_fab_size="mini"
             app:menu_shadowColor="@color/transparent"
             app:menu_icon="@drawable/ic_more"
