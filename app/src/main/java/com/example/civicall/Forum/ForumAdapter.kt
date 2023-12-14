@@ -1,5 +1,6 @@
     package com.example.civicall.Forum
 
+    import android.annotation.SuppressLint
     import android.content.Context
     import android.content.Intent
     import android.graphics.Color
@@ -19,6 +20,7 @@
     import androidx.appcompat.widget.AppCompatImageButton
     import androidx.appcompat.widget.AppCompatTextView
     import androidx.cardview.widget.CardView
+    import androidx.recyclerview.widget.DiffUtil
     import androidx.recyclerview.widget.RecyclerView
     import com.bumptech.glide.Glide
     import com.example.civicall.R
@@ -41,6 +43,11 @@
         private val currentUserUid: String?
 
     ) : RecyclerView.Adapter<MyViewHolderForum>() {
+        fun updateData(newDataList: List<DataClassForum>) {
+            val diffResult = DiffUtil.calculateDiff(ForumDiffCallBack(dataList, newDataList))
+            dataList = newDataList
+            diffResult.dispatchUpdatesTo(this)
+        }
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolderForum {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.forum_post_view, parent, false)
             return MyViewHolderForum(view)
@@ -326,7 +333,11 @@
         }
         override fun onBindViewHolder(holder: MyViewHolderForum, position: Int) {
             val data = dataList[position]
-            Glide.with(context).load(data.postImage).into(holder.forumImage)
+            Glide.with(context)
+                .load(data.postImage)
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.placeholder)
+                .into(holder.forumImage)
             holder.forumText.text = data.postText
 
             val isCurrentUserPost = data.uploadersUID == currentUserUid || (data.uploadersUID == null && currentUserUid == null)
@@ -451,6 +462,7 @@
                 // Handle the deletion of the post (e.g., show a confirmation dialog)
                 data.key?.let { showReportDialog(it) }
             }
+            holder.updateCommentCount(data.commentCount)
             holder.updateTimeText(data.postTime)
             fetchCommentCount(data.key, holder)
             holder.updateReactButtons(data.key ?: "")
@@ -459,6 +471,7 @@
         override fun getItemCount(): Int {
             return dataList.size
         }
+        @SuppressLint("NotifyDataSetChanged")
         fun searchDataList(searchList: ArrayList<DataClassForum>) {
             dataList = searchList
             notifyDataSetChanged()
@@ -569,7 +582,6 @@
             val currentUser = FirebaseAuth.getInstance().currentUser
             val currentUserUid = currentUser?.uid
 
-            // Fetch the reactType from the database
             val reactRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey).child("React")
             currentUserUid?.let {
                 reactRef.child(it).addListenerForSingleValueEvent(object : ValueEventListener {

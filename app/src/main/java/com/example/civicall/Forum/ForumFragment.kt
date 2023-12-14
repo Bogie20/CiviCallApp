@@ -6,12 +6,14 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import androidx.core.widget.NestedScrollView.OnScrollChangeListener
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,11 +32,13 @@ class ForumFragment : Fragment() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var eventListener: ValueEventListener
     private lateinit var recyclerView: RecyclerView
+    private lateinit var nestedRecycler: NestedScrollView
     private val dataList = ArrayList<DataClassForum>()
     private lateinit var adapter: ForumAdapter
     private lateinit var searchView: SearchView
     private lateinit var noPostsImage: ImageView
     private lateinit var noPostsText: TextView
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,6 +47,7 @@ class ForumFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_forum, container, false)
 
         recyclerView = rootView.findViewById(R.id.recyclerViewForum)
+        nestedRecycler = rootView.findViewById(R.id.nestedRecycler)
         searchView = rootView.findViewById(R.id.search)
         searchView.clearFocus()
         noPostsImage = rootView.findViewById(R.id.noPostsImage)
@@ -50,19 +55,6 @@ class ForumFragment : Fragment() {
         val filterIcon = rootView.findViewById<ImageView>(R.id.filterIcon)
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
 
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-
-                val layoutManager = recyclerView.layoutManager as GridLayoutManager
-                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
-                val viewHolder = recyclerView.findViewHolderForAdapterPosition(firstVisibleItemPosition)
-
-                if (viewHolder is MyViewHolderForum) {
-                    viewHolder.closeFabMenu()
-                }
-            }
-        })
         rootView.startAnimation(anim)
 
         filterIcon.setOnClickListener {
@@ -92,7 +84,7 @@ class ForumFragment : Fragment() {
                     dataClass?.let { dataList.add(0, it) } // Add the new item at the beginning of the list
                 }
 
-                adapter.notifyDataSetChanged()
+                adapter.notifyItemChanged(0)
                 dialog.dismiss()
 
                 if (dataList.isEmpty()) {
@@ -105,7 +97,7 @@ class ForumFragment : Fragment() {
                     rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
 
                     recyclerView.visibility = View.VISIBLE
-                    adapter.notifyDataSetChanged()
+
                 }
 
                 dialog.dismiss()
@@ -131,24 +123,22 @@ class ForumFragment : Fragment() {
         val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
 
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dy > 0) {
-                    // Scrolling down
-                    if (animatedBottomBar.isShown) {
-                        animatedBottomBar.visibility = View.GONE
-                    }
-                    if (fab.isShown) {
-                        fab.hide()
-                    }
-                } else if (dy < 0) {
-                    // Scrolling up
-                    if (!animatedBottomBar.isShown) {
-                        animatedBottomBar.visibility = View.VISIBLE
-                    }
-                    if (!fab.isShown) {
-                        fab.show()
-                    }
+        nestedRecycler.setOnScrollChangeListener(OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+            if (scrollY > oldScrollY) {
+                // Scrolling down
+                if (animatedBottomBar.isShown) {
+                    animatedBottomBar.visibility = View.GONE
+                }
+                if (fab.isShown) {
+                    fab.hide()
+                }
+            } else if (scrollY < oldScrollY) {
+                // Scrolling up
+                if (!animatedBottomBar.isShown) {
+                    animatedBottomBar.visibility = View.VISIBLE
+                }
+                if (!fab.isShown) {
+                    fab.show()
                 }
             }
         })
@@ -166,8 +156,6 @@ class ForumFragment : Fragment() {
         val alertDialog = AlertDialog.Builder(requireContext())
             .setView(dialogView)
             .create()
-
-
         val treeplant: TextView = dialogView.findViewById(R.id.TreePlanting)
         val fund: TextView = dialogView.findViewById(R.id.FundRaising)
         val donate: TextView = dialogView.findViewById(R.id.Donations)

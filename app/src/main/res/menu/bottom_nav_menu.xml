@@ -16,7 +16,7 @@
         android:id="@+id/menu_item_3"
         android:title=""
         android:icon="@drawable/addpost"
-        android:enabled="false"/>
+       />
 
     <item
         android:id="@+id/menu_item_4"

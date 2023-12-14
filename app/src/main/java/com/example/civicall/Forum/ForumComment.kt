@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -73,6 +74,7 @@ class ForumComment : AppCompatActivity() {
         hideButton = findViewById(R.id.hideButton)
         postMain = findViewById(R.id.postMain)
         commentCountTextView = findViewById(R.id.commentcount)
+
 
         hideButton.setOnClickListener {
             isPostMainVisible = !isPostMainVisible
@@ -156,6 +158,7 @@ class ForumComment : AppCompatActivity() {
         }
 
         commentsAdapter = CommentAdapter(this, postKey, emptyMap())
+        commentsAdapter.notifyItemChanged(0)
         commentsRecyclerView.layoutManager = LinearLayoutManager(this)
         val layoutManager = LinearLayoutManager(this)
         layoutManager.reverseLayout = true
@@ -198,6 +201,7 @@ class ForumComment : AppCompatActivity() {
                     val upReactCount = snapshot.getValue(Int::class.java)
                     // Update your UI or perform any actions with the formatted upReactCount
                     binding.upcount.text = formatCount(upReactCount ?: 0)
+                    commentsAdapter.notifyItemChanged(0)
                 }
             }
 
@@ -214,6 +218,7 @@ class ForumComment : AppCompatActivity() {
                     val downReactCount = snapshot.getValue(Int::class.java)
                     // Update your UI or perform any actions with the formatted downReactCount
                     binding.downcount.text = formatCount(downReactCount ?: 0)
+                    commentsAdapter.notifyItemChanged(0)
                 }
             }
 
@@ -246,7 +251,7 @@ class ForumComment : AppCompatActivity() {
         commentsRef.updateChildren(commentData).addOnSuccessListener {
             commentEditText.text.clear()
 
-            // Scroll to the newly added comment
+            commentsAdapter.notifyItemChanged(0)
             commentsRecyclerView.scrollToPosition(itemCount)
         }.addOnFailureListener {
             // Handle failure if needed
@@ -272,6 +277,7 @@ class ForumComment : AppCompatActivity() {
                         }
                     }
                 }
+                commentsAdapter.notifyItemChanged(0)
                 commentsAdapter.updateData(commentMap)
 
                 // Update the CommentCount in real-time with formatted count
@@ -306,7 +312,7 @@ class ForumComment : AppCompatActivity() {
                                             .placeholder(R.drawable.user)
                                             .error(R.drawable.user)
                                             .into(profilePic)
-
+                                        commentsAdapter.notifyItemChanged(0)
                                         // Set uploader full name
                                         val fullNameText =
                                             "${uploaderData.firstname} ${uploaderData.lastname}"

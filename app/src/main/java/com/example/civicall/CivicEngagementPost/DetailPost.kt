@@ -309,7 +309,6 @@ class DetailPost : AppCompatActivity() {
                     }
                 }
             }
-
             override fun onCancelled(databaseError: DatabaseError) {
                 Toast.makeText(
                     this@DetailPost,

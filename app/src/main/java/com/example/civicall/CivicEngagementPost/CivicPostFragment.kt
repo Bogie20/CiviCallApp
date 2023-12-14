@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,6 +33,7 @@ class CivicPostFragment : Fragment() {
     private val dataList = ArrayList<DataClass>()
     private lateinit var adapter: PostAdapter
     private lateinit var searchView: SearchView
+    private lateinit var nestedRecycler: NestedScrollView
     private lateinit var rootView: View
     private lateinit var noPostsImage: ImageView
     private lateinit var noPostsText: TextView
@@ -43,6 +45,7 @@ class CivicPostFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_civic_post, container, false)
 
         recyclerView = rootView.findViewById(R.id.recyclerView)
+        nestedRecycler = rootView.findViewById(R.id.nestedRecycler)
         searchView = rootView.findViewById(R.id.search)
         searchView.clearFocus()
         noPostsImage = rootView.findViewById(R.id.noPostsImage)
@@ -115,24 +118,22 @@ class CivicPostFragment : Fragment() {
         val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
 
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dy > 0) {
-                    // Scrolling down
-                    if (animatedBottomBar.isShown) {
-                        animatedBottomBar.visibility = View.GONE
-                    }
-                    if (fab.isShown) {
-                        fab.hide()
-                    }
-                } else if (dy < 0) {
-                    // Scrolling up
-                    if (!animatedBottomBar.isShown) {
-                        animatedBottomBar.visibility = View.VISIBLE
-                    }
-                    if (!fab.isShown) {
-                        fab.show()
-                    }
+        nestedRecycler.setOnScrollChangeListener(View.OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+            if (scrollY > oldScrollY) {
+                // Scrolling down
+                if (animatedBottomBar.isShown) {
+                    animatedBottomBar.visibility = View.GONE
+                }
+                if (fab.isShown) {
+                    fab.hide()
+                }
+            } else if (scrollY < oldScrollY) {
+                // Scrolling up
+                if (!animatedBottomBar.isShown) {
+                    animatedBottomBar.visibility = View.VISIBLE
+                }
+                if (!fab.isShown) {
+                    fab.show()
                 }
             }
         })
