@@ -6,14 +6,8 @@
     <string name="app_name1">Sort Filter RecyclerView</string>
 
     <string-array name="user_category">
-        <item>Undergraduate Student</item>
-        <item>Post-graduate Student</item>
+        <item>Current Student</item>
         <item>Alumni</item>
-        <item>Faculty</item>
-        <item>Administration</item>
-        <item>Stakeholder</item>
-        <item>Non-teaching Staff</item>
-        <item>External Volunteer</item>
     </string-array>
     <string-array name="payment_category">
         <item>GCash</item>
@@ -24,7 +18,6 @@
         <item>Reserve Officers Training Corps</item>
         <item>Civic Welfare Training Service</item>
         <item>Literacy Training Service</item>
-        <item>None</item>
     </string-array>
     <string-array name="allowed_campuses">
         <item>ARASOF Nasugbu Campus</item>
@@ -38,7 +31,7 @@
         <item>Pablo Borbon Campus II</item>
         <item>Rosario Campus</item>
         <item>San Juan Campus</item>
-        <item>None</item>
+        <item>All Campus</item>
     </string-array>
     <string-array name="engagement_category">
         <item>Tree Planting</item>
