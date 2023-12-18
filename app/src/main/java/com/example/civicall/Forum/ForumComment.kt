@@ -277,11 +277,18 @@ class ForumComment : AppCompatActivity() {
                         }
                     }
                 }
-                commentsAdapter.notifyItemChanged(0)
-                commentsAdapter.updateData(commentMap)
-
                 // Update the CommentCount in real-time with formatted count
                 commentCountTextView.text = formatCount(commentMap.size)
+
+                // Update the visibility of noimage based on the comment count
+                if (commentMap.isEmpty()) {
+                    binding.noimage.visibility = View.VISIBLE
+                } else {
+                    binding.noimage.visibility = View.GONE
+                }
+
+                commentsAdapter.notifyItemChanged(0)
+                commentsAdapter.updateData(commentMap)
             }
 
             override fun onCancelled(error: DatabaseError) {
