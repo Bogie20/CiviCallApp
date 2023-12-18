@@ -23,9 +23,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
-import android.widget.CheckedTextView
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.civicall.CivicEngagementPost.CivicPostFragment
@@ -34,7 +32,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.Calendar
 
-class Register1 : AppCompatActivity() {
+class Register : AppCompatActivity() {
     private lateinit var activityRegister1Binding: ActivityRegister1Binding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var progressDialog: ProgressDialog
@@ -324,7 +322,7 @@ class Register1 : AppCompatActivity() {
         val termsClickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {
                 // Handle click for Terms and Conditions
-                startActivity(Intent(this@Register1, TermsAndConditions::class.java))
+                startActivity(Intent(this@Register, TermsAndConditions::class.java))
             }
         }
 
@@ -334,7 +332,7 @@ class Register1 : AppCompatActivity() {
         // Create ClickableSpan for Privacy Policy
         val privacyClickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {
-                startActivity(Intent(this@Register1, PrivacyAndPolicies::class.java))
+                startActivity(Intent(this@Register, PrivacyAndPolicies::class.java))
             }
         }
 

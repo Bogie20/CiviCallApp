@@ -471,7 +471,7 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Register1"
+            android:name=".Register"
             android:exported="true"
             android:screenOrientation="portrait" />
 
