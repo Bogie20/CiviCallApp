@@ -30,7 +30,9 @@ import com.example.civicall.CivicEngagementPost.CivicPostFragment
 import com.example.civicall.databinding.ActivityRegister1Binding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.TimeZone
 
 class Register : AppCompatActivity() {
     private lateinit var activityRegister1Binding: ActivityRegister1Binding
@@ -876,6 +878,10 @@ dismissCustomDialog()
         val timestamp = System.currentTimeMillis()
         val uid = firebaseAuth.uid
 
+        val dateFormat = SimpleDateFormat("MM/dd/yyyy HH:mm z")
+        dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+        val formattedDate = dateFormat.format(timestamp)
+
         val hashMap: HashMap<String, Any?> = HashMap()
         hashMap["uid"] = uid
         hashMap["firstname"] = fname
@@ -888,7 +894,7 @@ dismissCustomDialog()
         hashMap["gender"] = spinnerSex
         hashMap["ImageProfile"] = ""
         hashMap["userType"] = userCategory
-        hashMap["timestamp"] = timestamp
+        hashMap["timestamp"] = formattedDate
         hashMap["campus"] = selectedCampus
         hashMap["verificationStatus"] = false
         hashMap["CurrentEngagement"] = 0
@@ -912,8 +918,6 @@ dismissCustomDialog()
                 showCustomPopupError("Failed Saving User's Info due to ${e.message}")
             }
     }
-
-
     override fun onDestroy() {
         super.onDestroy()
         networkUtils.cleanup() // Clean up when the activity is destroyed

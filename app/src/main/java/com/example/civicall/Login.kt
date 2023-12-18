@@ -32,6 +32,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.text.SimpleDateFormat
+import java.util.TimeZone
+
 class Login : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var firebaseAuth: FirebaseAuth
@@ -59,6 +62,10 @@ class Login : AppCompatActivity() {
                     finish()
                 } else {
                     val timestamp = System.currentTimeMillis()
+                    val dateFormat = SimpleDateFormat("MM/dd/yyyy HH:mm z")
+                    dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+                    val formattedDate = dateFormat.format(timestamp)
+
                     val hashMap: HashMap<String, Any?> = HashMap()
                     hashMap["uid"] = uid
                     hashMap["firstname"] = account?.givenName
@@ -71,7 +78,7 @@ class Login : AppCompatActivity() {
                     hashMap["gender"] = ""
                     hashMap["ImageProfile"] = profileImageUri
                     hashMap["userType"] = ""
-                    hashMap["timestamp"] = timestamp
+                    hashMap["timestamp"] = formattedDate
                     hashMap["campus"] = ""
                     hashMap["verificationStatus"] = false
                     hashMap["CurrentEngagement"] = 0
@@ -97,12 +104,6 @@ class Login : AppCompatActivity() {
                         }
                 }
             }
-
-
-
-
-
-
 
 
             override fun onCancelled(error: DatabaseError) {
@@ -587,32 +588,41 @@ class Login : AppCompatActivity() {
 
 
     private fun checkUser() {
-        val messageTextView = progressDialog.findViewById<TextView>(R.id.messageTextView)
-        messageTextView.text = "Checking User..."
-
-
-        val firebaseUser = firebaseAuth.currentUser!!
+        val uid = firebaseAuth.uid
         val ref = FirebaseDatabase.getInstance().getReference("Users")
-        ref.child(firebaseUser.uid)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    // Proceed to the Dashboard or any other desired activity
-                    startActivity(Intent(this@Login, Dashboard::class.java))
-                    finish()
+        ref.child(uid!!).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    // User exists, update the login date and time
+                    val loginTimestamp = System.currentTimeMillis()
+                    val loginDateFormat = SimpleDateFormat("MM/dd/yyyy HH:mm z")
+                    loginDateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+                    val formattedLoginDate = loginDateFormat.format(loginTimestamp)
 
+                    val updateMap: HashMap<String, Any?> = HashMap()
+                    updateMap["lastLogin"] = formattedLoginDate
 
-                    if (isNewAccount) {
-                        showCustomPopupSuccess("Account Created Successfully!")
-                        updateUserInfo(null)
-                    }
+                    ref.child(uid).updateChildren(updateMap)
+                        .addOnSuccessListener {
+                            // Navigate to the Dashboard
+                            startActivity(Intent(this@Login, Dashboard::class.java))
+                            finish()
+                        }
+                        .addOnFailureListener { e ->
+                            showCustomPopupError("Failed updating login info: ${e.message}")
+                        }
+                } else {
+                    // This should not happen, as the user should exist at this point
+                    showCustomPopupError("User not found.")
                 }
+            }
 
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-            })
+            override fun onCancelled(error: DatabaseError) {
+                // Handle onCancelled event if needed
+            }
+        })
     }
+
     private fun signInGoogle() {
         val signInIntent: Intent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent, Req_Code, null)
