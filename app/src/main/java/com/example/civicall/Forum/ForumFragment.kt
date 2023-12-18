@@ -145,6 +145,7 @@ class ForumFragment : Fragment() {
 
         return rootView
     }
+
     private var isFilterDialogShowing = false // Add this variable
 
     private fun showFilterDialog() {

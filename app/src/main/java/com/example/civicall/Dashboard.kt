@@ -62,29 +62,40 @@ class Dashboard : AppCompatActivity() {
                 when (newIndex) {
                     0 -> {
                         binding.titleLarge.text = "Take Action: Join the Cause"
+                        // Add ImageView at the end
+                        binding.titleLarge.setCompoundDrawablesWithIntrinsicBounds(
+                            0, 0, R.drawable.searchrj, 0
+                        )
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         replaceFragment(CivicPostFragment())
                     }
                     1 -> {
                         binding.titleLarge.text = "Educational Resources"
+                        binding.titleLarge.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0) // Clear ImageView
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         replaceFragment(InformationFragment())
                     }
                     2 -> {
                         binding.titleLarge.text = ""
+                        binding.titleLarge.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0) // Clear ImageView
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                     }
                     3 -> {
                         binding.titleLarge.text = "Open Forum"
+                        // Add ImageView at the end
+                        binding.titleLarge.setCompoundDrawablesWithIntrinsicBounds(
+                            0, 0, R.drawable.searchrj, 0
+                        )
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         replaceFragment(ForumFragment())
                     }
                     4 -> {
                         binding.titleLarge.text = "Notification"
+                        binding.titleLarge.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0) // Clear ImageView
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         replaceFragment(OneNotificationFragment())

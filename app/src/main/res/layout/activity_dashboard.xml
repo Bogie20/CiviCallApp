@@ -25,7 +25,8 @@
 
                 <TextView
                     android:id="@+id/titleLarge"
-                    android:paddingLeft="30dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="10dp"
                     android:gravity="center"
                     android:layout_marginTop="12dp"
                     android:layout_width="match_parent"
@@ -33,7 +34,8 @@
                     android:fontFamily="@font/oleo_script"
                     android:text="Take Action: Join the Cause"
                     android:textColor="@color/white"
-                    android:textSize="23sp"
+                    android:drawableEnd="@drawable/searchrj"
+                    android:textSize="22sp"
                     android:layout_marginRight="20dp"
                  />
 
