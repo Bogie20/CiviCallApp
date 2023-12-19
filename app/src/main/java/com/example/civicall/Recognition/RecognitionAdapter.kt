@@ -31,7 +31,8 @@ class RecognitionAdapter(private val context: Context, private val userList: Lis
             .into(holder.profilePic)
 
         holder.nameRec.text = "${user.firstname} ${user.lastname}"
-        holder.activePts.text = "${user.activepts} pts"
+        val formattedActivePts = formatNumber(user.activepts)
+        holder.activePts.text = "${formattedActivePts} pts"
         holder.campus.text = user.campus
         // Set the ranking number only for top 10
         if (position < 10) {
@@ -49,6 +50,13 @@ class RecognitionAdapter(private val context: Context, private val userList: Lis
             user.activepts in 301..999 -> holder.badgeImageView.setImageResource(R.drawable.silver)
             user.activepts in 1000..9999 -> holder.badgeImageView.setImageResource(R.drawable.gold)
             else -> holder.badgeImageView.setImageResource(R.drawable.platinum)
+        }
+    }
+    fun formatNumber(number: Int): String {
+        return when {
+            number < 10000 -> number.toString()
+            number < 1000000 -> String.format("%.1fk", number / 1000.0)
+            else -> String.format("%.1fM", number / 1000000.0)
         }
     }
 

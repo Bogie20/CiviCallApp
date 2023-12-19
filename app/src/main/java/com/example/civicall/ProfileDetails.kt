@@ -69,6 +69,16 @@ class ProfileDetails : AppCompatActivity() {
             readData(uid)
         }
     }
+    fun formatNumber(number: Int): String {
+        return when {
+            number < 10000 -> number.toString()
+            number < 1000000 -> String.format("%.1fK", number / 1000.0)
+            else -> String.format("%.1fM", number / 1000000.0)
+        }
+    }
+
+
+
 
     private fun readData(uid: String) {
         database = FirebaseDatabase.getInstance().getReference("Users")
@@ -93,8 +103,8 @@ class ProfileDetails : AppCompatActivity() {
                 val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
                 val activePts = snapshot.child("activepts").value
                 val finishact = snapshot.child("finishactivity").value
-                finishactTextView.text = finishact.toString()
-                activePtsTextView.text = activePts.toString()
+                activePtsTextView.text = formatNumber(activePts.toString().toInt())
+                finishactTextView.text = formatNumber(finishact.toString().toInt())
                 val fullNameTextView: TextView = findViewById(R.id.fullName)
                 fullNameTextView.text = "$firstName $lastName"
                 binding.email1.text = email.toString()
@@ -163,7 +173,7 @@ class ProfileDetails : AppCompatActivity() {
             ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val totalEngagementCount = dataSnapshot.getValue(Int::class.java) ?: 0
-                totalEngagementTextView.text = totalEngagementCount.toString()
+                totalEngagementTextView.text = formatNumber(totalEngagementCount.toString().toInt())
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
