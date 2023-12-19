@@ -25,16 +25,15 @@
 
                 <TextView
                     android:id="@+id/titleLarge"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginHorizontal="10dp"
                     android:gravity="center"
+                    android:paddingLeft="10dp"
                     android:layout_marginTop="12dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/oleo_script"
                     android:text="Take Action: Join the Cause"
                     android:textColor="@color/white"
-                    android:drawableEnd="@drawable/searchrj"
                     android:textSize="22sp"
                     android:layout_marginRight="20dp"
                  />
@@ -52,7 +51,17 @@
                 android:background="@drawable/highlight_text"
                 android:src="@drawable/menubutton"
                 android:contentDescription="Open Navigation Menu" />
-
+            <ImageButton
+                android:id="@+id/searchIcon"
+                android:layout_width="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:layout_marginEnd="10dp"
+                android:paddingHorizontal="2dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|right"
+                android:background="@drawable/highlight_text"
+                android:src="@drawable/searchrj"
+                android:contentDescription="Open Navigation Menu" />
         </androidx.cardview.widget.CardView>
 
         <FrameLayout
