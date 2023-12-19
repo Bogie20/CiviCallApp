@@ -2,13 +2,13 @@
 
     <item
         android:id="@+id/menu_item_1"
-        android:title="Civic"
+        android:title="Engage"
         android:icon="@drawable/volunteernow"
         />
 
     <item
         android:id="@+id/menu_item_2"
-        android:title="Info's"
+        android:title="Learn"
         android:icon="@drawable/bookinfo"
         />
 
@@ -20,13 +20,13 @@
 
     <item
         android:id="@+id/menu_item_4"
-        android:title="Forum"
+        android:title="Discuss"
         android:icon="@drawable/forumsymbol"
         />
 
     <item
         android:id="@+id/menu_item_5"
-        android:title="Notify"
+        android:title="Notified"
         android:icon="@drawable/notification"
         />
 
