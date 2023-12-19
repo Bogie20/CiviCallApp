@@ -36,6 +36,7 @@ class Dashboard : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     lateinit var userDataViewModel: UserDataViewModel
     private lateinit var networkUtils: NetworkUtils
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,7 +103,10 @@ class Dashboard : AppCompatActivity() {
             override fun onTabReselected(index: Int, tab: AnimatedBottomBar.Tab) {
             }
         })
-
+        binding.searchIcon.setOnClickListener {
+            onSearchIconClicked()
+            onSearchIconClickedForum()
+        }
         binding.profileburger.setOnClickListener {
             val intent = Intent(this, MainMenu::class.java)
             startActivity(intent)
@@ -187,7 +191,18 @@ class Dashboard : AppCompatActivity() {
                 Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
             }
     }
+    private fun onSearchIconClicked() {
+        val civicPostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment1) as? CivicPostFragment
+        civicPostFragment?.toggleSearchFilterVisibility()
 
+    }
+    private fun onSearchIconClickedForum() {
+        val forumFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment1) as? ForumFragment
+        forumFragment?.toggleSearchFilterVisibility()
+
+    }
     private fun checkUser() {
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser == null) {

@@ -35,6 +35,7 @@ class ForumFragment : Fragment() {
     private lateinit var nestedRecycler: NestedScrollView
     private val dataList = ArrayList<DataClassForum>()
     private lateinit var adapter: ForumAdapter
+    private lateinit var rootView: View
     private lateinit var searchView: SearchView
     private lateinit var noPostsImage: ImageView
     private lateinit var noPostsText: TextView
@@ -44,7 +45,7 @@ class ForumFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_forum, container, false)
+       rootView = inflater.inflate(R.layout.fragment_forum, container, false)
 
         recyclerView = rootView.findViewById(R.id.recyclerViewForum)
         nestedRecycler = rootView.findViewById(R.id.nestedRecycler)
@@ -223,6 +224,19 @@ class ForumFragment : Fragment() {
             isFilterDialogShowing = false
         }
     }
+    fun toggleSearchFilterVisibility() {
+        val searchView = rootView.findViewById<SearchView>(R.id.search)
+        val filterIcon = rootView.findViewById<ImageView>(R.id.filterIcon)
+
+        if (searchView.visibility == View.VISIBLE) {
+            searchView.visibility = View.GONE
+            filterIcon.visibility = View.GONE
+        } else {
+            searchView.visibility = View.VISIBLE
+            filterIcon.visibility = View.VISIBLE
+        }
+    }
+
     private fun filterByCategory(category: String) {
         if (category.isEmpty()) {
             // Show all categories

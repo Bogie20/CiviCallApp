@@ -25,7 +25,6 @@
         />
 
     <ImageView
-
         android:id="@+id/filterIcon"
         android:layout_width="wrap_content"
         android:layout_height="-30dp"
@@ -48,7 +47,7 @@
         android:layout_marginBottom="10dp"
         android:scrollbars="vertical"
         android:id="@+id/nestedRecycler"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:layout_below="@id/search">
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"

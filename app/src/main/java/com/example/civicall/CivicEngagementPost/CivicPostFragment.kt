@@ -42,7 +42,7 @@ class CivicPostFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_civic_post, container, false)
+        rootView = inflater.inflate(R.layout.fragment_civic_post, container, false)
 
         recyclerView = rootView.findViewById(R.id.recyclerView)
         nestedRecycler = rootView.findViewById(R.id.nestedRecycler)
@@ -140,6 +140,23 @@ class CivicPostFragment : Fragment() {
 
         return rootView
     }
+    interface SearchFilterListener {
+        fun toggleSearchFilterVisibility()
+    }
+
+    fun toggleSearchFilterVisibility() {
+        val searchView = rootView.findViewById<SearchView>(R.id.search)
+        val filterIcon = rootView.findViewById<ImageView>(R.id.filterIcon)
+
+        if (searchView.visibility == View.VISIBLE) {
+            searchView.visibility = View.GONE
+            filterIcon.visibility = View.GONE
+        } else {
+            searchView.visibility = View.VISIBLE
+            filterIcon.visibility = View.VISIBLE
+        }
+    }
+
     private var isFilterDialogShowing = false // Add this variable
 
     private fun showFilterDialog() {

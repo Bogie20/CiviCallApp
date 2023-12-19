@@ -16,6 +16,7 @@
         app:iconifiedByDefault="false"
         app:searchHintIcon="@null"
         app:queryBackground="@null"
+        android:visibility="gone"
         android:backgroundTint="#FAF9F6"
         app:queryHint="Search..."
         android:focusable="false"
@@ -31,6 +32,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="28dp"
+        android:visibility="gone"
         android:background="@drawable/highlight_button"
         android:clickable="true"
         android:padding="8dp"
@@ -42,7 +44,7 @@
         android:layout_marginBottom="10dp"
         android:scrollbars="vertical"
         android:id="@+id/nestedRecycler"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:layout_below="@id/search">
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
