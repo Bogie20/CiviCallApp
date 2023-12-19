@@ -30,6 +30,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import com.example.civicall.MainMenu
 import com.example.civicall.R
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
@@ -150,8 +151,10 @@ class UploadVerificationFile : AppCompatActivity() {
                 }
             }
         }
-        backbtn.setOnClickListener {
-            super.onBackPressed()
+       backbtn.setOnClickListener {
+           dismissCustomDialog()
+           val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
     }private fun checkVerificationStatus() {
@@ -668,5 +671,18 @@ class UploadVerificationFile : AppCompatActivity() {
                 Toast.makeText(this, "File upload failed: ${exception.message}", Toast.LENGTH_SHORT)
                     .show()
             }
+    }
+    override fun onBackPressed() {
+        if (isAlreadyJoinDialogShowing) {
+            dismissCustomDialog()
+        } else {
+            super.onBackPressed()
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        dismissCustomDialog()
     }
 }

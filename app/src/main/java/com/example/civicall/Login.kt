@@ -676,11 +676,16 @@ class Login : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        dismissCustomDialog()
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
     override fun onDestroy() {
         super.onDestroy()
         networkUtils.cleanup()
+    }
+    override fun onPause() {
+        super.onPause()
+        dismissCustomDialog()
     }
 }

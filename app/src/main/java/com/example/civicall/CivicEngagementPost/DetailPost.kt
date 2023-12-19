@@ -125,6 +125,7 @@ class DetailPost : AppCompatActivity() {
             fabMenu.close(true)
         }
         binding.backbtn.setOnClickListener {
+            dismissCustomDialog()
             super.onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
@@ -1304,5 +1305,14 @@ class DetailPost : AppCompatActivity() {
         Log.e("DetailPost", errorMessage)
 
         Toast.makeText(this@DetailPost, errorMessage, Toast.LENGTH_SHORT).show()
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        dismissCustomDialog()
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+    }
+    override fun onPause() {
+        super.onPause()
+        dismissCustomDialog()
     }
 }

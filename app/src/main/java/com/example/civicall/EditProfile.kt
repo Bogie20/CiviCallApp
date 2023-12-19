@@ -274,6 +274,7 @@ class EditProfile : AppCompatActivity() {
         }
 
         binding.backbtn.setOnClickListener {
+            dismissCustomDialog()
             val intent = Intent(this, ProfileDetails::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
@@ -1024,9 +1025,14 @@ class EditProfile : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        dismissCustomDialog()
         val intent = Intent(this, ProfileDetails::class.java)
         startActivity(intent)
         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+    }
+    override fun onPause() {
+        super.onPause()
+        dismissCustomDialog()
     }
 }
 

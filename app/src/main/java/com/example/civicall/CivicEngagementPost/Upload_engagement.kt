@@ -97,10 +97,10 @@ class Upload_engagement : AppCompatActivity() {
         networkUtils.initialize()
 
         binding.backbtn.setOnClickListener {
+            dismissCustomDialog()
             super.onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
-
         val campusDropdown = binding.uploadCampus
         val campusArray = resources.getStringArray(R.array.allowed_campuses)
         val adaptercampus = ArrayAdapter(this, R.layout.dropdown_item, campusArray)
@@ -561,5 +561,9 @@ class Upload_engagement : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         networkUtils.cleanup()
+    }
+    override fun onPause() {
+        super.onPause()
+        dismissCustomDialog()
     }
 }

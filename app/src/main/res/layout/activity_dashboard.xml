@@ -16,7 +16,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/titlecard"
             android:layout_width="match_parent"
-            android:layout_height="57dp"
+            android:layout_height="60dp"
             app:cardBackgroundColor="@color/redpink">
 
             <LinearLayout
@@ -28,7 +28,7 @@
                     android:layout_marginHorizontal="10dp"
                     android:gravity="center"
                     android:paddingLeft="10dp"
-                    android:layout_marginTop="13dp"
+                    android:layout_marginTop="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/oleo_script"

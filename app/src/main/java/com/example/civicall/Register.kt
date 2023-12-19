@@ -501,6 +501,7 @@ class Register : AppCompatActivity() {
             val intent = Intent(this, Login::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
+            dismissCustomDialog()
             overridePendingTransition(R.anim.animate_fade_enter,R.anim.animate_fade_exit)
             onBackPressed()
         }
@@ -921,5 +922,9 @@ dismissCustomDialog()
     override fun onDestroy() {
         super.onDestroy()
         networkUtils.cleanup() // Clean up when the activity is destroyed
+    }
+    override fun onPause() {
+        super.onPause()
+        dismissCustomDialog()
     }
 }
