@@ -8,7 +8,9 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputType
+import android.text.TextWatcher
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -76,7 +78,6 @@ class Update_engagement: AppCompatActivity() {
     private var campus: String = ""
     private var category: String = ""
     private var paymentmethod: String = ""
-    private var fundcollected: Double = 0.0
     private var uri: Uri? = null
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference
@@ -111,7 +112,8 @@ class Update_engagement: AppCompatActivity() {
         networkUtils.initialize()
 
         binding.backbtn.setOnClickListener {
-            onBackPressed()
+            dismissCustomDialog()
+            super.onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
         val paymentDropdown = binding.updatePaymentMethod
@@ -119,28 +121,35 @@ class Update_engagement: AppCompatActivity() {
         val adapterpayment = ArrayAdapter(this, R.layout.dropdown_item, paymentArray)
         (paymentDropdown as? AutoCompleteTextView)?.setAdapter(adapterpayment)
 
-        val categoryDropdown = binding.updateCategory
-        val categoryArray = resources.getStringArray(R.array.engagement_category)
-        val adaptercategory = ArrayAdapter(this, R.layout.dropdown_item, categoryArray)
-        (categoryDropdown as? AutoCompleteTextView)?.setAdapter(adaptercategory)
+        val paymentTextInputLayout = binding.PaymentTextInputLayout
+        val paymentRecepientTextInputLayout = binding.PaymentRecepientTextInputLayout
 
-        val paymentMethodLayout = binding.PaymentTextInputLayout
-        val paymentRecipientLayout = binding.PaymentRecepientTextInputLayout
-
-        categoryDropdown.setOnItemClickListener { _, _, position, _ ->
-            val selectedCategory = categoryArray[position]
-
-            if (selectedCategory == "Fund Raising" || selectedCategory == "Donations") {
-                paymentMethodLayout.visibility = View.VISIBLE
-                paymentRecipientLayout.visibility = View.VISIBLE
-            } else {
-                paymentMethodLayout.visibility = View.GONE
-                paymentRecipientLayout.visibility = View.GONE
+        updateCategory.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Not needed, but required by the interface
             }
-        }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Not needed, but required by the interface
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                val selectedCategory = s.toString()
+                if (selectedCategory == "Fund Raising" || selectedCategory == "Donations") {
+                    paymentTextInputLayout.visibility = View.VISIBLE
+                    paymentRecepientTextInputLayout.visibility = View.VISIBLE
+                } else {
+                    paymentTextInputLayout.visibility = View.GONE
+                    paymentRecepientTextInputLayout.visibility = View.GONE
+                }
+            }
+        })
 
         updateCampus.setOnClickListener {
             showCampusSelectionDialog()
+        }
+        updateCategory.setOnClickListener {
+            showCategorySelectionDialog()
         }
 
         val activityResultLauncher = registerForActivityResult(
@@ -177,6 +186,7 @@ class Update_engagement: AppCompatActivity() {
             key = bundle.getString("Key")!!
             oldImageURL = bundle.getString("Image")!!
         }
+
         databaseReference =
             FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
 
@@ -283,8 +293,23 @@ class Update_engagement: AppCompatActivity() {
 
         alertDialog.show()
     }
+    private fun showCategorySelectionDialog() {
+        val categoryArray = resources.getStringArray(R.array.engagement_category)
 
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Select Category")
+        builder.setItems(categoryArray) { _, which ->
+            val selectedCategory = categoryArray[which]
+            updateCategory.setText(selectedCategory)
+        }
 
+        val alertDialog = builder.create()
+
+        // Apply window animations and background styling here
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+        alertDialog.show()
+    }
     private fun isDateTimeInPast(dateTimeString: String): Boolean {
         try {
             val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
@@ -355,12 +380,14 @@ class Update_engagement: AppCompatActivity() {
         activepoints = updateActivePoints.text.toString().toInt()
         category = updateCategory.text.toString()
         paymentmethod = updatePaymentMethod.text.toString()
+        paymentrecipient = updatePaymentRecipient.text.toString()
         facilitator = updateFacilitator.text.toString()
         facilitatorinfo = updateFacilitatorInfo.text.toString()
         objective = updateObjective.text.toString()
         instruction = updateInstruction.text.toString()
         introduction = updateIntro.text.toString()
-        fundcollected = updateFundCollected.text.toString().toDouble()
+        val fundcollected = if (updateFundCollected.text.isNullOrBlank()) 0.0 else updateFundCollected.text.toString().toDouble()
+
 
         val user = FirebaseAuth.getInstance().currentUser
         val uploadersId = user?.uid
@@ -385,7 +412,9 @@ class Update_engagement: AppCompatActivity() {
                 paymentmethod,
                 paymentrecipient,
                 fundcollected,
-                false
+                false,
+                key
+
             )
 
             databaseReference.setValue(dataClass)
@@ -425,7 +454,8 @@ class Update_engagement: AppCompatActivity() {
                 paymentmethod,
                 paymentrecipient,
                 fundcollected,
-                false
+                false,
+               key
             )
 
 
@@ -497,5 +527,9 @@ class Update_engagement: AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         networkUtils.cleanup()
+    }
+    override fun onPause() {
+        super.onPause()
+        dismissCustomDialog()
     }
 }

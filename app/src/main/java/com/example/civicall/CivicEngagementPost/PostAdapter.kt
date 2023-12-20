@@ -22,9 +22,8 @@ import java.util.TimeZone
 class PostAdapter (private val context: Context, private var dataList: List<DataClass>) :
     RecyclerView.Adapter<MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.post_civicengagement, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_civicengagement, parent, false)
         return MyViewHolder(view)
-
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -35,7 +34,7 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
         holder.recStartDate.text = data.startDate
         holder.recEndDate.text = data.endDate
         holder.recLocation.text = data.location
-        holder.recCampus.text = data.campus
+        holder.recCategory.text = data.category
         holder.recCard.setOnClickListener {
             val intent = Intent(context, DetailPost::class.java).apply {
                 putExtra("Image", data.image)
@@ -91,12 +90,12 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
                         holder.recTitle.setCompoundDrawablesWithIntrinsicBounds(
                             0,
                             0,
-                            R.drawable.verificationtrue_icon,
+                            R.drawable.verifiedalready,
                             0
                         )
                         // Tint the drawable for verified posts with the 'verified' color
                         holder.recTitle.compoundDrawables[2]?.setColorFilter(
-                            ContextCompat.getColor(context, R.color.verified),
+                            ContextCompat.getColor(context, R.color.verifiedblue),
                             PorterDuff.Mode.SRC_IN
                         )
                     }
@@ -105,7 +104,7 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
                 e.printStackTrace()
             }
         } else {
-            holder.recTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.notverifiedshield, 0)
+            holder.recTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.notveri, 0)
             // Tint the drawable for unverified posts with the 'unverified' color
             holder.recTitle.compoundDrawables[2]?.setColorFilter(
                 ContextCompat.getColor(context, R.color.unverified),
@@ -116,7 +115,6 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
         override fun getItemCount(): Int {
         return dataList.size
     }
-
     fun searchDataList(searchList: ArrayList<DataClass>) {
         dataList = searchList
         notifyDataSetChanged()
@@ -130,5 +128,5 @@ class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val recEndDate: TextView = itemView.findViewById(R.id.civicEndDate)
     val recLocation: TextView = itemView.findViewById(R.id.civicLocation)
     val recTitle: TextView = itemView.findViewById(R.id.civicTitle)
-    val recCampus: TextView = itemView.findViewById(R.id.civicCampus)
+    val recCategory: TextView = itemView.findViewById(R.id.civicCategory)
 }

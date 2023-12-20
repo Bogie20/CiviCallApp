@@ -1,5 +1,6 @@
 package com.example.civicall.CivicEngagementPost
 
+import android.Manifest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import android.app.Activity
@@ -7,6 +8,7 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -24,6 +26,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityUploadEngagementBinding
@@ -61,6 +65,7 @@ class Upload_engagement : AppCompatActivity() {
     private lateinit var uploadEndDate: EditText
     private var imageURL: String? = null
     private var uri: Uri? = null
+    private val REQUEST_CAMERA_PERMISSION = 2
     private lateinit var binding: ActivityUploadEngagementBinding
     private lateinit var networkUtils: NetworkUtils
 
@@ -92,10 +97,10 @@ class Upload_engagement : AppCompatActivity() {
         networkUtils.initialize()
 
         binding.backbtn.setOnClickListener {
-            onBackPressed()
+            dismissCustomDialog()
+            super.onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
-
         val campusDropdown = binding.uploadCampus
         val campusArray = resources.getStringArray(R.array.allowed_campuses)
         val adaptercampus = ArrayAdapter(this, R.layout.dropdown_item, campusArray)
@@ -144,24 +149,8 @@ class Upload_engagement : AppCompatActivity() {
             showDateTimePicker(uploadEndDate, startDateCalendar)
         }
 
-
-        val activityResultLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
-        ) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data = result.data
-                uri = data?.data
-                uploadImage.setImageURI(uri)
-            } else {
-                Toast.makeText(this@Upload_engagement, "No Image Selected", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        }
-
         uploadImage.setOnClickListener {
-            val photoPicker = Intent(Intent.ACTION_PICK)
-            photoPicker.type = "image/*"
-            activityResultLauncher.launch(photoPicker)
+           checkAndRequestPermissions()
         }
 
         saveButton.setOnClickListener {
@@ -201,7 +190,70 @@ class Upload_engagement : AppCompatActivity() {
             }
         }
     }
-        private var isAlreadyJoinDialogShowing = false
+    private fun checkAndRequestPermissions() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ),
+                REQUEST_CAMERA_PERMISSION
+            )
+        } else {
+            launchGalleryIntent()
+        }
+    }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_CAMERA_PERMISSION -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Camera permission granted, proceed with taking a picture
+                    launchGalleryIntent()
+                } else {
+                    // Camera permission denied, handle accordingly
+                    Toast.makeText(
+                        this,
+                        "Camera permission denied. Go to your Phone Setting to Allow it.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+        }
+    }
+    private fun launchGalleryIntent() {
+        val photoPicker = Intent(Intent.ACTION_GET_CONTENT)
+        photoPicker.type = "image/*"
+        activityResultLauncher.launch(photoPicker)
+    }
+    private val activityResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data = result.data
+                uri = data?.data
+                if (uri != null) {
+                    uploadImage.setImageURI(uri)
+                }
+            } else {
+                Toast.makeText(this@Upload_engagement, "No Image Selected", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    private var isAlreadyJoinDialogShowing = false
 
     private fun showMessage(
         message: String,
@@ -216,7 +268,8 @@ class Upload_engagement : AppCompatActivity() {
         dismissCustomDialog()
 
         // Use the custom layout resource ID if provided, otherwise use the default
-        val dialogView = layoutInflater.inflate(customDialogLayoutResId ?: R.layout.dialog_happyface, null)
+        val dialogView =
+            layoutInflater.inflate(customDialogLayoutResId ?: R.layout.dialog_happyface, null)
 
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
@@ -284,7 +337,7 @@ class Upload_engagement : AppCompatActivity() {
             isSaveConfirmationDialogShowing = false
             alertDialog.dismiss()
         }
-        alertDialog.setOnDismissListener{
+        alertDialog.setOnDismissListener {
             isSaveConfirmationDialogShowing = false
         }
 
@@ -299,7 +352,8 @@ class Upload_engagement : AppCompatActivity() {
 
         }
     }
-        private fun showDateTimePicker(editText: EditText, startDate: Calendar?) {
+
+    private fun showDateTimePicker(editText: EditText, startDate: Calendar?) {
         val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
         dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
@@ -422,11 +476,10 @@ class Upload_engagement : AppCompatActivity() {
             val selectedDateTime = dateFormat.parse(dateTimeString)
             val currentDateTime = Calendar.getInstance().time
 
-            // Check if the selected date and time are in the past
             return selectedDateTime != null && selectedDateTime.before(currentDateTime)
         } catch (e: ParseException) {
             e.printStackTrace()
-            return true  // Handle the error as per your requirements
+            return true
         }
     }
 
@@ -441,7 +494,9 @@ class Upload_engagement : AppCompatActivity() {
         val activepoints = uploadActivePoints.text.toString().toInt()
         val campus = binding.uploadCampus.text.toString()
         val category = binding.uploadCategory.text.toString()
-        val fundcollected = if (uploadFundCollected.text.isNullOrBlank()) 0.0 else uploadFundCollected.text.toString().toDouble()
+        val fundcollected =
+            if (uploadFundCollected.text.isNullOrBlank()) 0.0 else uploadFundCollected.text.toString()
+                .toDouble()
 
         val formattedFundCollected = String.format("%.2f", fundcollected)
         val paymentmethod = binding.uploadPaymentMethod.text.toString()
@@ -455,51 +510,60 @@ class Upload_engagement : AppCompatActivity() {
         val uploadersId = user?.uid
 
         if (uploadersId != null) {
-            val dataClass = DataClass(
-                uploadersId,
-                category,
-                title,
-                startdate,
-                enddate,
-                location,
-                imageURL!!,
-                campus,
-                objective,
-                introduction,
-                facilitator,
-                facilitatorinfo,
-                instruction,
-                targetparty,
-                activepoints,
-                paymentmethod,
-                paymentrecipient,
-                formattedFundCollected.toDouble(),
-                verificationStatus
-            )
+            val postKey =
+                FirebaseDatabase.getInstance().getReference("Upload Engagement").push().key
 
-            val baseKey = uploadTitle.text.toString()
+            if (postKey != null) {
+                val dataClass = DataClass(
+                    uploadersId,
+                    category,
+                    title,
+                    startdate,
+                    enddate,
+                    location,
+                    imageURL!!,
+                    campus,
+                    objective,
+                    introduction,
+                    facilitator,
+                    facilitatorinfo,
+                    instruction,
+                    targetparty,
+                    activepoints,
+                    paymentmethod,
+                    paymentrecipient,
+                    formattedFundCollected.toDouble(),
+                    verificationStatus,
+                    postKey
+                )
 
-            val timestamp = System.currentTimeMillis().toString()
-
-            val postKey = "$baseKey-$timestamp"
-
-            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
-                .setValue(dataClass)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Toast.makeText(this@Upload_engagement, "Success", Toast.LENGTH_SHORT).show()
-                        finish()
+                FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
+                    .setValue(dataClass)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(this@Upload_engagement, "Success", Toast.LENGTH_SHORT)
+                                .show()
+                            finish()
+                        }
                     }
-                }
-                .addOnFailureListener { e ->
-                    Toast.makeText(this@Upload_engagement, e.message.toString(), Toast.LENGTH_SHORT)
-                        .show()
-                }
-
+                    .addOnFailureListener { e ->
+                        Toast.makeText(
+                            this@Upload_engagement,
+                            e.message.toString(),
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+            }
         }
     }
+
     override fun onDestroy() {
         super.onDestroy()
         networkUtils.cleanup()
+    }
+    override fun onPause() {
+        super.onPause()
+        dismissCustomDialog()
     }
 }

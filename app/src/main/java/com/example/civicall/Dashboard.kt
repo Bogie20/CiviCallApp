@@ -17,12 +17,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.civicall.CivicEngagementPost.CivicPostFragment
 import com.example.civicall.CivicEngagementPost.Upload_engagement
+import com.example.civicall.Forum.ForumFragment
+import com.example.civicall.Forum.ForumUpload
 import com.example.civicall.databinding.ActivityDashboardBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import nl.joery.animatedbottombar.AnimatedBottomBar
+import android.view.View
 
 
 class Dashboard : AppCompatActivity() {
@@ -33,6 +36,7 @@ class Dashboard : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     lateinit var userDataViewModel: UserDataViewModel
     private lateinit var networkUtils: NetworkUtils
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,32 +64,37 @@ class Dashboard : AppCompatActivity() {
                 when (newIndex) {
                     0 -> {
                         binding.titleLarge.text = "Take Action: Join the Cause"
+                        binding.searchIcon.visibility = View.VISIBLE
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         replaceFragment(CivicPostFragment())
                     }
                     1 -> {
-                        binding.titleLarge.text = "Information Resources"
+                        binding.titleLarge.text = "Educational Resources"
+                        binding.searchIcon.visibility = View.GONE
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                         replaceFragment(InformationFragment())
                     }
                     2 -> {
                         binding.titleLarge.text = ""
+                        binding.searchIcon.visibility = View.GONE
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
                     }
                     3 -> {
-                        binding.titleLarge.text = "Forum"
+                        binding.titleLarge.text = "Open Forum"
+                        binding.searchIcon.visibility = View.VISIBLE
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-                        replaceFragment(ForumsFragment())
+                        replaceFragment(ForumFragment())
                     }
                     4 -> {
-                        binding.titleLarge.text = "Notifications"
+                        binding.titleLarge.text = "Notification"
+                        binding.searchIcon.visibility = View.GONE
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-                        replaceFragment(notificationFragment())
+                        replaceFragment(OneNotificationFragment())
                     }
                 }
 
@@ -94,7 +103,10 @@ class Dashboard : AppCompatActivity() {
             override fun onTabReselected(index: Int, tab: AnimatedBottomBar.Tab) {
             }
         })
-
+        binding.searchIcon.setOnClickListener {
+            onSearchIconClicked()
+            onSearchIconClickedForum()
+        }
         binding.profileburger.setOnClickListener {
             val intent = Intent(this, MainMenu::class.java)
             startActivity(intent)
@@ -141,7 +153,13 @@ class Dashboard : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
-
+        val forum: LinearLayout = dialogView.findViewById(R.id.Forum)
+        forum.setOnClickListener {
+            alertDialog.dismiss()
+            val intent = Intent(this, ForumUpload::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
         alertDialog.show()
         isOptionDialogShowing = true
     }
@@ -173,7 +191,18 @@ class Dashboard : AppCompatActivity() {
                 Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
             }
     }
+    private fun onSearchIconClicked() {
+        val civicPostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment1) as? CivicPostFragment
+        civicPostFragment?.toggleSearchFilterVisibility()
 
+    }
+    private fun onSearchIconClickedForum() {
+        val forumFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment1) as? ForumFragment
+        forumFragment?.toggleSearchFilterVisibility()
+
+    }
     private fun checkUser() {
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser == null) {

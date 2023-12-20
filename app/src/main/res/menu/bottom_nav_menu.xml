@@ -2,13 +2,13 @@
 
     <item
         android:id="@+id/menu_item_1"
-        android:title="Home"
-        android:icon="@drawable/baseline_home_24"
+        android:title="Engage"
+        android:icon="@drawable/volunteernow"
         />
 
     <item
         android:id="@+id/menu_item_2"
-        android:title="Info"
+        android:title="Learn"
         android:icon="@drawable/bookinfo"
         />
 
@@ -16,17 +16,17 @@
         android:id="@+id/menu_item_3"
         android:title=""
         android:icon="@drawable/addpost"
-        android:enabled="false"/>
+       />
 
     <item
         android:id="@+id/menu_item_4"
-        android:title="Forums"
+        android:title="Discuss"
         android:icon="@drawable/forumsymbol"
         />
 
     <item
         android:id="@+id/menu_item_5"
-        android:title="Notification"
+        android:title="Notified"
         android:icon="@drawable/notification"
         />
 

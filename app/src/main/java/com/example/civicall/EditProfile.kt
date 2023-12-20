@@ -4,14 +4,15 @@ package com.example.civicall
 import android.Manifest
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
@@ -21,7 +22,6 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -33,7 +33,6 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import com.bumptech.glide.Glide
 import com.example.civicall.databinding.ActivityEditProfileBinding
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
@@ -42,9 +41,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
-import java.io.ByteArrayOutputStream
 import java.io.File
-import java.io.FileOutputStream
 import java.io.IOException
 import java.util.Calendar
 import java.util.UUID
@@ -56,7 +53,7 @@ class EditProfile : AppCompatActivity() {
     private lateinit var storage: FirebaseStorage
     private lateinit var imageRef: StorageReference
     private var selectedImageUri: Uri? = null
-    private val REQUEST_CAMERA_PERMISSION = 1
+    private val REQUEST_CAMERA_PERMISSION = 2
     private lateinit var firebaseAuth: FirebaseAuth
     private var fullFname: String = ""
     private var fullMname: String = ""
@@ -65,6 +62,7 @@ class EditProfile : AppCompatActivity() {
     private var fullMobileNumber: String = ""
     private var fullEmeMobileNumber: String = ""
     private var fullCourse: String = ""
+    private var fullYearSect: String = ""
     private var fullSrcode: String = ""
     private var isPopupShowing = false
     private val FILE_PROVIDER_AUTHORITY = "com.example.civicall.fileprovider"
@@ -200,6 +198,7 @@ class EditProfile : AppCompatActivity() {
         fullEmeMobileNumber = binding.ContactEme.text.toString()
         fullFname = binding.fname.text.toString()
         fullCourse = binding.Course.text.toString()
+        fullYearSect = binding.yearandsect.text.toString()
         fullSrcode = binding.SrCode.text.toString()
 
         val maxLength = 80 // Max character limit for name fields
@@ -211,6 +210,7 @@ class EditProfile : AppCompatActivity() {
             binding.mname to maxLength,
             binding.Lname to maxLength,
             binding.Course to maxLength,
+            binding.yearandsect to maxLength,
             binding.address to maxAddressLength,
             binding.Contactline to maxContactLength,
             binding.ContactEme to maxContactLength,
@@ -243,7 +243,11 @@ class EditProfile : AppCompatActivity() {
                 binding.Course.setSelection(fullCourse.length)
             }
         }
-
+        binding.yearandsect.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                binding.yearandsect.setSelection(fullYearSect.length)
+            }
+        }
         binding.address.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 binding.address.setSelection(fullAddress.length)
@@ -270,15 +274,14 @@ class EditProfile : AppCompatActivity() {
         }
 
         binding.backbtn.setOnClickListener {
+            dismissCustomDialog()
             val intent = Intent(this, ProfileDetails::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-            onBackPressed()
+
         }
 
         binding.profileImage.setOnClickListener {
-            showImageDialog()
-
             checkAndRequestPermissions()
         }
     }
@@ -333,12 +336,40 @@ class EditProfile : AppCompatActivity() {
         ) {
             ActivityCompat.requestPermissions(
                 this,
-                arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                arrayOf(
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ),
                 REQUEST_CAMERA_PERMISSION
             )
+        } else {
+            // Permission already granted, proceed with taking a picture
+            showImageDialog()
         }
     }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_CAMERA_PERMISSION -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Camera permission granted, proceed with taking a picture
+                   showImageDialog()
+                } else {
+                    // Camera permission denied, handle accordingly
+                    Toast.makeText(
+                        this,
+                        "Camera Permission denied. Go to your Phone Setting to Allow it.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
 
+        }
+    }
     private fun checkUser() {
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser == null) {
@@ -347,6 +378,7 @@ class EditProfile : AppCompatActivity() {
         } else {
             val uid = firebaseUser.uid
             database = FirebaseDatabase.getInstance().reference.child("Users").child(uid)
+            database.keepSynced(true)
             readData()
         }
     }
@@ -354,7 +386,7 @@ class EditProfile : AppCompatActivity() {
     private fun readData() {
         database.get().addOnSuccessListener { snapshot ->
             if (snapshot.exists()) {
-                val user = snapshot.getValue(User::class.java)
+                val user = snapshot.getValue(Users::class.java)
                 if (user != null) {
                     displayUserData(user)
                 }
@@ -366,12 +398,13 @@ class EditProfile : AppCompatActivity() {
         }
     }
 
-    private fun displayUserData(user: User) {
+    private fun displayUserData(user: Users) {
         binding.email1.text = user.email
         binding.fname.text = Editable.Factory.getInstance().newEditable(user.firstname)
         binding.mname.text = Editable.Factory.getInstance().newEditable(user.middlename)
         binding.Lname.text = Editable.Factory.getInstance().newEditable(user.lastname)
         binding.Course.text = Editable.Factory.getInstance().newEditable(user.course)
+        binding.yearandsect.text = Editable.Factory.getInstance().newEditable(user.yearandSection)
         binding.address.text = Editable.Factory.getInstance().newEditable(user.address)
         binding.SrCode.text = Editable.Factory.getInstance().newEditable(user.srcode)
         binding.Contactline.text = Editable.Factory.getInstance().newEditable(user.phoneno)
@@ -400,7 +433,7 @@ class EditProfile : AppCompatActivity() {
         if (firebaseUser != null) {
             val uid = firebaseUser.uid
             database = FirebaseDatabase.getInstance().reference.child("Users").child(uid)
-
+            database.keepSynced(true)
             // Your code to update the user's profile data
             val updatedFirstName = binding.fname.text.toString()
             val updatedMiddleName = binding.mname.text.toString()
@@ -408,6 +441,7 @@ class EditProfile : AppCompatActivity() {
             val updatedAddress = binding.address.text.toString()
             val updatedContact = binding.Contactline.text.toString()
             val updatedCourse = binding.Course.text.toString()
+            val updatedYearandSect = binding.yearandsect.text.toString()
             val updatedSrCode = binding.SrCode.text.toString()
             val updatedUserType = binding.usercategory.text.toString()
             val updatedCampus = binding.campus.text.toString()
@@ -455,10 +489,25 @@ class EditProfile : AppCompatActivity() {
             if (!validateCourse()) {
                 binding.Course.error = "Please enter your Course"
             }
+            if (!validateYearSect()) {
+                binding.yearandsect.error = "Please enter your Year and Section"
+            }
             if (!validateSrCode()) {
                 binding.SrCode.error = "Please enter your SR-Code"
             }
-            if (!validateFirstName() || !validateMiddleName() || !validateLastName() || !validateAddress() || !validateBirthday() || !validateContactNumber() || !validateEmeContactNumber() || !validateCourse() || !validateSrCode() || !validateGender() || !validateUserType() || !validateCampus() || !validateNstp()) {
+            val builder = AlertDialog.Builder(this@EditProfile)
+            builder.setCancelable(false)
+            val inflater = layoutInflater
+            val loadingLayout = inflater.inflate(R.layout.loading_layout, null)
+            builder.setView(loadingLayout)
+            val dialog = builder.create()
+
+            dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+
+            if (!validateFirstName() || !validateMiddleName() || !validateLastName() || !validateAddress() || !validateBirthday() || !validateContactNumber() || !validateEmeContactNumber() || !validateCourse() || !validateSrCode() || !validateGender() || !validateUserType() || !validateCampus() || !validateNstp() || !validateYearSect()) {
                 showCustomPopup("Please provide valid information for the following fields.")
                 return
             }
@@ -468,6 +517,7 @@ class EditProfile : AppCompatActivity() {
                 "middlename" to updatedMiddleName,
                 "lastname" to updatedLastName,
                 "course" to updatedCourse,
+                "yearandSection" to updatedYearandSect,
                 "srcode" to updatedSrCode,
                 "address" to updatedAddress,
                 "phoneno" to updatedContact,
@@ -478,16 +528,28 @@ class EditProfile : AppCompatActivity() {
                 "ContactEme" to updatedContactEme,
                 "nstp" to updatedNstp,
             )
+            dialog.show()
 
             database.updateChildren(updateData)
                 .addOnSuccessListener {
-                    showCustomPopupSuccess("Profile updated successfully")
+                    // Delay the dismissal of the progress bar for 2 seconds (2000 milliseconds)
+                    Handler().postDelayed({
+                        dialog.dismiss()
+                        showCustomPopupSuccess("Profile updated successfully")
+                    }, 2000)
                 }
                 .addOnFailureListener {
-                    showCustomPopupError("Failed to update profile")
+                    // Delay the dismissal of the progress bar for 2 seconds (2000 milliseconds)
+                    Handler().postDelayed({
+                        dialog.dismiss()
+                        showCustomPopupError("Failed to update profile")
+                    }, 2000)
                 }
-
-            uploadImages()
+                .addOnCompleteListener {
+                    // This block will be executed whether the update is successful or fails
+                    // You can add any additional logic here
+                    uploadImages()
+                }
         }
     }
     private fun uploadImages() {
@@ -798,6 +860,20 @@ class EditProfile : AppCompatActivity() {
             return true
         }
     }
+    private fun validateYearSect(): Boolean {
+        val yearandSect = binding.yearandsect.text.toString().trim()
+
+        if (yearandSect.isEmpty()) {
+            binding.yearandsect.error = "Year and Section field is required"
+            return false
+        } else if (yearandSect.length < 8) {
+            binding.yearandsect.error = "It is too short"
+            return false
+        } else {
+            binding.yearandsect.error = null
+            return true
+        }
+    }
     private fun validateGender(): Boolean {
         val Gender = binding.gender.text.toString().trim()
 
@@ -934,10 +1010,10 @@ class EditProfile : AppCompatActivity() {
     private fun updateProfileImage(imageUrl: String) {
         database.child("ImageProfile").setValue(imageUrl)
             .addOnSuccessListener {
-                Toast.makeText(this, "Profile Image updated successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Profile Picture updated successfully", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Failed to update profile image", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Failed to update profile picture", Toast.LENGTH_SHORT).show()
             }
     }
     override fun onDestroy() {
@@ -947,25 +1023,18 @@ class EditProfile : AppCompatActivity() {
         networkUtils.cleanup()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        dismissCustomDialog()
+        val intent = Intent(this, ProfileDetails::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+    }
+    override fun onPause() {
+        super.onPause()
+        dismissCustomDialog()
+    }
 }
 
 
 
-data class User(
-    val firstname: String = "",
-    val middlename: String = "",
-    val lastname: String = "",
-    val address: String = "",
-    val course: String = "",
-    val srcode: String = "",
-    val phoneno: String = "",
-    val userType: String = "",
-    val campus: String = "",
-    val birthday: String = "",
-    val gender: String = "",
-    val email: String = "",
-    val ImageProfile: String = "",
-    val ContactEme: String = "",
-    val nstp: String = ""
-
-)

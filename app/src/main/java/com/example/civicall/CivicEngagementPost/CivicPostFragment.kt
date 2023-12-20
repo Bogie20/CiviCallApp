@@ -1,7 +1,6 @@
 package com.example.civicall.CivicEngagementPost
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -12,14 +11,12 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.SearchView
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -36,6 +33,7 @@ class CivicPostFragment : Fragment() {
     private val dataList = ArrayList<DataClass>()
     private lateinit var adapter: PostAdapter
     private lateinit var searchView: SearchView
+    private lateinit var nestedRecycler: NestedScrollView
     private lateinit var rootView: View
     private lateinit var noPostsImage: ImageView
     private lateinit var noPostsText: TextView
@@ -44,9 +42,10 @@ class CivicPostFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_civic_post, container, false)
+        rootView = inflater.inflate(R.layout.fragment_civic_post, container, false)
 
         recyclerView = rootView.findViewById(R.id.recyclerView)
+        nestedRecycler = rootView.findViewById(R.id.nestedRecycler)
         searchView = rootView.findViewById(R.id.search)
         searchView.clearFocus()
         noPostsImage = rootView.findViewById(R.id.noPostsImage)
@@ -79,7 +78,7 @@ class CivicPostFragment : Fragment() {
                 for (itemSnapshot in snapshot.children) {
                     val dataClass = itemSnapshot.getValue(DataClass::class.java)
                     dataClass?.key = itemSnapshot.key
-                    dataClass?.let { dataList.add(it) }
+                    dataClass?.let { dataList.add(0, it) }
                 }
 
                 adapter.notifyDataSetChanged()
@@ -99,14 +98,12 @@ class CivicPostFragment : Fragment() {
                 }
 
                 dialog.dismiss()
-
             }
 
             override fun onCancelled(error: DatabaseError) {
                 dialog.dismiss()
             }
         })
-
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -121,30 +118,45 @@ class CivicPostFragment : Fragment() {
         val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
 
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dy > 0) {
-                    // Scrolling down
-                    if (animatedBottomBar.isShown) {
-                        animatedBottomBar.visibility = View.GONE
-                    }
-                    if (fab.isShown) {
-                        fab.hide()
-                    }
-                } else if (dy < 0) {
-                    // Scrolling up
-                    if (!animatedBottomBar.isShown) {
-                        animatedBottomBar.visibility = View.VISIBLE
-                    }
-                    if (!fab.isShown) {
-                        fab.show()
-                    }
+        nestedRecycler.setOnScrollChangeListener(View.OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+            if (scrollY > oldScrollY) {
+                // Scrolling down
+                if (animatedBottomBar.isShown) {
+                    animatedBottomBar.visibility = View.GONE
+                }
+                if (fab.isShown) {
+                    fab.hide()
+                }
+            } else if (scrollY < oldScrollY) {
+                // Scrolling up
+                if (!animatedBottomBar.isShown) {
+                    animatedBottomBar.visibility = View.VISIBLE
+                }
+                if (!fab.isShown) {
+                    fab.show()
                 }
             }
         })
 
         return rootView
     }
+    interface SearchFilterListener {
+        fun toggleSearchFilterVisibility()
+    }
+
+    fun toggleSearchFilterVisibility() {
+        val searchView = rootView.findViewById<SearchView>(R.id.search)
+        val filterIcon = rootView.findViewById<ImageView>(R.id.filterIcon)
+
+        if (searchView.visibility == View.VISIBLE) {
+            searchView.visibility = View.GONE
+            filterIcon.visibility = View.GONE
+        } else {
+            searchView.visibility = View.VISIBLE
+            filterIcon.visibility = View.VISIBLE
+        }
+    }
+
     private var isFilterDialogShowing = false // Add this variable
 
     private fun showFilterDialog() {
@@ -241,17 +253,13 @@ class CivicPostFragment : Fragment() {
             }
         }
     }
-
-
     private fun showNoPostsMessage(category: String) {
-        noPostsImage.setImageResource(R.drawable.nocategory)
+        noPostsImage.setImageResource(R.drawable.notinlist)
         noPostsText.text = "Sorry, the category \"$category\" is currently unavailable."
         noPostsImage.visibility = View.VISIBLE
         noPostsText.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
     }
-
-
     private fun hideNoPostsMessage() {
         noPostsImage.visibility = View.GONE
         noPostsText.visibility = View.GONE

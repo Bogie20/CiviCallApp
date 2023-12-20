@@ -46,6 +46,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ServerValue
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
@@ -117,9 +118,15 @@ class DetailPost : AppCompatActivity() {
         detailCurrentParty = findViewById(R.id.detailCurrentParty)
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
+        val bodyLayout: LinearLayout = findViewById(R.id.linearbody)
 
+        bodyLayout.setOnClickListener {
+            // Close the FloatingActionMenu when the body is clicked
+            fabMenu.close(true)
+        }
         binding.backbtn.setOnClickListener {
-            onBackPressed()
+            dismissCustomDialog()
+            super.onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
         val copyInq: ImageView = findViewById(R.id.copyinq)
@@ -249,7 +256,8 @@ class DetailPost : AppCompatActivity() {
             detailcampus.text = it.getString("Campus")
             detailPaymentMethod.text = it.getString("PaymentMethod")
             detailPaymentRecipient.text = it.getString("PaymentRecipient")
-            detailFundCollected.text = it.getDouble("FundCollected").toString()
+            val formattedFundCollected = String.format("%.2f", it.getDouble("FundCollected") ?: 0.0)
+            detailFundCollected.text = formattedFundCollected
             detailFaciName.text = it.getString("Facilitator")
             detailFaciInfo.text = it.getString("FacilitatorConEm")
             detailObjective.text = it.getString("Objective")
@@ -270,7 +278,6 @@ class DetailPost : AppCompatActivity() {
                 if (dataSnapshot.exists()) {
                     uploadersUID = dataSnapshot.child("uploadersUID").value.toString()
 
-                    // Check if the current user is the uploader of the post
                     if (currentUserId != null && currentUserId == uploadersUID) {
                         fabMenu.visibility = View.VISIBLE
                     } else {
@@ -303,7 +310,6 @@ class DetailPost : AppCompatActivity() {
                     }
                 }
             }
-
             override fun onCancelled(databaseError: DatabaseError) {
                 Toast.makeText(
                     this@DetailPost,
@@ -478,7 +484,6 @@ class DetailPost : AppCompatActivity() {
             alertDialog.dismiss()
         }
         saveButton.setOnClickListener {
-            joinPost()
             val amountText = amountEditText.text.toString().trim()
             if (amountText.isNotEmpty()) {
                 alertDialog.dismiss()
@@ -492,10 +497,7 @@ class DetailPost : AppCompatActivity() {
             alertDialog.dismiss()
 
             showImageDialog()
-
         }
-
-
         alertDialog.show()
     }
 
@@ -529,7 +531,7 @@ class DetailPost : AppCompatActivity() {
                             R.layout.dialog_sadface
                         )
                     } else {
-                        // User can proceed with the new image upload
+                        joinPost()
                         fileRef.putFile(imageUri)
                             .addOnSuccessListener { uploadTask ->
                                 fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
@@ -923,6 +925,30 @@ class DetailPost : AppCompatActivity() {
 
     val currentUser = FirebaseAuth.getInstance().currentUser
     val currentUserId = currentUser?.uid
+    private fun updateCurrentEngagement(uid: String?) {
+        if (uid != null) {
+            val userReference: DatabaseReference =
+                FirebaseDatabase.getInstance().getReference("Users").child(uid)
+
+            // Retrieve the current value of "CurrentEngagement"
+            userReference.child("CurrentEngagement").addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val currentEngagement = dataSnapshot.getValue(Long::class.java) ?: 0
+
+                    // Calculate the new value (ensure it doesn't go below 0)
+                    val newEngagement = maxOf(0, currentEngagement - 1)
+
+                    // Update the value in the database
+                    userReference.child("CurrentEngagement").setValue(newEngagement)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Handle onCancelled for "CurrentEngagement"
+                }
+            })
+        }
+    }
+
     override fun onResume() {
         super.onResume()
 
@@ -936,7 +962,6 @@ class DetailPost : AppCompatActivity() {
                     val endDate = dataSnapshot.child("endDate").getValue(String::class.java)
 
                     if (verificationStatus == true) {
-                        // If verificationStatus is true, check if the current date is after the end date
                         val currentDate = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).time
                         val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
                         dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
@@ -945,9 +970,36 @@ class DetailPost : AppCompatActivity() {
                             val endDateTime = dateFormat.parse(endDate)
 
                             if (endDateTime != null && currentDate.after(endDateTime)) {
-                                // If the current date is after the end date, set text and disable the button
+                                val participantsReference: DatabaseReference =
+                                    FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                                        .child("Participants")
+
+                                participantsReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                                    override fun onDataChange(participantSnapshot: DataSnapshot) {
+                                        var updatedParticipantCount = 0
+
+                                        for (participant in participantSnapshot.children) {
+                                            val participantUid = participant.key
+                                            val participantValue = participant.getValue(Boolean::class.java)
+
+                                            if (participantUid != null && participantValue == false) {
+                                                updateCurrentEngagement(participantUid)
+                                            } else {
+                                                updatedParticipantCount++
+                                            }
+                                        }
+
+                                        // Update the participant count in UI
+                                        detailCurrentParty.text = "$updatedParticipantCount"
+                                    }
+
+                                    override fun onCancelled(participantsError: DatabaseError) {
+                                        // Handle onCancelled for Participants
+                                    }
+                                })
                                 joinButton.text = "Already Finish"
                                 joinButton.isEnabled = false
+                                updatePaymentDetailsVisibility()
                                 return
                             }
                         } catch (e: ParseException) {
@@ -955,7 +1007,6 @@ class DetailPost : AppCompatActivity() {
                         }
                     }
 
-                    // Continue with the existing logic if verificationStatus is false or current date is before end date
                     reference.child("Participants").addListenerForSingleValueEvent(object : ValueEventListener {
                         @SuppressLint("SetTextI18n")
                         override fun onDataChange(participantSnapshot: DataSnapshot) {
@@ -975,13 +1026,7 @@ class DetailPost : AppCompatActivity() {
                         }
                     })
 
-                    val parentLinearLayout = findViewById<LinearLayout>(R.id.paymentDetailsLayout)
-
-                    if (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donations") {
-                        parentLinearLayout.visibility = View.VISIBLE
-                    } else {
-                        parentLinearLayout.visibility = View.GONE
-                    }
+                    updatePaymentDetailsVisibility()
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -1114,6 +1159,16 @@ class DetailPost : AppCompatActivity() {
                 })
         }
     }
+    private fun updatePaymentDetailsVisibility() {
+        val parentLinearLayout = findViewById<LinearLayout>(R.id.paymentDetailsLayout)
+
+        if (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donations") {
+            parentLinearLayout.visibility = View.VISIBLE
+        } else {
+            parentLinearLayout.visibility = View.GONE
+        }
+    }
+
 
     private var isSaveConfirmationDialogShowing = false // Add this variable
 
@@ -1250,5 +1305,14 @@ class DetailPost : AppCompatActivity() {
         Log.e("DetailPost", errorMessage)
 
         Toast.makeText(this@DetailPost, errorMessage, Toast.LENGTH_SHORT).show()
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        dismissCustomDialog()
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+    }
+    override fun onPause() {
+        super.onPause()
+        dismissCustomDialog()
     }
 }

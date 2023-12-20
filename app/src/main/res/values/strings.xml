@@ -6,14 +6,8 @@
     <string name="app_name1">Sort Filter RecyclerView</string>
 
     <string-array name="user_category">
-        <item>Undergraduate Student</item>
-        <item>Post-graduate Student</item>
+        <item>Current Student</item>
         <item>Alumni</item>
-        <item>Faculty</item>
-        <item>Administration</item>
-        <item>Stakeholder</item>
-        <item>Non-teaching Staff</item>
-        <item>External Volunteer</item>
     </string-array>
     <string-array name="payment_category">
         <item>GCash</item>
@@ -21,10 +15,9 @@
         <item>Paypal</item>
     </string-array>
     <string-array name="nstp_category">
-        <item>Reserve Officers Training Corps (ROTC)</item>
-        <item>Civic Welfare Training Service (CWTS)</item>
-        <item>Literacy Training Service (LTS)</item>
-        <item>None</item>
+        <item>Reserve Officers Training Corps</item>
+        <item>Civic Welfare Training Service</item>
+        <item>Literacy Training Service</item>
     </string-array>
     <string-array name="allowed_campuses">
         <item>ARASOF Nasugbu Campus</item>
@@ -38,7 +31,7 @@
         <item>Pablo Borbon Campus II</item>
         <item>Rosario Campus</item>
         <item>San Juan Campus</item>
-        <item>None</item>
+        <item>All Campus</item>
     </string-array>
     <string-array name="engagement_category">
         <item>Tree Planting</item>
@@ -151,7 +144,12 @@
     <string name="title_activity_participant_tips">ParticipantTips</string>
     <string name="success">Success</string>
     <string name="makingthemost">Making the Most of your Civic Engagement Experience</string>
+    <string name="very_dissatisfied">Very Dissatisfied</string>
+    <string name="satisfied">Satisfied</string>
+    <string name="very_satisfied">Very Satisfied</string>
 
+    <string name="dissatisfied">Dissatisfied</string>
+    <string name="ok">OK</string>
 
     <string name="default_web_client_id">AIzaSyCooH32tJpCHorztlJK3uYtoK687ZiCDlw</string>
     <string name="limitations2">We take the security of your information seriously. We employ industry-standard measures to protect against unauthorized access, alteration, disclosure, or destruction of your personal information.</string>
@@ -160,4 +158,5 @@
     <string name="information">We do not share personal information with third parties unless required for legal reasons, system functionality, or with user consent.</string>
     <string name="limitation3">Technical issues may arise, affecting user experience.</string>
     <string name="title_activity_sustainable_development_goals">SustainableDevelopmentGoals</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a, ornare ex. Sed rhoncus est ut libero porta lobortis.</string>
 </resources>

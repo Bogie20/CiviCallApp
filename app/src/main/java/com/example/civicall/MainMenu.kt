@@ -1,11 +1,9 @@
 package com.example.civicall
 
-import EventCalendar
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.PorterDuff
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -14,8 +12,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import com.example.civicall.AccountVerification.UploadVerificationFile
+import com.example.civicall.Calendar.CalendarActivity
+import com.example.civicall.Recognition.RecognitionLeaderBoard
 import com.example.civicall.databinding.ActivityMainmenuBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
@@ -25,12 +26,12 @@ import com.squareup.picasso.Picasso
 
 class MainMenu : AppCompatActivity() {
 
-    private lateinit var BackClick: ImageView
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var binding: ActivityMainmenuBinding
     private var isLogoutDialogShown = false
     private lateinit var networkUtils: NetworkUtils
+    private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,13 +48,13 @@ class MainMenu : AppCompatActivity() {
             val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-            onBackPressed()
         }
 
         val setting: TextView = findViewById(R.id.Setting)
         val calendar: TextView = findViewById(R.id.calendar)
         val logout: TextView = findViewById(R.id.logout)
         val verification1: TextView = findViewById(R.id.verification)
+        val leaderboard: TextView = findViewById(R.id.Recognition)
 
         val feedback1: TextView = findViewById(R.id.feedback)
         val editProfileCardView:TextView= findViewById(R.id.editprofile)
@@ -80,11 +81,8 @@ class MainMenu : AppCompatActivity() {
 
                 logout.text = "Yes"
                 logout.setOnClickListener {
-                    // Handle click for the "Yes, Logout" button
-                    // Sign out from Firebase
                     firebaseAuth.signOut()
 
-                    // Sign out from Google
                     val googleSignInClient = GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_SIGN_IN)
                     googleSignInClient.signOut().addOnCompleteListener {
                         // Redirect to the login screen after successful sign-out
@@ -108,8 +106,6 @@ class MainMenu : AppCompatActivity() {
                 dialog.show()
             }
         }
-
-
         verification1.setOnClickListener {
             // Handle click for menu item 2
             val intent = Intent(this, UploadVerificationFile::class.java)
@@ -121,8 +117,6 @@ class MainMenu : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-
         feedback1.setOnClickListener {
             // Handle click for Feedback menu item
             val intent = Intent(this, Feedback::class.java)
@@ -130,11 +124,17 @@ class MainMenu : AppCompatActivity() {
         }
         calendar.setOnClickListener {
             // Handle click for Feedback menu item
-            val intent = Intent(this, EventCalendar::class.java)
+            val intent = Intent(this, CalendarActivity::class.java)
             startActivity(intent)
         }
         editProfileCardView.setOnClickListener {
             val intent = Intent(this, ProfileDetails::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
+
+        leaderboard.setOnClickListener {
+            val intent = Intent(this, RecognitionLeaderBoard::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
@@ -166,33 +166,32 @@ class MainMenu : AppCompatActivity() {
                     val verificationStatus = it.child("verificationStatus").value
                     val imageProfile = it.child("ImageProfile").value
 
-                    binding.firstName.text = fname.toString()
-                    binding.lastName.text = lname.toString()
+                    val fullNameTextView: TextView = findViewById(R.id.fullName)
+
+                    if (fname != null && lname != null) {
+                        val fullName = "$fname $lname"
+                        fullNameTextView.text = fullName
+                    }
+
                     binding.email1.text = email.toString()
 
-                    val profileImage = binding.profileImage // Replace with your ImageView ID in the layout
+                    val profileImage = binding.profileImage
 
                     // Load the profile image using Picasso library
                     if (imageProfile != null && imageProfile.toString().isNotEmpty()) {
                         Picasso.get()
                             .load(imageProfile.toString())
-                            .placeholder(R.drawable.three) // Replace with the resource ID of your placeholder image
+                            .placeholder(R.drawable.three)
                             .into(profileImage)
                     } else {
-                        // If no image URL is available, set the placeholder directly
                         profileImage.setImageResource(R.drawable.three)
                     }
 
-                    // Check verification status and set drawable accordingly
                     if (verificationStatus == true) {
-                        // If verificationStatus is true, set a drawable for a verified account
-                        binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verificationtrue_icon, 0, 0, 0)
-                        // Tint the drawable for verified accounts
+                        binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verifiedalready, 0, 0, 0)
                         binding.email1.compoundDrawables[0]?.setColorFilter(ContextCompat.getColor(this, R.color.verified), PorterDuff.Mode.SRC_IN)
                     } else {
-                        // If verificationStatus is false, set a drawable for an unverified account
                         binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verificationfalse_icon, 0, 0, 0)
-                        // Tint the drawable for unverified accounts
                         binding.email1.compoundDrawables[0]?.setColorFilter(ContextCompat.getColor(this, R.color.unverifiedyellow), PorterDuff.Mode.SRC_IN)
                     }
 
@@ -210,5 +209,11 @@ class MainMenu : AppCompatActivity() {
 
         // Cleanup to unregister the network callback
         networkUtils.cleanup()
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, Dashboard::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
 }

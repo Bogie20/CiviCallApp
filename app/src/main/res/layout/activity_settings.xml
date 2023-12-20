@@ -95,6 +95,7 @@
                         android:layout_marginBottom="16dp"
                         android:fontFamily="@font/lexend"
                         android:text="Change Password"
+                        android:paddingEnd="10dp"
                         android:textColor="@color/background2"
                         android:textSize="21sp"
                       android:drawableRight="@drawable/next_24" />
@@ -120,6 +121,7 @@
                         android:drawableRight="@drawable/next_24"
                         android:layout_marginBottom="16dp"
                         android:fontFamily="@font/lexend"
+                        android:paddingEnd="10dp"
                         android:text="Report Problems"
                         android:textColor="@color/background2"
                         android:textSize="21sp" />
@@ -209,6 +211,7 @@
                         android:drawableRight="@drawable/next_24"
                         android:layout_marginBottom="16dp"
                         android:fontFamily="@font/lexend"
+                        android:paddingEnd="10dp"
                         android:text="Privacy And Policies"
                         android:textColor="@color/background2"
                         android:textSize="21sp" />
@@ -234,6 +237,7 @@
                         android:drawableRight="@drawable/next_24"
                         android:layout_marginBottom="16dp"
                         android:fontFamily="@font/lexend"
+                        android:paddingEnd="10dp"
                         android:text="Terms Of Service"
                         android:textColor="@color/background2"
                         android:textSize="21sp" />
@@ -261,6 +265,7 @@
                         android:layout_marginBottom="16dp"
                         android:fontFamily="@font/lexend"
                         android:text="About Us"
+                        android:paddingEnd="10dp"
                         android:textColor="@color/background2"
                         android:textSize="21sp" />
 

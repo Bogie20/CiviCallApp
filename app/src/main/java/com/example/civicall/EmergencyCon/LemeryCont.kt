@@ -83,11 +83,7 @@ class LemeryCont : AppCompatActivity() {
                 }
             }
 
-            if (filteredList.isEmpty()) {
-                Toast.makeText(this, "No Data found", Toast.LENGTH_SHORT).show()
-            } else {
                 adapter.setFilteredList(filteredList)
-            }
         }
     }
 

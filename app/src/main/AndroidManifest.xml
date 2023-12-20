@@ -8,33 +8,35 @@
         android:name="android.hardware.telephony"
         android:required="false" />
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
     <uses-feature android:name="android.hardware.camera" />
 
     <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-feature android:name="android.hardware.camera.any" />
-<!--        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"-->
-<!--            android:maxSdkVersion="32" />-->
-<!--    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
-<!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <uses-feature android:name="android.hardware.camera.any" /> <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
-<!--        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"-->
-<!--            android:maxSdkVersion="32"-->
-<!--            tools:ignore="ScopedStorage" />-->
+    <uses-feature android:name="android.hardware.camera.any" />
 
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" />
+        android:maxSdkVersion="30" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32"
+        android:maxSdkVersion="30"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".Application"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -44,16 +46,46 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
+
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <activity
-            android:name=".Notification.NotificationOne"
+            android:name=".Calendar.CalendarActivity"
             android:exported="false" />
         <activity
-            android:name=".Notification.Notifications"
+            android:name=".Forum.CommentEdit"
+            android:exported="false" />
+        <activity
+            android:name=".Trial"
             android:exported="true" />
-<!--        <activity-->
-<!--            android:name=".CalendarView.CalendarEvents"-->
-<!--            android:exported="true" />-->
-
+        <activity
+            android:name=".Forum.ForumUpdate"
+            android:exported="false" />
+        <activity
+            android:name=".Forum.ForumComment"
+            android:exported="false" />
+        <activity
+            android:name=".Forum.ForumUpload"
+            android:exported="false" />
+        <activity
+            android:name=".Forum.ForumFragment"
+            android:exported="false" />
+        <activity
+            android:name=".Recognition.RecognitionLeaderBoard"
+            android:exported="true" />
+        <activity
+            android:name=".Notification.NotificationOne"
+            android:exported="true" />
+        <activity
+            android:name=".Notification.Notifications"
+            android:exported="true" /> <!-- <activity -->
+        <!-- android:name=".CalendarView.CalendarEvents" -->
+        <!-- android:exported="true" /> -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.civicall.fileprovider"
@@ -65,22 +97,13 @@
         </provider>
 
         <activity
-            android:name=".Otherproblem"
-            android:exported="true" />
-        <activity
-            android:name=".Userinterface"
+            android:name=".ReportProblem"
             android:exported="true" />
         <activity
             android:name=".TechnicalIssueReportProblems"
             android:exported="true" />
         <activity
             android:name=".Reportproblems"
-            android:exported="true" />
-        <activity
-            android:name=".GoogleSignOut"
-            android:exported="true" />
-        <activity
-            android:name=".GoogleSignin"
             android:exported="true" />
         <activity
             android:name=".CivicEngagementInfo.TenSustainableGoals"
@@ -102,9 +125,6 @@
             android:exported="true" />
         <activity
             android:name=".AccountVerification.UploadVerificationFile"
-            android:exported="true" />
-        <activity
-            android:name=".AccountVerification.UploadPhoto"
             android:exported="true" />
         <activity
             android:name=".ChangePassword"
@@ -404,12 +424,6 @@
             android:name=".EmergencyCon.BalayanCont"
             android:exported="true" /> <!-- Emergency Contact End -->
         <activity
-            android:name=".Add_activities2"
-            android:exported="true" />
-        <activity
-            android:name=".add_engagement"
-            android:exported="true" />
-        <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:label="@string/app_name">
@@ -421,8 +435,15 @@
         </activity>
         <activity
             android:name=".Settings"
-            android:exported="true"
-            android:screenOrientation="portrait" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.settings.APP_NOTIFICATION_SETTINGS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Feedback"
             android:exported="true"
@@ -450,7 +471,7 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Register1"
+            android:name=".Register"
             android:exported="true"
             android:screenOrientation="portrait" />
 

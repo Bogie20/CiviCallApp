@@ -48,13 +48,13 @@ class ProfileDetails : AppCompatActivity() {
 
         // Check if the user is logged in
         checkUser()
-        // Set up click listeners for UI elements
+
         binding.backbtn.setOnClickListener {
             val intent = Intent(this, MainMenu::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-            onBackPressed()
         }
+
     }
 
     private fun checkUser() {
@@ -69,9 +69,20 @@ class ProfileDetails : AppCompatActivity() {
             readData(uid)
         }
     }
+    fun formatNumber(number: Int): String {
+        return when {
+            number < 10000 -> number.toString()
+            number < 1000000 -> String.format("%.1fK", number / 1000.0)
+            else -> String.format("%.1fM", number / 1000000.0)
+        }
+    }
+
+
+
 
     private fun readData(uid: String) {
         database = FirebaseDatabase.getInstance().getReference("Users")
+        database.keepSynced(true)
         database.child(uid).get().addOnSuccessListener { snapshot ->
             if (snapshot.exists()) {
                 val firstName = snapshot.child("firstname").value
@@ -86,26 +97,48 @@ class ProfileDetails : AppCompatActivity() {
                 val usertype = snapshot.child("userType").value
                 val campus = snapshot.child("campus").value
                 val nstp = snapshot.child("nstp").value
+                val course = snapshot.child("course").value
+                val yearandSection = snapshot.child("yearandSection").value
+                val srcode = snapshot.child("srcode").value
                 val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
                 val activePts = snapshot.child("activepts").value
                 val finishact = snapshot.child("finishactivity").value
-                finishactTextView.text = finishact.toString()
-                activePtsTextView.text = activePts.toString()
-                binding.firstName.text = firstName.toString()
-                binding.lastName.text = lastName.toString()
+                activePtsTextView.text = formatNumber(activePts.toString().toInt())
+                finishactTextView.text = formatNumber(finishact.toString().toInt())
+                val fullNameTextView: TextView = findViewById(R.id.fullName)
+                fullNameTextView.text = "$firstName $lastName"
                 binding.email1.text = email.toString()
                 binding.mobilenumtxt.text = contact.toString()
-                binding.emergencynumtxt.text = Emecontact.toString()
+                binding.emergencynumtxt.text = Emecontact?.toString() ?: ""
                 binding.addresstxt.text = address.toString()
+                binding.coursetxt.text = course.toString()
+                binding.yearandsecttxt.text = yearandSection.toString()
+                binding.srCodetxt.text = srcode.toString()
                 binding.dateofbirthtxt.text = birthday.toString()
                 binding.gendertxt.text = gender.toString()
                 binding.usertypetxt.text = usertype.toString()
                 binding.campustxt.text = campus.toString()
-                binding.nstpnumtxt.text = nstp.toString()
+                binding.nstpnumtxt.text = nstp?.toString() ?: ""
+                val badgeImageView: ImageView = findViewById(R.id.badge_25)
 
-                val profileImage = binding.profileImage // Replace with your ImageView ID in the layout
+                val activePtsInt = activePts.toString().toInt()
 
-                // Load the profile image using Picasso library with a placeholder
+                when {
+                    activePtsInt in 0..300 -> {
+                        badgeImageView.setImageResource(R.drawable.bronzes)
+                    }
+                    activePtsInt in 301..999 -> {
+                        badgeImageView.setImageResource(R.drawable.silver)
+                    }
+                    activePtsInt in 1000..9999 -> {
+                        badgeImageView.setImageResource(R.drawable.gold)
+                    }
+                    else -> {
+                        badgeImageView.setImageResource(R.drawable.platinum)
+                    }
+                }
+                val profileImage = binding.profileImage
+
                 if (imageProfile != null && imageProfile.toString().isNotEmpty()) {
                     Picasso.get()
                         .load(imageProfile.toString())
@@ -116,7 +149,7 @@ class ProfileDetails : AppCompatActivity() {
                 }
                 if (verificationStatus) {
                     // If verificationStatus is true, set a drawable for a verified account
-                    binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verificationtrue_icon, 0, 0, 0)
+                    binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verifiedalready, 0, 0, 0)
                     // Tint the drawable for verified accounts
                     binding.email1.compoundDrawables[0]?.setColorFilter(ContextCompat.getColor(this, R.color.verified), PorterDuff.Mode.SRC_IN)
                 } else {
@@ -135,11 +168,12 @@ class ProfileDetails : AppCompatActivity() {
             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
         }
         val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+        database.keepSynced(true)
         userRef.child("CurrentEngagement").addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val totalEngagementCount = dataSnapshot.getValue(Int::class.java) ?: 0
-                totalEngagementTextView.text = totalEngagementCount.toString()
+                totalEngagementTextView.text = formatNumber(totalEngagementCount.toString().toInt())
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -154,5 +188,11 @@ class ProfileDetails : AppCompatActivity() {
 
         // Cleanup to unregister the network callback
         networkUtils.cleanup()
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainMenu::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
 }

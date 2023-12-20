@@ -63,8 +63,9 @@
                     <TextView
                         android:text="&quot;The power of the people is stronger\nthan the people in power.&quot; \n- Wael Ghonim"
                         style="@style/viewParent.headerText.homeCardContent"
-                        android:layout_marginTop="13dp"
+                        android:layout_marginTop="10dp"
                         android:textSize="10dp"
+                        android:maxLines="3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="90dp"
@@ -109,8 +110,9 @@
                 <TextView
                     android:text="&quot;By failing to prepare, you are \n preparing to fail.&quot; \n- Benjamin Franklin"
                     style="@style/viewParent.headerText.homeCardContent"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:textSize="10dp"
+                    android:maxLines="3"
                     android:layout_marginEnd="90dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -158,7 +160,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="90dp"
-                    android:layout_marginTop="13dp"
+                    android:maxLines="3"
+                    android:layout_marginTop="10dp"
                     android:text="&quot;In the midst of survival, our true\n strengths and abilities are revealed.&quot; \n- Les Stroud"
                     android:textSize="10dp" />
 
@@ -200,8 +203,9 @@
                 <TextView
                     android:text="&quot;Rights mean little if you cannot exercise \nthem without fear of harm.&quot; \n- Aung San Suu Kyi"
                     style="@style/viewParent.headerText.homeCardContent"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:textSize="10dp"
+                    android:maxLines="3"
                     android:layout_marginEnd="90dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -245,8 +249,9 @@
                 <TextView
                     android:text="&quot;We won't have a society if we \ndestroy the environment.&quot; \n- Margaret Mead"
                     style="@style/viewParent.headerText.homeCardContent"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:textSize="10dp"
+                    android:maxLines="3"
                     android:layout_marginEnd="90dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -291,8 +296,9 @@
                 <TextView
                     android:text="&quot;Education's purpose is to replace an \nempty mind with an open one.&quot; \n- Malcolm Forbes"
                     style="@style/viewParent.headerText.homeCardContent"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:textSize="10dp"
+                    android:maxLines="3"
                     android:layout_marginEnd="90dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -337,8 +343,9 @@
                 <TextView
                     android:text="&quot;Health is a state of complete physical, mental and \nsocial well-being, not merely the absence of disease \nor infirmity.- World Health Organization (WHO)&quot;"
                     style="@style/viewParent.headerText.homeCardContent"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:textSize="10dp"
+                    android:maxLines="3"
                     android:layout_marginEnd="90dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -384,10 +391,11 @@
                 <TextView
                     android:text="&quot;Emergency contacts are not just names on a list; \nthey are lifelines that bridge the gap between \nhelplessness and hope in times of crisis.&quot;"
                     style="@style/viewParent.headerText.homeCardContent"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:textSize="10dp"
                     android:layout_width="match_parent"
                     android:layout_marginEnd="90dp"
+                    android:maxLines="3"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/textViewSub8Title"/>
 

@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FAF9F6"
+    android:id="@+id/body"
     android:orientation="vertical"
     tools:context=".CivicEngagementPost.DetailPost">
     <androidx.cardview.widget.CardView
@@ -13,13 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/redpink"
-        app:cardCornerRadius="4dp"
+        app:cardCornerRadius="1dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -52,12 +53,13 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="55dp"
         android:layout_marginBottom="0dp"
         android:id="@+id/scrollview">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/linearbody"
             android:orientation="vertical">
             <androidx.cardview.widget.CardView
                 android:backgroundTint="@color/white"
@@ -85,11 +87,12 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="12dp"
-                android:fontFamily="@font/inter_bold"
+                android:fontFamily="@font/anton"
                 android:gravity="center"
                 android:lineSpacingExtra="4dp"
                 android:text="ENVIRONMENTAL CLEAN UP"
                 android:textAllCaps="true"
+                android:letterSpacing="0.09"
                 android:textColor="@color/redpink"
                 android:textSize="21.5sp" />
 
@@ -206,7 +209,7 @@
                         android:text="Location"
                         android:layout_marginTop="3dp"
                         android:lineSpacingExtra="6dp"
-                        android:fontFamily="@font/inter_medium"
+                        android:fontFamily="@font/lexend"
                         android:textSize="15sp"
                         android:textColor="@color/DarkGray"/>
                     <LinearLayout
@@ -223,7 +226,7 @@
                             android:layout_height="wrap_content"
                             android:text="Start Date"
                             android:layout_marginTop="5dp"
-                            android:fontFamily="@font/inter_medium"
+                            android:fontFamily="@font/lexend"
                             android:textSize="15sp"
                             android:textColor="@color/DarkGray"/>
 
@@ -234,7 +237,7 @@
                             android:layout_marginStart="8dp"
                             android:text="to"
                             android:layout_marginTop="5dp"
-                            android:fontFamily="@font/inter_medium"
+                            android:fontFamily="@font/lexend"
                             android:textSize="15sp"
                             android:textColor="@color/DarkGray"/>
                     </LinearLayout>
@@ -247,7 +250,7 @@
                         android:layout_toEndOf="@id/infoAndLocationIcon"
                         android:layout_below="@id/linearstartdate"
                         android:text="End Date"
-                        android:fontFamily="@font/inter_medium"
+                        android:fontFamily="@font/lexend"
                         android:textSize="15sp"
                         android:textColor="@color/DarkGray"/>
 
@@ -416,7 +419,7 @@
                         android:id="@+id/detailcampus"
                         android:text="Campus"
                         android:textSize="15sp"
-                        android:fontFamily="@font/inter_medium"
+                        android:fontFamily="@font/lexend"
                         android:textColor="@color/DarkGray"/>
                 </LinearLayout>
             </LinearLayout>

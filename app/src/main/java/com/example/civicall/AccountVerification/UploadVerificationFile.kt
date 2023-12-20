@@ -30,6 +30,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import com.example.civicall.MainMenu
 import com.example.civicall.R
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
@@ -55,6 +56,7 @@ class UploadVerificationFile : AppCompatActivity() {
         val uploadImage = findViewById<Button>(R.id.uploadcamera)
         val uploadFileButton = findViewById<TextView>(R.id.underlineTextView)
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
+        val backbtn = findViewById<ImageView>(R.id.backbtn)
         FirebaseStorage.getInstance()
 
         onResume()
@@ -86,6 +88,7 @@ class UploadVerificationFile : AppCompatActivity() {
                 }
             }
         }
+
         uploadFileButton.setOnClickListener {
             if (hasUserUploadedVerification) {
                 showMessage(
@@ -143,10 +146,16 @@ class UploadVerificationFile : AppCompatActivity() {
 
                     )
                 } else {
-                    showImageDialog()
+
                     checkAndRequestPermissions()
                 }
             }
+        }
+       backbtn.setOnClickListener {
+           dismissCustomDialog()
+           val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
     }private fun checkVerificationStatus() {
         val currentUser = FirebaseAuth.getInstance().currentUser
@@ -275,9 +284,38 @@ class UploadVerificationFile : AppCompatActivity() {
         ) {
             ActivityCompat.requestPermissions(
                 this,
-                arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                arrayOf(
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ),
                 REQUEST_CAMERA_PERMISSION
             )
+        } else {
+            // Permission already granted, proceed with taking a picture
+            showImageDialog()
+        }
+    }
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_CAMERA_PERMISSION -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Camera permission granted, proceed with taking a picture
+                    showImageDialog()
+                } else {
+                    // Camera permission denied, handle accordingly
+                    Toast.makeText(
+                        this,
+                        "Camera permission denied. Go to your Phone Setting to Allow it.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
         }
     }
 
@@ -633,5 +671,18 @@ class UploadVerificationFile : AppCompatActivity() {
                 Toast.makeText(this, "File upload failed: ${exception.message}", Toast.LENGTH_SHORT)
                     .show()
             }
+    }
+    override fun onBackPressed() {
+        if (isAlreadyJoinDialogShowing) {
+            dismissCustomDialog()
+        } else {
+            super.onBackPressed()
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        dismissCustomDialog()
     }
 }

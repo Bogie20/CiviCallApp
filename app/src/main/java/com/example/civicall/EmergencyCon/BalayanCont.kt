@@ -88,12 +88,7 @@ class BalayanCont : AppCompatActivity() {
                     filteredList.add(i)
                 }
             }
-
-            if (filteredList.isEmpty()) {
-                Toast.makeText(this, "No Data found", Toast.LENGTH_SHORT).show()
-            } else {
                 adapter.setFilteredList(filteredList)
-            }
         }
     }
 

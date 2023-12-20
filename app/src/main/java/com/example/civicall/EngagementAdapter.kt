@@ -17,7 +17,7 @@ class EngagementAdapter(private val engagementList: MutableList<EngagementCalend
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.calendar_recycler_view, parent, false)
+            .inflate(R.layout.calendar_recycler_item, parent, false)
         return ViewHolder(itemView)
     }
 

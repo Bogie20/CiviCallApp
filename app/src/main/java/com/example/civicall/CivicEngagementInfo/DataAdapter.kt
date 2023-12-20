@@ -1,10 +1,12 @@
 package com.example.civicall.CivicEngagementInfo
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ScaleGestureDetector
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
@@ -23,17 +25,18 @@ class DataAdapter(private val dataList: List<DataItem>) :
         itemClickListener = listener
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
         val paragraphTextView: TextView = itemView.findViewById(R.id.paragraphTextView)
         val imageView: ImageView = itemView.findViewById(R.id.feed_post_image)
-        val referenceTextView: TextView = itemView.findViewById(R.id.reference)
+        val linearBtn: LinearLayout = itemView.findViewById(R.id.linearBtn)
 
         var currentItem: DataItem? = null
         private var scaleFactor = 1.0f
 
         init {
-            referenceTextView.setOnClickListener {
+            linearBtn.setOnClickListener {
                 itemClickListener?.onReferenceClick(bindingAdapterPosition)
             }
 
@@ -84,7 +87,7 @@ class DataAdapter(private val dataList: List<DataItem>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_data, parent, false)
+            .inflate(R.layout.item_educ_resource, parent, false)
         return ViewHolder(itemView)
     }
 
@@ -98,8 +101,8 @@ class DataAdapter(private val dataList: List<DataItem>) :
         // Use Picasso to load the image from the imageLink
         Picasso.get()
             .load(currentItem.imageLink)
-            .placeholder(R.drawable.placeholder) // You can use a placeholder image while the URL image is loading
-            .error(R.drawable.placeholdererror) // You can specify an error image in case the URL image fails to load
+            .placeholder(R.drawable.placeholder)
+            .error(R.drawable.placeholder)
             .into(holder.imageView)
     }
 

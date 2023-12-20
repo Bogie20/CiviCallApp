@@ -61,25 +61,20 @@ class MainEmergencyContact : AppCompatActivity() {
                     filteredList.add(i)
                 }
             }
-
-            if (filteredList.isEmpty()) {
-                Toast.makeText(this, "No Data found", Toast.LENGTH_SHORT).show()
-            } else {
                 adapter.setFilteredList(filteredList)
-            }
         }
     }
 
     private fun addDataToList() {
+        mList.add(ContactData("ALANGINAN", R.drawable.batangasymbol))
         mList.add(ContactData("BALAYAN CAMPUS", R.drawable.balayansymbol))
         mList.add(ContactData("LEMERY CAMPUS", R.drawable.lemerysymbol))
         mList.add(ContactData("LIPA CAMPUS", R.drawable.lipasymbol))
         mList.add(ContactData("LOBO CAMPUS", R.drawable.lobosymbol))
         mList.add(ContactData("MABINI CAMPUS", R.drawable.mabinisymbol))
+        mList.add(ContactData("MAIN CAMPUS", R.drawable.batangasymbol))
         mList.add(ContactData("MALVAR CAMPUS", R.drawable.malvarsymbol))
         mList.add(ContactData("NASUGBU CAMPUS", R.drawable.nasugbusymbol))
-        mList.add(ContactData("PABLO BORBON I", R.drawable.batangasymbol))
-        mList.add(ContactData("PABLO BORBON II", R.drawable.batangasymbol))
         mList.add(ContactData("ROSARIO CAMPUS", R.drawable.rosariosymbol))
         mList.add(ContactData("SAN JUAN CAMPUS", R.drawable.sanjuansymbol))
     }

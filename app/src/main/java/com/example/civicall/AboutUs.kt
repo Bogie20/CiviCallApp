@@ -14,11 +14,10 @@ class AboutUs : AppCompatActivity() {
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
 
-        val backButton: ImageView = findViewById(R.id.backbtn)
-        backButton.setOnClickListener {
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val backbtn: ImageView = findViewById(R.id.backbtn)
+        backbtn.setOnClickListener {
+            super.onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-            onBackPressed()
         }
     }
     override fun onDestroy() {

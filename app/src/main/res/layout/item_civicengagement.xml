@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/recCard"
+    app:cardBackgroundColor="@color/white"
+    android:layout_marginHorizontal="13dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="3dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/recImage"
+            android:layout_width="match_parent"
+            android:layout_height="198dp"
+            android:layout_marginBottom="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder"
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+            />
+        <TextView
+            android:id="@+id/civicTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="0dp"
+            android:gravity="start"
+            android:layout_marginEnd="15dp"
+            android:textAllCaps="true"
+            android:letterSpacing="0.10"
+            android:drawableTint="#FF0000"
+            android:drawableEnd="@drawable/verificationfalse_icon"
+            android:fontFamily="@font/anton"
+            android:text="ENVIRONMENT CLEANING PROGRAM"
+            android:textColor="@color/DarkGray"
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            />
+
+        <TextView
+            android:id="@+id/civicLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:gravity="start"
+            android:fontFamily="@font/lexend"
+            android:text="Barangay Santiago Malvar Batangas"
+            android:textColor="@color/DarkGray"
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/linearstartdate"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/civicStartDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 09-12-2023, 5:30am"
+                android:textSize="12sp"
+                android:layout_marginTop="5dp"
+                android:gravity="start"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/lexend"
+                android:textColor="@color/DarkGray"/>
+
+            <TextView
+                android:id="@+id/date_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="to"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/lexend"
+                android:textSize="14sp"
+                android:textColor="@color/DarkGray"/>
+            <TextView
+                android:id="@+id/civicEndDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 09-12-2023, 5:30am"
+                android:textSize="12sp"
+                android:layout_marginTop="5dp"
+                android:gravity="start"
+                android:layout_marginEnd="8dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/lexend"
+                android:textColor="@color/DarkGray"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/civicCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="11dp"
+            android:gravity="end"
+            android:layout_marginEnd="15dp"
+            android:textAllCaps="true"
+            android:fontFamily="@font/lexend"
+            android:text="Category"
+            android:textColor="@color/DarkGray"
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
