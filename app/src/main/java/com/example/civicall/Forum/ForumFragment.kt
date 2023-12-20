@@ -45,7 +45,7 @@ class ForumFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View? {
-       rootView = inflater.inflate(R.layout.fragment_forum, container, false)
+        rootView = inflater.inflate(R.layout.fragment_forum, container, false)
 
         recyclerView = rootView.findViewById(R.id.recyclerViewForum)
         nestedRecycler = rootView.findViewById(R.id.nestedRecycler)
@@ -82,7 +82,12 @@ class ForumFragment : Fragment() {
                 for (itemSnapshot in snapshot.children) {
                     val dataClass = itemSnapshot.getValue(DataClassForum::class.java)
                     dataClass?.key = itemSnapshot.key
-                    dataClass?.let { dataList.add(0, it) } // Add the new item at the beginning of the list
+                    dataClass?.let {
+                        dataList.add(
+                            0,
+                            it
+                        )
+                    } // Add the new item at the beginning of the list
                 }
 
                 adapter.notifyItemChanged(0)
@@ -125,6 +130,14 @@ class ForumFragment : Fragment() {
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
 
         nestedRecycler.setOnScrollChangeListener(OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+            // Iterate through all visible items in the RecyclerView
+            for (i in 0 until recyclerView.childCount) {
+                val viewHolder = recyclerView.getChildViewHolder(recyclerView.getChildAt(i))
+                if (viewHolder is MyViewHolderForum) {
+                    viewHolder.closeFabMenu()
+                }
+            }
+
             if (scrollY > oldScrollY) {
                 // Scrolling down
                 if (animatedBottomBar.isShown) {
@@ -145,9 +158,10 @@ class ForumFragment : Fragment() {
         })
 
         return rootView
+
     }
 
-    private var isFilterDialogShowing = false // Add this variable
+        private var isFilterDialogShowing = false // Add this variable
 
     private fun showFilterDialog() {
         if (isFilterDialogShowing) {

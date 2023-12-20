@@ -169,17 +169,11 @@ class ForumComment : AppCompatActivity() {
 
         loadCommentsFromDatabase()
 
-        val commentsRecyclerView: RecyclerView = findViewById(R.id.comments_recyclerView)
-
-        commentsRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-
-                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
-                val viewHolder =
-                    recyclerView.findViewHolderForAdapterPosition(firstVisibleItemPosition)
-
+        val nestedScrollView: NestedScrollView = findViewById(R.id.nestedScroll)
+        nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+            // Iterate through all visible items in the RecyclerView
+            for (i in 0 until commentsRecyclerView.childCount) {
+                val viewHolder = commentsRecyclerView.getChildViewHolder(commentsRecyclerView.getChildAt(i))
                 if (viewHolder is CommentAdapter.CommentViewHolder) {
                     viewHolder.closeFabMenu()
                 }
