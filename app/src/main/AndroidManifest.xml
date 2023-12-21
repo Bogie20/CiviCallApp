@@ -46,6 +46,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
+        <activity
+            android:name=".FinishActivityList.FinishActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CurrentEngagementList.CurrentEngagements"
+            android:exported="true" />
 
         <service
             android:name=".MyFirebaseMessagingService"
@@ -54,6 +60,7 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <activity
             android:name=".Calendar.CalendarActivity"
             android:exported="false" />
@@ -98,9 +105,6 @@
 
         <activity
             android:name=".ReportProblem"
-            android:exported="true" />
-        <activity
-            android:name=".TechnicalIssueReportProblems"
             android:exported="true" />
         <activity
             android:name=".Reportproblems"

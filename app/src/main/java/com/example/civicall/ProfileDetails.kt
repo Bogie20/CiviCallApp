@@ -10,6 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.example.civicall.CurrentEngagementList.CurrentEngagements
+import com.example.civicall.FinishActivityList.FinishActAdapter
+import com.example.civicall.FinishActivityList.FinishActivity
 import com.example.civicall.databinding.ActivityProfiledetailsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -54,7 +57,16 @@ class ProfileDetails : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
-
+        binding.finishLinear.setOnClickListener {
+            val intent = Intent(this, FinishActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
+        binding.CurrentLinear.setOnClickListener {
+            val intent = Intent(this, CurrentEngagements::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
     }
 
     private fun checkUser() {
