@@ -53,8 +53,6 @@ class FinishActivity : AppCompatActivity() {
         val currentUserUid = auth.currentUser?.uid
         val currentDate = getCurrentDate()
 
-        val finishedActivities = mutableListOf<DataClassFinish>()
-
         val participantsQuery = databaseReference.orderByChild("Participants/$currentUserUid").equalTo(true)
         participantsQuery.addListenerForSingleValueEvent(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
@@ -65,7 +63,7 @@ class FinishActivity : AppCompatActivity() {
                     val startDate = engagementSnapshot.child("startDate").getValue(String::class.java) ?: ""
                     val endDate = engagementSnapshot.child("endDate").getValue(String::class.java) ?: ""
 
-                    if (isDateInRange(currentDate, startDate, endDate)) {
+                    if (isDateMatched(currentDate, endDate)) { // Check if the current date and time are equal to or later than the endDate
                         val postKey = engagementSnapshot.key ?: ""
                         val finishData = DataClassFinish(
                             engagementSnapshot.child("image").getValue(String::class.java) ?: "",
@@ -81,7 +79,6 @@ class FinishActivity : AppCompatActivity() {
                 }
 
                 // Update the adapter with the fetched data
-                finishActAdapter.notifyDataSetChanged()
                 finishActAdapter = FinishActAdapter(finishedActivities)
                 recyclerView.adapter = finishActAdapter
 
@@ -95,29 +92,26 @@ class FinishActivity : AppCompatActivity() {
                 }
             }
 
-
-
             override fun onCancelled(error: DatabaseError) {
                 // Handle onCancelled
             }
         })
     }
 
+    private fun isDateMatched(currentDate: String, endDate: String): Boolean {
+        val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+        val currentDateTime = sdf.parse(currentDate)
+        val endDateTime = sdf.parse(endDate)
+
+        return currentDateTime.after(endDateTime) || currentDateTime.equals(endDateTime)
+    }
     private fun getCurrentDate(): String {
         val calendar = Calendar.getInstance()
-        val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
         return dateFormat.format(calendar.time)
     }
 
 
-    private fun isDateInRange(selectedDate: String, startDate: String, endDate: String): Boolean {
-        val sdf = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
-        val selectedDateTime = sdf.parse(selectedDate)
-        val startDateTime = sdf.parse(startDate)
-        val endDateTime = sdf.parse(endDate)
-
-        return selectedDateTime in startDateTime..endDateTime
-    }
     override fun onDestroy() {
         super.onDestroy()
         childEventListener?.let {

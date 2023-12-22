@@ -1,5 +1,6 @@
 package com.example.civicall.FinishActivityList
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,10 +24,11 @@ class FinishActAdapter(private val finishedActivities: List<DataClassFinish>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.finish_activity_item, parent, false)
+            .inflate(R.layout.engagement_activity_item, parent, false)
         return ViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val activity = finishedActivities[position]
 
