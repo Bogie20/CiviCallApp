@@ -9,16 +9,21 @@ import com.bumptech.glide.Glide
 import com.example.civicall.R
 import com.google.android.material.imageview.ShapeableImageView
 
+import android.content.Context
+import androidx.core.content.ContextCompat
+import java.text.SimpleDateFormat
+import java.util.*
+
 class CurrentEngageAdapter(private val finishedActivities: List<DataClassCurrent>) :
     RecyclerView.Adapter<CurrentEngageAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // Define your views here
         val engagementImage: ShapeableImageView = itemView.findViewById(R.id.engagementImage)
         val recTitle: TextView = itemView.findViewById(R.id.recTitle)
         val location: TextView = itemView.findViewById(R.id.location)
         val dateAndTime: TextView = itemView.findViewById(R.id.dateandTime)
         val category: TextView = itemView.findViewById(R.id.category)
+        val indicatorIcon: ShapeableImageView = itemView.findViewById(R.id.iconIndicator)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,7 +35,6 @@ class CurrentEngageAdapter(private val finishedActivities: List<DataClassCurrent
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val activity = finishedActivities[position]
 
-        // Bind your data to the views here using Glide for loading images
         Glide.with(holder.itemView)
             .load(activity.engagementImage)
             .placeholder(R.drawable.placeholder)
@@ -39,11 +43,54 @@ class CurrentEngageAdapter(private val finishedActivities: List<DataClassCurrent
 
         holder.recTitle.text = activity.title
         holder.location.text = activity.location
-        holder.dateAndTime.text = activity.startDate + " - " + activity.endDate
+        holder.dateAndTime.text = "${activity.startDate} - ${activity.endDate}"
         holder.category.text = activity.category
+
+        setIndicatorIcon(holder, activity.startDate, activity.endDate)
     }
 
     override fun getItemCount(): Int {
         return finishedActivities.size
     }
+
+    private fun isDateTimeInRange(selectedDateTime: String, startDate: String, endDate: String): Boolean {
+        val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+        sdf.timeZone = TimeZone.getTimeZone("Asia/Manila")
+
+        val selectedDateTimeFormatted = sdf.parse(selectedDateTime)
+        val startDateFormatted = sdf.parse(startDate)
+        val endDateFormatted = sdf.parse(endDate)
+
+        return selectedDateTimeFormatted?.inRange(startDateFormatted, endDateFormatted) ?: false
+    }
+
+    private fun getCurrentDate(): String {
+        val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+        dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+        return dateFormat.format(calendar.time)
+    }
+
+    private fun setIndicatorIcon(holder: ViewHolder, startDate: String, endDate: String) {
+        val currentDate = getCurrentDate()
+
+        val nearColor = ContextCompat.getColor(holder.itemView.context, R.color.redpink)
+        val ongoingColor = ContextCompat.getColor(holder.itemView.context, R.color.blue)
+
+        if (isDateTimeInRange(currentDate, startDate, endDate)) {
+            setIndicatorIconWithColor(holder, R.drawable.play, ongoingColor)
+        } else {
+            setIndicatorIconWithColor(holder, R.drawable.near, nearColor)
+        }
+    }
+
+    private fun setIndicatorIconWithColor(holder: ViewHolder, iconRes: Int, color: Int) {
+        holder.indicatorIcon.setImageResource(iconRes)
+        holder.indicatorIcon.setColorFilter(color)
+    }
+
+    private fun Date.inRange(start: Date, end: Date): Boolean {
+        return this.after(start) && this.before(end)
+    }
+
 }
