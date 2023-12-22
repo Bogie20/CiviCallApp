@@ -84,7 +84,7 @@
         android:fontFamily="@font/lexend_bold"
         android:gravity="center"
         android:layout_marginHorizontal="15dp"
-        android:text="Where discussions come alive, stories unfold. Your community journey begins here."
+        android:text="Hold on! No activities as of the moment – you're on a roll!"
         android:textColor="@color/DarkGray"
         android:textSize="19sp"
         android:visibility="gone"
