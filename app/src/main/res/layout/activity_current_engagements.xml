@@ -69,7 +69,7 @@
         android:layout_centerVertical="true"
         android:layout_marginTop="60dp"
         android:visibility="gone"
-        android:src="@drawable/leaderboard"
+        android:src="@drawable/nofinish"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/relativeLayout" />
