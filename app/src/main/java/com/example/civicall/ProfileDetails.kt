@@ -123,9 +123,9 @@ class ProfileDetails : AppCompatActivity() {
                 binding.mobilenumtxt.text = contact.toString()
                 binding.emergencynumtxt.text = Emecontact?.toString() ?: ""
                 binding.addresstxt.text = address.toString()
-                binding.coursetxt.text = course.toString()
-                binding.yearandsecttxt.text = yearandSection.toString()
-                binding.srCodetxt.text = srcode.toString()
+                binding.coursetxt.text = course?.toString() ?: ""
+                binding.yearandsecttxt.text = yearandSection?.toString() ?: ""
+                binding.srCodetxt.text = srcode?.toString() ?: ""
                 binding.dateofbirthtxt.text = birthday.toString()
                 binding.gendertxt.text = gender.toString()
                 binding.usertypetxt.text = usertype.toString()

@@ -122,14 +122,16 @@ class CurrentEngagements : AppCompatActivity() {
         return selectedDateTimeFormatted?.before(endDateTimeFormatted) ?: false
     }
 
-
-
-
-
     override fun onDestroy() {
         super.onDestroy()
         childEventListener?.let {
             databaseReference.removeEventListener(it)
         }
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, ProfileDetails::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
 }
