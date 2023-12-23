@@ -8,7 +8,7 @@
     tools:context=".Calendar.CalendarActivity">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="415dp"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
         android:id="@+id/card"
         app:cardBackgroundColor="@color/redpink"
