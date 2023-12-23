@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.Paint
 import android.graphics.drawable.ColorDrawable
 import android.net.ParseException
 import android.net.Uri
@@ -23,6 +24,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -53,6 +55,7 @@ import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
@@ -79,6 +82,7 @@ class DetailPost : AppCompatActivity() {
     private lateinit var deleteButton: FloatingActionButton
     private lateinit var editButton: FloatingActionButton
     private lateinit var fabMenu: FloatingActionMenu
+    private lateinit var rateThisTextView: TextView
     private var key = ""
     private var imageUrl = ""
     private var uploadersUID = ""
@@ -97,6 +101,8 @@ class DetailPost : AppCompatActivity() {
         detailStartDate = findViewById(R.id.detailStartDate)
         detailEndDate = findViewById(R.id.detailEndDate)
         detailImage = findViewById(R.id.detailImage)
+        rateThisTextView = findViewById(R.id.rateThis)
+        rateThisTextView.paintFlags = rateThisTextView.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         detailCategory = findViewById(R.id.detailCategory)
         detailPaymentMethod = findViewById(R.id.detailPaymentMethod)
         detailTitle = findViewById(R.id.detailTitle)
@@ -124,6 +130,11 @@ class DetailPost : AppCompatActivity() {
             // Close the FloatingActionMenu when the body is clicked
             fabMenu.close(true)
         }
+        rateThisTextView.setOnClickListener {
+            showRatingDialog(key)
+        }
+
+
         binding.backbtn.setOnClickListener {
             dismissCustomDialog()
             super.onBackPressed()
@@ -356,7 +367,88 @@ class DetailPost : AppCompatActivity() {
             Toast.LENGTH_SHORT
         ).show()
     }
+    private fun showRatingDialog(postKey: String) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_rating, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
 
+        val dialogRatingIcon: ImageView = dialogView.findViewById(R.id.dialog_rating_icon)
+        val dialogRatingTitle: TextView = dialogView.findViewById(R.id.dialog_rating_title)
+        val ratingBar: RatingBar = dialogView.findViewById(R.id.dialog_rating_rating_bar)
+        val rateText: TextView = dialogView.findViewById(R.id.rateText)
+        val submitBtn: MaterialButton = dialogView.findViewById(R.id.submitBtn)
+        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+
+        dialogRatingIcon.setImageResource(R.drawable.rate) // Set your image resource here
+        dialogRatingTitle.text = "Rate this Engagement"
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        ratingBar.setOnRatingBarChangeListener { _, rating, _ ->
+            updateRateText(rateText, rating.toInt())
+        }
+
+        // Set up the submit button click listener
+        submitBtn.setOnClickListener {
+            // Get the selected rating
+            val selectedRating = ratingBar.rating.toInt()
+
+            // Get the message corresponding to the selected rating
+            val message = when (selectedRating) {
+                0 -> getString(R.string.very_dissatisfied)
+                1 -> getString(R.string.dissatisfied)
+                2 -> getString(R.string.ok)
+                3 -> getString(R.string.average)
+                4 -> getString(R.string.satisfied)
+                5 -> getString(R.string.very_satisfied)
+                else -> ""
+            }
+
+            // Get the current user's UID
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            val uid = currentUser?.uid
+
+            // Get the current timestamp
+            val timestamp = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US).format(Date())
+
+            // Upload the rating to Firebase
+            if (uid != null) {
+                val ratingsReference: DatabaseReference =
+                    FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
+                        .child("Ratings").child(uid)
+
+                ratingsReference.child("message").setValue(message)
+                ratingsReference.child("timestamp").setValue(timestamp)
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "Rating submitted successfully", Toast.LENGTH_SHORT).show()
+                        alertDialog.dismiss()
+                    }
+                    .addOnFailureListener { exception ->
+                        Toast.makeText(this, "Failed to submit rating: ${exception.message}", Toast.LENGTH_SHORT).show()
+                    }
+            }
+        }
+
+        // Set up the cancel button click listener
+        cancelBtn.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
+    }
+
+    private fun updateRateText(rateText: TextView, rating: Int) {
+        when (rating) {
+            0 -> rateText.text = getString(R.string.very_dissatisfied)
+            1 -> rateText.text = getString(R.string.dissatisfied)
+            in 2..3 -> rateText.text = getString(R.string.ok)
+            4 -> rateText.text = getString(R.string.satisfied)
+            5 -> rateText.text = getString(R.string.very_satisfied)
+            else -> rateText.text = ""
+        }
+    }
 
     private var isImageDialogShowing = false
 
@@ -977,7 +1069,6 @@ class DetailPost : AppCompatActivity() {
             })
         }
     }
-
     override fun onResume() {
         super.onResume()
 
@@ -1011,7 +1102,7 @@ class DetailPost : AppCompatActivity() {
                                             val participantUid = participant.key
                                             val participantValue = participant.getValue(Boolean::class.java)
 
-                                            if (participantUid != null && participantValue == false) {
+                                            if (participantUid != null && participantValue == false || participantValue == true) {
                                                 updateCurrentEngagement(participantUid)
                                             } else {
                                                 updatedParticipantCount++
@@ -1026,6 +1117,7 @@ class DetailPost : AppCompatActivity() {
                                         // Handle onCancelled for Participants
                                     }
                                 })
+                                rateThisTextView.visibility = View.VISIBLE
                                 joinButton.text = "Already Finish"
                                 joinButton.isEnabled = false
                                 updatePaymentDetailsVisibility()
