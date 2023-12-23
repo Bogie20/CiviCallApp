@@ -107,9 +107,6 @@
             android:name=".ReportProblem"
             android:exported="true" />
         <activity
-            android:name=".Reportproblems"
-            android:exported="true" />
-        <activity
             android:name=".CivicEngagementInfo.TenSustainableGoals"
             android:exported="true" />
         <activity
@@ -213,9 +210,11 @@
             android:exported="true" />
         <activity
             android:name=".ProfileDetails"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".EditProfile"
+            android:screenOrientation="portrait"
             android:exported="false" /> <!-- Posting Civic Engagement Start -->
         <activity
             android:name=".EnvironmentalandSocialIssueInfo.ZeroBreaktheChain"
@@ -450,10 +449,6 @@
         </activity>
         <activity
             android:name=".Feedback"
-            android:exported="true"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".CivicEngagements"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity

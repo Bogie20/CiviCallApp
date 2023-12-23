@@ -264,6 +264,9 @@
 
 
 </style>
+    <style name="CalendarViewDateWithEngagements" parent="@android:style/Widget.CalendarView">
+        <item name="android:textColor">@color/blue</item>
+    </style>
 
 
 </resources>
