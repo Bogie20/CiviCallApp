@@ -150,6 +150,7 @@
 
     <string name="dissatisfied">Dissatisfied</string>
     <string name="ok">OK</string>
+    <string name="average">Average</string>
 
     <string name="default_web_client_id">AIzaSyCooH32tJpCHorztlJK3uYtoK687ZiCDlw</string>
     <string name="limitations2">We take the security of your information seriously. We employ industry-standard measures to protect against unauthorized access, alteration, disclosure, or destruction of your personal information.</string>

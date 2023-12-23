@@ -443,7 +443,8 @@ class DetailPost : AppCompatActivity() {
         when (rating) {
             0 -> rateText.text = getString(R.string.very_dissatisfied)
             1 -> rateText.text = getString(R.string.dissatisfied)
-            in 2..3 -> rateText.text = getString(R.string.ok)
+            2 -> rateText.text = getString(R.string.ok)
+            3 -> rateText.text = getString(R.string.average)
             4 -> rateText.text = getString(R.string.satisfied)
             5 -> rateText.text = getString(R.string.very_satisfied)
             else -> rateText.text = ""
@@ -1097,6 +1098,7 @@ class DetailPost : AppCompatActivity() {
                                 participantsReference.addListenerForSingleValueEvent(object : ValueEventListener {
                                     override fun onDataChange(participantSnapshot: DataSnapshot) {
                                         var updatedParticipantCount = 0
+                                        var userUidFound = false
 
                                         for (participant in participantSnapshot.children) {
                                             val participantUid = participant.key
@@ -1104,6 +1106,9 @@ class DetailPost : AppCompatActivity() {
 
                                             if (participantUid != null && participantValue == false || participantValue == true) {
                                                 updateCurrentEngagement(participantUid)
+                                                if (participantUid == currentUserId && participantValue == true) {
+                                                    userUidFound = true
+                                                }
                                             } else {
                                                 updatedParticipantCount++
                                             }
@@ -1111,13 +1116,20 @@ class DetailPost : AppCompatActivity() {
 
                                         // Update the participant count in UI
                                         detailCurrentParty.text = "$updatedParticipantCount"
+
+                                        // Set visibility based on user UID presence
+                                        if (userUidFound) {
+                                            rateThisTextView.visibility = View.VISIBLE
+                                        } else {
+                                            rateThisTextView.visibility = View.GONE
+                                        }
                                     }
 
                                     override fun onCancelled(participantsError: DatabaseError) {
                                         // Handle onCancelled for Participants
                                     }
                                 })
-                                rateThisTextView.visibility = View.VISIBLE
+
                                 joinButton.text = "Already Finish"
                                 joinButton.isEnabled = false
                                 updatePaymentDetailsVisibility()
