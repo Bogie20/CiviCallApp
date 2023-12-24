@@ -56,7 +56,7 @@
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/lexend_medium"
             android:textColor="@color/black"
-            android:text=""
+            android:text="Very Dissatisfied"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

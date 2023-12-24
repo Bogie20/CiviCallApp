@@ -21,6 +21,11 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 class ProfileDetails : AppCompatActivity() {
     private lateinit var binding: ActivityProfiledetailsBinding
@@ -112,7 +117,8 @@ class ProfileDetails : AppCompatActivity() {
                 val course = snapshot.child("course").value
                 val yearandSection = snapshot.child("yearandSection").value
                 val srcode = snapshot.child("srcode").value
-                val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
+                val verificationStatus =
+                    snapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
                 val activePts = snapshot.child("activepts").value
                 val finishact = snapshot.child("finishactivity").value
                 activePtsTextView.text = formatNumber(activePts.toString().toInt())
@@ -139,12 +145,15 @@ class ProfileDetails : AppCompatActivity() {
                     activePtsInt in 0..300 -> {
                         badgeImageView.setImageResource(R.drawable.bronzes)
                     }
+
                     activePtsInt in 301..999 -> {
                         badgeImageView.setImageResource(R.drawable.silver)
                     }
+
                     activePtsInt in 1000..9999 -> {
                         badgeImageView.setImageResource(R.drawable.gold)
                     }
+
                     else -> {
                         badgeImageView.setImageResource(R.drawable.platinum)
                     }
@@ -161,14 +170,34 @@ class ProfileDetails : AppCompatActivity() {
                 }
                 if (verificationStatus) {
                     // If verificationStatus is true, set a drawable for a verified account
-                    binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verifiedalready, 0, 0, 0)
+                    binding.email1.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.verifiedalready,
+                        0,
+                        0,
+                        0
+                    )
                     // Tint the drawable for verified accounts
-                    binding.email1.compoundDrawables[0]?.setColorFilter(ContextCompat.getColor(this, R.color.verified), PorterDuff.Mode.SRC_IN)
+                    binding.email1.compoundDrawables[0]?.setColorFilter(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.verified
+                        ), PorterDuff.Mode.SRC_IN
+                    )
                 } else {
                     // If verificationStatus is false, set a drawable for an unverified account
-                    binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verificationfalse_icon, 0, 0, 0)
+                    binding.email1.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.verificationfalse_icon,
+                        0,
+                        0,
+                        0
+                    )
                     // Tint the drawable for unverified accounts
-                    binding.email1.compoundDrawables[0]?.setColorFilter(ContextCompat.getColor(this, R.color.unverifiedyellow), PorterDuff.Mode.SRC_IN)
+                    binding.email1.compoundDrawables[0]?.setColorFilter(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.unverifiedyellow
+                        ), PorterDuff.Mode.SRC_IN
+                    )
                 }
             } else {
                 Toast.makeText(this, "User Not existed", Toast.LENGTH_LONG).show()
@@ -179,23 +208,44 @@ class ProfileDetails : AppCompatActivity() {
             // Show a toast if there's a failure in fetching data
             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
         }
-        val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
-        database.keepSynced(true)
-        userRef.child("CurrentEngagement").addListenerForSingleValueEvent(object :
-            ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val totalEngagementCount = dataSnapshot.getValue(Int::class.java) ?: 0
-                totalEngagementTextView.text = formatNumber(totalEngagementCount.toString().toInt())
-            }
+        val userRef = FirebaseDatabase.getInstance().getReference("Upload Engagement")
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                val errorMessage = "Database error: ${databaseError.message}"
-                Log.e("ProfileDetails", errorMessage)
-                Toast.makeText(this@ProfileDetails, errorMessage, Toast.LENGTH_SHORT).show()
-            }
-        })
+// Get the UID of the currently authenticated user
+        val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
+
+        userRef.orderByChild("Participants/$currentUserId").equalTo(false)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val currentDate = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).time
+                    var totalEngagementCount = 0
+
+                    for (engagementSnapshot in dataSnapshot.children) {
+                        val endDateString =
+                            engagementSnapshot.child("endDate").getValue(String::class.java)
+
+                        // Parse endDateString to Date
+                        val endDate =
+                            SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US).parse(endDateString)
+
+                        // Compare Date objects
+                        if (endDate != null && endDate.after(currentDate)) {
+                            // Increment the count only for engagements with future end dates
+                            totalEngagementCount++
+                        }
+                    }
+
+                    // Set the totalEngagementTextView after processing all engagements
+                    totalEngagementTextView.text = formatNumber(totalEngagementCount)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    val errorMessage = "Database error: ${databaseError.message}"
+                    Log.e("ProfileDetails", errorMessage)
+                    Toast.makeText(this@ProfileDetails, errorMessage, Toast.LENGTH_SHORT).show()
+                }
+            })
     }
-    override fun onDestroy() {
+        override fun onDestroy() {
         super.onDestroy()
 
         // Cleanup to unregister the network callback

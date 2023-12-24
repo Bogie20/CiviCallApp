@@ -1072,6 +1072,9 @@ class DetailPost : AppCompatActivity() {
     }
     override fun onResume() {
         super.onResume()
+        executeOnResumeLogic()
+    }
+    private fun executeOnResumeLogic() {
 
         if (currentUserId != null) {
             val reference: DatabaseReference =
