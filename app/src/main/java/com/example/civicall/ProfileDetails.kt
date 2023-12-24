@@ -98,6 +98,7 @@ class ProfileDetails : AppCompatActivity() {
 
 
     private fun readData(uid: String) {
+
         database = FirebaseDatabase.getInstance().getReference("Users")
         database.keepSynced(true)
         database.child(uid).get().addOnSuccessListener { snapshot ->
@@ -120,9 +121,7 @@ class ProfileDetails : AppCompatActivity() {
                 val verificationStatus =
                     snapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
                 val activePts = snapshot.child("activepts").value
-                val finishact = snapshot.child("finishactivity").value
                 activePtsTextView.text = formatNumber(activePts.toString().toInt())
-                finishactTextView.text = formatNumber(finishact.toString().toInt())
                 val fullNameTextView: TextView = findViewById(R.id.fullName)
                 fullNameTextView.text = "$firstName $lastName"
                 binding.email1.text = email.toString()
@@ -138,6 +137,24 @@ class ProfileDetails : AppCompatActivity() {
                 binding.campustxt.text = campus.toString()
                 binding.nstpnumtxt.text = nstp?.toString() ?: ""
                 val badgeImageView: ImageView = findViewById(R.id.badge_25)
+                val userRef = FirebaseDatabase.getInstance().getReference("Upload Engagement")
+
+                // Get the UID of the currently authenticated user
+                val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
+
+                userRef.orderByChild("Participants/$currentUserId").equalTo(true)
+                    .addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            val finishactCount = dataSnapshot.childrenCount.toInt()
+                            finishactTextView.text = formatNumber(finishactCount)
+                        }
+
+                        override fun onCancelled(databaseError: DatabaseError) {
+                            val errorMessage = "Database error: ${databaseError.message}"
+                            Log.e("ProfileDetails", errorMessage)
+                            Toast.makeText(this@ProfileDetails, errorMessage, Toast.LENGTH_SHORT).show()
+                        }
+                    })
 
                 val activePtsInt = activePts.toString().toInt()
 
@@ -245,6 +262,7 @@ class ProfileDetails : AppCompatActivity() {
                 }
             })
     }
+
         override fun onDestroy() {
         super.onDestroy()
 
