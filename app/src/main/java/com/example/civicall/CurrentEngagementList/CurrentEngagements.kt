@@ -51,8 +51,6 @@ class CurrentEngagements : AppCompatActivity() {
         val currentUserUid = auth.currentUser?.uid
         val currentDate = getCurrentDate()
 
-        val currentEngagements = mutableListOf<DataClassCurrent>()
-
         val engagementsQuery = databaseReference.orderByChild("startDate")
         engagementsQuery.addListenerForSingleValueEvent(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
@@ -66,7 +64,7 @@ class CurrentEngagements : AppCompatActivity() {
                     val isParticipant = engagementSnapshot.child("Participants/$currentUserUid").getValue(Boolean::class.java) ?: false
                     val contributionStatus = engagementSnapshot.child("TransparencyImage/$currentUserUid/contributionStatus").getValue(Boolean::class.java) ?: false
 
-                    if (isDateTimeInRange(currentDate, endDate) && !isParticipant && !contributionStatus) {
+                    if (isDateTimeInRange(currentDate, endDate) && !(isParticipant || contributionStatus)) {
                         val postKey = engagementSnapshot.key ?: ""
                         val currentEngagement = DataClassCurrent(
                             engagementSnapshot.child("image").getValue(String::class.java) ?: "",

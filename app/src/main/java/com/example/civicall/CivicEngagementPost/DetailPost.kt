@@ -636,6 +636,10 @@ class DetailPost : AppCompatActivity() {
                                             "timestamp" to timestamp
                                         )
                                     )
+                                    val participantsRef = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                                        .child("Participants").child(currentUserUid)
+                                    participantsRef.setValue(false)
+
                                     transparencyImageRef.child("contributionStatus").addValueEventListener(object : ValueEventListener {
                                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                                             val contributionStatus = dataSnapshot.getValue(Boolean::class.java) ?: false
@@ -760,43 +764,47 @@ class DetailPost : AppCompatActivity() {
         customDialogImageResId: Int?,
         customDialogLayoutResId: Int?
     ) {
-        if (isAlreadyJoinDialogShowing) {
-            return
+        // Check if the activity is still valid
+        if (!isFinishing && !isDestroyed) {
+            dismissCustomDialog()
+
+            // Use the custom layout resource ID if provided, otherwise use the default
+            val dialogView =
+                layoutInflater.inflate(customDialogLayoutResId ?: R.layout.dialog_happyface, null)
+
+            val alertDialog = AlertDialog.Builder(this)
+                .setView(dialogView)
+                .create()
+
+            val slideTitle: AppCompatTextView = dialogView.findViewById(R.id.dialog_title_emotion)
+            val dialogImage: AppCompatImageView = dialogView.findViewById(R.id.img_icon_emotion)
+            alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideLeft
+            alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            // Use custom slideTitle if provided, otherwise use the default
+            slideTitle.text = customSlideTitle ?: "Verifying Account"
+
+            val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message)
+            messageTextView.text = message
+            alertDialog.show()
+
+            // Use custom dialogImage if provided, otherwise use the default
+            dialogImage.setImageResource(customDialogImageResId ?: R.drawable.papermani)
+
+            isAlreadyJoinDialogShowing = true
+            alertDialog.setOnDismissListener {
+                isAlreadyJoinDialogShowing = false
+            }
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                if (!isFinishing && !isDestroyed) {
+                    alertDialog.dismiss()
+                    isAlreadyJoinDialogShowing = false
+                }
+            }, durationMillis)
         }
-        dismissCustomDialog()
-
-        // Use the custom layout resource ID if provided, otherwise use the default
-        val dialogView =
-            layoutInflater.inflate(customDialogLayoutResId ?: R.layout.dialog_happyface, null)
-
-        val alertDialog = AlertDialog.Builder(this)
-            .setView(dialogView)
-            .create()
-
-        val slideTitle: AppCompatTextView = dialogView.findViewById(R.id.dialog_title_emotion)
-        val dialogImage: AppCompatImageView = dialogView.findViewById(R.id.img_icon_emotion)
-        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideLeft
-        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        // Use custom slideTitle if provided, otherwise use the default
-        slideTitle.text = customSlideTitle ?: "Verifying Account"
-
-        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message)
-        messageTextView.text = message
-        alertDialog.show()
-
-        // Use custom dialogImage if provided, otherwise use the default
-        dialogImage.setImageResource(customDialogImageResId ?: R.drawable.papermani)
-
-        isAlreadyJoinDialogShowing = true
-        alertDialog.setOnDismissListener {
-            isAlreadyJoinDialogShowing = false
-        }
-        Handler(Looper.getMainLooper()).postDelayed({
-            alertDialog.dismiss()
-            isAlreadyJoinDialogShowing = false
-        }, durationMillis)
     }
+
 
     private fun showScheduleOverlapConfirmationDialog() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
@@ -1250,7 +1258,54 @@ class DetailPost : AppCompatActivity() {
     }
 
     private fun deletePost() {
-        val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
+        val reference: DatabaseReference =
+            FirebaseDatabase.getInstance().getReference("Upload Engagement")
+
+        // Get the current user
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val currentUserId = currentUser?.uid
+
+        if (currentUserId != null) {
+            // Retrieve the engagement node
+            val engagementReference: DatabaseReference = reference.child(key)
+
+            // Retrieve the participants node
+            val participantsReference: DatabaseReference = engagementReference.child("Participants")
+
+            // Check if the current user has joined the post
+            participantsReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (dataSnapshot.hasChild(currentUserId)) {
+                        // If joined, decrement the CurrentEngagement count in the Users node
+                        val userRef = FirebaseDatabase.getInstance().getReference("Users")
+                            .child(currentUserId)
+
+                        userRef.child("CurrentEngagement")
+                            .addListenerForSingleValueEvent(object : ValueEventListener {
+                                override fun onDataChange(userEngagementSnapshot: DataSnapshot) {
+                                    val currentEngagementCount =
+                                        userEngagementSnapshot.getValue(Int::class.java) ?: 0
+
+                                    // Ensure the count is greater than 0 before decrementing
+                                    if (currentEngagementCount > 0) {
+                                        // Decrement the CurrentEngagement count in the Users node
+                                        userRef.child("CurrentEngagement")
+                                            .setValue(currentEngagementCount - 1)
+                                    }
+                                }
+
+                                override fun onCancelled(databaseError: DatabaseError) {
+                                    handleDatabaseError(databaseError)
+                                }
+                            })
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    handleDatabaseError(databaseError)
+                }
+            })
+        }
 
         reference.child(key).removeValue()
             .addOnSuccessListener {
@@ -1266,7 +1321,6 @@ class DetailPost : AppCompatActivity() {
                 ).show()
             }
     }
-
 
     private fun handleDatabaseError(databaseError: DatabaseError) {
         val errorMessage = "Database error: ${databaseError.message}"

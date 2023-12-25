@@ -94,7 +94,18 @@ class ProfileDetails : AppCompatActivity() {
         }
     }
 
+    private fun isDateMatched(currentDate: String, endDate: String): Boolean {
+        val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+        val currentDateTime = sdf.parse(currentDate)
+        val endDateTime = sdf.parse(endDate)
 
+        return currentDateTime.after(endDateTime) || currentDateTime.equals(endDateTime)
+    }
+    private fun getCurrentDate(): String {
+        val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+        return dateFormat.format(calendar.time)
+    }
 
 
     private fun readData(uid: String) {
@@ -144,12 +155,29 @@ class ProfileDetails : AppCompatActivity() {
                 userRef.orderByChild("Participants/$currentUserId").equalTo(true)
                     .addValueEventListener(object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
-                            val finishactCount = dataSnapshot.childrenCount.toInt()
-                            finishactTextView.text = formatNumber(finishactCount)
+                            val currentDate = getCurrentDate()
+                            var finishactCount = 0
+                            val contributionStatus =
+                                dataSnapshot.child("TransparencyImage/$currentUserId/contributionStatus")
+                                    .getValue(Boolean::class.java) ?: false
 
-                            // Update the finishactivity count in the Users node
-                            val userNodeRef = FirebaseDatabase.getInstance().getReference("Users/$currentUserId")
+                            for (engagementSnapshot in dataSnapshot.children) {
+                                val endDateString = engagementSnapshot.child("endDate").getValue(String::class.java)
+
+                                // Check if endDateString is not null before using it
+                                if (endDateString != null && isDateMatched(currentDate, endDateString)) {
+                                    // Increment the count only for engagements with matched endDate
+                                    finishactCount++
+                                }
+                            }
+
+                            // Update the finishactivity count and contributionStatus in the Users node
+                            val userNodeRef =
+                                FirebaseDatabase.getInstance().getReference("Users/$currentUserId")
                             userNodeRef.child("finishactivity").setValue(finishactCount)
+                            userNodeRef.child("contributionStatus").setValue(contributionStatus)
+
+                            finishactTextView.text = formatNumber(finishactCount)
                         }
 
                         override fun onCancelled(databaseError: DatabaseError) {
@@ -158,6 +186,7 @@ class ProfileDetails : AppCompatActivity() {
                             Toast.makeText(this@ProfileDetails, errorMessage, Toast.LENGTH_SHORT).show()
                         }
                     })
+
 
                 val activePtsInt = activePts.toString().toInt()
 

@@ -8,13 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
 import com.google.android.material.imageview.ShapeableImageView
-
-import android.content.Context
 import androidx.core.content.ContextCompat
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CurrentEngageAdapter(private val finishedActivities: List<DataClassCurrent>) :
+class CurrentEngageAdapter(private val currentEngagements: List<DataClassCurrent>) :
     RecyclerView.Adapter<CurrentEngageAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -33,7 +31,7 @@ class CurrentEngageAdapter(private val finishedActivities: List<DataClassCurrent
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val activity = finishedActivities[position]
+        val activity = currentEngagements[position]
 
         Glide.with(holder.itemView)
             .load(activity.engagementImage)
@@ -50,7 +48,7 @@ class CurrentEngageAdapter(private val finishedActivities: List<DataClassCurrent
     }
 
     override fun getItemCount(): Int {
-        return finishedActivities.size
+        return currentEngagements.size
     }
 
     private fun isDateTimeInRange(selectedDateTime: String, startDate: String, endDate: String): Boolean {

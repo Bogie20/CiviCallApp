@@ -62,10 +62,9 @@ class FinishActivity : AppCompatActivity() {
                 for (engagementSnapshot in snapshot.children) {
                     val startDate = engagementSnapshot.child("startDate").getValue(String::class.java) ?: ""
                     val endDate = engagementSnapshot.child("endDate").getValue(String::class.java) ?: ""
-                    val contributionStatus = engagementSnapshot.child("TransparencyImage/$currentUserUid/contributionStatus").getValue(Boolean::class.java) ?: false
 
                     // Check if the contributionStatus is true OR if the current date and time are equal to or later than the endDate
-                    if (contributionStatus || isDateMatched(currentDate, endDate)) {
+                    if (isDateMatched(currentDate, endDate)) {
                         val postKey = engagementSnapshot.key ?: ""
                         val finishData = DataClassFinish(
                             engagementSnapshot.child("image").getValue(String::class.java) ?: "",
