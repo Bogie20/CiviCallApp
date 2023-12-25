@@ -138,15 +138,18 @@ class ProfileDetails : AppCompatActivity() {
                 binding.nstpnumtxt.text = nstp?.toString() ?: ""
                 val badgeImageView: ImageView = findViewById(R.id.badge_25)
                 val userRef = FirebaseDatabase.getInstance().getReference("Upload Engagement")
-
-                // Get the UID of the currently authenticated user
                 val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
+// Use addValueEventListener instead of addListenerForSingleValueEvent
                 userRef.orderByChild("Participants/$currentUserId").equalTo(true)
-                    .addListenerForSingleValueEvent(object : ValueEventListener {
+                    .addValueEventListener(object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             val finishactCount = dataSnapshot.childrenCount.toInt()
                             finishactTextView.text = formatNumber(finishactCount)
+
+                            // Update the finishactivity count in the Users node
+                            val userNodeRef = FirebaseDatabase.getInstance().getReference("Users/$currentUserId")
+                            userNodeRef.child("finishactivity").setValue(finishactCount)
                         }
 
                         override fun onCancelled(databaseError: DatabaseError) {
@@ -226,12 +229,11 @@ class ProfileDetails : AppCompatActivity() {
             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
         }
         val userRef = FirebaseDatabase.getInstance().getReference("Upload Engagement")
-
-// Get the UID of the currently authenticated user
         val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
+// Use addValueEventListener instead of addListenerForSingleValueEvent
         userRef.orderByChild("Participants/$currentUserId").equalTo(false)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
+            .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val currentDate = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).time
                     var totalEngagementCount = 0
@@ -253,6 +255,10 @@ class ProfileDetails : AppCompatActivity() {
 
                     // Set the totalEngagementTextView after processing all engagements
                     totalEngagementTextView.text = formatNumber(totalEngagementCount)
+
+                    // Update the CurrentEngagement count in the Users node
+                    val userNodeRef = FirebaseDatabase.getInstance().getReference("Users/$currentUserId")
+                    userNodeRef.child("CurrentEngagement").setValue(totalEngagementCount)
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {

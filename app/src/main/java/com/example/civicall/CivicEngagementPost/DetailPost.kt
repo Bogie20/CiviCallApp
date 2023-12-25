@@ -624,7 +624,6 @@ class DetailPost : AppCompatActivity() {
                             R.layout.dialog_sadface
                         )
                     } else {
-                        joinPost()
                         fileRef.putFile(imageUri)
                             .addOnSuccessListener { uploadTask ->
                                 fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
@@ -648,11 +647,6 @@ class DetailPost : AppCompatActivity() {
                                                 participantsRef.setValue(true)
                                                 participantsRef.addListenerForSingleValueEvent(object : ValueEventListener {
                                                     override fun onDataChange(participantsSnapshot: DataSnapshot) {
-                                                        // Update the "finishactivity" field in the "Users" node
-                                                        updateUserFinishActivity(currentUserUid)
-
-                                                        // Decrease the "CurrentEngagement" in the "Users" node
-                                                        decreaseUserCurrentEngagement(currentUserUid)
                                                     }
 
                                                     override fun onCancelled(databaseError: DatabaseError) {
@@ -738,34 +732,6 @@ class DetailPost : AppCompatActivity() {
                     }
                 })
         }
-    private fun updateUserFinishActivity(uid: String) {
-        val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
-        userRef.child("finishactivity").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val currentFinishActivity = dataSnapshot.getValue(Int::class.java) ?: 0
-                userRef.child("finishactivity").setValue(currentFinishActivity + 1)
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Handle onCancelled
-            }
-        })
-    }
-    private fun decreaseUserCurrentEngagement(uid: String) {
-        val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
-        userRef.child("CurrentEngagement").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val currentEngagement = dataSnapshot.getValue(Int::class.java) ?: 0
-                if (currentEngagement > 0) {
-                    userRef.child("CurrentEngagement").setValue(currentEngagement - 1)
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Handle onCancelled
-            }
-        })
-    }
 
     private fun checkAndRequestPermissions() {
         if (ContextCompat.checkSelfPermission(
@@ -906,11 +872,6 @@ class DetailPost : AppCompatActivity() {
                                 // The value is true, now update activepoints in "Users" node
                                 incrementActivePointsForUser(currentUserId)
 
-                                // Update finishactivity in "Users" node
-                                updateUserFinishActivity(currentUserId)
-
-
-                                decreaseUserCurrentEngagement(currentUserId)
 
                                 // Remove the ValueEventListener to avoid unnecessary updates
                                 participantsReference.removeEventListener(this)
@@ -929,7 +890,6 @@ class DetailPost : AppCompatActivity() {
                 }
             joinButton.text = "Cancel"
             showJoinPopupSuccess()
-            joinPost()
         }
 
 
@@ -993,7 +953,6 @@ class DetailPost : AppCompatActivity() {
             // Update the button text to "Join Now"
             joinButton.text = "Join Now"
 
-            cancelPost()
         }
 
         dialogIconFlat.setImageResource(R.drawable.weneedyou) // Set the cancel icon here
@@ -1047,29 +1006,6 @@ class DetailPost : AppCompatActivity() {
 
     val currentUser = FirebaseAuth.getInstance().currentUser
     val currentUserId = currentUser?.uid
-    private fun updateCurrentEngagement(uid: String?) {
-        if (uid != null) {
-            val userReference: DatabaseReference =
-                FirebaseDatabase.getInstance().getReference("Users").child(uid)
-
-            // Retrieve the current value of "CurrentEngagement"
-            userReference.child("CurrentEngagement").addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val currentEngagement = dataSnapshot.getValue(Long::class.java) ?: 0
-
-                    // Calculate the new value (ensure it doesn't go below 0)
-                    val newEngagement = maxOf(0, currentEngagement - 1)
-
-                    // Update the value in the database
-                    userReference.child("CurrentEngagement").setValue(newEngagement)
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // Handle onCancelled for "CurrentEngagement"
-                }
-            })
-        }
-    }
     override fun onResume() {
         super.onResume()
         executeOnResumeLogic()
@@ -1108,7 +1044,6 @@ class DetailPost : AppCompatActivity() {
                                             val participantValue = participant.getValue(Boolean::class.java)
 
                                             if (participantUid != null && participantValue == false || participantValue == true) {
-                                                updateCurrentEngagement(participantUid)
                                                 if (participantUid == currentUserId && participantValue == true) {
                                                     userUidFound = true
                                                 }
@@ -1238,63 +1173,7 @@ class DetailPost : AppCompatActivity() {
         })
     }
 
-    private fun joinPost() {
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        val currentUserId = currentUser?.uid
 
-        if (currentUserId != null) {
-            val userRef = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId)
-            userRef.child("CurrentEngagement")
-                .addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        var totalEngagementCount = dataSnapshot.getValue(Int::class.java) ?: 0
-
-                        totalEngagementCount++
-
-                        userRef.child("CurrentEngagement").setValue(totalEngagementCount)
-                    }
-
-                    override fun onCancelled(databaseError: DatabaseError) {
-                        val errorMessage = "Database error: ${databaseError.message}"
-
-                        Log.e("DetailPost", errorMessage)
-
-                        Toast.makeText(this@DetailPost, errorMessage, Toast.LENGTH_SHORT).show()
-
-                    }
-                })
-        }
-    }
-
-    private fun cancelPost() {
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        val currentUserId = currentUser?.uid
-
-        if (currentUserId != null) {
-            val userRef = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId)
-            userRef.child("CurrentEngagement")
-                .addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        var totalEngagementCount = dataSnapshot.getValue(Int::class.java) ?: 0
-
-                        // Decrement the TotalEngagement count in the Users node
-                        if (totalEngagementCount > 0) {
-                            totalEngagementCount--
-                        }
-
-                        userRef.child("CurrentEngagement").setValue(totalEngagementCount)
-                    }
-
-                    override fun onCancelled(databaseError: DatabaseError) {
-                        val errorMessage = "Database error: ${databaseError.message}"
-
-                        Log.e("DetailPost", errorMessage)
-
-                        Toast.makeText(this@DetailPost, errorMessage, Toast.LENGTH_SHORT).show()
-                    }
-                })
-        }
-    }
     private fun updatePaymentDetailsVisibility() {
         val parentLinearLayout = findViewById<LinearLayout>(R.id.paymentDetailsLayout)
 
@@ -1371,54 +1250,7 @@ class DetailPost : AppCompatActivity() {
     }
 
     private fun deletePost() {
-        val reference: DatabaseReference =
-            FirebaseDatabase.getInstance().getReference("Upload Engagement")
-
-        // Get the current user
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        val currentUserId = currentUser?.uid
-
-        if (currentUserId != null) {
-            // Retrieve the engagement node
-            val engagementReference: DatabaseReference = reference.child(key)
-
-            // Retrieve the participants node
-            val participantsReference: DatabaseReference = engagementReference.child("Participants")
-
-            // Check if the current user has joined the post
-            participantsReference.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    if (dataSnapshot.hasChild(currentUserId)) {
-                        // If joined, decrement the CurrentEngagement count in the Users node
-                        val userRef = FirebaseDatabase.getInstance().getReference("Users")
-                            .child(currentUserId)
-
-                        userRef.child("CurrentEngagement")
-                            .addListenerForSingleValueEvent(object : ValueEventListener {
-                                override fun onDataChange(userEngagementSnapshot: DataSnapshot) {
-                                    val currentEngagementCount =
-                                        userEngagementSnapshot.getValue(Int::class.java) ?: 0
-
-                                    // Ensure the count is greater than 0 before decrementing
-                                    if (currentEngagementCount > 0) {
-                                        // Decrement the CurrentEngagement count in the Users node
-                                        userRef.child("CurrentEngagement")
-                                            .setValue(currentEngagementCount - 1)
-                                    }
-                                }
-
-                                override fun onCancelled(databaseError: DatabaseError) {
-                                    handleDatabaseError(databaseError)
-                                }
-                            })
-                    }
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-                    handleDatabaseError(databaseError)
-                }
-            })
-        }
+        val reference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
 
         reference.child(key).removeValue()
             .addOnSuccessListener {
@@ -1434,6 +1266,7 @@ class DetailPost : AppCompatActivity() {
                 ).show()
             }
     }
+
 
     private fun handleDatabaseError(databaseError: DatabaseError) {
         val errorMessage = "Database error: ${databaseError.message}"
