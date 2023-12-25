@@ -51,8 +51,8 @@ class CurrentEngagements : AppCompatActivity() {
         val currentUserUid = auth.currentUser?.uid
         val currentDate = getCurrentDate()
 
-        val engagementsQuery = databaseReference.orderByChild("startDate")
-        engagementsQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+        val participantsQuery = databaseReference.orderByChild("Participants/$currentUserUid").equalTo(false)
+        participantsQuery.addListenerForSingleValueEvent(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
                 currentEngagements.clear() // Clear existing data before updating
