@@ -6,17 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".AboutUs">
 
-
-
     <androidx.cardview.widget.CardView
-        android:layout_width="415dp"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
         android:id="@+id/card"
         app:cardBackgroundColor="@color/redpink"
         app:cardCornerRadius="4dp">
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,15 +34,16 @@
             android:onClick="BackClick" />
 
         <TextView
-            android:id="@+id/civicall"
-            android:layout_width="wrap_content"
+            android:id="@+id/title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="25dp"
             android:fontFamily="@font/oleo_script"
             android:text="About CiviCall App"
             android:textColor="@color/white"
-            android:textSize="25dp" />
+            android:gravity="center"
+            android:paddingEnd="40dp"
+            android:textAllCaps="true"
+            android:textSize="20dp" />
 
 
 

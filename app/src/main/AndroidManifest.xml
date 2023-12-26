@@ -210,11 +210,9 @@
             android:exported="true" />
         <activity
             android:name=".ProfileDetails"
-            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".EditProfile"
-            android:screenOrientation="portrait"
             android:exported="false" /> <!-- Posting Civic Engagement Start -->
         <activity
             android:name=".EnvironmentalandSocialIssueInfo.ZeroBreaktheChain"
@@ -449,30 +447,24 @@
         </activity>
         <activity
             android:name=".Feedback"
-            android:exported="true"
-            android:screenOrientation="portrait" />
+            android:exported="true" />
         <activity
             android:name=".AboutUs"
-            android:exported="true"
-            android:screenOrientation="portrait" />
+            android:exported="true" />
         <activity
             android:name=".MainMenu"
-            android:exported="true"
-            android:screenOrientation="portrait" />
+            android:exported="true" />
         <activity
             android:name=".Dashboard"
             android:exported="true"
-            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Login"
             android:exported="true"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
+            android:launchMode="singleTop" />
         <activity
             android:name=".Register"
-            android:exported="true"
-            android:screenOrientation="portrait" />
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"
