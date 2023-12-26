@@ -805,37 +805,6 @@ class DetailPost : AppCompatActivity() {
         }
     }
 
-
-    private fun showScheduleOverlapConfirmationDialog() {
-        val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
-        val alertDialog = AlertDialog.Builder(this)
-            .setView(dialogView)
-            .create()
-
-        val confirmTitle: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
-        val logoutMsg: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
-        val confirmBtn: MaterialButton = dialogView.findViewById(R.id.saveBtn)
-        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
-
-        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
-        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        confirmTitle.text = "Schedule Overlap"
-        logoutMsg.text = "This engagement will overlap with your existing engagement. Are you sure you want to proceed?"
-
-        confirmBtn.text = "Yes"
-        confirmBtn.setOnClickListener {
-            alertDialog.dismiss()
-        }
-
-        cancelBtn.text = "No"
-        cancelBtn.setOnClickListener {
-            alertDialog.dismiss()
-        }
-
-        alertDialog.show()
-    }
-
     private var isJoinConfirmationDialogShowing = false
 
     private fun showJoinConfirmationDialog(reference: DatabaseReference, currentUserId: String) {
