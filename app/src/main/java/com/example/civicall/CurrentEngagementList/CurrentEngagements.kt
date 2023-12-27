@@ -51,7 +51,7 @@ class CurrentEngagements : AppCompatActivity() {
         val currentUserUid = auth.currentUser?.uid
         val currentDate = getCurrentDate()
 
-        val participantsQuery = databaseReference.orderByChild("Participants/$currentUserUid").equalTo(false)
+        val participantsQuery = databaseReference.orderByChild("Participants/$currentUserUid/joined").equalTo(false)
         participantsQuery.addListenerForSingleValueEvent(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -61,7 +61,7 @@ class CurrentEngagements : AppCompatActivity() {
                     val startDate = engagementSnapshot.child("startDate").getValue(String::class.java) ?: ""
                     val endDate = engagementSnapshot.child("endDate").getValue(String::class.java) ?: ""
 
-                    val isParticipant = engagementSnapshot.child("Participants/$currentUserUid").getValue(Boolean::class.java) ?: false
+                    val isParticipant = engagementSnapshot.child("Participants/$currentUserUid/joined").getValue(Boolean::class.java) ?: false
                     val contributionStatus = engagementSnapshot.child("TransparencyImage/$currentUserUid/contributionStatus").getValue(Boolean::class.java) ?: false
 
                     if (isDateTimeInRange(currentDate, endDate) && !(isParticipant || contributionStatus)) {
@@ -99,6 +99,7 @@ class CurrentEngagements : AppCompatActivity() {
             }
         })
     }
+
 
     private fun getCurrentDate(): String {
         val calendar = Calendar.getInstance()

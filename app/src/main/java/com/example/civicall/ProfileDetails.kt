@@ -152,7 +152,7 @@ class ProfileDetails : AppCompatActivity() {
                 val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
 // Use addValueEventListener instead of addListenerForSingleValueEvent
-                userRef.orderByChild("Participants/$currentUserId").equalTo(true)
+                userRef.orderByChild("Participants/$currentUserId/joined").equalTo(true)
                     .addValueEventListener(object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             val currentDate = getCurrentDate()
@@ -261,7 +261,7 @@ class ProfileDetails : AppCompatActivity() {
         val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
 // Use addValueEventListener instead of addListenerForSingleValueEvent
-        userRef.orderByChild("Participants/$currentUserId").equalTo(false)
+        userRef.orderByChild("Participants/$currentUserId/joined").equalTo(false)
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val currentDate = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).time

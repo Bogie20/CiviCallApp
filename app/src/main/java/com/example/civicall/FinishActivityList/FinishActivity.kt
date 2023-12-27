@@ -53,7 +53,7 @@ class FinishActivity : AppCompatActivity() {
         val currentUserUid = auth.currentUser?.uid
         val currentDate = getCurrentDate()
 
-        val participantsQuery = databaseReference.orderByChild("Participants/$currentUserUid").equalTo(true)
+        val participantsQuery = databaseReference.orderByChild("Participants/$currentUserUid/joined").equalTo(true)
         participantsQuery.addListenerForSingleValueEvent(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -63,7 +63,7 @@ class FinishActivity : AppCompatActivity() {
                     val startDate = engagementSnapshot.child("startDate").getValue(String::class.java) ?: ""
                     val endDate = engagementSnapshot.child("endDate").getValue(String::class.java) ?: ""
 
-                    // Check if the contributionStatus is true OR if the current date and time are equal to or later than the endDate
+                    // Check if the current date and time are equal to or later than the endDate
                     if (isDateMatched(currentDate, endDate)) {
                         val postKey = engagementSnapshot.key ?: ""
                         val finishData = DataClassFinish(
@@ -99,14 +99,14 @@ class FinishActivity : AppCompatActivity() {
         })
     }
 
-
     private fun isDateMatched(currentDate: String, endDate: String): Boolean {
         val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
         val currentDateTime = sdf.parse(currentDate)
         val endDateTime = sdf.parse(endDate)
 
-        return currentDateTime.after(endDateTime) || currentDateTime.equals(endDateTime)
+        return currentDateTime?.after(endDateTime) == true || currentDateTime?.equals(endDateTime) == true
     }
+
     private fun getCurrentDate(): String {
         val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())

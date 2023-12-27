@@ -837,18 +837,19 @@ class DetailPost : AppCompatActivity() {
 
             val participantsReference = reference.child("Participants").child(currentUserId)
 
-            // Set the value to false initially
-            participantsReference.setValue(false)
+// Set the value to false initially and set the timestamp
+            val timestamp = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date())
+            participantsReference.child("joined").setValue(false)
+            participantsReference.child("timestamp").setValue(timestamp)
                 .addOnSuccessListener {
-                    // Successfully set to false, now add a ValueEventListener to listen for changes
+                    // Successfully set to false and timestamp
                     participantsReference.addValueEventListener(object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
-                            val isJoined = dataSnapshot.getValue(Boolean::class.java) ?: false
+                            val isJoined = dataSnapshot.child("joined").getValue(Boolean::class.java) ?: false
 
                             if (isJoined) {
                                 // The value is true, now update activepoints in "Users" node
                                 incrementActivePointsForUser(currentUserId)
-
 
                                 // Remove the ValueEventListener to avoid unnecessary updates
                                 participantsReference.removeEventListener(this)
@@ -1018,13 +1019,12 @@ class DetailPost : AppCompatActivity() {
 
                                         for (participant in participantSnapshot.children) {
                                             val participantUid = participant.key
-                                            val participantValue = participant.getValue(Boolean::class.java)
+                                            val joined = participant.child("joined").getValue(Boolean::class.java)
 
-                                            if (participantUid != null && participantValue == false || participantValue == true) {
-                                                if (participantUid == currentUserId && participantValue == true) {
+                                            if (participantUid != null && joined == true) {
+                                                if (participantUid == currentUserId) {
                                                     userUidFound = true
                                                 }
-                                            } else {
                                                 updatedParticipantCount++
                                             }
                                         }
@@ -1050,6 +1050,7 @@ class DetailPost : AppCompatActivity() {
                                 updatePaymentDetailsVisibility()
                                 return
                             }
+
                         } catch (e: ParseException) {
                             e.printStackTrace()
                         }
