@@ -1,6 +1,7 @@
 package com.example.civicall.Notification
 
 data class DataClassNotif(
+    val postKey: String,
     val category: String,
     val title: String,
     val startDate: String,
@@ -8,4 +9,3 @@ data class DataClassNotif(
     val imageUrl: String,
     val timestamp: String
 )
-

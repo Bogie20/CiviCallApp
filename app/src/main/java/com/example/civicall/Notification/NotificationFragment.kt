@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import com.example.civicall.R
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +21,7 @@ class NotificationFragment : Fragment() {
     private lateinit var notificationAdapter: NotificationAdapter
     private lateinit var notificationList: MutableList<DataClassNotif>
     private lateinit var noPostsImage: ImageView
+    private lateinit var nestedScrollView: NestedScrollView
     private lateinit var noPostsText: TextView
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
@@ -32,6 +34,7 @@ class NotificationFragment : Fragment() {
         noPostsImage = view.findViewById(R.id.noPostsImage)
         noPostsText = view.findViewById(R.id.noPostsText)
         recyclerView = view.findViewById(R.id.recyclerView)
+        nestedScrollView = view.findViewById(R.id.nestedRecycler)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         notificationList = mutableListOf()
         notificationAdapter = NotificationAdapter(notificationList)
@@ -47,8 +50,9 @@ class NotificationFragment : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 notificationList.clear()
 
+                // Inside onDataChange method
                 for (engagementSnapshot in dataSnapshot.children) {
-                    val postKey = engagementSnapshot.key
+                    val postKey = engagementSnapshot.key ?: ""
 
                     // Check if the current user is a participant in this engagement
                     val participantsRef = engagementSnapshot.child("Participants")
@@ -63,12 +67,10 @@ class NotificationFragment : Fragment() {
                         // Get the timestamp from the Participants node
                         val timestamp = participantsRef.child(currentUserUid).child("timestamp").value.toString()
 
-                        val notificationItem = DataClassNotif(category, title, startDate, endDate, imageUrl, timestamp)
+                        val notificationItem = DataClassNotif(postKey, category, title, startDate, endDate, imageUrl, timestamp)
                         notificationList.add(0, notificationItem)
                     }
                 }
-
-                notificationList.reverse()
 
                 notificationAdapter.notifyDataSetChanged()
 

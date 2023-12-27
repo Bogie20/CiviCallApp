@@ -46,8 +46,6 @@ class NotificationAdapter(private val notificationList: List<DataClassNotif>) :
             .into(holder.recImage)
     }
 
-
-
     override fun getItemCount(): Int {
         return notificationList.size
     }
