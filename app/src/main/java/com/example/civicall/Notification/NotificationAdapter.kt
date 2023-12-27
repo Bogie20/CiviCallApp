@@ -16,8 +16,9 @@ class NotificationAdapter(private val notificationList: List<DataClassNotif>) :
     inner class NotificationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val categoryTextView: TextView = itemView.findViewById(R.id.categoryTextView)
         val recTitle: TextView = itemView.findViewById(R.id.recTitle)
-        val dateAndTimeTextView: TextView = itemView.findViewById(R.id.dateandTime)
+        val schedule: TextView = itemView.findViewById(R.id.schedule)
         val recImage: ShapeableImageView = itemView.findViewById(R.id.recImage)
+        val dateandTIme: TextView = itemView.findViewById(R.id.dateandTime)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
@@ -33,13 +34,15 @@ class NotificationAdapter(private val notificationList: List<DataClassNotif>) :
 
         holder.categoryTextView.text = currentItem.category
         holder.recTitle.text = currentItem.title
-        holder.dateAndTimeTextView.text = "${currentItem.startDate} - ${currentItem.endDate}"
+        holder.schedule.text = "${currentItem.startDate} - ${currentItem.endDate}"
+        holder.dateandTIme.text = currentItem.timestamp
 
         // Load image using Glide or your preferred image loading library
         Glide.with(holder.recImage.context)
             .load(currentItem.imageUrl)
             .into(holder.recImage)
     }
+
 
     override fun getItemCount(): Int {
         return notificationList.size

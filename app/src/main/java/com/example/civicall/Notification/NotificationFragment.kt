@@ -1,9 +1,12 @@
 package com.example.civicall.Notification
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.civicall.R
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +19,8 @@ class NotificationFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var notificationAdapter: NotificationAdapter
     private lateinit var notificationList: MutableList<DataClassNotif>
-
+    private lateinit var noPostsImage: ImageView
+    private lateinit var noPostsText: TextView
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
 
@@ -25,7 +29,8 @@ class NotificationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_notification, container, false)
-
+        noPostsImage = view.findViewById(R.id.noPostsImage)
+        noPostsText = view.findViewById(R.id.noPostsText)
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         notificationList = mutableListOf()
@@ -37,8 +42,8 @@ class NotificationFragment : Fragment() {
 
         databaseReference = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
 
-        // Retrieve data from Firebase
         databaseReference.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 notificationList.clear()
 
@@ -55,12 +60,28 @@ class NotificationFragment : Fragment() {
                         val endDate = engagementSnapshot.child("endDate").value.toString()
                         val imageUrl = engagementSnapshot.child("image").value.toString()
 
-                        val notificationItem = DataClassNotif(category, title, startDate, endDate, imageUrl)
-                        notificationList.add(notificationItem)
+                        // Get the timestamp from the Participants node
+                        val timestamp = participantsRef.child(currentUserUid).child("timestamp").value.toString()
+
+                        val notificationItem = DataClassNotif(category, title, startDate, endDate, imageUrl, timestamp)
+                        notificationList.add(0, notificationItem)
                     }
                 }
 
+                notificationList.reverse()
+
                 notificationAdapter.notifyDataSetChanged()
+
+                // Check if the notificationList is empty
+                if (notificationList.isEmpty()) {
+                    // If empty, show the "noPostsImage" and "noPostsText"
+                    noPostsImage.visibility = View.VISIBLE
+                    noPostsText.visibility = View.VISIBLE
+                } else {
+                    // If not empty, hide the "noPostsImage" and "noPostsText"
+                    noPostsImage.visibility = View.GONE
+                    noPostsText.visibility = View.GONE
+                }
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

@@ -5,5 +5,7 @@ data class DataClassNotif(
     val title: String,
     val startDate: String,
     val endDate: String,
-    val imageUrl: String
+    val imageUrl: String,
+    val timestamp: String
 )
+
