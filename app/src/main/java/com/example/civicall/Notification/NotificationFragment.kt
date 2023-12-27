@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.widget.NestedScrollView
@@ -12,11 +13,14 @@ import androidx.fragment.app.Fragment
 import com.example.civicall.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import nl.joery.animatedbottombar.AnimatedBottomBar
 
 class NotificationFragment : Fragment() {
-
+    private var isScrollingUp = true
+    private var previousScrollY = 0
     private lateinit var recyclerView: RecyclerView
     private lateinit var notificationAdapter: NotificationAdapter
     private lateinit var notificationList: MutableList<DataClassNotif>
@@ -39,7 +43,8 @@ class NotificationFragment : Fragment() {
         notificationList = mutableListOf()
         notificationAdapter = NotificationAdapter(notificationList)
         recyclerView.adapter = notificationAdapter
-
+        val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+        view.startAnimation(anim)
         auth = FirebaseAuth.getInstance()
         val currentUserUid = auth.currentUser?.uid
 
@@ -65,9 +70,18 @@ class NotificationFragment : Fragment() {
                         val imageUrl = engagementSnapshot.child("image").value.toString()
 
                         // Get the timestamp from the Participants node
-                        val timestamp = participantsRef.child(currentUserUid).child("timestamp").value.toString()
+                        val timestamp = participantsRef.child(currentUserUid)
+                            .child("timestamp").value.toString()
 
-                        val notificationItem = DataClassNotif(postKey, category, title, startDate, endDate, imageUrl, timestamp)
+                        val notificationItem = DataClassNotif(
+                            postKey,
+                            category,
+                            title,
+                            startDate,
+                            endDate,
+                            imageUrl,
+                            timestamp
+                        )
                         notificationList.add(0, notificationItem)
                     }
                 }
@@ -90,7 +104,31 @@ class NotificationFragment : Fragment() {
                 // Handle error
             }
         })
+        val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
+        val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
+
+        nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+
+            if (scrollY > oldScrollY) {
+                // Scrolling down
+                if (animatedBottomBar.isShown) {
+                    animatedBottomBar.visibility = View.GONE
+                }
+                if (fab.isShown) {
+                    fab.hide()
+                }
+            } else if (scrollY < oldScrollY) {
+                // Scrolling up
+                if (!animatedBottomBar.isShown) {
+                    animatedBottomBar.visibility = View.VISIBLE
+                }
+                if (!fab.isShown) {
+                    fab.show()
+                }
+            }
+        })
 
         return view
+
     }
 }

@@ -594,90 +594,99 @@ class DetailPost : AppCompatActivity() {
         alertDialog.show()
     }
 
-        private fun uploadImageToFirebase(imageUri: Uri, amount: String) {
-            val storage = FirebaseStorage.getInstance()
-            val storageRef = storage.reference
-            val timestamp = System.currentTimeMillis().toString()
+    private fun uploadImageToFirebase(imageUri: Uri, amount: String) {
+        val storage = FirebaseStorage.getInstance()
+        val storageRef = storage.reference
+        val timestamp = System.currentTimeMillis().toString()
 
-            val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
-            if (currentUserUid == null) {
-                // Handle the case where the current user UID is null
-                return
-            }
+        val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
+        if (currentUserUid == null) {
+            // Handle the case where the current user UID is null
+            return
+        }
 
-            val fileRef = storageRef.child("TransparencyProofImage/$currentUserUid/${timestamp}_image_amount.jpg")
+        val fileRef = storageRef.child("TransparencyProofImage/$currentUserUid/${timestamp}_image_amount.jpg")
 
-            // Check if the user has already uploaded an image with contributionStatus false
-            val transparencyImageRef = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key).child("TransparencyImage").child(currentUserUid)
+        // Check if the user has already uploaded an image with contributionStatus false
+        val transparencyImageRef =
+            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key).child("TransparencyImage")
+                .child(currentUserUid)
 
-            transparencyImageRef.child("contributionStatus").addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val contributionStatus = dataSnapshot.getValue(Boolean::class.java) ?: true
+        transparencyImageRef.child("contributionStatus").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val contributionStatus = dataSnapshot.getValue(Boolean::class.java) ?: true
 
-                    if (!contributionStatus) {
-                        // User has already uploaded an image with contributionStatus false
-                        showMessage(
-                            "Wait until admin verifies your previous upload",
-                            4000,
-                            "Oops!",
-                            R.drawable.notverifiedshield,
-                            R.layout.dialog_sadface
-                        )
-                    } else {
-                        fileRef.putFile(imageUri)
-                            .addOnSuccessListener { uploadTask ->
-                                fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
-                                    // Image uploaded successfully
-                                    transparencyImageRef.setValue(
-                                        mapOf(
-                                            "amount" to amount.toDouble(),
-                                            "contributionStatus" to false,
-                                            "imageUri" to downloadUri.toString(),
-                                            "timestamp" to timestamp
-                                        )
+                if (!contributionStatus) {
+                    // User has already uploaded an image with contributionStatus false
+                    showMessage(
+                        "Wait until admin verifies your previous upload",
+                        4000,
+                        "Oops!",
+                        R.drawable.notverifiedshield,
+                        R.layout.dialog_sadface
+                    )
+                } else {
+                    fileRef.putFile(imageUri)
+                        .addOnSuccessListener { uploadTask ->
+                            fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
+                                // Image uploaded successfully
+                                transparencyImageRef.setValue(
+                                    mapOf(
+                                        "amount" to amount.toDouble(),
+                                        "contributionStatus" to false,
+                                        "imageUri" to downloadUri.toString(),
+                                        "timestamp" to timestamp
                                     )
-                                    val participantsRef = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                                )
+                                // Update "Participants" node
+                                val participantsRef =
+                                    FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
                                         .child("Participants").child(currentUserUid)
-                                    participantsRef.setValue(false)
 
-                                    transparencyImageRef.child("contributionStatus").addValueEventListener(object : ValueEventListener {
+                                participantsRef.setValue(
+                                    mapOf(
+                                        "joined" to false,
+                                        "timestamp" to SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date())
+                                    )
+                                )
+
+                                transparencyImageRef.child("contributionStatus")
+                                    .addValueEventListener(object : ValueEventListener {
                                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                                             val contributionStatus = dataSnapshot.getValue(Boolean::class.java) ?: false
 
                                             if (contributionStatus) {
-                                                // Add the user's UID to the "Participants" node
-                                                val participantsRef = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
-                                                    .child("Participants").child(currentUserUid)
-                                                participantsRef.setValue(true)
-                                                participantsRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                                                    override fun onDataChange(participantsSnapshot: DataSnapshot) {
+                                                // If contributionStatus is true, update "Participants" node
+                                                participantsRef.setValue(
+                                                    mapOf(
+                                                        "attendedStamp" to SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date()),
+                                                        "joined" to true,
+                                                        "timestamp" to SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date())
+                                                    )
+                                                )
+
+                                                // Increment active points for the user
+                                                incrementActivePointsForUser(currentUserUid)
+
+                                                // Update "fundcollected"
+                                                val fundCollectedRef = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                                                    .child("fundcollected")
+
+                                                fundCollectedRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                                                    override fun onDataChange(currentDataSnapshot: DataSnapshot) {
+                                                        val currentFundCollected = currentDataSnapshot.getValue(Double::class.java) ?: 0.0
+
+                                                        val updatedFundCollected = currentFundCollected + amount.toDouble()
+                                                        fundCollectedRef.setValue(updatedFundCollected)
+
+                                                        val formattedFundCollected = String.format("%.2f", updatedFundCollected)
+                                                        detailFundCollected.text = "$formattedFundCollected"
                                                     }
 
                                                     override fun onCancelled(databaseError: DatabaseError) {
                                                         // Handle onCancelled
                                                     }
                                                 })
-
-                                                incrementActivePointsForUser(currentUserUid)
-
-
-                                                FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
-                                                    .child("fundcollected").addListenerForSingleValueEvent(object : ValueEventListener {
-                                                        override fun onDataChange(currentDataSnapshot: DataSnapshot) {
-                                                            val currentFundCollected = currentDataSnapshot.getValue(Double::class.java) ?: 0.0
-
-                                                            val updatedFundCollected = currentFundCollected + amount.toDouble()
-                                                            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
-                                                                .child("fundcollected").setValue(updatedFundCollected)
-
-                                                            val formattedFundCollected = String.format("%.2f", updatedFundCollected)
-                                                            detailFundCollected.text = "$formattedFundCollected"
-                                                        }
-
-                                                        override fun onCancelled(databaseError: DatabaseError) {
-                                                            // Handle onCancelled
-                                                        }
-                                                    })
                                             }
                                         }
 
@@ -686,29 +695,29 @@ class DetailPost : AppCompatActivity() {
                                         }
                                     })
 
-                                    showMessage(
-                                        "Awaiting admin verification, thank you for your patience.",
-                                        4000,
-                                        "Success",
-                                        R.drawable.papermani,
-                                        R.layout.dialog_happyface
-                                    )
-                                }
+                                showMessage(
+                                    "Awaiting admin verification, thank you for your patience.",
+                                    4000,
+                                    "Success",
+                                    R.drawable.papermani,
+                                    R.layout.dialog_happyface
+                                )
                             }
-                            .addOnFailureListener { exception ->
-                                // Handle unsuccessful uploads
-                                Toast.makeText(this@DetailPost, "Image upload failed: ${exception.message}", Toast.LENGTH_SHORT).show()
-                            }
-                    }
+                        }
+                        .addOnFailureListener { exception ->
+                            // Handle unsuccessful uploads
+                            Toast.makeText(this@DetailPost, "Image upload failed: ${exception.message}", Toast.LENGTH_SHORT).show()
+                        }
                 }
+            }
 
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // Handle onCancelled
-                }
-            })
-        }
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle onCancelled
+            }
+        })
+    }
 
-        private fun incrementActivePointsForUser(uid: String) {
+    private fun incrementActivePointsForUser(uid: String) {
             // Fetch the current activepoints value in Upload Engagement
             FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key).child("activepoints")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
