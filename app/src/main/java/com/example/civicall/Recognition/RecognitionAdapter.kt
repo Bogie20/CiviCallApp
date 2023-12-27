@@ -46,9 +46,9 @@ class RecognitionAdapter(private val context: Context, private val userList: Lis
         }
 
         when {
-            user.activepts in 0..300 -> holder.badgeImageView.setImageResource(R.drawable.bronzes)
-            user.activepts in 301..999 -> holder.badgeImageView.setImageResource(R.drawable.silver)
-            user.activepts in 1000..9999 -> holder.badgeImageView.setImageResource(R.drawable.gold)
+            user.activepts in 0..99 -> holder.badgeImageView.setImageResource(R.drawable.bronzes)
+            user.activepts in 100..499 -> holder.badgeImageView.setImageResource(R.drawable.silver)
+            user.activepts in 500..1999 -> holder.badgeImageView.setImageResource(R.drawable.gold)
             else -> holder.badgeImageView.setImageResource(R.drawable.platinum)
         }
     }
