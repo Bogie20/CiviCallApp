@@ -837,12 +837,14 @@ class DetailPost : AppCompatActivity() {
 
             val participantsReference = reference.child("Participants").child(currentUserId)
 
-// Set the value to false initially and set the timestamp
+            // Set the value to false initially and set the timestamp
             val timestamp = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date())
             participantsReference.child("joined").setValue(false)
             participantsReference.child("timestamp").setValue(timestamp)
                 .addOnSuccessListener {
                     // Successfully set to false and timestamp
+
+                    // Now, check if the joined value is true
                     participantsReference.addValueEventListener(object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             val isJoined = dataSnapshot.child("joined").getValue(Boolean::class.java) ?: false
@@ -850,6 +852,9 @@ class DetailPost : AppCompatActivity() {
                             if (isJoined) {
                                 // The value is true, now update activepoints in "Users" node
                                 incrementActivePointsForUser(currentUserId)
+
+                                // Add attendedStamp child with the same timestamp format
+                                participantsReference.child("attendedStamp").setValue(timestamp)
 
                                 // Remove the ValueEventListener to avoid unnecessary updates
                                 participantsReference.removeEventListener(this)
@@ -870,15 +875,13 @@ class DetailPost : AppCompatActivity() {
             showJoinPopupSuccess()
         }
 
-
         cancelBtn.text = "Cancel"
         cancelBtn.setOnClickListener {
             isJoinConfirmationDialogShowing = false
             alertDialog.dismiss()
         }
 
-        dialogIconFlat.setImageResource(R.drawable.needhelp) // Set the join icon here
-
+        dialogIconFlat.setImageResource(R.drawable.needhelp)
         alertDialog.setOnDismissListener {
             isJoinConfirmationDialogShowing = false
         }

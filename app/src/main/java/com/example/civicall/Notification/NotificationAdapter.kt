@@ -37,11 +37,15 @@ class NotificationAdapter(private val notificationList: List<DataClassNotif>) :
         holder.schedule.text = "${currentItem.startDate} - ${currentItem.endDate}"
         holder.dateandTIme.text = currentItem.timestamp
 
+        // Set the text for the label TextView
+        holder.itemView.findViewById<TextView>(R.id.label).text = "Exciting news – you're in!"
+
         // Load image using Glide or your preferred image loading library
         Glide.with(holder.recImage.context)
             .load(currentItem.imageUrl)
             .into(holder.recImage)
     }
+
 
 
     override fun getItemCount(): Int {

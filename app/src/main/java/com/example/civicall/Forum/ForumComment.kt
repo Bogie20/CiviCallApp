@@ -224,7 +224,7 @@ class ForumComment : AppCompatActivity() {
     private fun addCommentToDatabase(commentText: String) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val commenterUID = currentUser?.uid ?: ""
-        val commentTime = SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault())
+        val commentTime = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
             .apply {
                 timeZone = TimeZone.getTimeZone("Asia/Manila")
             }
