@@ -1,4 +1,3 @@
 package com.example.civicall.Notification
 
-class NotificationAdapter {
-}
+data class DataClassNotif ()

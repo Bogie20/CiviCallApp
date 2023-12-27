@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import android.view.View
+import com.example.civicall.Notification.NotificationFragment
 
 
 class Dashboard : AppCompatActivity() {
@@ -94,7 +95,7 @@ class Dashboard : AppCompatActivity() {
                         binding.searchIcon.visibility = View.GONE
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-                        replaceFragment(OneNotificationFragment())
+                        replaceFragment(NotificationFragment())
                     }
                 }
 
