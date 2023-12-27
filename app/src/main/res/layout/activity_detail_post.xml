@@ -38,12 +38,13 @@
 
             <TextView
                 android:id="@+id/civicall"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
                 android:fontFamily="@font/oleo_script"
                 android:text="CIVIC ENGAGEMENT DETAILS"
                 android:textColor="@color/white"
+                android:gravity="center"
+                android:paddingEnd="30dp"
                 android:textAllCaps="true"
                 android:textSize="20dp" />
 
@@ -67,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="1dp"
-                app:cardElevation="4dp">
+                app:cardElevation="2dp">
 
                 <ImageView
                     android:id="@+id/detailImage"
@@ -617,14 +618,26 @@
 
 
             </LinearLayout>
+            <TextView
+                android:id="@+id/rateThis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lexend_medium"
+                android:textColor="@color/redpink"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="30dp"
+                android:visibility="gone"
+                android:background="@drawable/highlight_button"
+                android:text="Rate This Engagement?"
+                android:gravity="center"
+                android:textSize="18dp" />
 
         <Button
                 android:id="@+id/joinButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="50dp"
-                android:text=""
+                android:layout_marginTop="40dp"
                  android:layout_marginBottom="50dp"
                 android:fontFamily="@font/inter_bold"
                 android:background="@drawable/button_shape"

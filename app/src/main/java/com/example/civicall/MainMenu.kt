@@ -37,7 +37,6 @@ class MainMenu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainmenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
 

@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.Paint
 import android.graphics.drawable.ColorDrawable
 import android.net.ParseException
 import android.net.Uri
@@ -23,6 +24,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -53,6 +55,7 @@ import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
@@ -79,6 +82,7 @@ class DetailPost : AppCompatActivity() {
     private lateinit var deleteButton: FloatingActionButton
     private lateinit var editButton: FloatingActionButton
     private lateinit var fabMenu: FloatingActionMenu
+    private lateinit var rateThisTextView: TextView
     private var key = ""
     private var imageUrl = ""
     private var uploadersUID = ""
@@ -97,6 +101,8 @@ class DetailPost : AppCompatActivity() {
         detailStartDate = findViewById(R.id.detailStartDate)
         detailEndDate = findViewById(R.id.detailEndDate)
         detailImage = findViewById(R.id.detailImage)
+        rateThisTextView = findViewById(R.id.rateThis)
+        rateThisTextView.paintFlags = rateThisTextView.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         detailCategory = findViewById(R.id.detailCategory)
         detailPaymentMethod = findViewById(R.id.detailPaymentMethod)
         detailTitle = findViewById(R.id.detailTitle)
@@ -124,6 +130,11 @@ class DetailPost : AppCompatActivity() {
             // Close the FloatingActionMenu when the body is clicked
             fabMenu.close(true)
         }
+        rateThisTextView.setOnClickListener {
+            showRatingDialog(key)
+        }
+
+
         binding.backbtn.setOnClickListener {
             dismissCustomDialog()
             super.onBackPressed()
@@ -356,7 +367,89 @@ class DetailPost : AppCompatActivity() {
             Toast.LENGTH_SHORT
         ).show()
     }
+    private fun showRatingDialog(postKey: String) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_rating, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
 
+        val dialogRatingIcon: ImageView = dialogView.findViewById(R.id.dialog_rating_icon)
+        val dialogRatingTitle: TextView = dialogView.findViewById(R.id.dialog_rating_title)
+        val ratingBar: RatingBar = dialogView.findViewById(R.id.dialog_rating_rating_bar)
+        val rateText: TextView = dialogView.findViewById(R.id.rateText)
+        val submitBtn: MaterialButton = dialogView.findViewById(R.id.submitBtn)
+        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+
+        dialogRatingIcon.setImageResource(R.drawable.rate) // Set your image resource here
+        dialogRatingTitle.text = "Rate this Engagement"
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        ratingBar.setOnRatingBarChangeListener { _, rating, _ ->
+            updateRateText(rateText, rating.toInt())
+        }
+
+        // Set up the submit button click listener
+        submitBtn.setOnClickListener {
+            // Get the selected rating
+            val selectedRating = ratingBar.rating.toInt()
+
+            // Get the message corresponding to the selected rating
+            val message = when (selectedRating) {
+                0 -> getString(R.string.very_dissatisfied)
+                1 -> getString(R.string.dissatisfied)
+                2 -> getString(R.string.ok)
+                3 -> getString(R.string.average)
+                4 -> getString(R.string.satisfied)
+                5 -> getString(R.string.very_satisfied)
+                else -> ""
+            }
+
+            // Get the current user's UID
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            val uid = currentUser?.uid
+
+            // Get the current timestamp
+            val timestamp = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US).format(Date())
+
+            // Upload the rating to Firebase
+            if (uid != null) {
+                val ratingsReference: DatabaseReference =
+                    FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
+                        .child("Ratings").child(uid)
+
+                ratingsReference.child("message").setValue(message)
+                ratingsReference.child("timestamp").setValue(timestamp)
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "Rating submitted successfully", Toast.LENGTH_SHORT).show()
+                        alertDialog.dismiss()
+                    }
+                    .addOnFailureListener { exception ->
+                        Toast.makeText(this, "Failed to submit rating: ${exception.message}", Toast.LENGTH_SHORT).show()
+                    }
+            }
+        }
+
+        // Set up the cancel button click listener
+        cancelBtn.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
+    }
+
+    private fun updateRateText(rateText: TextView, rating: Int) {
+        when (rating) {
+            0 -> rateText.text = getString(R.string.very_dissatisfied)
+            1 -> rateText.text = getString(R.string.dissatisfied)
+            2 -> rateText.text = getString(R.string.ok)
+            3 -> rateText.text = getString(R.string.average)
+            4 -> rateText.text = getString(R.string.satisfied)
+            5 -> rateText.text = getString(R.string.very_satisfied)
+            else -> rateText.text = ""
+        }
+    }
 
     private var isImageDialogShowing = false
 
@@ -531,7 +624,6 @@ class DetailPost : AppCompatActivity() {
                             R.layout.dialog_sadface
                         )
                     } else {
-                        joinPost()
                         fileRef.putFile(imageUri)
                             .addOnSuccessListener { uploadTask ->
                                 fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
@@ -544,6 +636,10 @@ class DetailPost : AppCompatActivity() {
                                             "timestamp" to timestamp
                                         )
                                     )
+                                    val participantsRef = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                                        .child("Participants").child(currentUserUid)
+                                    participantsRef.setValue(false)
+
                                     transparencyImageRef.child("contributionStatus").addValueEventListener(object : ValueEventListener {
                                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                                             val contributionStatus = dataSnapshot.getValue(Boolean::class.java) ?: false
@@ -555,11 +651,6 @@ class DetailPost : AppCompatActivity() {
                                                 participantsRef.setValue(true)
                                                 participantsRef.addListenerForSingleValueEvent(object : ValueEventListener {
                                                     override fun onDataChange(participantsSnapshot: DataSnapshot) {
-                                                        // Update the "finishactivity" field in the "Users" node
-                                                        updateUserFinishActivity(currentUserUid)
-
-                                                        // Decrease the "CurrentEngagement" in the "Users" node
-                                                        decreaseUserCurrentEngagement(currentUserUid)
                                                     }
 
                                                     override fun onCancelled(databaseError: DatabaseError) {
@@ -645,34 +736,6 @@ class DetailPost : AppCompatActivity() {
                     }
                 })
         }
-    private fun updateUserFinishActivity(uid: String) {
-        val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
-        userRef.child("finishactivity").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val currentFinishActivity = dataSnapshot.getValue(Int::class.java) ?: 0
-                userRef.child("finishactivity").setValue(currentFinishActivity + 1)
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Handle onCancelled
-            }
-        })
-    }
-    private fun decreaseUserCurrentEngagement(uid: String) {
-        val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
-        userRef.child("CurrentEngagement").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val currentEngagement = dataSnapshot.getValue(Int::class.java) ?: 0
-                if (currentEngagement > 0) {
-                    userRef.child("CurrentEngagement").setValue(currentEngagement - 1)
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Handle onCancelled
-            }
-        })
-    }
 
     private fun checkAndRequestPermissions() {
         if (ContextCompat.checkSelfPermission(
@@ -701,44 +764,46 @@ class DetailPost : AppCompatActivity() {
         customDialogImageResId: Int?,
         customDialogLayoutResId: Int?
     ) {
-        if (isAlreadyJoinDialogShowing) {
-            return
+        // Check if the activity is still valid
+        if (!isFinishing && !isDestroyed) {
+            dismissCustomDialog()
+
+            // Use the custom layout resource ID if provided, otherwise use the default
+            val dialogView =
+                layoutInflater.inflate(customDialogLayoutResId ?: R.layout.dialog_happyface, null)
+
+            val alertDialog = AlertDialog.Builder(this)
+                .setView(dialogView)
+                .create()
+
+            val slideTitle: AppCompatTextView = dialogView.findViewById(R.id.dialog_title_emotion)
+            val dialogImage: AppCompatImageView = dialogView.findViewById(R.id.img_icon_emotion)
+            alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideLeft
+            alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            // Use custom slideTitle if provided, otherwise use the default
+            slideTitle.text = customSlideTitle ?: "Verifying Account"
+
+            val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message)
+            messageTextView.text = message
+            alertDialog.show()
+
+            // Use custom dialogImage if provided, otherwise use the default
+            dialogImage.setImageResource(customDialogImageResId ?: R.drawable.papermani)
+
+            isAlreadyJoinDialogShowing = true
+            alertDialog.setOnDismissListener {
+                isAlreadyJoinDialogShowing = false
+            }
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                if (!isFinishing && !isDestroyed) {
+                    alertDialog.dismiss()
+                    isAlreadyJoinDialogShowing = false
+                }
+            }, durationMillis)
         }
-        dismissCustomDialog()
-
-        // Use the custom layout resource ID if provided, otherwise use the default
-        val dialogView =
-            layoutInflater.inflate(customDialogLayoutResId ?: R.layout.dialog_happyface, null)
-
-        val alertDialog = AlertDialog.Builder(this)
-            .setView(dialogView)
-            .create()
-
-        val slideTitle: AppCompatTextView = dialogView.findViewById(R.id.dialog_title_emotion)
-        val dialogImage: AppCompatImageView = dialogView.findViewById(R.id.img_icon_emotion)
-        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideLeft
-        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        // Use custom slideTitle if provided, otherwise use the default
-        slideTitle.text = customSlideTitle ?: "Verifying Account"
-
-        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message)
-        messageTextView.text = message
-        alertDialog.show()
-
-        // Use custom dialogImage if provided, otherwise use the default
-        dialogImage.setImageResource(customDialogImageResId ?: R.drawable.papermani)
-
-        isAlreadyJoinDialogShowing = true
-        alertDialog.setOnDismissListener {
-            isAlreadyJoinDialogShowing = false
-        }
-        Handler(Looper.getMainLooper()).postDelayed({
-            alertDialog.dismiss()
-            isAlreadyJoinDialogShowing = false
-        }, durationMillis)
     }
-
 
     private var isJoinConfirmationDialogShowing = false
 
@@ -784,11 +849,6 @@ class DetailPost : AppCompatActivity() {
                                 // The value is true, now update activepoints in "Users" node
                                 incrementActivePointsForUser(currentUserId)
 
-                                // Update finishactivity in "Users" node
-                                updateUserFinishActivity(currentUserId)
-
-
-                                decreaseUserCurrentEngagement(currentUserId)
 
                                 // Remove the ValueEventListener to avoid unnecessary updates
                                 participantsReference.removeEventListener(this)
@@ -807,7 +867,6 @@ class DetailPost : AppCompatActivity() {
                 }
             joinButton.text = "Cancel"
             showJoinPopupSuccess()
-            joinPost()
         }
 
 
@@ -871,7 +930,6 @@ class DetailPost : AppCompatActivity() {
             // Update the button text to "Join Now"
             joinButton.text = "Join Now"
 
-            cancelPost()
         }
 
         dialogIconFlat.setImageResource(R.drawable.weneedyou) // Set the cancel icon here
@@ -925,32 +983,11 @@ class DetailPost : AppCompatActivity() {
 
     val currentUser = FirebaseAuth.getInstance().currentUser
     val currentUserId = currentUser?.uid
-    private fun updateCurrentEngagement(uid: String?) {
-        if (uid != null) {
-            val userReference: DatabaseReference =
-                FirebaseDatabase.getInstance().getReference("Users").child(uid)
-
-            // Retrieve the current value of "CurrentEngagement"
-            userReference.child("CurrentEngagement").addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val currentEngagement = dataSnapshot.getValue(Long::class.java) ?: 0
-
-                    // Calculate the new value (ensure it doesn't go below 0)
-                    val newEngagement = maxOf(0, currentEngagement - 1)
-
-                    // Update the value in the database
-                    userReference.child("CurrentEngagement").setValue(newEngagement)
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // Handle onCancelled for "CurrentEngagement"
-                }
-            })
-        }
-    }
-
     override fun onResume() {
         super.onResume()
+        executeOnResumeLogic()
+    }
+    private fun executeOnResumeLogic() {
 
         if (currentUserId != null) {
             val reference: DatabaseReference =
@@ -977,13 +1014,16 @@ class DetailPost : AppCompatActivity() {
                                 participantsReference.addListenerForSingleValueEvent(object : ValueEventListener {
                                     override fun onDataChange(participantSnapshot: DataSnapshot) {
                                         var updatedParticipantCount = 0
+                                        var userUidFound = false
 
                                         for (participant in participantSnapshot.children) {
                                             val participantUid = participant.key
                                             val participantValue = participant.getValue(Boolean::class.java)
 
-                                            if (participantUid != null && participantValue == false) {
-                                                updateCurrentEngagement(participantUid)
+                                            if (participantUid != null && participantValue == false || participantValue == true) {
+                                                if (participantUid == currentUserId && participantValue == true) {
+                                                    userUidFound = true
+                                                }
                                             } else {
                                                 updatedParticipantCount++
                                             }
@@ -991,12 +1031,20 @@ class DetailPost : AppCompatActivity() {
 
                                         // Update the participant count in UI
                                         detailCurrentParty.text = "$updatedParticipantCount"
+
+                                        // Set visibility based on user UID presence
+                                        if (userUidFound) {
+                                            rateThisTextView.visibility = View.VISIBLE
+                                        } else {
+                                            rateThisTextView.visibility = View.GONE
+                                        }
                                     }
 
                                     override fun onCancelled(participantsError: DatabaseError) {
                                         // Handle onCancelled for Participants
                                     }
                                 })
+
                                 joinButton.text = "Already Finish"
                                 joinButton.isEnabled = false
                                 updatePaymentDetailsVisibility()
@@ -1102,63 +1150,7 @@ class DetailPost : AppCompatActivity() {
         })
     }
 
-    private fun joinPost() {
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        val currentUserId = currentUser?.uid
 
-        if (currentUserId != null) {
-            val userRef = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId)
-            userRef.child("CurrentEngagement")
-                .addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        var totalEngagementCount = dataSnapshot.getValue(Int::class.java) ?: 0
-
-                        totalEngagementCount++
-
-                        userRef.child("CurrentEngagement").setValue(totalEngagementCount)
-                    }
-
-                    override fun onCancelled(databaseError: DatabaseError) {
-                        val errorMessage = "Database error: ${databaseError.message}"
-
-                        Log.e("DetailPost", errorMessage)
-
-                        Toast.makeText(this@DetailPost, errorMessage, Toast.LENGTH_SHORT).show()
-
-                    }
-                })
-        }
-    }
-
-    private fun cancelPost() {
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        val currentUserId = currentUser?.uid
-
-        if (currentUserId != null) {
-            val userRef = FirebaseDatabase.getInstance().getReference("Users").child(currentUserId)
-            userRef.child("CurrentEngagement")
-                .addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        var totalEngagementCount = dataSnapshot.getValue(Int::class.java) ?: 0
-
-                        // Decrement the TotalEngagement count in the Users node
-                        if (totalEngagementCount > 0) {
-                            totalEngagementCount--
-                        }
-
-                        userRef.child("CurrentEngagement").setValue(totalEngagementCount)
-                    }
-
-                    override fun onCancelled(databaseError: DatabaseError) {
-                        val errorMessage = "Database error: ${databaseError.message}"
-
-                        Log.e("DetailPost", errorMessage)
-
-                        Toast.makeText(this@DetailPost, errorMessage, Toast.LENGTH_SHORT).show()
-                    }
-                })
-        }
-    }
     private fun updatePaymentDetailsVisibility() {
         val parentLinearLayout = findViewById<LinearLayout>(R.id.paymentDetailsLayout)
 

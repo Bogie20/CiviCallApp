@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/menu_item_2"
-        android:title="Learn"
+        android:title="Discover"
         android:icon="@drawable/bookinfo"
         />
 
@@ -26,7 +26,7 @@
 
     <item
         android:id="@+id/menu_item_5"
-        android:title="Notified"
+        android:title="Notices"
         android:icon="@drawable/notification"
         />
 

@@ -10,6 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.example.civicall.CurrentEngagementList.CurrentEngagements
+import com.example.civicall.FinishActivityList.FinishActAdapter
+import com.example.civicall.FinishActivityList.FinishActivity
 import com.example.civicall.databinding.ActivityProfiledetailsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -18,6 +21,11 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 class ProfileDetails : AppCompatActivity() {
     private lateinit var binding: ActivityProfiledetailsBinding
@@ -54,7 +62,16 @@ class ProfileDetails : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
-
+        binding.finishLinear.setOnClickListener {
+            val intent = Intent(this, FinishActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
+        binding.CurrentLinear.setOnClickListener {
+            val intent = Intent(this, CurrentEngagements::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
     }
 
     private fun checkUser() {
@@ -77,10 +94,22 @@ class ProfileDetails : AppCompatActivity() {
         }
     }
 
+    private fun isDateMatched(currentDate: String, endDate: String): Boolean {
+        val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+        val currentDateTime = sdf.parse(currentDate)
+        val endDateTime = sdf.parse(endDate)
 
+        return currentDateTime.after(endDateTime) || currentDateTime.equals(endDateTime)
+    }
+    private fun getCurrentDate(): String {
+        val calendar = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+        return dateFormat.format(calendar.time)
+    }
 
 
     private fun readData(uid: String) {
+
         database = FirebaseDatabase.getInstance().getReference("Users")
         database.keepSynced(true)
         database.child(uid).get().addOnSuccessListener { snapshot ->
@@ -100,26 +129,64 @@ class ProfileDetails : AppCompatActivity() {
                 val course = snapshot.child("course").value
                 val yearandSection = snapshot.child("yearandSection").value
                 val srcode = snapshot.child("srcode").value
-                val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
+                val verificationStatus =
+                    snapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
                 val activePts = snapshot.child("activepts").value
-                val finishact = snapshot.child("finishactivity").value
                 activePtsTextView.text = formatNumber(activePts.toString().toInt())
-                finishactTextView.text = formatNumber(finishact.toString().toInt())
                 val fullNameTextView: TextView = findViewById(R.id.fullName)
                 fullNameTextView.text = "$firstName $lastName"
                 binding.email1.text = email.toString()
                 binding.mobilenumtxt.text = contact.toString()
                 binding.emergencynumtxt.text = Emecontact?.toString() ?: ""
                 binding.addresstxt.text = address.toString()
-                binding.coursetxt.text = course.toString()
-                binding.yearandsecttxt.text = yearandSection.toString()
-                binding.srCodetxt.text = srcode.toString()
+                binding.coursetxt.text = course?.toString() ?: ""
+                binding.yearandsecttxt.text = yearandSection?.toString() ?: ""
+                binding.srCodetxt.text = srcode?.toString() ?: ""
                 binding.dateofbirthtxt.text = birthday.toString()
                 binding.gendertxt.text = gender.toString()
                 binding.usertypetxt.text = usertype.toString()
                 binding.campustxt.text = campus.toString()
                 binding.nstpnumtxt.text = nstp?.toString() ?: ""
                 val badgeImageView: ImageView = findViewById(R.id.badge_25)
+                val userRef = FirebaseDatabase.getInstance().getReference("Upload Engagement")
+                val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
+
+// Use addValueEventListener instead of addListenerForSingleValueEvent
+                userRef.orderByChild("Participants/$currentUserId").equalTo(true)
+                    .addValueEventListener(object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            val currentDate = getCurrentDate()
+                            var finishactCount = 0
+                            val contributionStatus =
+                                dataSnapshot.child("TransparencyImage/$currentUserId/contributionStatus")
+                                    .getValue(Boolean::class.java) ?: false
+
+                            for (engagementSnapshot in dataSnapshot.children) {
+                                val endDateString = engagementSnapshot.child("endDate").getValue(String::class.java)
+
+                                // Check if endDateString is not null before using it
+                                if (endDateString != null && isDateMatched(currentDate, endDateString)) {
+                                    // Increment the count only for engagements with matched endDate
+                                    finishactCount++
+                                }
+                            }
+
+                            // Update the finishactivity count and contributionStatus in the Users node
+                            val userNodeRef =
+                                FirebaseDatabase.getInstance().getReference("Users/$currentUserId")
+                            userNodeRef.child("finishactivity").setValue(finishactCount)
+                            userNodeRef.child("contributionStatus").setValue(contributionStatus)
+
+                            finishactTextView.text = formatNumber(finishactCount)
+                        }
+
+                        override fun onCancelled(databaseError: DatabaseError) {
+                            val errorMessage = "Database error: ${databaseError.message}"
+                            Log.e("ProfileDetails", errorMessage)
+                            Toast.makeText(this@ProfileDetails, errorMessage, Toast.LENGTH_SHORT).show()
+                        }
+                    })
+
 
                 val activePtsInt = activePts.toString().toInt()
 
@@ -127,12 +194,15 @@ class ProfileDetails : AppCompatActivity() {
                     activePtsInt in 0..300 -> {
                         badgeImageView.setImageResource(R.drawable.bronzes)
                     }
+
                     activePtsInt in 301..999 -> {
                         badgeImageView.setImageResource(R.drawable.silver)
                     }
+
                     activePtsInt in 1000..9999 -> {
                         badgeImageView.setImageResource(R.drawable.gold)
                     }
+
                     else -> {
                         badgeImageView.setImageResource(R.drawable.platinum)
                     }
@@ -149,14 +219,34 @@ class ProfileDetails : AppCompatActivity() {
                 }
                 if (verificationStatus) {
                     // If verificationStatus is true, set a drawable for a verified account
-                    binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verifiedalready, 0, 0, 0)
+                    binding.email1.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.verifiedalready,
+                        0,
+                        0,
+                        0
+                    )
                     // Tint the drawable for verified accounts
-                    binding.email1.compoundDrawables[0]?.setColorFilter(ContextCompat.getColor(this, R.color.verified), PorterDuff.Mode.SRC_IN)
+                    binding.email1.compoundDrawables[0]?.setColorFilter(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.verified
+                        ), PorterDuff.Mode.SRC_IN
+                    )
                 } else {
                     // If verificationStatus is false, set a drawable for an unverified account
-                    binding.email1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.verificationfalse_icon, 0, 0, 0)
+                    binding.email1.setCompoundDrawablesWithIntrinsicBounds(
+                        R.drawable.verificationfalse_icon,
+                        0,
+                        0,
+                        0
+                    )
                     // Tint the drawable for unverified accounts
-                    binding.email1.compoundDrawables[0]?.setColorFilter(ContextCompat.getColor(this, R.color.unverifiedyellow), PorterDuff.Mode.SRC_IN)
+                    binding.email1.compoundDrawables[0]?.setColorFilter(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.unverifiedyellow
+                        ), PorterDuff.Mode.SRC_IN
+                    )
                 }
             } else {
                 Toast.makeText(this, "User Not existed", Toast.LENGTH_LONG).show()
@@ -167,23 +257,48 @@ class ProfileDetails : AppCompatActivity() {
             // Show a toast if there's a failure in fetching data
             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
         }
-        val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
-        database.keepSynced(true)
-        userRef.child("CurrentEngagement").addListenerForSingleValueEvent(object :
-            ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val totalEngagementCount = dataSnapshot.getValue(Int::class.java) ?: 0
-                totalEngagementTextView.text = formatNumber(totalEngagementCount.toString().toInt())
-            }
+        val userRef = FirebaseDatabase.getInstance().getReference("Upload Engagement")
+        val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                val errorMessage = "Database error: ${databaseError.message}"
-                Log.e("ProfileDetails", errorMessage)
-                Toast.makeText(this@ProfileDetails, errorMessage, Toast.LENGTH_SHORT).show()
-            }
-        })
+// Use addValueEventListener instead of addListenerForSingleValueEvent
+        userRef.orderByChild("Participants/$currentUserId").equalTo(false)
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val currentDate = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).time
+                    var totalEngagementCount = 0
+
+                    for (engagementSnapshot in dataSnapshot.children) {
+                        val endDateString =
+                            engagementSnapshot.child("endDate").getValue(String::class.java)
+
+                        // Parse endDateString to Date
+                        val endDate =
+                            SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US).parse(endDateString)
+
+                        // Compare Date objects
+                        if (endDate != null && endDate.after(currentDate)) {
+                            // Increment the count only for engagements with future end dates
+                            totalEngagementCount++
+                        }
+                    }
+
+                    // Set the totalEngagementTextView after processing all engagements
+                    totalEngagementTextView.text = formatNumber(totalEngagementCount)
+
+                    // Update the CurrentEngagement count in the Users node
+                    val userNodeRef = FirebaseDatabase.getInstance().getReference("Users/$currentUserId")
+                    userNodeRef.child("CurrentEngagement").setValue(totalEngagementCount)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    val errorMessage = "Database error: ${databaseError.message}"
+                    Log.e("ProfileDetails", errorMessage)
+                    Toast.makeText(this@ProfileDetails, errorMessage, Toast.LENGTH_SHORT).show()
+                }
+            })
     }
-    override fun onDestroy() {
+
+        override fun onDestroy() {
         super.onDestroy()
 
         // Cleanup to unregister the network callback

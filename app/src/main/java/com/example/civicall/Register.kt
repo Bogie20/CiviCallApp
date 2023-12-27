@@ -294,7 +294,6 @@ class Register : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
         activityRegister1Binding = ActivityRegister1Binding.inflate(layoutInflater)
         setContentView(activityRegister1Binding.root)
