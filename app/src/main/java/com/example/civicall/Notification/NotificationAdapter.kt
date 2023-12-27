@@ -38,7 +38,7 @@ class NotificationAdapter(private val notificationList: List<DataClassNotif>) :
         holder.dateandTIme.text = currentItem.timestamp
 
         // Set the text for the label TextView
-        holder.itemView.findViewById<TextView>(R.id.label).text = "Exciting news – you're in!"
+        holder.itemView.findViewById<TextView>(R.id.label).text = "You're In!"
 
         // Load image using Glide or your preferred image loading library
         Glide.with(holder.recImage.context)

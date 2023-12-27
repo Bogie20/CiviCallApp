@@ -92,9 +92,11 @@ class CalendarActivity : AppCompatActivity() {
                 val participantsSnapshot = snapshot.child("Participants")
                 val startDate = snapshot.child("startDate").value.toString()
                 val endDate = snapshot.child("endDate").value.toString()
-                if (participantsSnapshot.hasChild(currentUserUid) && isDateInRange(selectedDate, startDate, endDate)) {
+                val currentUserUid = auth.currentUser?.uid
+
+                if (currentUserUid != null && participantsSnapshot.hasChild(currentUserUid) && isDateInRange(selectedDate, startDate, endDate)) {
                     val postKey = snapshot.key ?: ""
-                    val hasAttended = participantsSnapshot.child(currentUserUid).getValue(Boolean::class.java) ?: false
+                    val hasAttended = participantsSnapshot.child(currentUserUid).child("joined").getValue(Boolean::class.java) ?: false
 
                     val engagementData = CalendarData(
                         snapshot.child("image").value.toString(),
@@ -118,7 +120,7 @@ class CalendarActivity : AppCompatActivity() {
                 val currentUserUid = auth.currentUser?.uid
 
                 if (currentUserUid != null && participantsSnapshot.hasChild(currentUserUid)) {
-                    val hasAttended = participantsSnapshot.child(currentUserUid).getValue(Boolean::class.java) ?: false
+                    val hasAttended = participantsSnapshot.child(currentUserUid).child("joined").getValue(Boolean::class.java) ?: false
                     val startDate = snapshot.child("startDate").value.toString()
                     val endDate = snapshot.child("endDate").value.toString()
 

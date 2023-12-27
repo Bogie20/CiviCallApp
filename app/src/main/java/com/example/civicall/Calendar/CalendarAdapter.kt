@@ -60,26 +60,26 @@ class CalendarAdapter(private val engagementList: List<CalendarData>) :
             val participantsRef = FirebaseDatabase.getInstance().getReference("Upload Engagement")
                 .child(engagementId)
                 .child("Participants")
+                .child(currentUserUid)
 
             participantsRef.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(participantsSnapshot: DataSnapshot) {
-                    val hasAttended =
-                        participantsSnapshot.child(currentUserUid).getValue(Boolean::class.java)
-                            ?: false
+                override fun onDataChange(participantSnapshot: DataSnapshot) {
+                    val joined =
+                        participantSnapshot.child("joined").getValue(Boolean::class.java) ?: false
 
                     if (currentDate.after(endDate)) {
-                      if (!hasAttended) {
-                          setIndicatorIconWithColor(
-                              holder,
-                              R.drawable.broken,
-                              ContextCompat.getColor(holder.itemView.context, R.color.red)
-                          )
+                        if (!joined) {
+                            setIndicatorIconWithColor(
+                                holder,
+                                R.drawable.broken,
+                                ContextCompat.getColor(holder.itemView.context, R.color.red)
+                            )
                         } else {
-                          setIndicatorIconWithColor(
-                              holder,
-                              R.drawable.finishnapo,
-                              ContextCompat.getColor(holder.itemView.context, R.color.greenish)
-                          )
+                            setIndicatorIconWithColor(
+                                holder,
+                                R.drawable.finishnapo,
+                                ContextCompat.getColor(holder.itemView.context, R.color.greenish)
+                            )
                         }
                     } else {
                         // Handle the case when the current date is not after endDate
