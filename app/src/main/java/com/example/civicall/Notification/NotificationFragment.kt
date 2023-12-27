@@ -1,60 +1,73 @@
 package com.example.civicall.Notification
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.civicall.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [NotificationFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class NotificationFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var notificationAdapter: NotificationAdapter
+    private lateinit var notificationList: MutableList<DataClassNotif>
+
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notification, container, false)
-    }
+        val view = inflater.inflate(R.layout.fragment_notification, container, false)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment NotificationFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            NotificationFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        recyclerView = view.findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        notificationList = mutableListOf()
+        notificationAdapter = NotificationAdapter(notificationList)
+        recyclerView.adapter = notificationAdapter
+
+        auth = FirebaseAuth.getInstance()
+        val currentUserUid = auth.currentUser?.uid
+
+        databaseReference = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
+
+        // Retrieve data from Firebase
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                notificationList.clear()
+
+                for (engagementSnapshot in dataSnapshot.children) {
+                    val postKey = engagementSnapshot.key
+
+                    // Check if the current user is a participant in this engagement
+                    val participantsRef = engagementSnapshot.child("Participants")
+                    if (participantsRef.hasChild(currentUserUid!!)) {
+                        // User is a participant, retrieve and display information
+                        val category = engagementSnapshot.child("category").value.toString()
+                        val title = engagementSnapshot.child("title").value.toString()
+                        val startDate = engagementSnapshot.child("startDate").value.toString()
+                        val endDate = engagementSnapshot.child("endDate").value.toString()
+                        val imageUrl = engagementSnapshot.child("image").value.toString()
+
+                        val notificationItem = DataClassNotif(category, title, startDate, endDate, imageUrl)
+                        notificationList.add(notificationItem)
+                    }
                 }
+
+                notificationAdapter.notifyDataSetChanged()
             }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle error
+            }
+        })
+
+        return view
     }
 }

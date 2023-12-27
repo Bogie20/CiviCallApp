@@ -52,7 +52,7 @@
             android:scrollbars="vertical"
             android:scrollbarSize="5dp"
             android:nestedScrollingEnabled="false"
-            android:id="@+id/recyclerViewForum"/>
+            android:id="@+id/recyclerView"/>
     </androidx.core.widget.NestedScrollView>
 
     <ImageView
