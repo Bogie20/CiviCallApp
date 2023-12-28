@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".CurrentEngagementList.CurrentEngagements">
+    tools:context=".ActivePoints.ActivePointsEarned">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/oleo_script"
-            android:text="Current Engagement"
+            android:text="Active Points Earned"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="18dp" />
@@ -50,7 +50,7 @@
         android:layout_marginBottom="10dp"
         android:scrollbars="vertical"
         android:id="@+id/nestedRecycler"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="70dp"
         android:layout_below="@id/relativeLayout">
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -58,7 +58,7 @@
             android:scrollbars="vertical"
             android:scrollbarSize="5dp"
             android:nestedScrollingEnabled="false"
-            android:id="@+id/currentRecycler"/>
+            android:id="@+id/recyclerView"/>
     </androidx.core.widget.NestedScrollView>
 
     <ImageView
@@ -80,11 +80,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/noPostsImage"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/lexend_bold"
         android:gravity="center"
         android:layout_marginHorizontal="15dp"
-        android:text="Hold on! No activities as of the moment – you're on a roll!"
+        android:text="Hold on! No completed activities here – you're on a roll!"
         android:textColor="@color/DarkGray"
         android:textSize="19sp"
         android:visibility="gone"

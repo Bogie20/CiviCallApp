@@ -9,14 +9,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.ProfileDetails
 import com.example.civicall.R
+import com.example.civicall.databinding.ActivityFinishBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import com.example.civicall.databinding.ActivityFinishBinding
 import java.util.Calendar
-import java.util.TimeZone
+import java.util.Locale
 
 class FinishActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFinishBinding
@@ -73,13 +71,12 @@ class FinishActivity : AppCompatActivity() {
                             engagementSnapshot.child("category").getValue(String::class.java) ?: "",
                             startDate,
                             endDate,
-                            postKey
+                            postKey,
+                            engagementSnapshot.child("Participants/$currentUserUid/attendedStamp").getValue(String::class.java) ?: ""
                         )
                         finishedActivities.add(finishData)
                     }
                 }
-
-                // Update the adapter with the fetched data
                 finishActAdapter = FinishActAdapter(finishedActivities)
                 recyclerView.adapter = finishActAdapter
 

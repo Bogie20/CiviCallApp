@@ -8,4 +8,5 @@ data class DataClassFinish(
     val startDate: String,
     val endDate: String,
     val postKey: String,
+    val attendedStamp: String
 )

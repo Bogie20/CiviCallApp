@@ -7,4 +7,5 @@ data class DataClassCurrent(
         val startDate: String,
         val endDate: String,
         val postKey: String,
+        val timeStamp: String
     )

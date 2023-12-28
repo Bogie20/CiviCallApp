@@ -73,7 +73,8 @@ class CurrentEngagements : AppCompatActivity() {
                             engagementSnapshot.child("category").getValue(String::class.java) ?: "",
                             startDate,
                             endDate,
-                            postKey
+                            postKey,
+                            engagementSnapshot.child("Participants/$currentUserUid/timestamp").getValue(String::class.java) ?: ""
                         )
                         currentEngagements.add(currentEngagement)
                     }

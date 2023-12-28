@@ -5,14 +5,13 @@ import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.civicall.CurrentEngagementList.CurrentEngagements
-import com.example.civicall.FinishActivityList.FinishActAdapter
 import com.example.civicall.FinishActivityList.FinishActivity
+import com.example.civicall.ActivePoints.ActivePointsEarned
 import com.example.civicall.databinding.ActivityProfiledetailsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -23,7 +22,6 @@ import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
@@ -64,6 +62,11 @@ class ProfileDetails : AppCompatActivity() {
         }
         binding.finishLinear.setOnClickListener {
             val intent = Intent(this, FinishActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
+        binding.activePtsLinear.setOnClickListener {
+            val intent = Intent(this, ActivePointsEarned::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
