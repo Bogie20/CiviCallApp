@@ -306,22 +306,6 @@ class Login : AppCompatActivity() {
             isProgressShowing = false
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private fun showCustomPopupSuccess(message: String) {
         // Check if the pop-up is already showing, and if so, return early
         if (isPopupShowing) {
@@ -397,62 +381,29 @@ class Login : AppCompatActivity() {
             return
         }
         dismissCustomDialog()
-
-
-
-
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(dialogLayout, null)
-
-
         dialogBuilder.setView(dialogView)
         val alertDialog = dialogBuilder.create()
-
-
         alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideLeft
-
-
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-
         val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message)
-
-
         messageTextView.text = message
         alertDialog.show()
-
-
         isProgressShowing = true
         alertDialog.setOnDismissListener {
-
-
-
-
             isProgressShowing = false
         }
 
-
         Handler(Looper.getMainLooper()).postDelayed({
             alertDialog.dismiss()
-
-
-
-
             isProgressShowing = false
         }, durationMillis)
     }
-
-
-
-
     private fun validateData() {
         email = emailTextInputLayout.editText?.text.toString().trim()
         password = passwordTextInputLayout.editText?.text.toString().trim()
-
-
-
-
         val emailMaxLength = 320
         val passwordMaxLength = 128
         if (email.isEmpty()) {
@@ -469,10 +420,6 @@ class Login : AppCompatActivity() {
             loginUser()
         }
     }
-
-
-
-
     private fun loginUser() {
         showCustomProgressBar("Logging In...", 1500)
 
@@ -484,8 +431,6 @@ class Login : AppCompatActivity() {
             .addOnFailureListener { e ->
                 // Dismiss the progress bar when there's an error
                 dismissCustomProgressBar()
-
-
                 if (e.message == "The email address is badly formatted.") {
                     // Handle invalid email format error
                     emailEditText.error = "Invalid Email"
@@ -515,47 +460,20 @@ class Login : AppCompatActivity() {
         if (isPopupShowing) {
             return
         }
-
-
-
-
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_error, null)
-
-
-
-
         dialogBuilder.setView(dialogView)
         val alertDialog = dialogBuilder.create()
-
-
-
-
         alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
-
-
-
-
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message_flat)
         val okButton = dialogView.findViewById<Button>(R.id.btn_action_flat)
-
-
-
-
         messageTextView.text = message
-
-
-
-
         okButton.setOnClickListener {
             alertDialog.dismiss()
             isPopupShowing = false
         }
-
-
-
 
         alertDialog.show()
         isPopupShowing = true
@@ -567,26 +485,14 @@ class Login : AppCompatActivity() {
         builder.setView(view)
         val dialog = builder.create()
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
-
-
-
-
         view.findViewById<Button>(R.id.okbtns).setOnClickListener {
             dialog.dismiss()
         }
         if (dialog.window != null) {
             dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
         }
-
-
-
-
         dialog.show()
     }
-
-
-
-
     private fun checkUser() {
         val uid = firebaseAuth.uid
         val ref = FirebaseDatabase.getInstance().getReference("Users")
@@ -595,7 +501,7 @@ class Login : AppCompatActivity() {
                 if (snapshot.exists()) {
                     // User exists, update the login date and time
                     val loginTimestamp = System.currentTimeMillis()
-                    val loginDateFormat = SimpleDateFormat("MM/dd/yyyy HH:mm z")
+                    val loginDateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a")
                     loginDateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
                     val formattedLoginDate = loginDateFormat.format(loginTimestamp)
 
@@ -627,10 +533,6 @@ class Login : AppCompatActivity() {
         val signInIntent: Intent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent, Req_Code, null)
     }
-
-
-
-
     @Suppress("DEPRECATION")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -639,8 +541,6 @@ class Login : AppCompatActivity() {
             handleResult(task)
         }
     }
-
-
     private fun handleResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account: GoogleSignInAccount? = completedTask.getResult(ApiException::class.java)
@@ -655,7 +555,6 @@ class Login : AppCompatActivity() {
             ).show()
         }
     }
-
     private fun updateUI(account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
@@ -667,13 +566,47 @@ class Login : AppCompatActivity() {
                 editor.apply()
 
                 profileImageUri = account.photoUrl?.toString()
-                updateUserInfo(account)
+
+                // Update the lastLogin timestamp for Google Sign-In users
+                val uid = firebaseAuth.uid
+                val ref = FirebaseDatabase.getInstance().getReference("Users")
+                ref.child(uid!!).addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            // User exists, update the login date and time
+                            val loginTimestamp = System.currentTimeMillis()
+                            val loginDateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a")
+                            loginDateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+                            val formattedLoginDate = loginDateFormat.format(loginTimestamp)
+
+                            val updateMap: HashMap<String, Any?> = HashMap()
+                            updateMap["lastLogin"] = formattedLoginDate
+
+                            ref.child(uid).updateChildren(updateMap)
+                                .addOnSuccessListener {
+                                    // Navigate to the Dashboard
+                                    startActivity(Intent(this@Login, Dashboard::class.java))
+                                    finish()
+                                }
+                                .addOnFailureListener { e ->
+                                    showCustomPopupError("Failed updating login info: ${e.message}")
+                                }
+                        } else {
+                            // This should not happen, as the user should exist at this point
+                            showCustomPopupError("User not found.")
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        // Handle onCancelled event if needed
+                    }
+                })
+            } else {
+                // Handle unsuccessful sign-in
+                Toast.makeText(this, "Google Sign-In Failed", Toast.LENGTH_SHORT).show()
             }
-
-        }   }
-
-
-
+        }
+    }
     override fun onBackPressed() {
         super.onBackPressed()
         dismissCustomDialog()

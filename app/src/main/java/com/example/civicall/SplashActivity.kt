@@ -14,6 +14,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.TimeZone
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
@@ -43,7 +45,7 @@ class SplashActivity : AppCompatActivity() {
     private fun checkuser() {
         val firebaseUser = firebaseAuth.currentUser
         if (firebaseUser == null) {
-
+            // User is not logged in, redirect to StartSplash activity
             val intent = Intent(this, StartSplash::class.java)
             val options = ActivityOptions.makeCustomAnimation(this, R.anim.fade_in, R.anim.fade_out).toBundle()
             startActivity(intent, options)
@@ -55,22 +57,43 @@ class SplashActivity : AppCompatActivity() {
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         if (snapshot.exists()) {
-                            // User data exists, go to the Dashboard
-                            startActivity(Intent(this@SplashActivity, Dashboard::class.java))
+                            // User data exists, update the lastLogin timestamp
+                            val loginTimestamp = System.currentTimeMillis()
+                            val loginDateFormat = SimpleDateFormat("MM/dd/yyyy HH:mm a")
+                            loginDateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+                            val formattedLoginDate = loginDateFormat.format(loginTimestamp)
+
+                            val updateMap: HashMap<String, Any?> = HashMap()
+                            updateMap["lastLogin"] = formattedLoginDate
+
+                            ref.child(firebaseUser.uid).updateChildren(updateMap)
+                                .addOnSuccessListener {
+                                    // Go to the Dashboard
+                                    startActivity(Intent(this@SplashActivity, Dashboard::class.java))
+                                    finish() // Finish only after successful update and navigation
+                                }
+                                .addOnFailureListener { e ->
+                                    // Handle failure if needed
+                                    firebaseAuth.signOut()
+                                    startActivity(Intent(this@SplashActivity, Login::class.java))
+                                    finish() // Finish only after navigation
+                                }
                         } else {
                             // User data does not exist, log out and redirect to the Login activity
                             firebaseAuth.signOut()
                             startActivity(Intent(this@SplashActivity, Login::class.java))
+                            finish() // Finish only after navigation
                         }
-                        finish()
                     }
 
                     override fun onCancelled(error: DatabaseError) {
                         // Handle database error if needed
+                        finish() // Finish in case of database error
                     }
                 })
         }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
