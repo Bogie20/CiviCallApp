@@ -19,8 +19,7 @@ import com.google.firebase.database.*
 import nl.joery.animatedbottombar.AnimatedBottomBar
 
 class NotificationFragment : Fragment() {
-    private var isScrollingUp = true
-    private var previousScrollY = 0
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var notificationAdapter: NotificationAdapter
     private lateinit var notificationList: MutableList<DataClassNotif>
