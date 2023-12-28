@@ -1,5 +1,6 @@
 package com.example.civicall
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
@@ -497,6 +498,7 @@ class Login : AppCompatActivity() {
         val uid = firebaseAuth.uid
         val ref = FirebaseDatabase.getInstance().getReference("Users")
         ref.child(uid!!).addListenerForSingleValueEvent(object : ValueEventListener {
+            @SuppressLint("SimpleDateFormat")
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     // User exists, update the login date and time
@@ -571,6 +573,7 @@ class Login : AppCompatActivity() {
                 val uid = firebaseAuth.uid
                 val ref = FirebaseDatabase.getInstance().getReference("Users")
                 ref.child(uid!!).addListenerForSingleValueEvent(object : ValueEventListener {
+                    @SuppressLint("SimpleDateFormat")
                     override fun onDataChange(snapshot: DataSnapshot) {
                         if (snapshot.exists()) {
                             // User exists, update the login date and time

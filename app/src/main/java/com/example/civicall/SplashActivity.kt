@@ -59,7 +59,7 @@ class SplashActivity : AppCompatActivity() {
                         if (snapshot.exists()) {
                             // User data exists, update the lastLogin timestamp
                             val loginTimestamp = System.currentTimeMillis()
-                            val loginDateFormat = SimpleDateFormat("MM/dd/yyyy HH:mm a")
+                            val loginDateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a")
                             loginDateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
                             val formattedLoginDate = loginDateFormat.format(loginTimestamp)
 
