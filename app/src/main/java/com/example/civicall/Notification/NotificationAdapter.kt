@@ -18,7 +18,7 @@ class NotificationAdapter(private val notificationList: List<DataClassNotif>) :
         val recTitle: TextView = itemView.findViewById(R.id.recTitle)
         val schedule: TextView = itemView.findViewById(R.id.schedule)
         val recImage: ShapeableImageView = itemView.findViewById(R.id.recImage)
-        val dateandTIme: TextView = itemView.findViewById(R.id.dateandTime)
+        val dateandTime: TextView = itemView.findViewById(R.id.dateandTime)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
@@ -35,12 +35,10 @@ class NotificationAdapter(private val notificationList: List<DataClassNotif>) :
         holder.categoryTextView.text = currentItem.category
         holder.recTitle.text = currentItem.title
         holder.schedule.text = "${currentItem.startDate} - ${currentItem.endDate}"
-        holder.dateandTIme.text = currentItem.timestamp
-
+        holder.dateandTime.text = "Joined: ${currentItem.timestamp}"
         // Set the text for the label TextView
-        holder.itemView.findViewById<TextView>(R.id.label).text = "You're In!"
+        holder.itemView.findViewById<TextView>(R.id.label).text = "The engagement is 24 hours away!"
 
-        // Load image using Glide or your preferred image loading library
         Glide.with(holder.recImage.context)
             .load(currentItem.imageUrl)
             .into(holder.recImage)

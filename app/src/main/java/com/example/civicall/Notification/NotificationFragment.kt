@@ -17,6 +17,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import nl.joery.animatedbottombar.AnimatedBottomBar
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class NotificationFragment : Fragment() {
 
@@ -54,13 +58,19 @@ class NotificationFragment : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 notificationList.clear()
 
-                // Inside onDataChange method
                 for (engagementSnapshot in dataSnapshot.children) {
                     val postKey = engagementSnapshot.key ?: ""
 
                     // Check if the current user is a participant in this engagement
                     val participantsRef = engagementSnapshot.child("Participants")
                     if (participantsRef.hasChild(currentUserUid!!)) {
+                        // User is a participant, retrieve and display information
+
+                        // Retrieve start date and time from the database
+                        val startDateStr = engagementSnapshot.child("startDate").value.toString()
+
+                        // Check if the engagement is within 24 hours from the current date and time
+                        if (isWithin24Hours(startDateStr)) {
                         // User is a participant, retrieve and display information
                         val category = engagementSnapshot.child("category").value.toString()
                         val title = engagementSnapshot.child("title").value.toString()
@@ -69,19 +79,20 @@ class NotificationFragment : Fragment() {
                         val imageUrl = engagementSnapshot.child("image").value.toString()
 
                         // Get the timestamp from the Participants node
-                        val timestamp = participantsRef.child(currentUserUid)
-                            .child("timestamp").value.toString()
+                            val timestamp = participantsRef.child(currentUserUid)
+                                .child("timestamp").value.toString()
 
-                        val notificationItem = DataClassNotif(
-                            postKey,
-                            category,
-                            title,
-                            startDate,
-                            endDate,
-                            imageUrl,
-                            timestamp
-                        )
-                        notificationList.add(0, notificationItem)
+                            val notificationItem = DataClassNotif(
+                                postKey,
+                                category,
+                                title,
+                                startDate,
+                                endDate,
+                                imageUrl,
+                                timestamp
+                            )
+                            notificationList.add(0, notificationItem)
+                        }
                     }
                 }
 
@@ -103,6 +114,7 @@ class NotificationFragment : Fragment() {
                 // Handle error
             }
         })
+
         val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
 
@@ -129,5 +141,23 @@ class NotificationFragment : Fragment() {
 
         return view
 
+    }
+    private fun isWithin24Hours(startDateStr: String): Boolean {
+        val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+        try {
+            val startDate = dateFormat.parse(startDateStr)
+            val currentDate = Date()
+
+            // Calculate the difference in milliseconds
+            val timeDifference = startDate.time - currentDate.time
+
+            // Check if the time difference is less than 24 hours
+            return timeDifference <= 24 * 60 * 60 * 1000
+        } catch (e: ParseException) {
+            // Handle the parsing exception
+            e.printStackTrace()
+        }
+        // Default to false in case of errors
+        return false
     }
 }
