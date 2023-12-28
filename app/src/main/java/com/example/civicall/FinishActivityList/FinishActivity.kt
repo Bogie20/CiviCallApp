@@ -74,7 +74,7 @@ class FinishActivity : AppCompatActivity() {
                             postKey,
                             engagementSnapshot.child("Participants/$currentUserUid/attendedStamp").getValue(String::class.java) ?: ""
                         )
-                        finishedActivities.add(finishData)
+                        finishedActivities.add(0, finishData)
                     }
                 }
                 finishActAdapter = FinishActAdapter(finishedActivities)

@@ -73,21 +73,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/relativeLayout" />
-
     <TextView
         android:id="@+id/noPostsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/noPostsImage"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/lexend_bold"
         android:gravity="center"
+        android:visibility="gone"
         android:layout_marginHorizontal="15dp"
-        android:text="Hold on! No activities as of the moment – you're on a roll!"
+        android:text="Hold tight! No activities right now – you're in the flow of something extraordinary!"
         android:textColor="@color/DarkGray"
         android:textSize="19sp"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/noPostsImage" />

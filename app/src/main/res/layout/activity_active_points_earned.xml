@@ -84,7 +84,7 @@
         android:fontFamily="@font/lexend_bold"
         android:gravity="center"
         android:layout_marginHorizontal="15dp"
-        android:text="Hold on! No completed activities here – you're on a roll!"
+        android:text="Get ready to earn those active points – it's time to dive in and engage!"
         android:textColor="@color/DarkGray"
         android:textSize="19sp"
         android:visibility="gone"

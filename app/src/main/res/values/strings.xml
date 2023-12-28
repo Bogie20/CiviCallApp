@@ -31,7 +31,6 @@
         <item>Pablo Borbon Campus II</item>
         <item>Rosario Campus</item>
         <item>San Juan Campus</item>
-        <item>All Campus</item>
     </string-array>
     <string-array name="engagement_category">
         <item>Tree Planting</item>
