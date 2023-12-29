@@ -59,7 +59,7 @@
                 android:layout_marginTop="20dp"
                 android:maxLines="2"
                 android:ellipsize="end"
-                android:fontFamily="@font/lexend_bold"
+                android:fontFamily="@font/lexend_semibold"
                 android:text="Titled"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
