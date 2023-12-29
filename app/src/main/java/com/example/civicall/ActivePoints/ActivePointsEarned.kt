@@ -82,18 +82,20 @@ class ActivePointsEarned : AppCompatActivity() {
                                 ?: 0
 
                         // Get the timestamp from the Participants node
-                        val attendedStamp = participantsRef.child(currentUserUid)
-                            .child("attendedStamp").value.toString()
+                        val receivedStamp = participantsRef.child(currentUserUid)
+                            .child("receivedStamp").value.toString()
 
                         val notificationItem = DataClassAct(
                             postKey,
                             title,
                             activepts,
-                            attendedStamp
+                            receivedStamp
                         )
-                        notificationList.add(0, notificationItem)
+                        notificationList.add(notificationItem)
                     }
                 }
+
+                notificationList.sortByDescending { it.receivedStamp }
 
                 notificationAdapter.notifyDataSetChanged()
 

@@ -31,7 +31,7 @@ class ActivePtsAdapter(private val notificationList: List<DataClassAct>) :
 
         holder.activeptsEarned.text = "${currentItem.activepts} Points"
         holder.titleEngagement.text = currentItem.title
-        holder.dateandTime.text = currentItem.attendedStamp
+        holder.dateandTime.text = currentItem.receivedStamp
 
         // Set the text for the label TextView
         holder.labelPts.text = "You've Earned Active Points!!"

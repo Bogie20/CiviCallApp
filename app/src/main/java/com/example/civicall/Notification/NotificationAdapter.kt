@@ -43,22 +43,33 @@ class NotificationAdapter(private val notificationList: List<DataClassNotif>) :
 
         val calendar = Calendar.getInstance()
         val currentDate = calendar.time
-        val engagementStartDate = SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(currentItem.startDate)
+        val engagementStartDate =
+            SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(currentItem.startDate)
+        val engagementEndDate =
+            SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(currentItem.endDate)
 
-        val timeDifference = engagementStartDate?.time?.minus(currentDate.time) ?: 0
+        val timeDifferenceStart = engagementStartDate?.time?.minus(currentDate.time) ?: 0
+        val timeDifferenceEnd = engagementEndDate?.time?.minus(currentDate.time) ?: 0
 
-        if (timeDifference <= TWELVE_HOURS_IN_MILLIS && timeDifference > 0) {
-            // Within 12 hours
-            holder.dateandTime.text = currentItem.currentTime
-            holder.itemView.findViewById<TextView>(R.id.label).text = "The engagement is near!"
-        } else if (isEngagementOngoing(currentItem.startDate)) {
-            // Display current date and time when the engagement is ongoing
-            holder.dateandTime.text = currentItem.currentTime
-            holder.itemView.findViewById<TextView>(R.id.label).text = "The engagement is On-Going Hurry!"
+        if (timeDifferenceStart <= TWELVE_HOURS_IN_MILLIS && timeDifferenceStart > 0) {
+            val timestampMinus12Hours = calculateTimestampMinusHours(currentItem.startDate, 12)
+            holder.dateandTime.text = "Since: ${timestampMinus12Hours}"
+            holder.itemView.findViewById<TextView>(R.id.label).text = "The engagement is 12 hours away!"
+        } else if (isEngagementOngoing(currentItem.startDate, currentItem.endDate)) {
+
+        holder.dateandTime.text = "Since: ${currentItem.startDate}"
+        holder.itemView.findViewById<TextView>(R.id.label).text = "The engagement has started!"
+
+       } else if (timeDifferenceEnd <= 0) {
+        // Engagement has finished
+        holder.dateandTime.text = "Since: ${currentItem.endDate}"
+        holder.itemView.findViewById<TextView>(R.id.label).text = "The engagement has finished"
         } else {
-            // Display the calculated timestamp when the engagement is upcoming
-            holder.dateandTime.text = currentItem.timestamp
-            holder.itemView.findViewById<TextView>(R.id.label).text = "The engagement is 24 hours away!"
+            // Outside 12 hours, show "The engagement is 24 hours away!" until it's less than 12 hours away
+            if (timeDifferenceStart > TWELVE_HOURS_IN_MILLIS) {
+                holder.dateandTime.text = "Since: ${currentItem.timestamp}"
+                holder.itemView.findViewById<TextView>(R.id.label).text = "The engagement is 24 hours away!"
+            }
         }
 
         Glide.with(holder.recImage.context)
@@ -66,18 +77,21 @@ class NotificationAdapter(private val notificationList: List<DataClassNotif>) :
             .into(holder.recImage)
     }
 
+
     companion object {
         private const val TWELVE_HOURS_IN_MILLIS = 12 * 60 * 60 * 1000
+        private const val ONE_MINUTE_IN_MILLIS = 1 * 60 * 1000
     }
 
-    private fun isEngagementOngoing(startDateStr: String): Boolean {
+    private fun isEngagementOngoing(startDateStr: String, endDateStr: String): Boolean {
         val dateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
         try {
             val startDate = dateFormat.parse(startDateStr)
+            val endDate = dateFormat.parse(endDateStr)
             val currentDate = Calendar.getInstance().time
 
-            // Check if the engagement has started
-            return currentDate.after(startDate)
+            // Check if the engagement has started and is ongoing, but not more than 1 minute after endDate
+            return currentDate.after(startDate) && currentDate.before(endDate) && endDate.time - currentDate.time > ONE_MINUTE_IN_MILLIS
         } catch (e: ParseException) {
             // Handle the parsing exception
             e.printStackTrace()
@@ -85,8 +99,46 @@ class NotificationAdapter(private val notificationList: List<DataClassNotif>) :
         // Default to false in case of errors
         return false
     }
+    private fun calculateTimestampMinusHours(timestamp: String, hours: Int): String {
+        val dateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
+        try {
+            val originalDate = dateFormat.parse(timestamp)
+
+            // Subtract hours from the original date
+            val calendar = Calendar.getInstance()
+            calendar.time = originalDate
+            calendar.add(Calendar.HOUR_OF_DAY, -hours)
+
+            // Format the result as a timestamp
+            return dateFormat.format(calendar.time)
+        } catch (e: ParseException) {
+            // Handle the parsing exception
+            e.printStackTrace()
+        }
+        // Default to an empty string in case of errors
+        return ""
+    }
 
     override fun getItemCount(): Int {
         return notificationList.size
+    }
+    private fun calculateTimestampMinusMinutes(timestamp: String, minutes: Int): String {
+        val dateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
+        try {
+            val originalDate = dateFormat.parse(timestamp)
+
+            // Subtract minutes from the original date
+            val calendar = Calendar.getInstance()
+            calendar.time = originalDate
+            calendar.add(Calendar.MINUTE, -minutes)
+
+            // Format the result as a timestamp
+            return dateFormat.format(calendar.time)
+        } catch (e: ParseException) {
+            // Handle the parsing exception
+            e.printStackTrace()
+        }
+        // Default to an empty string in case of errors
+        return ""
     }
 }

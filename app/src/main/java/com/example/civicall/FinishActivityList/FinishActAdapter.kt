@@ -20,7 +20,7 @@ class FinishActAdapter(private val finishedActivities: List<DataClassFinish>) :
         val location: TextView = itemView.findViewById(R.id.location)
         val dateAndTime: TextView = itemView.findViewById(R.id.dateandTime)
         val category: TextView = itemView.findViewById(R.id.category)
-        val attendedStamp: TextView = itemView.findViewById(R.id.dateTime)
+        val receivedStamp: TextView = itemView.findViewById(R.id.dateTime)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -45,7 +45,7 @@ class FinishActAdapter(private val finishedActivities: List<DataClassFinish>) :
         holder.category.text = activity.category
 
         // Set attendedStamp text
-        holder.attendedStamp.text = activity.attendedStamp
+        holder.receivedStamp.text = activity.receivedStamp
     }
 
     override fun getItemCount(): Int {

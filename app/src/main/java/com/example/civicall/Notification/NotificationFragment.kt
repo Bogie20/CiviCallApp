@@ -69,6 +69,7 @@ class NotificationFragment : Fragment() {
 
                         // Retrieve start date and time from the database
                         val startDateStr = engagementSnapshot.child("startDate").value.toString()
+                        val endDateStr = engagementSnapshot.child("endDate").value.toString()
 
                         // Check if the engagement is within 24 hours from the current date and time
                         if (isWithin24Hours(startDateStr)) {
@@ -81,7 +82,7 @@ class NotificationFragment : Fragment() {
 
                             // Calculate the timestamp 24 hours before the start date
                             val timestamp24HoursBefore = calculateTimestamp24HoursBefore(startDate)
-                            val currentTime = engagementSnapshot.child("Participants").child(currentUserUid!!).child("timestamp").value.toString()
+
                             val notificationItem = DataClassNotif(
                                 postKey,
                                 category,
@@ -89,9 +90,23 @@ class NotificationFragment : Fragment() {
                                 startDate,
                                 endDate,
                                 imageUrl,
-                                timestamp24HoursBefore,
-                                currentTime
+                                timestamp24HoursBefore
                             )
+
+                            // Check if the current date and time match or exceed the endDate
+                            // Check if the current date is more than 2 weeks after the endDate
+                            val currentDate = Date()
+                            val endDateTime = SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(endDateStr)
+
+                            val calendar = Calendar.getInstance()
+                            calendar.time = endDateTime
+                            calendar.add(Calendar.WEEK_OF_YEAR, 2)
+
+                            if (currentDate.after(calendar.time)) {
+                                // Skip this item as it's more than 2 weeks after the engagement has ended
+                                continue
+                            }
+
                             notificationList.add(0, notificationItem)
                         }
                     }
@@ -115,6 +130,7 @@ class NotificationFragment : Fragment() {
                 // Handle error
             }
         })
+
 
         val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
@@ -161,7 +177,6 @@ class NotificationFragment : Fragment() {
             // Handle the parsing exception
             e.printStackTrace()
         }
-        // Default to false in case of errors
         return false
     }
     // Modify the calculateTimestamp24HoursBefore function

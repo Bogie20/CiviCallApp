@@ -422,15 +422,26 @@ class DetailPost : AppCompatActivity() {
                 ratingsReference.child("message").setValue(message)
                 ratingsReference.child("timestamp").setValue(timestamp)
                     .addOnSuccessListener {
-                        Toast.makeText(this, "Rating submitted successfully", Toast.LENGTH_SHORT).show()
-                        alertDialog.dismiss()
+                        // Update the receivedStamp in Participants child
+                        val participantsReference: DatabaseReference =
+                            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
+                                .child("Participants").child(uid)
+
+                        participantsReference.child("receivedStamp").setValue(timestamp)
+                            .addOnSuccessListener {
+                                incrementActivePointsForUser(uid)
+                                Toast.makeText(this, "Rating submitted successfully", Toast.LENGTH_SHORT).show()
+                                alertDialog.dismiss()
+                            }
+                            .addOnFailureListener { exception ->
+                                Toast.makeText(this, "Failed to update receivedStamp: ${exception.message}", Toast.LENGTH_SHORT).show()
+                            }
                     }
                     .addOnFailureListener { exception ->
                         Toast.makeText(this, "Failed to submit rating: ${exception.message}", Toast.LENGTH_SHORT).show()
                     }
             }
         }
-
         // Set up the cancel button click listener
         cancelBtn.setOnClickListener {
             alertDialog.dismiss()
@@ -659,7 +670,7 @@ class DetailPost : AppCompatActivity() {
                                                 // If contributionStatus is true, update "Participants" node
                                                 participantsRef.setValue(
                                                     mapOf(
-                                                        "attendedStamp" to SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date()),
+                                                        "receivedStamp" to SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date()),
                                                         "joined" to true,
                                                         "timestamp" to SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date())
                                                     )
@@ -850,32 +861,6 @@ class DetailPost : AppCompatActivity() {
             val timestamp = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date())
             participantsReference.child("joined").setValue(false)
             participantsReference.child("timestamp").setValue(timestamp)
-                .addOnSuccessListener {
-                    // Successfully set to false and timestamp
-
-                    // Now, check if the joined value is true
-                    participantsReference.addValueEventListener(object : ValueEventListener {
-                        override fun onDataChange(dataSnapshot: DataSnapshot) {
-                            val isJoined = dataSnapshot.child("joined").getValue(Boolean::class.java) ?: false
-
-                            if (isJoined) {
-                                // The value is true, now update activepoints in "Users" node
-                                incrementActivePointsForUser(currentUserId)
-
-                                // Add attendedStamp child with the same timestamp format
-                                participantsReference.child("attendedStamp").setValue(timestamp)
-
-                                // Remove the ValueEventListener to avoid unnecessary updates
-                                participantsReference.removeEventListener(this)
-                            }
-                        }
-
-                        override fun onCancelled(databaseError: DatabaseError) {
-                            // Handle onCancelled
-                            Toast.makeText(this@DetailPost, "Failed to join: ${databaseError.message}", Toast.LENGTH_SHORT).show()
-                        }
-                    })
-                }
                 .addOnFailureListener { exception ->
                     // Handle the failure to set to false
                     Toast.makeText(this@DetailPost, "Failed to join: ${exception.message}", Toast.LENGTH_SHORT).show()
@@ -1077,6 +1062,23 @@ class DetailPost : AppCompatActivity() {
                                 joinButton.text = "Join Now"
                             }
                         }
+//                        val participantsReference: DatabaseReference = reference.child("Participants").child(currentUserId)
+//                            val timestamp = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date())
+//                        participantsReference.addListenerForSingleValueEvent(object : ValueEventListener {
+//                            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                                val isJoined = dataSnapshot.child("joined").getValue(Boolean::class.java) ?: false
+//
+//                                if (isJoined) {
+//                                    incrementActivePointsForUser(currentUserId)
+//                                    participantsReference.child("receivedStamp").setValue(timestamp)
+//                                }
+//                            }
+//
+//                            override fun onCancelled(databaseError: DatabaseError) {
+//                                // Handle onCancelled for participants
+//                            }
+//                        })
+//                    }
 
                         override fun onCancelled(databaseError: DatabaseError) {
                             Toast.makeText(
