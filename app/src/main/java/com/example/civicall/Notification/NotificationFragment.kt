@@ -19,6 +19,7 @@ import com.google.firebase.database.*
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
@@ -71,17 +72,16 @@ class NotificationFragment : Fragment() {
 
                         // Check if the engagement is within 24 hours from the current date and time
                         if (isWithin24Hours(startDateStr)) {
-                        // User is a participant, retrieve and display information
-                        val category = engagementSnapshot.child("category").value.toString()
-                        val title = engagementSnapshot.child("title").value.toString()
-                        val startDate = engagementSnapshot.child("startDate").value.toString()
-                        val endDate = engagementSnapshot.child("endDate").value.toString()
-                        val imageUrl = engagementSnapshot.child("image").value.toString()
+                            // User is a participant, retrieve and display information
+                            val category = engagementSnapshot.child("category").value.toString()
+                            val title = engagementSnapshot.child("title").value.toString()
+                            val startDate = engagementSnapshot.child("startDate").value.toString()
+                            val endDate = engagementSnapshot.child("endDate").value.toString()
+                            val imageUrl = engagementSnapshot.child("image").value.toString()
 
-                        // Get the timestamp from the Participants node
-                            val timestamp = participantsRef.child(currentUserUid)
-                                .child("timestamp").value.toString()
-
+                            // Calculate the timestamp 24 hours before the start date
+                            val timestamp24HoursBefore = calculateTimestamp24HoursBefore(startDate)
+                            val currentTime = engagementSnapshot.child("Participants").child(currentUserUid!!).child("timestamp").value.toString()
                             val notificationItem = DataClassNotif(
                                 postKey,
                                 category,
@@ -89,7 +89,8 @@ class NotificationFragment : Fragment() {
                                 startDate,
                                 endDate,
                                 imageUrl,
-                                timestamp
+                                timestamp24HoursBefore,
+                                currentTime
                             )
                             notificationList.add(0, notificationItem)
                         }
@@ -142,8 +143,11 @@ class NotificationFragment : Fragment() {
         return view
 
     }
+    companion object {
+        const val DATE_FORMAT = "MM/dd/yyyy hh:mm a"
+    }
     private fun isWithin24Hours(startDateStr: String): Boolean {
-        val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+        val dateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
         try {
             val startDate = dateFormat.parse(startDateStr)
             val currentDate = Date()
@@ -159,5 +163,31 @@ class NotificationFragment : Fragment() {
         }
         // Default to false in case of errors
         return false
+    }
+    // Modify the calculateTimestamp24HoursBefore function
+    private fun calculateTimestamp24HoursBefore(startDateStr: String): String {
+        val dateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
+        try {
+            val startDate = dateFormat.parse(startDateStr)
+            val currentDate = Calendar.getInstance().time
+
+            // If the engagement has started, use the start date directly
+            return if (currentDate.after(startDate)) {
+                startDateStr
+            } else {
+                // Subtract 24 hours from the start date
+                val calendar = Calendar.getInstance()
+                calendar.time = startDate
+                calendar.add(Calendar.HOUR_OF_DAY, -24)
+
+                // Format the result as a timestamp
+                dateFormat.format(calendar.time)
+            }
+        } catch (e: ParseException) {
+            // Handle the parsing exception
+            e.printStackTrace()
+        }
+        // Default to an empty string in case of errors
+        return ""
     }
 }
