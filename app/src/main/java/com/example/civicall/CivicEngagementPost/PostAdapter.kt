@@ -61,18 +61,19 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
         }
         val currentUser = FirebaseAuth.getInstance().currentUser
         val uid = currentUser?.uid
-
         if (!data.verificationStatus) {
             // If verificationStatus is false, check if the current user is the uploader
-            if (uid == data.uploadersUID) {
-                // Only show the item in the recycler view if the current user is the uploader
-                holder.recCard.visibility = View.VISIBLE
-                holder.recCard.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
-            } else {
-                // Hide the item if the current user is not the uploader
-                holder.recCard.visibility = View.GONE
-                holder.recCard.layoutParams.height = 0
-                return
+            if (!data.verificationStatus) {
+                // If verificationStatus is false, check if the current user is the uploader
+                if (uid == data.uploadersUID) {
+                    holder.recCard.visibility = View.VISIBLE
+                    holder.recCard.layoutParams.height = RecyclerView.LayoutParams.WRAP_CONTENT
+                } else {
+                    // Hide the item if the current user is not the uploader
+                    holder.recCard.visibility = View.GONE
+                    holder.recCard.layoutParams = RecyclerView.LayoutParams(0, 0)
+                    return
+                }
             }
         }
         val currentDate = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).time
