@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="12/25/2023 09:56 AM"
         android:textSize="12sp"
+        android:fontFamily="@font/lexend"
         android:layout_marginStart="15dp"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"/>
