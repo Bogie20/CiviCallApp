@@ -381,7 +381,7 @@ class DetailPost : AppCompatActivity() {
         val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
 
         dialogRatingIcon.setImageResource(R.drawable.rate) // Set your image resource here
-        dialogRatingTitle.text = "Rate this Engagement"
+        dialogRatingTitle.text = "Rate this engagement \n-One-time only-"
 
         alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -392,54 +392,73 @@ class DetailPost : AppCompatActivity() {
 
         // Set up the submit button click listener
         submitBtn.setOnClickListener {
-            // Get the selected rating
-            val selectedRating = ratingBar.rating.toInt()
-
-            // Get the message corresponding to the selected rating
-            val message = when (selectedRating) {
-                0 -> getString(R.string.very_dissatisfied)
-                1 -> getString(R.string.dissatisfied)
-                2 -> getString(R.string.ok)
-                3 -> getString(R.string.average)
-                4 -> getString(R.string.satisfied)
-                5 -> getString(R.string.very_satisfied)
-                else -> ""
-            }
-
             // Get the current user's UID
             val currentUser = FirebaseAuth.getInstance().currentUser
             val uid = currentUser?.uid
 
-            // Get the current timestamp
-            val timestamp = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US).format(Date())
-
-            // Upload the rating to Firebase
+            // Check if the user has already rated
             if (uid != null) {
                 val ratingsReference: DatabaseReference =
                     FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
                         .child("Ratings").child(uid)
 
-                ratingsReference.child("message").setValue(message)
-                ratingsReference.child("timestamp").setValue(timestamp)
-                    .addOnSuccessListener {
-                        // Update the receivedStamp in Participants child
-                        val participantsReference: DatabaseReference =
-                            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
-                                .child("Participants").child(uid)
+                ratingsReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            // User has already rated, show a message or handle accordingly
+                            Toast.makeText(this@DetailPost, "You have already rated this engagement", Toast.LENGTH_SHORT).show()
+                        } else {
+                            // User has not rated, proceed to submit the rating
+                            val selectedRating = ratingBar.rating.toInt()
 
-                        participantsReference.child("receivedStamp").setValue(timestamp)
-                            .addOnSuccessListener {
-                                incrementActivePointsForUser(uid)
-                                Toast.makeText(this, "Rating submitted successfully", Toast.LENGTH_SHORT).show()
-                                alertDialog.dismiss()
+                            // Get the message corresponding to the selected rating
+                            val message = when (selectedRating) {
+                                0 -> getString(R.string.very_dissatisfied)
+                                1 -> getString(R.string.dissatisfied)
+                                2 -> getString(R.string.ok)
+                                3 -> getString(R.string.average)
+                                4 -> getString(R.string.satisfied)
+                                5 -> getString(R.string.very_satisfied)
+                                else -> ""
                             }
-                            .addOnFailureListener { exception ->
-                                Toast.makeText(this, "Failed to update receivedStamp: ${exception.message}", Toast.LENGTH_SHORT).show()
-                            }
+
+                            // Get the current timestamp
+                            val timestamp = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US).format(Date())
+
+                            // Upload the rating to Firebase
+                            val ratingsUpdateMap = HashMap<String, Any>()
+                            ratingsUpdateMap["message"] = message
+                            ratingsUpdateMap["timestamp"] = timestamp
+
+                            // Update the rating only if the user has not rated before
+                            ratingsReference.updateChildren(ratingsUpdateMap)
+                                .addOnSuccessListener {
+                                    // Update the receivedStamp in Participants child
+                                    val participantsReference: DatabaseReference =
+                                        FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
+                                            .child("Participants").child(uid)
+
+                                    participantsReference.child("receivedStamp").setValue(timestamp)
+                                        .addOnSuccessListener {
+                                            incrementActivePointsForUser(uid)
+                                            Toast.makeText(this@DetailPost, "Rating submitted. You have now received your active points.", Toast.LENGTH_SHORT).show()
+                                            alertDialog.dismiss()
+                                        }
+                                        .addOnFailureListener { exception ->
+                                            Toast.makeText(this@DetailPost, "Failed to update receivedStamp: ${exception.message}", Toast.LENGTH_SHORT).show()
+                                        }
+                                }
+                                .addOnFailureListener { exception ->
+                                    Toast.makeText(this@DetailPost, "Failed to submit rating: ${exception.message}", Toast.LENGTH_SHORT).show()
+                                }
+                        }
                     }
-                    .addOnFailureListener { exception ->
-                        Toast.makeText(this, "Failed to submit rating: ${exception.message}", Toast.LENGTH_SHORT).show()
+
+                    override fun onCancelled(error: DatabaseError) {
+                        // Handle the error if needed
+                        Toast.makeText(this@DetailPost, "Failed to check rating status: ${error.message}", Toast.LENGTH_SHORT).show()
                     }
+                })
             }
         }
         // Set up the cancel button click listener
