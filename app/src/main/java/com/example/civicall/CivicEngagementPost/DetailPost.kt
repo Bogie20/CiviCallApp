@@ -441,7 +441,7 @@ class DetailPost : AppCompatActivity() {
                                     participantsReference.child("receivedStamp").setValue(timestamp)
                                         .addOnSuccessListener {
                                             incrementActivePointsForUser(uid)
-                                            Toast.makeText(this@DetailPost, "Rating submitted. You have now received your active points.", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(this@DetailPost, "Rating submitted. You have now received your active points.", Toast.LENGTH_LONG).show()
                                             alertDialog.dismiss()
                                         }
                                         .addOnFailureListener { exception ->
