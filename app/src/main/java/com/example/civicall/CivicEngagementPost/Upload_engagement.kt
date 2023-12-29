@@ -20,8 +20,10 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
@@ -101,11 +103,10 @@ class Upload_engagement : AppCompatActivity() {
             super.onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
-        val campusDropdown = binding.uploadCampus
-        val campusArray = resources.getStringArray(R.array.allowed_campuses)
-        val adaptercampus = ArrayAdapter(this, R.layout.dropdown_item, campusArray)
-        (campusDropdown as? AutoCompleteTextView)?.setAdapter(adaptercampus)
-
+        val campusAuto = binding.uploadCampus
+        campusAuto.setOnClickListener {
+            showCheckBoxCampus()
+        }
         val paymentDropdown = binding.uploadPaymentMethod
         val paymentArray = resources.getStringArray(R.array.payment_category)
         val adapterpayment = ArrayAdapter(this, R.layout.dropdown_item, paymentArray)
@@ -150,7 +151,7 @@ class Upload_engagement : AppCompatActivity() {
         }
 
         uploadImage.setOnClickListener {
-           checkAndRequestPermissions()
+            checkAndRequestPermissions()
         }
 
         saveButton.setOnClickListener {
@@ -190,6 +191,35 @@ class Upload_engagement : AppCompatActivity() {
             }
         }
     }
+    private fun showCheckBoxCampus() {
+        val dialogView = layoutInflater.inflate(R.layout.multiple_checkbox_selection, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val btnSelectCampus = dialogView.findViewById<Button>(R.id.btnSelectCampus)
+
+        val checkBoxes = ArrayList<CheckBox>()
+
+        for (i in 1..11) {
+            val checkBoxId = resources.getIdentifier("checkBox$i", "id", packageName)
+            val checkBox = dialogView.findViewById<CheckBox>(checkBoxId)
+            checkBoxes.add(checkBox)
+        }
+
+        btnSelectCampus.setOnClickListener {
+            val selectedCampuses = checkBoxes.filter { it.isChecked }.map { it.text.toString() }
+            val selectedCampusesText = selectedCampuses.joinToString(", ")
+
+            // Set the selected campuses in the AutoCompleteTextView
+            binding.uploadCampus.setText(selectedCampusesText)
+
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
+    }
+
     private fun checkAndRequestPermissions() {
         if (ContextCompat.checkSelfPermission(
                 this,

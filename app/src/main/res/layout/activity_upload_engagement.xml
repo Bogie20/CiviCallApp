@@ -299,8 +299,10 @@
                         android:id="@+id/uploadCampus"
                         android:layout_width="match_parent"
                         android:fontFamily="@font/lexend"
-                        android:layout_height="60dp"
-                        android:editable="false" />
+                        android:lineSpacingExtra="4dp"
+                        android:layout_height="wrap_content"
+                        android:editable="false"
+                       />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/targetpartyTextInputLayout"

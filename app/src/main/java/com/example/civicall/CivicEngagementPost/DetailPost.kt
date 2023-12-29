@@ -335,7 +335,6 @@ class DetailPost : AppCompatActivity() {
 
             showDeleteConfirmationDialog()
         }
-
         editButton.setOnClickListener {
             val intent = Intent(this@DetailPost, Update_engagement::class.java)
                 .putExtra("Category", detailCategory.text.toString())

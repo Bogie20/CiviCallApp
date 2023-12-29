@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
+import com.google.firebase.auth.FirebaseAuth
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -57,6 +58,22 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
                 putExtra("Campus", data.campus)
             }
             context.startActivity(intent)
+        }
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val uid = currentUser?.uid
+
+        if (!data.verificationStatus) {
+            // If verificationStatus is false, check if the current user is the uploader
+            if (uid == data.uploadersUID) {
+                // Only show the item in the recycler view if the current user is the uploader
+                holder.recCard.visibility = View.VISIBLE
+                holder.recCard.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
+            } else {
+                // Hide the item if the current user is not the uploader
+                holder.recCard.visibility = View.GONE
+                holder.recCard.layoutParams.height = 0
+                return
+            }
         }
         val currentDate = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).time
 
