@@ -585,6 +585,8 @@
                 android:layout_height="wrap_content"
                 android:text="Kurt Bryant C. Arpilleda"
                 android:textSize="15sp"
+                android:maxLines="2"
+                android:ellipsize="end"
                 android:textColor="@color/black"
                 android:layout_marginBottom="8dp"
                 android:lineSpacingExtra="5dp"
@@ -603,6 +605,8 @@
                         android:layout_height="wrap_content"
                         android:text="09267383912"
                         android:textSize="15sp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
                         android:textColor="@color/black"
                         android:lineSpacingExtra="5dp"
                         android:textAlignment="viewStart" />
