@@ -63,7 +63,7 @@ class NotificationAdapter(private val notificationList: List<DataClassNotif>) :
        } else if (timeDifferenceEnd <= 0) {
         // Engagement has finished
         holder.dateandTime.text = "Since: ${currentItem.endDate}"
-        holder.itemView.findViewById<TextView>(R.id.label).text = "The engagement has finished"
+        holder.itemView.findViewById<TextView>(R.id.label).text = "The engagement has concluded. Please rate it to claim your points."
         } else {
             // Outside 12 hours, show "The engagement is 24 hours away!" until it's less than 12 hours away
             if (timeDifferenceStart > TWELVE_HOURS_IN_MILLIS) {

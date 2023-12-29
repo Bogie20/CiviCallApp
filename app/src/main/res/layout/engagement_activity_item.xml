@@ -12,6 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="12dp"
         android:layout_marginTop="10dp"
+        android:fontFamily="@font/lexend"
         android:text="12/25/2023 09:56 AM"
         android:textColor="@color/black"
         android:textSize="12sp" />
