@@ -191,7 +191,13 @@ class Upload_engagement : AppCompatActivity() {
             }
         }
     }
+    private var isCampusDialogShowing = false
+
     private fun showCheckBoxCampus() {
+        if (isCampusDialogShowing) {
+            return
+        }
+
         val dialogView = layoutInflater.inflate(R.layout.multiple_checkbox_selection, null)
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
@@ -217,8 +223,14 @@ class Upload_engagement : AppCompatActivity() {
             alertDialog.dismiss()
         }
 
+        alertDialog.setOnDismissListener {
+            isCampusDialogShowing = false
+        }
+
         alertDialog.show()
+        isCampusDialogShowing = true
     }
+
 
     private fun checkAndRequestPermissions() {
         if (ContextCompat.checkSelfPermission(
@@ -381,9 +393,27 @@ class Upload_engagement : AppCompatActivity() {
             isSaveConfirmationDialogShowing = false
 
         }
+        if (isCampusDialogShowing) {
+            isCampusDialogShowing = false
+
+        }
+        if (isAlreadyJoinDialogShowing) {
+            isAlreadyJoinDialogShowing = false
+
+        }
+        if (isDateTimePickerShowing) {
+            isDateTimePickerShowing = false
+
+        }
     }
 
+    private var isDateTimePickerShowing = false
+
     private fun showDateTimePicker(editText: EditText, startDate: Calendar?) {
+        if (isDateTimePickerShowing) {
+            return
+        }
+
         val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
         dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
@@ -425,7 +455,12 @@ class Upload_engagement : AppCompatActivity() {
             calendar.get(Calendar.DAY_OF_MONTH)
         )
 
+        datePickerDialog.setOnDismissListener {
+            isDateTimePickerShowing = false
+        }
+
         datePickerDialog.show()
+        isDateTimePickerShowing = true
     }
 
 

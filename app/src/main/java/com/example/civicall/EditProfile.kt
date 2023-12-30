@@ -121,7 +121,6 @@ class EditProfile : AppCompatActivity() {
         )
     }
 
-    // Override onActivityResult to handle the result of the camera capture
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
@@ -170,7 +169,12 @@ class EditProfile : AppCompatActivity() {
         val Mmonth = cal.get(Calendar.MONTH)
         val day = cal.get(Calendar.DAY_OF_MONTH)
 
+        var isDatePickerShowing = false
+
         birthday.setOnClickListener {
+            if (isDatePickerShowing) {
+                return@setOnClickListener
+            }
             val datePickerDialog = DatePickerDialog(
                 this,
                 { _, year, month, dayOfMonth ->
@@ -181,8 +185,15 @@ class EditProfile : AppCompatActivity() {
                 Mmonth,
                 day
             )
+
+            datePickerDialog.setOnDismissListener {
+                isDatePickerShowing = false
+            }
+
             datePickerDialog.show()
+            isDatePickerShowing = true
         }
+
 
 
         setupAutoCompleteTextView(binding.usercategory)
@@ -201,9 +212,9 @@ class EditProfile : AppCompatActivity() {
         fullYearSect = binding.yearandsect.text.toString()
         fullSrcode = binding.SrCode.text.toString()
 
-        val maxLength = 80 // Max character limit for name fields
-        val maxContactLength = 15 // Max character limit for contact field
-        val maxAddressLength = 255 // Max character limit for address field
+        val maxLength = 80
+        val maxContactLength = 15
+        val maxAddressLength = 255
 
         val editTextsToLimit = mapOf(
             binding.fname to maxLength,
@@ -220,7 +231,6 @@ class EditProfile : AppCompatActivity() {
         for ((editText, limit) in editTextsToLimit) {
             addTextWatcher(editText, limit)
         }
-        // Add a focus change listener to the fname field
         binding.fname.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 // When focus is lost, set the cursor position to the end
@@ -322,8 +332,6 @@ class EditProfile : AppCompatActivity() {
             }
         })
     }
-
-
     private fun checkAndRequestPermissions() {
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -725,7 +733,9 @@ class EditProfile : AppCompatActivity() {
             isSaveConfirmationDialogShowing = false
         }
         if (isImageDialogShowing) {
+
             isImageDialogShowing = false
+
         }
     }
     private fun validateBirthday(): Boolean {

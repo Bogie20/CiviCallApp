@@ -27,7 +27,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.civicall.CivicEngagementPost.CivicPostFragment
-import com.example.civicall.databinding.ActivityRegister1Binding
+import com.example.civicall.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
@@ -35,7 +35,7 @@ import java.util.Calendar
 import java.util.TimeZone
 
 class Register : AppCompatActivity() {
-    private lateinit var activityRegister1Binding: ActivityRegister1Binding
+    private lateinit var activityRegisterBinding: ActivityRegisterBinding
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var progressDialog: ProgressDialog
     private var initialFirstName = ""
@@ -54,115 +54,115 @@ class Register : AppCompatActivity() {
     private lateinit var networkUtils: NetworkUtils
 
     private fun validateFirstName(): Boolean {
-        val firstName = activityRegister1Binding.fname.text.toString().trim()
+        val firstName = activityRegisterBinding.fname.text.toString().trim()
         val regex = "^[a-zA-Z.\\s-]+$"
 
         if (firstName.isEmpty()) {
-            activityRegister1Binding.fnameTextInputLayout.error = "Required"
+            activityRegisterBinding.fnameTextInputLayout.error = "Required"
             return false
         } else if (!firstName.matches(regex.toRegex())) {
-            activityRegister1Binding.fnameTextInputLayout.error =
+            activityRegisterBinding.fnameTextInputLayout.error =
                 "Only letters and symbols (, . -) are allowed"
             return false
         } else {
-            activityRegister1Binding.fnameTextInputLayout.error = null
+            activityRegisterBinding.fnameTextInputLayout.error = null
             return true
         }
     }
     private fun validateMiddleName(): Boolean {
-        val middleName = activityRegister1Binding.Mname.text.toString().trim()
+        val middleName = activityRegisterBinding.Mname.text.toString().trim()
         val regex = "^[a-zA-Z.\\s-]+$"
 
         if (middleName.isEmpty()) {
-            activityRegister1Binding.MiddleNameTextInputLayout.error = "Required"
+            activityRegisterBinding.MiddleNameTextInputLayout.error = "Required"
             return false
         } else if (!middleName.matches(regex.toRegex())) {
-            activityRegister1Binding.MiddleNameTextInputLayout.error =
+            activityRegisterBinding.MiddleNameTextInputLayout.error =
                 "Only letters and symbols (, . -) are allowed"
             return false
         } else {
-            activityRegister1Binding.MiddleNameTextInputLayout.error = null
+            activityRegisterBinding.MiddleNameTextInputLayout.error = null
             return true
         }
     }
 
     private fun validateLastName(): Boolean {
-        val lastName = activityRegister1Binding.Lname.text.toString().trim()
+        val lastName = activityRegisterBinding.Lname.text.toString().trim()
         val regex = "^[a-zA-Z.\\s-]+$"
 
         if (lastName.isEmpty()) {
-            activityRegister1Binding.lastNameTextInputLayout.error = "Required"
+            activityRegisterBinding.lastNameTextInputLayout.error = "Required"
             return false
         } else if (!lastName.matches(regex.toRegex())) {
-            activityRegister1Binding.lastNameTextInputLayout.error =
+            activityRegisterBinding.lastNameTextInputLayout.error =
                 "Only letters and symbols (, . -) are allowed"
             return false
         } else {
-            activityRegister1Binding.lastNameTextInputLayout.error = null
+            activityRegisterBinding.lastNameTextInputLayout.error = null
             return true
         }
     }
 
     private fun validateEmail(): Boolean {
-        val email = activityRegister1Binding.Emailline.text.toString().trim()
+        val email = activityRegisterBinding.Emailline.text.toString().trim()
         if (email.isEmpty()) {
-            activityRegister1Binding.emailTextInputLayout.error = "Email is required"
+            activityRegisterBinding.emailTextInputLayout.error = "Email is required"
             return false
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            activityRegister1Binding.emailTextInputLayout.error = "Invalid email format"
+            activityRegisterBinding.emailTextInputLayout.error = "Invalid email format"
             return false
         } else {
-            activityRegister1Binding.emailTextInputLayout.error = null
+            activityRegisterBinding.emailTextInputLayout.error = null
             return true
         }
     }
 
     private fun validateConfirmPassword(): Boolean {
-        val password = activityRegister1Binding.confirmPass.text.toString().trim()
+        val password = activityRegisterBinding.confirmPass.text.toString().trim()
 
         if (password.isEmpty()) {
-            activityRegister1Binding.confirmPassword.error = "Required"
+            activityRegisterBinding.confirmPassword.error = "Required"
             return false
         } else {
-            activityRegister1Binding.confirmPassword.error = null
+            activityRegisterBinding.confirmPassword.error = null
             return true
         }
     }
 
 
     private fun validatePassword(): Boolean {
-        val password = activityRegister1Binding.pass.text.toString().trim()
+        val password = activityRegisterBinding.pass.text.toString().trim()
 
         if (password.isEmpty()) {
-            activityRegister1Binding.passwordTextInputLayout.error = "Password is required"
+            activityRegisterBinding.passwordTextInputLayout.error = "Password is required"
             return false
         } else if (password.length < 8) {
-            activityRegister1Binding.passwordTextInputLayout.error =
+            activityRegisterBinding.passwordTextInputLayout.error =
                 "Password must be at least 8 characters long"
             return false
         } else if (!password.matches("^(?=.*[a-zA-Z])(?=.*\\d).+\$".toRegex())) {
-            activityRegister1Binding.passwordTextInputLayout.error =
+            activityRegisterBinding.passwordTextInputLayout.error =
                 "Password must contain both letters and numbers"
             return false
         } else {
-            activityRegister1Binding.passwordTextInputLayout.error = null
+            activityRegisterBinding.passwordTextInputLayout.error = null
             return true
         }
     }
 
 
     private fun validateContactNumber(): Boolean {
-        val contactNumber = activityRegister1Binding.Contactline.text.toString().trim()
+        val contactNumber = activityRegisterBinding.Contactline.text.toString().trim()
 
         if (contactNumber.isEmpty()) {
-            activityRegister1Binding.contactNumberTextInputLayout.error =
+            activityRegisterBinding.contactNumberTextInputLayout.error =
                 "Please enter Contact Number"
             return false
         } else if (!isValidPhoneNumber(contactNumber)) {
-            activityRegister1Binding.contactNumberTextInputLayout.error = "Invalid Contact Number"
+            activityRegisterBinding.contactNumberTextInputLayout.error = "Invalid Contact Number"
             return false
         } else {
-            activityRegister1Binding.contactNumberTextInputLayout.error = null
+            activityRegisterBinding.contactNumberTextInputLayout.error = null
             return true
         }
     }
@@ -183,28 +183,28 @@ class Register : AppCompatActivity() {
     }
 
     private fun validateAddress(): Boolean {
-        val address = activityRegister1Binding.address.text.toString().trim()
+        val address = activityRegisterBinding.address.text.toString().trim()
 
         if (address.isEmpty()) {
-            activityRegister1Binding.addressTextInputLayout.error = "Address is required"
+            activityRegisterBinding.addressTextInputLayout.error = "Address is required"
             return false
         } else if (address.length < 5) {
-            activityRegister1Binding.addressTextInputLayout.error = "Address is too short"
+            activityRegisterBinding.addressTextInputLayout.error = "Address is too short"
             return false
         } else {
-            activityRegister1Binding.addressTextInputLayout.error = null
+            activityRegisterBinding.addressTextInputLayout.error = null
             return true
         }
     }
 
 
     private fun validateBirthday(): Boolean {
-        val birthday = activityRegister1Binding.birthdate.text.toString().trim()
-        val birthdateTextInputLayout = activityRegister1Binding.birthdateTextInputLayout
+        val birthday = activityRegisterBinding.birthdate.text.toString().trim()
+        val birthdateTextInputLayout = activityRegisterBinding.birthdateTextInputLayout
 
         if (birthday.isEmpty()) {
             birthdateTextInputLayout.error = null
-            activityRegister1Binding.birthdateTextInputLayout.error = "Date of Birth is Required"
+            activityRegisterBinding.birthdateTextInputLayout.error = "Date of Birth is Required"
             return false
         } else {
             val dobParts = birthday.split("/")
@@ -222,71 +222,71 @@ class Register : AppCompatActivity() {
                     currentYear - year - if (currentMonth < month || (currentMonth == month && currentDay < day)) 1 else 0
 
                 if (age < 18) {
-                    activityRegister1Binding.birthdateTextInputLayout.error =
+                    activityRegisterBinding.birthdateTextInputLayout.error =
                         "You must be at least 18 years old to register"
                     return false
                 }
             } else {
-                activityRegister1Binding.birthdateTextInputLayout.error =
+                activityRegisterBinding.birthdateTextInputLayout.error =
                     "Invalid Date of Birth format"
                 return false
             }
 
             // Clear the error message when valid input is provided
-            activityRegister1Binding.birthdateTextInputLayout.error = null
+            activityRegisterBinding.birthdateTextInputLayout.error = null
             return true
         }
     }
 
     private fun validateCampus(): Boolean {
-        val campus = activityRegister1Binding.campus.text.toString().trim()
+        val campus = activityRegisterBinding.campus.text.toString().trim()
 
         if (campus.isEmpty()) {
-            activityRegister1Binding.campusTextInputLayout.error = "Please select your campus"
+            activityRegisterBinding.campusTextInputLayout.error = "Please select your campus"
             return false
         } else {
-            activityRegister1Binding.campusTextInputLayout.error = null
+            activityRegisterBinding.campusTextInputLayout.error = null
             return true
         }
     }
     private fun validateUserCategory(): Boolean {
-        val userCategory = activityRegister1Binding.usercategory.text.toString().trim()
+        val userCategory = activityRegisterBinding.usercategory.text.toString().trim()
 
         if (userCategory.isEmpty()) {
-            activityRegister1Binding.usercateTextInputLayout.error = "Please select a user category"
+            activityRegisterBinding.usercateTextInputLayout.error = "Please select a user category"
             return false
         } else {
-            activityRegister1Binding.usercateTextInputLayout.error = null
+            activityRegisterBinding.usercateTextInputLayout.error = null
             return true
         }
     }
 
     private fun validateGender(): Boolean {
-        val gender = activityRegister1Binding.spinnerSex.text.toString().trim()
+        val gender = activityRegisterBinding.spinnerSex.text.toString().trim()
 
         if (gender.isEmpty()) {
-            activityRegister1Binding.genderTextInputLayout.error = "Select a Gender"
+            activityRegisterBinding.genderTextInputLayout.error = "Select a Gender"
             return false
         } else {
-            activityRegister1Binding.genderTextInputLayout.error = null
+            activityRegisterBinding.genderTextInputLayout.error = null
             return true
         }
     }
     private fun validatePasswordMatch(): Boolean {
-        val password = activityRegister1Binding.pass.text.toString().trim()
-        val confirmPassword = activityRegister1Binding.confirmPass.text.toString().trim()
+        val password = activityRegisterBinding.pass.text.toString().trim()
+        val confirmPassword = activityRegisterBinding.confirmPass.text.toString().trim()
 
         if (password.isEmpty()) {
-            activityRegister1Binding.passwordTextInputLayout.error = "Please Enter Password"
+            activityRegisterBinding.passwordTextInputLayout.error = "Please Enter Password"
             return false
         } else if (confirmPassword.isEmpty()) {
-            activityRegister1Binding.confirmPassword.error = "Please Confirm Password"
+            activityRegisterBinding.confirmPassword.error = "Please Confirm Password"
             return false
         } else if (password != confirmPassword) {
-            activityRegister1Binding.confirmPassword.error = "Passwords do not match"
+            activityRegisterBinding.confirmPassword.error = "Passwords do not match"
             return false
         } else {
-            activityRegister1Binding.confirmPassword.error = null
+            activityRegisterBinding.confirmPassword.error = null
             return true
         }
     }
@@ -295,21 +295,21 @@ class Register : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        activityRegister1Binding = ActivityRegister1Binding.inflate(layoutInflater)
-        setContentView(activityRegister1Binding.root)
+        activityRegisterBinding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(activityRegisterBinding.root)
 
-        initialFirstName = activityRegister1Binding.fname.text.toString().trim()
-        initialLastName = activityRegister1Binding.Lname.text.toString().trim()
-        initialMiddleName = activityRegister1Binding.Mname.text.toString().trim()
-        initialEmail = activityRegister1Binding.Emailline.text.toString().trim()
-        initialPassword = activityRegister1Binding.pass.text.toString().trim()
-        initialConfirmPassword = activityRegister1Binding.confirmPass.text.toString().trim()
-        initialContactNumber = activityRegister1Binding.Contactline.text.toString().trim()
-        initialAddress = activityRegister1Binding.address.text.toString().trim()
-        initialBirthday = activityRegister1Binding.birthdate.text.toString().trim()
-        initialCampus = activityRegister1Binding.campus.text.toString().trim()
-        initialGender = activityRegister1Binding.spinnerSex.text.toString().trim()
-        initialUserCategory = activityRegister1Binding.usercategory.text.toString().trim()
+        initialFirstName = activityRegisterBinding.fname.text.toString().trim()
+        initialLastName = activityRegisterBinding.Lname.text.toString().trim()
+        initialMiddleName = activityRegisterBinding.Mname.text.toString().trim()
+        initialEmail = activityRegisterBinding.Emailline.text.toString().trim()
+        initialPassword = activityRegisterBinding.pass.text.toString().trim()
+        initialConfirmPassword = activityRegisterBinding.confirmPass.text.toString().trim()
+        initialContactNumber = activityRegisterBinding.Contactline.text.toString().trim()
+        initialAddress = activityRegisterBinding.address.text.toString().trim()
+        initialBirthday = activityRegisterBinding.birthdate.text.toString().trim()
+        initialCampus = activityRegisterBinding.campus.text.toString().trim()
+        initialGender = activityRegisterBinding.spinnerSex.text.toString().trim()
+        initialUserCategory = activityRegisterBinding.usercategory.text.toString().trim()
 
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
@@ -343,7 +343,7 @@ class Register : AppCompatActivity() {
         termsAndPrivacyTextView.text = spannableString
         termsAndPrivacyTextView.movementMethod = LinkMovementMethod.getInstance()
 
-        val contactNumber = activityRegister1Binding.Contactline
+        val contactNumber = activityRegisterBinding.Contactline
 
         val maxLength = 80
         val maxEmailLength = 320
@@ -351,7 +351,7 @@ class Register : AppCompatActivity() {
         val maxAddressLength = 255
         val maxPasswordLength = 128
 // For the "Campus" field
-        val campusAutoCompleteTextView = activityRegister1Binding.campus
+        val campusAutoCompleteTextView = activityRegisterBinding.campus
         val campusOptions = resources.getStringArray(R.array.allowed_campuses)
 
         val campusAdapter = ArrayAdapter(
@@ -361,7 +361,7 @@ class Register : AppCompatActivity() {
         )
         campusAutoCompleteTextView.setAdapter(campusAdapter)
         // Set the adapter for the AutoCompleteTextView
-        val usercategoryAutoCompleteTextView = activityRegister1Binding.usercategory
+        val usercategoryAutoCompleteTextView = activityRegisterBinding.usercategory
         val usercatOptions = resources.getStringArray(R.array.user_category)
 
         val usercategoryAdapter = ArrayAdapter(
@@ -371,7 +371,7 @@ class Register : AppCompatActivity() {
         )
         usercategoryAutoCompleteTextView.setAdapter(usercategoryAdapter)
 // For the "Gender" field
-        val spinnerSexAutoCompleteTextView = activityRegister1Binding.spinnerSex
+        val spinnerSexAutoCompleteTextView = activityRegisterBinding.spinnerSex
         val sexOptions = resources.getStringArray(R.array.gender_array)
 
         val sexAdapter = ArrayAdapter(
@@ -382,18 +382,18 @@ class Register : AppCompatActivity() {
         spinnerSexAutoCompleteTextView.setAdapter(sexAdapter) // Set the adapter for the AutoCompleteTextView
 
 
-        val firstNameEditText = activityRegister1Binding.fname
-        val middleNameEditText = activityRegister1Binding.Mname
-        val lastNameEditText = activityRegister1Binding.Lname
+        val firstNameEditText = activityRegisterBinding.fname
+        val middleNameEditText = activityRegisterBinding.Mname
+        val lastNameEditText = activityRegisterBinding.Lname
         val filters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxLength))
-        val emailEditText = activityRegister1Binding.Emailline
+        val emailEditText = activityRegisterBinding.Emailline
         val emailFilters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxEmailLength))
-        val contactNumberEditText = activityRegister1Binding.Contactline
+        val contactNumberEditText = activityRegisterBinding.Contactline
         val contactFilters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxContactLength))
-        val addressEditText = activityRegister1Binding.address
+        val addressEditText = activityRegisterBinding.address
         val addressFilters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxAddressLength))
-        val passwordEditText = activityRegister1Binding.pass
-        val confirmPasswordEditText = activityRegister1Binding.confirmPass
+        val passwordEditText = activityRegisterBinding.pass
+        val confirmPasswordEditText = activityRegisterBinding.confirmPass
         val passwordFilters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxPasswordLength))
         passwordEditText.filters = passwordFilters
         confirmPasswordEditText.filters = passwordFilters
@@ -405,11 +405,11 @@ class Register : AppCompatActivity() {
         lastNameEditText.filters = filters
         contactNumber.inputType = InputType.TYPE_CLASS_PHONE
 
-        val birthdayEditText = activityRegister1Binding.birthdate
-        val campusEditText = activityRegister1Binding.campus
-        val usercategoryEditText = activityRegister1Binding.usercategory
-        val genderEditText = activityRegister1Binding.spinnerSex
-        val confirmpassword = activityRegister1Binding.confirmPass
+        val birthdayEditText = activityRegisterBinding.birthdate
+        val campusEditText = activityRegisterBinding.campus
+        val usercategoryEditText = activityRegisterBinding.usercategory
+        val genderEditText = activityRegisterBinding.spinnerSex
+        val confirmpassword = activityRegisterBinding.confirmPass
 
         firstNameEditText.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
@@ -496,7 +496,7 @@ class Register : AppCompatActivity() {
         progressDialog.setTitle("Please wait...")
         progressDialog.setCanceledOnTouchOutside(false)
 
-        activityRegister1Binding.backbtn.setOnClickListener {
+        activityRegisterBinding.backbtn.setOnClickListener {
             val intent = Intent(this, Login::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
@@ -515,13 +515,21 @@ class Register : AppCompatActivity() {
         }
 
 
-        val birthday = activityRegister1Binding.birthdate
+        val birthday = activityRegisterBinding.birthdate
         val cal = Calendar.getInstance()
         val Myear = cal.get(Calendar.YEAR)
         val Mmonth = cal.get(Calendar.MONTH)
         val day = cal.get(Calendar.DAY_OF_MONTH)
 
+        var isDatePickerShowing = false // Initialize the flag
+
         birthday.setOnClickListener {
+            // Check if the date picker dialog is already showing, and if so, return early
+            if (isDatePickerShowing) {
+                return@setOnClickListener
+            }
+            isDatePickerShowing = true
+
             val datePickerDialog = DatePickerDialog(
                 this,
                 { _, year, month, dayOfMonth ->
@@ -532,8 +540,15 @@ class Register : AppCompatActivity() {
                 Mmonth,
                 day
             )
+
+            datePickerDialog.setOnDismissListener {
+                // Reset the flag when dismissing the date picker dialog
+                isDatePickerShowing = false
+            }
+
             datePickerDialog.show()
         }
+
 
         fun addTextChangeListenerWithDelay(editText: EditText, validationFunction: () -> Unit, delayMillis: Long) {
             val handler = Handler(Looper.getMainLooper())
@@ -563,7 +578,7 @@ class Register : AppCompatActivity() {
         addTextChangeListenerWithDelay(addressEditText, { validateAddress() }, 500)
         addTextChangeListenerWithDelay(birthdayEditText, {
             // Clear the error message when valid input is provided
-            activityRegister1Binding.birthdateTextInputLayout.error = null
+            activityRegisterBinding.birthdateTextInputLayout.error = null
         }, 500)
     }
 
@@ -581,32 +596,32 @@ class Register : AppCompatActivity() {
     private var spinnerSex = ""
 
     private fun validateData() {
-        fname = activityRegister1Binding.fname.text.toString().trim()
-        Mname = activityRegister1Binding.Mname.text.toString().trim()
-        lname = activityRegister1Binding.Lname.text.toString().trim()
-        email = activityRegister1Binding.Emailline.text.toString().trim()
-        pass = activityRegister1Binding.pass.text.toString().trim()
-        confirmPass = activityRegister1Binding.confirmPass.text.toString().trim()
-        phoneno = activityRegister1Binding.Contactline.text.toString().trim()
-        address = activityRegister1Binding.address.text.toString().trim()
-        birtdate = activityRegister1Binding.birthdate.text.toString().trim()
-        spinnerSex = activityRegister1Binding.spinnerSex.text.toString()
-        userCategory = activityRegister1Binding.usercategory.text.toString()
-        selectedCampus = activityRegister1Binding.campus.text.toString()
+        fname = activityRegisterBinding.fname.text.toString().trim()
+        Mname = activityRegisterBinding.Mname.text.toString().trim()
+        lname = activityRegisterBinding.Lname.text.toString().trim()
+        email = activityRegisterBinding.Emailline.text.toString().trim()
+        pass = activityRegisterBinding.pass.text.toString().trim()
+        confirmPass = activityRegisterBinding.confirmPass.text.toString().trim()
+        phoneno = activityRegisterBinding.Contactline.text.toString().trim()
+        address = activityRegisterBinding.address.text.toString().trim()
+        birtdate = activityRegisterBinding.birthdate.text.toString().trim()
+        spinnerSex = activityRegisterBinding.spinnerSex.text.toString()
+        userCategory = activityRegisterBinding.usercategory.text.toString()
+        selectedCampus = activityRegisterBinding.campus.text.toString()
 
 
-        activityRegister1Binding.fnameTextInputLayout.error = null
-        activityRegister1Binding.MiddleNameTextInputLayout.error = null
-        activityRegister1Binding.lastNameTextInputLayout.error = null
-        activityRegister1Binding.emailTextInputLayout.error = null
-        activityRegister1Binding.passwordTextInputLayout.error = null
-        activityRegister1Binding.confirmPassword.error = null
-        activityRegister1Binding.contactNumberTextInputLayout.error = null
-        activityRegister1Binding.addressTextInputLayout.error = null
-        activityRegister1Binding.birthdateTextInputLayout.error = null
-        activityRegister1Binding.campusTextInputLayout.error = null
-        activityRegister1Binding.usercateTextInputLayout.error = null
-        activityRegister1Binding.spinnerSex.error = null
+        activityRegisterBinding.fnameTextInputLayout.error = null
+        activityRegisterBinding.MiddleNameTextInputLayout.error = null
+        activityRegisterBinding.lastNameTextInputLayout.error = null
+        activityRegisterBinding.emailTextInputLayout.error = null
+        activityRegisterBinding.passwordTextInputLayout.error = null
+        activityRegisterBinding.confirmPassword.error = null
+        activityRegisterBinding.contactNumberTextInputLayout.error = null
+        activityRegisterBinding.addressTextInputLayout.error = null
+        activityRegisterBinding.birthdateTextInputLayout.error = null
+        activityRegisterBinding.campusTextInputLayout.error = null
+        activityRegisterBinding.usercateTextInputLayout.error = null
+        activityRegisterBinding.spinnerSex.error = null
 
         val checkedTextView = findViewById<CheckBox>(R.id.checkedTextView)
         val errorMessages = mutableListOf<String>()
@@ -617,72 +632,72 @@ class Register : AppCompatActivity() {
             errorMessages.add("Please Accept the terms and Condition")
         }
 
-        val campusAutoCompleteTextView = activityRegister1Binding.campus
+        val campusAutoCompleteTextView = activityRegisterBinding.campus
 
         campusAutoCompleteTextView.setOnItemClickListener { _, _, _, _ ->
             // Clear the error message when a valid selection is made
-            activityRegister1Binding.campusTextInputLayout.error = null
+            activityRegisterBinding.campusTextInputLayout.error = null
         }
 
-        val usercategoryAutoCompleteTextView = activityRegister1Binding.usercategory
+        val usercategoryAutoCompleteTextView = activityRegisterBinding.usercategory
 
         usercategoryAutoCompleteTextView.setOnItemClickListener { _, _, _, _ ->
             // Clear the error message when a valid selection is made
-            activityRegister1Binding.usercateTextInputLayout.error = null
+            activityRegisterBinding.usercateTextInputLayout.error = null
         }
-        val spinnerSexAutoCompleteTextView = activityRegister1Binding.spinnerSex
+        val spinnerSexAutoCompleteTextView = activityRegisterBinding.spinnerSex
 
         spinnerSexAutoCompleteTextView.setOnItemClickListener { _, _, _, _ ->
             // Clear the error message when a valid selection is made
-            activityRegister1Binding.genderTextInputLayout.error = null
+            activityRegisterBinding.genderTextInputLayout.error = null
         }
 
         if (!validateFirstName()) {
-            activityRegister1Binding.fnameTextInputLayout.error = "Please enter a valid first name"
+            activityRegisterBinding.fnameTextInputLayout.error = "Please enter a valid first name"
         }
         if (!validateMiddleName()) {
-            activityRegister1Binding.MiddleNameTextInputLayout.error = "Please enter a valid middle name"
+            activityRegisterBinding.MiddleNameTextInputLayout.error = "Please enter a valid middle name"
         }
 
         if (!validateLastName()) {
-            activityRegister1Binding.lastNameTextInputLayout.error =
+            activityRegisterBinding.lastNameTextInputLayout.error =
                 "Please enter a valid last name"
         }
 
         if (!validateEmail()) {
-            activityRegister1Binding.emailTextInputLayout.error = "Please enter a valid email"
+            activityRegisterBinding.emailTextInputLayout.error = "Please enter a valid email"
         }
 
         if (!validatePassword()) {
-            activityRegister1Binding.passwordTextInputLayout.error = "Please enter a valid password"
+            activityRegisterBinding.passwordTextInputLayout.error = "Please enter a valid password"
         }
 
         if (!validateConfirmPassword()) {
-            activityRegister1Binding.confirmPassword.error = "Please confirm your password"
+            activityRegisterBinding.confirmPassword.error = "Please confirm your password"
         }
 
         if (!validateContactNumber()) {
-            activityRegister1Binding.contactNumberTextInputLayout.error =
+            activityRegisterBinding.contactNumberTextInputLayout.error =
                 "Please enter a valid contact number"
         }
 
         if (!validateAddress()) {
-            activityRegister1Binding.addressTextInputLayout.error = "Please enter a valid address"
+            activityRegisterBinding.addressTextInputLayout.error = "Please enter a valid address"
         }
 
 
         if (selectedCampus.isEmpty()) {
-            activityRegister1Binding.campusTextInputLayout.error = "Please select a campus"
+            activityRegisterBinding.campusTextInputLayout.error = "Please select a campus"
         }
         if (userCategory.isEmpty()) {
-            activityRegister1Binding.usercateTextInputLayout.error = "Please select a category"
+            activityRegisterBinding.usercateTextInputLayout.error = "Please select a category"
         }
 
         if (spinnerSex.isEmpty()) {
-            activityRegister1Binding.genderTextInputLayout.error = "Select a Gender"
+            activityRegisterBinding.genderTextInputLayout.error = "Select a Gender"
         }
         if (birtdate.isEmpty()) {
-            activityRegister1Binding.birthdateTextInputLayout.error = "Select Date of Birth"
+            activityRegisterBinding.birthdateTextInputLayout.error = "Select Date of Birth"
         }
 
 
