@@ -157,8 +157,8 @@ class ForumComment : AppCompatActivity() {
             }
         }
 
-        commentsAdapter.notifyItemChanged(0);
-        commentsAdapter.updateData(commentList)
+        commentsAdapter = CommentAdapter(this, postKey, emptyList())
+        commentsAdapter.notifyItemChanged(0)
         commentsRecyclerView.layoutManager = LinearLayoutManager(this)
         val layoutManager = LinearLayoutManager(this)
         layoutManager.reverseLayout = true
