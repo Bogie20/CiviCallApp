@@ -18,6 +18,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -129,18 +130,8 @@ class ForumUpload : AppCompatActivity() {
             })
         }
         val selectCampus: RelativeLayout = findViewById(R.id.relativeSelect)
-        val campusPickTextView: TextView = findViewById(R.id.campusPick)
-        val campusArray = resources.getStringArray(R.array.allowed_campuses)
-        val popupMenu = PopupMenu(this, selectCampus)
-        campusArray.forEach { campus ->
-            popupMenu.menu.add(campus)
-        }
         selectCampus.setOnClickListener {
-            popupMenu.setOnMenuItemClickListener { menuItem ->
-                campusPickTextView.text = menuItem.title
-                true
-            }
-            popupMenu.show()
+         showCheckBoxCampus()
         }
 
         val categoryDropdown = binding.uploadCategory
@@ -332,6 +323,53 @@ class ForumUpload : AppCompatActivity() {
             storageDir
         )
     }
+    private var isCampusDialogShowing = false
+
+    private fun showCheckBoxCampus() {
+        if (isCampusDialogShowing) {
+            return
+        }
+
+        val dialogView = layoutInflater.inflate(R.layout.multiple_checkbox_selection, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val btnSelectCampus = dialogView.findViewById<Button>(R.id.btnSelectCampus)
+
+        val checkBoxes = ArrayList<CheckBox>()
+
+        for (i in 1..11) {
+            val checkBoxId = resources.getIdentifier("checkBox$i", "id", packageName)
+            val checkBox = dialogView.findViewById<CheckBox>(checkBoxId)
+            checkBoxes.add(checkBox)
+        }
+
+        // Check previously selected campuses and update the checkboxes
+        val selectedCampuses = binding.campusPick.text.toString().split(", ")
+        for (checkBox in checkBoxes) {
+            checkBox.isChecked = selectedCampuses.contains(checkBox.text.toString())
+        }
+
+        btnSelectCampus.setOnClickListener {
+            val selectedCampuses = checkBoxes.filter { it.isChecked }.map { it.text.toString() }
+            val selectedCampusesText = selectedCampuses.joinToString(", ")
+
+            // Set the selected campuses in the AutoCompleteTextView
+            binding.campusPick.setText(selectedCampusesText)
+
+            alertDialog.dismiss()
+        }
+
+        alertDialog.setOnDismissListener {
+            isCampusDialogShowing = false
+        }
+
+        alertDialog.show()
+        isCampusDialogShowing = true
+    }
+
+
     private var isAlreadyJoinDialogShowing = false
 
     private fun showMessage(

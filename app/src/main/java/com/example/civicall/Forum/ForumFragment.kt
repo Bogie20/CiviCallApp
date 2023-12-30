@@ -84,42 +84,60 @@ class ForumFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 progressBar.visibility = View.VISIBLE
                 dataList.clear()
-                for (itemSnapshot in snapshot.children) {
-                    val dataClass = itemSnapshot.getValue(DataClassForum::class.java)
-                    dataClass?.key = itemSnapshot.key
-                    dataClass?.let {
-                        dataList.add(
-                            0,
-                            it
-                        )
+                val currentUser = FirebaseAuth.getInstance().currentUser
+                val userUid = currentUser?.uid
+
+                val userCampusRef =
+                    FirebaseDatabase.getInstance().getReference("Users/$userUid/campus")
+                userCampusRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(userCampusSnapshot: DataSnapshot) {
+                        val userCampus = userCampusSnapshot.value.toString()
+
+                        for (itemSnapshot in snapshot.children) {
+                            val dataClass = itemSnapshot.getValue(DataClassForum::class.java)
+                            dataClass?.key = itemSnapshot.key
+                            dataClass?.let {
+                                // Check if the user's campus is in the comma-separated list of campuses in Upload Engagement
+                                val uploadEngagementCampuses =
+                                    it.campus?.split(", ")?.map { it.trim() } ?: emptyList()
+                                if (userCampus in uploadEngagementCampuses) {
+                                    dataList.add(0, it)
+                                }
+                            }
+                        }
+                        adapter.notifyDataSetChanged()
+                        dialog.dismiss()
+
+                        if (dataList.isEmpty()) {
+                            rootView.findViewById<ImageView>(R.id.noPostsImage).visibility =
+                                View.VISIBLE
+                            rootView.findViewById<TextView>(R.id.noPostsText).visibility =
+                                View.VISIBLE
+
+                            recyclerView.visibility = View.GONE
+                        } else {
+                            rootView.findViewById<ImageView>(R.id.noPostsImage).visibility =
+                                View.GONE
+                            rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
+
+                            recyclerView.visibility = View.VISIBLE
+
+                        }
+                        progressBar.visibility = View.GONE
+                        dialog.dismiss()
+
                     }
-                }
 
-                adapter.notifyItemChanged(0)
-                dialog.dismiss()
-
-                if (dataList.isEmpty()) {
-                    rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
-                    rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.VISIBLE
-
-                    recyclerView.visibility = View.GONE
-                } else {
-                    rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.GONE
-                    rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
-
-                    recyclerView.visibility = View.VISIBLE
-
-                }
-                progressBar.visibility = View.GONE
-                dialog.dismiss()
-
+                    override fun onCancelled(error: DatabaseError) {
+                        progressBar.visibility = View.GONE
+                        dialog.dismiss()
+                    }
+                })
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                progressBar.visibility = View.GONE
-                dialog.dismiss()
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    dialog.dismiss()
+                }
+            })
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {

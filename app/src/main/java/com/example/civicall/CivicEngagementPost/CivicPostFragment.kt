@@ -76,26 +76,26 @@ class CivicPostFragment : Fragment() {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
                 dataList.clear()
-                val currentUser = FirebaseAuth.getInstance().currentUser
-                val userUid = currentUser?.uid
+                    val currentUser = FirebaseAuth.getInstance().currentUser
+                    val userUid = currentUser?.uid
 
-                val userCampusRef = FirebaseDatabase.getInstance().getReference("Users/$userUid/campus")
-                userCampusRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(userCampusSnapshot: DataSnapshot) {
-                        val userCampus = userCampusSnapshot.value.toString()
+                    val userCampusRef = FirebaseDatabase.getInstance().getReference("Users/$userUid/campus")
+                    userCampusRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(userCampusSnapshot: DataSnapshot) {
+                            val userCampus = userCampusSnapshot.value.toString()
 
-                        for (itemSnapshot in snapshot.children) {
-                            val dataClass = itemSnapshot.getValue(DataClass::class.java)
-                            dataClass?.key = itemSnapshot.key
-                            dataClass?.let {
-                                // Check if the user's campus is in the comma-separated list of campuses in Upload Engagement
-                                val uploadEngagementCampuses = it.campus?.split(", ")?.map { it.trim() } ?: emptyList()
-                                if (userCampus in uploadEngagementCampuses) {
-                                    dataList.add(0, it)
+                            for (itemSnapshot in snapshot.children) {
+                                val dataClass = itemSnapshot.getValue(DataClass::class.java)
+                                dataClass?.key = itemSnapshot.key
+                                dataClass?.let {
+                                    // Check if the user's campus is in the comma-separated list of campuses in Upload Engagement
+                                    val uploadEngagementCampuses = it.campus?.split(", ")?.map { it.trim() } ?: emptyList()
+                                    if (userCampus in uploadEngagementCampuses) {
+                                        dataList.add(0, it)
+                                    }
                                 }
                             }
-                        }
-                        adapter.notifyDataSetChanged()
+                            adapter.notifyDataSetChanged()
                         dialog.dismiss()
 
                         if (dataList.isEmpty()) {

@@ -213,6 +213,12 @@ class Upload_engagement : AppCompatActivity() {
             checkBoxes.add(checkBox)
         }
 
+        // Check previously selected campuses and update the checkboxes
+        val selectedCampuses = binding.uploadCampus.text.toString().split(", ")
+        for (checkBox in checkBoxes) {
+            checkBox.isChecked = selectedCampuses.contains(checkBox.text.toString())
+        }
+
         btnSelectCampus.setOnClickListener {
             val selectedCampuses = checkBoxes.filter { it.isChecked }.map { it.text.toString() }
             val selectedCampusesText = selectedCampuses.joinToString(", ")
@@ -230,6 +236,7 @@ class Upload_engagement : AppCompatActivity() {
         alertDialog.show()
         isCampusDialogShowing = true
     }
+
 
 
     private fun checkAndRequestPermissions() {
