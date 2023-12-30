@@ -290,43 +290,29 @@
         }
         private fun updateHiddenState(postKey: String?, isHidden: Boolean) {
             if (postKey != null && currentUserUid != null) {
-                // Save hidden state locally
-                saveHiddenState(postKey, isHidden)
-
-                // Update hidden state in Firebase
-                val userHiddenPostsRef = FirebaseDatabase.getInstance().getReference("UserHiddenPosts").child(currentUserUid)
-                userHiddenPostsRef.child(postKey).setValue(isHidden)
+                // Update hidden state in Firebase under each post
+                val userHiddenPostsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+                    .child("UserHiddenPosts").child(currentUserUid)
+                userHiddenPostsRef.child("hidden").setValue(isHidden)
             }
         }
-        private fun saveHiddenState(postKey: String, isHidden: Boolean) {
-            val sharedPreferences = context.getSharedPreferences("HiddenPosts", Context.MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
-            editor.putBoolean("$currentUserUid-$postKey", isHidden)
-            editor.apply()
-        }
+
         private fun getHiddenState(postKey: String, callback: (Boolean) -> Unit) {
-            // Check local hidden state first
-            val hiddenState = getLocalHiddenState(postKey)
-            if (hiddenState != null) {
-                callback.invoke(hiddenState)
-            } else {
-                // Fetch from Firebase if not found locally
-                val userHiddenPostsRef = FirebaseDatabase.getInstance().getReference("UserHiddenPosts")
-                currentUserUid?.let {
-                    userHiddenPostsRef.child(it)
-                }
-                userHiddenPostsRef.child(postKey).addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        val isHidden = snapshot.getValue(Boolean::class.java) ?: false
-                        callback.invoke(isHidden)
-                    }
+            val userHiddenPostsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+                .child("UserHiddenPosts").child(currentUserUid ?: "")
 
-                    override fun onCancelled(error: DatabaseError) {
-                        // Handle onCancelled as needed
-                    }
-                })
-            }
+            userHiddenPostsRef.child("hidden").addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val isHidden = snapshot.getValue(Boolean::class.java) ?: false
+                    callback.invoke(isHidden)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle onCancelled as needed
+                }
+            })
         }
+
         private fun getLocalHiddenState(postKey: String): Boolean? {
             val sharedPreferences = context.getSharedPreferences("HiddenPosts", Context.MODE_PRIVATE)
             return sharedPreferences.getBoolean("$currentUserUid-$postKey", false)
