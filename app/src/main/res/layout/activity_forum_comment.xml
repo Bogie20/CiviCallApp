@@ -103,14 +103,17 @@
 
                 <TextView
                     android:id="@+id/campustxt"
-                    android:layout_marginLeft="8dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="3dp"
-                    android:text="Campus"
-                    android:textSize="14dp"
                     android:drawableStart="@drawable/earth"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="Campus"
                     android:textColor="@color/colorPrimaryText"
+                    android:textSize="14dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/username"
                     app:layout_constraintTop_toBottomOf="@+id/username" />
 
