@@ -36,6 +36,8 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
         holder.recEndDate.text = data.endDate
         holder.recLocation.text = data.location
         holder.recCategory.text = data.category
+        holder.recCampus.text = data.campus
+
         holder.recCard.setOnClickListener {
             val intent = Intent(context, DetailPost::class.java).apply {
                 putExtra("Image", data.image)
@@ -64,7 +66,6 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
         if (!data.verificationStatus) {
             // If verificationStatus is false, check if the current user is the uploader
             if (!data.verificationStatus) {
-                // If verificationStatus is false, check if the current user is the uploader
                 if (uid == data.uploadersUID) {
                     holder.recCard.visibility = View.VISIBLE
                     holder.recCard.layoutParams.height = RecyclerView.LayoutParams.WRAP_CONTENT
@@ -147,4 +148,5 @@ class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val recLocation: TextView = itemView.findViewById(R.id.civicLocation)
     val recTitle: TextView = itemView.findViewById(R.id.civicTitle)
     val recCategory: TextView = itemView.findViewById(R.id.civicCategory)
+    val recCampus: TextView = itemView.findViewById(R.id.recCampus)
 }

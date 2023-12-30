@@ -122,6 +122,21 @@
             android:maxLines="1"
             android:ellipsize="end"
             />
-
+        <TextView
+            android:id="@+id/recCampus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="13dp"
+            android:gravity="end"
+            android:paddingEnd="20dp"
+            android:textAllCaps="true"
+            android:visibility="gone"
+            android:text="campus"
+            android:textColor="@color/DarkGray"
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

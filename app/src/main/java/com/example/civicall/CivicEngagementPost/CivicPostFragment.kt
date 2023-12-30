@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -75,35 +76,53 @@ class CivicPostFragment : Fragment() {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
                 dataList.clear()
-                for (itemSnapshot in snapshot.children) {
-                    val dataClass = itemSnapshot.getValue(DataClass::class.java)
-                    dataClass?.key = itemSnapshot.key
-                    dataClass?.let { dataList.add(0, it) }
-                }
+                val currentUser = FirebaseAuth.getInstance().currentUser
+                val userUid = currentUser?.uid
 
-                adapter.notifyDataSetChanged()
-                dialog.dismiss()
+                val userCampusRef = FirebaseDatabase.getInstance().getReference("Users/$userUid/campus")
+                userCampusRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(userCampusSnapshot: DataSnapshot) {
+                        val userCampus = userCampusSnapshot.value.toString()
 
-                if (dataList.isEmpty()) {
-                    rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
-                    rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.VISIBLE
+                        for (itemSnapshot in snapshot.children) {
+                            val dataClass = itemSnapshot.getValue(DataClass::class.java)
+                            dataClass?.key = itemSnapshot.key
+                            dataClass?.let {
+                                // Check if the user's campus is in the comma-separated list of campuses in Upload Engagement
+                                val uploadEngagementCampuses = it.campus?.split(", ")?.map { it.trim() } ?: emptyList()
+                                if (userCampus in uploadEngagementCampuses) {
+                                    dataList.add(0, it)
+                                }
+                            }
+                        }
 
-                    recyclerView.visibility = View.GONE
-                } else {
-                    rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.GONE
-                    rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
+                        adapter.notifyDataSetChanged()
+                        dialog.dismiss()
 
-                    recyclerView.visibility = View.VISIBLE
-                    adapter.notifyDataSetChanged()
-                }
+                        if (dataList.isEmpty()) {
+                            rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
+                            rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.VISIBLE
+                            recyclerView.visibility = View.GONE
+                        } else {
+                            rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.GONE
+                            rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
+                            recyclerView.visibility = View.VISIBLE
+                        }
 
-                dialog.dismiss()
+                        dialog.dismiss()
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        dialog.dismiss()
+                    }
+                })
             }
 
             override fun onCancelled(error: DatabaseError) {
                 dialog.dismiss()
             }
         })
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
