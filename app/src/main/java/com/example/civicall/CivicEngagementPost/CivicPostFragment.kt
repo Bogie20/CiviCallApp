@@ -95,7 +95,6 @@ class CivicPostFragment : Fragment() {
                                 }
                             }
                         }
-
                         adapter.notifyDataSetChanged()
                         dialog.dismiss()
 
