@@ -1,7 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/redpink"/>
-    <stroke android:width="0dp" android:color="#B1BCBE" />
-    <corners android:radius="200dp"/>
-    <padding android:left="0dp" android:top="0dp" android:right="0dp" android:bottom="0dp" />
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Default state -->
+    <item android:state_pressed="false">
+        <shape>
+            <solid android:color="@color/redpink"/>
+            <stroke android:width="0dp" android:color="#B1BCBE" />
+            <corners android:radius="200dp"/>
+            <padding android:left="0dp" android:top="0dp" android:right="0dp" android:bottom="0dp" />
+        </shape>
+    </item>
+
+    <!-- Pressed state -->
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="#33000000"/>
+            <stroke android:width="0dp" android:color="#B1BCBE" />
+            <corners android:radius="200dp"/>
+            <padding android:left="0dp" android:top="0dp" android:right="0dp" android:bottom="0dp" />
+        </shape>
+    </item>
+</selector>

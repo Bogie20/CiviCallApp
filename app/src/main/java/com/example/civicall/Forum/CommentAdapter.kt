@@ -38,7 +38,7 @@ import java.util.TimeZone
 class CommentAdapter(
     private val context: Context,
     private val postKey: String,
-    private var commentMap: Map<String, DataComment>
+    private var commentList: List<DataComment>
 ) : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
     private val currentUser = FirebaseAuth.getInstance().currentUser
     private val currentUserUid = currentUser?.uid
@@ -326,15 +326,16 @@ class CommentAdapter(
     }
 
     override fun getItemId(position: Int): Long {
-        // Use stable IDs based on comment keys to prevent view recycling issues
-        return commentMap.keys.toList()[position].hashCode().toLong()
+        return commentList[position].commentKey?.hashCode()?.toLong() ?: 0
     }
+
     @SuppressLint("NotifyDataSetChanged")
-    fun updateData(newData: Map<String, DataComment>) {
-        val diffResult = DiffUtil.calculateDiff(CommentDiffCallback(commentMap, newData))
-        commentMap = newData
+    fun updateData(newData: List<DataComment>) {
+        val diffResult = DiffUtil.calculateDiff(CommentDiffCallback(commentList, newData))
+        commentList = newData
         diffResult.dispatchUpdatesTo(this)
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.forum_respond, parent, false)
@@ -343,9 +344,11 @@ class CommentAdapter(
 
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
-        val commentKey = commentMap.keys.toList()[position]
-        val comment = commentMap[commentKey]
+        val comment = commentList[position]
+
+
         comment?.let {
+            val commentKey = comment.commentKey.orEmpty()
             holder.bind(comment)
             holder.updateTimeText(comment.commentTime)
             holder.updateReactButtons(postKey, commentKey)
@@ -428,8 +431,9 @@ class CommentAdapter(
     }
 
     override fun getItemCount(): Int {
-        return commentMap.size
+        return commentList.size
     }
+
 
     inner class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textRespond: TextView = itemView.findViewById(R.id.textRespond)

@@ -1,19 +1,21 @@
 package com.example.civicall.Forum
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import androidx.core.widget.NestedScrollView.OnScrollChangeListener
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.core.widget.NestedScrollView
+import androidx.core.widget.NestedScrollView.OnScrollChangeListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,6 +41,8 @@ class ForumFragment : Fragment() {
     private lateinit var searchView: SearchView
     private lateinit var noPostsImage: ImageView
     private lateinit var noPostsText: TextView
+    private lateinit var progressBar: ProgressBar
+
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +59,7 @@ class ForumFragment : Fragment() {
         noPostsText = rootView.findViewById(R.id.noPostsText)
         val filterIcon = rootView.findViewById<ImageView>(R.id.filterIcon)
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
-
+        progressBar = rootView.findViewById(R.id.progressBar)
         rootView.startAnimation(anim)
 
         filterIcon.setOnClickListener {
@@ -78,6 +82,7 @@ class ForumFragment : Fragment() {
         eventListener = databaseReference.addValueEventListener(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
+                progressBar.visibility = View.VISIBLE
                 dataList.clear()
                 for (itemSnapshot in snapshot.children) {
                     val dataClass = itemSnapshot.getValue(DataClassForum::class.java)
@@ -87,7 +92,7 @@ class ForumFragment : Fragment() {
                             0,
                             it
                         )
-                    } // Add the new item at the beginning of the list
+                    }
                 }
 
                 adapter.notifyItemChanged(0)
@@ -105,12 +110,13 @@ class ForumFragment : Fragment() {
                     recyclerView.visibility = View.VISIBLE
 
                 }
-
+                progressBar.visibility = View.GONE
                 dialog.dismiss()
 
             }
 
             override fun onCancelled(error: DatabaseError) {
+                progressBar.visibility = View.GONE
                 dialog.dismiss()
             }
         })
@@ -251,9 +257,11 @@ class ForumFragment : Fragment() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun filterByCategory(category: String) {
         if (category.isEmpty()) {
-            // Show all categories
+            adapter.updateData(dataList)
+            adapter.notifyDataSetChanged()
             adapter.searchDataList(dataList)
             hideNoPostsMessage()
         } else {
@@ -265,6 +273,7 @@ class ForumFragment : Fragment() {
                 hideNoPostsMessage()
                 val filteredArrayList = ArrayList<DataClassForum>(filteredList)
                 adapter.searchDataList(filteredArrayList)
+                adapter.notifyDataSetChanged()
             }
         }
     }

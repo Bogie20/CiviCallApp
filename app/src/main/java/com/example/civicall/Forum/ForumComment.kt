@@ -157,8 +157,8 @@ class ForumComment : AppCompatActivity() {
             }
         }
 
-        commentsAdapter = CommentAdapter(this, postKey, emptyMap())
-        commentsAdapter.notifyItemChanged(0)
+        commentsAdapter.notifyItemChanged(0);
+        commentsAdapter.updateData(commentList)
         commentsRecyclerView.layoutManager = LinearLayoutManager(this)
         val layoutManager = LinearLayoutManager(this)
         layoutManager.reverseLayout = true
@@ -195,7 +195,6 @@ class ForumComment : AppCompatActivity() {
                     val upReactCount = snapshot.getValue(Int::class.java)
                     // Update your UI or perform any actions with the formatted upReactCount
                     binding.upcount.text = formatCount(upReactCount ?: 0)
-                    commentsAdapter.notifyItemChanged(0)
                 }
             }
 
@@ -212,7 +211,6 @@ class ForumComment : AppCompatActivity() {
                     val downReactCount = snapshot.getValue(Int::class.java)
                     // Update your UI or perform any actions with the formatted downReactCount
                     binding.downcount.text = formatCount(downReactCount ?: 0)
-                    commentsAdapter.notifyItemChanged(0)
                 }
             }
 
@@ -245,7 +243,6 @@ class ForumComment : AppCompatActivity() {
         commentsRef.updateChildren(commentData).addOnSuccessListener {
             commentEditText.text.clear()
 
-            commentsAdapter.notifyItemChanged(0)
             commentsRecyclerView.scrollToPosition(itemCount)
         }.addOnFailureListener {
             // Handle failure if needed
@@ -261,28 +258,26 @@ class ForumComment : AppCompatActivity() {
 
         commentsRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val commentMap: MutableMap<String, DataComment> = mutableMapOf()
+                val commentList: MutableList<DataComment> = mutableListOf()
                 for (commentSnapshot in snapshot.children) {
                     val commentKey = commentSnapshot.key
                     val comment = commentSnapshot.getValue(DataComment::class.java)
                     commentKey?.let { key ->
                         comment?.let {
-                            commentMap[key] = it
+                            commentList.add(it)
                         }
                     }
                 }
                 // Update the CommentCount in real-time with formatted count
-                commentCountTextView.text = formatCount(commentMap.size)
+                commentCountTextView.text = formatCount(commentList.size)
 
                 // Update the visibility of noimage based on the comment count
-                if (commentMap.isEmpty()) {
+                if (commentList.isEmpty()) {
                     binding.noimage.visibility = View.VISIBLE
                 } else {
                     binding.noimage.visibility = View.GONE
                 }
-
-                commentsAdapter.notifyItemChanged(0)
-                commentsAdapter.updateData(commentMap)
+                commentsAdapter.updateData(commentList)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -313,7 +308,6 @@ class ForumComment : AppCompatActivity() {
                                             .placeholder(R.drawable.user)
                                             .error(R.drawable.user)
                                             .into(profilePic)
-                                        commentsAdapter.notifyItemChanged(0)
                                         // Set uploader full name
                                         val fullNameText =
                                             "${uploaderData.firstname} ${uploaderData.lastname}"

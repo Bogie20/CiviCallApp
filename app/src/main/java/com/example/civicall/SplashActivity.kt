@@ -37,7 +37,7 @@ class SplashActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
         lifecycleScope.launch {
-            delay(2000)
+            delay(1900)
             checkuser()
         }
     }
@@ -67,16 +67,17 @@ class SplashActivity : AppCompatActivity() {
                             updateMap["lastLogin"] = formattedLoginDate
 
                             ref.child(firebaseUser.uid).updateChildren(updateMap)
-                                .addOnSuccessListener {
-                                    // Go to the Dashboard
-                                    startActivity(Intent(this@SplashActivity, Dashboard::class.java))
-                                    finish() // Finish only after successful update and navigation
-                                }
-                                .addOnFailureListener { e ->
-                                    // Handle failure if needed
-                                    firebaseAuth.signOut()
-                                    startActivity(Intent(this@SplashActivity, Login::class.java))
-                                    finish() // Finish only after navigation
+                                .addOnCompleteListener { task ->
+                                    if (task.isSuccessful) {
+                                        // Go to the Dashboard
+                                        startActivity(Intent(this@SplashActivity, Dashboard::class.java))
+                                        finish() // Finish only after successful update and navigation
+                                    } else {
+                                        // Handle failure if needed
+                                        firebaseAuth.signOut()
+                                        startActivity(Intent(this@SplashActivity, Login::class.java))
+                                        finish() // Finish only after navigation
+                                    }
                                 }
                         } else {
                             // User data does not exist, log out and redirect to the Login activity
@@ -93,7 +94,6 @@ class SplashActivity : AppCompatActivity() {
                 })
         }
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

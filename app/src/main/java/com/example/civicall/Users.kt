@@ -21,5 +21,6 @@ data class Users(
     val ImageProfile: String = "",
     val ContactEme: String = "",
     val nstp: String = "",
+    val lastLogin: String = "",
 
 )

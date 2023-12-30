@@ -140,9 +140,7 @@ class CivicPostFragment : Fragment() {
 
         return rootView
     }
-    interface SearchFilterListener {
-        fun toggleSearchFilterVisibility()
-    }
+
 
     fun toggleSearchFilterVisibility() {
         val searchView = rootView.findViewById<SearchView>(R.id.search)

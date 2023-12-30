@@ -63,7 +63,7 @@ class Login : AppCompatActivity() {
                     finish()
                 } else {
                     val timestamp = System.currentTimeMillis()
-                    val dateFormat = SimpleDateFormat("MM/dd/yyyy HH:mm z")
+                    val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a")
                     dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
                     val formattedDate = dateFormat.format(timestamp)
 
@@ -77,6 +77,7 @@ class Login : AppCompatActivity() {
                     hashMap["address"] = ""
                     hashMap["birthday"] = ""
                     hashMap["gender"] = ""
+                    hashMap["lastLogin"] = ""
                     hashMap["ImageProfile"] = profileImageUri
                     hashMap["userType"] = ""
                     hashMap["timestamp"] = formattedDate
@@ -85,13 +86,6 @@ class Login : AppCompatActivity() {
                     hashMap["CurrentEngagement"] = 0
                     hashMap["activepts"] = 0
                     hashMap["finishactivity"] = 0
-
-
-
-
-
-
-
 
                     val ref = FirebaseDatabase.getInstance().getReference("Users")
                     ref.child(uid!!)
@@ -105,8 +99,6 @@ class Login : AppCompatActivity() {
                         }
                 }
             }
-
-
             override fun onCancelled(error: DatabaseError) {
                 // Handle onCancelled event if needed
             }
@@ -256,18 +248,10 @@ class Login : AppCompatActivity() {
     }
     private fun compareEmail(email: EditText, dialog: Dialog) {
         val emailText = email.text.toString().trim()
-
-
-
-
         if (emailText.isEmpty()) {
             email.error = "Input Your Email First"
             return
         }
-
-
-
-
         if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
             email.error = "Invalid Email"
             return
@@ -275,10 +259,6 @@ class Login : AppCompatActivity() {
         firebaseAuth.sendPasswordResetEmail(emailText).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 showCustomChangedPassMessage("Check Your Email to change the Password", 3000, R.layout.dialog_happyface)
-
-
-
-
                 dialog.dismiss()
             } else {
                 showCustomChangedPassMessage("Check for typos or your internet connection", 3000, R.layout.dialog_sadface)
@@ -287,23 +267,12 @@ class Login : AppCompatActivity() {
     }
     private fun dismissCustomDialog() {
         if (isPopupShowing) {
-            // Dismiss the custom popup dialog
-            // For example:
-            // alertDialog.dismiss()
             isPopupShowing = false
         }
-
-
         if (isProgressBarShowing) {
-            // Dismiss the progress dialog
-            // For example:
-            // progressDialog.dismiss()
             isProgressBarShowing = false
         }
         if (isProgressShowing) {
-            // Dismiss the progress dialog
-            // For example:
-            // progressAlertDialog.dismiss()
             isProgressShowing = false
         }
     }
@@ -316,7 +285,6 @@ class Login : AppCompatActivity() {
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_success, null)
 
-
         dialogBuilder.setView(dialogView)
         val alertDialog = dialogBuilder.create()
         alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
@@ -324,9 +292,7 @@ class Login : AppCompatActivity() {
         val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message_flat)
         val okButton = dialogView.findViewById<Button>(R.id.btn_action_flat)
 
-
         messageTextView.text = message
-
 
         okButton.setOnClickListener {
             alertDialog.dismiss()
@@ -334,9 +300,8 @@ class Login : AppCompatActivity() {
         }
         dismissCustomDialog()
 
-
         alertDialog.show()
-        isPopupShowing = true // Set the variable to true when the pop-up is displayed
+        isPopupShowing = true
     }
     private var isProgressBarShowing = false
     private fun showCustomProgressBar(message: String, durationMillis: Long) {
@@ -344,7 +309,6 @@ class Login : AppCompatActivity() {
         if (isProgressBarShowing) {
             return
         }
-
 
         dismissCustomDialog()
         val dialogBuilder = AlertDialog.Builder(this)
@@ -361,17 +325,10 @@ class Login : AppCompatActivity() {
 
 
         alertDialog.show()
-
-
-
-
-        // Set the variable to true to indicate that the progress bar is showing
         isProgressBarShowing = true
-
 
         Handler(Looper.getMainLooper()).postDelayed({
             alertDialog.dismiss()
-            // Set the variable to false when the progress bar is dismissed
             isProgressBarShowing = false
         }, durationMillis)
     }
@@ -423,7 +380,6 @@ class Login : AppCompatActivity() {
     }
     private fun loginUser() {
         showCustomProgressBar("Logging In...", 1500)
-
 
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnSuccessListener {
@@ -526,7 +482,7 @@ class Login : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Handle onCancelled event if needed
+                finish()
             }
         })
     }
@@ -601,7 +557,7 @@ class Login : AppCompatActivity() {
                     }
 
                     override fun onCancelled(error: DatabaseError) {
-                        // Handle onCancelled event if needed
+                        finish()
                     }
                 })
             } else {

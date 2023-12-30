@@ -832,16 +832,12 @@ dismissCustomDialog()
     }
     private fun dismissCustomDialog() {
         if (isPopupShowing) {
-            // Dismiss the custom popup dialog
-            // For example:
-            // alertDialog.dismiss()
+
             isPopupShowing = false
         }
 
         if (isProgressBarShowing) {
-            // Dismiss the progress dialog
-            // For example:
-            // progressDialog.dismiss()
+
             isProgressBarShowing = false
         }
 
@@ -892,6 +888,7 @@ dismissCustomDialog()
         hashMap["address"] = address
         hashMap["birthday"] = birtdate
         hashMap["gender"] = spinnerSex
+        hashMap["lastLogin"] = ""
         hashMap["ImageProfile"] = ""
         hashMap["userType"] = userCategory
         hashMap["timestamp"] = formattedDate
