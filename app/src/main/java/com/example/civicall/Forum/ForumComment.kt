@@ -189,7 +189,7 @@ class ForumComment : AppCompatActivity() {
         }
     }
     private fun addUpReactCountListener() {
-        upReactCountRef.addValueEventListener(object : ValueEventListener {
+        upReactCountRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val upReactCount = snapshot.getValue(Int::class.java)
@@ -205,7 +205,7 @@ class ForumComment : AppCompatActivity() {
     }
 
     private fun addDownReactCountListener() {
-        downReactCountRef.addValueEventListener(object : ValueEventListener {
+        downReactCountRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val downReactCount = snapshot.getValue(Int::class.java)
@@ -256,7 +256,7 @@ class ForumComment : AppCompatActivity() {
         val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
             .child("Comments")
 
-        commentsRef.addListenerForSingleValueEvent(object : ValueEventListener {
+        commentsRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val commentList: MutableList<DataComment> = mutableListOf()
                 for (commentSnapshot in snapshot.children) {
@@ -289,7 +289,7 @@ class ForumComment : AppCompatActivity() {
 
     private fun loadUploaderData(postKey: String) {
         val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
-        postRef.addListenerForSingleValueEvent(object : ValueEventListener {
+        postRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val uploaderUID = snapshot.child("uploadersUID").getValue(String::class.java)
@@ -297,7 +297,7 @@ class ForumComment : AppCompatActivity() {
                         // Fetch user data based on uploaderUID
                         val userRef =
                             FirebaseDatabase.getInstance().getReference("Users").child(uid)
-                        userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        userRef.addValueEventListener(object : ValueEventListener {
                             override fun onDataChange(userSnapshot: DataSnapshot) {
                                 if (userSnapshot.exists()) {
                                     val uploaderData = userSnapshot.getValue(Users::class.java)

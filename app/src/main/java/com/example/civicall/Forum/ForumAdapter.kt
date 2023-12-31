@@ -44,6 +44,9 @@
 
     ) : RecyclerView.Adapter<MyViewHolderForum>() {
         fun updateData(newDataList: List<DataClassForum>) {
+            if (dataList.isEmpty()) {
+                notifyItemRangeRemoved(0, itemCount)
+            }
             val diffResult = DiffUtil.calculateDiff(ForumDiffCallBack(dataList, newDataList))
             dataList = newDataList
             diffResult.dispatchUpdatesTo(this)
@@ -326,7 +329,7 @@
             val uploaderUid = data.uploadersUID
             if (uploaderUid != null) {
                 val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uploaderUid)
-                userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                userRef.addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         if (snapshot.exists()) {
                             val uploaderData = snapshot.getValue(Users::class.java)
@@ -453,9 +456,12 @@
         override fun getItemCount(): Int {
             return dataList.size
         }
+
         @SuppressLint("NotifyDataSetChanged")
         fun searchDataList(searchList: ArrayList<DataClassForum>) {
+            val diffResult = DiffUtil.calculateDiff(ForumDiffCallBack(dataList, searchList))
             dataList = searchList
+            diffResult.dispatchUpdatesTo(this)
             notifyDataSetChanged()
         }
     }

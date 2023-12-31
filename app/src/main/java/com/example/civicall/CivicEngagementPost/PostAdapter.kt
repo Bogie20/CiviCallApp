@@ -1,5 +1,6 @@
 package com.example.civicall.CivicEngagementPost
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.PorterDuff
@@ -134,6 +135,7 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
         override fun getItemCount(): Int {
         return dataList.size
     }
+    @SuppressLint("NotifyDataSetChanged")
     fun searchDataList(searchList: ArrayList<DataClass>) {
         dataList = searchList
         notifyDataSetChanged()

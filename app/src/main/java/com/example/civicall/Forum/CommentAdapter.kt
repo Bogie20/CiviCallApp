@@ -317,6 +317,9 @@ class CommentAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateData(newData: List<DataComment>) {
+        if (commentList.isEmpty()) {
+            notifyItemRangeRemoved(0, itemCount)
+        }
         val diffResult = DiffUtil.calculateDiff(CommentDiffCallback(commentList, newData))
         commentList = newData
         diffResult.dispatchUpdatesTo(this)
@@ -651,7 +654,7 @@ class CommentAdapter(
                 .child("Comments").child(commentKey).child("ReactComment")
 
             currentUserUid?.let {
-                reactRef.child(it).addValueEventListener(object : ValueEventListener {
+                reactRef.child(it).addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val reactType = snapshot.getValue(String::class.java)
                         // Update the drawable based on the reactType
