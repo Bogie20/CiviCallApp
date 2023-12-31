@@ -313,10 +313,6 @@
             })
         }
 
-        private fun getLocalHiddenState(postKey: String): Boolean? {
-            val sharedPreferences = context.getSharedPreferences("HiddenPosts", Context.MODE_PRIVATE)
-            return sharedPreferences.getBoolean("$currentUserUid-$postKey", false)
-        }
         override fun onBindViewHolder(holder: MyViewHolderForum, position: Int) {
             val data = dataList[position]
             Glide.with(context)

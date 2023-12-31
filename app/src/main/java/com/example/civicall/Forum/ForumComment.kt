@@ -256,7 +256,7 @@ class ForumComment : AppCompatActivity() {
         val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
             .child("Comments")
 
-        commentsRef.addValueEventListener(object : ValueEventListener {
+        commentsRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val commentList: MutableList<DataComment> = mutableListOf()
                 for (commentSnapshot in snapshot.children) {

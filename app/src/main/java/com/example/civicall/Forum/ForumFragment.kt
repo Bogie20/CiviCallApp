@@ -32,7 +32,6 @@ import nl.joery.animatedbottombar.AnimatedBottomBar
 class ForumFragment : Fragment() {
 
     private lateinit var databaseReference: DatabaseReference
-    private lateinit var eventListener: ValueEventListener
     private lateinit var recyclerView: RecyclerView
     private lateinit var nestedRecycler: NestedScrollView
     private val dataList = ArrayList<DataClassForum>()
@@ -79,16 +78,14 @@ class ForumFragment : Fragment() {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Forum Post")
         dialog.show()
-        eventListener = databaseReference.addValueEventListener(object : ValueEventListener {
+        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
-                progressBar.visibility = View.VISIBLE
                 dataList.clear()
                 val currentUser = FirebaseAuth.getInstance().currentUser
                 val userUid = currentUser?.uid
 
-                val userCampusRef =
-                    FirebaseDatabase.getInstance().getReference("Users/$userUid/campus")
+                val userCampusRef = FirebaseDatabase.getInstance().getReference("Users/$userUid/campus")
                 userCampusRef.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(userCampusSnapshot: DataSnapshot) {
                         val userCampus = userCampusSnapshot.value.toString()
@@ -98,46 +95,42 @@ class ForumFragment : Fragment() {
                             dataClass?.key = itemSnapshot.key
                             dataClass?.let {
                                 // Check if the user's campus is in the comma-separated list of campuses in Upload Engagement
-                                val uploadEngagementCampuses =
-                                    it.campus?.split(", ")?.map { it.trim() } ?: emptyList()
+                                val uploadEngagementCampuses = it.campus?.split(", ")?.map { it.trim() } ?: emptyList()
                                 if (userCampus in uploadEngagementCampuses) {
                                     dataList.add(0, it)
                                 }
                             }
                         }
-                        adapter.notifyDataSetChanged()
-                        dialog.dismiss()
+                        adapter.updateData(dataList)
+                        adapter.notifyItemChanged(0)
+                dialog.dismiss()
 
-                        if (dataList.isEmpty()) {
-                            rootView.findViewById<ImageView>(R.id.noPostsImage).visibility =
-                                View.VISIBLE
-                            rootView.findViewById<TextView>(R.id.noPostsText).visibility =
-                                View.VISIBLE
+                if (dataList.isEmpty()) {
+                    rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
+                    rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.VISIBLE
 
-                            recyclerView.visibility = View.GONE
-                        } else {
-                            rootView.findViewById<ImageView>(R.id.noPostsImage).visibility =
-                                View.GONE
-                            rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
+                    recyclerView.visibility = View.GONE
+                } else {
+                    rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.GONE
+                    rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
 
-                            recyclerView.visibility = View.VISIBLE
+                    recyclerView.visibility = View.VISIBLE
 
-                        }
-                        progressBar.visibility = View.GONE
-                        dialog.dismiss()
+                }
+                progressBar.visibility = View.GONE
+                dialog.dismiss()
 
-                    }
-
+            }
                     override fun onCancelled(error: DatabaseError) {
-                        progressBar.visibility = View.GONE
                         dialog.dismiss()
                     }
                 })
             }
-                override fun onCancelled(error: DatabaseError) {
-                    dialog.dismiss()
-                }
-            })
+            override fun onCancelled(error: DatabaseError) {
+                progressBar.visibility = View.GONE
+                dialog.dismiss()
+            }
+        })
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -149,6 +142,7 @@ class ForumFragment : Fragment() {
                 return true
             }
         })
+
 
         val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
