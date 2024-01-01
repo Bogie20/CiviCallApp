@@ -1,5 +1,6 @@
 package com.example.civicall.Forum
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.graphics.Color
@@ -8,7 +9,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.civicall.NetworkUtils
@@ -25,6 +25,9 @@ class CommentEdit : AppCompatActivity() {
     private lateinit var updateButton: Button
     private lateinit var updatePostComment: EditText
     private lateinit var networkUtils: NetworkUtils
+    private lateinit var databaseReference: DatabaseReference
+    private var progressDialog: ProgressDialog? = null
+
     private var text: String = ""
     private var commentKey: String = ""
     private var postKey: String = ""
@@ -32,8 +35,6 @@ class CommentEdit : AppCompatActivity() {
     private var upReact: Int = 0
     private var downReact: Int = 0
 
-    private lateinit var databaseReference: DatabaseReference
-    private var progressDialog: ProgressDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCommentEditBinding.inflate(layoutInflater)
@@ -59,7 +60,8 @@ class CommentEdit : AppCompatActivity() {
             postKey = CommentAdapter.DataRepository.currentPostKey ?: ""
         }
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey) .child("Comments").child(commentKey)
+        databaseReference = FirebaseDatabase.getInstance().getReference("Forum Post")
+            .child(postKey).child("Comments").child(commentKey)
 
         updateButton.setOnClickListener {
             showUpdateConfirmation()
@@ -69,17 +71,14 @@ class CommentEdit : AppCompatActivity() {
     private fun saveData() {
         val builder = AlertDialog.Builder(this@CommentEdit)
         builder.setCancelable(false)
-        val inflater = layoutInflater
-        val loadingLayout = inflater.inflate(R.layout.loading_layout, null)
+        val loadingLayout = layoutInflater.inflate(R.layout.loading_layout, null)
         builder.setView(loadingLayout)
         val dialog = builder.create()
 
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
-
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         dialog.show()
-
 
         text = updatePostComment.text.toString().trim()
 
@@ -96,26 +95,34 @@ class CommentEdit : AppCompatActivity() {
                 downReact,
                 null,
                 false,
-                mapOf(),
+                mapOf()
             )
 
             databaseReference.setValue(dataClass)
                 .addOnCompleteListener { task ->
+                    dialog.dismiss()
                     if (task.isSuccessful) {
                         Toast.makeText(this@CommentEdit, "Updated", Toast.LENGTH_SHORT).show()
                         finish()
                     } else {
-                        Toast.makeText(this@CommentEdit, task.exception?.message.toString(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@CommentEdit,
+                            task.exception?.message.toString(),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
         } else {
-            Toast.makeText(this@CommentEdit, "Please enter a valid comment", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@CommentEdit, "Please enter a valid comment", Toast.LENGTH_SHORT)
+                .show()
+            dialog.dismiss()
         }
     }
 
+
     private fun showUpdateConfirmation() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
-        val alertDialog = AlertDialog.Builder(this)
+        val alertDialog = AlertDialog.Builder(this@CommentEdit)
             .setView(dialogView)
             .create()
 
@@ -150,6 +157,7 @@ class CommentEdit : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        progressDialog?.dismiss()
         networkUtils.cleanup()
     }
 }

@@ -127,6 +127,10 @@ class ForumUpdate: AppCompatActivity() {
         }
     }
     private fun saveData() {
+        if (isDestroyed) {
+            return
+        }
+
         val builder = AlertDialog.Builder(this@ForumUpdate)
         builder.setCancelable(false)
         val inflater = layoutInflater
@@ -135,9 +139,7 @@ class ForumUpdate: AppCompatActivity() {
         val dialog = builder.create()
 
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
-
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
         dialog.show()
 
         if (uri != null) {
@@ -146,26 +148,32 @@ class ForumUpdate: AppCompatActivity() {
 
             storageReference.putFile(uri!!)
                 .addOnSuccessListener { taskSnapshot ->
-                    // Use the new method to get the download URL
-                    taskSnapshot.storage.downloadUrl.addOnSuccessListener { url ->
-                        imageUrl = url.toString()
-                        updateData()
+                    if (!isDestroyed) {
+                        // Use the new method to get the download URL
+                        taskSnapshot.storage.downloadUrl.addOnSuccessListener { url ->
+                            imageUrl = url.toString()
+                            updateData()
+                            dialog.dismiss() // Dismiss the dialog inside the success block
+                        }
                     }
                 }
                 .addOnFailureListener { e ->
-                    dialog.dismiss()
-                    // Handle the image upload failure, e.g., show an error message
-                    Toast.makeText(
-                        this@ForumUpdate,
-                        "Image upload failed: ${e.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    if (!isDestroyed) {
+                        dialog.dismiss() // Dismiss the dialog inside the failure block
+                        // Handle the image upload failure, e.g., show an error message
+                        Toast.makeText(
+                            this@ForumUpdate,
+                            "Image upload failed: ${e.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
         } else {
             updateData()
+            dialog.dismiss()
         }
-
     }
+
     private var isCampusDialogShowing = false
 
     private fun showCheckBoxCampus() {

@@ -1,5 +1,6 @@
 package com.example.civicall.Forum
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.widget.NestedScrollView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -157,8 +159,7 @@ class ForumComment : AppCompatActivity() {
             }
         }
 
-        commentsAdapter = CommentAdapter(this, postKey, emptyList())
-        commentsAdapter.notifyItemChanged(0)
+        commentsAdapter = CommentAdapter(this, postKey, commentList)
         commentsRecyclerView.layoutManager = LinearLayoutManager(this)
         val layoutManager = LinearLayoutManager(this)
         layoutManager.reverseLayout = true
@@ -166,14 +167,14 @@ class ForumComment : AppCompatActivity() {
         commentsRecyclerView.layoutManager = layoutManager
         commentsRecyclerView.adapter = commentsAdapter
 
-
         loadCommentsFromDatabase()
 
         val nestedScrollView: NestedScrollView = findViewById(R.id.nestedScroll)
         nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
             // Iterate through all visible items in the RecyclerView
             for (i in 0 until commentsRecyclerView.childCount) {
-                val viewHolder = commentsRecyclerView.getChildViewHolder(commentsRecyclerView.getChildAt(i))
+                val viewHolder =
+                    commentsRecyclerView.getChildViewHolder(commentsRecyclerView.getChildAt(i))
                 if (viewHolder is CommentAdapter.CommentViewHolder) {
                     viewHolder.closeFabMenu()
                 }
@@ -188,6 +189,7 @@ class ForumComment : AppCompatActivity() {
             else -> String.format(Locale.getDefault(), "%.1fm", count / 1000000.0)
         }
     }
+
     private fun addUpReactCountListener() {
         upReactCountRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -219,6 +221,7 @@ class ForumComment : AppCompatActivity() {
             }
         })
     }
+
     private fun addCommentToDatabase(commentText: String) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val commenterUID = currentUser?.uid ?: ""
@@ -251,33 +254,42 @@ class ForumComment : AppCompatActivity() {
     }
 
 
-
     private fun loadCommentsFromDatabase() {
         val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
             .child("Comments")
 
         commentsRef.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
-                val commentList: MutableList<DataComment> = mutableListOf()
+                val newCommentList: MutableList<DataComment> = mutableListOf()
                 for (commentSnapshot in snapshot.children) {
                     val commentKey = commentSnapshot.key
                     val comment = commentSnapshot.getValue(DataComment::class.java)
                     commentKey?.let { key ->
                         comment?.let {
-                            commentList.add(it)
+                            newCommentList.add(it)
                         }
                     }
                 }
+
+                // Calculate differences between old and new comment lists
+                val diffResult = DiffUtil.calculateDiff(CommentDiffCallback(commentList, newCommentList))
+
                 // Update the CommentCount in real-time with formatted count
-                commentCountTextView.text = formatCount(commentList.size)
+                commentCountTextView.text = formatCount(newCommentList.size)
 
                 // Update the visibility of noimage based on the comment count
-                if (commentList.isEmpty()) {
+                if (newCommentList.isEmpty()) {
                     binding.noimage.visibility = View.VISIBLE
                 } else {
                     binding.noimage.visibility = View.GONE
                 }
-                commentsAdapter.updateData(commentList)
+
+                // Update only the changed items in the adapter
+                commentList.clear()
+                commentList.addAll(newCommentList)
+                diffResult.dispatchUpdatesTo(commentsAdapter)
+                commentsAdapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -285,6 +297,7 @@ class ForumComment : AppCompatActivity() {
             }
         })
     }
+
 
 
     private fun loadUploaderData(postKey: String) {
@@ -301,13 +314,14 @@ class ForumComment : AppCompatActivity() {
                             override fun onDataChange(userSnapshot: DataSnapshot) {
                                 if (userSnapshot.exists()) {
                                     val uploaderData = userSnapshot.getValue(Users::class.java)
-                                    if (uploaderData != null) {
+                                    if (uploaderData != null && !isDestroyed) {
                                         // Set uploader image profile with a placeholder
                                         Glide.with(this@ForumComment)
                                             .load(uploaderData.ImageProfile)
                                             .placeholder(R.drawable.user)
                                             .error(R.drawable.user)
                                             .into(profilePic)
+
                                         // Set uploader full name
                                         val fullNameText =
                                             "${uploaderData.firstname} ${uploaderData.lastname}"

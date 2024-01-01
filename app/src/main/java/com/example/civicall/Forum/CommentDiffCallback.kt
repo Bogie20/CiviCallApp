@@ -19,3 +19,4 @@ class CommentDiffCallback(
         return oldList[oldItemPosition] == newList[newItemPosition]
     }
 }
+

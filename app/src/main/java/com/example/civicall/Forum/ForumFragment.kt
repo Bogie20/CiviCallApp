@@ -68,77 +68,70 @@ class ForumFragment : Fragment() {
         val gridLayoutManager = GridLayoutManager(requireContext(), 1)
         recyclerView.layoutManager = gridLayoutManager
 
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setCancelable(false)
-        val dialog = builder.create()
-        dialog.show()
         val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
         adapter = ForumAdapter(requireContext(), dataList, currentUserId)
         recyclerView.adapter = adapter
 
+        // Adjusted reference for "Forum Post" node
         databaseReference = FirebaseDatabase.getInstance().getReference("Forum Post")
-        dialog.show()
-        eventListener = databaseReference.addValueEventListener(object : ValueEventListener {
+
+        databaseReference.addValueEventListener(object : ValueEventListener {
+
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
-                progressBar.visibility = View.VISIBLE
-                dataList.clear()
+
                 val currentUser = FirebaseAuth.getInstance().currentUser
                 val userUid = currentUser?.uid
+                val userCampusRef = FirebaseDatabase.getInstance().getReference("Users/$userUid/campus")
 
-                val userCampusRef =
-                    FirebaseDatabase.getInstance().getReference("Users/$userUid/campus")
                 userCampusRef.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(userCampusSnapshot: DataSnapshot) {
                         val userCampus = userCampusSnapshot.value.toString()
+                        val newDataList = ArrayList<DataClassForum>()
 
                         for (itemSnapshot in snapshot.children) {
                             val dataClass = itemSnapshot.getValue(DataClassForum::class.java)
                             dataClass?.key = itemSnapshot.key
+
                             dataClass?.let {
                                 val uploadEngagementCampuses =
                                     it.campus?.split(", ")?.map { it.trim() } ?: emptyList()
                                 if (userCampus in uploadEngagementCampuses) {
-                                    dataList.add(0, it)
+                                    newDataList.add(0, it)
                                 }
                             }
                         }
+
+                        dataList.clear()
+                        dataList.addAll(newDataList)
                         adapter.notifyDataSetChanged()
-                        dialog.dismiss()
 
                         if (dataList.isEmpty()) {
-                            rootView.findViewById<ImageView>(R.id.noPostsImage).visibility =
-                                View.VISIBLE
-                            rootView.findViewById<TextView>(R.id.noPostsText).visibility =
-                                View.VISIBLE
-
+                            rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
+                            rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.VISIBLE
                             recyclerView.visibility = View.GONE
                         } else {
-                            rootView.findViewById<ImageView>(R.id.noPostsImage).visibility =
-                                View.GONE
+                            rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.GONE
                             rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
-
                             recyclerView.visibility = View.VISIBLE
-
                         }
-                        progressBar.visibility = View.GONE
-                        dialog.dismiss()
 
+                        progressBar.visibility = View.GONE
                     }
 
                     override fun onCancelled(error: DatabaseError) {
                         progressBar.visibility = View.GONE
-                        dialog.dismiss()
                     }
                 })
             }
+
             override fun onCancelled(error: DatabaseError) {
-                dialog.dismiss()
+                progressBar.visibility = View.GONE
             }
         })
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -278,7 +271,6 @@ class ForumFragment : Fragment() {
     private fun filterByCategory(category: String) {
         if (category.isEmpty()) {
             adapter.updateData(dataList)
-            adapter.notifyDataSetChanged()
             adapter.searchDataList(dataList)
             hideNoPostsMessage()
         } else {
@@ -290,7 +282,6 @@ class ForumFragment : Fragment() {
                 hideNoPostsMessage()
                 val filteredArrayList = ArrayList<DataClassForum>(filteredList)
                 adapter.searchDataList(filteredArrayList)
-                adapter.notifyDataSetChanged()
             }
         }
     }
@@ -316,6 +307,7 @@ class ForumFragment : Fragment() {
                 searchList.add(dataClass)
             }
         }
+        adapter.updateData(dataList)
         adapter.searchDataList(searchList)
     }
 }

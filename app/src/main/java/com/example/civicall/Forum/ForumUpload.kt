@@ -471,9 +471,12 @@ class ForumUpload : AppCompatActivity() {
     }
 
     private fun saveData() {
-        if (uploadPostText.text.isNullOrBlank() ||
-            binding.uploadCategory.text.isNullOrBlank()
-        ) {
+        if (isFinishing) {
+            // Activity is finishing, do not proceed with saving data
+            return
+        }
+
+        if (uploadPostText.text.isNullOrBlank() || binding.uploadCategory.text.isNullOrBlank()) {
             Toast.makeText(
                 this@ForumUpload,
                 "Please fill in all the required information",
@@ -516,15 +519,28 @@ class ForumUpload : AppCompatActivity() {
 
             storageReference.putFile(uri!!)
                 .addOnSuccessListener { taskSnapshot ->
+                    if (isFinishing) {
+                        // Activity is finishing, do not proceed
+                        dialog.dismiss()
+                        return@addOnSuccessListener
+                    }
+
                     val uriTask = taskSnapshot.storage.downloadUrl
                     while (!uriTask.isComplete);
                     val urlImage = uriTask.result
-                    imageURL = urlImage.toString()
+                    val imageUrl = urlImage.toString()
 
                     // Proceed to upload other data along with the image URL
-                    uploadData(imageURL)
+                    uploadData(imageUrl)
+                    dialog.dismiss()
                 }
                 .addOnFailureListener { e ->
+                    if (isFinishing) {
+                        // Activity is finishing, do not proceed
+                        dialog.dismiss()
+                        return@addOnFailureListener
+                    }
+
                     dialog.dismiss()
                     Toast.makeText(
                         this@ForumUpload,
@@ -534,6 +550,7 @@ class ForumUpload : AppCompatActivity() {
                 }
         }
     }
+
 
     private fun uploadData(imageUrl: String?) {
         val postText = uploadPostText.text.toString()
