@@ -764,7 +764,7 @@ class Register : AppCompatActivity() {
         val dialog = builder.create()
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
 
-        view.findViewById<Button>(R.id.okbtns).setOnClickListener {
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
             dialog.dismiss()
         }
 

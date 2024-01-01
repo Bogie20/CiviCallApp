@@ -133,18 +133,12 @@ class Login : AppCompatActivity() {
             signInGoogle()
         }
 
-
-
-
         if (showSuccessPopup) {
             // Display the "Account Created Successfully!" popup
             showCustomPopupSuccess("Account Created Successfully!")
         }
         emailEditText = binding.emailLogin
         passwordEditText = binding.passwordText
-
-
-
 
         binding.signUpTV.setOnClickListener {
             val intent = Intent(this, Register::class.java)
@@ -241,12 +235,14 @@ class Login : AppCompatActivity() {
             if (networkUtils.isOnline) {
                 validateData()
             } else {
-                showNoInternetPopup()
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
             }
-            dismissCustomDialog()
         }
     }
-    private fun compareEmail(email: EditText, dialog: Dialog) {
+        private fun compareEmail(email: EditText, dialog: Dialog) {
         val emailText = email.text.toString().trim()
         if (emailText.isEmpty()) {
             email.error = "Input Your Email First"
@@ -274,6 +270,9 @@ class Login : AppCompatActivity() {
         }
         if (isProgressShowing) {
             isProgressShowing = false
+        }
+        if (isNoInternetDialogShowing) {
+            isNoInternetDialogShowing = false
         }
     }
     private fun showCustomPopupSuccess(message: String) {
@@ -435,18 +434,23 @@ class Login : AppCompatActivity() {
         alertDialog.show()
         isPopupShowing = true
     }
+    private var isNoInternetDialogShowing = false
     private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
         val builder = AlertDialog.Builder(this)
         val view = layoutInflater.inflate(R.layout.dialog_network, null)
-        dismissCustomDialog()
         builder.setView(view)
         val dialog = builder.create()
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
-        view.findViewById<Button>(R.id.okbtns).setOnClickListener {
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
             dialog.dismiss()
+            isNoInternetDialogShowing = false
         }
         if (dialog.window != null) {
             dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
         }
         dialog.show()
     }

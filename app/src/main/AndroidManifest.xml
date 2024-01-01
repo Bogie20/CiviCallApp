@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
     <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -49,23 +50,13 @@
         <activity
             android:name=".ActivePoints.ActivePointsEarned"
             android:exported="false" />
-        <activity
-            android:name=".Notification.FragmentNotification"
-            android:exported="false" />
+
         <activity
             android:name=".FinishActivityList.FinishActivity"
             android:exported="true" />
         <activity
             android:name=".CurrentEngagementList.CurrentEngagements"
             android:exported="true" />
-
-        <service
-            android:name=".MyFirebaseMessagingService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
 
         <activity
             android:name=".Calendar.CalendarActivity"
@@ -91,14 +82,6 @@
         <activity
             android:name=".Recognition.RecognitionLeaderBoard"
             android:exported="true" />
-        <activity
-            android:name=".Notification.NotificationOne"
-            android:exported="true" />
-        <activity
-            android:name=".Notification.Notifications"
-            android:exported="true" /> <!-- <activity -->
-        <!-- android:name=".CalendarView.CalendarEvents" -->
-        <!-- android:exported="true" /> -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.civicall.fileprovider"
