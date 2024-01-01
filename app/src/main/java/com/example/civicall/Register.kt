@@ -26,8 +26,10 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
 import com.example.civicall.CivicEngagementPost.CivicPostFragment
 import com.example.civicall.databinding.ActivityRegisterBinding
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
@@ -711,7 +713,7 @@ class Register : AppCompatActivity() {
             }
         } else {
             // Only create the user account if there are no validation errors
-            createUserAccount()
+            showSaveConfirmationDialog()
         }
     }
 
@@ -845,6 +847,53 @@ dismissCustomDialog()
             isProgressBarShowing = false
         }, durationMillis)
     }
+    private var isSaveConfirmationDialogShowing = false // Add this variable
+
+    private fun showSaveConfirmationDialog() {
+        if (isSaveConfirmationDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val confirmTitle: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
+        val logoutMsg: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
+        val saveBtn: MaterialButton = dialogView.findViewById(R.id.saveBtn)
+        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        confirmTitle.text = "Confirmation"
+        logoutMsg.text = "Are you sure about the inputs you provided for registration?"
+
+        saveBtn.text = "Save"
+        saveBtn.setOnClickListener {
+            alertDialog.dismiss()
+            dismissCustomDialog()
+
+
+            createUserAccount()
+        }
+        cancelBtn.text = "Cancel"
+        cancelBtn.setOnClickListener {
+            isSaveConfirmationDialogShowing = false
+            alertDialog.dismiss()
+        }
+        alertDialog.setOnDismissListener{
+            isSaveConfirmationDialogShowing = false
+        }
+
+        alertDialog.show()
+        isSaveConfirmationDialogShowing =
+            true
+    }
     private fun dismissCustomDialog() {
         if (isPopupShowing) {
 
@@ -854,6 +903,10 @@ dismissCustomDialog()
         if (isProgressBarShowing) {
 
             isProgressBarShowing = false
+        }
+        if (isSaveConfirmationDialogShowing) {
+
+            isSaveConfirmationDialogShowing = false
         }
 
     }

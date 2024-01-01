@@ -92,9 +92,6 @@ class NotificationFragment : Fragment() {
                                 imageUrl,
                                 timestamp24HoursBefore
                             )
-
-                            // Check if the current date and time match or exceed the endDate
-                            // Check if the current date is more than 2 weeks after the endDate
                             val currentDate = Date()
                             val endDateTime = SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(endDateStr)
 

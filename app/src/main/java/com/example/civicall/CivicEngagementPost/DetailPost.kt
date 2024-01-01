@@ -1080,24 +1080,6 @@ class DetailPost : AppCompatActivity() {
                                 joinButton.text = "Join Now"
                             }
                         }
-//                        val participantsReference: DatabaseReference = reference.child("Participants").child(currentUserId)
-//                            val timestamp = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date())
-//                        participantsReference.addListenerForSingleValueEvent(object : ValueEventListener {
-//                            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                                val isJoined = dataSnapshot.child("joined").getValue(Boolean::class.java) ?: false
-//
-//                                if (isJoined) {
-//                                    incrementActivePointsForUser(currentUserId)
-//                                    participantsReference.child("receivedStamp").setValue(timestamp)
-//                                }
-//                            }
-//
-//                            override fun onCancelled(databaseError: DatabaseError) {
-//                                // Handle onCancelled for participants
-//                            }
-//                        })
-//                    }
-
                         override fun onCancelled(databaseError: DatabaseError) {
                             Toast.makeText(
                                 this@DetailPost,

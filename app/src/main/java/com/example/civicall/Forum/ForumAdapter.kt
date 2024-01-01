@@ -675,7 +675,7 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
     fun updateTimeText(postTime: String?) {
         postTime?.let {
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+            val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
 
             dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
             val date = dateFormat.parse(postTime)

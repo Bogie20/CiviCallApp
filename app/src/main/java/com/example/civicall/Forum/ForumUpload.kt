@@ -602,7 +602,7 @@ class ForumUpload : AppCompatActivity() {
     }
     private fun getCurrentDateTime(): String {
         val timeZone = TimeZone.getTimeZone("Asia/Manila")
-        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        val simpleDateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
         simpleDateFormat.timeZone = timeZone
         return simpleDateFormat.format(Date())
     }

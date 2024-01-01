@@ -16,7 +16,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatTextView
 import com.example.civicall.databinding.ActivityChangePasswordBinding
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.EmailAuthProvider
@@ -170,7 +172,7 @@ class ChangePassword : AppCompatActivity() {
                 binding.retypepassword.error =
                     "Password is too long (max $passwordMaxLength characters)"
             } else {
-                changePassword()
+               showSaveConfirmationDialog()
             }
         }
     }
@@ -213,6 +215,10 @@ class ChangePassword : AppCompatActivity() {
         if (isProgressShowing) {
 
             isProgressShowing = false
+        }
+        if (isSaveConfirmationDialogShowing) {
+
+            isSaveConfirmationDialogShowing = false
         }
     }
 
@@ -258,6 +264,54 @@ class ChangePassword : AppCompatActivity() {
             // Set the variable to false when the dialog is dismissed
             isProgressShowing = false
         }, durationMillis)
+    }
+
+    private var isSaveConfirmationDialogShowing = false // Add this variable
+
+    private fun showSaveConfirmationDialog() {
+        if (isSaveConfirmationDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val confirmTitle: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
+        val logoutMsg: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
+        val saveBtn: MaterialButton = dialogView.findViewById(R.id.saveBtn)
+        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        confirmTitle.text = "Confirmation"
+        logoutMsg.text = "Are you certain you want to proceed with changing your password?"
+
+        saveBtn.text = "Save"
+        saveBtn.setOnClickListener {
+            alertDialog.dismiss()
+            dismissCustomDialog()
+
+
+            changePassword()
+        }
+        cancelBtn.text = "Cancel"
+        cancelBtn.setOnClickListener {
+            isSaveConfirmationDialogShowing = false
+            alertDialog.dismiss()
+        }
+        alertDialog.setOnDismissListener{
+            isSaveConfirmationDialogShowing = false
+        }
+
+        alertDialog.show()
+        isSaveConfirmationDialogShowing =
+            true
     }
 
     private fun changePassword() {
@@ -310,7 +364,7 @@ class ChangePassword : AppCompatActivity() {
                             }
                         } else {
                             showCustomChangedPassMessage(
-                                "Re-Authentication Failed",
+                                "Re-authentication Failed: Please review the entered inputs.",
                                 3000,
                                 R.layout.dialog_sadface
                             )
