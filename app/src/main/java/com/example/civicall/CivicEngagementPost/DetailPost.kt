@@ -164,6 +164,7 @@ class DetailPost : AppCompatActivity() {
         }
 
         joinButton.setOnClickListener {
+            if (networkUtils.isInternetAvailable()) {
             if (currentUserId != null) {
                 // Check if the user is verified
                 val userRef =
@@ -254,6 +255,12 @@ class DetailPost : AppCompatActivity() {
                     }
                 })
             }
+            } else {
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
+            }
         }
 
 
@@ -331,11 +338,17 @@ class DetailPost : AppCompatActivity() {
         })
 
 
-        deleteButton.setOnClickListener {
-
-            showDeleteConfirmationDialog()
-        }
-        editButton.setOnClickListener {
+       deleteButton.setOnClickListener {
+           if (networkUtils.isInternetAvailable()) {
+               showDeleteConfirmationDialog()
+           } else {
+               if (!isNoInternetDialogShowing) {
+                   dismissCustomDialog()
+                   showNoInternetPopup()
+               }
+           }
+       }
+    editButton.setOnClickListener {
             val intent = Intent(this@DetailPost, Update_engagement::class.java)
                 .putExtra("Category", detailCategory.text.toString())
                 .putExtra("Title", detailTitle.text.toString())
@@ -357,6 +370,26 @@ class DetailPost : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
+    }
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
     }
 
     private fun showDatabaseErrorMessage(databaseError: DatabaseError) {
@@ -1237,6 +1270,10 @@ class DetailPost : AppCompatActivity() {
         if (isJoinSuccessDialogShowing) {
 
             isJoinSuccessDialogShowing = false
+        }
+        if (isNoInternetDialogShowing) {
+
+            isNoInternetDialogShowing = false
         }
 
     }

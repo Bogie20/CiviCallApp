@@ -18,6 +18,7 @@ import com.example.civicall.R
 import com.google.firebase.auth.FirebaseAuth
 import com.example.civicall.databinding.ActivityActivePointsEarnedBinding
 import com.google.firebase.database.*
+import com.example.civicall.NetworkUtils
 
 class ActivePointsEarned : AppCompatActivity() {
 
@@ -30,12 +31,15 @@ class ActivePointsEarned : AppCompatActivity() {
     private lateinit var noPostsText: TextView
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
+    private lateinit var networkUtils: NetworkUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityActivePointsEarnedBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         noPostsImage = findViewById(R.id.noPostsImage)
         noPostsText = findViewById(R.id.noPostsText)
         recyclerView = findViewById(R.id.recyclerView)
@@ -122,4 +126,9 @@ class ActivePointsEarned : AppCompatActivity() {
         startActivity(intent)
         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

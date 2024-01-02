@@ -1,22 +1,17 @@
 package com.example.civicall.Forum
 
 import android.app.Activity
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.text.InputType
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
-import com.example.civicall.NetworkUtils
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -25,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityForumUpdateBinding
 import com.google.android.material.button.MaterialButton
@@ -33,12 +29,11 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
+
 
 class ForumUpdate: AppCompatActivity() {
 
@@ -121,11 +116,41 @@ class ForumUpdate: AppCompatActivity() {
             photoPicker.type = "image/*"
             activityResultLauncher.launch(photoPicker)
         }
-        updateButton.setOnClickListener {
-            showUpdateConfirmation()
 
+        updateButton.setOnClickListener {
+            if (networkUtils.isInternetAvailable()) {
+                showUpdateConfirmation()
+            } else {
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
+            }
         }
     }
+
+
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
+    }
+
     private fun saveData() {
         if (isDestroyed) {
             return
@@ -361,6 +386,10 @@ class ForumUpdate: AppCompatActivity() {
         if (isSaveConfirmationDialogShowing) {
 
             isSaveConfirmationDialogShowing = false
+        }
+        if (isNoInternetDialogShowing) {
+
+            isNoInternetDialogShowing = false
         }
     }
     override fun onDestroy() {

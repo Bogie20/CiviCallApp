@@ -6,16 +6,18 @@ import com.example.civicall.databinding.ActivitySettingsBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.example.civicall.NetworkUtils
 
 class Settings : AppCompatActivity(), ValueEventListener {
 
     private lateinit var binding: ActivitySettingsBinding
-
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         binding.backbtn.setOnClickListener {
             val intent = Intent(this, MainMenu::class.java)
             startActivity(intent)
@@ -60,4 +62,9 @@ class Settings : AppCompatActivity(), ValueEventListener {
         startActivity(intent)
         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

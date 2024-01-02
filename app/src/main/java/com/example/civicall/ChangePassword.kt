@@ -6,20 +6,17 @@ import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Patterns
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.civicall.databinding.ActivityChangePasswordBinding
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -32,7 +29,6 @@ class ChangePassword : AppCompatActivity() {
     private lateinit var passwordTextInputLayout: TextInputLayout
     private lateinit var newpasswordTextInputLayout: TextInputLayout
     private lateinit var retypepasswordTextInputLayout: TextInputLayout
-    private lateinit var CurrentPassword: TextInputEditText
     private var user: FirebaseUser? = null
     private var currentpassword = ""
     private var newpassword = ""
@@ -112,9 +108,16 @@ class ChangePassword : AppCompatActivity() {
             }
         auth = FirebaseAuth.getInstance()
         binding.btnchange.setOnClickListener {
-            validateData()
+            if (networkUtils.isInternetAvailable()) {
+                validateData()
+            } else {
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
+            }
         }
-        passwordTextInputLayout = binding.passwordTextInputLayout
+    passwordTextInputLayout = binding.passwordTextInputLayout
         newpasswordTextInputLayout = binding.newpasswordTextInputLayout
         retypepasswordTextInputLayout = binding.retypepasswordTextInputLayout
 
@@ -220,6 +223,10 @@ class ChangePassword : AppCompatActivity() {
 
             isSaveConfirmationDialogShowing = false
         }
+        if (isNoInternetDialogShowing) {
+
+            isNoInternetDialogShowing = false
+        }
     }
 
     private var isProgressShowing = false
@@ -313,6 +320,27 @@ class ChangePassword : AppCompatActivity() {
         isSaveConfirmationDialogShowing =
             true
     }
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
+    }
+
 
     private fun changePassword() {
         if (binding.CurrentPassword.text?.isNotEmpty() == true &&

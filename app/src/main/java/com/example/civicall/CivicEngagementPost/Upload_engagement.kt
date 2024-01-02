@@ -155,42 +155,68 @@ class Upload_engagement : AppCompatActivity() {
         }
 
         saveButton.setOnClickListener {
-            val auth = FirebaseAuth.getInstance()
-            val currentUser = auth.currentUser
-            if (currentUser != null) {
-                val uid = currentUser.uid
+            if (networkUtils.isInternetAvailable()) {
+                val auth = FirebaseAuth.getInstance()
+                val currentUser = auth.currentUser
+                if (currentUser != null) {
+                    val uid = currentUser.uid
 
-                // Now you can use the uid in your Firebase Database reference
-                val currentUserRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+                    // Now you can use the uid in your Firebase Database reference
+                    val currentUserRef =
+                        FirebaseDatabase.getInstance().getReference("Users").child(uid)
 
-                currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        val verificationStatus =
-                            snapshot.child("verificationStatus").getValue(Boolean::class.java)
+                    currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            val verificationStatus =
+                                snapshot.child("verificationStatus").getValue(Boolean::class.java)
 
-                        if (verificationStatus == false) {
-                            showMessage(
-                                "Please verify your account before uploading",
-                                4000,
-                                "Oops!",
-                                R.drawable.notverifiedshield,
-                                R.layout.dialog_sadface
-                            )
-                        } else {
-                            showConfirmationDialog()
+                            if (verificationStatus == false) {
+                                showMessage(
+                                    "Please verify your account before uploading",
+                                    4000,
+                                    "Oops!",
+                                    R.drawable.notverifiedshield,
+                                    R.layout.dialog_sadface
+                                )
+                            } else {
+                                showConfirmationDialog()
+                            }
                         }
-                    }
 
-                    override fun onCancelled(error: DatabaseError) {
-                        // Handle the error as needed
-                    }
-                })
+                        override fun onCancelled(error: DatabaseError) {
+                            // Handle the error as needed
+                        }
+                    })
+                }
             } else {
-                // Handle the case where the user is not signed in
-                // You might want to redirect the user to the login screen or perform some other action
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
             }
         }
     }
+        private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
+    }
+
     private var isCampusDialogShowing = false
 
     private fun showCheckBoxCampus() {

@@ -15,7 +15,7 @@ import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-
+import com.example.civicall.NetworkUtils
 class FinishActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFinishBinding
     private lateinit var recyclerView: RecyclerView
@@ -24,12 +24,13 @@ class FinishActivity : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
     private var childEventListener: ChildEventListener? = null
-
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFinishBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         recyclerView = binding.finishRecycler
         auth = FirebaseAuth.getInstance()
         databaseReference = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
@@ -113,6 +114,7 @@ class FinishActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        networkUtils.cleanup()
         childEventListener?.let {
             databaseReference.removeEventListener(it)
         }

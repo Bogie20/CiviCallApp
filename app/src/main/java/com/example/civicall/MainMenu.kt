@@ -3,7 +3,9 @@ package com.example.civicall
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.PorterDuff
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -59,52 +61,62 @@ class MainMenu : AppCompatActivity() {
         val editProfileCardView:TextView= findViewById(R.id.editprofile)
 
         logout.setOnClickListener {
-            if (!isLogoutDialogShown) {
-                isLogoutDialogShown = true
+            if (networkUtils.isInternetAvailable()) {
 
-                val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
-                val dialogBuilder = AlertDialog.Builder(this)
-                    .setView(dialogView)
-                val dialog = dialogBuilder.create()
+                if (!isLogoutDialogShown) {
+                    isLogoutDialogShown = true
 
-                dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
-                dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+                    val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
+                    val dialogBuilder = AlertDialog.Builder(this)
+                        .setView(dialogView)
+                    val dialog = dialogBuilder.create()
 
-                val title: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
-                val message: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
-                val logout: MaterialButton = dialogView.findViewById(R.id.saveBtn)
-                val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+                    dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+                    dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-                title.text = "Logout"
-                message.text = "Are you sure you want to Logout?"
+                    val title: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
+                    val message: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
+                    val logout: MaterialButton = dialogView.findViewById(R.id.saveBtn)
+                    val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
 
-                logout.text = "Yes"
-                logout.setOnClickListener {
-                    firebaseAuth.signOut()
+                    title.text = "Logout"
+                    message.text = "Are you sure you want to Logout?"
 
-                    val googleSignInClient = GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    googleSignInClient.signOut().addOnCompleteListener {
-                        // Redirect to the login screen after successful sign-out
-                        val intent = Intent(this, Login::class.java)
-                        startActivity(intent)
-                        finish()
+                    logout.text = "Yes"
+                    logout.setOnClickListener {
+                        firebaseAuth.signOut()
+
+                        val googleSignInClient =
+                            GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        googleSignInClient.signOut().addOnCompleteListener {
+                            // Redirect to the login screen after successful sign-out
+                            val intent = Intent(this, Login::class.java)
+                            startActivity(intent)
+                            finish()
+                            dialog.dismiss()
+                        }
+                    }
+
+                    cancelBtn.text = "Cancel"
+                    cancelBtn.setOnClickListener {
+                        // Handle click for the "Cancel" button
                         dialog.dismiss()
                     }
-                }
 
-                cancelBtn.text = "Cancel"
-                cancelBtn.setOnClickListener {
-                    // Handle click for the "Cancel" button
-                    dialog.dismiss()
-                }
+                    dialog.setOnDismissListener {
+                        isLogoutDialogShown = false
+                    }
 
-                dialog.setOnDismissListener {
-                    isLogoutDialogShown = false
+                    dialog.show()
                 }
-
-                dialog.show()
+            }else {
+                    if (!isNoInternetDialogShowing) {
+                        dismissCustomDialog()
+                        showNoInternetPopup()
+                    }
+                }
             }
-        }
+
         verification1.setOnClickListener {
             // Handle click for menu item 2
             val intent = Intent(this, UploadVerificationFile::class.java)
@@ -141,6 +153,33 @@ class MainMenu : AppCompatActivity() {
     }
 
 
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
+    }
+    private fun dismissCustomDialog() {
+        if (isNoInternetDialogShowing) {
+
+
+            isNoInternetDialogShowing = false
+        }
+    }
 
     private fun checkUser() {
         val firebaseUser = firebaseAuth.currentUser
@@ -206,7 +245,6 @@ class MainMenu : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
 
-        // Cleanup to unregister the network callback
         networkUtils.cleanup()
     }
     override fun onBackPressed() {

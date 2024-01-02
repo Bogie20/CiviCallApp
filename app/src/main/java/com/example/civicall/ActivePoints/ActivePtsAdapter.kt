@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
 
+
 class ActivePtsAdapter(private val notificationList: List<DataClassAct>) :
     RecyclerView.Adapter<ActivePtsAdapter.NotificationViewHolder>() {
 

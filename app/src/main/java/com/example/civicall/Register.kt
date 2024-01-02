@@ -508,12 +508,14 @@ class Register : AppCompatActivity() {
         }
         val regbtn: Button = findViewById(R.id.Reg)
         regbtn.setOnClickListener {
-            if (networkUtils.isOnline) {
+            if (networkUtils.isInternetAvailable()) {
                 validateData()
             } else {
-                showNoInternetPopup()
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
             }
-            dismissCustomDialog()
         }
 
 
@@ -754,26 +756,27 @@ class Register : AppCompatActivity() {
         alertDialog.show()
         isPopupShowing = true // Set the variable to true when the pop-up is displayed
     }
+    private var isNoInternetDialogShowing = false
     private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
         val builder = AlertDialog.Builder(this)
         val view = layoutInflater.inflate(R.layout.dialog_network, null)
-
-        dismissCustomDialog()
-
         builder.setView(view)
         val dialog = builder.create()
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
-
         view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
             dialog.dismiss()
+            isNoInternetDialogShowing = false
         }
-
         if (dialog.window != null) {
             dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
         }
-
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
         dialog.show()
     }
+
 
     private fun showCustomPopupError(message: String) {
         // Check if the pop-up is already showing, and if so, return early
@@ -907,6 +910,10 @@ dismissCustomDialog()
         if (isSaveConfirmationDialogShowing) {
 
             isSaveConfirmationDialogShowing = false
+        }
+        if (isNoInternetDialogShowing) {
+
+            isNoInternetDialogShowing = false
         }
 
     }

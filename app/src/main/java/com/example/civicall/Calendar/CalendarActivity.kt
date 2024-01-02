@@ -15,13 +15,14 @@ import com.example.civicall.databinding.ActivityCalendarBinding
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
-
+import com.example.civicall.NetworkUtils
 class CalendarActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCalendarBinding
     private lateinit var calendarView: CalendarView
     private lateinit var recyclerView: RecyclerView
     private lateinit var calendarAdapter: CalendarAdapter
     private lateinit var engagementList: MutableList<CalendarData>
+    private lateinit var networkUtils: NetworkUtils
 
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
@@ -31,7 +32,8 @@ class CalendarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCalendarBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         calendarView = findViewById(R.id.calendarView)
         recyclerView = findViewById(R.id.recyclerView)
         binding.backbtn.setOnClickListener {
@@ -175,5 +177,9 @@ class CalendarActivity : AppCompatActivity() {
         val intent = Intent(this, MainMenu::class.java)
         startActivity(intent)
         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
     }
 }

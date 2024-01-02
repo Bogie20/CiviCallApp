@@ -1,10 +1,13 @@
 package com.example.civicall
 
 import android.app.ActivityOptions
+import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
+import android.widget.Button
 import androidx.lifecycle.lifecycleScope
 import com.example.civicall.databinding.ActivitySplashactivityBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -37,8 +40,44 @@ class SplashActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
         lifecycleScope.launch {
+            while (networkUtils.isInternetAvailable()) {
+                // Handle no internet connection
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
+                delay(1900) // Adjust the delay as needed
+            }
+
             delay(1900)
             checkuser()
+        }
+
+    }
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
+    }
+
+    private fun dismissCustomDialog() {
+        if (isNoInternetDialogShowing) {
+            isNoInternetDialogShowing = false
         }
     }
 

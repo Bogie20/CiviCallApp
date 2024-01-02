@@ -131,14 +131,13 @@ class ForumUpload : AppCompatActivity() {
         }
         val selectCampus: RelativeLayout = findViewById(R.id.relativeSelect)
         selectCampus.setOnClickListener {
-         showCheckBoxCampus()
+            showCheckBoxCampus()
         }
 
         val categoryDropdown = binding.uploadCategory
         val categoryArray = resources.getStringArray(R.array.engagement_category)
         val adaptercategory = ArrayAdapter(this, R.layout.dropdown_item, categoryArray)
         (categoryDropdown as? AutoCompleteTextView)?.setAdapter(adaptercategory)
-
 
 
         val fabGallery = findViewById<FloatingActionButton>(R.id.galleryButton)
@@ -148,42 +147,68 @@ class ForumUpload : AppCompatActivity() {
         }
 
         saveButton.setOnClickListener {
-            val auth = FirebaseAuth.getInstance()
-            val currentUser = auth.currentUser
-            if (currentUser != null) {
-                val uid = currentUser.uid
+            if (networkUtils.isInternetAvailable()) {
+                // Check verification status or perform other actions
+                val auth = FirebaseAuth.getInstance()
+                val currentUser = auth.currentUser
+                if (currentUser != null) {
+                    val uid = currentUser.uid
 
-                // Now you can use the uid in your Firebase Database reference
-                val currentUserRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+                    val currentUserRef =
+                        FirebaseDatabase.getInstance().getReference("Users").child(uid)
 
-                currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        val verificationStatus =
-                            snapshot.child("verificationStatus").getValue(Boolean::class.java)
+                    currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            val verificationStatus =
+                                snapshot.child("verificationStatus").getValue(Boolean::class.java)
 
-                        if (verificationStatus == false) {
-                            showMessage(
-                                "Please verify your account before uploading",
-                                4000,
-                                "Oops!",
-                                R.drawable.notverifiedshield,
-                                R.layout.dialog_sadface
-                            )
-                        } else {
-                            showConfirmationDialog()
+                            if (verificationStatus == false) {
+                                showMessage(
+                                    "Please verify your account before uploading",
+                                    4000,
+                                    "Oops!",
+                                    R.drawable.notverifiedshield,
+                                    R.layout.dialog_sadface
+                                )
+                            } else {
+                                showConfirmationDialog()
+                            }
                         }
-                    }
 
-                    override fun onCancelled(error: DatabaseError) {
-                        // Handle the error as needed
-                    }
-                })
+                        override fun onCancelled(error: DatabaseError) {
+                            // Handle the error as needed
+                        }
+                    })
+                }
             } else {
-                // Handle the case where the user is not signed in
-                // You might want to redirect the user to the login screen or perform some other action
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
             }
         }
     }
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
+    }
+
     private fun launchGalleryIntent() {
         val photoPicker = Intent(Intent.ACTION_GET_CONTENT)
         photoPicker.type = "image/*"
@@ -466,7 +491,9 @@ class ForumUpload : AppCompatActivity() {
     private fun dismissCustomDialog() {
         if (isSaveConfirmationDialogShowing) {
             isSaveConfirmationDialogShowing = false
-
+        }
+        if (isNoInternetDialogShowing) {
+            isNoInternetDialogShowing = false
         }
     }
 

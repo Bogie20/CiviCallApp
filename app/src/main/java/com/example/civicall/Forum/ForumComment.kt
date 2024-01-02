@@ -1,9 +1,12 @@
 package com.example.civicall.Forum
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -125,39 +128,47 @@ class ForumComment : AppCompatActivity() {
         commentsRecyclerView = findViewById(R.id.comments_recyclerView)
 
         sendIcon.setOnClickListener {
-            val commentText = commentEditText.text.toString().trim()
+            if (networkUtils.isInternetAvailable()) {
+                val commentText = commentEditText.text.toString().trim()
 
-            // Check if the user is verified before allowing them to comment
-            val currentUser = FirebaseAuth.getInstance().currentUser
-            if (currentUser != null) {
-                val userRef =
-                    FirebaseDatabase.getInstance().getReference("Users").child(currentUser.uid)
-                userRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        if (snapshot.exists()) {
-                            val verificationStatus =
-                                snapshot.child("verificationStatus").getValue(Boolean::class.java)
-                            if (verificationStatus == true) {
-                                // User is verified, allow commenting
-                                if (commentText.isNotEmpty()) {
-                                    addCommentToDatabase(commentText)
+                // Check if the user is verified before allowing them to comment
+                val currentUser = FirebaseAuth.getInstance().currentUser
+                if (currentUser != null) {
+                    val userRef =
+                        FirebaseDatabase.getInstance().getReference("Users").child(currentUser.uid)
+                    userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if (snapshot.exists()) {
+                                val verificationStatus =
+                                    snapshot.child("verificationStatus").getValue(Boolean::class.java)
+                                if (verificationStatus == true) {
+                                    // User is verified, allow commenting
+                                    if (commentText.isNotEmpty()) {
+                                        addCommentToDatabase(commentText)
+                                    }
+                                } else {
+                                    Toast.makeText(
+                                        this@ForumComment,
+                                        "Please verify your account before joining the discussion.",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
-                            } else {
-                                Toast.makeText(
-                                    this@ForumComment,
-                                    "Please verify your account before joining the discussion.",
-                                    Toast.LENGTH_SHORT
-                                ).show()
                             }
                         }
-                    }
 
-                    override fun onCancelled(error: DatabaseError) {
-                        Log.e("ForumComment", "User data retrieval cancelled: ${error.message}")
-                    }
-                })
+                        override fun onCancelled(error: DatabaseError) {
+                            Log.e("ForumComment", "User data retrieval cancelled: ${error.message}")
+                        }
+                    })
+                }
+            } else {
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
             }
         }
+
 
         commentsAdapter = CommentAdapter(this, postKey, commentList)
         commentsRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -180,6 +191,33 @@ class ForumComment : AppCompatActivity() {
                 }
             }
         })
+    }
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
+    }
+    private fun dismissCustomDialog() {
+        if (isNoInternetDialogShowing) {
+
+            isNoInternetDialogShowing = false
+        }
+
     }
 
     private fun formatCount(count: Int): String {
@@ -355,4 +393,9 @@ class ForumComment : AppCompatActivity() {
             }
         })
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

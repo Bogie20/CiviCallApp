@@ -197,8 +197,14 @@ class Update_engagement: AppCompatActivity() {
             activityResultLauncher.launch(photoPicker)
         }
         updateButton.setOnClickListener {
-            showUpdateConfirmation()
-
+            if (networkUtils.isInternetAvailable()) {
+                showUpdateConfirmation()
+            } else {
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
+            }
         }
         updateStartDate.setOnClickListener {
             showDateTimePicker(updateStartDate, null)
@@ -217,6 +223,29 @@ class Update_engagement: AppCompatActivity() {
             showDateTimePicker(updateEndDate, startDateCalendar)
         }
     }
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
+    }
+
+
+
     private fun saveData() {
         val builder = AlertDialog.Builder(this@Update_engagement)
         builder.setCancelable(false)

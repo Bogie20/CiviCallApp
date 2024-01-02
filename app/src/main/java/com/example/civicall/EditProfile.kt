@@ -1,10 +1,8 @@
 package com.example.civicall
 
-
 import android.Manifest
 import android.app.Activity
 import android.app.DatePickerDialog
-import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -279,10 +277,17 @@ class EditProfile : AppCompatActivity() {
                 binding.SrCode.setSelection(fullSrcode.length)
             }
         }
-        binding.savebtn.setOnClickListener {
-            showSaveConfirmationDialog()
-        }
 
+        binding.savebtn.setOnClickListener {
+            if (networkUtils.isInternetAvailable()) {
+                showSaveConfirmationDialog()
+            } else {
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
+            }
+        }
         binding.backbtn.setOnClickListener {
             dismissCustomDialog()
             val intent = Intent(this, ProfileDetails::class.java)
@@ -723,6 +728,27 @@ class EditProfile : AppCompatActivity() {
         alertDialog.show()
         isPopupShowing = true // Set the variable to true when the pop-up is displayed
     }
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
+    }
+
     private fun dismissCustomDialog() {
         if (isPopupShowing) {
 
@@ -735,7 +761,9 @@ class EditProfile : AppCompatActivity() {
         if (isImageDialogShowing) {
 
             isImageDialogShowing = false
-
+        }
+        if (isNoInternetDialogShowing) {
+            isNoInternetDialogShowing = false
         }
     }
     private fun validateBirthday(): Boolean {
@@ -1029,7 +1057,6 @@ class EditProfile : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
 
-        // Cleanup to unregister the network callback
         networkUtils.cleanup()
     }
 

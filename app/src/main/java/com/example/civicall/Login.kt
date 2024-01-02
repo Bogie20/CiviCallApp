@@ -126,9 +126,6 @@ class Login : AppCompatActivity() {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
         firebaseAuth = FirebaseAuth.getInstance()
 
-
-
-
         binding.googlebtn.setOnClickListener {
             signInGoogle()
         }
@@ -145,9 +142,6 @@ class Login : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-        }
-        binding.btnlogin.setOnClickListener {
-            validateData()
         }
         emailTextInputLayout = binding.emailTextInputLayout
         passwordTextInputLayout = binding.passwordTextInputLayout
@@ -232,7 +226,7 @@ class Login : AppCompatActivity() {
             }
         }
         binding.btnlogin.setOnClickListener {
-            if (networkUtils.isOnline) {
+            if (networkUtils.isInternetAvailable()) {
                 validateData()
             } else {
                 if (!isNoInternetDialogShowing) {
@@ -241,6 +235,7 @@ class Login : AppCompatActivity() {
                 }
             }
         }
+
     }
         private fun compareEmail(email: EditText, dialog: Dialog) {
         val emailText = email.text.toString().trim()
@@ -528,8 +523,8 @@ class Login : AppCompatActivity() {
                 editor.apply()
 
                 profileImageUri = account.photoUrl?.toString()
+                updateUserInfo(account)
 
-                // Update the lastLogin timestamp for Google Sign-In users
                 val uid = firebaseAuth.uid
                 val ref = FirebaseDatabase.getInstance().getReference("Users")
                 ref.child(uid!!).addListenerForSingleValueEvent(object : ValueEventListener {

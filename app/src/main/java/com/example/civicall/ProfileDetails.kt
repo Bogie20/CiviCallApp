@@ -304,7 +304,6 @@ class ProfileDetails : AppCompatActivity() {
         override fun onDestroy() {
         super.onDestroy()
 
-        // Cleanup to unregister the network callback
         networkUtils.cleanup()
     }
     override fun onBackPressed() {

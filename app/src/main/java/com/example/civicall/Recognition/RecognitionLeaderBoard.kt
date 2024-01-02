@@ -17,7 +17,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-
+import com.example.civicall.NetworkUtils
 
 class RecognitionLeaderBoard : AppCompatActivity() {
 
@@ -28,7 +28,7 @@ class RecognitionLeaderBoard : AppCompatActivity() {
     private lateinit var campusTitleTextView: TextView
     private lateinit var noPostsImage: ImageView
     private lateinit var noPostsText: TextView
-
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recognition_leader_board)
@@ -41,6 +41,8 @@ class RecognitionLeaderBoard : AppCompatActivity() {
         userList = mutableListOf()
         leaderboardAdapter = RecognitionAdapter(this, userList)
         recyclerView.adapter = leaderboardAdapter
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         val backbtn: ImageView = findViewById(R.id.backbtn)
         val filterCampus: ImageView = findViewById(R.id.filterCampus)
         filterCampus.setOnClickListener {
@@ -281,4 +283,9 @@ class RecognitionLeaderBoard : AppCompatActivity() {
         noPostsText.visibility = View.GONE
         recyclerView.visibility = View.VISIBLE
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

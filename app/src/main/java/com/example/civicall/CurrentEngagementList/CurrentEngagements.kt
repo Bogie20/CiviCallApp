@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
-
+import com.example.civicall.NetworkUtils
 class CurrentEngagements : AppCompatActivity() {
     private lateinit var binding: ActivityCurrentEngagementsBinding
     private lateinit var recyclerView: RecyclerView
@@ -23,11 +23,13 @@ class CurrentEngagements : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
     private var childEventListener: ChildEventListener? = null
-
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCurrentEngagementsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
 
         recyclerView = binding.currentRecycler
         auth = FirebaseAuth.getInstance()
@@ -124,6 +126,7 @@ class CurrentEngagements : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        networkUtils.cleanup()
         childEventListener?.let {
             databaseReference.removeEventListener(it)
         }

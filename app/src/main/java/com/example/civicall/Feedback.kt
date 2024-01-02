@@ -1,7 +1,5 @@
 package com.example.civicall
 
-import PopupFragment
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
@@ -38,6 +36,7 @@ class Feedback : AppCompatActivity() {
     private lateinit var very: TextView
     private lateinit var fix: TextView
     private lateinit var error: TextView
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feedback)
@@ -51,6 +50,8 @@ class Feedback : AppCompatActivity() {
         very = findViewById(R.id.very)
         fix = findViewById(R.id.fix)
         error = findViewById(R.id.error)
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
 
         error.setOnClickListener {
             handleCategorySelection("Great app, but I found a suggestion")
@@ -84,22 +85,40 @@ class Feedback : AppCompatActivity() {
             }
         }
 
-
-        val popupButton: Button = findViewById(R.id.publishbtn)
-        popupButton.setOnClickListener {
-            // Show the popup when the button is clicked
-            val popupFragment = PopupFragment()
-            popupFragment.show(supportFragmentManager, "popup")
-        }
-
         val submitButton: Button = findViewById(R.id.publishbtn)
+
         submitButton.setOnClickListener {
-            // Handle the feedback submission here
-            showConfirmationDialog()
+            if (networkUtils.isInternetAvailable()) {
+                showConfirmationDialog()
+            } else {
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
+            }
         }
 
-        // Initialize the Realtime Database instance
         database = FirebaseDatabase.getInstance()
+    }
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
     }
 
     private var isSaveConfirmationDialogShowing = false
@@ -151,7 +170,9 @@ class Feedback : AppCompatActivity() {
     private fun dismissCustomDialog() {
         if (isSaveConfirmationDialogShowing) {
             isSaveConfirmationDialogShowing = false
-
+        }
+        if (isNoInternetDialogShowing) {
+            isNoInternetDialogShowing = false
         }
     }
 
