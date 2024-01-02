@@ -128,7 +128,7 @@ class ForumComment : AppCompatActivity() {
         commentsRecyclerView = findViewById(R.id.comments_recyclerView)
 
         sendIcon.setOnClickListener {
-            if (networkUtils.isInternetAvailable()) {
+            if (networkUtils.isOnline) {
                 val commentText = commentEditText.text.toString().trim()
 
                 // Check if the user is verified before allowing them to comment

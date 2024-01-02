@@ -279,7 +279,7 @@ class EditProfile : AppCompatActivity() {
         }
 
         binding.savebtn.setOnClickListener {
-            if (networkUtils.isInternetAvailable()) {
+            if (networkUtils.isOnline) {
                 showSaveConfirmationDialog()
             } else {
                 if (!isNoInternetDialogShowing) {

@@ -164,7 +164,7 @@ class DetailPost : AppCompatActivity() {
         }
 
         joinButton.setOnClickListener {
-            if (networkUtils.isInternetAvailable()) {
+            if (networkUtils.isOnline) {
             if (currentUserId != null) {
                 // Check if the user is verified
                 val userRef =
@@ -339,7 +339,7 @@ class DetailPost : AppCompatActivity() {
 
 
        deleteButton.setOnClickListener {
-           if (networkUtils.isInternetAvailable()) {
+           if (networkUtils.isOnline) {
                showDeleteConfirmationDialog()
            } else {
                if (!isNoInternetDialogShowing) {

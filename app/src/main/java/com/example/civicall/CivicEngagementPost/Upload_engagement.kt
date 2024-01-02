@@ -155,7 +155,7 @@ class Upload_engagement : AppCompatActivity() {
         }
 
         saveButton.setOnClickListener {
-            if (networkUtils.isInternetAvailable()) {
+            if (networkUtils.isOnline) {
                 val auth = FirebaseAuth.getInstance()
                 val currentUser = auth.currentUser
                 if (currentUser != null) {

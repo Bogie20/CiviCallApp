@@ -108,7 +108,7 @@ class ChangePassword : AppCompatActivity() {
             }
         auth = FirebaseAuth.getInstance()
         binding.btnchange.setOnClickListener {
-            if (networkUtils.isInternetAvailable()) {
+            if (networkUtils.isOnline) {
                 validateData()
             } else {
                 if (!isNoInternetDialogShowing) {

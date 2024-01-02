@@ -82,7 +82,7 @@ class ReportProblem : AppCompatActivity() {
         problemEditText = findViewById(R.id.ProblemText)
 
         binding.sendbutton.setOnClickListener {
-            if (networkUtils.isInternetAvailable()) {
+            if (networkUtils.isOnline) {
                 // Check if a radio button is selected
                 if (binding.radioGroup.checkedRadioButtonId == -1) {
                     // No radio button is selected, show a message or take appropriate action

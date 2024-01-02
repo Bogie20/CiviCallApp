@@ -197,7 +197,7 @@ class Update_engagement: AppCompatActivity() {
             activityResultLauncher.launch(photoPicker)
         }
         updateButton.setOnClickListener {
-            if (networkUtils.isInternetAvailable()) {
+            if (networkUtils.isOnline) {
                 showUpdateConfirmation()
             } else {
                 if (!isNoInternetDialogShowing) {

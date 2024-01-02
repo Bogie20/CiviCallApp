@@ -147,7 +147,7 @@ class ForumUpload : AppCompatActivity() {
         }
 
         saveButton.setOnClickListener {
-            if (networkUtils.isInternetAvailable()) {
+            if (networkUtils.isOnline) {
                 // Check verification status or perform other actions
                 val auth = FirebaseAuth.getInstance()
                 val currentUser = auth.currentUser

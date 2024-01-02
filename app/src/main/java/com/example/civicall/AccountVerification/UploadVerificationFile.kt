@@ -450,7 +450,7 @@ class UploadVerificationFile : AppCompatActivity() {
         saveButton.setOnClickListener {
             alertDialog.dismiss()
 
-            if (networkUtils.isInternetAvailable()) {
+            if (networkUtils.isOnline) {
                 uploadImageToFirebase(capturedImageUri!!, getSelectedCategory())
             } else {
                 if (!isNoInternetDialogShowing) {
@@ -459,7 +459,6 @@ class UploadVerificationFile : AppCompatActivity() {
                 }
             }
         }
-
         repickButton.setOnClickListener {
             // Dismiss the current dialog
             alertDialog.dismiss()

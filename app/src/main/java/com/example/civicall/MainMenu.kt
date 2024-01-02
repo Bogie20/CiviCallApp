@@ -61,7 +61,7 @@ class MainMenu : AppCompatActivity() {
         val editProfileCardView:TextView= findViewById(R.id.editprofile)
 
         logout.setOnClickListener {
-            if (networkUtils.isInternetAvailable()) {
+            if (networkUtils.isOnline) {
 
                 if (!isLogoutDialogShown) {
                     isLogoutDialogShown = true

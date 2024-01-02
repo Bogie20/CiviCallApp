@@ -17,9 +17,6 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
-import java.io.IOException
-import java.net.HttpURLConnection
-import java.net.URL
 
 class NetworkUtils(private val context: Context) {
     var isOnline = true
@@ -43,7 +40,7 @@ class NetworkUtils(private val context: Context) {
                     isOnline = true
                     if (!isStableOnline) {
                         if (isNetworkStable()) {
-                            showMessage("Connected to the Physical Network", R.drawable.internet_restore)
+                            showMessage("Internet Restored", R.drawable.internet_restore)
                             isStableOnline = true
                         }
                     }
@@ -53,9 +50,10 @@ class NetworkUtils(private val context: Context) {
             override fun onLost(network: Network) {
                 super.onLost(network)
                 if (isOnline) {
+                    isOnline = false
                     isStableOnline = false
                     lastLostTime = System.currentTimeMillis() // Update lastLostTime
-                    showMessage("Disconnected from the Physical Network", R.drawable.nointernet_connection)
+                    showMessage("No Internet Connection", R.drawable.nointernet_connection)
                 }
             }
 
@@ -70,23 +68,11 @@ class NetworkUtils(private val context: Context) {
         val activeNetworkInfo = connectivityManager.activeNetworkInfo
         if (activeNetworkInfo == null || !activeNetworkInfo.isConnected) {
             isOnline = false
-            showMessage("Disconnected from the Physical Network", R.drawable.nointernet_connection)
+            showMessage("No Internet Connection", R.drawable.nointernet_connection)
         }
 
         connectivityManager.registerNetworkCallback(networkRequest, callback)
         connectivityCallback = callback
-    }
-
-    fun isInternetAvailable(): Boolean {
-        return try {
-            val url = URL("http://www.google.com") // You can use any reliable server
-            val urlConnection = url.openConnection() as HttpURLConnection
-            urlConnection.connectTimeout = 3000 // Set your desired timeout
-            urlConnection.connect()
-            urlConnection.responseCode == 200
-        } catch (e: IOException) {
-            false
-        }
     }
 
     private fun showMessage(message: String, iconResId: Int) {

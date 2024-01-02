@@ -118,7 +118,7 @@ class ForumUpdate: AppCompatActivity() {
         }
 
         updateButton.setOnClickListener {
-            if (networkUtils.isInternetAvailable()) {
+            if (networkUtils.isOnline) {
                 showUpdateConfirmation()
             } else {
                 if (!isNoInternetDialogShowing) {

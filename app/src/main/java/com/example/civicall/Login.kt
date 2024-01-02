@@ -16,6 +16,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.civicall.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -33,6 +34,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.TimeZone
 
@@ -226,16 +228,15 @@ class Login : AppCompatActivity() {
             }
         }
         binding.btnlogin.setOnClickListener {
-            if (networkUtils.isInternetAvailable()) {
-                validateData()
-            } else {
-                if (!isNoInternetDialogShowing) {
-                    dismissCustomDialog()
-                    showNoInternetPopup()
+                if (networkUtils.isOnline) {
+                    validateData()
+                } else {
+                    if (!isNoInternetDialogShowing) {
+                        dismissCustomDialog()
+                        showNoInternetPopup()
+                    }
                 }
-            }
         }
-
     }
         private fun compareEmail(email: EditText, dialog: Dialog) {
         val emailText = email.text.toString().trim()

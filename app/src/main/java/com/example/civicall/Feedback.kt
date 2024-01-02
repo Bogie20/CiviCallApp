@@ -88,7 +88,7 @@ class Feedback : AppCompatActivity() {
         val submitButton: Button = findViewById(R.id.publishbtn)
 
         submitButton.setOnClickListener {
-            if (networkUtils.isInternetAvailable()) {
+            if (networkUtils.isOnline) {
                 showConfirmationDialog()
             } else {
                 if (!isNoInternetDialogShowing) {

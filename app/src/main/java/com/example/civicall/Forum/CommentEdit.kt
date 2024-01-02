@@ -64,7 +64,7 @@ class CommentEdit : AppCompatActivity() {
             .child(postKey).child("Comments").child(commentKey)
 
         updateButton.setOnClickListener {
-            if (networkUtils.isInternetAvailable()) {
+            if (networkUtils.isOnline) {
                 showUpdateConfirmation()
             } else {
                 if (!isNoInternetDialogShowing) {

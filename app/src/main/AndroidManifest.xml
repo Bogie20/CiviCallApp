@@ -7,7 +7,6 @@
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
-
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
@@ -64,9 +63,7 @@
         <activity
             android:name=".Forum.CommentEdit"
             android:exported="false" />
-        <activity
-            android:name=".Trial"
-            android:exported="true" />
+
         <activity
             android:name=".Forum.ForumUpdate"
             android:exported="false" />
@@ -199,10 +196,10 @@
             android:exported="true" />
         <activity
             android:name=".ProfileDetails"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".EditProfile"
-            android:exported="false" /> <!-- Posting Civic Engagement Start -->
+            android:exported="true" />
         <activity
             android:name=".EnvironmentalandSocialIssueInfo.ZeroBreaktheChain"
             android:exported="true" />

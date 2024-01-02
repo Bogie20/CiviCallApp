@@ -508,7 +508,7 @@ class Register : AppCompatActivity() {
         }
         val regbtn: Button = findViewById(R.id.Reg)
         regbtn.setOnClickListener {
-            if (networkUtils.isInternetAvailable()) {
+            if (networkUtils.isOnline) {
                 validateData()
             } else {
                 if (!isNoInternetDialogShowing) {
@@ -519,7 +519,7 @@ class Register : AppCompatActivity() {
         }
 
 
-        val birthday = activityRegisterBinding.birthdate
+    val birthday = activityRegisterBinding.birthdate
         val cal = Calendar.getInstance()
         val Myear = cal.get(Calendar.YEAR)
         val Mmonth = cal.get(Calendar.MONTH)
