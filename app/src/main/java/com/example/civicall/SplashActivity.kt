@@ -40,19 +40,18 @@ class SplashActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
         lifecycleScope.launch {
-            while (networkUtils.isInternetAvailable()) {
+            while (!networkUtils.isOnline) {
                 // Handle no internet connection
                 if (!isNoInternetDialogShowing) {
                     dismissCustomDialog()
                     showNoInternetPopup()
                 }
-                delay(1900) // Adjust the delay as needed
+                delay(1900)
             }
-
             delay(1900)
             checkuser()
-        }
 
+        }
     }
     private var isNoInternetDialogShowing = false
     private fun showNoInternetPopup() {
