@@ -43,7 +43,7 @@ class CurrentEngageAdapter(private val currentEngagements: List<DataClassCurrent
         holder.recTitle.text = activity.title
         holder.location.text = activity.location
         holder.dateAndTime.text = "${activity.startDate} - ${activity.endDate}"
-        holder.category.text = activity.category
+        holder.category.text = "Category: ${activity.category}"
 
         setIndicatorIcon(holder, activity.startDate, activity.endDate)
 

@@ -42,7 +42,7 @@ class FinishActAdapter(private val finishedActivities: List<DataClassFinish>) :
         holder.recTitle.text = activity.title
         holder.location.text = activity.location
         holder.dateAndTime.text = activity.startDate + " - " + activity.endDate
-        holder.category.text = activity.category
+        holder.category.text = "Category: ${activity.category}"
 
         // Set attendedStamp text
         holder.receivedStamp.text = activity.receivedStamp
