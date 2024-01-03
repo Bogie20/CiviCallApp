@@ -13,17 +13,17 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
+
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         // Handle the received message here
         remoteMessage.notification?.let {
-
             showNotification(it.title ?: "Title", it.body ?: "Body")
         }
     }
 
     private fun showNotification(title: String?, body: String?) {
         val channelId = "civic_channel"
-        val channelName = "com.example.civicall"
+        val channelName = "Verification"
 
         // Create an intent that opens your main activity
         val intent = Intent(this, SplashActivity::class.java)
@@ -32,11 +32,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             this,
             0,
             intent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
         )
 
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.drawable.healthawa)
+            .setSmallIcon(R.drawable.civicalllogo)
             .setContentTitle(title)
             .setContentText(body)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -56,11 +56,16 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             notificationManager.createNotificationChannel(channel)
         }
 
+        // Generate a unique notification ID
+        val notificationId = System.currentTimeMillis().toInt()
+
         // Display the notification
-        notificationManager.notify(0, notificationBuilder.build())
+        notificationManager.notify(notificationId, notificationBuilder.build())
     }
 
     override fun onNewToken(token: String) {
         // Handle token refresh
+        // You might want to send the new token to your server for updates
+        // You can also store the token locally for later use
     }
 }
