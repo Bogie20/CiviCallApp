@@ -325,7 +325,6 @@ class CommentAdapter(
         diffResult.dispatchUpdatesTo(this)
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.forum_respond, parent, false)
         return CommentViewHolder(view)
@@ -417,6 +416,7 @@ class CommentAdapter(
                 }
             }
         }
+
     }
 
     override fun getItemCount(): Int {
@@ -517,7 +517,7 @@ class CommentAdapter(
 
         fun updateTimeText(commentTime: String?) {
             commentTime?.let {
-                val dateFormat = SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault())
+                val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
                 dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
 
                 try {
@@ -558,7 +558,6 @@ class CommentAdapter(
 
                         else -> timeAgo.toString()
                     }
-
                     timeRec.text = formattedTime
                 } catch (e: ParseException) {
                     e.printStackTrace()

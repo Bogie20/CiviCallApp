@@ -32,7 +32,6 @@ import nl.joery.animatedbottombar.AnimatedBottomBar
 class ForumFragment : Fragment() {
 
     private lateinit var databaseReference: DatabaseReference
-    private lateinit var eventListener: ValueEventListener
     private lateinit var recyclerView: RecyclerView
     private lateinit var nestedRecycler: NestedScrollView
     private val dataList = ArrayList<DataClassForum>()
