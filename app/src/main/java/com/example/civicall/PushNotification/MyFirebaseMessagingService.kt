@@ -53,13 +53,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 channelName,
                 NotificationManager.IMPORTANCE_DEFAULT
             )
-            val channel1 = NotificationChannel(
-                "channelid",
-                "Channel Name",
-                NotificationManager.IMPORTANCE_DEFAULT
-            )
             notificationManager.createNotificationChannel(channel)
-            notificationManager.deleteNotificationChannel(channel1.toString())
         }
 
         // Display the notification
