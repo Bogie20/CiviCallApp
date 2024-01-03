@@ -22,7 +22,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     private fun showNotification(title: String?, body: String?) {
-        val channelId = "notification_channel"
+        val channelId = "civic_channel"
         val channelName = "com.example.civicall"
 
         // Create an intent that opens your main activity
@@ -36,7 +36,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         )
 
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.drawable.civicalllogo)
+            .setSmallIcon(R.drawable.healthawa)
             .setContentTitle(title)
             .setContentText(body)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
