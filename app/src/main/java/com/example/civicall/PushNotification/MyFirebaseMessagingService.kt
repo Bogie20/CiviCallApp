@@ -13,12 +13,10 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
-
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         // Handle the received message here
         remoteMessage.notification?.let {
-            // Create a notification
-            // You can customize this according to your needs
+
             showNotification(it.title ?: "Title", it.body ?: "Body")
         }
     }
@@ -48,7 +46,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        // Create the NotificationChannel on devices running Android Oreo and above
+        // Always create the NotificationChannel on devices running Android Oreo and above
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 channelId,
