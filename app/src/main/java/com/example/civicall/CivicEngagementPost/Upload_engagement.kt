@@ -230,13 +230,23 @@ class Upload_engagement : AppCompatActivity() {
             .create()
 
         val btnSelectCampus = dialogView.findViewById<Button>(R.id.btnSelectCampus)
+        val closeIcon = dialogView.findViewById<ImageView>(R.id.closeIcon) // Add this line
 
         val checkBoxes = ArrayList<CheckBox>()
 
-        for (i in 1..11) {
+        // Iterate from 1 to 12 to include the newly added checkBox12
+        for (i in 1..12) {
             val checkBoxId = resources.getIdentifier("checkBox$i", "id", packageName)
             val checkBox = dialogView.findViewById<CheckBox>(checkBoxId)
             checkBoxes.add(checkBox)
+        }
+
+        // Find the checkBox12 by ID
+        val checkBox12 = dialogView.findViewById<CheckBox>(R.id.checkBox12)
+
+        // Set a listener for checkBox12 to select all checkboxes
+        checkBox12.setOnCheckedChangeListener { _, isChecked ->
+            checkBoxes.forEach { it.isChecked = isChecked }
         }
 
         // Check previously selected campuses and update the checkboxes
@@ -255,6 +265,11 @@ class Upload_engagement : AppCompatActivity() {
             alertDialog.dismiss()
         }
 
+        // Add click listener to closeIcon to dismiss the dialog
+        closeIcon.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
         alertDialog.setOnDismissListener {
             isCampusDialogShowing = false
         }
@@ -262,8 +277,6 @@ class Upload_engagement : AppCompatActivity() {
         alertDialog.show()
         isCampusDialogShowing = true
     }
-
-
 
     private fun checkAndRequestPermissions() {
         if (ContextCompat.checkSelfPermission(

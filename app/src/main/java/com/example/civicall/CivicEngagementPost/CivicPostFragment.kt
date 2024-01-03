@@ -110,10 +110,8 @@ class CivicPostFragment : Fragment() {
                             rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
                             recyclerView.visibility = View.VISIBLE
                         }
-
                             progressBar.visibility = View.GONE
                     }
-
                     override fun onCancelled(error: DatabaseError) {
                         progressBar.visibility = View.GONE
                     }
