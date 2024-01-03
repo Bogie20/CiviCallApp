@@ -292,6 +292,13 @@ class ForumFragment : Fragment() {
         recyclerView.visibility = View.GONE
     }
 
+    private fun showNoSearchMessage(searchText: String) {
+        noPostsImage.setImageResource(R.drawable.nocategory)
+        noPostsText.text = "Sorry, no results found for \"$searchText\"."
+        noPostsImage.visibility = View.VISIBLE
+        noPostsText.visibility = View.VISIBLE
+        recyclerView.visibility = View.GONE
+    }
 
     private fun hideNoPostsMessage() {
         noPostsImage.visibility = View.GONE
@@ -306,7 +313,14 @@ class ForumFragment : Fragment() {
                 searchList.add(dataClass)
             }
         }
-        adapter.updateData(dataList)
-        adapter.searchDataList(searchList)
+
+        if (searchList.isEmpty()) {
+            showNoSearchMessage(text)
+        } else {
+            hideNoPostsMessage()
+            val searchArrayList = ArrayList<DataClassForum>(searchList)
+            adapter.updateData(dataList)
+            adapter.searchDataList(searchArrayList)
+        }
     }
 }

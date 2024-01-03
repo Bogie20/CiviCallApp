@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
@@ -29,7 +30,6 @@ import nl.joery.animatedbottombar.AnimatedBottomBar
 class CivicPostFragment : Fragment() {
 
     private lateinit var databaseReference: DatabaseReference
-    private lateinit var eventListener: ValueEventListener
     private lateinit var recyclerView: RecyclerView
     private val dataList = ArrayList<DataClass>()
     private lateinit var adapter: PostAdapter
@@ -38,6 +38,7 @@ class CivicPostFragment : Fragment() {
     private lateinit var rootView: View
     private lateinit var noPostsImage: ImageView
     private lateinit var noPostsText: TextView
+    private lateinit var progressBar: ProgressBar
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,6 +52,7 @@ class CivicPostFragment : Fragment() {
         searchView.clearFocus()
         noPostsImage = rootView.findViewById(R.id.noPostsImage)
         noPostsText = rootView.findViewById(R.id.noPostsText)
+        progressBar = rootView.findViewById(R.id.progressBar)
         val filterIcon = rootView.findViewById<ImageView>(R.id.filterIcon)
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
 
@@ -62,41 +64,42 @@ class CivicPostFragment : Fragment() {
         val gridLayoutManager = GridLayoutManager(requireContext(), 1)
         recyclerView.layoutManager = gridLayoutManager
 
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setCancelable(false)
-        val dialog = builder.create()
-        dialog.show()
-
         adapter = PostAdapter(requireContext(), dataList)
         recyclerView.adapter = adapter
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
-        dialog.show()
-        eventListener = databaseReference.addValueEventListener(object : ValueEventListener {
+
+        databaseReference.addValueEventListener(object : ValueEventListener {
+
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
-                dataList.clear()
-                    val currentUser = FirebaseAuth.getInstance().currentUser
-                    val userUid = currentUser?.uid
 
-                    val userCampusRef = FirebaseDatabase.getInstance().getReference("Users/$userUid/campus")
-                    userCampusRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onDataChange(userCampusSnapshot: DataSnapshot) {
-                            val userCampus = userCampusSnapshot.value.toString()
+                val currentUser = FirebaseAuth.getInstance().currentUser
+                val userUid = currentUser?.uid
+                val userCampusRef = FirebaseDatabase.getInstance().getReference("Users/$userUid/campus")
 
-                            for (itemSnapshot in snapshot.children) {
-                                val dataClass = itemSnapshot.getValue(DataClass::class.java)
-                                dataClass?.key = itemSnapshot.key
-                                dataClass?.let {
-                                    // Check if the user's campus is in the comma-separated list of campuses in Upload Engagement
-                                    val uploadEngagementCampuses = it.campus?.split(", ")?.map { it.trim() } ?: emptyList()
-                                    if (userCampus in uploadEngagementCampuses) {
-                                        dataList.add(0, it)
-                                    }
+                userCampusRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(userCampusSnapshot: DataSnapshot) {
+                        val userCampus = userCampusSnapshot.value.toString()
+                        val newDataList = ArrayList<DataClass>()
+
+                        for (itemSnapshot in snapshot.children) {
+                            val dataClass = itemSnapshot.getValue(DataClass::class.java)
+                            dataClass?.key = itemSnapshot.key
+
+                            dataClass?.let {
+                                val uploadEngagementCampuses =
+                                    it.campus?.split(", ")?.map { it.trim() } ?: emptyList()
+                                if (userCampus in uploadEngagementCampuses) {
+                                    newDataList.add(0, it)
                                 }
                             }
-                            adapter.notifyDataSetChanged()
-                        dialog.dismiss()
+                        }
+
+                        dataList.clear()
+                        dataList.addAll(newDataList)
+                        adapter.notifyDataSetChanged()
+
 
                         if (dataList.isEmpty()) {
                             rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
@@ -108,17 +111,17 @@ class CivicPostFragment : Fragment() {
                             recyclerView.visibility = View.VISIBLE
                         }
 
-                        dialog.dismiss()
+                            progressBar.visibility = View.GONE
                     }
 
                     override fun onCancelled(error: DatabaseError) {
-                        dialog.dismiss()
+                        progressBar.visibility = View.GONE
                     }
                 })
             }
 
             override fun onCancelled(error: DatabaseError) {
-                dialog.dismiss()
+                progressBar.visibility = View.GONE
             }
         })
 
@@ -254,7 +257,7 @@ class CivicPostFragment : Fragment() {
     }
     private fun filterByCategory(category: String) {
         if (category.isEmpty()) {
-            // Show all categories
+            adapter.updateData(dataList)
             adapter.searchDataList(dataList)
             hideNoPostsMessage()
         } else {
@@ -276,6 +279,14 @@ class CivicPostFragment : Fragment() {
         noPostsText.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
     }
+    private fun showNoSearchMessage(searchText: String) {
+        noPostsImage.setImageResource(R.drawable.notinlist)
+        noPostsText.text = "Sorry, no results found for \"$searchText\"."
+        noPostsImage.visibility = View.VISIBLE
+        noPostsText.visibility = View.VISIBLE
+        recyclerView.visibility = View.GONE
+    }
+
     private fun hideNoPostsMessage() {
         noPostsImage.visibility = View.GONE
         noPostsText.visibility = View.GONE
@@ -289,6 +300,14 @@ class CivicPostFragment : Fragment() {
                 searchList.add(dataClass)
             }
         }
-        adapter.searchDataList(searchList)
+
+        if (searchList.isEmpty()) {
+            showNoSearchMessage(text)
+        } else {
+            hideNoPostsMessage()
+            val searchArrayList = ArrayList<DataClass>(searchList)
+            adapter.updateData(dataList)
+            adapter.searchDataList(searchArrayList)
+        }
     }
 }

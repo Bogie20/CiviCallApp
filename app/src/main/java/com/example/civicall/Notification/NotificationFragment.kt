@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
@@ -33,6 +34,7 @@ class NotificationFragment : Fragment() {
     private lateinit var noPostsText: TextView
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +47,7 @@ class NotificationFragment : Fragment() {
         nestedScrollView = view.findViewById(R.id.nestedRecycler)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         notificationList = mutableListOf()
+        progressBar = view.findViewById(R.id.progressBar)
         notificationAdapter = NotificationAdapter(notificationList)
         recyclerView.adapter = notificationAdapter
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
@@ -121,10 +124,11 @@ class NotificationFragment : Fragment() {
                     noPostsImage.visibility = View.GONE
                     noPostsText.visibility = View.GONE
                 }
+                progressBar.visibility = View.GONE
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle error
+                progressBar.visibility = View.GONE
             }
         })
 

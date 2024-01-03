@@ -37,7 +37,7 @@ class NotificationAdapter(private val notificationList: List<DataClassNotif>) :
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
         val currentItem = notificationList[position]
 
-        holder.categoryTextView.text = currentItem.category
+        holder.categoryTextView.text = "Category: ${currentItem.category}"
         holder.recTitle.text = currentItem.title
         holder.schedule.text = "${currentItem.startDate} - ${currentItem.endDate}"
 

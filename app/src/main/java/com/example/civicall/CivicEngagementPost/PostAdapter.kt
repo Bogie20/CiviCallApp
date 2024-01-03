@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
@@ -23,6 +24,11 @@ import java.util.TimeZone
 
 class PostAdapter (private val context: Context, private var dataList: List<DataClass>) :
     RecyclerView.Adapter<MyViewHolder>() {
+    fun updateData(newDataList: List<DataClass>) {
+        val diffResult = DiffUtil.calculateDiff(CivicDiffCallBack(dataList, newDataList))
+        dataList = newDataList
+        diffResult.dispatchUpdatesTo(this)
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_civicengagement, parent, false)
         return MyViewHolder(view)

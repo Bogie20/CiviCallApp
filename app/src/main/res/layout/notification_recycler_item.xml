@@ -32,8 +32,6 @@
             android:layout_width="match_parent"
             android:layout_height="140dp">
 
-            <!-- Your existing CardView layout... -->
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/notifImage"
                 android:layout_width="65dp"
@@ -62,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/lexend_semibold"
                 android:text="You Joined!!"
                 android:maxLines="2"
@@ -75,8 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
+                   android:layout_marginVertical="5dp"
                     android:ellipsize="end"
                     android:fontFamily="@font/lexend_medium"
                     android:maxLines="1"
@@ -84,33 +81,29 @@
                     android:textColor="@color/instruction"
                     android:textSize="13sp" />
             <TextView
-                android:id="@+id/categoryTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:fontFamily="@font/lexend_medium"
-                android:text="Event Category"
-                android:textColor="@color/instruction"
-                android:textSize="12sp" />
-
-
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginVertical="1dp"
                 android:id="@+id/schedule"
                 android:text="Date and Time"
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:fontFamily="@font/lexend_medium"
                 android:textColor="@color/instruction"
-                android:textSize="10sp" />
+                android:textSize="11sp" />
+                <TextView
+                    android:id="@+id/categoryTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:maxLines="1"
+                    android:layout_marginVertical="5dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/lexend_medium"
+                    android:text="Event Category"
+                    android:textColor="@color/instruction"
+                    android:textSize="12sp" />
             </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
