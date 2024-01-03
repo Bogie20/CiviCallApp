@@ -269,11 +269,9 @@ class Upload_engagement : AppCompatActivity() {
         closeIcon.setOnClickListener {
             alertDialog.dismiss()
         }
-
         alertDialog.setOnDismissListener {
             isCampusDialogShowing = false
         }
-
         alertDialog.show()
         isCampusDialogShowing = true
     }

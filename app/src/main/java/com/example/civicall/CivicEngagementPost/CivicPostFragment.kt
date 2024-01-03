@@ -136,26 +136,34 @@ class CivicPostFragment : Fragment() {
 
         val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
+        val faback = requireActivity().findViewById<FloatingActionButton>(R.id.faback)
 
         nestedRecycler.setOnScrollChangeListener(View.OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+            // Scroll down
             if (scrollY > oldScrollY) {
-                // Scrolling down
                 if (animatedBottomBar.isShown) {
                     animatedBottomBar.visibility = View.GONE
                 }
                 if (fab.isShown) {
                     fab.hide()
                 }
+                if (faback.isShown) {
+                    faback.hide()
+                }
             } else if (scrollY < oldScrollY) {
-                // Scrolling up
+                // Scroll up
                 if (!animatedBottomBar.isShown) {
                     animatedBottomBar.visibility = View.VISIBLE
                 }
                 if (!fab.isShown) {
                     fab.show()
                 }
+                if (!faback.isShown) {
+                    faback.show()
+                }
             }
         })
+
 
         return rootView
     }
