@@ -24,41 +24,43 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/img_3"
+            android:src="@drawable/civicalllogo"
             app:shapeAppearanceOverlay="@style/roundedImageViewRounded"/>
 
         <!-- Move the categoryTextView above the recTitle -->
 
         <TextView
-            android:id="@+id/userType"
-
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/recImage"
+            android:layout_alignParentTop="true"
             android:layout_marginStart="18dp"
-            android:layout_marginTop="-65dp"
+            android:layout_marginTop="15dp"
             android:layout_toEndOf="@id/recImage"
             android:fontFamily="@font/lexend_medium"
-            android:text="userType"
+            android:text="Title"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
         <TextView
 
-            android:id="@+id/VerificationStatus"
+            android:id="@+id/message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/userType"
+            android:layout_below="@id/title"
             android:layout_marginStart="18dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:layout_toEndOf="@id/recImage"
             android:fontFamily="@font/lexend"
             android:lineSpacingExtra="4dp"
-            android:maxLines="3"
-            android:text="VerificationStatus"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:text="Message"
             android:textColor="@color/blue"
-            android:textSize="14sp" />
+            android:textSize="13sp" />
 
 
     </RelativeLayout>
