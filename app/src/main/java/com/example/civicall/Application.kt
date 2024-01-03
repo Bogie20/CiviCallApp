@@ -15,6 +15,6 @@ class Application : Application() {
         FirebaseDatabase.getInstance().setPersistenceEnabled(true)
 
         // Subscribe to a topic if needed
-        FirebaseMessaging.getInstance().subscribeToTopic("your_topic_name")
+        FirebaseMessaging.getInstance().subscribeToTopic("CiviCall_Topic")
     }
 }
