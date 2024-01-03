@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.example.civicall.databinding.ActivityChangePasswordBinding
 import com.google.android.material.button.MaterialButton
@@ -21,6 +22,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 
 
 class ChangePassword : AppCompatActivity() {
@@ -156,6 +158,61 @@ class ChangePassword : AppCompatActivity() {
         }
 
     }
+    private fun showGoogleSignInMessage() {
+        showMessage(
+            "You are currently signed in using Google.",
+            4000,
+            "Not possible",
+            R.drawable.civicalllogo,
+            R.layout.dialog_sadface
+        )
+    }
+    private var isAlreadyJoinDialogShowing = false
+
+    private fun showMessage(
+        message: String,
+        durationMillis: Long,
+        customSlideTitle: String?,
+        customDialogImageResId: Int?,
+        customDialogLayoutResId: Int?
+    ) {
+        if (isAlreadyJoinDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+
+        // Use the custom layout resource ID if provided, otherwise use the default
+        val dialogView = layoutInflater.inflate(customDialogLayoutResId ?: R.layout.dialog_happyface, null)
+
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val slideTitle: AppCompatTextView = dialogView.findViewById(R.id.dialog_title_emotion)
+        val dialogImage: AppCompatImageView = dialogView.findViewById(R.id.img_icon_emotion)
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideLeft
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Use custom slideTitle if provided, otherwise use the default
+        slideTitle.text = customSlideTitle ?: "Verifying Account"
+
+        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message)
+        messageTextView.text = message
+        alertDialog.show()
+
+        // Use custom dialogImage if provided, otherwise use the default
+        dialogImage.setImageResource(customDialogImageResId ?: R.drawable.papermani)
+
+        isAlreadyJoinDialogShowing = true
+        alertDialog.setOnDismissListener {
+            isAlreadyJoinDialogShowing = false
+        }
+        Handler(Looper.getMainLooper()).postDelayed({
+            alertDialog.dismiss()
+            isAlreadyJoinDialogShowing = false
+        }, durationMillis)
+    }
+
 
     private fun validateData() {
         currentpassword = passwordTextInputLayout.editText?.text.toString().trim()
@@ -166,7 +223,10 @@ class ChangePassword : AppCompatActivity() {
         val isCurrentPasswordValid = validateCurrentPassword()
         val isNewPasswordValid = validateNewPassword()
         val isRetypePasswordValid = validateRetypePassword()
-
+        if (isGoogleSignIn()) {
+            showGoogleSignInMessage()
+            return
+        }
         if (isCurrentPasswordValid && isNewPasswordValid && isRetypePasswordValid) {
             if (currentpassword.length > passwordMaxLength || newpassword.length > passwordMaxLength || retypepassword.length > passwordMaxLength) {
                 binding.CurrentPassword.error =
@@ -180,7 +240,10 @@ class ChangePassword : AppCompatActivity() {
         }
     }
 
-
+    private fun isGoogleSignIn(): Boolean {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        return currentUser != null && currentUser.providerData.any { it.providerId == GoogleAuthProvider.PROVIDER_ID }
+    }
     private fun compareEmail(email: EditText, dialog: Dialog) {
         val emailText = email.text.toString().trim()
 
@@ -227,6 +290,11 @@ class ChangePassword : AppCompatActivity() {
 
             isNoInternetDialogShowing = false
         }
+        if (isAlreadyJoinDialogShowing) {
+
+            isAlreadyJoinDialogShowing = false
+        }
+
     }
 
     private var isProgressShowing = false

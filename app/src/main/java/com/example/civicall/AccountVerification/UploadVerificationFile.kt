@@ -118,7 +118,7 @@ class UploadVerificationFile : AppCompatActivity() {
                 showMessage(
                     "Requirement submitted already",
                     4000,
-                    "Already Submit",
+                    "Already Submitted",
                     R.drawable.papermani,
                     R.layout.dialog_happyface
                 )
