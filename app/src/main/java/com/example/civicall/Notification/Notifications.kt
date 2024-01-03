@@ -119,7 +119,7 @@ class Notifications : AppCompatActivity() {
             }
             val notificationManager: NotificationManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
+            notificationManager.deleteNotificationChannel(channel.toString())
         }
     }
 

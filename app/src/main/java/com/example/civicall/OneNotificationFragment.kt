@@ -76,7 +76,7 @@ class OneNotificationFragment : Fragment(), ValueEventListener {
             }
             val notificationManager: NotificationManager =
                 requireContext().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
+            notificationManager.deleteNotificationChannel(channel.toString())
         }
     }
 
