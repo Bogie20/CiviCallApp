@@ -99,7 +99,7 @@ class CivicPostFragment : Fragment() {
                         dataList.clear()
                         dataList.addAll(newDataList)
                         adapter.notifyDataSetChanged()
-
+                        progressBar.visibility = View.GONE
 
                         if (dataList.isEmpty()) {
                             rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE

@@ -70,34 +70,34 @@ class ActivePointsEarned : AppCompatActivity() {
                 notificationList.clear()
 
                 // Inside onDataChange method
+                // Inside onDataChange method
+                // Inside onDataChange method
                 for (engagementSnapshot in dataSnapshot.children) {
                     val postKey = engagementSnapshot.key ?: ""
 
                     // Check if the current user is a participant in this engagement
                     val participantsRef = engagementSnapshot.child("Participants")
-                    val joined =
-                        participantsRef.child(currentUserUid!!).child("joined").value as? Boolean
+                    val joined = participantsRef.child(currentUserUid!!).child("joined").value as? Boolean
 
                     if (joined == true) {
                         // User is a participant, retrieve and display information
                         val title = engagementSnapshot.child("title").value.toString()
-                        val activepts =
-                            (engagementSnapshot.child("activepoints").value as? Long)?.toInt()
-                                ?: 0
+                        val activepts = (engagementSnapshot.child("activepoints").value as? Long)?.toInt() ?: 0
 
-                        // Get the timestamp from the Participants node
-                        val receivedStamp = participantsRef.child(currentUserUid)
-                            .child("receivedStamp").value.toString()
+                        // Check if the "receivedStamp" key exists and is not null or empty
+                        if (participantsRef.child(currentUserUid).hasChild("receivedStamp")) {
+                            val receivedStamp =
+                                participantsRef.child(currentUserUid).child("receivedStamp").value.toString()
 
-                        val notificationItem = DataClassAct(
-                            postKey,
-                            title,
-                            activepts,
-                            receivedStamp
-                        )
-                        notificationList.add(notificationItem)
+                            // Check if receivedStamp is not empty, and add to the list
+                            if (receivedStamp.isNotEmpty()) {
+                                val notificationItem = DataClassAct(postKey, title, activepts, receivedStamp)
+                                notificationList.add(notificationItem)
+                            }
+                        }
                     }
                 }
+
 
                 notificationList.sortByDescending { it.receivedStamp }
 

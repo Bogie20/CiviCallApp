@@ -27,7 +27,8 @@ class CalendarAdapter(private val engagementList: List<CalendarData>) :
     private val timeZone = TimeZone.getTimeZone("Asia/Manila")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.calendar_recycler_item, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.calendar_recycler_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -42,17 +43,8 @@ class CalendarAdapter(private val engagementList: List<CalendarData>) :
             .into(holder.engagementImage)
         holder.recTitle.text = engagementData.recTitle
         holder.location.text = engagementData.location
-        holder.startDateAndEndDate.text =
-            "${engagementData.startDate} - ${engagementData.endDate}"  // Updated line
+        holder.startDateAndEndDate.text = "Schedule: ${engagementData.startDate} - ${engagementData.endDate}"
         holder.engagementId = engagementData.postKey
-        val currentDate = Calendar.getInstance(timeZone).time
-        val sdf = SimpleDateFormat("MM/dd/yyyy HH:mm", Locale.getDefault()).apply {
-            timeZone = this@CalendarAdapter.timeZone
-        }
-        val startDate = sdf.parse(engagementData.startDate) ?: Date()  // Updated line
-        val endDate = sdf.parse(engagementData.endDate) ?: Date()  // Updated line
-
-        setIndicatorIcon(holder, currentDate, startDate, endDate)
 
         val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
         val engagementId = holder.engagementId
@@ -64,28 +56,7 @@ class CalendarAdapter(private val engagementList: List<CalendarData>) :
 
             participantsRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(participantSnapshot: DataSnapshot) {
-                    val joined =
-                        participantSnapshot.child("joined").getValue(Boolean::class.java) ?: false
-
-                    if (currentDate.after(endDate)) {
-                        if (!joined) {
-                            setIndicatorIconWithColor(
-                                holder,
-                                R.drawable.broken,
-                                ContextCompat.getColor(holder.itemView.context, R.color.red)
-                            )
-                        } else {
-                            setIndicatorIconWithColor(
-                                holder,
-                                R.drawable.finishnapo,
-                                ContextCompat.getColor(holder.itemView.context, R.color.greenish)
-                            )
-                        }
-                    } else {
-                        // Handle the case when the current date is not after endDate
-                        // Set indicator icon based on startDate, endDate, and currentDate
-                        setIndicatorIcon(holder, currentDate, startDate, endDate)
-                    }
+                    // Handle changes in participant data if needed
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -93,26 +64,6 @@ class CalendarAdapter(private val engagementList: List<CalendarData>) :
                 }
             })
         }
-    }
-    private fun setIndicatorIcon(
-        holder: ViewHolder,
-        currentDate: Date,
-        startDate: Date,
-        endDate: Date
-    ) {
-        val nearColor = ContextCompat.getColor(holder.itemView.context, R.color.redpink)
-        val ongoingColor = ContextCompat.getColor(holder.itemView.context, R.color.blue)
-
-        if (currentDate.before(startDate)) {
-            setIndicatorIconWithColor(holder, R.drawable.near, nearColor)
-        } else if (currentDate in startDate..endDate) {
-            setIndicatorIconWithColor(holder, R.drawable.play, ongoingColor)
-        }
-    }
-
-    private fun setIndicatorIconWithColor(holder: ViewHolder, iconRes: Int, color: Int) {
-        holder.indicatorIcon.setImageResource(iconRes)
-        holder.indicatorIcon.setColorFilter(color)
     }
 
     override fun getItemCount(): Int {
@@ -124,7 +75,6 @@ class CalendarAdapter(private val engagementList: List<CalendarData>) :
         val recTitle: TextView = itemView.findViewById(R.id.recTitle)
         val location: TextView = itemView.findViewById(R.id.location)
         val startDateAndEndDate: TextView = itemView.findViewById(R.id.dateandTime)
-        val indicatorIcon: ShapeableImageView = itemView.findViewById(R.id.iconIndicator)
         var engagementId: String? = null
     }
 }
