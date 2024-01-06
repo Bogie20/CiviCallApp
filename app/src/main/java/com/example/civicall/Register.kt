@@ -949,7 +949,7 @@ dismissCustomDialog()
         val timestamp = System.currentTimeMillis()
         val uid = firebaseAuth.uid
 
-        val dateFormat = SimpleDateFormat("MM/dd/yyyy HH:mm z")
+        val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a")
         dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
         val formattedDate = dateFormat.format(timestamp)
 
@@ -964,6 +964,9 @@ dismissCustomDialog()
         hashMap["birthday"] = birtdate
         hashMap["gender"] = spinnerSex
         hashMap["lastLogin"] = ""
+        hashMap["course"] = ""
+        hashMap["srcode"] = ""
+        hashMap["yearandSection"] = ""
         hashMap["ImageProfile"] = ""
         hashMap["userType"] = userCategory
         hashMap["timestamp"] = formattedDate

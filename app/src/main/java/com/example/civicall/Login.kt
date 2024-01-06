@@ -59,6 +59,7 @@ class Login : AppCompatActivity() {
         val uid = firebaseAuth.uid
         val ref = FirebaseDatabase.getInstance().getReference("Users")
         ref.child(uid!!).addListenerForSingleValueEvent(object : ValueEventListener {
+            @SuppressLint("SimpleDateFormat")
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     startActivity(Intent(this@Login, Dashboard::class.java))
@@ -78,6 +79,9 @@ class Login : AppCompatActivity() {
                     hashMap["phoneno"] = ""
                     hashMap["address"] = ""
                     hashMap["birthday"] = ""
+                    hashMap["course"] = ""
+                    hashMap["srcode"] = ""
+                    hashMap["yearandSection"] = ""
                     hashMap["gender"] = ""
                     hashMap["lastLogin"] = ""
                     hashMap["ImageProfile"] = profileImageUri
@@ -405,8 +409,6 @@ class Login : AppCompatActivity() {
         // Dismiss the progress bar here
         progressDialog.dismiss()
     }
-
-
     private fun showCustomPopupError(message: String) {
         // Check if the pop-up is already showing, and if so, return early
         if (isPopupShowing) {

@@ -154,15 +154,11 @@ class ProfileDetails : AppCompatActivity() {
                 val userRef = FirebaseDatabase.getInstance().getReference("Upload Engagement")
                 val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
-// Use addValueEventListener instead of addListenerForSingleValueEvent
                 userRef.orderByChild("Participants/$currentUserId/joined").equalTo(true)
                     .addValueEventListener(object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             val currentDate = getCurrentDate()
                             var finishactCount = 0
-                            val contributionStatus =
-                                dataSnapshot.child("TransparencyImage/$currentUserId/contributionStatus")
-                                    .getValue(Boolean::class.java) ?: false
 
                             for (engagementSnapshot in dataSnapshot.children) {
                                 val endDateString = engagementSnapshot.child("endDate").getValue(String::class.java)
@@ -174,12 +170,8 @@ class ProfileDetails : AppCompatActivity() {
                                 }
                             }
 
-                            // Update the finishactivity count and contributionStatus in the Users node
-                            val userNodeRef =
-                                FirebaseDatabase.getInstance().getReference("Users/$currentUserId")
+                            val userNodeRef = FirebaseDatabase.getInstance().getReference("Users/$currentUserId")
                             userNodeRef.child("finishactivity").setValue(finishactCount)
-                            userNodeRef.child("contributionStatus").setValue(contributionStatus)
-
                             finishactTextView.text = formatNumber(finishactCount)
                         }
 
