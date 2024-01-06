@@ -55,7 +55,7 @@ class CalendarActivity : AppCompatActivity() {
         calendarView.date = currentDate.timeInMillis
 
         // Load engagements for the current date
-        val formattedCurrentDate = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(currentDate.time)
+        val formattedCurrentDate = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(currentDate.time)
         loadEngagements(formattedCurrentDate)
 
         // Set the OnDateChangeListener

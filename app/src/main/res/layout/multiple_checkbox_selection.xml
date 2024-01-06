@@ -89,7 +89,7 @@
         android:id="@+id/checkBox12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="All Campus"/>
+        android:text="Select All Campus"/>
 
     <Button
         android:id="@+id/btnSelectCampus"

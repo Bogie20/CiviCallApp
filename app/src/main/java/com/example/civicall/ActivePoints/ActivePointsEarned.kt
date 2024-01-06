@@ -97,8 +97,6 @@ class ActivePointsEarned : AppCompatActivity() {
                         }
                     }
                 }
-
-
                 notificationList.sortByDescending { it.receivedStamp }
 
                 notificationAdapter.notifyDataSetChanged()

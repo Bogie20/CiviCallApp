@@ -234,8 +234,8 @@ class Upload_engagement : AppCompatActivity() {
 
         val checkBoxes = ArrayList<CheckBox>()
 
-        // Iterate from 1 to 12 to include the newly added checkBox12
-        for (i in 1..12) {
+        // Iterate from 1 to 11 (excluding checkBox12)
+        for (i in 1 until 12) {
             val checkBoxId = resources.getIdentifier("checkBox$i", "id", packageName)
             val checkBox = dialogView.findViewById<CheckBox>(checkBoxId)
             checkBoxes.add(checkBox)
