@@ -11,8 +11,8 @@
     </string-array>
     <string-array name="payment_category">
         <item>GCash</item>
-        <item>Paymaya</item>
-        <item>Paypal</item>
+        <item>PayMaya</item>
+        <item>PayPal</item>
     </string-array>
     <string-array name="nstp_category">
         <item>Reserve Officers Training Corps</item>

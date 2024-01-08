@@ -110,9 +110,6 @@ class CurrentEngagements : AppCompatActivity() {
         dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
         return dateFormat.format(calendar.time)
     }
-
-
-
     private fun isDateTimeInRange(selectedDateTime: String, endDateTime: String): Boolean {
         val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
         sdf.timeZone = TimeZone.getTimeZone("Asia/Manila")

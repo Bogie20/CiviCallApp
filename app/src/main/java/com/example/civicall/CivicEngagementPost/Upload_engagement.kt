@@ -642,8 +642,7 @@ class Upload_engagement : AppCompatActivity() {
                     paymentmethod,
                     paymentrecipient,
                     formattedFundCollected.toDouble(),
-                    verificationStatus,
-                    postKey
+                    verificationStatus
                 )
 
                 FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
