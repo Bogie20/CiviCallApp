@@ -552,9 +552,6 @@ class Login : AppCompatActivity() {
                                 .addOnFailureListener { e ->
                                     showCustomPopupError("Failed updating login info: ${e.message}")
                                 }
-                        } else {
-                            // This should not happen, as the user should exist at this point
-                            showCustomPopupError("User not found.")
                         }
                     }
 
