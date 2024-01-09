@@ -186,15 +186,15 @@ class ProfileDetails : AppCompatActivity() {
                 val activePtsInt = activePts.toString().toInt()
 
                 when {
-                    activePtsInt in 0..300 -> {
+                    activePtsInt in 0..99 -> {
                         badgeImageView.setImageResource(R.drawable.bronzes)
                     }
 
-                    activePtsInt in 301..999 -> {
+                    activePtsInt in 100..499 -> {
                         badgeImageView.setImageResource(R.drawable.silver)
                     }
 
-                    activePtsInt in 1000..9999 -> {
+                    activePtsInt in 500..1999 -> {
                         badgeImageView.setImageResource(R.drawable.gold)
                     }
 
