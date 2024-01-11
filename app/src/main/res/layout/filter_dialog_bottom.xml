@@ -114,7 +114,7 @@
                 android:gravity="center"
                 android:padding="10sp"
                 android:paddingVertical="15sp"
-                android:text="Donations"
+                android:text="Donation"
                 android:textColor="@color/redpink"
                 android:textSize="14sp" />
             <!-- Second TextView -->
