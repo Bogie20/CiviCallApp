@@ -136,7 +136,7 @@ class Update_engagement: AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {
                 val selectedCategory = s.toString()
-                if (selectedCategory == "Fund Raising" || selectedCategory == "Donations") {
+                if (selectedCategory == "Fund Raising" || selectedCategory == "Donation") {
                     paymentTextInputLayout.visibility = View.VISIBLE
                     paymentRecepientTextInputLayout.visibility = View.VISIBLE
                 } else {

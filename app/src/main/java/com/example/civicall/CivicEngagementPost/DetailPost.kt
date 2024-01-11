@@ -193,7 +193,7 @@ class DetailPost : AppCompatActivity() {
                                                 ValueEventListener {
                                                 override fun onDataChange(participantsSnapshot: DataSnapshot) {
                                                     if (participantsSnapshot.hasChild(currentUserId) &&
-                                                        (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donations")
+                                                        (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donation")
                                                     ) {
                                                         // The user has already joined, so show the image dialog and request permissions
                                                         showImageDialog()
@@ -201,7 +201,7 @@ class DetailPost : AppCompatActivity() {
                                                     } else {
                                                         // The user hasn't joined
                                                         if (detailCategory.text.toString() == "Fund Raising" ||
-                                                            detailCategory.text.toString() == "Donations"
+                                                            detailCategory.text.toString() == "Donation"
                                                         ) {
                                                             // If the category is "Fund Raising" or "Donations" and the user hasn't joined, show the image dialog and request permissions
                                                             showImageDialog()
@@ -1161,7 +1161,7 @@ class DetailPost : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val category = dataSnapshot.getValue(String::class.java)
 
-                if (category == "Fund Raising" || category == "Donations") {
+                if (category == "Fund Raising" || category == "Donation") {
                     val participantsReference: DatabaseReference =
                         FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
                             .child("Participants")
@@ -1202,7 +1202,7 @@ class DetailPost : AppCompatActivity() {
     private fun updatePaymentDetailsVisibility() {
         val parentLinearLayout = findViewById<LinearLayout>(R.id.paymentDetailsLayout)
 
-        if (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donations") {
+        if (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donation") {
             parentLinearLayout.visibility = View.VISIBLE
         } else {
             parentLinearLayout.visibility = View.GONE

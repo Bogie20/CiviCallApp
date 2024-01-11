@@ -123,7 +123,7 @@ class Upload_engagement : AppCompatActivity() {
         categoryDropdown.setOnItemClickListener { _, _, position, _ ->
             val selectedCategory = categoryArray[position]
 
-            if (selectedCategory == "Fund Raising" || selectedCategory == "Donations") {
+            if (selectedCategory == "Fund Raising" || selectedCategory == "Donation") {
                 paymentMethodLayout.visibility = View.VISIBLE
                 paymentRecipientLayout.visibility = View.VISIBLE
 

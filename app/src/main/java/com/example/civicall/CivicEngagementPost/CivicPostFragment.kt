@@ -218,7 +218,7 @@ class CivicPostFragment : Fragment() {
             alertDialog.dismiss()
         }
         donate.setOnClickListener {
-            filterByCategory("Donations")
+            filterByCategory("Donation")
             alertDialog.dismiss()
         }
         cleanup.setOnClickListener {

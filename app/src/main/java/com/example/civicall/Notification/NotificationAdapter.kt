@@ -63,7 +63,7 @@ class NotificationAdapter(private val notificationList: List<DataClassNotif>) :
        } else if (timeDifferenceEnd <= 0) {
         // Engagement has finished
         holder.dateandTime.text = "Since: ${currentItem.endDate}"
-        holder.itemView.findViewById<TextView>(R.id.label).text = "The engagement has concluded. If you attended,\nplease rate this engagement to claim your points."
+        holder.itemView.findViewById<TextView>(R.id.label).text = "Engagement concluded. Rate this to claim points if attended."
         } else {
             // Outside 12 hours, show "The engagement is 24 hours away!" until it's less than 12 hours away
             if (timeDifferenceStart > TWELVE_HOURS_IN_MILLIS) {
@@ -71,7 +71,6 @@ class NotificationAdapter(private val notificationList: List<DataClassNotif>) :
                 holder.itemView.findViewById<TextView>(R.id.label).text = "The engagement is 24 hours away!"
             }
         }
-
         Glide.with(holder.recImage.context)
             .load(currentItem.imageUrl)
             .into(holder.recImage)
