@@ -1,4 +1,4 @@
-package com.example.civicall.NotificationTwo
+package com.example.civicall.ActivePoints
 
 data class DataClassAct(
     val postKey: String,

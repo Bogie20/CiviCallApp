@@ -1,4 +1,4 @@
-package com.example.civicall.NotificationTwo
+package com.example.civicall.ActivePoints
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
-
 
 class ActivePtsAdapter(private val notificationList: List<DataClassAct>) :
     RecyclerView.Adapter<ActivePtsAdapter.NotificationViewHolder>() {

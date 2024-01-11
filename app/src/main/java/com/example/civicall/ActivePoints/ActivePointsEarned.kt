@@ -11,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.civicall.NotificationTwo.DataClassAct
-import com.example.civicall.NotificationTwo.ActivePtsAdapter
 import com.example.civicall.ProfileDetails
 import com.example.civicall.R
 import com.google.firebase.auth.FirebaseAuth
@@ -68,10 +66,6 @@ class ActivePointsEarned : AppCompatActivity() {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 notificationList.clear()
-
-                // Inside onDataChange method
-                // Inside onDataChange method
-                // Inside onDataChange method
                 for (engagementSnapshot in dataSnapshot.children) {
                     val postKey = engagementSnapshot.key ?: ""
 
