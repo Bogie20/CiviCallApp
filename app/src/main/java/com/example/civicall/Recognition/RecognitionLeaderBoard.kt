@@ -1,5 +1,6 @@
 package com.example.civicall.Recognition
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -78,17 +79,18 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                         }
 
                         query.addListenerForSingleValueEvent(object : ValueEventListener {
+                            @SuppressLint("NotifyDataSetChanged")
                             override fun onDataChange(dataSnapshot: DataSnapshot) {
                                 userList.clear()
                                 val users = mutableListOf<User>()
 
+                                // Inside the onDataChange method after retrieving users from the database
                                 for (snapshot in dataSnapshot.children) {
                                     // Filter out users with verificationStatus = false
-                                    val verificationStatus =
-                                        snapshot.child("verificationStatus")
-                                            .getValue(Boolean::class.java)
+                                    val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java)
+                                    val campus = snapshot.child("campus").getValue(String::class.java)
 
-                                    if (verificationStatus == true) {
+                                    if (verificationStatus == true && !campus.isNullOrEmpty()) {
                                         val user = snapshot.getValue(User::class.java)
                                         user?.let {
                                             users.add(it)
@@ -96,13 +98,14 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                                     }
                                 }
 
-                                // Sort users by activepts in descending order
                                 users.sortByDescending { it.activepts }
 
-                                // Add sorted users to the main user list
                                 userList.addAll(users)
 
                                 leaderboardAdapter.notifyDataSetChanged()
+
+                                handleNoPostsMessage(users, currentUserCampus ?: "")
+
                             }
 
                             override fun onCancelled(databaseError: DatabaseError) {
@@ -117,7 +120,13 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                 })
         }
     }
-
+    private fun handleNoPostsMessage(users: List<User>, selectedCampus: String) {
+        if (users.isEmpty()) {
+            showNoPostsMessage(selectedCampus)
+        } else {
+            hideNoPostsMessage()
+        }
+    }
     private var isFilterDialogShowing = false // Add this variable
 
     private fun showCampusFilterDialog() {
@@ -233,16 +242,17 @@ class RecognitionLeaderBoard : AppCompatActivity() {
             }
 
             query.addListenerForSingleValueEvent(object : ValueEventListener {
+                @SuppressLint("NotifyDataSetChanged")
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     userList.clear()
                     val users = mutableListOf<User>()
 
                     for (snapshot in dataSnapshot.children) {
                         // Filter out users with verificationStatus = false
-                        val verificationStatus =
-                            snapshot.child("verificationStatus").getValue(Boolean::class.java)
+                        val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java)
+                        val campus = snapshot.child("campus").getValue(String::class.java)
 
-                        if (verificationStatus == true) {
+                        if (verificationStatus == true && !campus.isNullOrEmpty()) {
                             val user = snapshot.getValue(User::class.java)
                             user?.let {
                                 users.add(it)
@@ -250,13 +260,12 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                         }
                     }
 
-                    // Sort users by activepts in descending order
                     users.sortByDescending { it.activepts }
 
-                    // Add sorted users to the main user list
                     userList.addAll(users)
 
                     leaderboardAdapter.notifyDataSetChanged()
+
 
                     // Handle no posts
                     if (users.isEmpty()) {
