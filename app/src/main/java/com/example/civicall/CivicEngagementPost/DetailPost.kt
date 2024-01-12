@@ -3,6 +3,9 @@ package com.example.civicall.CivicEngagementPost
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -13,6 +16,7 @@ import android.graphics.Paint
 import android.graphics.drawable.ColorDrawable
 import android.net.ParseException
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
@@ -33,11 +37,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
+import com.example.civicall.SplashActivity
 import com.example.civicall.databinding.ActivityDetailPostBinding
 import com.github.clans.fab.FloatingActionButton
 import com.github.clans.fab.FloatingActionMenu
@@ -212,10 +218,8 @@ class DetailPost : AppCompatActivity() {
                                                                 currentUserId
                                                             )
                                                         } else {
-                                                            showJoinConfirmationDialog(
-                                                                reference,
-                                                                currentUserId
-                                                            )
+                                                            showJoinConfirmationDialog(reference, currentUserId, dataSnapshot.child("title").getValue(String::class.java) ?: "")
+
                                                         }
                                                     }
                                                 }
@@ -878,7 +882,7 @@ class DetailPost : AppCompatActivity() {
 
     private var isJoinConfirmationDialogShowing = false
 
-    private fun showJoinConfirmationDialog(reference: DatabaseReference, currentUserId: String) {
+    private fun showJoinConfirmationDialog(reference: DatabaseReference, currentUserId: String, engagementTitle: String) {
         if (isJoinConfirmationDialogShowing) {
             return
         }
@@ -905,6 +909,9 @@ class DetailPost : AppCompatActivity() {
         joinBtn.setOnClickListener {
             alertDialog.dismiss()
             dismissCustomDialog()
+
+            // Send push notification when the user joins an engagement
+            sendJoinNotification(engagementTitle)
 
             val participantsReference = reference.child("Participants").child(currentUserId)
 
@@ -934,6 +941,51 @@ class DetailPost : AppCompatActivity() {
         alertDialog.show()
         isJoinConfirmationDialogShowing = true
     }
+
+    private fun sendJoinNotification(engagementTitle: String) {
+        val title = "You Join the Cost"
+        val body = "Engagement Title: $engagementTitle"
+
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        // Create an intent that opens your main activity
+        val intent = Intent(this, SplashActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val channelId = "civic_channel"
+        val channelName = "Verification"
+
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.drawable.civicalllogo)
+            .setContentTitle(title)
+            .setContentText(body)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)  // Removes the notification when clicked
+
+        // Always create the NotificationChannel on devices running Android Oreo and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                channelName,
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // Generate a unique notification ID
+        val notificationId = System.currentTimeMillis().toInt()
+
+        // Display the notification
+        notificationManager.notify(notificationId, notificationBuilder.build())
+    }
+
 
     private var isCancelConfirmationDialogShowing = false
 
