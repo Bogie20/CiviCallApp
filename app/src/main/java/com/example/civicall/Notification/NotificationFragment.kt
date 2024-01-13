@@ -40,7 +40,10 @@ class NotificationFragment : Fragment() {
     private lateinit var accountVerificationAdapter: AccountVerificationAdapter
     private lateinit var userList: MutableList<AccountVerificationAdapter.UserData>
     private lateinit var databaseReferenceUsers: DatabaseReference
-
+    private lateinit var databaseReferenceRequestVerify: DatabaseReference
+    private lateinit var recyclerViewThird: RecyclerView
+    private lateinit var requestVerificationAdapter: RequestVerificationAdapter
+    private lateinit var requestList: MutableList<RequestVerificationAdapter.RequestData>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -65,7 +68,14 @@ class NotificationFragment : Fragment() {
         accountVerificationAdapter = AccountVerificationAdapter(userList)
         recyclerViewSec.adapter = accountVerificationAdapter
 
+        recyclerViewThird = view.findViewById(R.id.RecyclerViewThird)
+        recyclerViewThird.layoutManager = LinearLayoutManager(activity)
+        requestList = mutableListOf()
+        requestVerificationAdapter = RequestVerificationAdapter(requestList)
+        recyclerViewThird.adapter = requestVerificationAdapter
+
         databaseReference = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
+        databaseReferenceRequestVerify = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
         databaseReferenceUsers = FirebaseDatabase.getInstance().reference.child("Users")
 
         databaseReference.addValueEventListener(object : ValueEventListener {
@@ -212,6 +222,49 @@ class NotificationFragment : Fragment() {
                 // Handle onCancelled
             }
         })
+        databaseReferenceRequestVerify.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                requestList.clear()
+
+                // Get the UID of the current user
+                val currentUserUid = auth.currentUser?.uid
+
+                for (requestSnapshot in dataSnapshot.children) {
+                    // Check if the current user matches the UID in the snapshot and verificationStatus is true
+                    if (requestSnapshot.child("uploadersUID").getValue(String::class.java) == currentUserUid
+                        && requestSnapshot.child("verificationStatus").getValue(Boolean::class.java) == true
+                    ) {
+                        // Add the request data to the list
+                        val title = requestSnapshot.child("title").getValue(String::class.java) ?: ""
+                        val category = requestSnapshot.child("category").getValue(String::class.java) ?: ""
+                        val approveTimeStamp = requestSnapshot.child("approveTimeStamp").getValue(String::class.java) ?: ""
+
+                        val endDateTime = SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(approveTimeStamp)
+
+                        if (endDateTime != null && isWithinOneYear(endDateTime)) {
+                            continue
+                        }
+
+                        requestList.add(RequestVerificationAdapter.RequestData(title, category, approveTimeStamp))
+
+
+                    }
+                }
+
+                requestVerificationAdapter.notifyDataSetChanged()
+
+                if (requestList.isEmpty()) {
+                    recyclerViewThird.visibility = View.GONE
+                } else {
+                    recyclerViewThird.visibility = View.VISIBLE
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle onCancelled
+            }
+        })
 
         val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
@@ -246,6 +299,15 @@ class NotificationFragment : Fragment() {
         return view
 
     }
+    private fun isWithinOneYear(endDateTime: Date): Boolean {
+        val calendar = Calendar.getInstance()
+        val currentDate = Date()
+        calendar.time = endDateTime
+        calendar.add(Calendar.YEAR, 1)
+
+        return currentDate.after(calendar.time)
+    }
+
     companion object {
         const val DATE_FORMAT = "MM/dd/yyyy hh:mm a"
     }
