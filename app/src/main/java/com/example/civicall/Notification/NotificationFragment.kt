@@ -100,12 +100,13 @@ class NotificationFragment : Fragment() {
 
                             val calendar = Calendar.getInstance()
                             calendar.time = endDateTime
-                            calendar.add(Calendar.WEEK_OF_YEAR, 2)
+                            calendar.add(Calendar.MONTH, 1)
 
                             if (currentDate.after(calendar.time)) {
-                                // Skip this item as it's more than 2 weeks after the engagement has ended
+                                // Skip this item as it's more than 1 month after the engagement has ended
                                 continue
                             }
+
 
                             notificationList.add(0, notificationItem)
                         }

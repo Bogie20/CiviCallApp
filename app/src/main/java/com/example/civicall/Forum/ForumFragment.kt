@@ -28,6 +28,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import nl.joery.animatedbottombar.AnimatedBottomBar
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.TimeZone
 
 class ForumFragment : Fragment() {
 
@@ -41,7 +44,10 @@ class ForumFragment : Fragment() {
     private lateinit var noPostsImage: ImageView
     private lateinit var noPostsText: TextView
     private lateinit var progressBar: ProgressBar
-
+    companion object {
+        private val TIME_ZONE = TimeZone.getTimeZone("Asia/Manila")
+        private const val MAX_POST_AGE_MILLIS = 6 * 30 * 24 * 60 * 60 * 1000L
+    }
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -79,7 +85,6 @@ class ForumFragment : Fragment() {
 
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
-
                 val currentUser = FirebaseAuth.getInstance().currentUser
                 val userUid = currentUser?.uid
                 val userCampusRef = FirebaseDatabase.getInstance().getReference("Users/$userUid/campus")
@@ -89,6 +94,8 @@ class ForumFragment : Fragment() {
                         val userCampus = userCampusSnapshot.value.toString()
                         val newDataList = ArrayList<DataClassForum>()
 
+                        val currentMillis = System.currentTimeMillis()
+
                         for (itemSnapshot in snapshot.children) {
                             val dataClass = itemSnapshot.getValue(DataClassForum::class.java)
                             dataClass?.key = itemSnapshot.key
@@ -97,15 +104,24 @@ class ForumFragment : Fragment() {
                                 val uploadEngagementCampuses =
                                     it.campus?.split(", ")?.map { it.trim() } ?: emptyList()
                                 if (userCampus in uploadEngagementCampuses) {
-                                    newDataList.add(0, it)
+                                    val postTimeMillis = it.postTime?.let { it1 ->
+                                        SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+                                            .apply {
+                                                timeZone = TIME_ZONE
+                                            }
+                                            .parse(it1)?.time
+                                    } ?: 0
+
+                                    if (currentMillis - postTimeMillis <= MAX_POST_AGE_MILLIS) {
+                                        newDataList.add(0, it)
+                                    }
                                 }
                             }
                         }
 
                         dataList.clear()
                         dataList.addAll(newDataList)
-                        adapter.notifyDataSetChanged()
-
+                        adapter.notifyDataSetChanged();
                         if (dataList.isEmpty()) {
                             rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
                             rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.VISIBLE
@@ -180,6 +196,8 @@ class ForumFragment : Fragment() {
         return rootView
 
     }
+
+
 
     private var isFilterDialogShowing = false // Add this variable
 
