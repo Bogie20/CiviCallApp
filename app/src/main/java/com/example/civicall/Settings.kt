@@ -69,11 +69,11 @@ class Settings : AppCompatActivity(), ValueEventListener {
     }
 
     private fun openNotificationSettings() {
-        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-        val uri = android.net.Uri.fromParts("package", packageName, null)
-        intent.data = uri
+        val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+        intent.putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
         startActivity(intent)
     }
+
 
     private fun areNotificationsEnabled(): Boolean {
         val notificationManager =
