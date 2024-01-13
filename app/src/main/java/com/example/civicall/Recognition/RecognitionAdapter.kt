@@ -34,11 +34,11 @@ class RecognitionAdapter(private val context: Context, private val userList: Lis
         val formattedActivePts = formatNumber(user.activepts)
         holder.activePts.text = "${formattedActivePts} pts"
         holder.campus.text = user.campus
-        // Set the ranking number only for top 10
-        if (position < 10) {
+
+        if (position < 99) {
             holder.rankingNum.text = (position + 1).toString()
             holder.rankingNum.visibility = View.VISIBLE
-            // Change the text color for the top 10 rankings to gold
+
             holder.rankingNum.setTextColor(ContextCompat.getColor(context, R.color.softGoldColor))
         } else {
             // Hide ranking number for other rankings
