@@ -89,6 +89,14 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                                 val oneYearInMillis = 365 * 24 * 60 * 60 * 1000L  // One year in milliseconds
 
                                 for (snapshot in dataSnapshot.children) {
+                                    val activePoints = snapshot.child("activepts").getValue(Int::class.java)
+
+                                    // Skip processing if activepts is less than or equal to 0
+                                    if (activePoints != null && activePoints <= 0) {
+                                        continue
+                                    }
+
+                                    // Continue processing for users with activepts greater than 0
                                     val lastLoginString = snapshot.child("lastLogin").getValue(String::class.java)
 
                                     // Skip processing if lastLogin is empty or null
@@ -277,8 +285,15 @@ class RecognitionLeaderBoard : AppCompatActivity() {
 
                     val oneYearInMillis = 365 * 24 * 60 * 60 * 1000L  // One year in milliseconds
 
-                    // Inside your query onDataChange method
                     for (snapshot in dataSnapshot.children) {
+                        val activePoints = snapshot.child("activepts").getValue(Int::class.java)
+
+                        // Skip processing if activepts is less than or equal to 0
+                        if (activePoints != null && activePoints <= 0) {
+                            continue
+                        }
+
+                        // Continue processing for users with activepts greater than 0
                         val lastLoginString = snapshot.child("lastLogin").getValue(String::class.java)
 
                         // Skip processing if lastLogin is empty or null
