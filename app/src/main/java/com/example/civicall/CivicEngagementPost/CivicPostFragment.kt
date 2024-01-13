@@ -26,6 +26,10 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import nl.joery.animatedbottombar.AnimatedBottomBar
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import java.util.TimeZone
 
 class CivicPostFragment : Fragment() {
 
@@ -39,6 +43,12 @@ class CivicPostFragment : Fragment() {
     private lateinit var noPostsImage: ImageView
     private lateinit var noPostsText: TextView
     private lateinit var progressBar: ProgressBar
+
+    companion object {
+        private val TIME_ZONE = TimeZone.getTimeZone("Asia/Manila")
+        private const val MAX_POST_AGE_MILLIS = 365 * 24 * 60 * 60 * 1000L
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -73,7 +83,6 @@ class CivicPostFragment : Fragment() {
 
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
-
                 val currentUser = FirebaseAuth.getInstance().currentUser
                 val userUid = currentUser?.uid
                 val userCampusRef = FirebaseDatabase.getInstance().getReference("Users/$userUid/campus")
@@ -83,6 +92,9 @@ class CivicPostFragment : Fragment() {
                         val userCampus = userCampusSnapshot.value.toString()
                         val newDataList = ArrayList<DataClass>()
 
+                        val currentMillis = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).timeInMillis
+
+
                         for (itemSnapshot in snapshot.children) {
                             val dataClass = itemSnapshot.getValue(DataClass::class.java)
                             dataClass?.key = itemSnapshot.key
@@ -91,11 +103,21 @@ class CivicPostFragment : Fragment() {
                                 val uploadEngagementCampuses =
                                     it.campus?.split(", ")?.map { it.trim() } ?: emptyList()
                                 if (userCampus in uploadEngagementCampuses) {
-                                    newDataList.add(0, it)
+                                    val postTimeMillis = it.endDate?.let { it1 ->
+                                        SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+                                            .apply {
+                                                timeZone = TIME_ZONE
+                                            }
+                                            .parse(it1 + " Asia/Manila")?.time
+                                    } ?: 0
+
+
+                                    if (currentMillis - postTimeMillis <= MAX_POST_AGE_MILLIS) {
+                                        newDataList.add(0, it)
+                                    }
                                 }
                             }
                         }
-
                         dataList.clear()
                         dataList.addAll(newDataList)
                         adapter.notifyDataSetChanged()

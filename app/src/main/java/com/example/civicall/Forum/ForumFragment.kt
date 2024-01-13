@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Locale
 import java.util.TimeZone
 
@@ -46,7 +47,7 @@ class ForumFragment : Fragment() {
     private lateinit var progressBar: ProgressBar
     companion object {
         private val TIME_ZONE = TimeZone.getTimeZone("Asia/Manila")
-        private const val MAX_POST_AGE_MILLIS = 6 * 30 * 24 * 60 * 60 * 1000L
+        private const val MAX_POST_AGE_MILLIS = 365 * 24 * 60 * 60 * 1000L
     }
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
@@ -94,7 +95,7 @@ class ForumFragment : Fragment() {
                         val userCampus = userCampusSnapshot.value.toString()
                         val newDataList = ArrayList<DataClassForum>()
 
-                        val currentMillis = System.currentTimeMillis()
+                        val currentMillis = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).timeInMillis
 
                         for (itemSnapshot in snapshot.children) {
                             val dataClass = itemSnapshot.getValue(DataClassForum::class.java)
@@ -109,7 +110,7 @@ class ForumFragment : Fragment() {
                                             .apply {
                                                 timeZone = TIME_ZONE
                                             }
-                                            .parse(it1)?.time
+                                            .parse(it1 + " Asia/Manila")?.time
                                     } ?: 0
 
                                     if (currentMillis - postTimeMillis <= MAX_POST_AGE_MILLIS) {
