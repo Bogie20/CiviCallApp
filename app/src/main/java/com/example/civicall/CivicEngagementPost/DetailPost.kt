@@ -218,7 +218,13 @@ class DetailPost : AppCompatActivity() {
                                                                 currentUserId
                                                             )
                                                         } else {
-                                                            showJoinConfirmationDialog(reference, currentUserId, dataSnapshot.child("title").getValue(String::class.java) ?: "")
+                                                            showJoinConfirmationDialog(
+                                                                reference,
+                                                                currentUserId,
+                                                                dataSnapshot.child("title").getValue(String::class.java) ?: "",
+                                                                dataSnapshot.child("startDate").getValue(String::class.java) ?: ""
+                                                            )
+
 
                                                         }
                                                     }
@@ -882,7 +888,11 @@ class DetailPost : AppCompatActivity() {
 
     private var isJoinConfirmationDialogShowing = false
 
-    private fun showJoinConfirmationDialog(reference: DatabaseReference, currentUserId: String, engagementTitle: String) {
+    private fun showJoinConfirmationDialog(
+        reference: DatabaseReference,
+        currentUserId: String,
+        engagementTitle: String,
+        startDate: String) {
         if (isJoinConfirmationDialogShowing) {
             return
         }
@@ -911,7 +921,7 @@ class DetailPost : AppCompatActivity() {
             dismissCustomDialog()
 
             // Send push notification when the user joins an engagement
-            sendJoinNotification(engagementTitle)
+            sendJoinNotification(engagementTitle, startDate)
 
             val participantsReference = reference.child("Participants").child(currentUserId)
 
@@ -942,9 +952,9 @@ class DetailPost : AppCompatActivity() {
         isJoinConfirmationDialogShowing = true
     }
 
-    private fun sendJoinNotification(engagementTitle: String) {
+    private fun sendJoinNotification(engagementTitle: String, startDate: String) {
         val title = "You Join the Cost"
-        val body = "Engagement Title: $engagementTitle"
+        val body ="You've joined \"" + engagementTitle + "\". It will start in " + startDate + "."
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -962,7 +972,7 @@ class DetailPost : AppCompatActivity() {
         val channelName = "Verification"
 
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.drawable.civicalllogo)
+            .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(title)
             .setContentText(body)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
