@@ -650,10 +650,12 @@ class DetailPost : AppCompatActivity() {
             alertDialog.dismiss()
         }
         saveButton.setOnClickListener {
+
             val amountText = amountEditText.text.toString().trim()
             if (amountText.isNotEmpty()) {
                 alertDialog.dismiss()
                 uploadImageToFirebase(capturedImageUri!!, amountText)
+                sendAmountNotification()
             } else {
                 Toast.makeText(this, "Please input the amount", Toast.LENGTH_SHORT).show()
             }
@@ -666,7 +668,49 @@ class DetailPost : AppCompatActivity() {
         }
         alertDialog.show()
     }
+    private fun sendAmountNotification() {
+        val title = "You contribute to the cause."
+        val body ="Please wait until the admin confirms it."
 
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        // Create an intent that opens your main activity
+        val intent = Intent(this, SplashActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val channelId = "civic_channel"
+        val channelName = "Verification"
+
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(title)
+            .setContentText(body)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)  // Removes the notification when clicked
+
+        // Always create the NotificationChannel on devices running Android Oreo and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                channelName,
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // Generate a unique notification ID
+        val notificationId = System.currentTimeMillis().toInt()
+
+        // Display the notification
+        notificationManager.notify(notificationId, notificationBuilder.build())
+    }
     private fun uploadImageToFirebase(imageUri: Uri, amount: String) {
         val storage = FirebaseStorage.getInstance()
         val storageRef = storage.reference
@@ -954,7 +998,7 @@ class DetailPost : AppCompatActivity() {
     }
 
     private fun sendJoinNotification(engagementTitle: String, startDate: String) {
-        val title = "You have joined the cost."
+        val title =  "You have joined the cause."
         val body ="You've joined \"" + engagementTitle + "\". It will start in " + startDate + "."
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
