@@ -20,11 +20,17 @@
             android:id="@+id/recImage"
             android:layout_width="match_parent"
             android:layout_height="198dp"
-            android:layout_marginBottom="10dp"
             android:scaleType="centerCrop"
             android:src="@drawable/placeholder"
             app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
             />
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/lineColor"
+            app:layout_constraintTop_toBottomOf="@+id/postInputtxt" />
         <TextView
             android:id="@+id/civicTitle"
             android:layout_width="match_parent"
