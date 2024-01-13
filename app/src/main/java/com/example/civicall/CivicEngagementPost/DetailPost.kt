@@ -215,7 +215,8 @@ class DetailPost : AppCompatActivity() {
                                                         } else if (joinButton.text.toString() == "Cancel") {
                                                             showCancelConfirmationDialog(
                                                                 reference,
-                                                                currentUserId
+                                                                currentUserId,
+                                                                dataSnapshot.child("title").getValue(String::class.java) ?: "",
                                                             )
                                                         } else {
                                                             showJoinConfirmationDialog(
@@ -953,7 +954,7 @@ class DetailPost : AppCompatActivity() {
     }
 
     private fun sendJoinNotification(engagementTitle: String, startDate: String) {
-        val title = "You Join the Cost"
+        val title = "You have joined the cost."
         val body ="You've joined \"" + engagementTitle + "\". It will start in " + startDate + "."
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -999,7 +1000,7 @@ class DetailPost : AppCompatActivity() {
 
     private var isCancelConfirmationDialogShowing = false
 
-    private fun showCancelConfirmationDialog(reference: DatabaseReference, currentUserId: String) {
+    private fun showCancelConfirmationDialog(reference: DatabaseReference, currentUserId: String, engagementTitle: String, ) {
         if (isCancelConfirmationDialogShowing) {
             return
         }
@@ -1035,6 +1036,7 @@ class DetailPost : AppCompatActivity() {
             isCancelConfirmationDialogShowing = false
             alertDialog.dismiss()
 
+            sendCancelNotification(engagementTitle)
             // Remove the user's UID from the "Participants" node
             reference.child("Participants").child(currentUserId).removeValue()
 
@@ -1051,6 +1053,49 @@ class DetailPost : AppCompatActivity() {
 
         alertDialog.show()
         isCancelConfirmationDialogShowing = true
+    }
+    private fun sendCancelNotification(engagementTitle: String) {
+        val title = "Cancel Confirmed"
+        val body = "Title:\"$engagementTitle\". You can still rejoin if you like"
+
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        // Create an intent that opens your main activity
+        val intent = Intent(this, SplashActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val channelId = "civic_channel"
+        val channelName = "Verification"
+
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(title)
+            .setContentText(body)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)  // Removes the notification when clicked
+
+        // Always create the NotificationChannel on devices running Android Oreo and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                channelName,
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // Generate a unique notification ID
+        val notificationId = System.currentTimeMillis().toInt()
+
+        // Display the notification
+        notificationManager.notify(notificationId, notificationBuilder.build())
     }
 
     private var isJoinSuccessDialogShowing = false
