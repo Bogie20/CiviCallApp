@@ -3,11 +3,16 @@ package com.example.civicall.Forum
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
@@ -32,11 +37,13 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
+import com.example.civicall.SplashActivity
 import com.example.civicall.Users
 import com.example.civicall.databinding.ActivityForumUploadBinding
 import com.github.clans.fab.FloatingActionButton
@@ -407,9 +414,6 @@ class ForumUpload : AppCompatActivity() {
         isCampusDialogShowing = true
     }
 
-
-
-
     private var isAlreadyJoinDialogShowing = false
 
     private fun showMessage(
@@ -593,7 +597,46 @@ class ForumUpload : AppCompatActivity() {
         }
     }
 
+    private fun sendPushNotification(category: String) {
+        val title = "You Successfully Posted in Forum"
+        val body = "About: $category"
 
+        val notificationId = System.currentTimeMillis().toInt()
+
+        // Create an intent that opens your main activity
+        val intent = Intent(this, SplashActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val notificationBuilder = NotificationCompat.Builder(this, "civic_channel")
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(title)
+            .setContentText(body)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)  // Removes the notification when clicked
+
+        val notificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        // Always create the NotificationChannel on devices running Android Oreo and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                "civic_channel",
+                "Verification",
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // Display the notification
+        notificationManager.notify(notificationId, notificationBuilder.build())
+    }
     private fun uploadData(imageUrl: String?) {
         val postText = uploadPostText.text.toString()
         val campus = binding.campusPick.text.toString()
@@ -629,6 +672,7 @@ class ForumUpload : AppCompatActivity() {
                             Toast.makeText(this@ForumUpload, "Success", Toast.LENGTH_SHORT)
                                 .show()
                             finish()
+                            sendPushNotification(uploadCategory.text.toString())
                         }
                     }
                     .addOnFailureListener { e ->

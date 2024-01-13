@@ -965,9 +965,6 @@ class DetailPost : AppCompatActivity() {
             alertDialog.dismiss()
             dismissCustomDialog()
 
-            // Send push notification when the user joins an engagement
-            sendJoinNotification(engagementTitle, startDate)
-
             val participantsReference = reference.child("Participants").child(currentUserId)
 
             // Set the value to false initially and set the timestamp
@@ -978,8 +975,11 @@ class DetailPost : AppCompatActivity() {
                     // Handle the failure to set to false
                     Toast.makeText(this@DetailPost, "Failed to join: ${exception.message}", Toast.LENGTH_SHORT).show()
                 }
+
             joinButton.text = "Cancel"
             showJoinPopupSuccess()
+
+            sendJoinNotification(engagementTitle, startDate)
         }
 
         cancelBtn.text = "Cancel"

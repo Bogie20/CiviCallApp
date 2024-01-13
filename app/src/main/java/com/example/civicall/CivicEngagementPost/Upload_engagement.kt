@@ -6,12 +6,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.TimePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -29,9 +34,11 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
+import com.example.civicall.SplashActivity
 import com.example.civicall.databinding.ActivityUploadEngagementBinding
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
@@ -416,7 +423,10 @@ class Upload_engagement : AppCompatActivity() {
         saveBtn.setOnClickListener {
             alertDialog.dismiss()
             dismissCustomDialog()
+
             saveData()
+
+
         }
         cancelBtn.text = "Cancel"
         cancelBtn.setOnClickListener {
@@ -450,7 +460,46 @@ class Upload_engagement : AppCompatActivity() {
 
         }
     }
+    private fun sendEngagementNotification(engagementTitle: String) {
+        val title = "You Request an Engagement"
+        val body = "Title: '$engagementTitle' Please wait for approval"
 
+        val notificationId = System.currentTimeMillis().toInt()
+
+        // Create an intent that opens your main activity
+        val intent = Intent(this, SplashActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val notificationBuilder = NotificationCompat.Builder(this, "civic_channel")
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(title)
+            .setContentText(body)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)  // Removes the notification when clicked
+
+        val notificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        // Always create the NotificationChannel on devices running Android Oreo and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                "civic_channel",
+                "Verification",
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // Display the notification
+        notificationManager.notify(notificationId, notificationBuilder.build())
+    }
     private var isDateTimePickerShowing = false
 
     private fun showDateTimePicker(editText: EditText, startDate: Calendar?) {
@@ -652,6 +701,7 @@ class Upload_engagement : AppCompatActivity() {
                             Toast.makeText(this@Upload_engagement, "Success", Toast.LENGTH_SHORT)
                                 .show()
                             finish()
+                            sendEngagementNotification(uploadTitle.text.toString())
                         }
                     }
                     .addOnFailureListener { e ->
