@@ -21,6 +21,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.example.civicall.NetworkUtils
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class RecognitionLeaderBoard : AppCompatActivity() {
 
@@ -84,13 +86,39 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                                 userList.clear()
                                 val users = mutableListOf<User>()
 
-                                // Inside the onDataChange method after retrieving users from the database
+                                val oneYearInMillis = 365 * 24 * 60 * 60 * 1000L  // One year in milliseconds
+
                                 for (snapshot in dataSnapshot.children) {
-                                    // Filter out users with verificationStatus = false
+                                    val lastLoginString = snapshot.child("lastLogin").getValue(String::class.java)
+
+                                    // Skip processing if lastLogin is empty or null
+                                    if (lastLoginString.isNullOrEmpty()) {
+                                        continue
+                                    }
+
+                                    val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+                                    val lastLoginDate = sdf.parse(lastLoginString)
+
+                                    // Check if last login is more than 1 year ago
+                                    val currentTime = System.currentTimeMillis()
+                                    if (lastLoginDate != null && currentTime - lastLoginDate.time >= oneYearInMillis) {
+                                        // Filter out users with last login more than 1 year ago
+                                        continue
+                                    }
+
+                                    // Continue processing for users with last login within the past year
                                     val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java)
                                     val campus = snapshot.child("campus").getValue(String::class.java)
 
-                                    if (verificationStatus == true && !campus.isNullOrEmpty()) {
+                                    val currentUserCampus = campusTitleTextView.text.toString()
+
+                                    // Skip processing if the current user's campus is empty or null
+                                    if (currentUserCampus.isNullOrEmpty()) {
+                                        continue
+                                    }
+
+                                    // Check if the user's campus matches the current user's campus
+                                    if (verificationStatus == true && campus == currentUserCampus) {
                                         val user = snapshot.getValue(User::class.java)
                                         user?.let {
                                             users.add(it)
@@ -247,8 +275,28 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                     userList.clear()
                     val users = mutableListOf<User>()
 
+                    val oneYearInMillis = 365 * 24 * 60 * 60 * 1000L  // One year in milliseconds
+
+                    // Inside your query onDataChange method
                     for (snapshot in dataSnapshot.children) {
-                        // Filter out users with verificationStatus = false
+                        val lastLoginString = snapshot.child("lastLogin").getValue(String::class.java)
+
+                        // Skip processing if lastLogin is empty or null
+                        if (lastLoginString.isNullOrEmpty()) {
+                            continue
+                        }
+
+                        val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+                        val lastLoginDate = sdf.parse(lastLoginString)
+
+                        // Check if last login is more than 1 year ago
+                        val currentTime = System.currentTimeMillis()
+                        if (lastLoginDate != null && currentTime - lastLoginDate.time >= oneYearInMillis) {
+                            // Filter out users with last login more than 1 year ago
+                            continue
+                        }
+
+                        // Continue processing for users with last login within the past year
                         val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java)
                         val campus = snapshot.child("campus").getValue(String::class.java)
 
@@ -259,6 +307,7 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                             }
                         }
                     }
+
 
                     users.sortByDescending { it.activepts }
 
