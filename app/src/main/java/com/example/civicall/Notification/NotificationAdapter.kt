@@ -54,7 +54,7 @@ class NotificationAdapter(private val notificationList: List<DataClassNotif>) :
         if (timeDifferenceStart <= TWELVE_HOURS_IN_MILLIS && timeDifferenceStart > 0) {
             val timestampMinus12Hours = calculateTimestampMinusHours(currentItem.startDate, 12)
             holder.dateandTime.text = "Since: ${timestampMinus12Hours}"
-            holder.itemView.findViewById<TextView>(R.id.label).text = "The engagement is 12 hours away!"
+            holder.itemView.findViewById<TextView>(R.id.label).text = "12 hours until the engagement!"
         } else if (isEngagementOngoing(currentItem.startDate, currentItem.endDate)) {
 
         holder.dateandTime.text = "Since: ${currentItem.startDate}"
@@ -63,7 +63,7 @@ class NotificationAdapter(private val notificationList: List<DataClassNotif>) :
        } else if (timeDifferenceEnd <= 0) {
         // Engagement has finished
         holder.dateandTime.text = "Since: ${currentItem.endDate}"
-        holder.itemView.findViewById<TextView>(R.id.label).text = "Engagement concluded. Rate this to claim points if attended."
+        holder.itemView.findViewById<TextView>(R.id.label).text = "Finish! Rate to claim points if attended"
         } else {
             // Outside 12 hours, show "The engagement is 24 hours away!" until it's less than 12 hours away
             if (timeDifferenceStart > TWELVE_HOURS_IN_MILLIS) {

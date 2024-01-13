@@ -21,6 +21,7 @@ import nl.joery.animatedbottombar.AnimatedBottomBar
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Collections
 import java.util.Date
 import java.util.Locale
 
@@ -35,6 +36,10 @@ class NotificationFragment : Fragment() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
     private lateinit var progressBar: ProgressBar
+    private lateinit var recyclerViewSec: RecyclerView
+    private lateinit var accountVerificationAdapter: AccountVerificationAdapter
+    private lateinit var userList: MutableList<AccountVerificationAdapter.UserData>
+    private lateinit var databaseReferenceUsers: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,8 +59,14 @@ class NotificationFragment : Fragment() {
         view.startAnimation(anim)
         auth = FirebaseAuth.getInstance()
         val currentUserUid = auth.currentUser?.uid
+        recyclerViewSec = view.findViewById(R.id.RecyclerViewSec)
+        recyclerViewSec.layoutManager = LinearLayoutManager(activity)
+        userList = mutableListOf()
+        accountVerificationAdapter = AccountVerificationAdapter(userList)
+        recyclerViewSec.adapter = accountVerificationAdapter
 
         databaseReference = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
+        databaseReferenceUsers = FirebaseDatabase.getInstance().reference.child("Users")
 
         databaseReference.addValueEventListener(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
@@ -100,7 +111,7 @@ class NotificationFragment : Fragment() {
 
                             val calendar = Calendar.getInstance()
                             calendar.time = endDateTime
-                            calendar.add(Calendar.MONTH, 1)
+                            calendar.add(Calendar.YEAR, 1)
 
                             if (currentDate.after(calendar.time)) {
                                 // Skip this item as it's more than 1 month after the engagement has ended
@@ -133,6 +144,74 @@ class NotificationFragment : Fragment() {
             }
         })
 
+        // Update the onDataChange method for databaseReferenceUsers
+        databaseReferenceUsers.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                userList.clear()
+
+                // Get the UID of the current user
+                val currentUserUid = auth.currentUser?.uid
+
+                for (userSnapshot in dataSnapshot.children) {
+                    // Check if the current user matches the UID in the snapshot
+                    if (userSnapshot.key == currentUserUid) {
+                        // Retrieve verification status for the current user
+                        val verificationStatus =
+                            userSnapshot.child("verificationStatus").getValue(Boolean::class.java) ?: false
+
+                        if (verificationStatus) {
+                            // If verification status is true, add the user data to the list
+                            val uid = userSnapshot.key ?: ""
+                            val email = userSnapshot.child("email").getValue(String::class.java) ?: ""
+                            val firstname = userSnapshot.child("firstname").getValue(String::class.java) ?: ""
+                            val lastname = userSnapshot.child("lastname").getValue(String::class.java) ?: ""
+
+                            // Retrieve the verifiedTimeStamp if it exists
+                            val verifiedTimeStamp =
+                                userSnapshot.child("verifiedTimeStamp").getValue(String::class.java) ?: ""
+
+                            val userData = AccountVerificationAdapter.UserData(
+                                uid,
+                                email,
+                                firstname,
+                                lastname,
+                                verificationStatus,
+                                verifiedTimeStamp
+                            )
+                            val currentDate = Date()
+                            val endDateTime = SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(verifiedTimeStamp)
+
+                            val calendar = Calendar.getInstance()
+                            if (endDateTime != null) {
+                                calendar.time = endDateTime
+                            }
+                            calendar.add(Calendar.YEAR, 1)
+
+                            if (currentDate.after(calendar.time)) {
+                                // Skip this item as it's more than 1 month after the engagement has ended
+                                continue
+                            }
+                            userList.add(0,userData)
+                        }
+                    }
+                }
+                accountVerificationAdapter.notifyDataSetChanged()
+
+                // Check if the userList is empty
+                if (userList.isEmpty()) {
+                    // If empty, hide the RecyclerViewSec
+                    recyclerViewSec.visibility = View.GONE
+                } else {
+                    // If not empty, show the RecyclerViewSec
+                    recyclerViewSec.visibility = View.VISIBLE
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle onCancelled
+            }
+        })
 
         val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
