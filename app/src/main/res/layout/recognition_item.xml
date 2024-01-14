@@ -33,7 +33,6 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             app:cardCornerRadius="100dp"
-
             android:layout_marginBottom="10dp"
             android:layout_marginTop="15dp">
 
