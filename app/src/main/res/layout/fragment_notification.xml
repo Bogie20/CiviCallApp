@@ -34,6 +34,13 @@
                 android:scrollbarSize="5dp"
                 android:scrollbars="vertical" />
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewEngageJoined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:scrollbarSize="5dp"
+                android:scrollbars="vertical" />
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/RecyclerViewEngagementApproved"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

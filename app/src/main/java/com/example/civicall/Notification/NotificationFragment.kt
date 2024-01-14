@@ -34,17 +34,21 @@ class NotificationFragment : Fragment() {
     private lateinit var nestedScrollView: NestedScrollView
     private lateinit var noPostsText: TextView
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var databaseReferenceJoined: DatabaseReference
     private lateinit var databaseReferenceActivePoints: DatabaseReference
     private lateinit var auth: FirebaseAuth
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerViewEngageUpdate: RecyclerView
     private lateinit var accountVerificationAdapter: AccountVerificationAdapter
     private lateinit var userList: MutableList<AccountVerificationAdapter.UserData>
+    private lateinit var joinedList: MutableList<EngagementJoinedAdapter.EngagementJoinedData>
     private lateinit var databaseReferenceUsers: DatabaseReference
     private lateinit var databaseReferenceRequestVerify: DatabaseReference
     private lateinit var RecyclerViewEngagementApproved: RecyclerView
+    private lateinit var recyclerViewEngageJoined: RecyclerView
     private lateinit var recyclerViewAct: RecyclerView
     private lateinit var activePtsAdapter: ActivePointsAdapter
+    private lateinit var engagementJoinedAdapter: EngagementJoinedAdapter
     private lateinit var requestVerificationAdapter: RequestVerificationAdapter
     private lateinit var ActivePtsList: MutableList<ActivePointsAdapter.ActiveData>
     private lateinit var requestList: MutableList<RequestVerificationAdapter.RequestData>
@@ -80,6 +84,12 @@ class NotificationFragment : Fragment() {
         accountVerificationAdapter = AccountVerificationAdapter(userList)
         RecyclerViewAccApproved.adapter = accountVerificationAdapter
 
+        recyclerViewEngageJoined = view.findViewById(R.id.recyclerViewEngageJoined)
+        recyclerViewEngageJoined.layoutManager = LinearLayoutManager(activity)
+        joinedList = mutableListOf()
+        engagementJoinedAdapter = EngagementJoinedAdapter(joinedList)
+        recyclerViewEngageJoined.adapter = engagementJoinedAdapter
+
         RecyclerViewEngagementApproved = view.findViewById(R.id.RecyclerViewEngagementApproved)
         RecyclerViewEngagementApproved.layoutManager = LinearLayoutManager(activity)
         requestList = mutableListOf()
@@ -91,6 +101,7 @@ class NotificationFragment : Fragment() {
         databaseReferenceRequestVerify = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
         databaseReferenceUsers = FirebaseDatabase.getInstance().reference.child("Users")
         databaseReferenceActivePoints = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
+        databaseReferenceJoined = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
 
         databaseReference.addValueEventListener(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
@@ -135,7 +146,7 @@ class NotificationFragment : Fragment() {
 
                             val calendar = Calendar.getInstance()
                             calendar.time = endDateTime
-                            calendar.add(Calendar.YEAR, 1)
+                            calendar.add(Calendar.MONTH, 1)
 
                             if (currentDate.after(calendar.time)) {
                                 // Skip this item as it's more than 1 month after the engagement has ended
@@ -143,11 +154,11 @@ class NotificationFragment : Fragment() {
                             }
 
 
-                            notificationList.add(0, notificationItem)
+                            notificationList.add(notificationItem)
                         }
                     }
                 }
-
+                notificationList.sortByDescending { it.timestamp }
                 notificationAdapter.notifyDataSetChanged()
 
                 // Check if the notificationList is empty
@@ -168,7 +179,6 @@ class NotificationFragment : Fragment() {
             }
         })
 
-        // Update the onDataChange method for databaseReferenceUsers
         databaseReferenceUsers.addValueEventListener(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -210,10 +220,9 @@ class NotificationFragment : Fragment() {
                             if (endDateTime != null) {
                                 calendar.time = endDateTime
                             }
-                            calendar.add(Calendar.YEAR, 1)
+                            calendar.add(Calendar.MONTH, 1)
 
                             if (currentDate.after(calendar.time)) {
-                                // Skip this item as it's more than 1 month after the engagement has ended
                                 continue
                             }
                             userList.add(0,userData)
@@ -256,12 +265,11 @@ class NotificationFragment : Fragment() {
 
                         val endDateTime = SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(approveTimeStamp)
 
-                        if (endDateTime != null && isWithinOneYear(endDateTime)) {
+                        if (endDateTime != null && isWithinOneMonth(endDateTime)) {
                             continue
                         }
 
                         requestList.add(RequestVerificationAdapter.RequestData(title, category, approveTimeStamp))
-
 
                     }
                 }
@@ -307,7 +315,7 @@ class NotificationFragment : Fragment() {
 
                                 if (endDateTime != null) {
                                     calendar.time = endDateTime
-                                    calendar.add(Calendar.YEAR, 1)
+                                    calendar.add(Calendar.MONTH, 1)
 
                                     if (currentDate.after(calendar.time)) {
                                         continue
@@ -340,6 +348,64 @@ class NotificationFragment : Fragment() {
                 // Handle error
             }
         })
+
+        databaseReferenceJoined.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                joinedList.clear()
+
+                // Get the UID of the current user
+                val currentUserUid = auth.currentUser?.uid
+
+                for (engagementSnapshot in dataSnapshot.children) {
+                    val postKey = engagementSnapshot.key ?: ""
+
+                    // Check if the current user is a participant in this engagement
+                    val participantsRef = engagementSnapshot.child("Participants")
+                    if (participantsRef.hasChild(currentUserUid!!)) {
+
+                        // Retrieve timestamp for the current user's participation
+                        val timestamp = participantsRef.child(currentUserUid).child("timestamp").value.toString()
+
+                        // Check if the engagement is within 24 hours from the current date and time
+                        if (isWithin24Hours(timestamp)) {
+                            val category = engagementSnapshot.child("category").value.toString()
+                            val title = engagementSnapshot.child("title").value.toString()
+                            val startDate = engagementSnapshot.child("startDate").value.toString()
+
+                            // Create EngagementJoinedData instance
+                            val engagementJoinedData = EngagementJoinedAdapter.EngagementJoinedData(
+                                postKey,
+                                title,
+                                category,
+                                startDate,
+                                timestamp
+                            )
+
+                            // Add to the joinedList
+                            joinedList.add(engagementJoinedData)
+                        }
+                    }
+                }
+
+                joinedList.sortByDescending { it.timestamp }
+                engagementJoinedAdapter.notifyDataSetChanged()
+
+                // Check if the joinedList is empty
+                if (joinedList.isEmpty()) {
+                    // If empty, hide the RecyclerView or handle as needed
+                    recyclerViewEngageJoined.visibility = View.GONE
+                } else {
+                    // If not empty, show the RecyclerView
+                    recyclerViewEngageJoined.visibility = View.VISIBLE
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle onCancelled
+            }
+        })
+
 
         val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
@@ -374,11 +440,11 @@ class NotificationFragment : Fragment() {
         return view
 
     }
-    private fun isWithinOneYear(endDateTime: Date): Boolean {
+    private fun isWithinOneMonth(endDateTime: Date): Boolean {
         val calendar = Calendar.getInstance()
         val currentDate = Date()
         calendar.time = endDateTime
-        calendar.add(Calendar.YEAR, 1)
+        calendar.add(Calendar.MONTH, 1)
 
         return currentDate.after(calendar.time)
     }
