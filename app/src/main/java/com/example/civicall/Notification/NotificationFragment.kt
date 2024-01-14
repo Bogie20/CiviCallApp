@@ -54,15 +54,19 @@ class NotificationFragment : Fragment() {
     private lateinit var requestVerificationAdapter: RequestVerificationAdapter
     private lateinit var ActivePtsList: MutableList<ActivePointsAdapter.ActiveData>
     private lateinit var requestList: MutableList<RequestVerificationAdapter.RequestData>
-
+    private lateinit var databaseReferenceAttended: DatabaseReference
+    private lateinit var RecyclerViewAttended: RecyclerView
+    private lateinit var attendedAdapter: AttendedAdapter
+    private lateinit var attendedList: MutableList<AttendedAdapter.AttendedData>
     private fun updateAppIndicator() {
         val totalNotificationCount = notificationList.size
         val totalUserCount = userList.size
         val totalJoinedCount = joinedList.size
         val totalActivePtsCount = ActivePtsList.size
         val totalRequestCount = requestList.size
+        val totalAttendedCount = attendedList.size
 
-        val totalCount = totalNotificationCount + totalUserCount + totalJoinedCount + totalActivePtsCount + totalRequestCount
+        val totalCount = totalNotificationCount + totalUserCount + totalJoinedCount + totalActivePtsCount + totalRequestCount+ totalAttendedCount
 
         ShortcutBadger.applyCount(requireContext(), totalCount)
     }
@@ -92,6 +96,12 @@ class NotificationFragment : Fragment() {
         activePtsAdapter = ActivePointsAdapter(ActivePtsList)
         recyclerViewAct.adapter = activePtsAdapter
 
+        RecyclerViewAttended = view.findViewById(R.id.recyclerViewAttended)
+        attendedList = mutableListOf()
+        attendedAdapter = AttendedAdapter(attendedList)
+        RecyclerViewAttended.layoutManager = LinearLayoutManager(activity)
+        RecyclerViewAttended.adapter = attendedAdapter
+
         RecyclerViewAccApproved = view.findViewById(R.id.RecyclerViewAccApproved)
         RecyclerViewAccApproved.layoutManager = LinearLayoutManager(activity)
         userList = mutableListOf()
@@ -116,7 +126,7 @@ class NotificationFragment : Fragment() {
         databaseReferenceUsers = FirebaseDatabase.getInstance().reference.child("Users")
         databaseReferenceActivePoints = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
         databaseReferenceJoined = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
-
+        databaseReferenceAttended = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
         databaseReference.addValueEventListener(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -190,6 +200,62 @@ class NotificationFragment : Fragment() {
 
             override fun onCancelled(databaseError: DatabaseError) {
                 progressBar.visibility = View.GONE
+            }
+        })
+        databaseReferenceAttended.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                attendedList.clear()
+
+                // Get the UID of the current user
+                val currentUserUid = auth.currentUser?.uid
+
+                for (engagementSnapshot in dataSnapshot.children) {
+                    val participantsRef = engagementSnapshot.child("Participants")
+                    val joined = participantsRef.child(currentUserUid!!).child("joined").value as? Boolean
+
+                    // Check if the current user is a participant and has joined the event
+                    if (participantsRef.hasChild(currentUserUid) && joined == true) {
+                        val postKey = engagementSnapshot.key ?: ""
+                        val title = engagementSnapshot.child("title").value.toString()
+                        val category = engagementSnapshot.child("category").value.toString()
+
+                        // Check if attendedStamp is not null before parsing
+                        val attendedStamp = participantsRef.child(currentUserUid).child("attendedStamp").value?.toString()
+                        val endDateTime = attendedStamp?.let { SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(it) }
+
+                        // Continue only if endDateTime is not null
+                        if (endDateTime != null) {
+                            val currentDate = Date()
+                            val calendar = Calendar.getInstance()
+                            calendar.time = endDateTime
+                            calendar.add(Calendar.MONTH, 1)
+
+                            if (currentDate.after(calendar.time)) {
+                                continue
+                            }
+
+                            val attendedData = AttendedAdapter.AttendedData(postKey, title, category, attendedStamp)
+                            attendedList.add(attendedData)
+                        }
+                    }
+                }
+
+                attendedAdapter.notifyDataSetChanged()
+                updateAppIndicator()
+
+                // Check if the attendedList is empty
+                if (attendedList.isEmpty()) {
+                    // If empty, hide the RecyclerViewAttended
+                    RecyclerViewAttended.visibility = View.GONE
+                } else {
+                    // If not empty, show the RecyclerViewAttended
+                    RecyclerViewAttended.visibility = View.VISIBLE
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle onCancelled
             }
         })
 
