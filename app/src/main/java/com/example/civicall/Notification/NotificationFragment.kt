@@ -160,7 +160,7 @@ class NotificationFragment : Fragment() {
 
                             val calendar = Calendar.getInstance()
                             calendar.time = endDateTime
-                            calendar.add(Calendar.MONTH, 1)
+                            calendar.add(Calendar.WEEK_OF_MONTH, 1)
 
                             if (currentDate.after(calendar.time)) {
                                 // Skip this item as it's more than 1 month after the engagement has ended
@@ -417,8 +417,6 @@ class NotificationFragment : Fragment() {
                 // Handle onCancelled
             }
         })
-
-
         val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
         val faback = requireActivity().findViewById<FloatingActionButton>(R.id.faback)
