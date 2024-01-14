@@ -19,26 +19,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/recyclerViewAct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false"
                 android:scrollbarSize="5dp"
                 android:scrollbars="vertical" />
-
-            <!-- Add the new RecyclerView here -->
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/RecyclerViewSec"
+                android:id="@+id/recyclerViewEngageUpdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false"
                 android:scrollbarSize="5dp"
                 android:scrollbars="vertical" />
-
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/RecyclerViewThird"
+                android:id="@+id/RecyclerViewEngagementApproved"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:scrollbarSize="5dp"
+                android:scrollbars="vertical" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerViewAccApproved"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false"

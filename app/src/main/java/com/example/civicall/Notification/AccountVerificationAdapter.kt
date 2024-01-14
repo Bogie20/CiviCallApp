@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
-import java.util.Calendar
+import com.google.android.material.imageview.ShapeableImageView
+
 
 class AccountVerificationAdapter(private val userList: List<UserData>) :
     RecyclerView.Adapter<AccountVerificationAdapter.UserViewHolder>() {
@@ -18,6 +19,7 @@ class AccountVerificationAdapter(private val userList: List<UserData>) :
         val recTitle: TextView = itemView.findViewById(R.id.recTitle)
         val schedule: TextView = itemView.findViewById(R.id.schedule)
         val label: TextView = itemView.findViewById(R.id.label)
+        val recImage: ShapeableImageView = itemView.findViewById(R.id.recImage)
         val dateandTime: TextView = itemView.findViewById(R.id.dateandTime)
     }
 
@@ -42,12 +44,10 @@ class AccountVerificationAdapter(private val userList: List<UserData>) :
         holder.recTitle.textSize = 12f
         holder.schedule.textSize = 12f
 
-        // Set label
         holder.label.text = "Your Account has been Verified"
 
-        // Set email to recTitle
+        holder.recImage.setImageResource(R.drawable.verifiednotif)
         holder.recTitle.text = currentUser.email
-
         holder.dateandTime.text = "Since: ${currentUser.verifiedTimeStamp}"
         // Set firstname with lastname to schedule
         holder.schedule.text = "${currentUser.firstname} ${currentUser.lastname}"

@@ -613,22 +613,30 @@ class ForumUpload : AppCompatActivity() {
             PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        val notificationBuilder = NotificationCompat.Builder(this, "civic_channel")
+        val channelId = "civic_channel"
+        val channelName = "Verification"
+
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(title)
-            .setContentText(body)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)  // Removes the notification when clicked
 
-        val notificationManager =
-            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        // Check if body is not null or empty before using BigTextStyle
+        if (!body.isNullOrBlank()) {
+            val bigTextStyle = NotificationCompat.BigTextStyle()
+                .bigText(body)
+            notificationBuilder.setStyle(bigTextStyle)
+        }
+
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         // Always create the NotificationChannel on devices running Android Oreo and above
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
-                "civic_channel",
-                "Verification",
+                channelId,
+                channelName,
                 NotificationManager.IMPORTANCE_DEFAULT
             )
             notificationManager.createNotificationChannel(channel)
@@ -637,6 +645,7 @@ class ForumUpload : AppCompatActivity() {
         // Display the notification
         notificationManager.notify(notificationId, notificationBuilder.build())
     }
+
     private fun uploadData(imageUrl: String?) {
         val postText = uploadPostText.text.toString()
         val campus = binding.campusPick.text.toString()

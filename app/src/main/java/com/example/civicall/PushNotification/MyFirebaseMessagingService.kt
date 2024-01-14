@@ -20,7 +20,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             showNotification(it.title ?: "Title", it.body ?: "Body")
         }
     }
-
     private fun showNotification(title: String?, body: String?) {
         val channelId = "civic_channel"
         val channelName = "Verification"
@@ -38,10 +37,16 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(title)
-            .setContentText(body)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)  // Removes the notification when clicked
+
+        // Check if body is not null or empty before using BigTextStyle
+        if (!body.isNullOrBlank()) {
+            val bigTextStyle = NotificationCompat.BigTextStyle()
+                .bigText(body)
+            notificationBuilder.setStyle(bigTextStyle)
+        }
 
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -62,10 +67,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         // Display the notification
         notificationManager.notify(notificationId, notificationBuilder.build())
     }
-
     override fun onNewToken(token: String) {
-        // Handle token refresh
-        // You might want to send the new token to your server for updates
-        // You can also store the token locally for later use
+
     }
 }

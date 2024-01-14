@@ -670,7 +670,7 @@ class DetailPost : AppCompatActivity() {
     }
     private fun sendAmountNotification() {
         val title = "You contribute to the cause."
-        val body ="Please wait until the admin confirms it."
+        val body = "Please wait until the admin confirms it."
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -690,10 +690,16 @@ class DetailPost : AppCompatActivity() {
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(title)
-            .setContentText(body)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)  // Removes the notification when clicked
+
+        // Check if body is not null or empty before using BigTextStyle
+        if (!body.isNullOrBlank()) {
+            val bigTextStyle = NotificationCompat.BigTextStyle()
+                .bigText(body)
+            notificationBuilder.setStyle(bigTextStyle)
+        }
 
         // Always create the NotificationChannel on devices running Android Oreo and above
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -711,6 +717,7 @@ class DetailPost : AppCompatActivity() {
         // Display the notification
         notificationManager.notify(notificationId, notificationBuilder.build())
     }
+
     private fun uploadImageToFirebase(imageUri: Uri, amount: String) {
         val storage = FirebaseStorage.getInstance()
         val storageRef = storage.reference
@@ -999,7 +1006,7 @@ class DetailPost : AppCompatActivity() {
 
     private fun sendJoinNotification(engagementTitle: String, startDate: String) {
         val title =  "You have joined the cause."
-        val body ="You've joined \"" + engagementTitle + "\". It will start in " + startDate + "."
+        val body = "You've joined \"$engagementTitle\". It will start in $startDate."
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -1019,10 +1026,16 @@ class DetailPost : AppCompatActivity() {
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(title)
-            .setContentText(body)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)  // Removes the notification when clicked
+
+        // Check if body is not null or empty before using BigTextStyle
+        if (!body.isNullOrBlank()) {
+            val bigTextStyle = NotificationCompat.BigTextStyle()
+                .bigText(body)
+            notificationBuilder.setStyle(bigTextStyle)
+        }
 
         // Always create the NotificationChannel on devices running Android Oreo and above
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -1040,6 +1053,7 @@ class DetailPost : AppCompatActivity() {
         // Display the notification
         notificationManager.notify(notificationId, notificationBuilder.build())
     }
+
 
 
     private var isCancelConfirmationDialogShowing = false
@@ -1100,7 +1114,7 @@ class DetailPost : AppCompatActivity() {
     }
     private fun sendCancelNotification(engagementTitle: String) {
         val title = "Cancel Confirmed"
-        val body = "Title:\"$engagementTitle\". You can still rejoin if you like"
+        val body = "Title: \"$engagementTitle\". You can still rejoin if you like."
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -1120,10 +1134,16 @@ class DetailPost : AppCompatActivity() {
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(title)
-            .setContentText(body)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)  // Removes the notification when clicked
+
+        // Check if body is not null or empty before using BigTextStyle
+        if (!body.isNullOrBlank()) {
+            val bigTextStyle = NotificationCompat.BigTextStyle()
+                .bigText(body)
+            notificationBuilder.setStyle(bigTextStyle)
+        }
 
         // Always create the NotificationChannel on devices running Android Oreo and above
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -1141,6 +1161,7 @@ class DetailPost : AppCompatActivity() {
         // Display the notification
         notificationManager.notify(notificationId, notificationBuilder.build())
     }
+
 
     private var isJoinSuccessDialogShowing = false
 

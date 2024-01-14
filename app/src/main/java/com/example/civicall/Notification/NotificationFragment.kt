@@ -27,23 +27,28 @@ import java.util.Locale
 
 class NotificationFragment : Fragment() {
 
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var RecyclerViewAccApproved: RecyclerView
     private lateinit var notificationAdapter: NotificationAdapter
     private lateinit var notificationList: MutableList<DataClassNotif>
     private lateinit var noPostsImage: ImageView
     private lateinit var nestedScrollView: NestedScrollView
     private lateinit var noPostsText: TextView
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var databaseReferenceActivePoints: DatabaseReference
     private lateinit var auth: FirebaseAuth
     private lateinit var progressBar: ProgressBar
-    private lateinit var recyclerViewSec: RecyclerView
+    private lateinit var recyclerViewEngageUpdate: RecyclerView
     private lateinit var accountVerificationAdapter: AccountVerificationAdapter
     private lateinit var userList: MutableList<AccountVerificationAdapter.UserData>
     private lateinit var databaseReferenceUsers: DatabaseReference
     private lateinit var databaseReferenceRequestVerify: DatabaseReference
-    private lateinit var recyclerViewThird: RecyclerView
+    private lateinit var RecyclerViewEngagementApproved: RecyclerView
+    private lateinit var recyclerViewAct: RecyclerView
+    private lateinit var activePtsAdapter: ActivePointsAdapter
     private lateinit var requestVerificationAdapter: RequestVerificationAdapter
+    private lateinit var ActivePtsList: MutableList<ActivePointsAdapter.ActiveData>
     private lateinit var requestList: MutableList<RequestVerificationAdapter.RequestData>
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,32 +56,41 @@ class NotificationFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_notification, container, false)
         noPostsImage = view.findViewById(R.id.noPostsImage)
         noPostsText = view.findViewById(R.id.noPostsText)
-        recyclerView = view.findViewById(R.id.recyclerView)
+        recyclerViewEngageUpdate = view.findViewById(R.id.recyclerViewEngageUpdate)
         nestedScrollView = view.findViewById(R.id.nestedRecycler)
-        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerViewEngageUpdate.layoutManager = LinearLayoutManager(activity)
         notificationList = mutableListOf()
         progressBar = view.findViewById(R.id.progressBar)
         notificationAdapter = NotificationAdapter(notificationList)
-        recyclerView.adapter = notificationAdapter
+        recyclerViewEngageUpdate.adapter = notificationAdapter
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
         view.startAnimation(anim)
         auth = FirebaseAuth.getInstance()
         val currentUserUid = auth.currentUser?.uid
-        recyclerViewSec = view.findViewById(R.id.RecyclerViewSec)
-        recyclerViewSec.layoutManager = LinearLayoutManager(activity)
+
+        recyclerViewAct = view.findViewById(R.id.recyclerViewAct)
+        recyclerViewAct.layoutManager = LinearLayoutManager(activity)
+        ActivePtsList = mutableListOf()
+        activePtsAdapter = ActivePointsAdapter(ActivePtsList)
+        recyclerViewAct.adapter = activePtsAdapter
+
+        RecyclerViewAccApproved = view.findViewById(R.id.RecyclerViewAccApproved)
+        RecyclerViewAccApproved.layoutManager = LinearLayoutManager(activity)
         userList = mutableListOf()
         accountVerificationAdapter = AccountVerificationAdapter(userList)
-        recyclerViewSec.adapter = accountVerificationAdapter
+        RecyclerViewAccApproved.adapter = accountVerificationAdapter
 
-        recyclerViewThird = view.findViewById(R.id.RecyclerViewThird)
-        recyclerViewThird.layoutManager = LinearLayoutManager(activity)
+        RecyclerViewEngagementApproved = view.findViewById(R.id.RecyclerViewEngagementApproved)
+        RecyclerViewEngagementApproved.layoutManager = LinearLayoutManager(activity)
         requestList = mutableListOf()
         requestVerificationAdapter = RequestVerificationAdapter(requestList)
-        recyclerViewThird.adapter = requestVerificationAdapter
+        RecyclerViewEngagementApproved.adapter = requestVerificationAdapter
+
 
         databaseReference = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
         databaseReferenceRequestVerify = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
         databaseReferenceUsers = FirebaseDatabase.getInstance().reference.child("Users")
+        databaseReferenceActivePoints = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
 
         databaseReference.addValueEventListener(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
@@ -211,10 +225,10 @@ class NotificationFragment : Fragment() {
                 // Check if the userList is empty
                 if (userList.isEmpty()) {
                     // If empty, hide the RecyclerViewSec
-                    recyclerViewSec.visibility = View.GONE
+                    RecyclerViewAccApproved.visibility = View.GONE
                 } else {
                     // If not empty, show the RecyclerViewSec
-                    recyclerViewSec.visibility = View.VISIBLE
+                    RecyclerViewAccApproved.visibility = View.VISIBLE
                 }
             }
 
@@ -255,14 +269,75 @@ class NotificationFragment : Fragment() {
                 requestVerificationAdapter.notifyDataSetChanged()
 
                 if (requestList.isEmpty()) {
-                    recyclerViewThird.visibility = View.GONE
+                    RecyclerViewEngagementApproved.visibility = View.GONE
                 } else {
-                    recyclerViewThird.visibility = View.VISIBLE
+                    RecyclerViewEngagementApproved.visibility = View.VISIBLE
                 }
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
                 // Handle onCancelled
+            }
+        })
+        databaseReferenceActivePoints.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                ActivePtsList.clear()
+
+                val currentDate = Calendar.getInstance().time
+
+                for (engagementSnapshot in dataSnapshot.children) {
+                    val postKey = engagementSnapshot.key ?: ""
+                    val participantsRef = engagementSnapshot.child("Participants")
+                    val joined = participantsRef.child(currentUserUid!!).child("joined").value as? Boolean
+
+                    if (joined == true) {
+                        val title = engagementSnapshot.child("title").value.toString()
+                        val activepts = (engagementSnapshot.child("activepoints").value as? Long)?.toInt() ?: 0
+
+                        if (participantsRef.child(currentUserUid).hasChild("receivedStamp")) {
+                            val receivedStamp =
+                                participantsRef.child(currentUserUid).child("receivedStamp").value.toString()
+
+                            if (receivedStamp.isNotEmpty()) {
+                                // Calculate the timestamp 1 year after the receivedStamp
+                                val endDateTime =
+                                    SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(receivedStamp)
+                                val calendar = Calendar.getInstance()
+
+                                if (endDateTime != null) {
+                                    calendar.time = endDateTime
+                                    calendar.add(Calendar.YEAR, 1)
+
+                                    if (currentDate.after(calendar.time)) {
+                                        continue
+                                    }
+                                }
+                                val notificationItem = ActivePointsAdapter.ActiveData(
+                                    postKey,
+                                    title,
+                                    activepts,
+                                    receivedStamp
+                                )
+                                ActivePtsList.add(notificationItem)
+                            }
+                        }
+                    }
+                }
+
+                ActivePtsList.sortByDescending { it.receivedStamp }
+
+                activePtsAdapter.notifyDataSetChanged()
+
+                if (ActivePtsList.isEmpty()) {
+                    recyclerViewAct.visibility = View.GONE
+                } else {
+                    recyclerViewAct.visibility = View.VISIBLE
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle error
             }
         })
 

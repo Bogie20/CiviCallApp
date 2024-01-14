@@ -1,5 +1,6 @@
 package com.example.civicall.Notification
 
+
 import android.annotation.SuppressLint
 import android.content.res.Resources
 import android.view.LayoutInflater
@@ -10,26 +11,26 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
 import com.google.android.material.imageview.ShapeableImageView
 
-class RequestVerificationAdapter(private val requestList: List<RequestData>) :
-    RecyclerView.Adapter<RequestVerificationAdapter.RequestViewHolder>() {
+class ActivePointsAdapter(private val requestList: List<ActiveData>) :
+    RecyclerView.Adapter<ActivePointsAdapter.ActViewHolder>() {
 
-    inner class RequestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ActViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val categoryTextView: TextView = itemView.findViewById(R.id.categoryTextView)
-        val title: TextView = itemView.findViewById(R.id.recTitle)
-        val category: TextView = itemView.findViewById(R.id.schedule)
+        val titleEngagement: TextView = itemView.findViewById(R.id.recTitle)
+        val activeptsEarned: TextView = itemView.findViewById(R.id.schedule)
         val label: TextView = itemView.findViewById(R.id.label)
         val recImage: ShapeableImageView = itemView.findViewById(R.id.recImage)
-        val approveTimeStamp: TextView = itemView.findViewById(R.id.dateandTime)
+        val dateandTime: TextView = itemView.findViewById(R.id.dateandTime)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RequestViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.notification_recycler_item, parent, false)
-        return RequestViewHolder(itemView)
+        return ActViewHolder(itemView)
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: RequestViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ActViewHolder, position: Int) {
         val currentRequest = requestList[position]
 
         // Set label with a top margin of 30dp
@@ -39,18 +40,17 @@ class RequestVerificationAdapter(private val requestList: List<RequestData>) :
 
         // Set text size for label, recTitle, and schedule to 12sp
         holder.label.textSize = 12f
-        holder.title.textSize = 12f
-        holder.category.textSize = 12f
+        holder.titleEngagement.textSize = 12f
+        holder.activeptsEarned.textSize = 12f
 
         // Set label
-        holder.label.text = "Your Request has been Approved"
+        holder.label.text = "You have earned Active Points."
 
+        holder.dateandTime.text = "Since: ${currentRequest.receivedStamp}"
+        holder.titleEngagement.text = "Title: ${currentRequest.title}"
+        holder.activeptsEarned.text = "Active Points Earned: ${currentRequest.activepts} pts"
 
-        holder.approveTimeStamp.text = "Since: ${currentRequest.approveTimeStamp}"
-        holder.title.text = "Title: ${currentRequest.title}"
-        holder.category.text = "Category: ${currentRequest.category}"
-
-        holder.recImage.setImageResource(R.drawable.approved)
+        holder.recImage.setImageResource(R.drawable.rate)
 
         holder.categoryTextView.visibility = View.GONE
     }
@@ -64,10 +64,11 @@ class RequestVerificationAdapter(private val requestList: List<RequestData>) :
         return requestList.size
     }
 
-    data class RequestData(
+    data class ActiveData(
+        val postKey: String,
         val title: String,
-        val category: String,
-        val approveTimeStamp: String
+        val activepts: Int,
+        val receivedStamp: String
     )
 }
 

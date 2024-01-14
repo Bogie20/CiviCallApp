@@ -462,7 +462,7 @@ class Upload_engagement : AppCompatActivity() {
     }
     private fun sendEngagementNotification(engagementTitle: String) {
         val title = "You Request an Engagement"
-        val body = "Title: '$engagementTitle' Please wait for approval"
+        val body = "Title: '$engagementTitle'\nPlease wait for approval"
 
         val notificationId = System.currentTimeMillis().toInt()
 
@@ -476,22 +476,30 @@ class Upload_engagement : AppCompatActivity() {
             PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        val notificationBuilder = NotificationCompat.Builder(this, "civic_channel")
+        val channelId = "civic_channel"
+        val channelName = "Verification"
+
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentTitle(title)
-            .setContentText(body)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)  // Removes the notification when clicked
 
-        val notificationManager =
-            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        // Check if body is not null or empty before using BigTextStyle
+        if (!body.isNullOrBlank()) {
+            val bigTextStyle = NotificationCompat.BigTextStyle()
+                .bigText(body)
+            notificationBuilder.setStyle(bigTextStyle)
+        }
+
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         // Always create the NotificationChannel on devices running Android Oreo and above
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
-                "civic_channel",
-                "Verification",
+                channelId,
+                channelName,
                 NotificationManager.IMPORTANCE_DEFAULT
             )
             notificationManager.createNotificationChannel(channel)
@@ -500,6 +508,7 @@ class Upload_engagement : AppCompatActivity() {
         // Display the notification
         notificationManager.notify(notificationId, notificationBuilder.build())
     }
+
     private var isDateTimePickerShowing = false
 
     private fun showDateTimePicker(editText: EditText, startDate: Calendar?) {
