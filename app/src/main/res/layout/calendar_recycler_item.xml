@@ -15,8 +15,8 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/engagementImage"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="10dp"
@@ -25,7 +25,7 @@
             app:shapeAppearanceOverlay="@style/roundedImage" />
         <LinearLayout
             android:layout_width="230dp"
-            android:layout_height="130dp"
+            android:layout_height="125dp"
             android:orientation="vertical"
             android:id="@+id/linearInfo"
             android:layout_toEndOf="@id/engagementImage">
@@ -36,13 +36,13 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="60dp"
                 android:lineSpacingExtra="2dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:maxLines="2"
                 android:ellipsize="end"
                 android:fontFamily="@font/lexend_bold"
                 android:text="Titled"
-                android:textColor="@color/black"
-                android:textSize="13sp" />
+                android:textColor="@color/DarkGray"
+                android:textSize="12sp" />
 
 
             <TextView
@@ -56,7 +56,7 @@
                 android:maxLines="2"
                 android:text="Location"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="11sp" />
             <TextView
                 android:id="@+id/dateandTime"
                 android:layout_width="215dp"
@@ -67,13 +67,13 @@
                 android:fontFamily="@font/lexend"
                 android:maxLines="2"
                 android:text="Date and Time"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textColor="@color/blue"
+                android:textSize="11sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="125dp"
             android:layout_toEndOf="@id/linearInfo">
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iconIndicator"
