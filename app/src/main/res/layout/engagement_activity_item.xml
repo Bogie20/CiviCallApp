@@ -31,21 +31,21 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="145dp">
+            android:layout_height="135dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/engagementImage"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
             android:scaleType="centerCrop"
             android:src="@drawable/imagevolunteer"
             app:shapeAppearanceOverlay="@style/roundedImage" />
         <LinearLayout
             android:layout_width="230dp"
-            android:layout_height="145dp"
+            android:layout_height="135dp"
             android:orientation="vertical"
             android:id="@+id/linearInfo"
             android:layout_toEndOf="@id/engagementImage">
@@ -61,7 +61,7 @@
                 android:fontFamily="@font/lexend_semibold"
                 android:text="Titled"
                 android:textColor="@color/black"
-                android:textSize="13sp" />
+                android:textSize="12sp" />
 
 
             <TextView
@@ -75,7 +75,7 @@
                 android:maxLines="1"
                 android:text="Location"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="11sp" />
             <TextView
                 android:id="@+id/dateandTime"
                 android:layout_width="wrap_content"
@@ -87,7 +87,7 @@
                 android:maxLines="2"
                 android:text="Date and Time"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="11sp" />
             <TextView
                 android:id="@+id/category"
                 android:layout_width="wrap_content"
@@ -100,12 +100,12 @@
                 android:maxLines="1"
                 android:text="Category"
                 android:textColor="@color/redpink"
-                android:textSize="12sp" />
+                android:textSize="11sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="145dp"
+            android:layout_height="135dp"
             android:layout_toEndOf="@id/linearInfo">
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iconIndicator"
@@ -113,7 +113,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="55dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginBottom="10dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/finish_already" />
