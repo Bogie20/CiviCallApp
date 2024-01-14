@@ -1,6 +1,7 @@
 package com.example.civicall.Notification
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,19 +12,21 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
-import com.example.civicall.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.civicall.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import me.leolin.shortcutbadger.ShortcutBadger
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
-import me.leolin.shortcutbadger.ShortcutBadger
+
+
 class NotificationFragment : Fragment() {
 
     private lateinit var RecyclerViewAccApproved: RecyclerView
@@ -51,6 +54,18 @@ class NotificationFragment : Fragment() {
     private lateinit var requestVerificationAdapter: RequestVerificationAdapter
     private lateinit var ActivePtsList: MutableList<ActivePointsAdapter.ActiveData>
     private lateinit var requestList: MutableList<RequestVerificationAdapter.RequestData>
+
+    private fun updateAppIndicator() {
+        val totalNotificationCount = notificationList.size
+        val totalUserCount = userList.size
+        val totalJoinedCount = joinedList.size
+        val totalActivePtsCount = ActivePtsList.size
+        val totalRequestCount = requestList.size
+
+        val totalCount = totalNotificationCount + totalUserCount + totalJoinedCount + totalActivePtsCount + totalRequestCount
+
+        ShortcutBadger.applyCount(requireContext(), totalCount)
+    }
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -159,7 +174,7 @@ class NotificationFragment : Fragment() {
                 }
                 notificationList.sortByDescending { it.timestamp }
                 notificationAdapter.notifyDataSetChanged()
-
+                updateAppIndicator()
                 // Check if the notificationList is empty
                 if (notificationList.isEmpty()) {
                     // If empty, show the "noPostsImage" and "noPostsText"
@@ -229,12 +244,13 @@ class NotificationFragment : Fragment() {
                     }
                 }
                 accountVerificationAdapter.notifyDataSetChanged()
-
+                updateAppIndicator()
                 // Check if the userList is empty
                 if (userList.isEmpty()) {
                     // If empty, hide the RecyclerViewSec
                     RecyclerViewAccApproved.visibility = View.GONE
                 } else {
+                    // If not empty, show the RecyclerViewSec
                     RecyclerViewAccApproved.visibility = View.VISIBLE
                 }
             }
@@ -273,7 +289,7 @@ class NotificationFragment : Fragment() {
                 }
 
                 requestVerificationAdapter.notifyDataSetChanged()
-
+                updateAppIndicator()
                 if (requestList.isEmpty()) {
                     RecyclerViewEngagementApproved.visibility = View.GONE
                 } else {
@@ -334,7 +350,7 @@ class NotificationFragment : Fragment() {
                 ActivePtsList.sortByDescending { it.receivedStamp }
 
                 activePtsAdapter.notifyDataSetChanged()
-
+                updateAppIndicator()
                 if (ActivePtsList.isEmpty()) {
                     recyclerViewAct.visibility = View.GONE
                 } else {
@@ -386,7 +402,7 @@ class NotificationFragment : Fragment() {
 
                 joinedList.sortByDescending { it.timestamp }
                 engagementJoinedAdapter.notifyDataSetChanged()
-
+                updateAppIndicator()
                 // Check if the joinedList is empty
                 if (joinedList.isEmpty()) {
                     // If empty, hide the RecyclerView or handle as needed
