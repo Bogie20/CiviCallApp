@@ -21,10 +21,9 @@ import nl.joery.animatedbottombar.AnimatedBottomBar
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Collections
 import java.util.Date
 import java.util.Locale
-
+import me.leolin.shortcutbadger.ShortcutBadger
 class NotificationFragment : Fragment() {
 
     private lateinit var RecyclerViewAccApproved: RecyclerView
@@ -236,7 +235,6 @@ class NotificationFragment : Fragment() {
                     // If empty, hide the RecyclerViewSec
                     RecyclerViewAccApproved.visibility = View.GONE
                 } else {
-                    // If not empty, show the RecyclerViewSec
                     RecyclerViewAccApproved.visibility = View.VISIBLE
                 }
             }
