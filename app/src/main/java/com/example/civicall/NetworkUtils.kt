@@ -24,7 +24,7 @@ class NetworkUtils(private val context: Context) {
     private val uiHandler = Handler(Looper.getMainLooper())
     private var isStableOnline = false
     private val stableOnlineThreshold = 5000
-    private var lastLostTime: Long = 0 // Initialize lastLostTime
+    private var lastLostTime: Long = 0
 
     fun initialize() {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

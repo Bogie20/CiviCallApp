@@ -5,14 +5,13 @@ import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.civicall.CurrentEngagementList.CurrentEngagements
-import com.example.civicall.FinishActivityList.FinishActAdapter
 import com.example.civicall.FinishActivityList.FinishActivity
+import com.example.civicall.ActivePoints.ActivePointsEarned
 import com.example.civicall.databinding.ActivityProfiledetailsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -23,7 +22,6 @@ import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
@@ -64,6 +62,11 @@ class ProfileDetails : AppCompatActivity() {
         }
         binding.finishLinear.setOnClickListener {
             val intent = Intent(this, FinishActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+        }
+        binding.activePtsLinear.setOnClickListener {
+            val intent = Intent(this, ActivePointsEarned::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
@@ -151,15 +154,11 @@ class ProfileDetails : AppCompatActivity() {
                 val userRef = FirebaseDatabase.getInstance().getReference("Upload Engagement")
                 val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
-// Use addValueEventListener instead of addListenerForSingleValueEvent
-                userRef.orderByChild("Participants/$currentUserId").equalTo(true)
+                userRef.orderByChild("Participants/$currentUserId/joined").equalTo(true)
                     .addValueEventListener(object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             val currentDate = getCurrentDate()
                             var finishactCount = 0
-                            val contributionStatus =
-                                dataSnapshot.child("TransparencyImage/$currentUserId/contributionStatus")
-                                    .getValue(Boolean::class.java) ?: false
 
                             for (engagementSnapshot in dataSnapshot.children) {
                                 val endDateString = engagementSnapshot.child("endDate").getValue(String::class.java)
@@ -171,12 +170,8 @@ class ProfileDetails : AppCompatActivity() {
                                 }
                             }
 
-                            // Update the finishactivity count and contributionStatus in the Users node
-                            val userNodeRef =
-                                FirebaseDatabase.getInstance().getReference("Users/$currentUserId")
+                            val userNodeRef = FirebaseDatabase.getInstance().getReference("Users/$currentUserId")
                             userNodeRef.child("finishactivity").setValue(finishactCount)
-                            userNodeRef.child("contributionStatus").setValue(contributionStatus)
-
                             finishactTextView.text = formatNumber(finishactCount)
                         }
 
@@ -191,15 +186,15 @@ class ProfileDetails : AppCompatActivity() {
                 val activePtsInt = activePts.toString().toInt()
 
                 when {
-                    activePtsInt in 0..300 -> {
+                    activePtsInt in 0..99 -> {
                         badgeImageView.setImageResource(R.drawable.bronzes)
                     }
 
-                    activePtsInt in 301..999 -> {
+                    activePtsInt in 100..499 -> {
                         badgeImageView.setImageResource(R.drawable.silver)
                     }
 
-                    activePtsInt in 1000..9999 -> {
+                    activePtsInt in 500..1999 -> {
                         badgeImageView.setImageResource(R.drawable.gold)
                     }
 
@@ -261,7 +256,7 @@ class ProfileDetails : AppCompatActivity() {
         val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
 // Use addValueEventListener instead of addListenerForSingleValueEvent
-        userRef.orderByChild("Participants/$currentUserId").equalTo(false)
+        userRef.orderByChild("Participants/$currentUserId/joined").equalTo(false)
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val currentDate = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).time
@@ -301,7 +296,6 @@ class ProfileDetails : AppCompatActivity() {
         override fun onDestroy() {
         super.onDestroy()
 
-        // Cleanup to unregister the network callback
         networkUtils.cleanup()
     }
     override fun onBackPressed() {

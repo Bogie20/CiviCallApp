@@ -1,28 +1,35 @@
 package com.example.civicall
 
+import android.Manifest
 import android.app.Activity
-import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.civicall.databinding.ActivityReportProblemBinding
 import com.google.android.gms.tasks.Task
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ServerValue
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -31,19 +38,11 @@ import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import android.Manifest
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import com.google.android.material.button.MaterialButton
-import kotlinx.coroutines.DelicateCoroutinesApi
 import java.util.TimeZone
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
-
+import com.example.civicall.NetworkUtils
 class ReportProblem : AppCompatActivity() {
     private lateinit var binding: ActivityReportProblemBinding
     private lateinit var auth: FirebaseAuth
@@ -58,11 +57,13 @@ class ReportProblem : AppCompatActivity() {
     private val desiredCardViewHeight = 200 // Adjust as needed
     private var selectedImageUri: Uri? = null
     private var scaledBitmap: Bitmap? = null
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityReportProblemBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         // Firebase initialization
         auth = FirebaseAuth.getInstance()
         storageReference = FirebaseStorage.getInstance().getReference("SettingsReport")
@@ -81,19 +82,25 @@ class ReportProblem : AppCompatActivity() {
         problemEditText = findViewById(R.id.ProblemText)
 
         binding.sendbutton.setOnClickListener {
-            // Check if a radio button is selected
-            if (binding.radioGroup.checkedRadioButtonId == -1) {
-                // No radio button is selected, show a message or take appropriate action
-                Toast.makeText(this, "Please select a category", Toast.LENGTH_SHORT).show()
-            } else {
-                // A radio button is selected, check if the EditText has text
-                val userMessage = problemEditText.text.toString().trim()
-                if (userMessage.isEmpty()) {
-                    // EditText is empty, show a message or take appropriate action
-                    Toast.makeText(this, "Please enter a message", Toast.LENGTH_SHORT).show()
+            if (networkUtils.isOnline) {
+                // Check if a radio button is selected
+                if (binding.radioGroup.checkedRadioButtonId == -1) {
+                    // No radio button is selected, show a message or take appropriate action
+                    Toast.makeText(this, "Please select a category", Toast.LENGTH_SHORT).show()
                 } else {
-                    // Both radio button and EditText have valid input, show a confirmation dialog before sending the report
-                    showConfirmationDialog()
+                    // A radio button is selected, check if the EditText has text
+                    val userMessage = problemEditText.text.toString().trim()
+                    if (userMessage.isEmpty()) {
+                        // EditText is empty, show a message or take appropriate action
+                        Toast.makeText(this, "Please enter a message", Toast.LENGTH_SHORT).show()
+                    } else {
+                        showConfirmationDialog()
+                    }
+                }
+            } else {
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
                 }
             }
         }
@@ -101,6 +108,26 @@ class ReportProblem : AppCompatActivity() {
         binding.RemoveButton.setOnClickListener {
             showRemovePhotoConfirmationDialog()
         }
+    }
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
     }
     private fun checkAndRequestPermissions() {
         if (ContextCompat.checkSelfPermission(
@@ -289,6 +316,9 @@ class ReportProblem : AppCompatActivity() {
             isSaveConfirmationDialogShowing = false
 
         }
+        if (isNoInternetDialogShowing) {
+            isNoInternetDialogShowing = false
+        }
     }
 
     private fun sendDataToFirebase(imageUrl: String) {
@@ -399,4 +429,9 @@ class ReportProblem : AppCompatActivity() {
         startActivity(intent)
         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

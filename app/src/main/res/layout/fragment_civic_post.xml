@@ -32,7 +32,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="5dp"
         android:visibility="gone"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="25dp"
         android:background="@drawable/highlight_button"
         android:clickable="true"
         android:padding="8dp"
@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbarSize="5dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="25dp"
         android:scrollbars="vertical"
         android:id="@+id/nestedRecycler"
         android:layout_marginTop="2dp"
@@ -57,13 +57,23 @@
             android:nestedScrollingEnabled="false"
             android:id="@+id/recyclerView"/>
     </androidx.core.widget.NestedScrollView>
-
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="80dp"
+        android:layout_marginHorizontal="120dp"
+        />
     <ImageView
         android:id="@+id/noPostsImage"
         android:layout_width="wrap_content"
         android:layout_height="340dp"
-        android:layout_below="@id/search"
-        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="80dp"
         android:src="@drawable/posting"
         android:visibility="gone"

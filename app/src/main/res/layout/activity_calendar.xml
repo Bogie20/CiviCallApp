@@ -62,13 +62,26 @@
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:background="@color/white"
-        android:layout_height="wrap_content" />
+        android:layout_height="355dp"
+        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/lexend"
+            android:gravity="center"
+            android:padding="10sp"
+            android:id="@+id/label"
+            android:text="Civic Engagement"
+            android:textColor="@color/redpink"
+            android:textSize="15sp"
+            android:textStyle="bold" />
         <ImageView
             android:id="@+id/noimage"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:src="@drawable/noevents"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:visibility="gone"
             android:layout_gravity="center_horizontal"/>
         <TextView

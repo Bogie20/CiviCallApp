@@ -7,13 +7,13 @@
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
-
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
     <uses-feature android:name="android.hardware.camera" />
-
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature android:name="android.hardware.camera.any" /> <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" -->
@@ -23,7 +23,6 @@
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
-    <uses-feature android:name="android.hardware.camera.any" />
 
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
@@ -46,6 +45,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CiviCall"
         tools:targetApi="31">
+        <service
+            android:name=".Notification.BackgroundService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <!-- Push Notif Start-->
+        <service
+            android:name=".PushNotification.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+
+        <!-- Push Notif End-->
+
+        <activity
+            android:name=".ActivePoints.ActivePointsEarned"
+            android:exported="false" />
+
         <activity
             android:name=".FinishActivityList.FinishActivity"
             android:exported="true" />
@@ -53,23 +77,13 @@
             android:name=".CurrentEngagementList.CurrentEngagements"
             android:exported="true" />
 
-        <service
-            android:name=".MyFirebaseMessagingService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-
         <activity
             android:name=".Calendar.CalendarActivity"
             android:exported="false" />
         <activity
             android:name=".Forum.CommentEdit"
             android:exported="false" />
-        <activity
-            android:name=".Trial"
-            android:exported="true" />
+
         <activity
             android:name=".Forum.ForumUpdate"
             android:exported="false" />
@@ -85,14 +99,6 @@
         <activity
             android:name=".Recognition.RecognitionLeaderBoard"
             android:exported="true" />
-        <activity
-            android:name=".Notification.NotificationOne"
-            android:exported="true" />
-        <activity
-            android:name=".Notification.Notifications"
-            android:exported="true" /> <!-- <activity -->
-        <!-- android:name=".CalendarView.CalendarEvents" -->
-        <!-- android:exported="true" /> -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.civicall.fileprovider"
@@ -210,10 +216,10 @@
             android:exported="true" />
         <activity
             android:name=".ProfileDetails"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".EditProfile"
-            android:exported="false" /> <!-- Posting Civic Engagement Start -->
+            android:exported="true" />
         <activity
             android:name=".EnvironmentalandSocialIssueInfo.ZeroBreaktheChain"
             android:exported="true" />

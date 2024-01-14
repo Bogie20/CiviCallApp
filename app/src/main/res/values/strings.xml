@@ -11,8 +11,8 @@
     </string-array>
     <string-array name="payment_category">
         <item>GCash</item>
-        <item>Paymaya</item>
-        <item>Paypal</item>
+        <item>PayMaya</item>
+        <item>PayPal</item>
     </string-array>
     <string-array name="nstp_category">
         <item>Reserve Officers Training Corps</item>
@@ -31,15 +31,14 @@
         <item>Pablo Borbon Campus II</item>
         <item>Rosario Campus</item>
         <item>San Juan Campus</item>
-        <item>All Campus</item>
     </string-array>
     <string-array name="engagement_category">
         <item>Tree Planting</item>
         <item>Fund Raising</item>
-        <item>Donations</item>
+        <item>Donation</item>
         <item>Clean Up Drive</item>
         <item>Feeding Program</item>
-        <item>Relief Operations</item>
+        <item>Relief Operation</item>
         <item>Seminar Training</item>
         <item>Teaching Literacy</item>
     </string-array>

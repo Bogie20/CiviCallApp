@@ -3,6 +3,9 @@ package com.example.civicall.CivicEngagementPost
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -13,6 +16,7 @@ import android.graphics.Paint
 import android.graphics.drawable.ColorDrawable
 import android.net.ParseException
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
@@ -33,11 +37,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
+import com.example.civicall.SplashActivity
 import com.example.civicall.databinding.ActivityDetailPostBinding
 import com.github.clans.fab.FloatingActionButton
 import com.github.clans.fab.FloatingActionMenu
@@ -164,6 +170,7 @@ class DetailPost : AppCompatActivity() {
         }
 
         joinButton.setOnClickListener {
+            if (networkUtils.isOnline) {
             if (currentUserId != null) {
                 // Check if the user is verified
                 val userRef =
@@ -192,7 +199,7 @@ class DetailPost : AppCompatActivity() {
                                                 ValueEventListener {
                                                 override fun onDataChange(participantsSnapshot: DataSnapshot) {
                                                     if (participantsSnapshot.hasChild(currentUserId) &&
-                                                        (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donations")
+                                                        (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donation")
                                                     ) {
                                                         // The user has already joined, so show the image dialog and request permissions
                                                         showImageDialog()
@@ -200,7 +207,7 @@ class DetailPost : AppCompatActivity() {
                                                     } else {
                                                         // The user hasn't joined
                                                         if (detailCategory.text.toString() == "Fund Raising" ||
-                                                            detailCategory.text.toString() == "Donations"
+                                                            detailCategory.text.toString() == "Donation"
                                                         ) {
                                                             // If the category is "Fund Raising" or "Donations" and the user hasn't joined, show the image dialog and request permissions
                                                             showImageDialog()
@@ -208,13 +215,18 @@ class DetailPost : AppCompatActivity() {
                                                         } else if (joinButton.text.toString() == "Cancel") {
                                                             showCancelConfirmationDialog(
                                                                 reference,
-                                                                currentUserId
+                                                                currentUserId,
+                                                                dataSnapshot.child("title").getValue(String::class.java) ?: "",
                                                             )
                                                         } else {
                                                             showJoinConfirmationDialog(
                                                                 reference,
-                                                                currentUserId
+                                                                currentUserId,
+                                                                dataSnapshot.child("title").getValue(String::class.java) ?: "",
+                                                                dataSnapshot.child("startDate").getValue(String::class.java) ?: ""
                                                             )
+
+
                                                         }
                                                     }
                                                 }
@@ -253,6 +265,12 @@ class DetailPost : AppCompatActivity() {
                         showDatabaseErrorMessage(databaseError)
                     }
                 })
+            }
+            } else {
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
             }
         }
 
@@ -331,12 +349,17 @@ class DetailPost : AppCompatActivity() {
         })
 
 
-        deleteButton.setOnClickListener {
-
-            showDeleteConfirmationDialog()
-        }
-
-        editButton.setOnClickListener {
+       deleteButton.setOnClickListener {
+           if (networkUtils.isOnline) {
+               showDeleteConfirmationDialog()
+           } else {
+               if (!isNoInternetDialogShowing) {
+                   dismissCustomDialog()
+                   showNoInternetPopup()
+               }
+           }
+       }
+    editButton.setOnClickListener {
             val intent = Intent(this@DetailPost, Update_engagement::class.java)
                 .putExtra("Category", detailCategory.text.toString())
                 .putExtra("Title", detailTitle.text.toString())
@@ -358,6 +381,26 @@ class DetailPost : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
+    }
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
     }
 
     private fun showDatabaseErrorMessage(databaseError: DatabaseError) {
@@ -381,7 +424,7 @@ class DetailPost : AppCompatActivity() {
         val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
 
         dialogRatingIcon.setImageResource(R.drawable.rate) // Set your image resource here
-        dialogRatingTitle.text = "Rate this Engagement"
+        dialogRatingTitle.text = "Rate this engagement \n-One-time only-"
 
         alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -392,45 +435,75 @@ class DetailPost : AppCompatActivity() {
 
         // Set up the submit button click listener
         submitBtn.setOnClickListener {
-            // Get the selected rating
-            val selectedRating = ratingBar.rating.toInt()
-
-            // Get the message corresponding to the selected rating
-            val message = when (selectedRating) {
-                0 -> getString(R.string.very_dissatisfied)
-                1 -> getString(R.string.dissatisfied)
-                2 -> getString(R.string.ok)
-                3 -> getString(R.string.average)
-                4 -> getString(R.string.satisfied)
-                5 -> getString(R.string.very_satisfied)
-                else -> ""
-            }
-
             // Get the current user's UID
             val currentUser = FirebaseAuth.getInstance().currentUser
             val uid = currentUser?.uid
 
-            // Get the current timestamp
-            val timestamp = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US).format(Date())
-
-            // Upload the rating to Firebase
+            // Check if the user has already rated
             if (uid != null) {
                 val ratingsReference: DatabaseReference =
                     FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
                         .child("Ratings").child(uid)
 
-                ratingsReference.child("message").setValue(message)
-                ratingsReference.child("timestamp").setValue(timestamp)
-                    .addOnSuccessListener {
-                        Toast.makeText(this, "Rating submitted successfully", Toast.LENGTH_SHORT).show()
-                        alertDialog.dismiss()
+                ratingsReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            // User has already rated, show a message or handle accordingly
+                            Toast.makeText(this@DetailPost, "You have already rated this engagement", Toast.LENGTH_SHORT).show()
+                        } else {
+                            // User has not rated, proceed to submit the rating
+                            val selectedRating = ratingBar.rating.toInt()
+
+                            // Get the message corresponding to the selected rating
+                            val message = when (selectedRating) {
+                                0 -> getString(R.string.very_dissatisfied)
+                                1 -> getString(R.string.dissatisfied)
+                                2 -> getString(R.string.ok)
+                                3 -> getString(R.string.average)
+                                4 -> getString(R.string.satisfied)
+                                5 -> getString(R.string.very_satisfied)
+                                else -> ""
+                            }
+
+                            // Get the current timestamp
+                            val timestamp = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US).format(Date())
+
+                            // Upload the rating to Firebase
+                            val ratingsUpdateMap = HashMap<String, Any>()
+                            ratingsUpdateMap["message"] = message
+                            ratingsUpdateMap["timestamp"] = timestamp
+
+                            // Update the rating only if the user has not rated before
+                            ratingsReference.updateChildren(ratingsUpdateMap)
+                                .addOnSuccessListener {
+                                    // Update the receivedStamp in Participants child
+                                    val participantsReference: DatabaseReference =
+                                        FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
+                                            .child("Participants").child(uid)
+
+                                    participantsReference.child("receivedStamp").setValue(timestamp)
+                                        .addOnSuccessListener {
+                                            incrementActivePointsForUser(uid)
+                                            Toast.makeText(this@DetailPost, "Rating submitted. You have now received your active points.", Toast.LENGTH_LONG).show()
+                                            alertDialog.dismiss()
+                                        }
+                                        .addOnFailureListener { exception ->
+                                            Toast.makeText(this@DetailPost, "Failed to update receivedStamp: ${exception.message}", Toast.LENGTH_SHORT).show()
+                                        }
+                                }
+                                .addOnFailureListener { exception ->
+                                    Toast.makeText(this@DetailPost, "Failed to submit rating: ${exception.message}", Toast.LENGTH_SHORT).show()
+                                }
+                        }
                     }
-                    .addOnFailureListener { exception ->
-                        Toast.makeText(this, "Failed to submit rating: ${exception.message}", Toast.LENGTH_SHORT).show()
+
+                    override fun onCancelled(error: DatabaseError) {
+                        // Handle the error if needed
+                        Toast.makeText(this@DetailPost, "Failed to check rating status: ${error.message}", Toast.LENGTH_SHORT).show()
                     }
+                })
             }
         }
-
         // Set up the cancel button click listener
         cancelBtn.setOnClickListener {
             alertDialog.dismiss()
@@ -577,10 +650,12 @@ class DetailPost : AppCompatActivity() {
             alertDialog.dismiss()
         }
         saveButton.setOnClickListener {
+
             val amountText = amountEditText.text.toString().trim()
             if (amountText.isNotEmpty()) {
                 alertDialog.dismiss()
                 uploadImageToFirebase(capturedImageUri!!, amountText)
+                sendAmountNotification()
             } else {
                 Toast.makeText(this, "Please input the amount", Toast.LENGTH_SHORT).show()
             }
@@ -593,91 +668,149 @@ class DetailPost : AppCompatActivity() {
         }
         alertDialog.show()
     }
+    private fun sendAmountNotification() {
+        val title = "You contribute to the cause."
+        val body = "Please wait until the admin confirms it."
 
-        private fun uploadImageToFirebase(imageUri: Uri, amount: String) {
-            val storage = FirebaseStorage.getInstance()
-            val storageRef = storage.reference
-            val timestamp = System.currentTimeMillis().toString()
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-            val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
-            if (currentUserUid == null) {
-                // Handle the case where the current user UID is null
-                return
-            }
+        // Create an intent that opens your main activity
+        val intent = Intent(this, SplashActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+        )
 
-            val fileRef = storageRef.child("TransparencyProofImage/$currentUserUid/${timestamp}_image_amount.jpg")
+        val channelId = "civic_channel"
+        val channelName = "Verification"
 
-            // Check if the user has already uploaded an image with contributionStatus false
-            val transparencyImageRef = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key).child("TransparencyImage").child(currentUserUid)
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(title)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)  // Removes the notification when clicked
 
-            transparencyImageRef.child("contributionStatus").addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val contributionStatus = dataSnapshot.getValue(Boolean::class.java) ?: true
+        // Check if body is not null or empty before using BigTextStyle
+        if (!body.isNullOrBlank()) {
+            val bigTextStyle = NotificationCompat.BigTextStyle()
+                .bigText(body)
+            notificationBuilder.setStyle(bigTextStyle)
+        }
 
-                    if (!contributionStatus) {
-                        // User has already uploaded an image with contributionStatus false
-                        showMessage(
-                            "Wait until admin verifies your previous upload",
-                            4000,
-                            "Oops!",
-                            R.drawable.notverifiedshield,
-                            R.layout.dialog_sadface
-                        )
-                    } else {
-                        fileRef.putFile(imageUri)
-                            .addOnSuccessListener { uploadTask ->
-                                fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
-                                    // Image uploaded successfully
-                                    transparencyImageRef.setValue(
-                                        mapOf(
-                                            "amount" to amount.toDouble(),
-                                            "contributionStatus" to false,
-                                            "imageUri" to downloadUri.toString(),
-                                            "timestamp" to timestamp
-                                        )
+        // Always create the NotificationChannel on devices running Android Oreo and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                channelName,
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // Generate a unique notification ID
+        val notificationId = System.currentTimeMillis().toInt()
+
+        // Display the notification
+        notificationManager.notify(notificationId, notificationBuilder.build())
+    }
+
+    private fun uploadImageToFirebase(imageUri: Uri, amount: String) {
+        val storage = FirebaseStorage.getInstance()
+        val storageRef = storage.reference
+        val timestamp = System.currentTimeMillis().toString()
+
+        val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
+        if (currentUserUid == null) {
+            // Handle the case where the current user UID is null
+            return
+        }
+
+        val fileRef = storageRef.child("TransparencyProofImage/$currentUserUid/${timestamp}_image_amount.jpg")
+
+        // Check if the user has already uploaded an image with contributionStatus false
+        val transparencyImageRef =
+            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key).child("TransparencyImage")
+                .child(currentUserUid)
+
+        transparencyImageRef.child("contributionStatus").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val contributionStatus = dataSnapshot.getValue(Boolean::class.java) ?: true
+
+                if (!contributionStatus) {
+                    // User has already uploaded an image with contributionStatus false
+                    showMessage(
+                        "Wait until admin verifies your previous upload",
+                        4000,
+                        "Oops!",
+                        R.drawable.notverifiedshield,
+                        R.layout.dialog_sadface
+                    )
+                } else {
+                    fileRef.putFile(imageUri)
+                        .addOnSuccessListener { uploadTask ->
+                            fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
+                                // Image uploaded successfully
+                                transparencyImageRef.setValue(
+                                    mapOf(
+                                        "amount" to amount.toDouble(),
+                                        "contributionStatus" to false,
+                                        "imageUri" to downloadUri.toString(),
+                                        "timestamp" to timestamp
                                     )
-                                    val participantsRef = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                                )
+                                // Update "Participants" node
+                                val participantsRef =
+                                    FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
                                         .child("Participants").child(currentUserUid)
-                                    participantsRef.setValue(false)
 
-                                    transparencyImageRef.child("contributionStatus").addValueEventListener(object : ValueEventListener {
+                                participantsRef.setValue(
+                                    mapOf(
+                                        "joined" to false,
+                                        "timestamp" to SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date())
+                                    )
+                                )
+
+                                transparencyImageRef.child("contributionStatus")
+                                    .addValueEventListener(object : ValueEventListener {
                                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                                             val contributionStatus = dataSnapshot.getValue(Boolean::class.java) ?: false
 
                                             if (contributionStatus) {
-                                                // Add the user's UID to the "Participants" node
-                                                val participantsRef = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
-                                                    .child("Participants").child(currentUserUid)
-                                                participantsRef.setValue(true)
-                                                participantsRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                                                    override fun onDataChange(participantsSnapshot: DataSnapshot) {
+                                                // If contributionStatus is true, update "Participants" node
+                                                participantsRef.setValue(
+                                                    mapOf(
+                                                        "receivedStamp" to SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date()),
+                                                        "joined" to true,
+                                                        "timestamp" to SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date())
+                                                    )
+                                                )
+
+                                                // Increment active points for the user
+                                                incrementActivePointsForUser(currentUserUid)
+
+                                                // Update "fundcollected"
+                                                val fundCollectedRef = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                                                    .child("fundcollected")
+
+                                                fundCollectedRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                                                    override fun onDataChange(currentDataSnapshot: DataSnapshot) {
+                                                        val currentFundCollected = currentDataSnapshot.getValue(Double::class.java) ?: 0.0
+
+                                                        val updatedFundCollected = currentFundCollected + amount.toDouble()
+                                                        fundCollectedRef.setValue(updatedFundCollected)
+
+                                                        val formattedFundCollected = String.format("%.2f", updatedFundCollected)
+                                                        detailFundCollected.text = "$formattedFundCollected"
                                                     }
 
                                                     override fun onCancelled(databaseError: DatabaseError) {
                                                         // Handle onCancelled
                                                     }
                                                 })
-
-                                                incrementActivePointsForUser(currentUserUid)
-
-
-                                                FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
-                                                    .child("fundcollected").addListenerForSingleValueEvent(object : ValueEventListener {
-                                                        override fun onDataChange(currentDataSnapshot: DataSnapshot) {
-                                                            val currentFundCollected = currentDataSnapshot.getValue(Double::class.java) ?: 0.0
-
-                                                            val updatedFundCollected = currentFundCollected + amount.toDouble()
-                                                            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
-                                                                .child("fundcollected").setValue(updatedFundCollected)
-
-                                                            val formattedFundCollected = String.format("%.2f", updatedFundCollected)
-                                                            detailFundCollected.text = "$formattedFundCollected"
-                                                        }
-
-                                                        override fun onCancelled(databaseError: DatabaseError) {
-                                                            // Handle onCancelled
-                                                        }
-                                                    })
                                             }
                                         }
 
@@ -686,29 +819,29 @@ class DetailPost : AppCompatActivity() {
                                         }
                                     })
 
-                                    showMessage(
-                                        "Awaiting admin verification, thank you for your patience.",
-                                        4000,
-                                        "Success",
-                                        R.drawable.papermani,
-                                        R.layout.dialog_happyface
-                                    )
-                                }
+                                showMessage(
+                                    "Awaiting admin verification, thank you for your patience.",
+                                    4000,
+                                    "Success",
+                                    R.drawable.papermani,
+                                    R.layout.dialog_happyface
+                                )
                             }
-                            .addOnFailureListener { exception ->
-                                // Handle unsuccessful uploads
-                                Toast.makeText(this@DetailPost, "Image upload failed: ${exception.message}", Toast.LENGTH_SHORT).show()
-                            }
-                    }
+                        }
+                        .addOnFailureListener { exception ->
+                            // Handle unsuccessful uploads
+                            Toast.makeText(this@DetailPost, "Image upload failed: ${exception.message}", Toast.LENGTH_SHORT).show()
+                        }
                 }
+            }
 
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // Handle onCancelled
-                }
-            })
-        }
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle onCancelled
+            }
+        })
+    }
 
-        private fun incrementActivePointsForUser(uid: String) {
+    private fun incrementActivePointsForUser(uid: String) {
             // Fetch the current activepoints value in Upload Engagement
             FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key).child("activepoints")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -807,7 +940,11 @@ class DetailPost : AppCompatActivity() {
 
     private var isJoinConfirmationDialogShowing = false
 
-    private fun showJoinConfirmationDialog(reference: DatabaseReference, currentUserId: String) {
+    private fun showJoinConfirmationDialog(
+        reference: DatabaseReference,
+        currentUserId: String,
+        engagementTitle: String,
+        startDate: String) {
         if (isJoinConfirmationDialogShowing) {
             return
         }
@@ -837,38 +974,20 @@ class DetailPost : AppCompatActivity() {
 
             val participantsReference = reference.child("Participants").child(currentUserId)
 
-            // Set the value to false initially
-            participantsReference.setValue(false)
-                .addOnSuccessListener {
-                    // Successfully set to false, now add a ValueEventListener to listen for changes
-                    participantsReference.addValueEventListener(object : ValueEventListener {
-                        override fun onDataChange(dataSnapshot: DataSnapshot) {
-                            val isJoined = dataSnapshot.getValue(Boolean::class.java) ?: false
-
-                            if (isJoined) {
-                                // The value is true, now update activepoints in "Users" node
-                                incrementActivePointsForUser(currentUserId)
-
-
-                                // Remove the ValueEventListener to avoid unnecessary updates
-                                participantsReference.removeEventListener(this)
-                            }
-                        }
-
-                        override fun onCancelled(databaseError: DatabaseError) {
-                            // Handle onCancelled
-                            Toast.makeText(this@DetailPost, "Failed to join: ${databaseError.message}", Toast.LENGTH_SHORT).show()
-                        }
-                    })
-                }
+            // Set the value to false initially and set the timestamp
+            val timestamp = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date())
+            participantsReference.child("joined").setValue(false)
+            participantsReference.child("timestamp").setValue(timestamp)
                 .addOnFailureListener { exception ->
                     // Handle the failure to set to false
                     Toast.makeText(this@DetailPost, "Failed to join: ${exception.message}", Toast.LENGTH_SHORT).show()
                 }
+
             joinButton.text = "Cancel"
             showJoinPopupSuccess()
-        }
 
+            sendJoinNotification(engagementTitle, startDate)
+        }
 
         cancelBtn.text = "Cancel"
         cancelBtn.setOnClickListener {
@@ -876,8 +995,7 @@ class DetailPost : AppCompatActivity() {
             alertDialog.dismiss()
         }
 
-        dialogIconFlat.setImageResource(R.drawable.needhelp) // Set the join icon here
-
+        dialogIconFlat.setImageResource(R.drawable.needhelp)
         alertDialog.setOnDismissListener {
             isJoinConfirmationDialogShowing = false
         }
@@ -886,9 +1004,61 @@ class DetailPost : AppCompatActivity() {
         isJoinConfirmationDialogShowing = true
     }
 
+    private fun sendJoinNotification(engagementTitle: String, startDate: String) {
+        val title =  "You have joined the cause."
+        val body = "You've joined \"$engagementTitle\". It will start in $startDate."
+
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        // Create an intent that opens your main activity
+        val intent = Intent(this, SplashActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val channelId = "civic_channel"
+        val channelName = "Verification"
+
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(title)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)  // Removes the notification when clicked
+
+        // Check if body is not null or empty before using BigTextStyle
+        if (!body.isNullOrBlank()) {
+            val bigTextStyle = NotificationCompat.BigTextStyle()
+                .bigText(body)
+            notificationBuilder.setStyle(bigTextStyle)
+        }
+
+        // Always create the NotificationChannel on devices running Android Oreo and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                channelName,
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // Generate a unique notification ID
+        val notificationId = System.currentTimeMillis().toInt()
+
+        // Display the notification
+        notificationManager.notify(notificationId, notificationBuilder.build())
+    }
+
+
+
     private var isCancelConfirmationDialogShowing = false
 
-    private fun showCancelConfirmationDialog(reference: DatabaseReference, currentUserId: String) {
+    private fun showCancelConfirmationDialog(reference: DatabaseReference, currentUserId: String, engagementTitle: String, ) {
         if (isCancelConfirmationDialogShowing) {
             return
         }
@@ -924,6 +1094,7 @@ class DetailPost : AppCompatActivity() {
             isCancelConfirmationDialogShowing = false
             alertDialog.dismiss()
 
+            sendCancelNotification(engagementTitle)
             // Remove the user's UID from the "Participants" node
             reference.child("Participants").child(currentUserId).removeValue()
 
@@ -941,6 +1112,56 @@ class DetailPost : AppCompatActivity() {
         alertDialog.show()
         isCancelConfirmationDialogShowing = true
     }
+    private fun sendCancelNotification(engagementTitle: String) {
+        val title = "Cancel Confirmed"
+        val body = "Title: \"$engagementTitle\". You can still rejoin if you like."
+
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        // Create an intent that opens your main activity
+        val intent = Intent(this, SplashActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val channelId = "civic_channel"
+        val channelName = "Verification"
+
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(title)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)  // Removes the notification when clicked
+
+        // Check if body is not null or empty before using BigTextStyle
+        if (!body.isNullOrBlank()) {
+            val bigTextStyle = NotificationCompat.BigTextStyle()
+                .bigText(body)
+            notificationBuilder.setStyle(bigTextStyle)
+        }
+
+        // Always create the NotificationChannel on devices running Android Oreo and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                channelName,
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // Generate a unique notification ID
+        val notificationId = System.currentTimeMillis().toInt()
+
+        // Display the notification
+        notificationManager.notify(notificationId, notificationBuilder.build())
+    }
+
 
     private var isJoinSuccessDialogShowing = false
 
@@ -1018,13 +1239,12 @@ class DetailPost : AppCompatActivity() {
 
                                         for (participant in participantSnapshot.children) {
                                             val participantUid = participant.key
-                                            val participantValue = participant.getValue(Boolean::class.java)
+                                            val joined = participant.child("joined").getValue(Boolean::class.java)
 
-                                            if (participantUid != null && participantValue == false || participantValue == true) {
-                                                if (participantUid == currentUserId && participantValue == true) {
+                                            if (participantUid != null && joined == true) {
+                                                if (participantUid == currentUserId) {
                                                     userUidFound = true
                                                 }
-                                            } else {
                                                 updatedParticipantCount++
                                             }
                                         }
@@ -1050,6 +1270,7 @@ class DetailPost : AppCompatActivity() {
                                 updatePaymentDetailsVisibility()
                                 return
                             }
+
                         } catch (e: ParseException) {
                             e.printStackTrace()
                         }
@@ -1064,7 +1285,6 @@ class DetailPost : AppCompatActivity() {
                                 joinButton.text = "Join Now"
                             }
                         }
-
                         override fun onCancelled(databaseError: DatabaseError) {
                             Toast.makeText(
                                 this@DetailPost,
@@ -1113,7 +1333,7 @@ class DetailPost : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val category = dataSnapshot.getValue(String::class.java)
 
-                if (category == "Fund Raising" || category == "Donations") {
+                if (category == "Fund Raising" || category == "Donation") {
                     val participantsReference: DatabaseReference =
                         FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
                             .child("Participants")
@@ -1154,7 +1374,7 @@ class DetailPost : AppCompatActivity() {
     private fun updatePaymentDetailsVisibility() {
         val parentLinearLayout = findViewById<LinearLayout>(R.id.paymentDetailsLayout)
 
-        if (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donations") {
+        if (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donation") {
             parentLinearLayout.visibility = View.VISIBLE
         } else {
             parentLinearLayout.visibility = View.GONE
@@ -1222,6 +1442,10 @@ class DetailPost : AppCompatActivity() {
         if (isJoinSuccessDialogShowing) {
 
             isJoinSuccessDialogShowing = false
+        }
+        if (isNoInternetDialogShowing) {
+
+            isNoInternetDialogShowing = false
         }
 
     }

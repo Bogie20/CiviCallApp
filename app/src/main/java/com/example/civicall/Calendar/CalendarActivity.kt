@@ -15,13 +15,14 @@ import com.example.civicall.databinding.ActivityCalendarBinding
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
-
+import com.example.civicall.NetworkUtils
 class CalendarActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCalendarBinding
     private lateinit var calendarView: CalendarView
     private lateinit var recyclerView: RecyclerView
     private lateinit var calendarAdapter: CalendarAdapter
     private lateinit var engagementList: MutableList<CalendarData>
+    private lateinit var networkUtils: NetworkUtils
 
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
@@ -31,7 +32,8 @@ class CalendarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCalendarBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         calendarView = findViewById(R.id.calendarView)
         recyclerView = findViewById(R.id.recyclerView)
         binding.backbtn.setOnClickListener {
@@ -53,7 +55,7 @@ class CalendarActivity : AppCompatActivity() {
         calendarView.date = currentDate.timeInMillis
 
         // Load engagements for the current date
-        val formattedCurrentDate = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(currentDate.time)
+        val formattedCurrentDate = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(currentDate.time)
         loadEngagements(formattedCurrentDate)
 
         // Set the OnDateChangeListener
@@ -92,9 +94,11 @@ class CalendarActivity : AppCompatActivity() {
                 val participantsSnapshot = snapshot.child("Participants")
                 val startDate = snapshot.child("startDate").value.toString()
                 val endDate = snapshot.child("endDate").value.toString()
-                if (participantsSnapshot.hasChild(currentUserUid) && isDateInRange(selectedDate, startDate, endDate)) {
+                val currentUserUid = auth.currentUser?.uid
+
+                if (currentUserUid != null && participantsSnapshot.hasChild(currentUserUid) && isDateInRange(selectedDate, startDate, endDate)) {
                     val postKey = snapshot.key ?: ""
-                    val hasAttended = participantsSnapshot.child(currentUserUid).getValue(Boolean::class.java) ?: false
+                    val hasAttended = participantsSnapshot.child(currentUserUid).child("joined").getValue(Boolean::class.java) ?: false
 
                     val engagementData = CalendarData(
                         snapshot.child("image").value.toString(),
@@ -118,7 +122,7 @@ class CalendarActivity : AppCompatActivity() {
                 val currentUserUid = auth.currentUser?.uid
 
                 if (currentUserUid != null && participantsSnapshot.hasChild(currentUserUid)) {
-                    val hasAttended = participantsSnapshot.child(currentUserUid).getValue(Boolean::class.java) ?: false
+                    val hasAttended = participantsSnapshot.child(currentUserUid).child("joined").getValue(Boolean::class.java) ?: false
                     val startDate = snapshot.child("startDate").value.toString()
                     val endDate = snapshot.child("endDate").value.toString()
 
@@ -173,5 +177,9 @@ class CalendarActivity : AppCompatActivity() {
         val intent = Intent(this, MainMenu::class.java)
         startActivity(intent)
         overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
     }
 }

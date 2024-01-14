@@ -6,12 +6,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.TimePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -20,16 +25,20 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
+import com.example.civicall.SplashActivity
 import com.example.civicall.databinding.ActivityUploadEngagementBinding
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
@@ -101,11 +110,10 @@ class Upload_engagement : AppCompatActivity() {
             super.onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
-        val campusDropdown = binding.uploadCampus
-        val campusArray = resources.getStringArray(R.array.allowed_campuses)
-        val adaptercampus = ArrayAdapter(this, R.layout.dropdown_item, campusArray)
-        (campusDropdown as? AutoCompleteTextView)?.setAdapter(adaptercampus)
-
+        val campusAuto = binding.uploadCampus
+        campusAuto.setOnClickListener {
+            showCheckBoxCampus()
+        }
         val paymentDropdown = binding.uploadPaymentMethod
         val paymentArray = resources.getStringArray(R.array.payment_category)
         val adapterpayment = ArrayAdapter(this, R.layout.dropdown_item, paymentArray)
@@ -122,7 +130,7 @@ class Upload_engagement : AppCompatActivity() {
         categoryDropdown.setOnItemClickListener { _, _, position, _ ->
             val selectedCategory = categoryArray[position]
 
-            if (selectedCategory == "Fund Raising" || selectedCategory == "Donations") {
+            if (selectedCategory == "Fund Raising" || selectedCategory == "Donation") {
                 paymentMethodLayout.visibility = View.VISIBLE
                 paymentRecipientLayout.visibility = View.VISIBLE
 
@@ -150,46 +158,131 @@ class Upload_engagement : AppCompatActivity() {
         }
 
         uploadImage.setOnClickListener {
-           checkAndRequestPermissions()
+            checkAndRequestPermissions()
         }
 
         saveButton.setOnClickListener {
-            val auth = FirebaseAuth.getInstance()
-            val currentUser = auth.currentUser
-            if (currentUser != null) {
-                val uid = currentUser.uid
+            if (networkUtils.isOnline) {
+                val auth = FirebaseAuth.getInstance()
+                val currentUser = auth.currentUser
+                if (currentUser != null) {
+                    val uid = currentUser.uid
 
-                // Now you can use the uid in your Firebase Database reference
-                val currentUserRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+                    // Now you can use the uid in your Firebase Database reference
+                    val currentUserRef =
+                        FirebaseDatabase.getInstance().getReference("Users").child(uid)
 
-                currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        val verificationStatus =
-                            snapshot.child("verificationStatus").getValue(Boolean::class.java)
+                    currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            val verificationStatus =
+                                snapshot.child("verificationStatus").getValue(Boolean::class.java)
 
-                        if (verificationStatus == false) {
-                            showMessage(
-                                "Please verify your account before uploading",
-                                4000,
-                                "Oops!",
-                                R.drawable.notverifiedshield,
-                                R.layout.dialog_sadface
-                            )
-                        } else {
-                            showConfirmationDialog()
+                            if (verificationStatus == false) {
+                                showMessage(
+                                    "Please verify your account before uploading",
+                                    4000,
+                                    "Oops!",
+                                    R.drawable.notverifiedshield,
+                                    R.layout.dialog_sadface
+                                )
+                            } else {
+                                showConfirmationDialog()
+                            }
                         }
-                    }
 
-                    override fun onCancelled(error: DatabaseError) {
-                        // Handle the error as needed
-                    }
-                })
+                        override fun onCancelled(error: DatabaseError) {
+                            // Handle the error as needed
+                        }
+                    })
+                }
             } else {
-                // Handle the case where the user is not signed in
-                // You might want to redirect the user to the login screen or perform some other action
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
             }
         }
     }
+        private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
+    }
+
+    private var isCampusDialogShowing = false
+
+    private fun showCheckBoxCampus() {
+        if (isCampusDialogShowing) {
+            return
+        }
+
+        val dialogView = layoutInflater.inflate(R.layout.multiple_checkbox_selection, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val btnSelectCampus = dialogView.findViewById<Button>(R.id.btnSelectCampus)
+        val closeIcon = dialogView.findViewById<ImageView>(R.id.closeIcon) // Add this line
+
+        val checkBoxes = ArrayList<CheckBox>()
+
+        // Iterate from 1 to 11 (excluding checkBox12)
+        for (i in 1 until 12) {
+            val checkBoxId = resources.getIdentifier("checkBox$i", "id", packageName)
+            val checkBox = dialogView.findViewById<CheckBox>(checkBoxId)
+            checkBoxes.add(checkBox)
+        }
+
+        // Find the checkBox12 by ID
+        val checkBox12 = dialogView.findViewById<CheckBox>(R.id.checkBox12)
+
+        // Set a listener for checkBox12 to select all checkboxes
+        checkBox12.setOnCheckedChangeListener { _, isChecked ->
+            checkBoxes.forEach { it.isChecked = isChecked }
+        }
+
+        // Check previously selected campuses and update the checkboxes
+        val selectedCampuses = binding.uploadCampus.text.toString().split(", ")
+        for (checkBox in checkBoxes) {
+            checkBox.isChecked = selectedCampuses.contains(checkBox.text.toString())
+        }
+
+        btnSelectCampus.setOnClickListener {
+            val selectedCampuses = checkBoxes.filter { it.isChecked }.map { it.text.toString() }
+            val selectedCampusesText = selectedCampuses.joinToString(", ")
+
+            // Set the selected campuses in the AutoCompleteTextView
+            binding.uploadCampus.setText(selectedCampusesText)
+
+            alertDialog.dismiss()
+        }
+
+        // Add click listener to closeIcon to dismiss the dialog
+        closeIcon.setOnClickListener {
+            alertDialog.dismiss()
+        }
+        alertDialog.setOnDismissListener {
+            isCampusDialogShowing = false
+        }
+        alertDialog.show()
+        isCampusDialogShowing = true
+    }
+
     private fun checkAndRequestPermissions() {
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -330,7 +423,10 @@ class Upload_engagement : AppCompatActivity() {
         saveBtn.setOnClickListener {
             alertDialog.dismiss()
             dismissCustomDialog()
+
             saveData()
+
+
         }
         cancelBtn.text = "Cancel"
         cancelBtn.setOnClickListener {
@@ -351,9 +447,75 @@ class Upload_engagement : AppCompatActivity() {
             isSaveConfirmationDialogShowing = false
 
         }
+        if (isCampusDialogShowing) {
+            isCampusDialogShowing = false
+
+        }
+        if (isAlreadyJoinDialogShowing) {
+            isAlreadyJoinDialogShowing = false
+
+        }
+        if (isDateTimePickerShowing) {
+            isDateTimePickerShowing = false
+
+        }
+    }
+    private fun sendEngagementNotification(engagementTitle: String) {
+        val title = "You Request an Engagement"
+        val body = "Title: '$engagementTitle'\nPlease wait for approval"
+
+        val notificationId = System.currentTimeMillis().toInt()
+
+        // Create an intent that opens your main activity
+        val intent = Intent(this, SplashActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val channelId = "civic_channel"
+        val channelName = "Verification"
+
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(title)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)  // Removes the notification when clicked
+
+        // Check if body is not null or empty before using BigTextStyle
+        if (!body.isNullOrBlank()) {
+            val bigTextStyle = NotificationCompat.BigTextStyle()
+                .bigText(body)
+            notificationBuilder.setStyle(bigTextStyle)
+        }
+
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        // Always create the NotificationChannel on devices running Android Oreo and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                channelName,
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // Display the notification
+        notificationManager.notify(notificationId, notificationBuilder.build())
     }
 
+    private var isDateTimePickerShowing = false
+
     private fun showDateTimePicker(editText: EditText, startDate: Calendar?) {
+        if (isDateTimePickerShowing) {
+            return
+        }
+
         val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.US)
         dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
@@ -395,7 +557,12 @@ class Upload_engagement : AppCompatActivity() {
             calendar.get(Calendar.DAY_OF_MONTH)
         )
 
+        datePickerDialog.setOnDismissListener {
+            isDateTimePickerShowing = false
+        }
+
         datePickerDialog.show()
+        isDateTimePickerShowing = true
     }
 
 
@@ -533,8 +700,7 @@ class Upload_engagement : AppCompatActivity() {
                     paymentmethod,
                     paymentrecipient,
                     formattedFundCollected.toDouble(),
-                    verificationStatus,
-                    postKey
+                    verificationStatus
                 )
 
                 FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
@@ -544,6 +710,7 @@ class Upload_engagement : AppCompatActivity() {
                             Toast.makeText(this@Upload_engagement, "Success", Toast.LENGTH_SHORT)
                                 .show()
                             finish()
+                            sendEngagementNotification(uploadTitle.text.toString())
                         }
                     }
                     .addOnFailureListener { e ->

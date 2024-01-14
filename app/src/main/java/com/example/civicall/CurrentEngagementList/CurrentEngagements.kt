@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
-
+import com.example.civicall.NetworkUtils
 class CurrentEngagements : AppCompatActivity() {
     private lateinit var binding: ActivityCurrentEngagementsBinding
     private lateinit var recyclerView: RecyclerView
@@ -23,11 +23,13 @@ class CurrentEngagements : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
     private var childEventListener: ChildEventListener? = null
-
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCurrentEngagementsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
 
         recyclerView = binding.currentRecycler
         auth = FirebaseAuth.getInstance()
@@ -51,7 +53,7 @@ class CurrentEngagements : AppCompatActivity() {
         val currentUserUid = auth.currentUser?.uid
         val currentDate = getCurrentDate()
 
-        val participantsQuery = databaseReference.orderByChild("Participants/$currentUserUid").equalTo(false)
+        val participantsQuery = databaseReference.orderByChild("Participants/$currentUserUid/joined").equalTo(false)
         participantsQuery.addListenerForSingleValueEvent(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -61,7 +63,7 @@ class CurrentEngagements : AppCompatActivity() {
                     val startDate = engagementSnapshot.child("startDate").getValue(String::class.java) ?: ""
                     val endDate = engagementSnapshot.child("endDate").getValue(String::class.java) ?: ""
 
-                    val isParticipant = engagementSnapshot.child("Participants/$currentUserUid").getValue(Boolean::class.java) ?: false
+                    val isParticipant = engagementSnapshot.child("Participants/$currentUserUid/joined").getValue(Boolean::class.java) ?: false
                     val contributionStatus = engagementSnapshot.child("TransparencyImage/$currentUserUid/contributionStatus").getValue(Boolean::class.java) ?: false
 
                     if (isDateTimeInRange(currentDate, endDate) && !(isParticipant || contributionStatus)) {
@@ -73,9 +75,10 @@ class CurrentEngagements : AppCompatActivity() {
                             engagementSnapshot.child("category").getValue(String::class.java) ?: "",
                             startDate,
                             endDate,
-                            postKey
+                            postKey,
+                            engagementSnapshot.child("Participants/$currentUserUid/timestamp").getValue(String::class.java) ?: ""
                         )
-                        currentEngagements.add(currentEngagement)
+                        currentEngagements.add(0, currentEngagement)
                     }
                 }
 
@@ -100,15 +103,13 @@ class CurrentEngagements : AppCompatActivity() {
         })
     }
 
+
     private fun getCurrentDate(): String {
         val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
         dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
         return dateFormat.format(calendar.time)
     }
-
-
-
     private fun isDateTimeInRange(selectedDateTime: String, endDateTime: String): Boolean {
         val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
         sdf.timeZone = TimeZone.getTimeZone("Asia/Manila")
@@ -122,6 +123,7 @@ class CurrentEngagements : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        networkUtils.cleanup()
         childEventListener?.let {
             databaseReference.removeEventListener(it)
         }

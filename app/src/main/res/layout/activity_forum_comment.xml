@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey"
     tools:context=".Forum.ForumComment">
 
     <RelativeLayout
@@ -58,6 +59,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_forum"
                 android:padding="10dp"
                 android:id="@+id/postMain"
@@ -68,7 +71,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     app:cardCornerRadius="100dp"
-                    android:layout_marginStart="5dp"
+                   android:layout_marginHorizontal="5dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     tools:ignore="MissingConstraints">
@@ -83,35 +86,36 @@
 
                 <TextView
                     android:id="@+id/username"
-                    android:layout_width="wrap_content"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="100dp"
+                    android:layout_marginBottom="10dp"
+                    android:ellipsize="end"
                     android:includeFontPadding="false"
+                   android:paddingHorizontal="10dp"
+                    android:maxLines="1"
                     android:text="Kurt Bryant Arpilleda"
                     android:textColor="@color/colorPrimaryText"
                     android:textStyle="bold"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:layout_marginBottom="10dp"
                     app:layout_constraintBottom_toBottomOf="@+id/userImage"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/userImage"
                     app:layout_constraintTop_toTopOf="@+id/userImage" />
 
                 <TextView
                     android:id="@+id/campustxt"
-                    android:layout_marginLeft="8dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:text="Campus"
-                    android:textSize="14dp"
+                    android:paddingHorizontal="10dp"
                     android:drawableStart="@drawable/earth"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="Campus"
                     android:textColor="@color/colorPrimaryText"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/username"
                     app:layout_constraintTop_toBottomOf="@+id/username" />
-
-
                 <View
                     android:id="@+id/view2"
                     android:layout_width="match_parent"
@@ -161,43 +165,46 @@
                     android:id="@+id/likeCommentLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                   android:layout_marginVertical="10dp"
                     android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view3">
+
                     <TextView
                         android:id="@+id/detailCategory"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:lineSpacingExtra="4dp"
-                        android:gravity="start"
-                        android:maxLines="1"
-                        android:ellipsize="end"
-                        android:paddingEnd="5dp"
-                        android:fontFamily="@font/lexend"
-                        android:text="Tree Planting"
                         android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/lexend"
+                        android:gravity="start"
+                        android:lineSpacingExtra="4dp"
+                        android:maxLines="1"
+                        android:paddingEnd="5dp"
+                        android:text="Tree Planting"
                         android:textColor="@color/colorSecondaryText"
-                        android:textSize="13sp"
-                        android:layout_weight="1" />
+                        android:textSize="13sp" />
+
                     <ImageButton
                         android:id="@+id/upBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="5dp"
-                        android:paddingRight="5dp"
                         android:layout_marginStart="10dp"
                         android:background="@android:color/transparent"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
                         android:src="@drawable/upreact" />
 
                     <TextView
                         android:id="@+id/upcount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
-                        android:layout_marginTop="7dp"
                         android:layout_marginStart="5dp"
+                        android:layout_marginTop="7dp"
+                        android:text="0"
                         android:textColor="@color/colorPrimaryText"
                         android:textStyle="bold" />
 
@@ -205,30 +212,31 @@
                         android:id="@+id/downBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="5dp"
-                        android:paddingRight="5dp"
                         android:layout_marginStart="10dp"
                         android:background="@android:color/transparent"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
                         android:src="@drawable/downreact" />
 
                     <TextView
                         android:id="@+id/downcount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
-                        android:layout_marginTop="7dp"
                         android:layout_marginStart="5dp"
+                        android:layout_marginTop="7dp"
+                        android:text="0"
                         android:textColor="@color/colorPrimaryText"
                         android:textStyle="bold" />
+
                     <ImageButton
-                        android:paddingStart="10dp"
-                        android:paddingEnd="5dp"
                         android:id="@+id/commentBtn"
-                        android:paddingTop="7dp"
-                        android:layout_marginStart="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
                         android:background="@android:color/transparent"
+                        android:paddingStart="10dp"
+                        android:paddingTop="7dp"
+                        android:paddingEnd="5dp"
                         android:src="@drawable/comment_icon"
                         app:tint="@color/colorPrimaryText" />
 
@@ -236,10 +244,10 @@
                         android:id="@+id/commentcount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginTop="7dp"
                         android:layout_marginStart="5dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginEnd="10dp"
+                        android:text="0"
                         android:textColor="@color/colorPrimaryText"
                         android:textStyle="bold" />
 
@@ -247,14 +255,6 @@
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <View
-                android:id="@+id/view4"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="20dp"
-                android:background="@color/lineColor"
-                app:layout_constraintTop_toBottomOf="@+id/postMain"
-                tools:layout_editor_absoluteX="10dp" />
             <TextView
                 android:id="@+id/discussion"
                 android:layout_width="wrap_content"
@@ -265,6 +265,7 @@
                 android:textSize="20dp"
                 android:textColor="@color/colorPrimaryText"
                 android:textStyle="bold"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp" />
             <View
                 android:id="@+id/view5"
@@ -288,11 +289,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbarSize="5dp"
-                android:layout_marginBottom="65dp"
+                android:layout_marginBottom="70dp"
                 android:scrollbars="vertical"
                 android:id="@+id/nestedRecycler"
                 android:layout_marginTop="5dp"
-                android:background="@color/grey"
                 android:layout_below="@id/view5">
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"

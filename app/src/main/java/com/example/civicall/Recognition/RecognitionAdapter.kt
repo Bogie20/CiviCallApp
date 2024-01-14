@@ -34,11 +34,11 @@ class RecognitionAdapter(private val context: Context, private val userList: Lis
         val formattedActivePts = formatNumber(user.activepts)
         holder.activePts.text = "${formattedActivePts} pts"
         holder.campus.text = user.campus
-        // Set the ranking number only for top 10
-        if (position < 10) {
+
+        if (position < 99) {
             holder.rankingNum.text = (position + 1).toString()
             holder.rankingNum.visibility = View.VISIBLE
-            // Change the text color for the top 10 rankings to gold
+
             holder.rankingNum.setTextColor(ContextCompat.getColor(context, R.color.softGoldColor))
         } else {
             // Hide ranking number for other rankings
@@ -46,9 +46,9 @@ class RecognitionAdapter(private val context: Context, private val userList: Lis
         }
 
         when {
-            user.activepts in 0..300 -> holder.badgeImageView.setImageResource(R.drawable.bronzes)
-            user.activepts in 301..999 -> holder.badgeImageView.setImageResource(R.drawable.silver)
-            user.activepts in 1000..9999 -> holder.badgeImageView.setImageResource(R.drawable.gold)
+            user.activepts in 0..99 -> holder.badgeImageView.setImageResource(R.drawable.bronzes)
+            user.activepts in 100..499 -> holder.badgeImageView.setImageResource(R.drawable.silver)
+            user.activepts in 500..1999 -> holder.badgeImageView.setImageResource(R.drawable.gold)
             else -> holder.badgeImageView.setImageResource(R.drawable.platinum)
         }
     }

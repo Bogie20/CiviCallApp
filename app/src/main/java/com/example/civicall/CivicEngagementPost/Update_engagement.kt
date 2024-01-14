@@ -15,6 +15,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import com.example.civicall.NetworkUtils
@@ -135,7 +136,7 @@ class Update_engagement: AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {
                 val selectedCategory = s.toString()
-                if (selectedCategory == "Fund Raising" || selectedCategory == "Donations") {
+                if (selectedCategory == "Fund Raising" || selectedCategory == "Donation") {
                     paymentTextInputLayout.visibility = View.VISIBLE
                     paymentRecepientTextInputLayout.visibility = View.VISIBLE
                 } else {
@@ -146,7 +147,7 @@ class Update_engagement: AppCompatActivity() {
         })
 
         updateCampus.setOnClickListener {
-            showCampusSelectionDialog()
+            showCheckBoxCampus()
         }
         updateCategory.setOnClickListener {
             showCategorySelectionDialog()
@@ -196,8 +197,14 @@ class Update_engagement: AppCompatActivity() {
             activityResultLauncher.launch(photoPicker)
         }
         updateButton.setOnClickListener {
-            showUpdateConfirmation()
-
+            if (networkUtils.isOnline) {
+                showUpdateConfirmation()
+            } else {
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
+            }
         }
         updateStartDate.setOnClickListener {
             showDateTimePicker(updateStartDate, null)
@@ -216,6 +223,29 @@ class Update_engagement: AppCompatActivity() {
             showDateTimePicker(updateEndDate, startDateCalendar)
         }
     }
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
+    }
+
+
+
     private fun saveData() {
         val builder = AlertDialog.Builder(this@Update_engagement)
         builder.setCancelable(false)
@@ -276,23 +306,67 @@ class Update_engagement: AppCompatActivity() {
             }
         }
     }
-    private fun showCampusSelectionDialog() {
-        val campuscategoryArray = resources.getStringArray(R.array.allowed_campuses)
+    private var isCampusDialogShowing = false
 
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Select Campus")
-        builder.setItems(campuscategoryArray) { _, which ->
-            val selectedCampus = campuscategoryArray[which]
-            updateCampus.setText(selectedCampus)
+    private fun showCheckBoxCampus() {
+        if (isCampusDialogShowing) {
+            return
         }
 
-        val alertDialog = builder.create()
+        val dialogView = layoutInflater.inflate(R.layout.multiple_checkbox_selection, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
 
-        // Apply window animations and background styling here
-        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        val btnSelectCampus = dialogView.findViewById<Button>(R.id.btnSelectCampus)
+        val closeIcon = dialogView.findViewById<ImageView>(R.id.closeIcon) // Add this line
 
+        val checkBoxes = ArrayList<CheckBox>()
+
+        // Iterate from 1 to 11 (excluding checkBox12)
+        for (i in 1 until 12) {
+            val checkBoxId = resources.getIdentifier("checkBox$i", "id", packageName)
+            val checkBox = dialogView.findViewById<CheckBox>(checkBoxId)
+            checkBoxes.add(checkBox)
+        }
+
+        // Find the checkBox12 by ID
+        val checkBox12 = dialogView.findViewById<CheckBox>(R.id.checkBox12)
+
+        // Set a listener for checkBox12 to select all checkboxes
+        checkBox12.setOnCheckedChangeListener { _, isChecked ->
+            checkBoxes.forEach { it.isChecked = isChecked }
+        }
+
+        // Check previously selected campuses and update the checkboxes
+        val selectedCampuses = binding.updateCampus.text.toString().split(", ")
+        for (checkBox in checkBoxes) {
+            checkBox.isChecked = selectedCampuses.contains(checkBox.text.toString())
+        }
+
+        btnSelectCampus.setOnClickListener {
+            val selectedCampuses = checkBoxes.filter { it.isChecked }.map { it.text.toString() }
+            val selectedCampusesText = selectedCampuses.joinToString(", ")
+
+            // Set the selected campuses in the AutoCompleteTextView
+            binding.updateCampus.setText(selectedCampusesText)
+
+            alertDialog.dismiss()
+        }
+
+        // Add click listener to closeIcon to dismiss the dialog
+        closeIcon.setOnClickListener {
+            alertDialog.dismiss()
+        }
+        alertDialog.setOnDismissListener {
+            isCampusDialogShowing = false
+        }
         alertDialog.show()
+        isCampusDialogShowing = true
     }
+
+
+
     private fun showCategorySelectionDialog() {
         val categoryArray = resources.getStringArray(R.array.engagement_category)
 
@@ -412,8 +486,7 @@ class Update_engagement: AppCompatActivity() {
                 paymentmethod,
                 paymentrecipient,
                 fundcollected,
-                false,
-                key
+                false
 
             )
 
@@ -455,7 +528,6 @@ class Update_engagement: AppCompatActivity() {
                 paymentrecipient,
                 fundcollected,
                 false,
-               key
             )
 
 

@@ -1,5 +1,7 @@
 package com.example.civicall.Recognition
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -10,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.civicall.MainMenu
 import com.example.civicall.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -17,7 +20,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-
+import com.example.civicall.NetworkUtils
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class RecognitionLeaderBoard : AppCompatActivity() {
 
@@ -28,7 +33,7 @@ class RecognitionLeaderBoard : AppCompatActivity() {
     private lateinit var campusTitleTextView: TextView
     private lateinit var noPostsImage: ImageView
     private lateinit var noPostsText: TextView
-
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recognition_leader_board)
@@ -41,6 +46,8 @@ class RecognitionLeaderBoard : AppCompatActivity() {
         userList = mutableListOf()
         leaderboardAdapter = RecognitionAdapter(this, userList)
         recyclerView.adapter = leaderboardAdapter
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         val backbtn: ImageView = findViewById(R.id.backbtn)
         val filterCampus: ImageView = findViewById(R.id.filterCampus)
         filterCampus.setOnClickListener {
@@ -48,7 +55,8 @@ class RecognitionLeaderBoard : AppCompatActivity() {
         }
 
         backbtn.setOnClickListener {
-            super.onBackPressed()
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
         databaseReference = FirebaseDatabase.getInstance().reference.child("Users")
@@ -73,17 +81,52 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                         }
 
                         query.addListenerForSingleValueEvent(object : ValueEventListener {
+                            @SuppressLint("NotifyDataSetChanged")
                             override fun onDataChange(dataSnapshot: DataSnapshot) {
                                 userList.clear()
                                 val users = mutableListOf<User>()
 
-                                for (snapshot in dataSnapshot.children) {
-                                    // Filter out users with verificationStatus = false
-                                    val verificationStatus =
-                                        snapshot.child("verificationStatus")
-                                            .getValue(Boolean::class.java)
+                                val oneYearInMillis = 365 * 24 * 60 * 60 * 1000L  // One year in milliseconds
 
-                                    if (verificationStatus == true) {
+                                for (snapshot in dataSnapshot.children) {
+                                    val activePoints = snapshot.child("activepts").getValue(Int::class.java)
+
+                                    // Skip processing if activepts is less than or equal to 0
+                                    if (activePoints != null && activePoints <= 0) {
+                                        continue
+                                    }
+
+                                    // Continue processing for users with activepts greater than 0
+                                    val lastLoginString = snapshot.child("lastLogin").getValue(String::class.java)
+
+                                    // Skip processing if lastLogin is empty or null
+                                    if (lastLoginString.isNullOrEmpty()) {
+                                        continue
+                                    }
+
+                                    val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+                                    val lastLoginDate = sdf.parse(lastLoginString)
+
+                                    // Check if last login is more than 1 year ago
+                                    val currentTime = System.currentTimeMillis()
+                                    if (lastLoginDate != null && currentTime - lastLoginDate.time >= oneYearInMillis) {
+                                        // Filter out users with last login more than 1 year ago
+                                        continue
+                                    }
+
+                                    // Continue processing for users with last login within the past year
+                                    val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java)
+                                    val campus = snapshot.child("campus").getValue(String::class.java)
+
+                                    val currentUserCampus = campusTitleTextView.text.toString()
+
+                                    // Skip processing if the current user's campus is empty or null
+                                    if (currentUserCampus.isNullOrEmpty()) {
+                                        continue
+                                    }
+
+                                    // Check if the user's campus matches the current user's campus
+                                    if (verificationStatus == true && campus == currentUserCampus) {
                                         val user = snapshot.getValue(User::class.java)
                                         user?.let {
                                             users.add(it)
@@ -91,13 +134,14 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                                     }
                                 }
 
-                                // Sort users by activepts in descending order
                                 users.sortByDescending { it.activepts }
 
-                                // Add sorted users to the main user list
                                 userList.addAll(users)
 
                                 leaderboardAdapter.notifyDataSetChanged()
+
+                                handleNoPostsMessage(users, currentUserCampus ?: "")
+
                             }
 
                             override fun onCancelled(databaseError: DatabaseError) {
@@ -112,7 +156,13 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                 })
         }
     }
-
+    private fun handleNoPostsMessage(users: List<User>, selectedCampus: String) {
+        if (users.isEmpty()) {
+            showNoPostsMessage(selectedCampus)
+        } else {
+            hideNoPostsMessage()
+        }
+    }
     private var isFilterDialogShowing = false // Add this variable
 
     private fun showCampusFilterDialog() {
@@ -228,16 +278,44 @@ class RecognitionLeaderBoard : AppCompatActivity() {
             }
 
             query.addListenerForSingleValueEvent(object : ValueEventListener {
+                @SuppressLint("NotifyDataSetChanged")
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     userList.clear()
                     val users = mutableListOf<User>()
 
-                    for (snapshot in dataSnapshot.children) {
-                        // Filter out users with verificationStatus = false
-                        val verificationStatus =
-                            snapshot.child("verificationStatus").getValue(Boolean::class.java)
+                    val oneYearInMillis = 365 * 24 * 60 * 60 * 1000L  // One year in milliseconds
 
-                        if (verificationStatus == true) {
+                    for (snapshot in dataSnapshot.children) {
+                        val activePoints = snapshot.child("activepts").getValue(Int::class.java)
+
+                        // Skip processing if activepts is less than or equal to 0
+                        if (activePoints != null && activePoints <= 0) {
+                            continue
+                        }
+
+                        // Continue processing for users with activepts greater than 0
+                        val lastLoginString = snapshot.child("lastLogin").getValue(String::class.java)
+
+                        // Skip processing if lastLogin is empty or null
+                        if (lastLoginString.isNullOrEmpty()) {
+                            continue
+                        }
+
+                        val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+                        val lastLoginDate = sdf.parse(lastLoginString)
+
+                        // Check if last login is more than 1 year ago
+                        val currentTime = System.currentTimeMillis()
+                        if (lastLoginDate != null && currentTime - lastLoginDate.time >= oneYearInMillis) {
+                            // Filter out users with last login more than 1 year ago
+                            continue
+                        }
+
+                        // Continue processing for users with last login within the past year
+                        val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java)
+                        val campus = snapshot.child("campus").getValue(String::class.java)
+
+                        if (verificationStatus == true && !campus.isNullOrEmpty()) {
                             val user = snapshot.getValue(User::class.java)
                             user?.let {
                                 users.add(it)
@@ -245,13 +323,13 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                         }
                     }
 
-                    // Sort users by activepts in descending order
+
                     users.sortByDescending { it.activepts }
 
-                    // Add sorted users to the main user list
                     userList.addAll(users)
 
                     leaderboardAdapter.notifyDataSetChanged()
+
 
                     // Handle no posts
                     if (users.isEmpty()) {
@@ -281,4 +359,15 @@ class RecognitionLeaderBoard : AppCompatActivity() {
         noPostsText.visibility = View.GONE
         recyclerView.visibility = View.VISIBLE
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainMenu::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+    }
+
 }

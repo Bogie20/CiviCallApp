@@ -46,19 +46,19 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:textColor="@color/md_white_1000"
-            android:text="No Internet Connection.Please check your settings and connections"
+            android:text="Internet connection failed. Please check your settings and connections."
             android:maxLines="3"
             android:ellipsize="end"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/okbtns"
+            android:id="@+id/retryBtn"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:background="@drawable/rounded_border_white"
             android:gravity="center"
             android:orientation="horizontal"
             android:clickable="true"
-            android:text="OK"
+            android:text="Retry"
             android:textColor="@color/md_white_1000"
             android:focusable="true"/>
 

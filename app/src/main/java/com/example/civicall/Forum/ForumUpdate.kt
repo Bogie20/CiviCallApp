@@ -1,21 +1,17 @@
 package com.example.civicall.Forum
 
 import android.app.Activity
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.text.InputType
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
-import com.example.civicall.NetworkUtils
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -24,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityForumUpdateBinding
 import com.google.android.material.button.MaterialButton
@@ -32,12 +29,11 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
+
 
 class ForumUpdate: AppCompatActivity() {
 
@@ -81,7 +77,7 @@ class ForumUpdate: AppCompatActivity() {
             showCategorySelectionDialog()
         }
         updateCampus.setOnClickListener {
-            showCampusSelectionDialog()
+            showCheckBoxCampus()
         }
 
         val activityResultLauncher = registerForActivityResult(
@@ -120,12 +116,46 @@ class ForumUpdate: AppCompatActivity() {
             photoPicker.type = "image/*"
             activityResultLauncher.launch(photoPicker)
         }
-        updateButton.setOnClickListener {
-            showUpdateConfirmation()
 
+        updateButton.setOnClickListener {
+            if (networkUtils.isOnline) {
+                showUpdateConfirmation()
+            } else {
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
+            }
         }
     }
+
+
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
+    }
+
     private fun saveData() {
+        if (isDestroyed) {
+            return
+        }
+
         val builder = AlertDialog.Builder(this@ForumUpdate)
         builder.setCancelable(false)
         val inflater = layoutInflater
@@ -134,9 +164,7 @@ class ForumUpdate: AppCompatActivity() {
         val dialog = builder.create()
 
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
-
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
         dialog.show()
 
         if (uri != null) {
@@ -145,42 +173,76 @@ class ForumUpdate: AppCompatActivity() {
 
             storageReference.putFile(uri!!)
                 .addOnSuccessListener { taskSnapshot ->
-                    // Use the new method to get the download URL
-                    taskSnapshot.storage.downloadUrl.addOnSuccessListener { url ->
-                        imageUrl = url.toString()
-                        updateData()
+                    if (!isDestroyed) {
+                        // Use the new method to get the download URL
+                        taskSnapshot.storage.downloadUrl.addOnSuccessListener { url ->
+                            imageUrl = url.toString()
+                            updateData()
+                            dialog.dismiss() // Dismiss the dialog inside the success block
+                        }
                     }
                 }
                 .addOnFailureListener { e ->
-                    dialog.dismiss()
-                    // Handle the image upload failure, e.g., show an error message
-                    Toast.makeText(
-                        this@ForumUpdate,
-                        "Image upload failed: ${e.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    if (!isDestroyed) {
+                        dialog.dismiss() // Dismiss the dialog inside the failure block
+                        // Handle the image upload failure, e.g., show an error message
+                        Toast.makeText(
+                            this@ForumUpdate,
+                            "Image upload failed: ${e.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
         } else {
             updateData()
+            dialog.dismiss()
         }
-
     }
-    private fun showCampusSelectionDialog() {
-        val campuscategoryArray = resources.getStringArray(R.array.allowed_campuses)
 
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Select Campus")
-        builder.setItems(campuscategoryArray) { _, which ->
-            val selectedCampus = campuscategoryArray[which]
-            updateCampus.setText(selectedCampus)
+    private var isCampusDialogShowing = false
+
+    private fun showCheckBoxCampus() {
+        if (isCampusDialogShowing) {
+            return
         }
 
-        val alertDialog = builder.create()
+        val dialogView = layoutInflater.inflate(R.layout.multiple_checkbox_selection, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
 
-        // Apply window animations and background styling here
-        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        val btnSelectCampus = dialogView.findViewById<Button>(R.id.btnSelectCampus)
+
+        val checkBoxes = ArrayList<CheckBox>()
+
+        for (i in 1..11) {
+            val checkBoxId = resources.getIdentifier("checkBox$i", "id", packageName)
+            val checkBox = dialogView.findViewById<CheckBox>(checkBoxId)
+            checkBoxes.add(checkBox)
+        }
+
+        // Check previously selected campuses and update the checkboxes
+        val selectedCampuses = binding.updateCampus.text.toString().split(", ")
+        for (checkBox in checkBoxes) {
+            checkBox.isChecked = selectedCampuses.contains(checkBox.text.toString())
+        }
+
+        btnSelectCampus.setOnClickListener {
+            val selectedCampuses = checkBoxes.filter { it.isChecked }.map { it.text.toString() }
+            val selectedCampusesText = selectedCampuses.joinToString(", ")
+
+            // Set the selected campuses in the AutoCompleteTextView
+            binding.updateCampus.setText(selectedCampusesText)
+
+            alertDialog.dismiss()
+        }
+
+        alertDialog.setOnDismissListener {
+            isCampusDialogShowing = false
+        }
 
         alertDialog.show()
+        isCampusDialogShowing = true
     }
 
     private fun showCategorySelectionDialog() {
@@ -324,6 +386,10 @@ class ForumUpdate: AppCompatActivity() {
         if (isSaveConfirmationDialogShowing) {
 
             isSaveConfirmationDialogShowing = false
+        }
+        if (isNoInternetDialogShowing) {
+
+            isNoInternetDialogShowing = false
         }
     }
     override fun onDestroy() {

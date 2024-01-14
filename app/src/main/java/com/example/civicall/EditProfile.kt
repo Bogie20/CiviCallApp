@@ -1,10 +1,8 @@
 package com.example.civicall
 
-
 import android.Manifest
 import android.app.Activity
 import android.app.DatePickerDialog
-import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -121,7 +119,6 @@ class EditProfile : AppCompatActivity() {
         )
     }
 
-    // Override onActivityResult to handle the result of the camera capture
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
@@ -170,7 +167,12 @@ class EditProfile : AppCompatActivity() {
         val Mmonth = cal.get(Calendar.MONTH)
         val day = cal.get(Calendar.DAY_OF_MONTH)
 
+        var isDatePickerShowing = false
+
         birthday.setOnClickListener {
+            if (isDatePickerShowing) {
+                return@setOnClickListener
+            }
             val datePickerDialog = DatePickerDialog(
                 this,
                 { _, year, month, dayOfMonth ->
@@ -181,8 +183,15 @@ class EditProfile : AppCompatActivity() {
                 Mmonth,
                 day
             )
+
+            datePickerDialog.setOnDismissListener {
+                isDatePickerShowing = false
+            }
+
             datePickerDialog.show()
+            isDatePickerShowing = true
         }
+
 
 
         setupAutoCompleteTextView(binding.usercategory)
@@ -201,9 +210,9 @@ class EditProfile : AppCompatActivity() {
         fullYearSect = binding.yearandsect.text.toString()
         fullSrcode = binding.SrCode.text.toString()
 
-        val maxLength = 80 // Max character limit for name fields
-        val maxContactLength = 15 // Max character limit for contact field
-        val maxAddressLength = 255 // Max character limit for address field
+        val maxLength = 80
+        val maxContactLength = 15
+        val maxAddressLength = 255
 
         val editTextsToLimit = mapOf(
             binding.fname to maxLength,
@@ -220,7 +229,6 @@ class EditProfile : AppCompatActivity() {
         for ((editText, limit) in editTextsToLimit) {
             addTextWatcher(editText, limit)
         }
-        // Add a focus change listener to the fname field
         binding.fname.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 // When focus is lost, set the cursor position to the end
@@ -269,10 +277,17 @@ class EditProfile : AppCompatActivity() {
                 binding.SrCode.setSelection(fullSrcode.length)
             }
         }
-        binding.savebtn.setOnClickListener {
-            showSaveConfirmationDialog()
-        }
 
+        binding.savebtn.setOnClickListener {
+            if (networkUtils.isOnline) {
+                showSaveConfirmationDialog()
+            } else {
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
+            }
+        }
         binding.backbtn.setOnClickListener {
             dismissCustomDialog()
             val intent = Intent(this, ProfileDetails::class.java)
@@ -322,8 +337,6 @@ class EditProfile : AppCompatActivity() {
             }
         })
     }
-
-
     private fun checkAndRequestPermissions() {
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -715,6 +728,27 @@ class EditProfile : AppCompatActivity() {
         alertDialog.show()
         isPopupShowing = true // Set the variable to true when the pop-up is displayed
     }
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
+    }
+
     private fun dismissCustomDialog() {
         if (isPopupShowing) {
 
@@ -725,7 +759,11 @@ class EditProfile : AppCompatActivity() {
             isSaveConfirmationDialogShowing = false
         }
         if (isImageDialogShowing) {
+
             isImageDialogShowing = false
+        }
+        if (isNoInternetDialogShowing) {
+            isNoInternetDialogShowing = false
         }
     }
     private fun validateBirthday(): Boolean {
@@ -1019,7 +1057,6 @@ class EditProfile : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
 
-        // Cleanup to unregister the network callback
         networkUtils.cleanup()
     }
 

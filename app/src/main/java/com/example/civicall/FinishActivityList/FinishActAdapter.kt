@@ -20,6 +20,7 @@ class FinishActAdapter(private val finishedActivities: List<DataClassFinish>) :
         val location: TextView = itemView.findViewById(R.id.location)
         val dateAndTime: TextView = itemView.findViewById(R.id.dateandTime)
         val category: TextView = itemView.findViewById(R.id.category)
+        val receivedStamp: TextView = itemView.findViewById(R.id.dateTime)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,7 +33,6 @@ class FinishActAdapter(private val finishedActivities: List<DataClassFinish>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val activity = finishedActivities[position]
 
-        // Bind your data to the views here using Glide for loading images
         Glide.with(holder.itemView)
             .load(activity.engagementImage)
             .placeholder(R.drawable.placeholder)
@@ -42,7 +42,10 @@ class FinishActAdapter(private val finishedActivities: List<DataClassFinish>) :
         holder.recTitle.text = activity.title
         holder.location.text = activity.location
         holder.dateAndTime.text = activity.startDate + " - " + activity.endDate
-        holder.category.text = activity.category
+        holder.category.text = "Category: ${activity.category}"
+
+        // Set attendedStamp text
+        holder.receivedStamp.text = activity.receivedStamp
     }
 
     override fun getItemCount(): Int {

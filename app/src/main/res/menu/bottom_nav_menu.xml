@@ -26,7 +26,7 @@
 
     <item
         android:id="@+id/menu_item_5"
-        android:title="Notices"
+        android:title="Notified"
         android:icon="@drawable/notification"
         />
 

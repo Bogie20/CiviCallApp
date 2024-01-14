@@ -249,6 +249,8 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/highlight_button"
+                android:id="@+id/activePtsLinear"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView

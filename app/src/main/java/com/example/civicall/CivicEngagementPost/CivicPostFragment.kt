@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
@@ -18,17 +19,21 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import nl.joery.animatedbottombar.AnimatedBottomBar
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import java.util.TimeZone
 
 class CivicPostFragment : Fragment() {
 
     private lateinit var databaseReference: DatabaseReference
-    private lateinit var eventListener: ValueEventListener
     private lateinit var recyclerView: RecyclerView
     private val dataList = ArrayList<DataClass>()
     private lateinit var adapter: PostAdapter
@@ -37,6 +42,13 @@ class CivicPostFragment : Fragment() {
     private lateinit var rootView: View
     private lateinit var noPostsImage: ImageView
     private lateinit var noPostsText: TextView
+    private lateinit var progressBar: ProgressBar
+
+    companion object {
+        private val TIME_ZONE = TimeZone.getTimeZone("Asia/Manila")
+        private const val MAX_POST_AGE_MILLIS = 365 * 24 * 60 * 60 * 1000L
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,6 +62,7 @@ class CivicPostFragment : Fragment() {
         searchView.clearFocus()
         noPostsImage = rootView.findViewById(R.id.noPostsImage)
         noPostsText = rootView.findViewById(R.id.noPostsText)
+        progressBar = rootView.findViewById(R.id.progressBar)
         val filterIcon = rootView.findViewById<ImageView>(R.id.filterIcon)
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
 
@@ -61,49 +74,77 @@ class CivicPostFragment : Fragment() {
         val gridLayoutManager = GridLayoutManager(requireContext(), 1)
         recyclerView.layoutManager = gridLayoutManager
 
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setCancelable(false)
-        val dialog = builder.create()
-        dialog.show()
-
         adapter = PostAdapter(requireContext(), dataList)
         recyclerView.adapter = adapter
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
-        dialog.show()
-        eventListener = databaseReference.addValueEventListener(object : ValueEventListener {
+
+        databaseReference.addValueEventListener(object : ValueEventListener {
+
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
-                dataList.clear()
-                for (itemSnapshot in snapshot.children) {
-                    val dataClass = itemSnapshot.getValue(DataClass::class.java)
-                    dataClass?.key = itemSnapshot.key
-                    dataClass?.let { dataList.add(0, it) }
-                }
+                val currentUser = FirebaseAuth.getInstance().currentUser
+                val userUid = currentUser?.uid
+                val userCampusRef = FirebaseDatabase.getInstance().getReference("Users/$userUid/campus")
 
-                adapter.notifyDataSetChanged()
-                dialog.dismiss()
+                userCampusRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(userCampusSnapshot: DataSnapshot) {
+                        val userCampus = userCampusSnapshot.value.toString()
+                        val newDataList = ArrayList<DataClass>()
 
-                if (dataList.isEmpty()) {
-                    rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
-                    rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.VISIBLE
+                        val currentMillis = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).timeInMillis
 
-                    recyclerView.visibility = View.GONE
-                } else {
-                    rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.GONE
-                    rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
 
-                    recyclerView.visibility = View.VISIBLE
-                    adapter.notifyDataSetChanged()
-                }
+                        for (itemSnapshot in snapshot.children) {
+                            val dataClass = itemSnapshot.getValue(DataClass::class.java)
+                            dataClass?.key = itemSnapshot.key
 
-                dialog.dismiss()
+                            dataClass?.let {
+                                val uploadEngagementCampuses =
+                                    it.campus?.split(", ")?.map { it.trim() } ?: emptyList()
+                                if (userCampus in uploadEngagementCampuses) {
+                                    val postTimeMillis = it.endDate?.let { it1 ->
+                                        SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+                                            .apply {
+                                                timeZone = TIME_ZONE
+                                            }
+                                            .parse(it1 + " Asia/Manila")?.time
+                                    } ?: 0
+
+
+                                    if (currentMillis - postTimeMillis <= MAX_POST_AGE_MILLIS) {
+                                        newDataList.add(0, it)
+                                    }
+                                }
+                            }
+                        }
+                        dataList.clear()
+                        dataList.addAll(newDataList)
+                        adapter.notifyDataSetChanged()
+                        progressBar.visibility = View.GONE
+
+                        if (dataList.isEmpty()) {
+                            rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
+                            rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.VISIBLE
+                            recyclerView.visibility = View.GONE
+                        } else {
+                            rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.GONE
+                            rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
+                            recyclerView.visibility = View.VISIBLE
+                        }
+                            progressBar.visibility = View.GONE
+                    }
+                    override fun onCancelled(error: DatabaseError) {
+                        progressBar.visibility = View.GONE
+                    }
+                })
             }
 
             override fun onCancelled(error: DatabaseError) {
-                dialog.dismiss()
+                progressBar.visibility = View.GONE
             }
         })
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -117,32 +158,38 @@ class CivicPostFragment : Fragment() {
 
         val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
+        val faback = requireActivity().findViewById<FloatingActionButton>(R.id.faback)
 
         nestedRecycler.setOnScrollChangeListener(View.OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+            // Scroll down
             if (scrollY > oldScrollY) {
-                // Scrolling down
                 if (animatedBottomBar.isShown) {
                     animatedBottomBar.visibility = View.GONE
                 }
                 if (fab.isShown) {
                     fab.hide()
                 }
+                if (faback.isShown) {
+                    faback.hide()
+                }
             } else if (scrollY < oldScrollY) {
-                // Scrolling up
+                // Scroll up
                 if (!animatedBottomBar.isShown) {
                     animatedBottomBar.visibility = View.VISIBLE
                 }
                 if (!fab.isShown) {
                     fab.show()
                 }
+                if (!faback.isShown) {
+                    faback.show()
+                }
             }
         })
 
+
         return rootView
     }
-    interface SearchFilterListener {
-        fun toggleSearchFilterVisibility()
-    }
+
 
     fun toggleSearchFilterVisibility() {
         val searchView = rootView.findViewById<SearchView>(R.id.search)
@@ -193,7 +240,7 @@ class CivicPostFragment : Fragment() {
             alertDialog.dismiss()
         }
         donate.setOnClickListener {
-            filterByCategory("Donations")
+            filterByCategory("Donation")
             alertDialog.dismiss()
         }
         cleanup.setOnClickListener {
@@ -238,7 +285,7 @@ class CivicPostFragment : Fragment() {
     }
     private fun filterByCategory(category: String) {
         if (category.isEmpty()) {
-            // Show all categories
+            adapter.updateData(dataList)
             adapter.searchDataList(dataList)
             hideNoPostsMessage()
         } else {
@@ -260,6 +307,14 @@ class CivicPostFragment : Fragment() {
         noPostsText.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
     }
+    private fun showNoSearchMessage(searchText: String) {
+        noPostsImage.setImageResource(R.drawable.notinlist)
+        noPostsText.text = "Sorry, no results found for \"$searchText\"."
+        noPostsImage.visibility = View.VISIBLE
+        noPostsText.visibility = View.VISIBLE
+        recyclerView.visibility = View.GONE
+    }
+
     private fun hideNoPostsMessage() {
         noPostsImage.visibility = View.GONE
         noPostsText.visibility = View.GONE
@@ -273,6 +328,14 @@ class CivicPostFragment : Fragment() {
                 searchList.add(dataClass)
             }
         }
-        adapter.searchDataList(searchList)
+
+        if (searchList.isEmpty()) {
+            showNoSearchMessage(text)
+        } else {
+            hideNoPostsMessage()
+            val searchArrayList = ArrayList<DataClass>(searchList)
+            adapter.updateData(dataList)
+            adapter.searchDataList(searchArrayList)
+        }
     }
 }

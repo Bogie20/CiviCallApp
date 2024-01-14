@@ -1,65 +1,143 @@
 package com.example.civicall.Notification
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.civicall.Notification.NotificationFragment.Companion.DATE_FORMAT
 import com.example.civicall.R
 import com.google.android.material.imageview.ShapeableImageView
-import com.squareup.picasso.Picasso
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
+class NotificationAdapter(private val notificationList: List<DataClassNotif>) :
+    RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
 
-class NotificationAdapter(private val context: Context, private var notificationList: List<NotificationModel>) : RecyclerView.Adapter<NotificationAdapter.ViewHolder>() {
-
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val recTitle: TextView = itemView.findViewById(R.id.recTitle)
-        val dateandTime: TextView = itemView.findViewById(R.id.dateandTime)
+    inner class NotificationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val categoryTextView: TextView = itemView.findViewById(R.id.categoryTextView)
+        val recTitle: TextView = itemView.findViewById(R.id.recTitle)
+        val schedule: TextView = itemView.findViewById(R.id.schedule)
         val recImage: ShapeableImageView = itemView.findViewById(R.id.recImage)
-
-        fun bind(title: String, startDate: String, category: String) {
-            recTitle.text = title
-            dateandTime.text = startDate
-            categoryTextView.text = category
-        }
+        val dateandTime: TextView = itemView.findViewById(R.id.dateandTime)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.notification_recycler_item, parent, false)
-        return ViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
+        val itemView =
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.notification_recycler_item, parent, false)
+        return NotificationViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val notification = notificationList[position]
-        holder.bind(notification.title, notification.startDate, notification.category)
+    @SuppressLint("SetTextI18n")
+    override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
+        val currentItem = notificationList[position]
 
-        // Load image using Picasso if imageUrl is not empty or null
-        if (!notification.recImage.isNullOrEmpty()) {
-            Picasso.get()
-                .load(notification.recImage)
-                .placeholder(R.drawable.placeholder)
-                .error(R.drawable.img_5)
-                .into(holder.recImage)
+        holder.categoryTextView.text = "Category: ${currentItem.category}"
+        holder.recTitle.text = currentItem.title
+        holder.schedule.text = "${currentItem.startDate} - ${currentItem.endDate}"
+
+        val calendar = Calendar.getInstance()
+        val currentDate = calendar.time
+        val engagementStartDate =
+            SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(currentItem.startDate)
+        val engagementEndDate =
+            SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(currentItem.endDate)
+
+        val timeDifferenceStart = engagementStartDate?.time?.minus(currentDate.time) ?: 0
+        val timeDifferenceEnd = engagementEndDate?.time?.minus(currentDate.time) ?: 0
+
+        if (timeDifferenceStart <= TWELVE_HOURS_IN_MILLIS && timeDifferenceStart > 0) {
+            val timestampMinus12Hours = calculateTimestampMinusHours(currentItem.startDate, 12)
+            holder.dateandTime.text = "Since: ${timestampMinus12Hours}"
+            holder.itemView.findViewById<TextView>(R.id.label).text = "12 hours until the engagement!"
+        } else if (isEngagementOngoing(currentItem.startDate, currentItem.endDate)) {
+
+        holder.dateandTime.text = "Since: ${currentItem.startDate}"
+        holder.itemView.findViewById<TextView>(R.id.label).text = "The engagement has started!"
+
+       } else if (timeDifferenceEnd <= 0) {
+        // Engagement has finished
+        holder.dateandTime.text = "Since: ${currentItem.endDate}"
+        holder.itemView.findViewById<TextView>(R.id.label).text = "Finish! Rate to claim points if attended"
         } else {
-            // Handle case when imageUrl is empty or null
-            // You can set a default image or hide the ImageView
-            holder.recImage.setImageResource(R.drawable.img_5)
+            // Outside 12 hours, show "The engagement is 24 hours away!" until it's less than 12 hours away
+            if (timeDifferenceStart > TWELVE_HOURS_IN_MILLIS) {
+                holder.dateandTime.text = "Since: ${currentItem.timestamp}"
+                holder.itemView.findViewById<TextView>(R.id.label).text = "The engagement is 24 hours away!"
+            }
         }
+        Glide.with(holder.recImage.context)
+            .load(currentItem.imageUrl)
+            .into(holder.recImage)
+    }
+
+
+    companion object {
+        private const val TWELVE_HOURS_IN_MILLIS = 12 * 60 * 60 * 1000
+        private const val ONE_MINUTE_IN_MILLIS = 1 * 60 * 1000
+    }
+
+    private fun isEngagementOngoing(startDateStr: String, endDateStr: String): Boolean {
+        val dateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
+        try {
+            val startDate = dateFormat.parse(startDateStr)
+            val endDate = dateFormat.parse(endDateStr)
+            val currentDate = Calendar.getInstance().time
+
+            // Check if the engagement has started and is ongoing, but not more than 1 minute after endDate
+            return currentDate.after(startDate) && currentDate.before(endDate) && endDate.time - currentDate.time > ONE_MINUTE_IN_MILLIS
+        } catch (e: ParseException) {
+            // Handle the parsing exception
+            e.printStackTrace()
+        }
+        // Default to false in case of errors
+        return false
+    }
+    private fun calculateTimestampMinusHours(timestamp: String, hours: Int): String {
+        val dateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
+        try {
+            val originalDate = dateFormat.parse(timestamp)
+
+            // Subtract hours from the original date
+            val calendar = Calendar.getInstance()
+            calendar.time = originalDate
+            calendar.add(Calendar.HOUR_OF_DAY, -hours)
+
+            // Format the result as a timestamp
+            return dateFormat.format(calendar.time)
+        } catch (e: ParseException) {
+            // Handle the parsing exception
+            e.printStackTrace()
+        }
+        // Default to an empty string in case of errors
+        return ""
     }
 
     override fun getItemCount(): Int {
         return notificationList.size
     }
+    private fun calculateTimestampMinusMinutes(timestamp: String, minutes: Int): String {
+        val dateFormat = SimpleDateFormat(DATE_FORMAT, Locale.getDefault())
+        try {
+            val originalDate = dateFormat.parse(timestamp)
 
-    fun updateData(newNotificationList: List<NotificationModel>) {
-        notificationList = newNotificationList
-        notifyDataSetChanged()
-    }
+            // Subtract minutes from the original date
+            val calendar = Calendar.getInstance()
+            calendar.time = originalDate
+            calendar.add(Calendar.MINUTE, -minutes)
 
-    fun clearData() {
-        notificationList = emptyList()
-        notifyDataSetChanged()
+            // Format the result as a timestamp
+            return dateFormat.format(calendar.time)
+        } catch (e: ParseException) {
+            // Handle the parsing exception
+            e.printStackTrace()
+        }
+        // Default to an empty string in case of errors
+        return ""
     }
 }

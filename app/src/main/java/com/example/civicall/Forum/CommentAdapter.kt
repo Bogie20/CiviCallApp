@@ -38,7 +38,7 @@ import java.util.TimeZone
 class CommentAdapter(
     private val context: Context,
     private val postKey: String,
-    private var commentMap: Map<String, DataComment>
+    private var commentList: List<DataComment>
 ) : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
     private val currentUser = FirebaseAuth.getInstance().currentUser
     private val currentUserUid = currentUser?.uid
@@ -268,57 +268,43 @@ class CommentAdapter(
                 Toast.makeText(context, "Failed to delete comment", Toast.LENGTH_SHORT).show()
             }
     }
-    private fun updateHiddenState(commentKey: String?, isHidden: Boolean) {
-        if (commentKey != null && currentUserUid != null) {
-            // Save hidden state locally
-            saveHiddenState(commentKey, isHidden)
-
-            // Update hidden state in Firebase for the specific comment
-            val userHiddenCommentsRef = FirebaseDatabase.getInstance().getReference("UserHiddenComments")
-                .child(currentUserUid)
-                .child(postKey)  // Assuming postKey is available, adjust accordingly if needed
+    private fun updateHiddenState(postKey: String, commentKey: String?, isHidden: Boolean) {
+        if (commentKey != null) {
+            val userHiddenCommentsRef = FirebaseDatabase.getInstance().getReference("Forum Post")
+                .child(postKey)
+                .child("Comments")
                 .child(commentKey)
+                .child("UserHiddenComments")
+                .child(currentUserUid ?: "")
+                .child("hiddenComment")
 
             userHiddenCommentsRef.setValue(isHidden)
         }
     }
+
     object DataRepository {
         var currentPostKey: String? = null
     }
 
-    private fun saveHiddenState(postKey: String, isHidden: Boolean) {
-        val sharedPreferences = context.getSharedPreferences("HiddenComments", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putBoolean("$currentUserUid-$postKey", isHidden)
-        editor.apply()
-    }
-    private fun getHiddenState(postKey: String, callback: (Boolean) -> Unit) {
-        // Check local hidden state first
-        val hiddenState = getLocalHiddenState(postKey)
-        if (hiddenState != null) {
-            callback.invoke(hiddenState)
-        } else {
-            // Fetch from Firebase if not found locally
-            val userHiddenPostsRef = FirebaseDatabase.getInstance().getReference("UserHiddenComments")
-            currentUserUid?.let {
-                userHiddenPostsRef.child(it)
+    private fun getHiddenState(postKey: String, commentKey: String, callback: (Boolean) -> Unit) {
+        val userHiddenCommentsRef = FirebaseDatabase.getInstance().getReference("Forum Post")
+            .child(postKey)
+            .child("Comments")
+            .child(commentKey)
+            .child("UserHiddenComments")
+            .child(currentUserUid ?: "")
+            .child("hiddenComment")
+
+        userHiddenCommentsRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val isHidden = snapshot.getValue(Boolean::class.java) ?: false
+                callback.invoke(isHidden)
             }
-            userHiddenPostsRef.child(postKey).addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val isHidden = snapshot.getValue(Boolean::class.java) ?: false
-                    callback.invoke(isHidden)
-                }
 
-                override fun onCancelled(error: DatabaseError) {
-                    // Handle onCancelled as needed
-                }
-            })
-        }
-    }
-
-    private fun getLocalHiddenState(postKey: String): Boolean? {
-        val sharedPreferences = context.getSharedPreferences("HiddenComments", Context.MODE_PRIVATE)
-        return sharedPreferences.getBoolean("$currentUserUid-$postKey", false)
+            override fun onCancelled(error: DatabaseError) {
+                // Handle onCancelled as needed
+            }
+        })
     }
 
     init {
@@ -326,13 +312,16 @@ class CommentAdapter(
     }
 
     override fun getItemId(position: Int): Long {
-        // Use stable IDs based on comment keys to prevent view recycling issues
-        return commentMap.keys.toList()[position].hashCode().toLong()
+        return commentList[position].commentKey?.hashCode()?.toLong() ?: 0
     }
+
     @SuppressLint("NotifyDataSetChanged")
-    fun updateData(newData: Map<String, DataComment>) {
-        val diffResult = DiffUtil.calculateDiff(CommentDiffCallback(commentMap, newData))
-        commentMap = newData
+    fun updateData(newData: List<DataComment>) {
+        if (commentList.isEmpty()) {
+            notifyItemRangeRemoved(0, itemCount)
+        }
+        val diffResult = DiffUtil.calculateDiff(CommentDiffCallback(commentList, newData))
+        commentList = newData
         diffResult.dispatchUpdatesTo(this)
     }
 
@@ -343,9 +332,11 @@ class CommentAdapter(
 
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
-        val commentKey = commentMap.keys.toList()[position]
-        val comment = commentMap[commentKey]
+        val comment = commentList[position]
+
+
         comment?.let {
+            val commentKey = comment.commentKey.orEmpty()
             holder.bind(comment)
             holder.updateTimeText(comment.commentTime)
             holder.updateReactButtons(postKey, commentKey)
@@ -362,7 +353,7 @@ class CommentAdapter(
                 holder.reportButton.visibility = View.VISIBLE
                 holder.hideButton.visibility = View.VISIBLE
             }
-            getHiddenState(comment.commentKey ?: "") { isHidden ->
+            getHiddenState(postKey, comment.commentKey ?: "") { isHidden ->
                 comment.isHidden = isHidden
 
                 // Update the visibility of forumImage and forumText
@@ -384,7 +375,6 @@ class CommentAdapter(
                 if (comment.isHidden) {
                     holder.hideButton.setImageResource(R.drawable.unhide)
                     holder.commentText.visibility = View.GONE
-
                 } else {
                     holder.hideButton.setImageResource(R.drawable.hideye)
                     if (!comment.commentText.isNullOrBlank()) {
@@ -397,8 +387,9 @@ class CommentAdapter(
                 holder.hideButton.visibility = View.VISIBLE
 
                 // Update the hidden state in the Firebase Realtime Database
-                updateHiddenState(comment.commentKey, comment.isHidden)
+                updateHiddenState(postKey, comment.commentKey, comment.isHidden)
             }
+
 
             holder.editButton.setOnClickListener {
                 // Set the current post key before launching the CommentEdit activity
@@ -425,11 +416,13 @@ class CommentAdapter(
                 }
             }
         }
+
     }
 
     override fun getItemCount(): Int {
-        return commentMap.size
+        return commentList.size
     }
+
 
     inner class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textRespond: TextView = itemView.findViewById(R.id.textRespond)
@@ -524,7 +517,7 @@ class CommentAdapter(
 
         fun updateTimeText(commentTime: String?) {
             commentTime?.let {
-                val dateFormat = SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault())
+                val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
                 dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
 
                 try {
@@ -565,7 +558,6 @@ class CommentAdapter(
 
                         else -> timeAgo.toString()
                     }
-
                     timeRec.text = formattedTime
                 } catch (e: ParseException) {
                     e.printStackTrace()

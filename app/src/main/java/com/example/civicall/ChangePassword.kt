@@ -6,22 +6,23 @@ import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Patterns
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import com.example.civicall.databinding.ActivityChangePasswordBinding
-import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 
 
 class ChangePassword : AppCompatActivity() {
@@ -30,7 +31,6 @@ class ChangePassword : AppCompatActivity() {
     private lateinit var passwordTextInputLayout: TextInputLayout
     private lateinit var newpasswordTextInputLayout: TextInputLayout
     private lateinit var retypepasswordTextInputLayout: TextInputLayout
-    private lateinit var CurrentPassword: TextInputEditText
     private var user: FirebaseUser? = null
     private var currentpassword = ""
     private var newpassword = ""
@@ -110,9 +110,16 @@ class ChangePassword : AppCompatActivity() {
             }
         auth = FirebaseAuth.getInstance()
         binding.btnchange.setOnClickListener {
-            validateData()
+            if (networkUtils.isOnline) {
+                validateData()
+            } else {
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
+            }
         }
-        passwordTextInputLayout = binding.passwordTextInputLayout
+    passwordTextInputLayout = binding.passwordTextInputLayout
         newpasswordTextInputLayout = binding.newpasswordTextInputLayout
         retypepasswordTextInputLayout = binding.retypepasswordTextInputLayout
 
@@ -151,6 +158,61 @@ class ChangePassword : AppCompatActivity() {
         }
 
     }
+    private fun showGoogleSignInMessage() {
+        showMessage(
+            "You are currently signed in using Google.",
+            4000,
+            "Not possible",
+            R.drawable.civicalllogo,
+            R.layout.dialog_sadface
+        )
+    }
+    private var isAlreadyJoinDialogShowing = false
+
+    private fun showMessage(
+        message: String,
+        durationMillis: Long,
+        customSlideTitle: String?,
+        customDialogImageResId: Int?,
+        customDialogLayoutResId: Int?
+    ) {
+        if (isAlreadyJoinDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+
+        // Use the custom layout resource ID if provided, otherwise use the default
+        val dialogView = layoutInflater.inflate(customDialogLayoutResId ?: R.layout.dialog_happyface, null)
+
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val slideTitle: AppCompatTextView = dialogView.findViewById(R.id.dialog_title_emotion)
+        val dialogImage: AppCompatImageView = dialogView.findViewById(R.id.img_icon_emotion)
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideLeft
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Use custom slideTitle if provided, otherwise use the default
+        slideTitle.text = customSlideTitle ?: "Verifying Account"
+
+        val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message)
+        messageTextView.text = message
+        alertDialog.show()
+
+        // Use custom dialogImage if provided, otherwise use the default
+        dialogImage.setImageResource(customDialogImageResId ?: R.drawable.papermani)
+
+        isAlreadyJoinDialogShowing = true
+        alertDialog.setOnDismissListener {
+            isAlreadyJoinDialogShowing = false
+        }
+        Handler(Looper.getMainLooper()).postDelayed({
+            alertDialog.dismiss()
+            isAlreadyJoinDialogShowing = false
+        }, durationMillis)
+    }
+
 
     private fun validateData() {
         currentpassword = passwordTextInputLayout.editText?.text.toString().trim()
@@ -161,7 +223,10 @@ class ChangePassword : AppCompatActivity() {
         val isCurrentPasswordValid = validateCurrentPassword()
         val isNewPasswordValid = validateNewPassword()
         val isRetypePasswordValid = validateRetypePassword()
-
+        if (isGoogleSignIn()) {
+            showGoogleSignInMessage()
+            return
+        }
         if (isCurrentPasswordValid && isNewPasswordValid && isRetypePasswordValid) {
             if (currentpassword.length > passwordMaxLength || newpassword.length > passwordMaxLength || retypepassword.length > passwordMaxLength) {
                 binding.CurrentPassword.error =
@@ -170,12 +235,15 @@ class ChangePassword : AppCompatActivity() {
                 binding.retypepassword.error =
                     "Password is too long (max $passwordMaxLength characters)"
             } else {
-                changePassword()
+               showSaveConfirmationDialog()
             }
         }
     }
 
-
+    private fun isGoogleSignIn(): Boolean {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        return currentUser != null && currentUser.providerData.any { it.providerId == GoogleAuthProvider.PROVIDER_ID }
+    }
     private fun compareEmail(email: EditText, dialog: Dialog) {
         val emailText = email.text.toString().trim()
 
@@ -214,6 +282,19 @@ class ChangePassword : AppCompatActivity() {
 
             isProgressShowing = false
         }
+        if (isSaveConfirmationDialogShowing) {
+
+            isSaveConfirmationDialogShowing = false
+        }
+        if (isNoInternetDialogShowing) {
+
+            isNoInternetDialogShowing = false
+        }
+        if (isAlreadyJoinDialogShowing) {
+
+            isAlreadyJoinDialogShowing = false
+        }
+
     }
 
     private var isProgressShowing = false
@@ -259,6 +340,75 @@ class ChangePassword : AppCompatActivity() {
             isProgressShowing = false
         }, durationMillis)
     }
+
+    private var isSaveConfirmationDialogShowing = false // Add this variable
+
+    private fun showSaveConfirmationDialog() {
+        if (isSaveConfirmationDialogShowing) {
+            return
+        }
+        dismissCustomDialog()
+        val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val confirmTitle: AppCompatTextView = dialogView.findViewById(R.id.ConfirmTitle)
+        val logoutMsg: AppCompatTextView = dialogView.findViewById(R.id.logoutMsg)
+        val saveBtn: MaterialButton = dialogView.findViewById(R.id.saveBtn)
+        val cancelBtn: MaterialButton = dialogView.findViewById(R.id.cancelBtn)
+
+
+        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        confirmTitle.text = "Confirmation"
+        logoutMsg.text = "Are you certain you want to proceed with changing your password?"
+
+        saveBtn.text = "Save"
+        saveBtn.setOnClickListener {
+            alertDialog.dismiss()
+            dismissCustomDialog()
+
+
+            changePassword()
+        }
+        cancelBtn.text = "Cancel"
+        cancelBtn.setOnClickListener {
+            isSaveConfirmationDialogShowing = false
+            alertDialog.dismiss()
+        }
+        alertDialog.setOnDismissListener{
+            isSaveConfirmationDialogShowing = false
+        }
+
+        alertDialog.show()
+        isSaveConfirmationDialogShowing =
+            true
+    }
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
+    }
+
 
     private fun changePassword() {
         if (binding.CurrentPassword.text?.isNotEmpty() == true &&
@@ -310,7 +460,7 @@ class ChangePassword : AppCompatActivity() {
                             }
                         } else {
                             showCustomChangedPassMessage(
-                                "Re-Authentication Failed",
+                                "Re-authentication Failed: Please review the entered inputs.",
                                 3000,
                                 R.layout.dialog_sadface
                             )

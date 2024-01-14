@@ -22,6 +22,7 @@ class CurrentEngageAdapter(private val currentEngagements: List<DataClassCurrent
         val dateAndTime: TextView = itemView.findViewById(R.id.dateandTime)
         val category: TextView = itemView.findViewById(R.id.category)
         val indicatorIcon: ShapeableImageView = itemView.findViewById(R.id.iconIndicator)
+        val timeStamp: TextView = itemView.findViewById(R.id.dateTime)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -42,9 +43,11 @@ class CurrentEngageAdapter(private val currentEngagements: List<DataClassCurrent
         holder.recTitle.text = activity.title
         holder.location.text = activity.location
         holder.dateAndTime.text = "${activity.startDate} - ${activity.endDate}"
-        holder.category.text = activity.category
+        holder.category.text = "Category: ${activity.category}"
 
         setIndicatorIcon(holder, activity.startDate, activity.endDate)
+
+        holder.timeStamp.text = activity.timeStamp
     }
 
     override fun getItemCount(): Int {

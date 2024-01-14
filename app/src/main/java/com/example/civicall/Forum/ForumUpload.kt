@@ -3,11 +3,16 @@ package com.example.civicall.Forum
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
@@ -18,6 +23,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -31,11 +37,13 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
+import com.example.civicall.SplashActivity
 import com.example.civicall.Users
 import com.example.civicall.databinding.ActivityForumUploadBinding
 import com.github.clans.fab.FloatingActionButton
@@ -129,25 +137,14 @@ class ForumUpload : AppCompatActivity() {
             })
         }
         val selectCampus: RelativeLayout = findViewById(R.id.relativeSelect)
-        val campusPickTextView: TextView = findViewById(R.id.campusPick)
-        val campusArray = resources.getStringArray(R.array.allowed_campuses)
-        val popupMenu = PopupMenu(this, selectCampus)
-        campusArray.forEach { campus ->
-            popupMenu.menu.add(campus)
-        }
         selectCampus.setOnClickListener {
-            popupMenu.setOnMenuItemClickListener { menuItem ->
-                campusPickTextView.text = menuItem.title
-                true
-            }
-            popupMenu.show()
+            showCheckBoxCampus()
         }
 
         val categoryDropdown = binding.uploadCategory
         val categoryArray = resources.getStringArray(R.array.engagement_category)
         val adaptercategory = ArrayAdapter(this, R.layout.dropdown_item, categoryArray)
         (categoryDropdown as? AutoCompleteTextView)?.setAdapter(adaptercategory)
-
 
 
         val fabGallery = findViewById<FloatingActionButton>(R.id.galleryButton)
@@ -157,42 +154,68 @@ class ForumUpload : AppCompatActivity() {
         }
 
         saveButton.setOnClickListener {
-            val auth = FirebaseAuth.getInstance()
-            val currentUser = auth.currentUser
-            if (currentUser != null) {
-                val uid = currentUser.uid
+            if (networkUtils.isOnline) {
+                // Check verification status or perform other actions
+                val auth = FirebaseAuth.getInstance()
+                val currentUser = auth.currentUser
+                if (currentUser != null) {
+                    val uid = currentUser.uid
 
-                // Now you can use the uid in your Firebase Database reference
-                val currentUserRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+                    val currentUserRef =
+                        FirebaseDatabase.getInstance().getReference("Users").child(uid)
 
-                currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        val verificationStatus =
-                            snapshot.child("verificationStatus").getValue(Boolean::class.java)
+                    currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            val verificationStatus =
+                                snapshot.child("verificationStatus").getValue(Boolean::class.java)
 
-                        if (verificationStatus == false) {
-                            showMessage(
-                                "Please verify your account before uploading",
-                                4000,
-                                "Oops!",
-                                R.drawable.notverifiedshield,
-                                R.layout.dialog_sadface
-                            )
-                        } else {
-                            showConfirmationDialog()
+                            if (verificationStatus == false) {
+                                showMessage(
+                                    "Please verify your account before uploading",
+                                    4000,
+                                    "Oops!",
+                                    R.drawable.notverifiedshield,
+                                    R.layout.dialog_sadface
+                                )
+                            } else {
+                                showConfirmationDialog()
+                            }
                         }
-                    }
 
-                    override fun onCancelled(error: DatabaseError) {
-                        // Handle the error as needed
-                    }
-                })
+                        override fun onCancelled(error: DatabaseError) {
+                            // Handle the error as needed
+                        }
+                    })
+                }
             } else {
-                // Handle the case where the user is not signed in
-                // You might want to redirect the user to the login screen or perform some other action
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
             }
         }
     }
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
+    }
+
     private fun launchGalleryIntent() {
         val photoPicker = Intent(Intent.ACTION_GET_CONTENT)
         photoPicker.type = "image/*"
@@ -332,6 +355,65 @@ class ForumUpload : AppCompatActivity() {
             storageDir
         )
     }
+    private var isCampusDialogShowing = false
+
+    private fun showCheckBoxCampus() {
+        if (isCampusDialogShowing) {
+            return
+        }
+
+        val dialogView = layoutInflater.inflate(R.layout.multiple_checkbox_selection, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(dialogView)
+            .create()
+
+        val btnSelectCampus = dialogView.findViewById<Button>(R.id.btnSelectCampus)
+        val closeIcon = dialogView.findViewById<ImageView>(R.id.closeIcon) // Add this line
+
+        val checkBoxes = ArrayList<CheckBox>()
+
+        // Iterate from 1 to 11 (excluding checkBox12)
+        for (i in 1 until 12) {
+            val checkBoxId = resources.getIdentifier("checkBox$i", "id", packageName)
+            val checkBox = dialogView.findViewById<CheckBox>(checkBoxId)
+            checkBoxes.add(checkBox)
+        }
+
+        // Find the checkBox12 by ID
+        val checkBox12 = dialogView.findViewById<CheckBox>(R.id.checkBox12)
+
+        // Set a listener for checkBox12 to select all checkboxes
+        checkBox12.setOnCheckedChangeListener { _, isChecked ->
+            checkBoxes.forEach { it.isChecked = isChecked }
+        }
+
+        // Check previously selected campuses and update the checkboxes
+        val selectedCampuses = binding.campusPick.text.toString().split(", ")
+        for (checkBox in checkBoxes) {
+            checkBox.isChecked = selectedCampuses.contains(checkBox.text.toString())
+        }
+
+        btnSelectCampus.setOnClickListener {
+            val selectedCampuses = checkBoxes.filter { it.isChecked }.map { it.text.toString() }
+            val selectedCampusesText = selectedCampuses.joinToString(", ")
+
+            // Set the selected campuses in the AutoCompleteTextView
+            binding.campusPick.setText(selectedCampusesText)
+
+            alertDialog.dismiss()
+        }
+
+        // Add click listener to closeIcon to dismiss the dialog
+        closeIcon.setOnClickListener {
+            alertDialog.dismiss()
+        }
+        alertDialog.setOnDismissListener {
+            isCampusDialogShowing = false
+        }
+        alertDialog.show()
+        isCampusDialogShowing = true
+    }
+
     private var isAlreadyJoinDialogShowing = false
 
     private fun showMessage(
@@ -428,14 +510,19 @@ class ForumUpload : AppCompatActivity() {
     private fun dismissCustomDialog() {
         if (isSaveConfirmationDialogShowing) {
             isSaveConfirmationDialogShowing = false
-
+        }
+        if (isNoInternetDialogShowing) {
+            isNoInternetDialogShowing = false
         }
     }
 
     private fun saveData() {
-        if (uploadPostText.text.isNullOrBlank() ||
-            binding.uploadCategory.text.isNullOrBlank()
-        ) {
+        if (isFinishing) {
+            // Activity is finishing, do not proceed with saving data
+            return
+        }
+
+        if (uploadPostText.text.isNullOrBlank() || binding.uploadCategory.text.isNullOrBlank()) {
             Toast.makeText(
                 this@ForumUpload,
                 "Please fill in all the required information",
@@ -478,15 +565,28 @@ class ForumUpload : AppCompatActivity() {
 
             storageReference.putFile(uri!!)
                 .addOnSuccessListener { taskSnapshot ->
+                    if (isFinishing) {
+                        // Activity is finishing, do not proceed
+                        dialog.dismiss()
+                        return@addOnSuccessListener
+                    }
+
                     val uriTask = taskSnapshot.storage.downloadUrl
                     while (!uriTask.isComplete);
                     val urlImage = uriTask.result
-                    imageURL = urlImage.toString()
+                    val imageUrl = urlImage.toString()
 
                     // Proceed to upload other data along with the image URL
-                    uploadData(imageURL)
+                    uploadData(imageUrl)
+                    dialog.dismiss()
                 }
                 .addOnFailureListener { e ->
+                    if (isFinishing) {
+                        // Activity is finishing, do not proceed
+                        dialog.dismiss()
+                        return@addOnFailureListener
+                    }
+
                     dialog.dismiss()
                     Toast.makeText(
                         this@ForumUpload,
@@ -495,6 +595,55 @@ class ForumUpload : AppCompatActivity() {
                     ).show()
                 }
         }
+    }
+
+    private fun sendPushNotification(category: String) {
+        val title = "You Successfully Posted in Forum"
+        val body = "About: $category"
+
+        val notificationId = System.currentTimeMillis().toInt()
+
+        // Create an intent that opens your main activity
+        val intent = Intent(this, SplashActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val channelId = "civic_channel"
+        val channelName = "Verification"
+
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(title)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)  // Removes the notification when clicked
+
+        // Check if body is not null or empty before using BigTextStyle
+        if (!body.isNullOrBlank()) {
+            val bigTextStyle = NotificationCompat.BigTextStyle()
+                .bigText(body)
+            notificationBuilder.setStyle(bigTextStyle)
+        }
+
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        // Always create the NotificationChannel on devices running Android Oreo and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                channelName,
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // Display the notification
+        notificationManager.notify(notificationId, notificationBuilder.build())
     }
 
     private fun uploadData(imageUrl: String?) {
@@ -532,6 +681,7 @@ class ForumUpload : AppCompatActivity() {
                             Toast.makeText(this@ForumUpload, "Success", Toast.LENGTH_SHORT)
                                 .show()
                             finish()
+                            sendPushNotification(uploadCategory.text.toString())
                         }
                     }
                     .addOnFailureListener { e ->
@@ -547,7 +697,7 @@ class ForumUpload : AppCompatActivity() {
     }
     private fun getCurrentDateTime(): String {
         val timeZone = TimeZone.getTimeZone("Asia/Manila")
-        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        val simpleDateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
         simpleDateFormat.timeZone = timeZone
         return simpleDateFormat.format(Date())
     }

@@ -1,8 +1,12 @@
 package com.example.civicall.Forum
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -11,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.widget.NestedScrollView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -123,42 +128,49 @@ class ForumComment : AppCompatActivity() {
         commentsRecyclerView = findViewById(R.id.comments_recyclerView)
 
         sendIcon.setOnClickListener {
-            val commentText = commentEditText.text.toString().trim()
+            if (networkUtils.isOnline) {
+                val commentText = commentEditText.text.toString().trim()
 
-            // Check if the user is verified before allowing them to comment
-            val currentUser = FirebaseAuth.getInstance().currentUser
-            if (currentUser != null) {
-                val userRef =
-                    FirebaseDatabase.getInstance().getReference("Users").child(currentUser.uid)
-                userRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        if (snapshot.exists()) {
-                            val verificationStatus =
-                                snapshot.child("verificationStatus").getValue(Boolean::class.java)
-                            if (verificationStatus == true) {
-                                // User is verified, allow commenting
-                                if (commentText.isNotEmpty()) {
-                                    addCommentToDatabase(commentText)
+                // Check if the user is verified before allowing them to comment
+                val currentUser = FirebaseAuth.getInstance().currentUser
+                if (currentUser != null) {
+                    val userRef =
+                        FirebaseDatabase.getInstance().getReference("Users").child(currentUser.uid)
+                    userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if (snapshot.exists()) {
+                                val verificationStatus =
+                                    snapshot.child("verificationStatus").getValue(Boolean::class.java)
+                                if (verificationStatus == true) {
+                                    // User is verified, allow commenting
+                                    if (commentText.isNotEmpty()) {
+                                        addCommentToDatabase(commentText)
+                                    }
+                                } else {
+                                    Toast.makeText(
+                                        this@ForumComment,
+                                        "Please verify your account before joining the discussion.",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
-                            } else {
-                                Toast.makeText(
-                                    this@ForumComment,
-                                    "Please verify your account before joining the discussion.",
-                                    Toast.LENGTH_SHORT
-                                ).show()
                             }
                         }
-                    }
 
-                    override fun onCancelled(error: DatabaseError) {
-                        Log.e("ForumComment", "User data retrieval cancelled: ${error.message}")
-                    }
-                })
+                        override fun onCancelled(error: DatabaseError) {
+                            Log.e("ForumComment", "User data retrieval cancelled: ${error.message}")
+                        }
+                    })
+                }
+            } else {
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
             }
         }
 
-        commentsAdapter = CommentAdapter(this, postKey, emptyMap())
-        commentsAdapter.notifyItemChanged(0)
+
+        commentsAdapter = CommentAdapter(this, postKey, commentList)
         commentsRecyclerView.layoutManager = LinearLayoutManager(this)
         val layoutManager = LinearLayoutManager(this)
         layoutManager.reverseLayout = true
@@ -166,19 +178,46 @@ class ForumComment : AppCompatActivity() {
         commentsRecyclerView.layoutManager = layoutManager
         commentsRecyclerView.adapter = commentsAdapter
 
-
         loadCommentsFromDatabase()
 
         val nestedScrollView: NestedScrollView = findViewById(R.id.nestedScroll)
         nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
             // Iterate through all visible items in the RecyclerView
             for (i in 0 until commentsRecyclerView.childCount) {
-                val viewHolder = commentsRecyclerView.getChildViewHolder(commentsRecyclerView.getChildAt(i))
+                val viewHolder =
+                    commentsRecyclerView.getChildViewHolder(commentsRecyclerView.getChildAt(i))
                 if (viewHolder is CommentAdapter.CommentViewHolder) {
                     viewHolder.closeFabMenu()
                 }
             }
         })
+    }
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
+    }
+    private fun dismissCustomDialog() {
+        if (isNoInternetDialogShowing) {
+
+            isNoInternetDialogShowing = false
+        }
+
     }
 
     private fun formatCount(count: Int): String {
@@ -188,14 +227,14 @@ class ForumComment : AppCompatActivity() {
             else -> String.format(Locale.getDefault(), "%.1fm", count / 1000000.0)
         }
     }
+
     private fun addUpReactCountListener() {
-        upReactCountRef.addValueEventListener(object : ValueEventListener {
+        upReactCountRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val upReactCount = snapshot.getValue(Int::class.java)
                     // Update your UI or perform any actions with the formatted upReactCount
                     binding.upcount.text = formatCount(upReactCount ?: 0)
-                    commentsAdapter.notifyItemChanged(0)
                 }
             }
 
@@ -206,13 +245,12 @@ class ForumComment : AppCompatActivity() {
     }
 
     private fun addDownReactCountListener() {
-        downReactCountRef.addValueEventListener(object : ValueEventListener {
+        downReactCountRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val downReactCount = snapshot.getValue(Int::class.java)
                     // Update your UI or perform any actions with the formatted downReactCount
                     binding.downcount.text = formatCount(downReactCount ?: 0)
-                    commentsAdapter.notifyItemChanged(0)
                 }
             }
 
@@ -221,10 +259,11 @@ class ForumComment : AppCompatActivity() {
             }
         })
     }
+
     private fun addCommentToDatabase(commentText: String) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val commenterUID = currentUser?.uid ?: ""
-        val commentTime = SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault())
+        val commentTime = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
             .apply {
                 timeZone = TimeZone.getTimeZone("Asia/Manila")
             }
@@ -245,7 +284,6 @@ class ForumComment : AppCompatActivity() {
         commentsRef.updateChildren(commentData).addOnSuccessListener {
             commentEditText.text.clear()
 
-            commentsAdapter.notifyItemChanged(0)
             commentsRecyclerView.scrollToPosition(itemCount)
         }.addOnFailureListener {
             // Handle failure if needed
@@ -254,35 +292,42 @@ class ForumComment : AppCompatActivity() {
     }
 
 
-
     private fun loadCommentsFromDatabase() {
         val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
             .child("Comments")
 
         commentsRef.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
-                val commentMap: MutableMap<String, DataComment> = mutableMapOf()
+                val newCommentList: MutableList<DataComment> = mutableListOf()
                 for (commentSnapshot in snapshot.children) {
                     val commentKey = commentSnapshot.key
                     val comment = commentSnapshot.getValue(DataComment::class.java)
                     commentKey?.let { key ->
                         comment?.let {
-                            commentMap[key] = it
+                            newCommentList.add(it)
                         }
                     }
                 }
+
+                // Calculate differences between old and new comment lists
+                val diffResult = DiffUtil.calculateDiff(CommentDiffCallback(commentList, newCommentList))
+
                 // Update the CommentCount in real-time with formatted count
-                commentCountTextView.text = formatCount(commentMap.size)
+                commentCountTextView.text = formatCount(newCommentList.size)
 
                 // Update the visibility of noimage based on the comment count
-                if (commentMap.isEmpty()) {
+                if (newCommentList.isEmpty()) {
                     binding.noimage.visibility = View.VISIBLE
                 } else {
                     binding.noimage.visibility = View.GONE
                 }
 
-                commentsAdapter.notifyItemChanged(0)
-                commentsAdapter.updateData(commentMap)
+                // Update only the changed items in the adapter
+                commentList.clear()
+                commentList.addAll(newCommentList)
+                diffResult.dispatchUpdatesTo(commentsAdapter)
+                commentsAdapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -292,9 +337,10 @@ class ForumComment : AppCompatActivity() {
     }
 
 
+
     private fun loadUploaderData(postKey: String) {
         val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
-        postRef.addListenerForSingleValueEvent(object : ValueEventListener {
+        postRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     val uploaderUID = snapshot.child("uploadersUID").getValue(String::class.java)
@@ -302,18 +348,18 @@ class ForumComment : AppCompatActivity() {
                         // Fetch user data based on uploaderUID
                         val userRef =
                             FirebaseDatabase.getInstance().getReference("Users").child(uid)
-                        userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        userRef.addValueEventListener(object : ValueEventListener {
                             override fun onDataChange(userSnapshot: DataSnapshot) {
                                 if (userSnapshot.exists()) {
                                     val uploaderData = userSnapshot.getValue(Users::class.java)
-                                    if (uploaderData != null) {
+                                    if (uploaderData != null && !isDestroyed) {
                                         // Set uploader image profile with a placeholder
                                         Glide.with(this@ForumComment)
                                             .load(uploaderData.ImageProfile)
                                             .placeholder(R.drawable.user)
                                             .error(R.drawable.user)
                                             .into(profilePic)
-                                        commentsAdapter.notifyItemChanged(0)
+
                                         // Set uploader full name
                                         val fullNameText =
                                             "${uploaderData.firstname} ${uploaderData.lastname}"
@@ -347,4 +393,9 @@ class ForumComment : AppCompatActivity() {
             }
         })
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

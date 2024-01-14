@@ -1,5 +1,6 @@
 package com.example.civicall.CivicEngagementPost
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.PorterDuff
@@ -10,9 +11,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
+import com.google.firebase.auth.FirebaseAuth
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -21,6 +24,11 @@ import java.util.TimeZone
 
 class PostAdapter (private val context: Context, private var dataList: List<DataClass>) :
     RecyclerView.Adapter<MyViewHolder>() {
+    fun updateData(newDataList: List<DataClass>) {
+        val diffResult = DiffUtil.calculateDiff(CivicDiffCallBack(dataList, newDataList))
+        dataList = newDataList
+        diffResult.dispatchUpdatesTo(this)
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_civicengagement, parent, false)
         return MyViewHolder(view)
@@ -35,6 +43,8 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
         holder.recEndDate.text = data.endDate
         holder.recLocation.text = data.location
         holder.recCategory.text = data.category
+        holder.recCampus.text = data.campus
+
         holder.recCard.setOnClickListener {
             val intent = Intent(context, DetailPost::class.java).apply {
                 putExtra("Image", data.image)
@@ -57,6 +67,22 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
                 putExtra("Campus", data.campus)
             }
             context.startActivity(intent)
+        }
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val uid = currentUser?.uid
+        if (!data.verificationStatus) {
+            // If verificationStatus is false, check if the current user is the uploader
+            if (!data.verificationStatus) {
+                if (uid == data.uploadersUID) {
+                    holder.recCard.visibility = View.VISIBLE
+                    holder.recCard.layoutParams.height = RecyclerView.LayoutParams.WRAP_CONTENT
+                } else {
+                    // Hide the item if the current user is not the uploader
+                    holder.recCard.visibility = View.GONE
+                    holder.recCard.layoutParams = RecyclerView.LayoutParams(0, 0)
+                    return
+                }
+            }
         }
         val currentDate = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).time
 
@@ -115,6 +141,7 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
         override fun getItemCount(): Int {
         return dataList.size
     }
+    @SuppressLint("NotifyDataSetChanged")
     fun searchDataList(searchList: ArrayList<DataClass>) {
         dataList = searchList
         notifyDataSetChanged()
@@ -129,4 +156,5 @@ class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val recLocation: TextView = itemView.findViewById(R.id.civicLocation)
     val recTitle: TextView = itemView.findViewById(R.id.civicTitle)
     val recCategory: TextView = itemView.findViewById(R.id.civicCategory)
+    val recCampus: TextView = itemView.findViewById(R.id.recCampus)
 }

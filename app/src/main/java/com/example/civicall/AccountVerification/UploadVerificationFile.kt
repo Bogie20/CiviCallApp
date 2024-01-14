@@ -31,6 +31,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.example.civicall.MainMenu
+import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
@@ -49,6 +50,7 @@ class UploadVerificationFile : AppCompatActivity() {
     private val FILE_PROVIDER_AUTHORITY = "com.example.civicall.fileprovider"
     private var hasUserUploadedVerification = false
     private val REQUEST_IMAGE_CAPTURE = 2
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_verification_file)
@@ -58,12 +60,17 @@ class UploadVerificationFile : AppCompatActivity() {
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroup)
         val backbtn = findViewById<ImageView>(R.id.backbtn)
         FirebaseStorage.getInstance()
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         onResume()
         val sendBtn = findViewById<TextView>(R.id.sendbtn)
         sendBtn.setOnClickListener {
+            // Get the ID of the selected radio button from the radio group
             val selectedRadioButtonId = radioGroup.checkedRadioButtonId
+
+            // Check if no radio button is selected
             if (selectedRadioButtonId == -1) {
+                // Show a message if no radio button is selected
                 showMessage(
                     "Select a Type of Document to Upload",
                     3000,
@@ -75,9 +82,22 @@ class UploadVerificationFile : AppCompatActivity() {
                 // Check if a file has been selected
                 val fileName = filenameTextView.text.toString()
                 if (fileName.isNotEmpty()) {
+                    // If a file is selected, get the selected category
+
+                    // Replace this line with your actual logic to get the selected category
                     val selectedCategory = getSelectedCategory()
-                    showUploadConfirmationDialog(fileUri!!, fileName, selectedCategory)
+
+                    // Check if the device is online
+                    if (networkUtils.isOnline) {
+                        // If online, show upload confirmation dialog
+                        showUploadConfirmationDialog(fileUri!!, fileName, selectedCategory)
+                    } else {
+                        // If offline, show a message indicating no internet
+                        showNoInternetPopup()
+                    }
+
                 } else {
+                    // Show a message if no file is selected
                     showMessage(
                         "Select a File First",
                         3000,
@@ -87,14 +107,18 @@ class UploadVerificationFile : AppCompatActivity() {
                     )
                 }
             }
+
+            // Dismiss any custom dialog (move this line outside of the else block to ensure dismissal)
+            dismissCustomDialog()
         }
+
 
         uploadFileButton.setOnClickListener {
             if (hasUserUploadedVerification) {
                 showMessage(
                     "Requirement submitted already",
                     4000,
-                    "Already Submit",
+                    "Already Submitted",
                     R.drawable.papermani,
                     R.layout.dialog_happyface
                 )
@@ -157,7 +181,32 @@ class UploadVerificationFile : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
-    }private fun checkVerificationStatus() {
+    }
+
+    private var isNoInternetDialogShowing = false
+    private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
+        val builder = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.dialog_network, null)
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
+            dialog.dismiss()
+            isNoInternetDialogShowing = false
+        }
+        if (dialog.window != null) {
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+        }
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
+        dialog.show()
+    }
+
+
+
+    private fun checkVerificationStatus() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
             val userId = currentUser.uid
@@ -400,8 +449,15 @@ class UploadVerificationFile : AppCompatActivity() {
         }
         saveButton.setOnClickListener {
             alertDialog.dismiss()
-            uploadImageToFirebase(capturedImageUri!!, getSelectedCategory())
 
+            if (networkUtils.isOnline) {
+                uploadImageToFirebase(capturedImageUri!!, getSelectedCategory())
+            } else {
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
+            }
         }
         repickButton.setOnClickListener {
             // Dismiss the current dialog
@@ -629,6 +685,11 @@ class UploadVerificationFile : AppCompatActivity() {
 
             isAlreadyJoinDialogShowing = false
         }
+        if (isNoInternetDialogShowing) {
+
+
+            isNoInternetDialogShowing = false
+        }
 
     }
     private fun uploadFileToFirebase(fileUri: Uri, fileName: String, category: String) {
@@ -685,4 +746,9 @@ class UploadVerificationFile : AppCompatActivity() {
         super.onPause()
         dismissCustomDialog()
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        networkUtils.cleanup()
+    }
+
 }

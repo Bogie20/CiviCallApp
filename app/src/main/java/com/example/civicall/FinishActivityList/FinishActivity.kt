@@ -9,15 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.civicall.ProfileDetails
 import com.example.civicall.R
+import com.example.civicall.databinding.ActivityFinishBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import com.example.civicall.databinding.ActivityFinishBinding
 import java.util.Calendar
-import java.util.TimeZone
-
+import java.util.Locale
+import com.example.civicall.NetworkUtils
 class FinishActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFinishBinding
     private lateinit var recyclerView: RecyclerView
@@ -26,12 +24,13 @@ class FinishActivity : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var auth: FirebaseAuth
     private var childEventListener: ChildEventListener? = null
-
+    private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFinishBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        networkUtils = NetworkUtils(this)
+        networkUtils.initialize()
         recyclerView = binding.finishRecycler
         auth = FirebaseAuth.getInstance()
         databaseReference = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
@@ -53,7 +52,7 @@ class FinishActivity : AppCompatActivity() {
         val currentUserUid = auth.currentUser?.uid
         val currentDate = getCurrentDate()
 
-        val participantsQuery = databaseReference.orderByChild("Participants/$currentUserUid").equalTo(true)
+        val participantsQuery = databaseReference.orderByChild("Participants/$currentUserUid/joined").equalTo(true)
         participantsQuery.addListenerForSingleValueEvent(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -63,7 +62,7 @@ class FinishActivity : AppCompatActivity() {
                     val startDate = engagementSnapshot.child("startDate").getValue(String::class.java) ?: ""
                     val endDate = engagementSnapshot.child("endDate").getValue(String::class.java) ?: ""
 
-                    // Check if the contributionStatus is true OR if the current date and time are equal to or later than the endDate
+                    // Check if the current date and time are equal to or later than the endDate
                     if (isDateMatched(currentDate, endDate)) {
                         val postKey = engagementSnapshot.key ?: ""
                         val finishData = DataClassFinish(
@@ -73,13 +72,12 @@ class FinishActivity : AppCompatActivity() {
                             engagementSnapshot.child("category").getValue(String::class.java) ?: "",
                             startDate,
                             endDate,
-                            postKey
+                            postKey,
+                            engagementSnapshot.child("Participants/$currentUserUid/receivedStamp").getValue(String::class.java) ?: ""
                         )
-                        finishedActivities.add(finishData)
+                        finishedActivities.add(0, finishData)
                     }
                 }
-
-                // Update the adapter with the fetched data
                 finishActAdapter = FinishActAdapter(finishedActivities)
                 recyclerView.adapter = finishActAdapter
 
@@ -99,14 +97,14 @@ class FinishActivity : AppCompatActivity() {
         })
     }
 
-
     private fun isDateMatched(currentDate: String, endDate: String): Boolean {
         val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
         val currentDateTime = sdf.parse(currentDate)
         val endDateTime = sdf.parse(endDate)
 
-        return currentDateTime.after(endDateTime) || currentDateTime.equals(endDateTime)
+        return currentDateTime?.after(endDateTime) == true || currentDateTime?.equals(endDateTime) == true
     }
+
     private fun getCurrentDate(): String {
         val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
@@ -116,6 +114,7 @@ class FinishActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        networkUtils.cleanup()
         childEventListener?.let {
             databaseReference.removeEventListener(it)
         }

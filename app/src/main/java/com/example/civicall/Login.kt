@@ -1,5 +1,6 @@
 package com.example.civicall
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
@@ -15,6 +16,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.civicall.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -32,6 +34,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.TimeZone
 
@@ -56,13 +59,14 @@ class Login : AppCompatActivity() {
         val uid = firebaseAuth.uid
         val ref = FirebaseDatabase.getInstance().getReference("Users")
         ref.child(uid!!).addListenerForSingleValueEvent(object : ValueEventListener {
+            @SuppressLint("SimpleDateFormat")
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     startActivity(Intent(this@Login, Dashboard::class.java))
                     finish()
                 } else {
                     val timestamp = System.currentTimeMillis()
-                    val dateFormat = SimpleDateFormat("MM/dd/yyyy HH:mm z")
+                    val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a")
                     dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
                     val formattedDate = dateFormat.format(timestamp)
 
@@ -75,7 +79,11 @@ class Login : AppCompatActivity() {
                     hashMap["phoneno"] = ""
                     hashMap["address"] = ""
                     hashMap["birthday"] = ""
+                    hashMap["course"] = ""
+                    hashMap["srcode"] = ""
+                    hashMap["yearandSection"] = ""
                     hashMap["gender"] = ""
+                    hashMap["lastLogin"] = ""
                     hashMap["ImageProfile"] = profileImageUri
                     hashMap["userType"] = ""
                     hashMap["timestamp"] = formattedDate
@@ -84,13 +92,6 @@ class Login : AppCompatActivity() {
                     hashMap["CurrentEngagement"] = 0
                     hashMap["activepts"] = 0
                     hashMap["finishactivity"] = 0
-
-
-
-
-
-
-
 
                     val ref = FirebaseDatabase.getInstance().getReference("Users")
                     ref.child(uid!!)
@@ -104,8 +105,6 @@ class Login : AppCompatActivity() {
                         }
                 }
             }
-
-
             override fun onCancelled(error: DatabaseError) {
                 // Handle onCancelled event if needed
             }
@@ -133,15 +132,9 @@ class Login : AppCompatActivity() {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
         firebaseAuth = FirebaseAuth.getInstance()
 
-
-
-
         binding.googlebtn.setOnClickListener {
             signInGoogle()
         }
-
-
-
 
         if (showSuccessPopup) {
             // Display the "Account Created Successfully!" popup
@@ -150,17 +143,11 @@ class Login : AppCompatActivity() {
         emailEditText = binding.emailLogin
         passwordEditText = binding.passwordText
 
-
-
-
         binding.signUpTV.setOnClickListener {
             val intent = Intent(this, Register::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-        }
-        binding.btnlogin.setOnClickListener {
-            validateData()
         }
         emailTextInputLayout = binding.emailTextInputLayout
         passwordTextInputLayout = binding.passwordTextInputLayout
@@ -245,28 +232,22 @@ class Login : AppCompatActivity() {
             }
         }
         binding.btnlogin.setOnClickListener {
-            if (networkUtils.isOnline) {
-                validateData()
-            } else {
-                showNoInternetPopup()
-            }
-            dismissCustomDialog()
+                if (networkUtils.isOnline) {
+                    validateData()
+                } else {
+                    if (!isNoInternetDialogShowing) {
+                        dismissCustomDialog()
+                        showNoInternetPopup()
+                    }
+                }
         }
     }
-    private fun compareEmail(email: EditText, dialog: Dialog) {
+        private fun compareEmail(email: EditText, dialog: Dialog) {
         val emailText = email.text.toString().trim()
-
-
-
-
         if (emailText.isEmpty()) {
             email.error = "Input Your Email First"
             return
         }
-
-
-
-
         if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
             email.error = "Invalid Email"
             return
@@ -274,10 +255,6 @@ class Login : AppCompatActivity() {
         firebaseAuth.sendPasswordResetEmail(emailText).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 showCustomChangedPassMessage("Check Your Email to change the Password", 3000, R.layout.dialog_happyface)
-
-
-
-
                 dialog.dismiss()
             } else {
                 showCustomChangedPassMessage("Check for typos or your internet connection", 3000, R.layout.dialog_sadface)
@@ -286,42 +263,18 @@ class Login : AppCompatActivity() {
     }
     private fun dismissCustomDialog() {
         if (isPopupShowing) {
-            // Dismiss the custom popup dialog
-            // For example:
-            // alertDialog.dismiss()
             isPopupShowing = false
         }
-
-
         if (isProgressBarShowing) {
-            // Dismiss the progress dialog
-            // For example:
-            // progressDialog.dismiss()
             isProgressBarShowing = false
         }
         if (isProgressShowing) {
-            // Dismiss the progress dialog
-            // For example:
-            // progressAlertDialog.dismiss()
             isProgressShowing = false
         }
+        if (isNoInternetDialogShowing) {
+            isNoInternetDialogShowing = false
+        }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private fun showCustomPopupSuccess(message: String) {
         // Check if the pop-up is already showing, and if so, return early
         if (isPopupShowing) {
@@ -331,7 +284,6 @@ class Login : AppCompatActivity() {
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_success, null)
 
-
         dialogBuilder.setView(dialogView)
         val alertDialog = dialogBuilder.create()
         alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
@@ -339,9 +291,7 @@ class Login : AppCompatActivity() {
         val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message_flat)
         val okButton = dialogView.findViewById<Button>(R.id.btn_action_flat)
 
-
         messageTextView.text = message
-
 
         okButton.setOnClickListener {
             alertDialog.dismiss()
@@ -349,9 +299,8 @@ class Login : AppCompatActivity() {
         }
         dismissCustomDialog()
 
-
         alertDialog.show()
-        isPopupShowing = true // Set the variable to true when the pop-up is displayed
+        isPopupShowing = true
     }
     private var isProgressBarShowing = false
     private fun showCustomProgressBar(message: String, durationMillis: Long) {
@@ -359,7 +308,6 @@ class Login : AppCompatActivity() {
         if (isProgressBarShowing) {
             return
         }
-
 
         dismissCustomDialog()
         val dialogBuilder = AlertDialog.Builder(this)
@@ -376,17 +324,10 @@ class Login : AppCompatActivity() {
 
 
         alertDialog.show()
-
-
-
-
-        // Set the variable to true to indicate that the progress bar is showing
         isProgressBarShowing = true
-
 
         Handler(Looper.getMainLooper()).postDelayed({
             alertDialog.dismiss()
-            // Set the variable to false when the progress bar is dismissed
             isProgressBarShowing = false
         }, durationMillis)
     }
@@ -397,62 +338,29 @@ class Login : AppCompatActivity() {
             return
         }
         dismissCustomDialog()
-
-
-
-
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(dialogLayout, null)
-
-
         dialogBuilder.setView(dialogView)
         val alertDialog = dialogBuilder.create()
-
-
         alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideLeft
-
-
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-
         val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message)
-
-
         messageTextView.text = message
         alertDialog.show()
-
-
         isProgressShowing = true
         alertDialog.setOnDismissListener {
-
-
-
-
             isProgressShowing = false
         }
 
-
         Handler(Looper.getMainLooper()).postDelayed({
             alertDialog.dismiss()
-
-
-
-
             isProgressShowing = false
         }, durationMillis)
     }
-
-
-
-
     private fun validateData() {
         email = emailTextInputLayout.editText?.text.toString().trim()
         password = passwordTextInputLayout.editText?.text.toString().trim()
-
-
-
-
         val emailMaxLength = 320
         val passwordMaxLength = 128
         if (email.isEmpty()) {
@@ -469,13 +377,8 @@ class Login : AppCompatActivity() {
             loginUser()
         }
     }
-
-
-
-
     private fun loginUser() {
         showCustomProgressBar("Logging In...", 1500)
-
 
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnSuccessListener {
@@ -484,8 +387,6 @@ class Login : AppCompatActivity() {
             .addOnFailureListener { e ->
                 // Dismiss the progress bar when there's an error
                 dismissCustomProgressBar()
-
-
                 if (e.message == "The email address is badly formatted.") {
                     // Handle invalid email format error
                     emailEditText.error = "Invalid Email"
@@ -508,94 +409,59 @@ class Login : AppCompatActivity() {
         // Dismiss the progress bar here
         progressDialog.dismiss()
     }
-
-
     private fun showCustomPopupError(message: String) {
         // Check if the pop-up is already showing, and if so, return early
         if (isPopupShowing) {
             return
         }
-
-
-
-
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_error, null)
-
-
-
-
         dialogBuilder.setView(dialogView)
         val alertDialog = dialogBuilder.create()
-
-
-
-
         alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
-
-
-
-
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val messageTextView = dialogView.findViewById<TextView>(R.id.dialog_message_flat)
         val okButton = dialogView.findViewById<Button>(R.id.btn_action_flat)
-
-
-
-
         messageTextView.text = message
-
-
-
-
         okButton.setOnClickListener {
             alertDialog.dismiss()
             isPopupShowing = false
         }
 
-
-
-
         alertDialog.show()
         isPopupShowing = true
     }
+    private var isNoInternetDialogShowing = false
     private fun showNoInternetPopup() {
+        isNoInternetDialogShowing = true
         val builder = AlertDialog.Builder(this)
         val view = layoutInflater.inflate(R.layout.dialog_network, null)
-        dismissCustomDialog()
         builder.setView(view)
         val dialog = builder.create()
         dialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
-
-
-
-
-        view.findViewById<Button>(R.id.okbtns).setOnClickListener {
+        view.findViewById<Button>(R.id.retryBtn).setOnClickListener {
             dialog.dismiss()
+            isNoInternetDialogShowing = false
         }
         if (dialog.window != null) {
             dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
         }
-
-
-
-
+        dialog.setOnDismissListener {
+            isNoInternetDialogShowing = false
+        }
         dialog.show()
     }
-
-
-
-
     private fun checkUser() {
         val uid = firebaseAuth.uid
         val ref = FirebaseDatabase.getInstance().getReference("Users")
         ref.child(uid!!).addListenerForSingleValueEvent(object : ValueEventListener {
+            @SuppressLint("SimpleDateFormat")
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     // User exists, update the login date and time
                     val loginTimestamp = System.currentTimeMillis()
-                    val loginDateFormat = SimpleDateFormat("MM/dd/yyyy HH:mm z")
+                    val loginDateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a")
                     loginDateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
                     val formattedLoginDate = loginDateFormat.format(loginTimestamp)
 
@@ -618,7 +484,7 @@ class Login : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Handle onCancelled event if needed
+                finish()
             }
         })
     }
@@ -627,10 +493,6 @@ class Login : AppCompatActivity() {
         val signInIntent: Intent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent, Req_Code, null)
     }
-
-
-
-
     @Suppress("DEPRECATION")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -639,8 +501,6 @@ class Login : AppCompatActivity() {
             handleResult(task)
         }
     }
-
-
     private fun handleResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account: GoogleSignInAccount? = completedTask.getResult(ApiException::class.java)
@@ -655,7 +515,6 @@ class Login : AppCompatActivity() {
             ).show()
         }
     }
-
     private fun updateUI(account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
@@ -668,12 +527,44 @@ class Login : AppCompatActivity() {
 
                 profileImageUri = account.photoUrl?.toString()
                 updateUserInfo(account)
+
+                val uid = firebaseAuth.uid
+                val ref = FirebaseDatabase.getInstance().getReference("Users")
+                ref.child(uid!!).addListenerForSingleValueEvent(object : ValueEventListener {
+                    @SuppressLint("SimpleDateFormat")
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            // User exists, update the login date and time
+                            val loginTimestamp = System.currentTimeMillis()
+                            val loginDateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a")
+                            loginDateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+                            val formattedLoginDate = loginDateFormat.format(loginTimestamp)
+
+                            val updateMap: HashMap<String, Any?> = HashMap()
+                            updateMap["lastLogin"] = formattedLoginDate
+
+                            ref.child(uid).updateChildren(updateMap)
+                                .addOnSuccessListener {
+                                    // Navigate to the Dashboard
+                                    startActivity(Intent(this@Login, Dashboard::class.java))
+                                    finish()
+                                }
+                                .addOnFailureListener { e ->
+                                    showCustomPopupError("Failed updating login info: ${e.message}")
+                                }
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        finish()
+                    }
+                })
+            } else {
+                // Handle unsuccessful sign-in
+                Toast.makeText(this, "Google Sign-In Failed", Toast.LENGTH_SHORT).show()
             }
-
-        }   }
-
-
-
+        }
+    }
     override fun onBackPressed() {
         super.onBackPressed()
         dismissCustomDialog()

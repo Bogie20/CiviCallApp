@@ -1,0 +1,24 @@
+<!-- crescent_shape.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer Circle -->
+    <item>
+        <shape
+            android:shape="oval">
+            <solid android:color="@android:color/transparent"/>
+            <size
+                android:width="47dp"
+                android:height="47dp"/>
+        </shape>
+    </item>
+
+    <!-- Inner Crescent Shape -->
+    <item android:top="12dp">
+        <shape
+            android:shape="oval">
+            <solid android:color="@color/redpink"/>
+            <size
+                android:width="47dp"
+                android:height="47dp"/>
+        </shape>
+    </item>
+</layer-list>

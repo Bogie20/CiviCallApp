@@ -1,19 +1,21 @@
 package com.example.civicall.Forum
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import androidx.core.widget.NestedScrollView.OnScrollChangeListener
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.core.widget.NestedScrollView
+import androidx.core.widget.NestedScrollView.OnScrollChangeListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,11 +28,14 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import nl.joery.animatedbottombar.AnimatedBottomBar
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import java.util.TimeZone
 
 class ForumFragment : Fragment() {
 
     private lateinit var databaseReference: DatabaseReference
-    private lateinit var eventListener: ValueEventListener
     private lateinit var recyclerView: RecyclerView
     private lateinit var nestedRecycler: NestedScrollView
     private val dataList = ArrayList<DataClassForum>()
@@ -39,6 +44,11 @@ class ForumFragment : Fragment() {
     private lateinit var searchView: SearchView
     private lateinit var noPostsImage: ImageView
     private lateinit var noPostsText: TextView
+    private lateinit var progressBar: ProgressBar
+    companion object {
+        private val TIME_ZONE = TimeZone.getTimeZone("Asia/Manila")
+        private const val MAX_POST_AGE_MILLIS = 365 * 24 * 60 * 60 * 1000L
+    }
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +65,7 @@ class ForumFragment : Fragment() {
         noPostsText = rootView.findViewById(R.id.noPostsText)
         val filterIcon = rootView.findViewById<ImageView>(R.id.filterIcon)
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
-
+        progressBar = rootView.findViewById(R.id.progressBar)
         rootView.startAnimation(anim)
 
         filterIcon.setOnClickListener {
@@ -64,58 +74,80 @@ class ForumFragment : Fragment() {
         val gridLayoutManager = GridLayoutManager(requireContext(), 1)
         recyclerView.layoutManager = gridLayoutManager
 
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setCancelable(false)
-        val dialog = builder.create()
-        dialog.show()
         val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
         adapter = ForumAdapter(requireContext(), dataList, currentUserId)
         recyclerView.adapter = adapter
 
+        // Adjusted reference for "Forum Post" node
         databaseReference = FirebaseDatabase.getInstance().getReference("Forum Post")
-        dialog.show()
-        eventListener = databaseReference.addValueEventListener(object : ValueEventListener {
+
+        databaseReference.addValueEventListener(object : ValueEventListener {
+
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
-                dataList.clear()
-                for (itemSnapshot in snapshot.children) {
-                    val dataClass = itemSnapshot.getValue(DataClassForum::class.java)
-                    dataClass?.key = itemSnapshot.key
-                    dataClass?.let {
-                        dataList.add(
-                            0,
-                            it
-                        )
-                    } // Add the new item at the beginning of the list
-                }
+                val currentUser = FirebaseAuth.getInstance().currentUser
+                val userUid = currentUser?.uid
+                val userCampusRef = FirebaseDatabase.getInstance().getReference("Users/$userUid/campus")
 
-                adapter.notifyItemChanged(0)
-                dialog.dismiss()
+                userCampusRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(userCampusSnapshot: DataSnapshot) {
+                        val userCampus = userCampusSnapshot.value.toString()
+                        val newDataList = ArrayList<DataClassForum>()
 
-                if (dataList.isEmpty()) {
-                    rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
-                    rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.VISIBLE
+                        val currentMillis = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).timeInMillis
 
-                    recyclerView.visibility = View.GONE
-                } else {
-                    rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.GONE
-                    rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
+                        for (itemSnapshot in snapshot.children) {
+                            val dataClass = itemSnapshot.getValue(DataClassForum::class.java)
+                            dataClass?.key = itemSnapshot.key
 
-                    recyclerView.visibility = View.VISIBLE
+                            dataClass?.let {
+                                val uploadEngagementCampuses =
+                                    it.campus?.split(", ")?.map { it.trim() } ?: emptyList()
+                                if (userCampus in uploadEngagementCampuses) {
+                                    val postTimeMillis = it.postTime?.let { it1 ->
+                                        SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+                                            .apply {
+                                                timeZone = TIME_ZONE
+                                            }
+                                            .parse(it1 + " Asia/Manila")?.time
+                                    } ?: 0
 
-                }
+                                    if (currentMillis - postTimeMillis <= MAX_POST_AGE_MILLIS) {
+                                        newDataList.add(0, it)
+                                    }
+                                }
+                            }
+                        }
 
-                dialog.dismiss()
+                        dataList.clear()
+                        dataList.addAll(newDataList)
+                        adapter.notifyDataSetChanged();
+                        if (dataList.isEmpty()) {
+                            rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
+                            rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.VISIBLE
+                            recyclerView.visibility = View.GONE
+                        } else {
+                            rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.GONE
+                            rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
+                            recyclerView.visibility = View.VISIBLE
+                        }
 
+                        progressBar.visibility = View.GONE
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        progressBar.visibility = View.GONE
+                    }
+                })
             }
 
             override fun onCancelled(error: DatabaseError) {
-                dialog.dismiss()
+                progressBar.visibility = View.GONE
             }
         })
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -128,7 +160,7 @@ class ForumFragment : Fragment() {
 
         val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
-
+        val faback = requireActivity().findViewById<FloatingActionButton>(R.id.faback)
         nestedRecycler.setOnScrollChangeListener(OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
             // Iterate through all visible items in the RecyclerView
             for (i in 0 until recyclerView.childCount) {
@@ -139,20 +171,25 @@ class ForumFragment : Fragment() {
             }
 
             if (scrollY > oldScrollY) {
-                // Scrolling down
                 if (animatedBottomBar.isShown) {
                     animatedBottomBar.visibility = View.GONE
                 }
                 if (fab.isShown) {
                     fab.hide()
                 }
+                if (faback.isShown) {
+                    faback.hide()
+                }
             } else if (scrollY < oldScrollY) {
-                // Scrolling up
+                // Scroll up
                 if (!animatedBottomBar.isShown) {
                     animatedBottomBar.visibility = View.VISIBLE
                 }
                 if (!fab.isShown) {
                     fab.show()
+                }
+                if (!faback.isShown) {
+                    faback.show()
                 }
             }
         })
@@ -161,7 +198,9 @@ class ForumFragment : Fragment() {
 
     }
 
-        private var isFilterDialogShowing = false // Add this variable
+
+
+    private var isFilterDialogShowing = false // Add this variable
 
     private fun showFilterDialog() {
         if (isFilterDialogShowing) {
@@ -251,9 +290,10 @@ class ForumFragment : Fragment() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun filterByCategory(category: String) {
         if (category.isEmpty()) {
-            // Show all categories
+            adapter.updateData(dataList)
             adapter.searchDataList(dataList)
             hideNoPostsMessage()
         } else {
@@ -276,6 +316,13 @@ class ForumFragment : Fragment() {
         recyclerView.visibility = View.GONE
     }
 
+    private fun showNoSearchMessage(searchText: String) {
+        noPostsImage.setImageResource(R.drawable.nocategory)
+        noPostsText.text = "Sorry, no results found for \"$searchText\"."
+        noPostsImage.visibility = View.VISIBLE
+        noPostsText.visibility = View.VISIBLE
+        recyclerView.visibility = View.GONE
+    }
 
     private fun hideNoPostsMessage() {
         noPostsImage.visibility = View.GONE
@@ -290,6 +337,14 @@ class ForumFragment : Fragment() {
                 searchList.add(dataClass)
             }
         }
-        adapter.searchDataList(searchList)
+
+        if (searchList.isEmpty()) {
+            showNoSearchMessage(text)
+        } else {
+            hideNoPostsMessage()
+            val searchArrayList = ArrayList<DataClassForum>(searchList)
+            adapter.updateData(dataList)
+            adapter.searchDataList(searchArrayList)
+        }
     }
 }
