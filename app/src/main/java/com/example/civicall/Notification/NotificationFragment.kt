@@ -381,8 +381,6 @@ class NotificationFragment : Fragment() {
                                 startDate,
                                 timestamp
                             )
-
-                            // Add to the joinedList
                             joinedList.add(engagementJoinedData)
                         }
                     }

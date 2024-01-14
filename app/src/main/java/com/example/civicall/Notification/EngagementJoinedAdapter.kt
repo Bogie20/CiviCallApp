@@ -32,7 +32,6 @@ class EngagementJoinedAdapter(private val joinedList: List<EngagementJoinedData>
     override fun onBindViewHolder(holder: EngagementJoinedViewHolder, position: Int) {
         val currentJoinedEngagement = joinedList[position]
 
-        // Set label with a top margin of 30dp
         val labelLayoutParams = holder.label.layoutParams as ViewGroup.MarginLayoutParams
         labelLayoutParams.topMargin = dpToPx(15) // Use your desired top margin in dp
         holder.label.layoutParams = labelLayoutParams
