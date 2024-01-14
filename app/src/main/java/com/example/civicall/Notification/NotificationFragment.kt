@@ -237,10 +237,11 @@ class NotificationFragment : Fragment() {
 
                             val attendedData = AttendedAdapter.AttendedData(postKey, title, category, attendedStamp)
                             attendedList.add(attendedData)
+
                         }
                     }
                 }
-
+                attendedList.sortByDescending { it.attendedStamp }
                 attendedAdapter.notifyDataSetChanged()
                 updateAppIndicator()
 
