@@ -194,7 +194,6 @@ class NotificationFragment : Fragment() {
                     recyclerViewEngageUpdate.visibility = View.GONE
 
                 } else {
-
                     recyclerViewEngageUpdate.visibility = View.VISIBLE
                 }
                 progressBar.visibility = View.GONE
