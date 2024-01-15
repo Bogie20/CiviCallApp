@@ -697,8 +697,10 @@ class UploadVerificationFile : AppCompatActivity() {
         val storageRef = storage.reference
 
         val timestamp = System.currentTimeMillis().toString()
+
+        // Update the reference structure
         val fileRef =
-            storageRef.child("User_Verification_File/${FirebaseAuth.getInstance().currentUser?.uid ?: ""}/$category/${timestamp}_$fileName")
+            storageRef.child("User_Verification/${FirebaseAuth.getInstance().currentUser?.uid ?: ""}/$category/$fileName")
 
         // Upload the file to Firebase Storage
         fileRef.putFile(fileUri)
@@ -712,11 +714,14 @@ class UploadVerificationFile : AppCompatActivity() {
                         FirebaseAuth.getInstance().currentUser?.uid ?: ""
                     )
 
+                    // Update the data structure
                     val categoryRef = currentUser.child(category)
                     val fileData = HashMap<String, Any>()
                     fileData["fileUri"] = downloadUri.toString() // Save the download URL
                     fileData["timestamp"] = timestamp // Save the timestamp
-                    categoryRef.child(fileName).setValue(fileData)
+
+                    // Update the reference to "file" and set the data
+                    categoryRef.child("file").setValue(fileData)
 
                     showMessage(
                         "File Uploaded Successfully",
@@ -733,6 +738,7 @@ class UploadVerificationFile : AppCompatActivity() {
                     .show()
             }
     }
+
     override fun onBackPressed() {
         if (isAlreadyJoinDialogShowing) {
             dismissCustomDialog()
