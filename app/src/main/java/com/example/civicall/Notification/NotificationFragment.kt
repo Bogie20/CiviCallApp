@@ -58,7 +58,9 @@ class NotificationFragment : Fragment() {
     private lateinit var RecyclerViewAttended: RecyclerView
     private lateinit var attendedAdapter: AttendedAdapter
     private lateinit var attendedList: MutableList<AttendedAdapter.AttendedData>
+    @SuppressLint("SuspiciousIndentation")
     private fun updateAppIndicator() {
+        if (isAdded) {
         val totalNotificationCount = notificationList.size
         val totalUserCount = userList.size
         val totalJoinedCount = joinedList.size
@@ -68,7 +70,8 @@ class NotificationFragment : Fragment() {
 
         val totalCount = totalNotificationCount + totalUserCount + totalJoinedCount + totalActivePtsCount + totalRequestCount+ totalAttendedCount
 
-        ShortcutBadger.applyCount(requireContext(), totalCount)
+            ShortcutBadger.applyCount(requireContext(), totalCount)
+        }
     }
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
@@ -185,19 +188,17 @@ class NotificationFragment : Fragment() {
                 notificationList.sortByDescending { it.timestamp }
                 notificationAdapter.notifyDataSetChanged()
                 updateAppIndicator()
+                updateNoPostsVisibility()
                 // Check if the notificationList is empty
                 if (notificationList.isEmpty()) {
-                    // If empty, show the "noPostsImage" and "noPostsText"
-                    noPostsImage.visibility = View.VISIBLE
-                    noPostsText.visibility = View.VISIBLE
+                    recyclerViewEngageUpdate.visibility = View.GONE
+
                 } else {
-                    // If not empty, hide the "noPostsImage" and "noPostsText"
-                    noPostsImage.visibility = View.GONE
-                    noPostsText.visibility = View.GONE
+
+                    recyclerViewEngageUpdate.visibility = View.VISIBLE
                 }
                 progressBar.visibility = View.GONE
             }
-
             override fun onCancelled(databaseError: DatabaseError) {
                 progressBar.visibility = View.GONE
             }
@@ -244,7 +245,7 @@ class NotificationFragment : Fragment() {
                 attendedList.sortByDescending { it.attendedStamp }
                 attendedAdapter.notifyDataSetChanged()
                 updateAppIndicator()
-
+                updateNoPostsVisibility()
                 // Check if the attendedList is empty
                 if (attendedList.isEmpty()) {
                     // If empty, hide the RecyclerViewAttended
@@ -253,10 +254,11 @@ class NotificationFragment : Fragment() {
                     // If not empty, show the RecyclerViewAttended
                     RecyclerViewAttended.visibility = View.VISIBLE
                 }
+                progressBar.visibility = View.GONE
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle onCancelled
+                progressBar.visibility = View.GONE
             }
         })
 
@@ -312,18 +314,18 @@ class NotificationFragment : Fragment() {
                 }
                 accountVerificationAdapter.notifyDataSetChanged()
                 updateAppIndicator()
-                // Check if the userList is empty
+                updateNoPostsVisibility()
                 if (userList.isEmpty()) {
-                    // If empty, hide the RecyclerViewSec
                     RecyclerViewAccApproved.visibility = View.GONE
                 } else {
-                    // If not empty, show the RecyclerViewSec
+
                     RecyclerViewAccApproved.visibility = View.VISIBLE
                 }
+                progressBar.visibility = View.GONE
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle onCancelled
+                progressBar.visibility = View.GONE
             }
         })
         databaseReferenceRequestVerify.addValueEventListener(object : ValueEventListener {
@@ -357,15 +359,17 @@ class NotificationFragment : Fragment() {
 
                 requestVerificationAdapter.notifyDataSetChanged()
                 updateAppIndicator()
+                updateNoPostsVisibility()
                 if (requestList.isEmpty()) {
                     RecyclerViewEngagementApproved.visibility = View.GONE
                 } else {
                     RecyclerViewEngagementApproved.visibility = View.VISIBLE
                 }
+                progressBar.visibility = View.GONE
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle onCancelled
+                progressBar.visibility = View.GONE
             }
         })
         databaseReferenceActivePoints.addValueEventListener(object : ValueEventListener {
@@ -418,15 +422,17 @@ class NotificationFragment : Fragment() {
 
                 activePtsAdapter.notifyDataSetChanged()
                 updateAppIndicator()
+                updateNoPostsVisibility()
                 if (ActivePtsList.isEmpty()) {
                     recyclerViewAct.visibility = View.GONE
                 } else {
                     recyclerViewAct.visibility = View.VISIBLE
                 }
+                progressBar.visibility = View.GONE
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle error
+                progressBar.visibility = View.GONE
             }
         })
 
@@ -470,6 +476,7 @@ class NotificationFragment : Fragment() {
                 joinedList.sortByDescending { it.timestamp }
                 engagementJoinedAdapter.notifyDataSetChanged()
                 updateAppIndicator()
+                updateNoPostsVisibility()
                 // Check if the joinedList is empty
                 if (joinedList.isEmpty()) {
                     // If empty, hide the RecyclerView or handle as needed
@@ -478,10 +485,11 @@ class NotificationFragment : Fragment() {
                     // If not empty, show the RecyclerView
                     recyclerViewEngageJoined.visibility = View.VISIBLE
                 }
+                progressBar.visibility = View.GONE
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle onCancelled
+                progressBar.visibility = View.GONE
             }
         })
         val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
@@ -517,6 +525,31 @@ class NotificationFragment : Fragment() {
         return view
 
     }
+    private fun updateNoPostsVisibility() {
+        val isNotificationListEmpty = notificationList.isEmpty()
+        val isUserListEmpty = userList.isEmpty()
+        val isJoinedListEmpty = joinedList.isEmpty()
+        val isActivePtsListEmpty = ActivePtsList.isEmpty()
+        val isRequestListEmpty = requestList.isEmpty()
+        val isAttendedListEmpty = attendedList.isEmpty()
+
+        noPostsImage.visibility = if (isNotificationListEmpty && isUserListEmpty && isJoinedListEmpty &&
+            isActivePtsListEmpty && isRequestListEmpty && isAttendedListEmpty
+        ) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+
+        noPostsText.visibility = if (isNotificationListEmpty && isUserListEmpty && isJoinedListEmpty &&
+            isActivePtsListEmpty && isRequestListEmpty && isAttendedListEmpty
+        ) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+    }
+
     private fun isWithinOneMonth(endDateTime: Date): Boolean {
         val calendar = Calendar.getInstance()
         val currentDate = Date()
