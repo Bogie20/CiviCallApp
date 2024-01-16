@@ -46,7 +46,8 @@ class AccountRejectAdapter(private val rejectedList: List<RejectedData>) :
 
         holder.categoryTextView.visibility = View.GONE
         holder.schedule.visibility = View.GONE
-
+        holder.recTitle.maxLines = 2
+        holder.recTitle.setLineSpacing(0f, 1.3f)
     }
 
     private fun dpToPx(dp: Int): Int {
