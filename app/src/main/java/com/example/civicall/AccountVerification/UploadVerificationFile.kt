@@ -258,9 +258,6 @@ class UploadVerificationFile : AppCompatActivity() {
         }
         dialog.show()
     }
-
-
-
     private fun checkVerificationStatus() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {

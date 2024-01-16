@@ -30,8 +30,10 @@ import java.util.Locale
 class NotificationFragment : Fragment() {
 
     private lateinit var RecyclerViewAccApproved: RecyclerView
+    private lateinit var RecyclerViewAccReject: RecyclerView
     private lateinit var notificationAdapter: NotificationAdapter
     private lateinit var notificationList: MutableList<DataClassNotif>
+    private lateinit var rejectedList: MutableList<AccountRejectAdapter.RejectedData>
     private lateinit var noPostsImage: ImageView
     private lateinit var nestedScrollView: NestedScrollView
     private lateinit var noPostsText: TextView
@@ -49,8 +51,10 @@ class NotificationFragment : Fragment() {
     private lateinit var RecyclerViewEngagementApproved: RecyclerView
     private lateinit var recyclerViewEngageJoined: RecyclerView
     private lateinit var recyclerViewAct: RecyclerView
+    private lateinit var databaseReferenceAccReject: DatabaseReference
     private lateinit var activePtsAdapter: ActivePointsAdapter
     private lateinit var engagementJoinedAdapter: EngagementJoinedAdapter
+    private lateinit var rejectVerificationAdapter: AccountRejectAdapter
     private lateinit var requestVerificationAdapter: RequestVerificationAdapter
     private lateinit var ActivePtsList: MutableList<ActivePointsAdapter.ActiveData>
     private lateinit var requestList: MutableList<RequestVerificationAdapter.RequestData>
@@ -64,11 +68,12 @@ class NotificationFragment : Fragment() {
         val totalNotificationCount = notificationList.size
         val totalUserCount = userList.size
         val totalJoinedCount = joinedList.size
+            val totalRejectCount = rejectedList.size
         val totalActivePtsCount = ActivePtsList.size
         val totalRequestCount = requestList.size
         val totalAttendedCount = attendedList.size
 
-        val totalCount = totalNotificationCount + totalUserCount + totalJoinedCount + totalActivePtsCount + totalRequestCount+ totalAttendedCount
+        val totalCount = totalNotificationCount + totalUserCount + totalJoinedCount + totalActivePtsCount + totalRequestCount + totalAttendedCount + totalRejectCount
 
             ShortcutBadger.applyCount(requireContext(), totalCount)
         }
@@ -123,7 +128,13 @@ class NotificationFragment : Fragment() {
         requestVerificationAdapter = RequestVerificationAdapter(requestList)
         RecyclerViewEngagementApproved.adapter = requestVerificationAdapter
 
+        RecyclerViewAccReject = view.findViewById(R.id.RecyclerViewAccReject)
+        RecyclerViewAccReject.layoutManager = LinearLayoutManager(activity)
+        rejectedList = mutableListOf()
+        rejectVerificationAdapter = AccountRejectAdapter(rejectedList)
+        RecyclerViewAccReject.adapter = rejectVerificationAdapter
 
+        databaseReferenceAccReject = FirebaseDatabase.getInstance().reference.child("Users")
         databaseReference = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
         databaseReferenceRequestVerify = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
         databaseReferenceUsers = FirebaseDatabase.getInstance().reference.child("Users")
@@ -491,6 +502,59 @@ class NotificationFragment : Fragment() {
                 progressBar.visibility = View.GONE
             }
         })
+        databaseReferenceAccReject.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                rejectedList.clear()
+                val currentUserUid = auth.currentUser?.uid
+
+                for (userSnapshot in dataSnapshot.children) {
+                    if (userSnapshot.key == currentUserUid) {
+                        val rejectReason = userSnapshot.child("rejectReason").getValue(String::class.java)
+                        val rejectTimestamp = userSnapshot.child("rejectTimestamp").getValue(String::class.java)
+
+                        // Add only if rejectReason is not null and verificationStatus is false
+                        if (!rejectReason.isNullOrBlank() && !(userSnapshot.child("verificationStatus").getValue(Boolean::class.java) ?: true)) {
+                            // Parse the rejectTimestamp
+                            val endDateTime = rejectTimestamp?.let { SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(it) }
+
+                            // Continue only if endDateTime is not null
+                            if (endDateTime != null) {
+                                val currentDate = Date()
+                                val calendar = Calendar.getInstance()
+                                calendar.time = endDateTime
+                                calendar.add(Calendar.MONTH, 1)
+
+                                // If currentDate is after 1 month of rejectTimestamp, skip this item
+                                if (currentDate.after(calendar.time)) {
+                                    continue
+                                }
+                                rejectedList.add(AccountRejectAdapter.RejectedData(rejectReason, rejectTimestamp))
+                            }
+                        }
+                    }
+                }
+
+                val rejectedAdapter = AccountRejectAdapter(rejectedList)
+                RecyclerViewAccReject.adapter = rejectedAdapter
+
+                if (rejectedList.isEmpty()) {
+                    RecyclerViewAccReject.visibility = View.GONE
+                } else {
+                    RecyclerViewAccReject.visibility = View.VISIBLE
+                }
+
+                rejectedList.sortByDescending { it.rejectTimestamp }
+                updateAppIndicator()
+                updateNoPostsVisibility()
+                rejectedAdapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                progressBar.visibility = View.GONE
+            }
+        })
+
         val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
         val faback = requireActivity().findViewById<FloatingActionButton>(R.id.faback)
@@ -528,12 +592,13 @@ class NotificationFragment : Fragment() {
         val isNotificationListEmpty = notificationList.isEmpty()
         val isUserListEmpty = userList.isEmpty()
         val isJoinedListEmpty = joinedList.isEmpty()
+        val isRejectListEmpty = rejectedList.isEmpty()
         val isActivePtsListEmpty = ActivePtsList.isEmpty()
         val isRequestListEmpty = requestList.isEmpty()
         val isAttendedListEmpty = attendedList.isEmpty()
 
         noPostsImage.visibility = if (isNotificationListEmpty && isUserListEmpty && isJoinedListEmpty &&
-            isActivePtsListEmpty && isRequestListEmpty && isAttendedListEmpty
+            isActivePtsListEmpty && isRequestListEmpty && isAttendedListEmpty && isRejectListEmpty
         ) {
             View.VISIBLE
         } else {
@@ -541,7 +606,7 @@ class NotificationFragment : Fragment() {
         }
 
         noPostsText.visibility = if (isNotificationListEmpty && isUserListEmpty && isJoinedListEmpty &&
-            isActivePtsListEmpty && isRequestListEmpty && isAttendedListEmpty
+            isActivePtsListEmpty && isRequestListEmpty && isAttendedListEmpty && isRejectListEmpty
         ) {
             View.VISIBLE
         } else {
