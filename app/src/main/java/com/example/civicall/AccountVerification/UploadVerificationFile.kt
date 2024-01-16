@@ -266,7 +266,7 @@ class UploadVerificationFile : AppCompatActivity() {
             val usersRef = database.getReference("User Verification")
             val currentUserRef = usersRef.child(userId)
 
-            currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            currentUserRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
                         showMessage(
@@ -294,7 +294,7 @@ class UploadVerificationFile : AppCompatActivity() {
             val usersRef = database.getReference("Users")
             val currentUserRef = usersRef.child(userId)
 
-            currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            currentUserRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
                         val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java)
