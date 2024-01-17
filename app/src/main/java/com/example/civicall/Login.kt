@@ -99,6 +99,8 @@ class Login : AppCompatActivity() {
                     hashMap["birthday"] = ""
                     hashMap["course"] = ""
                     hashMap["srcode"] = ""
+                    hashMap["nstp"] = ""
+                    hashMap["ContactEme"] = ""
                     hashMap["yearandSection"] = ""
                     hashMap["gender"] = ""
                     hashMap["lastLogin"] = formattedDate
