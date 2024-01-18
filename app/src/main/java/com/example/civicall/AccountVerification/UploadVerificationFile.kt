@@ -337,6 +337,9 @@ class UploadVerificationFile : AppCompatActivity() {
         customDialogImageResId: Int?,
         customDialogLayoutResId: Int?
     ) {
+        if (isFinishing || isDestroyed) {
+            return
+        }
         if (isAlreadyJoinDialogShowing) {
             return
         }

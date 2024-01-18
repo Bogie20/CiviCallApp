@@ -183,7 +183,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="15dp"
-                        android:hint="Description"
+                        android:hint="Objective"
                         android:fontFamily="@font/lexend"
                         android:inputType="textMultiLine"
                         android:paddingStart="20dp"
