@@ -684,8 +684,8 @@ class DetailPost : AppCompatActivity() {
             PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        val channelId = "civic_channel"
-        val channelName = "Verification"
+        val channelId = "confirm_channel"
+        val channelName = "Confirmation"
 
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.mipmap.ic_launcher)
@@ -1020,8 +1020,8 @@ class DetailPost : AppCompatActivity() {
             PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        val channelId = "civic_channel"
-        val channelName = "Verification"
+        val channelId = "confirm_channel"
+        val channelName = "Confirmation"
 
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.mipmap.ic_launcher)
@@ -1128,8 +1128,8 @@ class DetailPost : AppCompatActivity() {
             PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        val channelId = "civic_channel"
-        val channelName = "Verification"
+        val channelId = "confirm_channel"
+        val channelName = "Confirmation"
 
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.mipmap.ic_launcher)

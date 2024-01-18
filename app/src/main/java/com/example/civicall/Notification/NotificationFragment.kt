@@ -30,8 +30,10 @@ import java.util.Locale
 class NotificationFragment : Fragment() {
 
     private lateinit var RecyclerViewAccApproved: RecyclerView
+    private lateinit var RecyclerViewAccReject: RecyclerView
     private lateinit var notificationAdapter: NotificationAdapter
     private lateinit var notificationList: MutableList<DataClassNotif>
+    private lateinit var rejectedList: MutableList<AccountRejectAdapter.RejectedData>
     private lateinit var noPostsImage: ImageView
     private lateinit var nestedScrollView: NestedScrollView
     private lateinit var noPostsText: TextView
@@ -49,8 +51,10 @@ class NotificationFragment : Fragment() {
     private lateinit var RecyclerViewEngagementApproved: RecyclerView
     private lateinit var recyclerViewEngageJoined: RecyclerView
     private lateinit var recyclerViewAct: RecyclerView
+    private lateinit var databaseReferenceAccReject: DatabaseReference
     private lateinit var activePtsAdapter: ActivePointsAdapter
     private lateinit var engagementJoinedAdapter: EngagementJoinedAdapter
+    private lateinit var rejectVerificationAdapter: AccountRejectAdapter
     private lateinit var requestVerificationAdapter: RequestVerificationAdapter
     private lateinit var ActivePtsList: MutableList<ActivePointsAdapter.ActiveData>
     private lateinit var requestList: MutableList<RequestVerificationAdapter.RequestData>
@@ -58,17 +62,21 @@ class NotificationFragment : Fragment() {
     private lateinit var RecyclerViewAttended: RecyclerView
     private lateinit var attendedAdapter: AttendedAdapter
     private lateinit var attendedList: MutableList<AttendedAdapter.AttendedData>
+    @SuppressLint("SuspiciousIndentation")
     private fun updateAppIndicator() {
+        if (isAdded) {
         val totalNotificationCount = notificationList.size
         val totalUserCount = userList.size
         val totalJoinedCount = joinedList.size
+            val totalRejectCount = rejectedList.size
         val totalActivePtsCount = ActivePtsList.size
         val totalRequestCount = requestList.size
         val totalAttendedCount = attendedList.size
 
-        val totalCount = totalNotificationCount + totalUserCount + totalJoinedCount + totalActivePtsCount + totalRequestCount+ totalAttendedCount
+        val totalCount = totalNotificationCount + totalUserCount + totalJoinedCount + totalActivePtsCount + totalRequestCount + totalAttendedCount + totalRejectCount
 
-        ShortcutBadger.applyCount(requireContext(), totalCount)
+            ShortcutBadger.applyCount(requireContext(), totalCount)
+        }
     }
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
@@ -120,7 +128,13 @@ class NotificationFragment : Fragment() {
         requestVerificationAdapter = RequestVerificationAdapter(requestList)
         RecyclerViewEngagementApproved.adapter = requestVerificationAdapter
 
+        RecyclerViewAccReject = view.findViewById(R.id.RecyclerViewAccReject)
+        RecyclerViewAccReject.layoutManager = LinearLayoutManager(activity)
+        rejectedList = mutableListOf()
+        rejectVerificationAdapter = AccountRejectAdapter(rejectedList)
+        RecyclerViewAccReject.adapter = rejectVerificationAdapter
 
+        databaseReferenceAccReject = FirebaseDatabase.getInstance().reference.child("Users")
         databaseReference = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
         databaseReferenceRequestVerify = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
         databaseReferenceUsers = FirebaseDatabase.getInstance().reference.child("Users")
@@ -185,19 +199,16 @@ class NotificationFragment : Fragment() {
                 notificationList.sortByDescending { it.timestamp }
                 notificationAdapter.notifyDataSetChanged()
                 updateAppIndicator()
+                updateNoPostsVisibility()
                 // Check if the notificationList is empty
                 if (notificationList.isEmpty()) {
-                    // If empty, show the "noPostsImage" and "noPostsText"
-                    noPostsImage.visibility = View.VISIBLE
-                    noPostsText.visibility = View.VISIBLE
+                    recyclerViewEngageUpdate.visibility = View.GONE
+
                 } else {
-                    // If not empty, hide the "noPostsImage" and "noPostsText"
-                    noPostsImage.visibility = View.GONE
-                    noPostsText.visibility = View.GONE
+                    recyclerViewEngageUpdate.visibility = View.VISIBLE
                 }
                 progressBar.visibility = View.GONE
             }
-
             override fun onCancelled(databaseError: DatabaseError) {
                 progressBar.visibility = View.GONE
             }
@@ -244,7 +255,7 @@ class NotificationFragment : Fragment() {
                 attendedList.sortByDescending { it.attendedStamp }
                 attendedAdapter.notifyDataSetChanged()
                 updateAppIndicator()
-
+                updateNoPostsVisibility()
                 // Check if the attendedList is empty
                 if (attendedList.isEmpty()) {
                     // If empty, hide the RecyclerViewAttended
@@ -253,10 +264,11 @@ class NotificationFragment : Fragment() {
                     // If not empty, show the RecyclerViewAttended
                     RecyclerViewAttended.visibility = View.VISIBLE
                 }
+                progressBar.visibility = View.GONE
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle onCancelled
+                progressBar.visibility = View.GONE
             }
         })
 
@@ -312,18 +324,18 @@ class NotificationFragment : Fragment() {
                 }
                 accountVerificationAdapter.notifyDataSetChanged()
                 updateAppIndicator()
-                // Check if the userList is empty
+                updateNoPostsVisibility()
                 if (userList.isEmpty()) {
-                    // If empty, hide the RecyclerViewSec
                     RecyclerViewAccApproved.visibility = View.GONE
                 } else {
-                    // If not empty, show the RecyclerViewSec
+
                     RecyclerViewAccApproved.visibility = View.VISIBLE
                 }
+                progressBar.visibility = View.GONE
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle onCancelled
+                progressBar.visibility = View.GONE
             }
         })
         databaseReferenceRequestVerify.addValueEventListener(object : ValueEventListener {
@@ -357,15 +369,17 @@ class NotificationFragment : Fragment() {
 
                 requestVerificationAdapter.notifyDataSetChanged()
                 updateAppIndicator()
+                updateNoPostsVisibility()
                 if (requestList.isEmpty()) {
                     RecyclerViewEngagementApproved.visibility = View.GONE
                 } else {
                     RecyclerViewEngagementApproved.visibility = View.VISIBLE
                 }
+                progressBar.visibility = View.GONE
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle onCancelled
+                progressBar.visibility = View.GONE
             }
         })
         databaseReferenceActivePoints.addValueEventListener(object : ValueEventListener {
@@ -418,15 +432,17 @@ class NotificationFragment : Fragment() {
 
                 activePtsAdapter.notifyDataSetChanged()
                 updateAppIndicator()
+                updateNoPostsVisibility()
                 if (ActivePtsList.isEmpty()) {
                     recyclerViewAct.visibility = View.GONE
                 } else {
                     recyclerViewAct.visibility = View.VISIBLE
                 }
+                progressBar.visibility = View.GONE
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle error
+                progressBar.visibility = View.GONE
             }
         })
 
@@ -470,6 +486,7 @@ class NotificationFragment : Fragment() {
                 joinedList.sortByDescending { it.timestamp }
                 engagementJoinedAdapter.notifyDataSetChanged()
                 updateAppIndicator()
+                updateNoPostsVisibility()
                 // Check if the joinedList is empty
                 if (joinedList.isEmpty()) {
                     // If empty, hide the RecyclerView or handle as needed
@@ -478,12 +495,66 @@ class NotificationFragment : Fragment() {
                     // If not empty, show the RecyclerView
                     recyclerViewEngageJoined.visibility = View.VISIBLE
                 }
+                progressBar.visibility = View.GONE
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle onCancelled
+                progressBar.visibility = View.GONE
             }
         })
+        databaseReferenceAccReject.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                rejectedList.clear()
+                val currentUserUid = auth.currentUser?.uid
+
+                for (userSnapshot in dataSnapshot.children) {
+                    if (userSnapshot.key == currentUserUid) {
+                        val rejectReason = userSnapshot.child("rejectReason").getValue(String::class.java)
+                        val rejectTimestamp = userSnapshot.child("rejectTimestamp").getValue(String::class.java)
+
+                        // Add only if rejectReason is not null and verificationStatus is false
+                        if (!rejectReason.isNullOrBlank() && !(userSnapshot.child("verificationStatus").getValue(Boolean::class.java) ?: true)) {
+                            // Parse the rejectTimestamp
+                            val endDateTime = rejectTimestamp?.let { SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(it) }
+
+                            // Continue only if endDateTime is not null
+                            if (endDateTime != null) {
+                                val currentDate = Date()
+                                val calendar = Calendar.getInstance()
+                                calendar.time = endDateTime
+                                calendar.add(Calendar.MONTH, 1)
+
+                                // If currentDate is after 1 month of rejectTimestamp, skip this item
+                                if (currentDate.after(calendar.time)) {
+                                    continue
+                                }
+                                rejectedList.add(AccountRejectAdapter.RejectedData(rejectReason, rejectTimestamp))
+                            }
+                        }
+                    }
+                }
+
+                val rejectedAdapter = AccountRejectAdapter(rejectedList)
+                RecyclerViewAccReject.adapter = rejectedAdapter
+
+                if (rejectedList.isEmpty()) {
+                    RecyclerViewAccReject.visibility = View.GONE
+                } else {
+                    RecyclerViewAccReject.visibility = View.VISIBLE
+                }
+
+                rejectedList.sortByDescending { it.rejectTimestamp }
+                updateAppIndicator()
+                updateNoPostsVisibility()
+                rejectedAdapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                progressBar.visibility = View.GONE
+            }
+        })
+
         val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
         val faback = requireActivity().findViewById<FloatingActionButton>(R.id.faback)
@@ -517,6 +588,32 @@ class NotificationFragment : Fragment() {
         return view
 
     }
+    private fun updateNoPostsVisibility() {
+        val isNotificationListEmpty = notificationList.isEmpty()
+        val isUserListEmpty = userList.isEmpty()
+        val isJoinedListEmpty = joinedList.isEmpty()
+        val isRejectListEmpty = rejectedList.isEmpty()
+        val isActivePtsListEmpty = ActivePtsList.isEmpty()
+        val isRequestListEmpty = requestList.isEmpty()
+        val isAttendedListEmpty = attendedList.isEmpty()
+
+        noPostsImage.visibility = if (isNotificationListEmpty && isUserListEmpty && isJoinedListEmpty &&
+            isActivePtsListEmpty && isRequestListEmpty && isAttendedListEmpty && isRejectListEmpty
+        ) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+
+        noPostsText.visibility = if (isNotificationListEmpty && isUserListEmpty && isJoinedListEmpty &&
+            isActivePtsListEmpty && isRequestListEmpty && isAttendedListEmpty && isRejectListEmpty
+        ) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+    }
+
     private fun isWithinOneMonth(endDateTime: Date): Boolean {
         val calendar = Calendar.getInstance()
         val currentDate = Date()

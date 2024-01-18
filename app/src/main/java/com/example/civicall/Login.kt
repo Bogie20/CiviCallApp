@@ -62,14 +62,32 @@ class Login : AppCompatActivity() {
             @SuppressLint("SimpleDateFormat")
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    startActivity(Intent(this@Login, Dashboard::class.java))
-                    finish()
+                    // User exists, update the login date and time
+                    val loginTimestamp = System.currentTimeMillis()
+                    val loginDateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a")
+                    loginDateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+                    val formattedLoginDate = loginDateFormat.format(loginTimestamp)
+
+                    // Update last login timestamp for existing users
+                    val updateMap: HashMap<String, Any?> = HashMap()
+                    updateMap["lastLogin"] = formattedLoginDate
+
+                    ref.child(uid).updateChildren(updateMap)
+                        .addOnSuccessListener {
+                            startActivity(Intent(this@Login, Dashboard::class.java))
+                            finish()
+                        }
+                        .addOnFailureListener { e ->
+                            showCustomPopupError("Failed updating login info: ${e.message}")
+                        }
                 } else {
+                    // User does not exist, create a new user profile
                     val timestamp = System.currentTimeMillis()
                     val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a")
                     dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
                     val formattedDate = dateFormat.format(timestamp)
 
+                    // Create a new user profile
                     val hashMap: HashMap<String, Any?> = HashMap()
                     hashMap["uid"] = uid
                     hashMap["firstname"] = account?.givenName
@@ -81,9 +99,11 @@ class Login : AppCompatActivity() {
                     hashMap["birthday"] = ""
                     hashMap["course"] = ""
                     hashMap["srcode"] = ""
+                    hashMap["nstp"] = ""
+                    hashMap["ContactEme"] = ""
                     hashMap["yearandSection"] = ""
                     hashMap["gender"] = ""
-                    hashMap["lastLogin"] = ""
+                    hashMap["lastLogin"] = formattedDate
                     hashMap["ImageProfile"] = profileImageUri
                     hashMap["userType"] = ""
                     hashMap["timestamp"] = formattedDate
@@ -94,19 +114,20 @@ class Login : AppCompatActivity() {
                     hashMap["finishactivity"] = 0
 
                     val ref = FirebaseDatabase.getInstance().getReference("Users")
-                    ref.child(uid!!)
-                        .setValue(hashMap)
+                    ref.child(uid).setValue(hashMap)
                         .addOnSuccessListener {
                             startActivity(Intent(this@Login, Dashboard::class.java))
                             finish()
                         }
                         .addOnFailureListener { e ->
-                            showCustomPopupError("Failed Saving User's Info due to ${e.message}")
+                            showCustomPopupError("Failed updating login info: ${e.message}")
                         }
                 }
             }
+
             override fun onCancelled(error: DatabaseError) {
                 // Handle onCancelled event if needed
+                finish()
             }
         })
     }

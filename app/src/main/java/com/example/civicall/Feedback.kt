@@ -1,5 +1,6 @@
 package com.example.civicall
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
@@ -69,9 +70,9 @@ class Feedback : AppCompatActivity() {
             handleCategorySelection("Thank you for asking")
         }
 
-
-        backbtn.setOnClickListener {
-            super.onBackPressed()
+      backbtn.setOnClickListener {
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
         ratingBar.setOnRatingBarChangeListener { _, rating: Float, _ ->
@@ -350,5 +351,12 @@ class Feedback : AppCompatActivity() {
                 ).show()
             }
         })
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        dismissCustomDialog()
+        val intent = Intent(this, MainMenu::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
 }

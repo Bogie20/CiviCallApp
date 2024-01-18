@@ -965,7 +965,9 @@ dismissCustomDialog()
         hashMap["gender"] = spinnerSex
         hashMap["lastLogin"] = ""
         hashMap["course"] = ""
+        hashMap["nstp"] = ""
         hashMap["srcode"] = ""
+        hashMap["ContactEme"] = ""
         hashMap["yearandSection"] = ""
         hashMap["ImageProfile"] = ""
         hashMap["userType"] = userCategory

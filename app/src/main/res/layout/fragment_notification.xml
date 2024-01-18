@@ -23,6 +23,7 @@
                 android:id="@+id/recyclerViewAct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:nestedScrollingEnabled="false"
                 android:scrollbarSize="5dp"
                 android:scrollbars="vertical" />
@@ -32,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false"
                 android:scrollbarSize="5dp"
+                android:visibility="gone"
                 android:scrollbars="vertical" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewEngageUpdate"
@@ -39,11 +41,13 @@
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false"
                 android:scrollbarSize="5dp"
+                android:visibility="gone"
                 android:scrollbars="vertical" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewEngageJoined"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:nestedScrollingEnabled="false"
                 android:scrollbarSize="5dp"
                 android:scrollbars="vertical" />
@@ -53,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false"
                 android:scrollbarSize="5dp"
+                android:visibility="gone"
                 android:scrollbars="vertical" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/RecyclerViewAccApproved"
@@ -60,6 +65,15 @@
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false"
                 android:scrollbarSize="5dp"
+                android:visibility="gone"
+                android:scrollbars="vertical" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerViewAccReject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:scrollbarSize="5dp"
+                android:visibility="gone"
                 android:scrollbars="vertical" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

@@ -3,11 +3,16 @@ package com.example.civicall.AccountVerification
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
@@ -28,11 +33,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.example.civicall.MainMenu
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
+import com.example.civicall.SplashActivity
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -42,6 +49,9 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class UploadVerificationFile : AppCompatActivity() {
     private var fileUri: Uri? = null
@@ -62,7 +72,7 @@ class UploadVerificationFile : AppCompatActivity() {
         FirebaseStorage.getInstance()
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
-        onResume()
+
         val sendBtn = findViewById<TextView>(R.id.sendbtn)
         sendBtn.setOnClickListener {
             // Get the ID of the selected radio button from the radio group
@@ -181,8 +191,57 @@ class UploadVerificationFile : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
+        onResume()
     }
+    private fun sendPushNotification() {
+        val title = "Confirmation"
+        val body = "You have already submitted credentials for the verification of your account. Please wait until the admin verifies your account."
 
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        // Create an intent that opens your main activity
+        val intent = Intent(this, SplashActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            intent,
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val channelId = "confirm_channel"
+        val channelName = "Confirmation"
+
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(title)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)  // Removes the notification when clicked
+
+        // Check if body is not null or empty before using BigTextStyle
+        if (!body.isNullOrBlank()) {
+            val bigTextStyle = NotificationCompat.BigTextStyle()
+                .bigText(body)
+            notificationBuilder.setStyle(bigTextStyle)
+        }
+
+        // Always create the NotificationChannel on devices running Android Oreo and above
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(
+                channelId,
+                channelName,
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // Generate a unique notification ID
+        val notificationId = System.currentTimeMillis().toInt()
+
+        // Display the notification
+        notificationManager.notify(notificationId, notificationBuilder.build())
+    }
     private var isNoInternetDialogShowing = false
     private fun showNoInternetPopup() {
         isNoInternetDialogShowing = true
@@ -203,9 +262,6 @@ class UploadVerificationFile : AppCompatActivity() {
         }
         dialog.show()
     }
-
-
-
     private fun checkVerificationStatus() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
@@ -214,20 +270,19 @@ class UploadVerificationFile : AppCompatActivity() {
             val usersRef = database.getReference("User Verification")
             val currentUserRef = usersRef.child(userId)
 
-            currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            currentUserRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
                         showMessage(
                             "Verification submitted already. Pending admin approval",
                             4000,
-                            "Verifying Account",
+                            "Pending",
                             R.drawable.papermani,
                             R.layout.dialog_happyface
                         )
                         hasUserUploadedVerification = true
                     }
                 }
-
                 override fun onCancelled(error: DatabaseError) {
                     Log.e("UploadVerificationFile", "Error checking user verification status: ${error.message}")
                 }
@@ -243,7 +298,7 @@ class UploadVerificationFile : AppCompatActivity() {
             val usersRef = database.getReference("Users")
             val currentUserRef = usersRef.child(userId)
 
-            currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            currentUserRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
                         val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java)
@@ -282,6 +337,9 @@ class UploadVerificationFile : AppCompatActivity() {
         customDialogImageResId: Int?,
         customDialogLayoutResId: Int?
     ) {
+        if (isFinishing || isDestroyed) {
+            return
+        }
         if (isAlreadyJoinDialogShowing) {
             return
         }
@@ -493,6 +551,7 @@ class UploadVerificationFile : AppCompatActivity() {
                     imageData["timestamp"] = timestamp // Save the timestamp
                     categoryRef.child("image").setValue(imageData)
 
+                    sendPushNotification()
                     showMessage(
                         "Image Uploaded Successfully",
                         3000,
@@ -696,9 +755,14 @@ class UploadVerificationFile : AppCompatActivity() {
         val storage = FirebaseStorage.getInstance()
         val storageRef = storage.reference
 
-        val timestamp = System.currentTimeMillis().toString()
+        val timestamp = System.currentTimeMillis()
+        val formattedTimestamp = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(
+            Date(timestamp)
+        )
+
+        // Update the reference structure
         val fileRef =
-            storageRef.child("User_Verification_File/${FirebaseAuth.getInstance().currentUser?.uid ?: ""}/$category/${timestamp}_$fileName")
+            storageRef.child("User_Verification/${FirebaseAuth.getInstance().currentUser?.uid ?: ""}/$category/$fileName")
 
         // Upload the file to Firebase Storage
         fileRef.putFile(fileUri)
@@ -712,12 +776,13 @@ class UploadVerificationFile : AppCompatActivity() {
                         FirebaseAuth.getInstance().currentUser?.uid ?: ""
                     )
 
+                    // Update the data structure
                     val categoryRef = currentUser.child(category)
                     val fileData = HashMap<String, Any>()
                     fileData["fileUri"] = downloadUri.toString() // Save the download URL
-                    fileData["timestamp"] = timestamp // Save the timestamp
-                    categoryRef.child(fileName).setValue(fileData)
-
+                    fileData["timestamp"] = formattedTimestamp // Save the formatted timestamp
+                    categoryRef.child("file").setValue(fileData)
+                    sendPushNotification()
                     showMessage(
                         "File Uploaded Successfully",
                         3000,
@@ -733,6 +798,7 @@ class UploadVerificationFile : AppCompatActivity() {
                     .show()
             }
     }
+
     override fun onBackPressed() {
         if (isAlreadyJoinDialogShowing) {
             dismissCustomDialog()
