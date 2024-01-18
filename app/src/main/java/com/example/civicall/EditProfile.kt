@@ -580,9 +580,6 @@ class EditProfile : AppCompatActivity() {
         if (isSaveConfirmationDialogShowing) {
             return
         }
-        if (isFinishing || isDestroyed) {
-            return
-        }
         dismissCustomDialog()
         val dialogView = layoutInflater.inflate(R.layout.dialog_confirmation, null)
         val alertDialog = AlertDialog.Builder(this)
@@ -629,9 +626,6 @@ class EditProfile : AppCompatActivity() {
         if (isPopupShowing) {
             return
         }
-        if (isFinishing || isDestroyed) {
-            return
-        }
 
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
@@ -668,10 +662,6 @@ class EditProfile : AppCompatActivity() {
         if (isPopupShowing) {
             return
         }
-        if (isFinishing || isDestroyed) {
-            return
-        }
-
         dismissCustomDialog()
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
@@ -707,10 +697,6 @@ class EditProfile : AppCompatActivity() {
         if (isPopupShowing) {
             return
         }
-        if (isFinishing || isDestroyed) {
-            return
-        }
-
         dismissCustomDialog()
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
