@@ -49,6 +49,9 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class UploadVerificationFile : AppCompatActivity() {
     private var fileUri: Uri? = null
@@ -69,7 +72,7 @@ class UploadVerificationFile : AppCompatActivity() {
         FirebaseStorage.getInstance()
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
-        onResume()
+
         val sendBtn = findViewById<TextView>(R.id.sendbtn)
         sendBtn.setOnClickListener {
             // Get the ID of the selected radio button from the radio group
@@ -188,6 +191,7 @@ class UploadVerificationFile : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
+        onResume()
     }
     private fun sendPushNotification() {
         val title = "Confirmation"
@@ -748,7 +752,10 @@ class UploadVerificationFile : AppCompatActivity() {
         val storage = FirebaseStorage.getInstance()
         val storageRef = storage.reference
 
-        val timestamp = System.currentTimeMillis().toString()
+        val timestamp = System.currentTimeMillis()
+        val formattedTimestamp = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(
+            Date(timestamp)
+        )
 
         // Update the reference structure
         val fileRef =
@@ -770,7 +777,7 @@ class UploadVerificationFile : AppCompatActivity() {
                     val categoryRef = currentUser.child(category)
                     val fileData = HashMap<String, Any>()
                     fileData["fileUri"] = downloadUri.toString() // Save the download URL
-                    fileData["timestamp"] = timestamp // Save the timestamp
+                    fileData["timestamp"] = formattedTimestamp // Save the formatted timestamp
                     categoryRef.child("file").setValue(fileData)
                     sendPushNotification()
                     showMessage(
