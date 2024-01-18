@@ -7,6 +7,7 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -108,7 +109,8 @@ class ActivePointsEarned : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle error
+                val errorMessage = "Error!! Check Internet Connection: ${databaseError.message}"
+                Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
             }
         })
     }

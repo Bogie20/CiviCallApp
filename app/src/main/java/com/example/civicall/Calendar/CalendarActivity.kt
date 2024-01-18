@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.CalendarView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -151,7 +152,8 @@ class CalendarActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Handle onCancelled
+                val errorMessage = "Error!! Check Internet Connection: ${error.message}"
+                Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
             }
         })
 

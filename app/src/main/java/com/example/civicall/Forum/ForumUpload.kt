@@ -132,7 +132,8 @@ class ForumUpload : AppCompatActivity() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    // Handle the error as needed
+                    val errorMessage = "Error!! Check Internet Connection: ${error.message}"
+                    Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
                 }
             })
         }
@@ -183,7 +184,8 @@ class ForumUpload : AppCompatActivity() {
                         }
 
                         override fun onCancelled(error: DatabaseError) {
-                            // Handle the error as needed
+                            val errorMessage = "Error!! Check Internet Connection: ${error.message}"
+                            Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
                         }
                     })
                 }

@@ -232,7 +232,8 @@ class DetailPost : AppCompatActivity() {
                                                 }
 
                                                 override fun onCancelled(databaseError: DatabaseError) {
-                                                    // Handle onCancelled if needed
+                                                    val errorMessage = "Error!! Check Internet Connection: ${databaseError.message}"
+                                                    Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
                                                 }
                                             })
                                     } else {
@@ -808,14 +809,16 @@ class DetailPost : AppCompatActivity() {
                                                     }
 
                                                     override fun onCancelled(databaseError: DatabaseError) {
-                                                        // Handle onCancelled
+                                                        val errorMessage = "Error!! Check Internet Connection: ${databaseError.message}"
+                                                        Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
                                                     }
                                                 })
                                             }
                                         }
 
                                         override fun onCancelled(databaseError: DatabaseError) {
-                                            // Handle onCancelled
+                                            val errorMessage = "Error!! Check Internet Connection: ${databaseError.message}"
+                                            Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
                                         }
                                     })
 
@@ -836,7 +839,8 @@ class DetailPost : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle onCancelled
+                val errorMessage = "Error!! Check Internet Connection: ${databaseError.message}"
+                Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -859,13 +863,15 @@ class DetailPost : AppCompatActivity() {
                             }
 
                             override fun onCancelled(databaseError: DatabaseError) {
-                                // Handle onCancelled
+                                val errorMessage = "Error!! Check Internet Connection: ${databaseError.message}"
+                                Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
                             }
                         })
                     }
 
                     override fun onCancelled(databaseError: DatabaseError) {
-                        // Handle onCancelled
+                        val errorMessage = "Error!! Check Internet Connection: ${databaseError.message}"
+                        Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
                     }
                 })
         }
@@ -1261,7 +1267,8 @@ class DetailPost : AppCompatActivity() {
                                     }
 
                                     override fun onCancelled(participantsError: DatabaseError) {
-                                        // Handle onCancelled for Participants
+                                        val errorMessage = "Error!! Check Internet Connection: ${participantsError.message}"
+                                        Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
                                     }
                                 })
 
@@ -1353,7 +1360,8 @@ class DetailPost : AppCompatActivity() {
                         }
 
                         override fun onCancelled(participantsError: DatabaseError) {
-                            // Handle onCancelled for participants
+                            val errorMessage = "Error!! Check Internet Connection: ${participantsError.message}"
+                            Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
                         }
                     })
                 }

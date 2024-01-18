@@ -285,6 +285,9 @@ class UploadVerificationFile : AppCompatActivity() {
                 }
                 override fun onCancelled(error: DatabaseError) {
                     Log.e("UploadVerificationFile", "Error checking user verification status: ${error.message}")
+
+                    val errorMessage = "Error!! Check Internet Connection: ${error.message}"
+                    Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
                 }
             })
         }
@@ -323,6 +326,8 @@ class UploadVerificationFile : AppCompatActivity() {
 
                 override fun onCancelled(error: DatabaseError) {
                     Log.e("UploadVerificationFile", "Error checking user verification status: ${error.message}")
+                    val errorMessage = "Error!! Check Internet Connection: ${error.message}"
+                    Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
                 }
             })
         }

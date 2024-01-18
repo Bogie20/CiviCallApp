@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -145,13 +146,15 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                             }
 
                             override fun onCancelled(databaseError: DatabaseError) {
-                                // Handle error
+                                val errorMessage = "Error!! Check Internet Connection: ${databaseError.message}"
+                                Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
                             }
                         })
                     }
 
                     override fun onCancelled(databaseError: DatabaseError) {
-                        // Handle error
+                        val errorMessage = "Error!! Check Internet Connection: ${databaseError.message}"
+                        Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
                     }
                 })
         }
@@ -340,7 +343,8 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-                    // Handle error
+                    val errorMessage = "Error!! Check Internet Connection: ${databaseError.message}"
+                    Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
                 }
             })
         }
