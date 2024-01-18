@@ -224,4 +224,10 @@ class Dashboard : AppCompatActivity() {
         super.onDestroy()
         networkUtils.cleanup() // Clean up when the activity is destroyed
     }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainMenu::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
+    }
 }
