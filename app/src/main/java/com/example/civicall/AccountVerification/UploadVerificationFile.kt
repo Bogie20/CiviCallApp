@@ -286,8 +286,7 @@ class UploadVerificationFile : AppCompatActivity() {
                 override fun onCancelled(error: DatabaseError) {
                     Log.e("UploadVerificationFile", "Error checking user verification status: ${error.message}")
 
-                    val errorMessage = "Error!! Check Internet Connection: ${error.message}"
-                    Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
+                    handleDatabaseError(error)
                 }
             })
         }
@@ -326,13 +325,18 @@ class UploadVerificationFile : AppCompatActivity() {
 
                 override fun onCancelled(error: DatabaseError) {
                     Log.e("UploadVerificationFile", "Error checking user verification status: ${error.message}")
-                    val errorMessage = "Error!! Check Internet Connection: ${error.message}"
-                    Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
+                    handleDatabaseError(error)
                 }
             })
         }
     }
+    private fun handleDatabaseError(databaseError: DatabaseError) {
+        val errorMessage = "Database error: ${databaseError.message}"
 
+        Log.e("UploadVerificationFile", errorMessage)
+
+        Toast.makeText(this@UploadVerificationFile, errorMessage, Toast.LENGTH_SHORT).show()
+    }
     private var isAlreadyJoinDialogShowing = false
 
     private fun showMessage(

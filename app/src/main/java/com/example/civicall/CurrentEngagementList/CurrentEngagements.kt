@@ -3,7 +3,9 @@ package com.example.civicall.CurrentEngagementList
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -98,7 +100,11 @@ class CurrentEngagements : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Handle onCancelled
+                val errorMessage = "Database error: ${error.message}"
+
+                Log.e("CurrentEngagements", errorMessage)
+
+                Toast.makeText(this@CurrentEngagements, errorMessage, Toast.LENGTH_SHORT).show()
             }
         })
     }

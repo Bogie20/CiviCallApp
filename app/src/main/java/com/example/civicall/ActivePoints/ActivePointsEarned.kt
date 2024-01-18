@@ -3,6 +3,7 @@ package com.example.civicall.ActivePoints
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
@@ -109,8 +110,11 @@ class ActivePointsEarned : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                val errorMessage = "Error!! Check Internet Connection: ${databaseError.message}"
-                Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
+                val errorMessage = "Database error: ${databaseError.message}"
+
+                Log.e("ActivePointsEarned", errorMessage)
+
+                Toast.makeText(this@ActivePointsEarned, errorMessage, Toast.LENGTH_SHORT).show()
             }
         })
     }

@@ -132,8 +132,7 @@ class ForumUpload : AppCompatActivity() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    val errorMessage = "Error!! Check Internet Connection: ${error.message}"
-                    Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
+                handleDatabaseError(error)
                 }
             })
         }
@@ -184,8 +183,7 @@ class ForumUpload : AppCompatActivity() {
                         }
 
                         override fun onCancelled(error: DatabaseError) {
-                            val errorMessage = "Error!! Check Internet Connection: ${error.message}"
-                            Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
+                          handleDatabaseError(error)
                         }
                     })
                 }
@@ -196,6 +194,13 @@ class ForumUpload : AppCompatActivity() {
                 }
             }
         }
+    }
+    private fun handleDatabaseError(databaseError: DatabaseError) {
+        val errorMessage = "Database error: ${databaseError.message}"
+
+        Log.e("ForumUpload", errorMessage)
+
+        Toast.makeText(this@ForumUpload, errorMessage, Toast.LENGTH_SHORT).show()
     }
     private var isNoInternetDialogShowing = false
     private fun showNoInternetPopup() {

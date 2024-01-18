@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import android.view.View
@@ -125,11 +126,17 @@ class Login : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                val errorMessage = "Error!! Check Internet Connection: ${error.message}"
-                Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
+             handleDatabaseError(error)
                 finish()
             }
         })
+    }
+    private fun handleDatabaseError(databaseError: DatabaseError) {
+        val errorMessage = "Database error: ${databaseError.message}"
+
+        Log.e("Login", errorMessage)
+
+        Toast.makeText(this@Login, errorMessage, Toast.LENGTH_SHORT).show()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -505,8 +512,7 @@ class Login : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                val errorMessage = "Error!! Check Internet Connection: ${error.message}"
-                Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
+                handleDatabaseError(error)
                 finish()
             }
         })
@@ -579,8 +585,7 @@ class Login : AppCompatActivity() {
                     }
 
                     override fun onCancelled(error: DatabaseError) {
-                        val errorMessage = "Error!! Check Internet Connection: ${error.message}"
-                        Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
+                        handleDatabaseError(error)
                         finish()
 
                     }

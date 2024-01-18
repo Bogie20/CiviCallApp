@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -146,15 +147,13 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                             }
 
                             override fun onCancelled(databaseError: DatabaseError) {
-                                val errorMessage = "Error!! Check Internet Connection: ${databaseError.message}"
-                                Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
+                                handleDatabaseError(databaseError)
                             }
                         })
                     }
 
                     override fun onCancelled(databaseError: DatabaseError) {
-                        val errorMessage = "Error!! Check Internet Connection: ${databaseError.message}"
-                        Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
+                        handleDatabaseError(databaseError)
                     }
                 })
         }
@@ -343,13 +342,18 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-                    val errorMessage = "Error!! Check Internet Connection: ${databaseError.message}"
-                    Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
+              handleDatabaseError(databaseError)
                 }
             })
         }
     }
+    private fun handleDatabaseError(databaseError: DatabaseError) {
+        val errorMessage = "Database error: ${databaseError.message}"
 
+        Log.e("RecognitionLeaderBoard", errorMessage)
+
+        Toast.makeText(this@RecognitionLeaderBoard, errorMessage, Toast.LENGTH_SHORT).show()
+    }
     private fun showNoPostsMessage(campus: String) {
         noPostsImage.setImageResource(R.drawable.leaderboard)
         noPostsText.text = "There are no lists from \"$campus\" that are currently available."

@@ -21,6 +21,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.InputType
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -191,8 +192,11 @@ class Upload_engagement : AppCompatActivity() {
                         }
 
                         override fun onCancelled(error: DatabaseError) {
-                            val errorMessage = "Error!! Check Internet Connection: ${error.message}"
-                            Toast.makeText(applicationContext, errorMessage, Toast.LENGTH_SHORT).show()
+                            val errorMessage = "Database error: ${error.message}"
+
+                            Log.e("Upload_engagement", errorMessage)
+
+                            Toast.makeText(this@Upload_engagement, errorMessage, Toast.LENGTH_SHORT).show()
                         }
                     })
                 }
