@@ -46,7 +46,6 @@ class NetworkUtils(private val context: Context) {
                     }
                 }
             }
-
             override fun onLost(network: Network) {
                 super.onLost(network)
                 if (isOnline) {

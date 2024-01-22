@@ -122,8 +122,22 @@ class ForumAdapter(
                             data.commentCount = commentCount
 
                             holder.updateCommentCount(commentCount)
+
                             val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
-                            postRef.child("commentCount").setValue(commentCount)
+
+                            // Check if the post exists before updating the comment count in the database
+                            postRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                                override fun onDataChange(postSnapshot: DataSnapshot) {
+                                    if (postSnapshot.exists()) {
+                                        // Only update the comment count in the database if the post exists
+                                        postRef.child("commentCount").setValue(commentCount)
+                                    }
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {
+                                    // Handle onCancelled as needed
+                                }
+                            })
                         }
                     }
 
@@ -134,6 +148,8 @@ class ForumAdapter(
             }
         }
     }
+
+
 
     private var isOptionDialogShowing = false
 
