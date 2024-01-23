@@ -593,9 +593,11 @@ class Upload_engagement : AppCompatActivity() {
             ).show()
             return
         }
+        val fileName = System.currentTimeMillis().toString()
 
+        // Create a reference to the Firebase Storage with the generated file name
         val storageReference = FirebaseStorage.getInstance().getReference()
-            .child("Poster Civic Images").child(uri?.lastPathSegment!!)
+            .child("Poster Civic Images").child(fileName)
 
         val builder = AlertDialog.Builder(this@Upload_engagement)
         builder.setCancelable(false)
