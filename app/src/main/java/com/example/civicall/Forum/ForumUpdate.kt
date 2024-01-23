@@ -169,8 +169,9 @@ class ForumUpdate: AppCompatActivity() {
 
         if (uri != null) {
             val fileName = System.currentTimeMillis().toString() + "_forumImage"
-            storageReference = FirebaseStorage.getInstance().reference.child("Forum Post Images")
-                .child(fileName)
+            val storageReference = FirebaseStorage.getInstance().getReference()
+                .child("Forum Post Images").child(fileName)
+
 
             storageReference.putFile(uri!!)
                 .addOnSuccessListener { taskSnapshot ->
@@ -333,7 +334,7 @@ class ForumUpdate: AppCompatActivity() {
     }
     private fun getCurrentDateTime(): String {
         val timeZone = TimeZone.getTimeZone("Asia/Manila")
-        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        val simpleDateFormat = SimpleDateFormat("MM/dd/yyy hh:mm a", Locale.getDefault())
         simpleDateFormat.timeZone = timeZone
         return simpleDateFormat.format(Date())
     }
