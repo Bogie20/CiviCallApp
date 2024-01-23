@@ -261,8 +261,10 @@ class Update_engagement: AppCompatActivity() {
         dialog.show()
 
         if (uri != null) {
+
+            val fileName = System.currentTimeMillis().toString() + "_civicImage"
             storageReference = FirebaseStorage.getInstance().reference.child("Poster Civic Images")
-                .child(uri?.lastPathSegment!!)
+                .child(fileName)
 
             storageReference.putFile(uri!!).addOnSuccessListener { taskSnapshot ->
                 val uriTask = taskSnapshot.storage.downloadUrl
@@ -347,8 +349,6 @@ class Update_engagement: AppCompatActivity() {
         btnSelectCampus.setOnClickListener {
             val selectedCampuses = checkBoxes.filter { it.isChecked }.map { it.text.toString() }
             val selectedCampusesText = selectedCampuses.joinToString(", ")
-
-            // Set the selected campuses in the AutoCompleteTextView
             binding.updateCampus.setText(selectedCampusesText)
 
             alertDialog.dismiss()

@@ -553,9 +553,9 @@ class ForumUpload : AppCompatActivity() {
             // No image selected, proceed without uploading an image
             uploadData(null)
         } else {
-            // Image is selected, proceed with image upload
+            val fileName = System.currentTimeMillis().toString() + "_forumImage"
             val storageReference = FirebaseStorage.getInstance().getReference()
-                .child("Forum Post Images").child(uri?.lastPathSegment!!)
+                .child("Forum Post Images").child(fileName)
 
             val builder = AlertDialog.Builder(this@ForumUpload)
             builder.setCancelable(false)

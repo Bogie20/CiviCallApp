@@ -168,8 +168,9 @@ class ForumUpdate: AppCompatActivity() {
         dialog.show()
 
         if (uri != null) {
+            val fileName = System.currentTimeMillis().toString() + "_forumImage"
             storageReference = FirebaseStorage.getInstance().reference.child("Forum Post Images")
-                .child(uri?.lastPathSegment!!)
+                .child(fileName)
 
             storageReference.putFile(uri!!)
                 .addOnSuccessListener { taskSnapshot ->

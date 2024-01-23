@@ -593,7 +593,7 @@ class Upload_engagement : AppCompatActivity() {
             ).show()
             return
         }
-        val fileName = System.currentTimeMillis().toString()
+        val fileName = System.currentTimeMillis().toString() + "_civicImage"
 
         // Create a reference to the Firebase Storage with the generated file name
         val storageReference = FirebaseStorage.getInstance().getReference()
