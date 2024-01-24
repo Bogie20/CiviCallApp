@@ -69,7 +69,7 @@ class FinishActivity : AppCompatActivity() {
                         val postKey = engagementSnapshot.key ?: ""
                         val finishData = DataClassFinish(
                             engagementSnapshot.child("image").getValue(String::class.java) ?: "",
-                            engagementSnapshot.child("title").getValue(String::class.java) ?: "",
+                            engagementSnapshot.child("titleEvent").getValue(String::class.java) ?: "",
                             engagementSnapshot.child("location").getValue(String::class.java) ?: "",
                             engagementSnapshot.child("category").getValue(String::class.java) ?: "",
                             startDate,

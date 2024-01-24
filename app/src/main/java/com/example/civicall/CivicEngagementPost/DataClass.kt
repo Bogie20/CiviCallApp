@@ -3,7 +3,7 @@ package com.example.civicall.CivicEngagementPost
 class DataClass {
     var uploadersUID: String? = null
     var category: String? = null
-    var title: String? = null
+    var titleEvent: String? = null
     var startDate: String? = null
     var endDate: String? = null
     var location: String? = null
@@ -29,7 +29,7 @@ class DataClass {
     constructor(
         uploadersuid: String?,
         category: String?,
-        title: String?,
+        titleEvent: String?,
         startDate: String?,
         endDate: String?,
         location: String?,
@@ -51,7 +51,7 @@ class DataClass {
     ) {
         this.uploadersUID = uploadersuid
         this.category = category
-        this.title = title
+        this.titleEvent = titleEvent
         this.startDate = startDate
         this.endDate = endDate
         this.location = location

@@ -658,7 +658,7 @@ class Upload_engagement : AppCompatActivity() {
     }
 
     private fun uploadData() {
-        val title = uploadTitle.text.toString()
+        val titleEvent = uploadTitle.text.toString()
         val startdate = uploadStartDate.text.toString()
         val enddate = uploadEndDate.text.toString()
         val location = uploadLocation.text.toString()
@@ -691,7 +691,7 @@ class Upload_engagement : AppCompatActivity() {
                 val dataClass = DataClass(
                     uploadersId,
                     category,
-                    title,
+                    titleEvent,
                     startdate,
                     enddate,
                     location,

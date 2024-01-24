@@ -216,13 +216,13 @@ class DetailPost : AppCompatActivity() {
                                                             showCancelConfirmationDialog(
                                                                 reference,
                                                                 currentUserId,
-                                                                dataSnapshot.child("title").getValue(String::class.java) ?: "",
+                                                                dataSnapshot.child("titleEvent").getValue(String::class.java) ?: "",
                                                             )
                                                         } else {
                                                             showJoinConfirmationDialog(
                                                                 reference,
                                                                 currentUserId,
-                                                                dataSnapshot.child("title").getValue(String::class.java) ?: "",
+                                                                dataSnapshot.child("titleEvent").getValue(String::class.java) ?: "",
                                                                 dataSnapshot.child("startDate").getValue(String::class.java) ?: ""
                                                             )
 

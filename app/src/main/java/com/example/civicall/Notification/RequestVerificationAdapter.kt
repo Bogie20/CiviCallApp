@@ -47,7 +47,7 @@ class RequestVerificationAdapter(private val requestList: List<RequestData>) :
 
 
         holder.approveTimeStamp.text = "Since: ${currentRequest.approveTimeStamp}"
-        holder.title.text = "Title: ${currentRequest.title}"
+        holder.title.text = "Title: ${currentRequest.titleEvent}"
         holder.category.text = "Category: ${currentRequest.category}"
 
         holder.recImage.setImageResource(R.drawable.approved)
@@ -65,7 +65,7 @@ class RequestVerificationAdapter(private val requestList: List<RequestData>) :
     }
 
     data class RequestData(
-        val title: String,
+        val titleEvent: String,
         val category: String,
         val approveTimeStamp: String
     )

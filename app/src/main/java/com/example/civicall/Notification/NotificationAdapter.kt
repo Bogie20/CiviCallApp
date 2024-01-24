@@ -38,7 +38,7 @@ class NotificationAdapter(private val notificationList: List<DataClassNotif>) :
         val currentItem = notificationList[position]
 
         holder.categoryTextView.text = "Category: ${currentItem.category}"
-        holder.recTitle.text = currentItem.title
+        holder.recTitle.text = currentItem.titleEvent
         holder.schedule.text = "${currentItem.startDate} - ${currentItem.endDate}"
 
         val calendar = Calendar.getInstance()

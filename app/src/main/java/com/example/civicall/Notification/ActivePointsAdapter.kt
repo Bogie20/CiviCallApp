@@ -47,7 +47,7 @@ class ActivePointsAdapter(private val requestList: List<ActiveData>) :
         holder.label.text = "You have earned Active Points."
 
         holder.dateandTime.text = "Since: ${currentRequest.receivedStamp}"
-        holder.titleEngagement.text = "Title: ${currentRequest.title}"
+        holder.titleEngagement.text = "Title: ${currentRequest.titleEvent}"
         holder.activeptsEarned.text = "Claimed: ${currentRequest.activepts} pts"
 
         holder.recImage.setImageResource(R.drawable.rate)
@@ -65,7 +65,7 @@ class ActivePointsAdapter(private val requestList: List<ActiveData>) :
 
     data class ActiveData(
         val postKey: String,
-        val title: String,
+        val titleEvent: String,
         val activepts: Int,
         val receivedStamp: String
     )

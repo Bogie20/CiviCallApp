@@ -61,7 +61,7 @@ class Update_engagement: AppCompatActivity() {
     private lateinit var updateCategory: AutoCompleteTextView
     private lateinit var updatePaymentMethod: AutoCompleteTextView
     private lateinit var networkUtils: NetworkUtils
-    private var title: String = ""
+    private var titleEvent: String = ""
     private var paymentrecipient: String = ""
     private var objective: String = ""
     private var instruction: String = ""
@@ -445,7 +445,7 @@ class Update_engagement: AppCompatActivity() {
     }
 
     private fun updateData() {
-        title = updateTitle.text.toString().trim()
+        titleEvent = updateTitle.text.toString().trim()
         startdate = updateStartDate.text.toString().trim()
         enddate = updateEndDate.text.toString().trim()
         location = updateLocation.text.toString()
@@ -470,7 +470,7 @@ class Update_engagement: AppCompatActivity() {
             val dataClass = DataClass(
                 uploadersId,
                 category,
-                title,
+                titleEvent,
                 startdate,
                 enddate,
                 location,
@@ -511,7 +511,7 @@ class Update_engagement: AppCompatActivity() {
             val dataClass = DataClass(
                 uploadersId,
                 category,
-                title,
+                titleEvent,
                 startdate,
                 enddate,
                 location,

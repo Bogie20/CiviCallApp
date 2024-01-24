@@ -104,7 +104,7 @@ class CalendarActivity : AppCompatActivity() {
 
                     val engagementData = CalendarData(
                         snapshot.child("image").value.toString(),
-                        snapshot.child("title").value.toString(),
+                        snapshot.child("titleEvent").value.toString(),
                         snapshot.child("location").value.toString(),
                         startDate,
                         endDate,

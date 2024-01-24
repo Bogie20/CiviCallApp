@@ -46,7 +46,7 @@ class AttendedAdapter(private val attendedList: List<AttendedData>) :
         holder.label.text = "Attendance confirmed! Rate to claim points."
 
         holder.dateAndTime.text = "Since: ${currentAttendedEvent.attendedStamp}"
-        holder.title.text = "Title: ${currentAttendedEvent.title}"
+        holder.title.text = "Title: ${currentAttendedEvent.titleEvent}"
         holder.category.text = "Category: ${currentAttendedEvent.category}"
         holder.recImage.setImageResource(R.drawable.attendednotif)
         holder.categoryTextView.visibility = View.GONE
@@ -63,7 +63,7 @@ class AttendedAdapter(private val attendedList: List<AttendedData>) :
 
     data class AttendedData(
         val postKey: String,
-        val title: String,
+        val titleEvent: String,
         val category: String,
         val attendedStamp: String
     )
