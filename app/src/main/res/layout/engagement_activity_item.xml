@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:lineSpacingExtra="2dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="17dp"
                 android:maxLines="2"
                 android:ellipsize="end"
                 android:fontFamily="@font/lexend_semibold"
