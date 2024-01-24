@@ -126,17 +126,9 @@ class Login : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-             handleDatabaseError(error)
                 finish()
             }
         })
-    }
-    private fun handleDatabaseError(databaseError: DatabaseError) {
-        val errorMessage = "Database error: ${databaseError.message}"
-
-        Log.e("Login", errorMessage)
-
-        Toast.makeText(this@Login, errorMessage, Toast.LENGTH_SHORT).show()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -512,7 +504,6 @@ class Login : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                handleDatabaseError(error)
                 finish()
             }
         })
@@ -585,7 +576,6 @@ class Login : AppCompatActivity() {
                     }
 
                     override fun onCancelled(error: DatabaseError) {
-                        handleDatabaseError(error)
                         finish()
 
                     }
