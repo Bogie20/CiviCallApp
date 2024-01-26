@@ -235,7 +235,6 @@ class NotificationFragment : Fragment() {
                         val attendedStamp = participantsRef.child(currentUserUid).child("attendedStamp").value?.toString()
                         val endDateTime = attendedStamp?.let { SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(it) }
 
-                        // Continue only if endDateTime is not null
                         if (endDateTime != null) {
                             val currentDate = Date()
                             val calendar = Calendar.getInstance()

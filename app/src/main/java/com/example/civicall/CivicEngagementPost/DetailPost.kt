@@ -751,9 +751,10 @@ class DetailPost : AppCompatActivity() {
                                         "amount" to amount.toDouble(),
                                         "contributionStatus" to false,
                                         "imageUri" to downloadUri.toString(),
-                                        "timestamp" to timestamp
+                                        "timestamp" to SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date())
                                     )
                                 )
+
                                 // Update "Participants" node
                                 val participantsRef =
                                     FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
@@ -765,52 +766,23 @@ class DetailPost : AppCompatActivity() {
                                         "timestamp" to SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date())
                                     )
                                 )
+                                val fundCollectedRef =
+                                    FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                                        .child("fundcollected")
 
-                                transparencyImageRef.child("contributionStatus")
-                                    .addValueEventListener(object : ValueEventListener {
-                                        override fun onDataChange(dataSnapshot: DataSnapshot) {
-                                            val contributionStatus = dataSnapshot.getValue(Boolean::class.java) ?: false
+                                fundCollectedRef.addValueEventListener(object : ValueEventListener {
+                                    override fun onDataChange(currentDataSnapshot: DataSnapshot) {
+                                        val currentFundCollected = currentDataSnapshot.getValue(Double::class.java) ?: 0.0
 
-                                            if (contributionStatus) {
-                                                // If contributionStatus is true, update "Participants" node
-                                                participantsRef.setValue(
-                                                    mapOf(
-                                                        "receivedStamp" to SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date()),
-                                                        "joined" to true,
-                                                        "timestamp" to SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date())
-                                                    )
-                                                )
+                                        // Do not update the fundCollectedRef, only reflect its value
+                                        val formattedFundCollected = String.format("%.2f", currentFundCollected)
+                                        detailFundCollected.text = "$formattedFundCollected"
+                                    }
 
-                                                // Increment active points for the user
-                                                incrementActivePointsForUser(currentUserUid)
-
-                                                // Update "fundcollected"
-                                                val fundCollectedRef = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
-                                                    .child("fundcollected")
-
-                                                fundCollectedRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                                                    override fun onDataChange(currentDataSnapshot: DataSnapshot) {
-                                                        val currentFundCollected = currentDataSnapshot.getValue(Double::class.java) ?: 0.0
-
-                                                        val updatedFundCollected = currentFundCollected + amount.toDouble()
-                                                        fundCollectedRef.setValue(updatedFundCollected)
-
-                                                        val formattedFundCollected = String.format("%.2f", updatedFundCollected)
-                                                        detailFundCollected.text = "$formattedFundCollected"
-                                                    }
-
-                                                    override fun onCancelled(databaseError: DatabaseError) {
-                                                        handleDatabaseError(databaseError)
-                                                    }
-                                                })
-                                            }
-                                        }
-
-                                        override fun onCancelled(databaseError: DatabaseError) {
-                                            handleDatabaseError(databaseError)
-                                        }
-                                    })
-
+                                    override fun onCancelled(databaseError: DatabaseError) {
+                                        handleDatabaseError(databaseError)
+                                    }
+                                })
                                 showMessage(
                                     "Awaiting admin verification, thank you for your patience.",
                                     4000,
@@ -832,6 +804,7 @@ class DetailPost : AppCompatActivity() {
             }
         })
     }
+
 
     private fun incrementActivePointsForUser(uid: String) {
             // Fetch the current activepoints value in Upload Engagement
