@@ -85,6 +85,7 @@ class DetailPost : AppCompatActivity() {
     private lateinit var detailPaymentRecipient: TextView
     private lateinit var detailFundCollected: TextView
     private lateinit var detailCurrentParty: TextView
+    private lateinit var detailCurrentPartyLabel: TextView
     private lateinit var deleteButton: FloatingActionButton
     private lateinit var editButton: FloatingActionButton
     private lateinit var fabMenu: FloatingActionMenu
@@ -128,6 +129,7 @@ class DetailPost : AppCompatActivity() {
         fabMenu = findViewById(R.id.fabicon)
         joinButton = findViewById(R.id.joinButton)
         detailCurrentParty = findViewById(R.id.detailCurrentParty)
+        detailCurrentPartyLabel = findViewById(R.id.labelCurrentParty)
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
         val bodyLayout: LinearLayout = findViewById(R.id.linearbody)
@@ -1216,8 +1218,8 @@ class DetailPost : AppCompatActivity() {
 
                                         // Update the participant count in UI
                                         detailCurrentParty.text = "$updatedParticipantCount"
+                                        detailCurrentPartyLabel.text = "Attended:"
 
-                                        // Set visibility based on user UID presence
                                         if (userUidFound) {
                                             rateThisTextView.visibility = View.VISIBLE
                                         } else {
