@@ -262,25 +262,48 @@ class Login : AppCompatActivity() {
                 }
         }
     }
-        private fun compareEmail(email: EditText, dialog: Dialog) {
+    private fun compareEmail(email: EditText, dialog: Dialog) {
         val emailText = email.text.toString().trim()
+
         if (emailText.isEmpty()) {
             email.error = "Input Your Email First"
             return
         }
+
         if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
             email.error = "Invalid Email"
             return
         }
-        firebaseAuth.sendPasswordResetEmail(emailText).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                showCustomChangedPassMessage("Check Your Email to change the Password", 3000, R.layout.dialog_happyface)
-                dialog.dismiss()
-            } else {
-                showCustomChangedPassMessage("Check for typos or your internet connection", 3000, R.layout.dialog_sadface)
-            }
-        }
+
+        val usersRef = FirebaseDatabase.getInstance().getReference("Users")
+
+        usersRef.orderByChild("email").equalTo(emailText)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        // User with the given email exists, send password reset email
+                        firebaseAuth.sendPasswordResetEmail(emailText)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    showCustomChangedPassMessage("Check Your Email to change the Password", 3000, R.layout.dialog_happyface)
+                                    dialog.dismiss()
+                                } else {
+                                    showCustomChangedPassMessage("Check for typos or your internet connection", 3000, R.layout.dialog_sadface)
+                                }
+                            }
+                    } else {
+                        // User with the given email does not exist
+                        email.error = "Email not found in Users"
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle database error if needed
+                    showCustomChangedPassMessage("Error occurred. Please try again later", 3000, R.layout.dialog_sadface)
+                }
+            })
     }
+
     private fun dismissCustomDialog() {
         if (isPopupShowing) {
             isPopupShowing = false
