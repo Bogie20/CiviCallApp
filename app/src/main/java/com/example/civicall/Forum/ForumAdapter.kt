@@ -109,7 +109,7 @@ class ForumAdapter(
     private fun fetchCommentCount(postKey: String?, holder: MyViewHolderForum) {
         if (postKey != null) {
             if (holder.adapterPosition != RecyclerView.NO_POSITION && holder.adapterPosition < dataList.size) {
-                val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+                val commentsRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
                     .child("Comments")
 
                 commentsRef.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -123,7 +123,7 @@ class ForumAdapter(
 
                             holder.updateCommentCount(commentCount)
 
-                            val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+                            val postRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
 
                             // Check if the post exists before updating the comment count in the database
                             postRef.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -294,7 +294,7 @@ class ForumAdapter(
     private fun reportPost(postKey: String, reportType: String) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val currentUserUid = currentUser?.uid
-        val postReportRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+        val postReportRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
             .child("PostReport")
         val userReportRef = currentUserUid?.let { postReportRef.child(it) }
         userReportRef?.setValue(reportType)
@@ -308,7 +308,7 @@ class ForumAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     private fun deletePost(postKey: String) {
-        val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+        val postRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
         postRef.removeValue()
 
         notifyDataSetChanged()
@@ -320,7 +320,7 @@ class ForumAdapter(
         if (postKey != null && currentUserUid != null) {
             // Update hidden state in Firebase under each post
             val userHiddenPostsRef =
-                FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+                FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
                     .child("UserHiddenPosts").child(currentUserUid)
             userHiddenPostsRef.child("hidden").setValue(isHidden)
         }
@@ -328,7 +328,7 @@ class ForumAdapter(
 
     private fun getHiddenState(postKey: String, callback: (Boolean) -> Unit) {
         val userHiddenPostsRef =
-            FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+            FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
                 .child("UserHiddenPosts").child(currentUserUid ?: "")
 
         userHiddenPostsRef.child("hidden")
@@ -573,7 +573,7 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val currentUserUid = currentUser?.uid
 
         // Update the reactType in the database
-        val reactRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey).child("React")
+        val reactRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey).child("React")
         currentUserUid?.let {
             val userReactRef = reactRef.child(it)
 
@@ -602,7 +602,7 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val currentUserUid = currentUser?.uid
 
-        val reactRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey).child("React")
+        val reactRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey).child("React")
         currentUserUid?.let {
             reactRef.child(it).addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -664,7 +664,7 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
     }
     private fun updateReactCounts(postKey: String) {
-        val reactRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey).child("React")
+        val reactRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey).child("React")
         reactRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var upReactCount = 0
@@ -677,7 +677,7 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
                         downReactCount++
                     }
                 }
-                val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+                val postRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
                 postRef.child("upReactCount").setValue(upReactCount)
                 postRef.child("downReactCount").setValue(downReactCount)
                 updateReactCountUI(upReactCount, downReactCount)

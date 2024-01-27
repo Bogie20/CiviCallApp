@@ -135,12 +135,12 @@ class NotificationFragment : Fragment() {
         RecyclerViewAccReject.adapter = rejectVerificationAdapter
 
         databaseReferenceAccReject = FirebaseDatabase.getInstance().reference.child("Users")
-        databaseReference = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
-        databaseReferenceRequestVerify = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
+        databaseReference = FirebaseDatabase.getInstance().reference.child("Upload_Engagement")
+        databaseReferenceRequestVerify = FirebaseDatabase.getInstance().reference.child("Upload_Engagement")
         databaseReferenceUsers = FirebaseDatabase.getInstance().reference.child("Users")
-        databaseReferenceActivePoints = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
-        databaseReferenceJoined = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
-        databaseReferenceAttended = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
+        databaseReferenceActivePoints = FirebaseDatabase.getInstance().reference.child("Upload_Engagement")
+        databaseReferenceJoined = FirebaseDatabase.getInstance().reference.child("Upload_Engagement")
+        databaseReferenceAttended = FirebaseDatabase.getInstance().reference.child("Upload_Engagement")
         databaseReference.addValueEventListener(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(dataSnapshot: DataSnapshot) {

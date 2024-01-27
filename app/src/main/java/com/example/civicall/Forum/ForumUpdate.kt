@@ -109,7 +109,7 @@ class ForumUpdate: AppCompatActivity() {
             }
         }
         databaseReference =
-            FirebaseDatabase.getInstance().getReference("Forum Post").child(key)
+            FirebaseDatabase.getInstance().getReference("Forum_Post").child(key)
 
         updateImage.setOnClickListener {
             val photoPicker = Intent(Intent.ACTION_PICK)
@@ -170,7 +170,7 @@ class ForumUpdate: AppCompatActivity() {
         if (uri != null) {
             val fileName = System.currentTimeMillis().toString() + "_forumImage"
             val storageReference = FirebaseStorage.getInstance().getReference()
-                .child("Forum Post Images").child(fileName)
+                .child("Forum_Post_Images").child(fileName)
 
 
             storageReference.putFile(uri!!)

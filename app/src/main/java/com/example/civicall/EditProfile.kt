@@ -140,7 +140,6 @@ class EditProfile : AppCompatActivity() {
         imageRef = storage.reference.child("profileImages")
         checkUser()
 
-
         val usercategoryDropdown = binding.usercategory
         val usercategoryArray = resources.getStringArray(R.array.user_category)
         val adapterusertype = ArrayAdapter(this, R.layout.dropdown_item, usercategoryArray)

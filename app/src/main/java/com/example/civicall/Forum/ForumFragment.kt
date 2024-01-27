@@ -79,8 +79,8 @@ class ForumFragment : Fragment() {
         adapter = ForumAdapter(requireContext(), dataList, currentUserId)
         recyclerView.adapter = adapter
 
-        // Adjusted reference for "Forum Post" node
-        databaseReference = FirebaseDatabase.getInstance().getReference("Forum Post")
+        // Adjusted reference for "Forum_Post" node
+        databaseReference = FirebaseDatabase.getInstance().getReference("Forum_Post")
 
         databaseReference.addValueEventListener(object : ValueEventListener {
 

@@ -234,7 +234,7 @@ class CommentAdapter(
         val currentUser = FirebaseAuth.getInstance().currentUser
         val currentUserUid = currentUser?.uid
 
-        val commentReportRef = FirebaseDatabase.getInstance().getReference("Forum Post")
+        val commentReportRef = FirebaseDatabase.getInstance().getReference("Forum_Post")
             .child(postKey)
             .child("Comments")
             .child(commentKey)
@@ -254,7 +254,7 @@ class CommentAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     fun deleteComment(commentKey: String) {
-        val commentRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+        val commentRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
             .child("Comments").child(commentKey)
 
         commentRef.removeValue()
@@ -270,7 +270,7 @@ class CommentAdapter(
     }
     private fun updateHiddenState(postKey: String, commentKey: String?, isHidden: Boolean) {
         if (commentKey != null) {
-            val userHiddenCommentsRef = FirebaseDatabase.getInstance().getReference("Forum Post")
+            val userHiddenCommentsRef = FirebaseDatabase.getInstance().getReference("Forum_Post")
                 .child(postKey)
                 .child("Comments")
                 .child(commentKey)
@@ -287,7 +287,7 @@ class CommentAdapter(
     }
 
     private fun getHiddenState(postKey: String, commentKey: String, callback: (Boolean) -> Unit) {
-        val userHiddenCommentsRef = FirebaseDatabase.getInstance().getReference("Forum Post")
+        val userHiddenCommentsRef = FirebaseDatabase.getInstance().getReference("Forum_Post")
             .child(postKey)
             .child("Comments")
             .child(commentKey)
@@ -611,7 +611,7 @@ class CommentAdapter(
             val currentUserUid = currentUser?.uid
 
             // Update the reactType and count in the database
-            val commentRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+            val commentRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
                 .child("Comments").child(commentKey)
 
             currentUserUid?.let {
@@ -649,7 +649,7 @@ class CommentAdapter(
             val currentUserUid = currentUser?.uid
 
             // Fetch the reactType from the database
-            val reactRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+            val reactRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
                 .child("Comments").child(commentKey).child("ReactComment")
 
             currentUserUid?.let {

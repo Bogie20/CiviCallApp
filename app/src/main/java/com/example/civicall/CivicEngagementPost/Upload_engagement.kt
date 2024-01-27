@@ -597,7 +597,7 @@ class Upload_engagement : AppCompatActivity() {
 
         // Create a reference to the Firebase Storage with the generated file name
         val storageReference = FirebaseStorage.getInstance().getReference()
-            .child("Poster Civic Images").child(fileName)
+            .child("Poster_Civic_Images").child(fileName)
 
         val builder = AlertDialog.Builder(this@Upload_engagement)
         builder.setCancelable(false)
@@ -685,7 +685,7 @@ class Upload_engagement : AppCompatActivity() {
 
         if (uploadersId != null) {
             val postKey =
-                FirebaseDatabase.getInstance().getReference("Upload Engagement").push().key
+                FirebaseDatabase.getInstance().getReference("Upload_Engagement").push().key
 
             if (postKey != null) {
                 val dataClass = DataClass(
@@ -710,7 +710,7 @@ class Upload_engagement : AppCompatActivity() {
                     verificationStatus
                 )
 
-                FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
+                FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(postKey)
                     .setValue(dataClass)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {

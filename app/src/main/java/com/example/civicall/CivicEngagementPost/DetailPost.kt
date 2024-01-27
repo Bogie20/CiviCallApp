@@ -186,7 +186,7 @@ class DetailPost : AppCompatActivity() {
                         if (userVerificationStatus) {
                             // The user is verified, proceed with checking post verification status
                             val reference: DatabaseReference =
-                                FirebaseDatabase.getInstance().getReference("Upload Engagement")
+                                FirebaseDatabase.getInstance().getReference("Upload_Engagement")
                                     .child(key)
 
                             // Check if the post is under verification
@@ -302,7 +302,7 @@ class DetailPost : AppCompatActivity() {
         }
 
         val databaseReference: DatabaseReference =
-            FirebaseDatabase.getInstance().getReference("Upload Engagement")
+            FirebaseDatabase.getInstance().getReference("Upload_Engagement")
 
         databaseReference.child(key).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -436,7 +436,7 @@ class DetailPost : AppCompatActivity() {
             // Check if the user has already rated
             if (uid != null) {
                 val ratingsReference: DatabaseReference =
-                    FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
+                    FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(postKey)
                         .child("Ratings").child(uid)
 
                 ratingsReference.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -472,7 +472,7 @@ class DetailPost : AppCompatActivity() {
                                 .addOnSuccessListener {
                                     // Update the receivedStamp in Participants child
                                     val participantsReference: DatabaseReference =
-                                        FirebaseDatabase.getInstance().getReference("Upload Engagement").child(postKey)
+                                        FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(postKey)
                                             .child("Participants").child(uid)
 
                                     participantsReference.child("receivedStamp").setValue(timestamp)
@@ -727,7 +727,7 @@ class DetailPost : AppCompatActivity() {
 
         // Check if the user has already uploaded an image with contributionStatus false
         val transparencyImageRef =
-            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key).child("TransparencyImage")
+            FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(key).child("TransparencyImage")
                 .child(currentUserUid)
 
         transparencyImageRef.child("contributionStatus").addListenerForSingleValueEvent(object : ValueEventListener {
@@ -759,7 +759,7 @@ class DetailPost : AppCompatActivity() {
 
                                 // Update "Participants" node
                                 val participantsRef =
-                                    FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                                    FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(key)
                                         .child("Participants").child(currentUserUid)
 
                                 participantsRef.setValue(
@@ -769,7 +769,7 @@ class DetailPost : AppCompatActivity() {
                                     )
                                 )
                                 val fundCollectedRef =
-                                    FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                                    FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(key)
                                         .child("fundcollected")
 
                                 fundCollectedRef.addValueEventListener(object : ValueEventListener {
@@ -810,7 +810,7 @@ class DetailPost : AppCompatActivity() {
 
     private fun incrementActivePointsForUser(uid: String) {
             // Fetch the current activepoints value in Upload Engagement
-            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key).child("activepoints")
+            FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(key).child("activepoints")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(uploadEngagementSnapshot: DataSnapshot) {
                         val activePoints = uploadEngagementSnapshot.getValue(Int::class.java) ?: 0
@@ -1179,7 +1179,7 @@ class DetailPost : AppCompatActivity() {
 
         if (currentUserId != null) {
             val reference: DatabaseReference =
-                FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                FirebaseDatabase.getInstance().getReference("UploadEngagement").child(key)
 
             reference.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -1196,7 +1196,7 @@ class DetailPost : AppCompatActivity() {
 
                             if (endDateTime != null && currentDate.after(endDateTime)) {
                                 val participantsReference: DatabaseReference =
-                                    FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                                    FirebaseDatabase.getInstance().getReference("UploadEngagement").child(key)
                                         .child("Participants")
 
                                 participantsReference.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -1267,7 +1267,7 @@ class DetailPost : AppCompatActivity() {
         }
 
         val participantsReference: DatabaseReference =
-            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+            FirebaseDatabase.getInstance().getReference("UploadEngagement").child(key)
                 .child("Participants")
 
         participantsReference.addValueEventListener(object : ValueEventListener {
@@ -1282,7 +1282,7 @@ class DetailPost : AppCompatActivity() {
             }
         })
         val reference: DatabaseReference =
-            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+            FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(key)
 
         reference.child("category").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -1290,7 +1290,7 @@ class DetailPost : AppCompatActivity() {
 
                 if (category == "Fund Raising" || category == "Donation") {
                     val participantsReference: DatabaseReference =
-                        FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                            FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(key)
                             .child("Participants")
 
                     participantsReference.addListenerForSingleValueEvent(object :
@@ -1403,7 +1403,7 @@ class DetailPost : AppCompatActivity() {
 
     private fun deletePost() {
         val reference: DatabaseReference =
-            FirebaseDatabase.getInstance().getReference("Upload Engagement")
+            FirebaseDatabase.getInstance().getReference("Upload_Engagement")
 
         // Get the current user
         val currentUser = FirebaseAuth.getInstance().currentUser

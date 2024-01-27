@@ -555,7 +555,7 @@ class ForumUpload : AppCompatActivity() {
         } else {
             val fileName = System.currentTimeMillis().toString() + "_forumImage"
             val storageReference = FirebaseStorage.getInstance().getReference()
-                .child("Forum Post Images").child(fileName)
+                .child("Forum_Post_Images").child(fileName)
 
             val builder = AlertDialog.Builder(this@ForumUpload)
             builder.setCancelable(false)
@@ -663,7 +663,7 @@ class ForumUpload : AppCompatActivity() {
 
         if (uploadersId != null) {
             val postKey =
-                FirebaseDatabase.getInstance().getReference("Forum Post").push().key
+                FirebaseDatabase.getInstance().getReference("Forum_Post").push().key
 
             if (postKey != null) {
                 val postTime = getCurrentDateTime()
@@ -681,7 +681,7 @@ class ForumUpload : AppCompatActivity() {
                     0
                 )
 
-                FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+                FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
                     .setValue(dataClass)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {

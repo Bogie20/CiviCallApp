@@ -189,7 +189,7 @@ class Update_engagement: AppCompatActivity() {
         }
 
         databaseReference =
-            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+            FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(key)
 
         updateImage.setOnClickListener {
             val photoPicker = Intent(Intent.ACTION_PICK)
@@ -263,7 +263,7 @@ class Update_engagement: AppCompatActivity() {
         if (uri != null) {
 
             val fileName = System.currentTimeMillis().toString() + "_civicImage"
-            storageReference = FirebaseStorage.getInstance().reference.child("Poster Civic Images")
+            storageReference = FirebaseStorage.getInstance().reference.child("Poster_Civic_Images")
                 .child(fileName)
 
             storageReference.putFile(uri!!).addOnSuccessListener { taskSnapshot ->

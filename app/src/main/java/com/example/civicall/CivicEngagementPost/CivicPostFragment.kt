@@ -77,7 +77,7 @@ class CivicPostFragment : Fragment() {
         adapter = PostAdapter(requireContext(), dataList)
         recyclerView.adapter = adapter
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
+        databaseReference = FirebaseDatabase.getInstance().getReference("Upload_Engagement")
 
         databaseReference.addValueEventListener(object : ValueEventListener {
 

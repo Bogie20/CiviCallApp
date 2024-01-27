@@ -113,10 +113,10 @@ class ForumComment : AppCompatActivity() {
             binding.downcount.text = downReactCount.toString()
             loadUploaderData(postKey)
             upReactCountRef =
-                FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+                FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
                     .child("upReactCount")
             downReactCountRef =
-                FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+                FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
                     .child("downReactCount")
 
             // Add listeners for real-time updates
@@ -269,7 +269,7 @@ class ForumComment : AppCompatActivity() {
             }
             .format(Calendar.getInstance().time)
 
-        val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+        val commentsRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
             .child("Comments")
         val commentKey = commentsRef.push().key
 
@@ -293,7 +293,7 @@ class ForumComment : AppCompatActivity() {
 
 
     private fun loadCommentsFromDatabase() {
-        val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+        val commentsRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
             .child("Comments")
 
         commentsRef.addValueEventListener(object : ValueEventListener {
@@ -345,7 +345,7 @@ class ForumComment : AppCompatActivity() {
         Toast.makeText(this@ForumComment, errorMessage, Toast.LENGTH_SHORT).show()
     }
     private fun loadUploaderData(postKey: String) {
-        val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+        val postRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
         postRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {

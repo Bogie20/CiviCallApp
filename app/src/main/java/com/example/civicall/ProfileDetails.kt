@@ -151,7 +151,7 @@ class ProfileDetails : AppCompatActivity() {
                 binding.campustxt.text = campus.toString()
                 binding.nstpnumtxt.text = nstp?.toString() ?: ""
                 val badgeImageView: ImageView = findViewById(R.id.badge_25)
-                val userRef = FirebaseDatabase.getInstance().getReference("Upload Engagement")
+                val userRef = FirebaseDatabase.getInstance().getReference("Upload_Engagement")
                 val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
                 userRef.orderByChild("Participants/$currentUserId/joined").equalTo(true)
@@ -252,7 +252,7 @@ class ProfileDetails : AppCompatActivity() {
             // Show a toast if there's a failure in fetching data
             Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
         }
-        val userRef = FirebaseDatabase.getInstance().getReference("Upload Engagement")
+        val userRef = FirebaseDatabase.getInstance().getReference("Upload_Engagement")
         val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
 // Use addValueEventListener instead of addListenerForSingleValueEvent

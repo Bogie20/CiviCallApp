@@ -62,7 +62,7 @@ class ActivePointsEarned : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         val currentUserUid = auth.currentUser?.uid
 
-        databaseReference = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
+        databaseReference = FirebaseDatabase.getInstance().reference.child("Upload_Engagement")
 
         databaseReference.addValueEventListener(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")

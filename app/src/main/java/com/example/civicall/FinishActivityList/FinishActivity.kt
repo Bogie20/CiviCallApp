@@ -35,7 +35,7 @@ class FinishActivity : AppCompatActivity() {
         networkUtils.initialize()
         recyclerView = binding.finishRecycler
         auth = FirebaseAuth.getInstance()
-        databaseReference = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
+        databaseReference = FirebaseDatabase.getInstance().reference.child("Upload_Engagement")
         finishedActivities = mutableListOf()
         finishActAdapter = FinishActAdapter(finishedActivities)
 
