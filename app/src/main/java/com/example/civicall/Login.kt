@@ -9,14 +9,14 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.util.Patterns
+import android.widget.Toast
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.example.civicall.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -126,7 +126,6 @@ class Login : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Handle onCancelled event if needed
                 finish()
             }
         })
@@ -578,6 +577,7 @@ class Login : AppCompatActivity() {
 
                     override fun onCancelled(error: DatabaseError) {
                         finish()
+
                     }
                 })
             } else {

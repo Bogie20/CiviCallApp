@@ -21,6 +21,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.InputType
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
@@ -191,7 +192,11 @@ class Upload_engagement : AppCompatActivity() {
                         }
 
                         override fun onCancelled(error: DatabaseError) {
-                            // Handle the error as needed
+                            val errorMessage = "Database error: ${error.message}"
+
+                            Log.e("Upload_engagement", errorMessage)
+
+                            Toast.makeText(this@Upload_engagement, errorMessage, Toast.LENGTH_SHORT).show()
                         }
                     })
                 }
@@ -588,9 +593,11 @@ class Upload_engagement : AppCompatActivity() {
             ).show()
             return
         }
+        val fileName = System.currentTimeMillis().toString() + "_civicImage"
 
+        // Create a reference to the Firebase Storage with the generated file name
         val storageReference = FirebaseStorage.getInstance().getReference()
-            .child("Poster Civic Images").child(uri?.lastPathSegment!!)
+            .child("Poster Civic Images").child(fileName)
 
         val builder = AlertDialog.Builder(this@Upload_engagement)
         builder.setCancelable(false)
@@ -651,7 +658,7 @@ class Upload_engagement : AppCompatActivity() {
     }
 
     private fun uploadData() {
-        val title = uploadTitle.text.toString()
+        val titleEvent = uploadTitle.text.toString()
         val startdate = uploadStartDate.text.toString()
         val enddate = uploadEndDate.text.toString()
         val location = uploadLocation.text.toString()
@@ -684,7 +691,7 @@ class Upload_engagement : AppCompatActivity() {
                 val dataClass = DataClass(
                     uploadersId,
                     category,
-                    title,
+                    titleEvent,
                     startdate,
                     enddate,
                     location,

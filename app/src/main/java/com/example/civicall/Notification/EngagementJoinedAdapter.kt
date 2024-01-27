@@ -47,7 +47,7 @@ class EngagementJoinedAdapter(private val joinedList: List<EngagementJoinedData>
 
         holder.timeStamp.text = "Since: ${currentJoinedEngagement.timestamp}"
         holder.schedule.text = "Formal Start: ${currentJoinedEngagement.startDate}"
-        holder.title.text = "Title: ${currentJoinedEngagement.title}"
+        holder.title.text = "Title: ${currentJoinedEngagement.titleEvent}"
         holder.categoryTextView.text = "Category: ${currentJoinedEngagement.category}"
 
         holder.recImage.setImageResource(R.drawable.joinedengage)
@@ -65,7 +65,7 @@ class EngagementJoinedAdapter(private val joinedList: List<EngagementJoinedData>
 
     data class EngagementJoinedData(
         val postKey: String,
-        val title: String,
+        val titleEvent: String,
         val category: String,
         val startDate: String,
         val timestamp: String

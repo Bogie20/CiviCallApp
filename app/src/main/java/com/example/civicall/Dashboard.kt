@@ -44,7 +44,6 @@ class Dashboard : AppCompatActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
         userDataViewModel = ViewModelProvider(this).get(UserDataViewModel::class.java)

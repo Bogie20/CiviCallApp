@@ -3,8 +3,10 @@ package com.example.civicall.Calendar
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.CalendarView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -102,7 +104,7 @@ class CalendarActivity : AppCompatActivity() {
 
                     val engagementData = CalendarData(
                         snapshot.child("image").value.toString(),
-                        snapshot.child("title").value.toString(),
+                        snapshot.child("titleEvent").value.toString(),
                         snapshot.child("location").value.toString(),
                         startDate,
                         endDate,
@@ -151,15 +153,17 @@ class CalendarActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Handle onCancelled
+                val errorMessage = "Database error: ${error.message}"
+
+                Log.e("CalendarActivity", errorMessage)
+
+                Toast.makeText(this@CalendarActivity, errorMessage, Toast.LENGTH_SHORT).show()
             }
         })
 
         // Update visibility initially
         updateNoItemViewsVisibility()
     }
-
-
     private fun isDateInRange(selectedDate: String, startDate: String, endDate: String): Boolean {
         // Convert selectedDate, startDate, and endDate to Date objects or another suitable format
         val sdf = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())

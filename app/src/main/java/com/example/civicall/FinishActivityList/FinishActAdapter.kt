@@ -39,7 +39,7 @@ class FinishActAdapter(private val finishedActivities: List<DataClassFinish>) :
             .error(R.drawable.placeholder)
             .into(holder.engagementImage)
 
-        holder.recTitle.text = activity.title
+        holder.recTitle.text = activity.titleEvent
         holder.location.text = activity.location
         holder.dateAndTime.text = activity.startDate + " - " + activity.endDate
         holder.category.text = "Category: ${activity.category}"

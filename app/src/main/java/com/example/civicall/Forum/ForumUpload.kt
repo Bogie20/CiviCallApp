@@ -132,7 +132,7 @@ class ForumUpload : AppCompatActivity() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    // Handle the error as needed
+                handleDatabaseError(error)
                 }
             })
         }
@@ -183,7 +183,7 @@ class ForumUpload : AppCompatActivity() {
                         }
 
                         override fun onCancelled(error: DatabaseError) {
-                            // Handle the error as needed
+                          handleDatabaseError(error)
                         }
                     })
                 }
@@ -194,6 +194,13 @@ class ForumUpload : AppCompatActivity() {
                 }
             }
         }
+    }
+    private fun handleDatabaseError(databaseError: DatabaseError) {
+        val errorMessage = "Database error: ${databaseError.message}"
+
+        Log.e("ForumUpload", errorMessage)
+
+        Toast.makeText(this@ForumUpload, errorMessage, Toast.LENGTH_SHORT).show()
     }
     private var isNoInternetDialogShowing = false
     private fun showNoInternetPopup() {
@@ -546,9 +553,9 @@ class ForumUpload : AppCompatActivity() {
             // No image selected, proceed without uploading an image
             uploadData(null)
         } else {
-            // Image is selected, proceed with image upload
+            val fileName = System.currentTimeMillis().toString() + "_forumImage"
             val storageReference = FirebaseStorage.getInstance().getReference()
-                .child("Forum Post Images").child(uri?.lastPathSegment!!)
+                .child("Forum Post Images").child(fileName)
 
             val builder = AlertDialog.Builder(this@ForumUpload)
             builder.setCancelable(false)

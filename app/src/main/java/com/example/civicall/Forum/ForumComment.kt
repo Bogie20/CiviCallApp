@@ -157,7 +157,7 @@ class ForumComment : AppCompatActivity() {
                         }
 
                         override fun onCancelled(error: DatabaseError) {
-                            Log.e("ForumComment", "User data retrieval cancelled: ${error.message}")
+                          handleDatabaseError(error)
                         }
                     })
                 }
@@ -239,7 +239,7 @@ class ForumComment : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e("ForumComment", "UpReactCount data retrieval cancelled: ${error.message}")
+              handleDatabaseError(error)
             }
         })
     }
@@ -255,7 +255,7 @@ class ForumComment : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e("ForumComment", "DownReactCount data retrieval cancelled: ${error.message}")
+               handleDatabaseError(error)
             }
         })
     }
@@ -331,13 +331,19 @@ class ForumComment : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e("ForumComment", "Comments data retrieval cancelled: ${error.message}")
+              handleDatabaseError(error)
             }
         })
     }
 
 
+    private fun handleDatabaseError(databaseError: DatabaseError) {
+        val errorMessage = "Database error: ${databaseError.message}"
 
+        Log.e("ForumComment", errorMessage)
+
+        Toast.makeText(this@ForumComment, errorMessage, Toast.LENGTH_SHORT).show()
+    }
     private fun loadUploaderData(postKey: String) {
         val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
         postRef.addValueEventListener(object : ValueEventListener {
@@ -378,10 +384,7 @@ class ForumComment : AppCompatActivity() {
                             }
 
                             override fun onCancelled(error: DatabaseError) {
-                                Log.e(
-                                    "ForumComment",
-                                    "User data retrieval cancelled: ${error.message}"
-                                )
+                            handleDatabaseError(error)
                             }
                         })
                     }
@@ -389,7 +392,7 @@ class ForumComment : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e("ForumComment", "Post data retrieval cancelled: ${error.message}")
+               handleDatabaseError(error)
             }
         })
     }

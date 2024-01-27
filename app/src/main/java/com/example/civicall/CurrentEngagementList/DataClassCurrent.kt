@@ -1,7 +1,7 @@
 package com.example.civicall.CurrentEngagementList
 data class DataClassCurrent(
         val engagementImage: String,
-        val title: String,
+        val titleEvent: String,
         val location: String,
         val category: String,
         val startDate: String,

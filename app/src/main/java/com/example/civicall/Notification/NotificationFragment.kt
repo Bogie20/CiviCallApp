@@ -162,7 +162,7 @@ class NotificationFragment : Fragment() {
                         if (isWithin24Hours(startDateStr)) {
                             // User is a participant, retrieve and display information
                             val category = engagementSnapshot.child("category").value.toString()
-                            val title = engagementSnapshot.child("title").value.toString()
+                            val titleEvent = engagementSnapshot.child("titleEvent").value.toString()
                             val startDate = engagementSnapshot.child("startDate").value.toString()
                             val endDate = engagementSnapshot.child("endDate").value.toString()
                             val imageUrl = engagementSnapshot.child("image").value.toString()
@@ -173,7 +173,7 @@ class NotificationFragment : Fragment() {
                             val notificationItem = DataClassNotif(
                                 postKey,
                                 category,
-                                title,
+                                titleEvent,
                                 startDate,
                                 endDate,
                                 imageUrl,
@@ -228,14 +228,13 @@ class NotificationFragment : Fragment() {
                     // Check if the current user is a participant and has joined the event
                     if (participantsRef.hasChild(currentUserUid) && joined == true) {
                         val postKey = engagementSnapshot.key ?: ""
-                        val title = engagementSnapshot.child("title").value.toString()
+                        val titleEvent = engagementSnapshot.child("titleEvent").value.toString()
                         val category = engagementSnapshot.child("category").value.toString()
 
                         // Check if attendedStamp is not null before parsing
                         val attendedStamp = participantsRef.child(currentUserUid).child("attendedStamp").value?.toString()
                         val endDateTime = attendedStamp?.let { SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(it) }
 
-                        // Continue only if endDateTime is not null
                         if (endDateTime != null) {
                             val currentDate = Date()
                             val calendar = Calendar.getInstance()
@@ -246,7 +245,7 @@ class NotificationFragment : Fragment() {
                                 continue
                             }
 
-                            val attendedData = AttendedAdapter.AttendedData(postKey, title, category, attendedStamp)
+                            val attendedData = AttendedAdapter.AttendedData(postKey, titleEvent, category, attendedStamp)
                             attendedList.add(attendedData)
 
                         }
@@ -352,7 +351,7 @@ class NotificationFragment : Fragment() {
                         && requestSnapshot.child("verificationStatus").getValue(Boolean::class.java) == true
                     ) {
                         // Add the request data to the list
-                        val title = requestSnapshot.child("title").getValue(String::class.java) ?: ""
+                        val titleEvent = requestSnapshot.child("titleEvent").getValue(String::class.java) ?: ""
                         val category = requestSnapshot.child("category").getValue(String::class.java) ?: ""
                         val approveTimeStamp = requestSnapshot.child("approveTimeStamp").getValue(String::class.java) ?: ""
 
@@ -362,7 +361,7 @@ class NotificationFragment : Fragment() {
                             continue
                         }
 
-                        requestList.add(RequestVerificationAdapter.RequestData(title, category, approveTimeStamp))
+                        requestList.add(RequestVerificationAdapter.RequestData(titleEvent, category, approveTimeStamp))
 
                     }
                 }
@@ -395,7 +394,7 @@ class NotificationFragment : Fragment() {
                     val joined = participantsRef.child(currentUserUid!!).child("joined").value as? Boolean
 
                     if (joined == true) {
-                        val title = engagementSnapshot.child("title").value.toString()
+                        val titleEvent = engagementSnapshot.child("titleEvent").value.toString()
                         val activepts = (engagementSnapshot.child("activepoints").value as? Long)?.toInt() ?: 0
 
                         if (participantsRef.child(currentUserUid).hasChild("receivedStamp")) {
@@ -418,7 +417,7 @@ class NotificationFragment : Fragment() {
                                 }
                                 val notificationItem = ActivePointsAdapter.ActiveData(
                                     postKey,
-                                    title,
+                                    titleEvent,
                                     activepts,
                                     receivedStamp
                                 )
@@ -467,13 +466,13 @@ class NotificationFragment : Fragment() {
                         // Check if the engagement is within 24 hours from the current date and time
                         if (isWithin24Hours(timestamp)) {
                             val category = engagementSnapshot.child("category").value.toString()
-                            val title = engagementSnapshot.child("title").value.toString()
+                            val titleEvent = engagementSnapshot.child("titleEvent").value.toString()
                             val startDate = engagementSnapshot.child("startDate").value.toString()
 
                             // Create EngagementJoinedData instance
                             val engagementJoinedData = EngagementJoinedAdapter.EngagementJoinedData(
                                 postKey,
-                                title,
+                                titleEvent,
                                 category,
                                 startDate,
                                 timestamp

@@ -61,7 +61,7 @@ class Update_engagement: AppCompatActivity() {
     private lateinit var updateCategory: AutoCompleteTextView
     private lateinit var updatePaymentMethod: AutoCompleteTextView
     private lateinit var networkUtils: NetworkUtils
-    private var title: String = ""
+    private var titleEvent: String = ""
     private var paymentrecipient: String = ""
     private var objective: String = ""
     private var instruction: String = ""
@@ -261,8 +261,10 @@ class Update_engagement: AppCompatActivity() {
         dialog.show()
 
         if (uri != null) {
+
+            val fileName = System.currentTimeMillis().toString() + "_civicImage"
             storageReference = FirebaseStorage.getInstance().reference.child("Poster Civic Images")
-                .child(uri?.lastPathSegment!!)
+                .child(fileName)
 
             storageReference.putFile(uri!!).addOnSuccessListener { taskSnapshot ->
                 val uriTask = taskSnapshot.storage.downloadUrl
@@ -347,8 +349,6 @@ class Update_engagement: AppCompatActivity() {
         btnSelectCampus.setOnClickListener {
             val selectedCampuses = checkBoxes.filter { it.isChecked }.map { it.text.toString() }
             val selectedCampusesText = selectedCampuses.joinToString(", ")
-
-            // Set the selected campuses in the AutoCompleteTextView
             binding.updateCampus.setText(selectedCampusesText)
 
             alertDialog.dismiss()
@@ -445,7 +445,7 @@ class Update_engagement: AppCompatActivity() {
     }
 
     private fun updateData() {
-        title = updateTitle.text.toString().trim()
+        titleEvent = updateTitle.text.toString().trim()
         startdate = updateStartDate.text.toString().trim()
         enddate = updateEndDate.text.toString().trim()
         location = updateLocation.text.toString()
@@ -470,7 +470,7 @@ class Update_engagement: AppCompatActivity() {
             val dataClass = DataClass(
                 uploadersId,
                 category,
-                title,
+                titleEvent,
                 startdate,
                 enddate,
                 location,
@@ -511,7 +511,7 @@ class Update_engagement: AppCompatActivity() {
             val dataClass = DataClass(
                 uploadersId,
                 category,
-                title,
+                titleEvent,
                 startdate,
                 enddate,
                 location,

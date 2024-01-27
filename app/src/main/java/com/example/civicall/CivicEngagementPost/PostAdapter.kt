@@ -38,7 +38,7 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
         val data = dataList[position]
 
         Glide.with(context).load(data.image).into(holder.recImage)
-        holder.recTitle.text = data.title
+        holder.recTitle.text = data.titleEvent
         holder.recStartDate.text = data.startDate
         holder.recEndDate.text = data.endDate
         holder.recLocation.text = data.location
@@ -54,7 +54,7 @@ class PostAdapter (private val context: Context, private var dataList: List<Data
                 putExtra("PaymentMethod", data.paymentMethod)
                 putExtra("FundCollected", data.fundcollected)
                 putExtra("PaymentRecipient", data.paymentRecipient)
-                putExtra("Title", data.title)
+                putExtra("Title", data.titleEvent)
                 putExtra("Facilitator", data.facilitatorsName)
                 putExtra("FacilitatorConEm", data.facilitatorsContactorEmail)
                 putExtra("Objective", data.objective)

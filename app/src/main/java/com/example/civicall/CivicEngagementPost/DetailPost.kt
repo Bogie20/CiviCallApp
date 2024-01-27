@@ -85,6 +85,7 @@ class DetailPost : AppCompatActivity() {
     private lateinit var detailPaymentRecipient: TextView
     private lateinit var detailFundCollected: TextView
     private lateinit var detailCurrentParty: TextView
+    private lateinit var detailCurrentPartyLabel: TextView
     private lateinit var deleteButton: FloatingActionButton
     private lateinit var editButton: FloatingActionButton
     private lateinit var fabMenu: FloatingActionMenu
@@ -128,6 +129,7 @@ class DetailPost : AppCompatActivity() {
         fabMenu = findViewById(R.id.fabicon)
         joinButton = findViewById(R.id.joinButton)
         detailCurrentParty = findViewById(R.id.detailCurrentParty)
+        detailCurrentPartyLabel = findViewById(R.id.labelCurrentParty)
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
         val bodyLayout: LinearLayout = findViewById(R.id.linearbody)
@@ -216,13 +218,13 @@ class DetailPost : AppCompatActivity() {
                                                             showCancelConfirmationDialog(
                                                                 reference,
                                                                 currentUserId,
-                                                                dataSnapshot.child("title").getValue(String::class.java) ?: "",
+                                                                dataSnapshot.child("titleEvent").getValue(String::class.java) ?: "",
                                                             )
                                                         } else {
                                                             showJoinConfirmationDialog(
                                                                 reference,
                                                                 currentUserId,
-                                                                dataSnapshot.child("title").getValue(String::class.java) ?: "",
+                                                                dataSnapshot.child("titleEvent").getValue(String::class.java) ?: "",
                                                                 dataSnapshot.child("startDate").getValue(String::class.java) ?: ""
                                                             )
 
@@ -232,7 +234,7 @@ class DetailPost : AppCompatActivity() {
                                                 }
 
                                                 override fun onCancelled(databaseError: DatabaseError) {
-                                                    // Handle onCancelled if needed
+                                                  handleDatabaseError(databaseError)
                                                 }
                                             })
                                     } else {
@@ -278,7 +280,7 @@ class DetailPost : AppCompatActivity() {
         val bundle = intent.extras
         bundle?.let {
             detailCategory.text = it.getString("Category")
-            detailTitle.text = it.getString("Title")
+            detailTitle.text = "\"${it.getString("Title")}\""
             detailStartDate.text = it.getString("StartDate")
             detailEndDate.text = it.getString("EndDate")
             detailLocation.text = it.getString("Location")
@@ -316,11 +318,7 @@ class DetailPost : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(
-                    this@DetailPost,
-                    "Database error: " + databaseError.message,
-                    Toast.LENGTH_SHORT
-                ).show()
+                handleDatabaseError(databaseError)
             }
         })
         databaseReference.child(key).addListenerForSingleValueEvent(object : ValueEventListener {
@@ -340,11 +338,7 @@ class DetailPost : AppCompatActivity() {
                 }
             }
             override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(
-                    this@DetailPost,
-                    "Database error: " + databaseError.message,
-                    Toast.LENGTH_SHORT
-                ).show()
+                handleDatabaseError(databaseError)
             }
         })
 
@@ -759,9 +753,10 @@ class DetailPost : AppCompatActivity() {
                                         "amount" to amount.toDouble(),
                                         "contributionStatus" to false,
                                         "imageUri" to downloadUri.toString(),
-                                        "timestamp" to timestamp
+                                        "timestamp" to SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date())
                                     )
                                 )
+
                                 // Update "Participants" node
                                 val participantsRef =
                                     FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
@@ -773,52 +768,23 @@ class DetailPost : AppCompatActivity() {
                                         "timestamp" to SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date())
                                     )
                                 )
+                                val fundCollectedRef =
+                                    FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+                                        .child("fundcollected")
 
-                                transparencyImageRef.child("contributionStatus")
-                                    .addValueEventListener(object : ValueEventListener {
-                                        override fun onDataChange(dataSnapshot: DataSnapshot) {
-                                            val contributionStatus = dataSnapshot.getValue(Boolean::class.java) ?: false
+                                fundCollectedRef.addValueEventListener(object : ValueEventListener {
+                                    override fun onDataChange(currentDataSnapshot: DataSnapshot) {
+                                        val currentFundCollected = currentDataSnapshot.getValue(Double::class.java) ?: 0.0
 
-                                            if (contributionStatus) {
-                                                // If contributionStatus is true, update "Participants" node
-                                                participantsRef.setValue(
-                                                    mapOf(
-                                                        "receivedStamp" to SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date()),
-                                                        "joined" to true,
-                                                        "timestamp" to SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault()).format(Date())
-                                                    )
-                                                )
+                                        // Do not update the fundCollectedRef, only reflect its value
+                                        val formattedFundCollected = String.format("%.2f", currentFundCollected)
+                                        detailFundCollected.text = "$formattedFundCollected"
+                                    }
 
-                                                // Increment active points for the user
-                                                incrementActivePointsForUser(currentUserUid)
-
-                                                // Update "fundcollected"
-                                                val fundCollectedRef = FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
-                                                    .child("fundcollected")
-
-                                                fundCollectedRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                                                    override fun onDataChange(currentDataSnapshot: DataSnapshot) {
-                                                        val currentFundCollected = currentDataSnapshot.getValue(Double::class.java) ?: 0.0
-
-                                                        val updatedFundCollected = currentFundCollected + amount.toDouble()
-                                                        fundCollectedRef.setValue(updatedFundCollected)
-
-                                                        val formattedFundCollected = String.format("%.2f", updatedFundCollected)
-                                                        detailFundCollected.text = "$formattedFundCollected"
-                                                    }
-
-                                                    override fun onCancelled(databaseError: DatabaseError) {
-                                                        // Handle onCancelled
-                                                    }
-                                                })
-                                            }
-                                        }
-
-                                        override fun onCancelled(databaseError: DatabaseError) {
-                                            // Handle onCancelled
-                                        }
-                                    })
-
+                                    override fun onCancelled(databaseError: DatabaseError) {
+                                        handleDatabaseError(databaseError)
+                                    }
+                                })
                                 showMessage(
                                     "Awaiting admin verification, thank you for your patience.",
                                     4000,
@@ -836,10 +802,11 @@ class DetailPost : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle onCancelled
+                handleDatabaseError(databaseError)
             }
         })
     }
+
 
     private fun incrementActivePointsForUser(uid: String) {
             // Fetch the current activepoints value in Upload Engagement
@@ -859,13 +826,13 @@ class DetailPost : AppCompatActivity() {
                             }
 
                             override fun onCancelled(databaseError: DatabaseError) {
-                                // Handle onCancelled
+                                handleDatabaseError(databaseError)
                             }
                         })
                     }
 
                     override fun onCancelled(databaseError: DatabaseError) {
-                        // Handle onCancelled
+                        handleDatabaseError(databaseError)
                     }
                 })
         }
@@ -1251,8 +1218,8 @@ class DetailPost : AppCompatActivity() {
 
                                         // Update the participant count in UI
                                         detailCurrentParty.text = "$updatedParticipantCount"
+                                        detailCurrentPartyLabel.text = "Attended:"
 
-                                        // Set visibility based on user UID presence
                                         if (userUidFound) {
                                             rateThisTextView.visibility = View.VISIBLE
                                         } else {
@@ -1261,7 +1228,7 @@ class DetailPost : AppCompatActivity() {
                                     }
 
                                     override fun onCancelled(participantsError: DatabaseError) {
-                                        // Handle onCancelled for Participants
+                                        handleDatabaseError(participantsError)
                                     }
                                 })
 
@@ -1286,11 +1253,7 @@ class DetailPost : AppCompatActivity() {
                             }
                         }
                         override fun onCancelled(databaseError: DatabaseError) {
-                            Toast.makeText(
-                                this@DetailPost,
-                                "Database error: " + databaseError.message,
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            handleDatabaseError(databaseError)
                         }
                     })
 
@@ -1298,11 +1261,7 @@ class DetailPost : AppCompatActivity() {
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-                    Toast.makeText(
-                        this@DetailPost,
-                        "Database error: " + databaseError.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    handleDatabaseError(databaseError)
                 }
             })
         }
@@ -1319,11 +1278,7 @@ class DetailPost : AppCompatActivity() {
 
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.e("DetailPost", "Database error: " + databaseError.message)
-                Toast.makeText(
-                    this@DetailPost,
-                    "Database error: " + databaseError.message,
-                    Toast.LENGTH_SHORT
-                ).show()
+                handleDatabaseError(databaseError)
             }
         })
         val reference: DatabaseReference =
@@ -1353,7 +1308,7 @@ class DetailPost : AppCompatActivity() {
                         }
 
                         override fun onCancelled(participantsError: DatabaseError) {
-                            // Handle onCancelled for participants
+                            handleDatabaseError(participantsError)
                         }
                     })
                 }
@@ -1361,11 +1316,7 @@ class DetailPost : AppCompatActivity() {
 
 
             override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(
-                    this@DetailPost,
-                    "Database error: " + databaseError.message,
-                    Toast.LENGTH_SHORT
-                ).show()
+                handleDatabaseError(databaseError)
             }
         })
     }

@@ -3,10 +3,12 @@ package com.example.civicall.ActivePoints
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -75,7 +77,7 @@ class ActivePointsEarned : AppCompatActivity() {
 
                     if (joined == true) {
                         // User is a participant, retrieve and display information
-                        val title = engagementSnapshot.child("title").value.toString()
+                        val titleEvent = engagementSnapshot.child("titleEvent").value.toString()
                         val activepts = (engagementSnapshot.child("activepoints").value as? Long)?.toInt() ?: 0
 
                         // Check if the "receivedStamp" key exists and is not null or empty
@@ -85,7 +87,7 @@ class ActivePointsEarned : AppCompatActivity() {
 
                             // Check if receivedStamp is not empty, and add to the list
                             if (receivedStamp.isNotEmpty()) {
-                                val notificationItem = DataClassAct(postKey, title, activepts, receivedStamp)
+                                val notificationItem = DataClassAct(postKey, titleEvent, activepts, receivedStamp)
                                 notificationList.add(notificationItem)
                             }
                         }
@@ -108,7 +110,11 @@ class ActivePointsEarned : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle error
+                val errorMessage = "Database error: ${databaseError.message}"
+
+                Log.e("ActivePointsEarned", errorMessage)
+
+                Toast.makeText(this@ActivePointsEarned, errorMessage, Toast.LENGTH_SHORT).show()
             }
         })
     }
