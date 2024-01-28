@@ -192,7 +192,7 @@
                     android:fontFamily="@font/lexend"
                     android:layout_weight="1"
                     android:padding="4dp"
-                    android:text="When you register for the CiviCall app, we collect and store information such as your name, university credentials, and contact details."
+                    android:text="When you register for the CiviCall app, we collect and store information such as your name, university credentials, and contact details etc."
                     android:textColor="@color/background2"                    android:textSize="16sp" />
 
 
@@ -236,7 +236,7 @@
                     android:layout_weight="1"
                     android:padding="4dp"
                     android:fontFamily="@font/lexend"
-                    android:text="The app allows users to post and apply for civic engagements. Information related to these engagements, including posts, applications, and progress tracking, is stored for administrative and recognition purposes."
+                    android:text="The app allows users to request and apply for civic engagements. Information related to these engagements, including posts, applications, and progress tracking, is stored for administrative and recognition purposes."
                     android:textColor="@color/background2"                    android:textSize="16sp" />
 
             </LinearLayout>
@@ -279,7 +279,7 @@
                     android:padding="4dp"
                     android:lineSpacingExtra="3dp"
                     android:fontFamily="@font/lexend"
-                    android:text="The app features communication modules, including open forums and chat messages. Information shared in these interactions is stored to facilitate discussions and user engagement."
+                    android:text="The app features communication modules, including open forums and discussion. Information shared in these interactions is stored to facilitate discussions and user engagement."
                     android:textColor="@color/background2"
                     android:textSize="16sp" />
 
@@ -368,7 +368,7 @@
                     android:fontFamily="@font/lexend"
                     android:lineSpacingExtra="3dp"
                     android:padding="4dp"
-                    android:text="CiviCall app includes educational resources with categorical subjects and contact directories. Your interaction with these resources may be logged for improvement and user experience."
+                    android:text="CiviCall app includes educational resources with categorical subjects and contact directories. Your interaction with these resources will help you to have fundamental knowledge about Civic Engagement."
                     android:textColor="@color/background2"
                     android:textSize="16sp" />
 
