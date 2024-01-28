@@ -236,11 +236,17 @@ class MainMenu : AppCompatActivity() {
                 } else {
                     Toast.makeText(this, "User Not existed", Toast.LENGTH_LONG).show()
                 }
-            }.addOnFailureListener{
-                Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { exception ->
+                // Handle the failure and check for permission denied error
+                if (exception.message?.contains("Permission denied") == true) {
+
+                } else {
+                    // Show a generic failure toast for other errors
+                    Toast.makeText(this, "Failed to read data: ${exception.message}", Toast.LENGTH_SHORT).show()
+                }
             }
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
