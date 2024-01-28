@@ -280,7 +280,7 @@ class DetailPost : AppCompatActivity() {
         val bundle = intent.extras
         bundle?.let {
             detailCategory.text = it.getString("Category")
-            detailTitle.text = "\"${it.getString("Title")}\""
+            detailTitle.text = it.getString("Title")
             detailStartDate.text = it.getString("StartDate")
             detailEndDate.text = it.getString("EndDate")
             detailLocation.text = it.getString("Location")

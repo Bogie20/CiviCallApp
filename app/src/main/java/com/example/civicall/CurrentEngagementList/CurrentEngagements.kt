@@ -59,7 +59,7 @@ class CurrentEngagements : AppCompatActivity() {
         participantsQuery.addListenerForSingleValueEvent(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
-                currentEngagements.clear() // Clear existing data before updating
+                currentEngagements.clear()
 
                 for (engagementSnapshot in snapshot.children) {
                     val startDate = engagementSnapshot.child("startDate").getValue(String::class.java) ?: ""
