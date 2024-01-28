@@ -80,6 +80,7 @@ class FinishActivity : AppCompatActivity() {
                         finishedActivities.add(0, finishData)
                     }
                 }
+                finishedActivities.sortByDescending { it.receivedStamp }
                 finishActAdapter = FinishActAdapter(finishedActivities)
                 recyclerView.adapter = finishActAdapter
 

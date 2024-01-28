@@ -83,8 +83,7 @@ class CurrentEngagements : AppCompatActivity() {
                         currentEngagements.add(0, currentEngagement)
                     }
                 }
-
-                // Update the adapter with the fetched data
+                currentEngagements.sortByDescending { it.timeStamp }
                 currentEngageAdapter.notifyDataSetChanged()
                 currentEngageAdapter = CurrentEngageAdapter(currentEngagements)
                 recyclerView.adapter = currentEngageAdapter
