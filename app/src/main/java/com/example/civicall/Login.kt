@@ -126,7 +126,7 @@ class Login : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                finish()
+
             }
         })
     }
@@ -527,7 +527,6 @@ class Login : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                finish()
             }
         })
     }
@@ -599,7 +598,6 @@ class Login : AppCompatActivity() {
                     }
 
                     override fun onCancelled(error: DatabaseError) {
-                        finish()
 
                     }
                 })

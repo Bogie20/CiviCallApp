@@ -173,101 +173,101 @@ class DetailPost : AppCompatActivity() {
 
         joinButton.setOnClickListener {
             if (networkUtils.isOnline) {
-            if (currentUserId != null) {
-                // Check if the user is verified
-                val userRef =
-                    FirebaseDatabase.getInstance().getReference("Users").child(currentUserId)
-                userRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(userSnapshot: DataSnapshot) {
-                        val userVerificationStatus =
-                            userSnapshot.child("verificationStatus").getValue(Boolean::class.java)
-                                ?: false
+                if (currentUserId != null) {
+                    // Check if the user is verified
+                    val userRef =
+                        FirebaseDatabase.getInstance().getReference("Users").child(currentUserId)
+                    userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(userSnapshot: DataSnapshot) {
+                            val userVerificationStatus =
+                                userSnapshot.child("verificationStatus").getValue(Boolean::class.java)
+                                    ?: false
 
-                        if (userVerificationStatus) {
-                            // The user is verified, proceed with checking post verification status
-                            val reference: DatabaseReference =
-                                FirebaseDatabase.getInstance().getReference("Upload_Engagement")
-                                    .child(key)
+                            if (userVerificationStatus) {
+                                // The user is verified, proceed with checking post verification status
+                                val reference: DatabaseReference =
+                                    FirebaseDatabase.getInstance().getReference("Upload_Engagement")
+                                        .child(key)
 
-                            // Check if the post is under verification
-                            reference.addListenerForSingleValueEvent(object : ValueEventListener {
-                                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                                    val verificationStatus =
-                                        dataSnapshot.child("verificationStatus")
-                                            .getValue(Boolean::class.java) ?: false
-                                    if (verificationStatus) {
-                                        reference.child("Participants")
-                                            .addListenerForSingleValueEvent(object :
-                                                ValueEventListener {
-                                                override fun onDataChange(participantsSnapshot: DataSnapshot) {
-                                                    if (participantsSnapshot.hasChild(currentUserId) &&
-                                                        (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donation")
-                                                    ) {
-                                                        // The user has already joined, so show the image dialog and request permissions
-                                                        showImageDialog()
-                                                        checkAndRequestPermissions()
-                                                    } else {
-                                                        // The user hasn't joined
-                                                        if (detailCategory.text.toString() == "Fund Raising" ||
-                                                            detailCategory.text.toString() == "Donation"
+                                // Check if the post is under verification
+                                reference.addListenerForSingleValueEvent(object : ValueEventListener {
+                                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                        val verificationStatus =
+                                            dataSnapshot.child("verificationStatus")
+                                                .getValue(Boolean::class.java) ?: false
+                                        if (verificationStatus) {
+                                            reference.child("Participants")
+                                                .addListenerForSingleValueEvent(object :
+                                                    ValueEventListener {
+                                                    override fun onDataChange(participantsSnapshot: DataSnapshot) {
+                                                        if (participantsSnapshot.hasChild(currentUserId) &&
+                                                            (detailCategory.text.toString() == "Fund Raising" || detailCategory.text.toString() == "Donation")
                                                         ) {
-                                                            // If the category is "Fund Raising" or "Donations" and the user hasn't joined, show the image dialog and request permissions
+                                                            // The user has already joined, so show the image dialog and request permissions
                                                             showImageDialog()
                                                             checkAndRequestPermissions()
-                                                        } else if (joinButton.text.toString() == "Cancel") {
-                                                            showCancelConfirmationDialog(
-                                                                reference,
-                                                                currentUserId,
-                                                                dataSnapshot.child("titleEvent").getValue(String::class.java) ?: "",
-                                                            )
                                                         } else {
-                                                            showJoinConfirmationDialog(
-                                                                reference,
-                                                                currentUserId,
-                                                                dataSnapshot.child("titleEvent").getValue(String::class.java) ?: "",
-                                                                dataSnapshot.child("startDate").getValue(String::class.java) ?: ""
-                                                            )
+                                                            // The user hasn't joined
+                                                            if (detailCategory.text.toString() == "Fund Raising" ||
+                                                                detailCategory.text.toString() == "Donation"
+                                                            ) {
+                                                                // If the category is "Fund Raising" or "Donations" and the user hasn't joined, show the image dialog and request permissions
+                                                                showImageDialog()
+                                                                checkAndRequestPermissions()
+                                                            } else if (joinButton.text.toString() == "Cancel") {
+                                                                showCancelConfirmationDialog(
+                                                                    reference,
+                                                                    currentUserId,
+                                                                    dataSnapshot.child("titleEvent").getValue(String::class.java) ?: "",
+                                                                )
+                                                            } else {
+                                                                showJoinConfirmationDialog(
+                                                                    reference,
+                                                                    currentUserId,
+                                                                    dataSnapshot.child("titleEvent").getValue(String::class.java) ?: "",
+                                                                    dataSnapshot.child("startDate").getValue(String::class.java) ?: ""
+                                                                )
 
 
+                                                            }
                                                         }
                                                     }
-                                                }
 
-                                                override fun onCancelled(databaseError: DatabaseError) {
-                                                  handleDatabaseError(databaseError)
-                                                }
-                                            })
-                                    } else {
-                                        showMessage(
-                                            "Wait until admin verifies this post",
-                                            4000,
-                                            "Oops!",
-                                            R.drawable.notverifiedshield,
-                                            R.layout.dialog_sadface
-                                        )
+                                                    override fun onCancelled(databaseError: DatabaseError) {
+                                                        handleDatabaseError(databaseError)
+                                                    }
+                                                })
+                                        } else {
+                                            showMessage(
+                                                "Wait until admin verifies this post",
+                                                4000,
+                                                "Oops!",
+                                                R.drawable.notverifiedshield,
+                                                R.layout.dialog_sadface
+                                            )
+                                        }
                                     }
-                                }
 
-                                override fun onCancelled(databaseError: DatabaseError) {
-                                    showDatabaseErrorMessage(databaseError)
-                                }
-                            })
-                        } else {
-                            showMessage(
-                                "Please verify your account before joining",
-                                4000,
-                                "Oops!",
-                                R.drawable.notverifiedshield,
-                                R.layout.dialog_sadface
-                            )
+                                    override fun onCancelled(databaseError: DatabaseError) {
+                                        showDatabaseErrorMessage(databaseError)
+                                    }
+                                })
+                            } else {
+                                showMessage(
+                                    "Please verify your account before joining",
+                                    4000,
+                                    "Oops!",
+                                    R.drawable.notverifiedshield,
+                                    R.layout.dialog_sadface
+                                )
+                            }
                         }
-                    }
 
-                    override fun onCancelled(databaseError: DatabaseError) {
-                        showDatabaseErrorMessage(databaseError)
-                    }
-                })
-            }
+                        override fun onCancelled(databaseError: DatabaseError) {
+                            showDatabaseErrorMessage(databaseError)
+                        }
+                    })
+                }
             } else {
                 if (!isNoInternetDialogShowing) {
                     dismissCustomDialog()
@@ -343,17 +343,17 @@ class DetailPost : AppCompatActivity() {
         })
 
 
-       deleteButton.setOnClickListener {
-           if (networkUtils.isOnline) {
-               showDeleteConfirmationDialog()
-           } else {
-               if (!isNoInternetDialogShowing) {
-                   dismissCustomDialog()
-                   showNoInternetPopup()
-               }
-           }
-       }
-    editButton.setOnClickListener {
+        deleteButton.setOnClickListener {
+            if (networkUtils.isOnline) {
+                showDeleteConfirmationDialog()
+            } else {
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
+                }
+            }
+        }
+        editButton.setOnClickListener {
             val intent = Intent(this@DetailPost, Update_engagement::class.java)
                 .putExtra("Category", detailCategory.text.toString())
                 .putExtra("Title", detailTitle.text.toString())
@@ -809,33 +809,33 @@ class DetailPost : AppCompatActivity() {
 
 
     private fun incrementActivePointsForUser(uid: String) {
-            // Fetch the current activepoints value in Upload Engagement
-            FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(key).child("activepoints")
-                .addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(uploadEngagementSnapshot: DataSnapshot) {
-                        val activePoints = uploadEngagementSnapshot.getValue(Int::class.java) ?: 0
+        // Fetch the current activepoints value in Upload Engagement
+        FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(key).child("activepoints")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(uploadEngagementSnapshot: DataSnapshot) {
+                    val activePoints = uploadEngagementSnapshot.getValue(Int::class.java) ?: 0
 
-                        // Increment the activepoints for the user
-                        val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
-                        userRef.child("activepts").addListenerForSingleValueEvent(object : ValueEventListener {
-                            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                                val currentActivePoints = dataSnapshot.getValue(Int::class.java) ?: 0
+                    // Increment the activepoints for the user
+                    val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+                    userRef.child("activepts").addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            val currentActivePoints = dataSnapshot.getValue(Int::class.java) ?: 0
 
-                                // Increment the activepoints count
-                                userRef.child("activepts").setValue(currentActivePoints + activePoints)
-                            }
+                            // Increment the activepoints count
+                            userRef.child("activepts").setValue(currentActivePoints + activePoints)
+                        }
 
-                            override fun onCancelled(databaseError: DatabaseError) {
-                                handleDatabaseError(databaseError)
-                            }
-                        })
-                    }
+                        override fun onCancelled(databaseError: DatabaseError) {
+                            handleDatabaseError(databaseError)
+                        }
+                    })
+                }
 
-                    override fun onCancelled(databaseError: DatabaseError) {
-                        handleDatabaseError(databaseError)
-                    }
-                })
-        }
+                override fun onCancelled(databaseError: DatabaseError) {
+                    handleDatabaseError(databaseError)
+                }
+            })
+    }
 
     private fun checkAndRequestPermissions() {
         if (ContextCompat.checkSelfPermission(
@@ -1179,7 +1179,7 @@ class DetailPost : AppCompatActivity() {
 
         if (currentUserId != null) {
             val reference: DatabaseReference =
-                FirebaseDatabase.getInstance().getReference("UploadEngagement").child(key)
+                FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(key)
 
             reference.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -1196,7 +1196,7 @@ class DetailPost : AppCompatActivity() {
 
                             if (endDateTime != null && currentDate.after(endDateTime)) {
                                 val participantsReference: DatabaseReference =
-                                    FirebaseDatabase.getInstance().getReference("UploadEngagement").child(key)
+                                    FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(key)
                                         .child("Participants")
 
                                 participantsReference.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -1267,7 +1267,7 @@ class DetailPost : AppCompatActivity() {
         }
 
         val participantsReference: DatabaseReference =
-            FirebaseDatabase.getInstance().getReference("UploadEngagement").child(key)
+            FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(key)
                 .child("Participants")
 
         participantsReference.addValueEventListener(object : ValueEventListener {
@@ -1290,7 +1290,7 @@ class DetailPost : AppCompatActivity() {
 
                 if (category == "Fund Raising" || category == "Donation") {
                     val participantsReference: DatabaseReference =
-                            FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(key)
+                        FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(key)
                             .child("Participants")
 
                     participantsReference.addListenerForSingleValueEvent(object :
