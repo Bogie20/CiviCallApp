@@ -286,7 +286,6 @@ class UploadVerificationFile : AppCompatActivity() {
                 override fun onCancelled(error: DatabaseError) {
                     Log.e("UploadVerificationFile", "Error checking user verification status: ${error.message}")
 
-                    handleDatabaseError(error)
                 }
             })
         }
@@ -325,7 +324,7 @@ class UploadVerificationFile : AppCompatActivity() {
 
                 override fun onCancelled(error: DatabaseError) {
                     Log.e("UploadVerificationFile", "Error checking user verification status: ${error.message}")
-                    handleDatabaseError(error)
+
                 }
             })
         }

@@ -234,7 +234,7 @@ class DetailPost : AppCompatActivity() {
                                                     }
 
                                                     override fun onCancelled(databaseError: DatabaseError) {
-                                                        handleDatabaseError(databaseError)
+
                                                     }
                                                 })
                                         } else {
@@ -318,7 +318,7 @@ class DetailPost : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                handleDatabaseError(databaseError)
+
             }
         })
         databaseReference.child(key).addListenerForSingleValueEvent(object : ValueEventListener {
@@ -338,7 +338,7 @@ class DetailPost : AppCompatActivity() {
                 }
             }
             override fun onCancelled(databaseError: DatabaseError) {
-                handleDatabaseError(databaseError)
+
             }
         })
 
@@ -492,8 +492,7 @@ class DetailPost : AppCompatActivity() {
                     }
 
                     override fun onCancelled(error: DatabaseError) {
-                        // Handle the error if needed
-                        Toast.makeText(this@DetailPost, "Failed to check rating status: ${error.message}", Toast.LENGTH_SHORT).show()
+
                     }
                 })
             }
@@ -782,7 +781,7 @@ class DetailPost : AppCompatActivity() {
                                     }
 
                                     override fun onCancelled(databaseError: DatabaseError) {
-                                        handleDatabaseError(databaseError)
+
                                     }
                                 })
                                 showMessage(
@@ -802,7 +801,7 @@ class DetailPost : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                handleDatabaseError(databaseError)
+
             }
         })
     }
@@ -826,13 +825,13 @@ class DetailPost : AppCompatActivity() {
                         }
 
                         override fun onCancelled(databaseError: DatabaseError) {
-                            handleDatabaseError(databaseError)
+
                         }
                     })
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-                    handleDatabaseError(databaseError)
+
                 }
             })
     }
@@ -1228,7 +1227,7 @@ class DetailPost : AppCompatActivity() {
                                     }
 
                                     override fun onCancelled(participantsError: DatabaseError) {
-                                        handleDatabaseError(participantsError)
+
                                     }
                                 })
 
@@ -1253,7 +1252,7 @@ class DetailPost : AppCompatActivity() {
                             }
                         }
                         override fun onCancelled(databaseError: DatabaseError) {
-                            handleDatabaseError(databaseError)
+
                         }
                     })
 
@@ -1261,7 +1260,7 @@ class DetailPost : AppCompatActivity() {
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-                    handleDatabaseError(databaseError)
+
                 }
             })
         }
@@ -1278,7 +1277,7 @@ class DetailPost : AppCompatActivity() {
 
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.e("DetailPost", "Database error: " + databaseError.message)
-                handleDatabaseError(databaseError)
+
             }
         })
         val reference: DatabaseReference =
@@ -1308,7 +1307,7 @@ class DetailPost : AppCompatActivity() {
                         }
 
                         override fun onCancelled(participantsError: DatabaseError) {
-                            handleDatabaseError(participantsError)
+
                         }
                     })
                 }
@@ -1316,7 +1315,7 @@ class DetailPost : AppCompatActivity() {
 
 
             override fun onCancelled(databaseError: DatabaseError) {
-                handleDatabaseError(databaseError)
+
             }
         })
     }
@@ -1439,14 +1438,14 @@ class DetailPost : AppCompatActivity() {
                                 }
 
                                 override fun onCancelled(databaseError: DatabaseError) {
-                                    handleDatabaseError(databaseError)
+
                                 }
                             })
                     }
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-                    handleDatabaseError(databaseError)
+
                 }
             })
         }
@@ -1466,13 +1465,6 @@ class DetailPost : AppCompatActivity() {
             }
     }
 
-    private fun handleDatabaseError(databaseError: DatabaseError) {
-        val errorMessage = "Database error: ${databaseError.message}"
-
-        Log.e("DetailPost", errorMessage)
-
-        Toast.makeText(this@DetailPost, errorMessage, Toast.LENGTH_SHORT).show()
-    }
     override fun onBackPressed() {
         super.onBackPressed()
         dismissCustomDialog()

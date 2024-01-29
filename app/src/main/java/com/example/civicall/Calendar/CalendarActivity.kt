@@ -153,11 +153,6 @@ class CalendarActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                val errorMessage = "Database error: ${error.message}"
-
-                Log.e("CalendarActivity", errorMessage)
-
-                Toast.makeText(this@CalendarActivity, errorMessage, Toast.LENGTH_SHORT).show()
             }
         })
 

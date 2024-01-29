@@ -110,11 +110,6 @@ class ActivePointsEarned : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                val errorMessage = "Database error: ${databaseError.message}"
-
-                Log.e("ActivePointsEarned", errorMessage)
-
-                Toast.makeText(this@ActivePointsEarned, errorMessage, Toast.LENGTH_SHORT).show()
             }
         })
     }

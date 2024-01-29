@@ -157,7 +157,7 @@ class ForumComment : AppCompatActivity() {
                         }
 
                         override fun onCancelled(error: DatabaseError) {
-                          handleDatabaseError(error)
+
                         }
                     })
                 }
@@ -239,7 +239,7 @@ class ForumComment : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-              handleDatabaseError(error)
+
             }
         })
     }
@@ -255,7 +255,7 @@ class ForumComment : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-               handleDatabaseError(error)
+
             }
         })
     }
@@ -331,19 +331,11 @@ class ForumComment : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-              handleDatabaseError(error)
+
             }
         })
     }
 
-
-    private fun handleDatabaseError(databaseError: DatabaseError) {
-        val errorMessage = "Database error: ${databaseError.message}"
-
-        Log.e("ForumComment", errorMessage)
-
-        Toast.makeText(this@ForumComment, errorMessage, Toast.LENGTH_SHORT).show()
-    }
     private fun loadUploaderData(postKey: String) {
         val postRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
         postRef.addValueEventListener(object : ValueEventListener {
@@ -384,7 +376,7 @@ class ForumComment : AppCompatActivity() {
                             }
 
                             override fun onCancelled(error: DatabaseError) {
-                            handleDatabaseError(error)
+
                             }
                         })
                     }
@@ -392,7 +384,7 @@ class ForumComment : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-               handleDatabaseError(error)
+
             }
         })
     }

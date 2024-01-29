@@ -286,12 +286,6 @@ class Feedback : AppCompatActivity() {
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-                    // Handle the error if the database operation is cancelled
-                    Toast.makeText(
-                        this@Feedback,
-                        "Database operation cancelled",
-                        Toast.LENGTH_SHORT
-                    ).show()
                 }
             })
         }
@@ -343,12 +337,7 @@ class Feedback : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Handle the error if the database operation is cancelled
-                Toast.makeText(
-                    this@Feedback,
-                    "Database operation cancelled",
-                    Toast.LENGTH_SHORT
-                ).show()
+
             }
         })
     }

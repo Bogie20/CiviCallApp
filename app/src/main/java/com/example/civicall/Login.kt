@@ -126,7 +126,7 @@ class Login : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-
+                finish()
             }
         })
     }
@@ -157,7 +157,6 @@ class Login : AppCompatActivity() {
         }
 
         if (showSuccessPopup) {
-            // Display the "Account Created Successfully!" popup
             showCustomPopupSuccess("Account Created Successfully!")
         }
         emailEditText = binding.emailLogin
@@ -527,6 +526,7 @@ class Login : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
+                finish()
             }
         })
     }
@@ -598,7 +598,7 @@ class Login : AppCompatActivity() {
                     }
 
                     override fun onCancelled(error: DatabaseError) {
-
+                        finish()
                     }
                 })
             } else {

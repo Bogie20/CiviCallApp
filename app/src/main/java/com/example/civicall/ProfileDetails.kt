@@ -176,9 +176,7 @@ class ProfileDetails : AppCompatActivity() {
                         }
 
                         override fun onCancelled(databaseError: DatabaseError) {
-                            val errorMessage = "Database error: ${databaseError.message}"
-                            Log.e("ProfileDetails", errorMessage)
-                            Toast.makeText(this@ProfileDetails, errorMessage, Toast.LENGTH_SHORT).show()
+
                         }
                     })
 
@@ -286,9 +284,6 @@ class ProfileDetails : AppCompatActivity() {
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-                    val errorMessage = "Database error: ${databaseError.message}"
-                    Log.e("ProfileDetails", errorMessage)
-                    Toast.makeText(this@ProfileDetails, errorMessage, Toast.LENGTH_SHORT).show()
                 }
             })
     }

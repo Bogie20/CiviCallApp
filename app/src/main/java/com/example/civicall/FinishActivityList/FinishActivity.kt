@@ -95,11 +95,6 @@ class FinishActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                val errorMessage = "Database error: ${error.message}"
-
-                Log.e("FinishActivity", errorMessage)
-
-                Toast.makeText(this@FinishActivity, errorMessage, Toast.LENGTH_SHORT).show()
             }
         })
     }
