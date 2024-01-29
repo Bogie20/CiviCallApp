@@ -114,12 +114,12 @@ class ForumFragment : Fragment() {
                                     } ?: 0
 
                                     if (currentMillis - postTimeMillis <= MAX_POST_AGE_MILLIS) {
-                                        newDataList.add(0, it)
+                                        newDataList.add(it)
                                     }
                                 }
                             }
                         }
-
+                        newDataList.sortByDescending { it.postTime }
                         dataList.clear()
                         dataList.addAll(newDataList)
                         adapter.notifyDataSetChanged();

@@ -113,13 +113,13 @@ class CivicPostFragment : Fragment() {
                                     if (currentMillis - postTimeMillis <= MAX_POST_AGE_MILLIS) {
                                         // Add condition to check verificationStatus
                                         if (it.verificationStatus || (it.uploadersUID == userUid && !it.verificationStatus)) {
-                                            newDataList.add(0, it)
+                                            newDataList.add(it)
                                         }
                                     }
                                 }
                             }
                         }
-
+                        newDataList.sortByDescending { it.startDate }
                         dataList.clear()
                         dataList.addAll(newDataList)
                         adapter.notifyDataSetChanged()
