@@ -317,10 +317,11 @@ class NotificationFragment : Fragment() {
                             if (currentDate.after(calendar.time)) {
                                 continue
                             }
-                            userList.add(0,userData)
+                            userList.add(userData)
                         }
                     }
                 }
+                userList.sortByDescending { it.verifiedTimeStamp }
                 accountVerificationAdapter.notifyDataSetChanged()
                 updateAppIndicator()
                 updateNoPostsVisibility()
@@ -365,7 +366,7 @@ class NotificationFragment : Fragment() {
 
                     }
                 }
-
+                requestList.sortByDescending { it.approveTimeStamp }
                 requestVerificationAdapter.notifyDataSetChanged()
                 updateAppIndicator()
                 updateNoPostsVisibility()
