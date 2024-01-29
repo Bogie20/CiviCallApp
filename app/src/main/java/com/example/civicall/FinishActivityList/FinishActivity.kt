@@ -77,7 +77,7 @@ class FinishActivity : AppCompatActivity() {
                             postKey,
                             engagementSnapshot.child("Participants/$currentUserUid/receivedStamp").getValue(String::class.java) ?: ""
                         )
-                        finishedActivities.add(0, finishData)
+                        finishedActivities.add(finishData)
                     }
                 }
                 finishedActivities.sortByDescending { it.receivedStamp }

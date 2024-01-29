@@ -80,7 +80,7 @@ class CurrentEngagements : AppCompatActivity() {
                             postKey,
                             engagementSnapshot.child("Participants/$currentUserUid/timestamp").getValue(String::class.java) ?: ""
                         )
-                        currentEngagements.add(0, currentEngagement)
+                        currentEngagements.add(currentEngagement)
                     }
                 }
                 currentEngagements.sortByDescending { it.timeStamp }
