@@ -60,6 +60,14 @@
                 android:visibility="gone"
                 android:scrollbars="vertical" />
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerViewEngagementReject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:scrollbarSize="5dp"
+                android:visibility="gone"
+                android:scrollbars="vertical" />
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/RecyclerViewAccApproved"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

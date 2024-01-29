@@ -30,6 +30,10 @@ import java.util.Locale
 class NotificationFragment : Fragment() {
 
     private lateinit var RecyclerViewAccApproved: RecyclerView
+    private lateinit var RecyclerViewEngagementReject: RecyclerView
+    private lateinit var databaseReferenceRejectEvent: DatabaseReference
+    private lateinit var rejectEventAdapter: RejectEventAdapter
+    private lateinit var rejectEventList: MutableList<RejectEventAdapter.RejectData>
     private lateinit var RecyclerViewAccReject: RecyclerView
     private lateinit var notificationAdapter: NotificationAdapter
     private lateinit var notificationList: MutableList<DataClassNotif>
@@ -67,13 +71,14 @@ class NotificationFragment : Fragment() {
         if (isAdded) {
         val totalNotificationCount = notificationList.size
         val totalUserCount = userList.size
+            val totalRejectEventCount = rejectEventList.size
         val totalJoinedCount = joinedList.size
             val totalRejectCount = rejectedList.size
         val totalActivePtsCount = ActivePtsList.size
         val totalRequestCount = requestList.size
         val totalAttendedCount = attendedList.size
 
-        val totalCount = totalNotificationCount + totalUserCount + totalJoinedCount + totalActivePtsCount + totalRequestCount + totalAttendedCount + totalRejectCount
+        val totalCount = totalNotificationCount + totalUserCount + totalJoinedCount + totalActivePtsCount + totalRequestCount + totalAttendedCount + totalRejectCount + totalRejectEventCount
 
             ShortcutBadger.applyCount(requireContext(), totalCount)
         }
@@ -103,6 +108,12 @@ class NotificationFragment : Fragment() {
         ActivePtsList = mutableListOf()
         activePtsAdapter = ActivePointsAdapter(ActivePtsList)
         recyclerViewAct.adapter = activePtsAdapter
+
+        RecyclerViewEngagementReject = view.findViewById(R.id.RecyclerViewEngagementReject)
+        RecyclerViewEngagementReject.layoutManager = LinearLayoutManager(activity)
+        rejectEventList = mutableListOf()
+        rejectEventAdapter = RejectEventAdapter(rejectEventList)
+        RecyclerViewEngagementReject.adapter = rejectEventAdapter
 
         RecyclerViewAttended = view.findViewById(R.id.recyclerViewAttended)
         attendedList = mutableListOf()
@@ -139,6 +150,7 @@ class NotificationFragment : Fragment() {
         databaseReferenceRequestVerify = FirebaseDatabase.getInstance().reference.child("Upload_Engagement")
         databaseReferenceUsers = FirebaseDatabase.getInstance().reference.child("Users")
         databaseReferenceActivePoints = FirebaseDatabase.getInstance().reference.child("Upload_Engagement")
+        databaseReferenceRejectEvent = FirebaseDatabase.getInstance().reference.child("Upload_Engagement")
         databaseReferenceJoined = FirebaseDatabase.getInstance().reference.child("Upload_Engagement")
         databaseReferenceAttended = FirebaseDatabase.getInstance().reference.child("Upload_Engagement")
         databaseReference.addValueEventListener(object : ValueEventListener {
@@ -355,14 +367,14 @@ class NotificationFragment : Fragment() {
                         val titleEvent = requestSnapshot.child("titleEvent").getValue(String::class.java) ?: ""
                         val category = requestSnapshot.child("category").getValue(String::class.java) ?: ""
                         val approveTimeStamp = requestSnapshot.child("approveTimeStamp").getValue(String::class.java) ?: ""
-
+                        val approveBy = requestSnapshot.child("approveBy").getValue(String::class.java) ?: ""
                         val endDateTime = SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(approveTimeStamp)
 
                         if (endDateTime != null && isWithinOneMonth(endDateTime)) {
                             continue
                         }
 
-                        requestList.add(RequestVerificationAdapter.RequestData(titleEvent, category, approveTimeStamp))
+                        requestList.add(RequestVerificationAdapter.RequestData(titleEvent, category, approveTimeStamp, approveBy ))
 
                     }
                 }
@@ -374,6 +386,47 @@ class NotificationFragment : Fragment() {
                     RecyclerViewEngagementApproved.visibility = View.GONE
                 } else {
                     RecyclerViewEngagementApproved.visibility = View.VISIBLE
+                }
+                progressBar.visibility = View.GONE
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                progressBar.visibility = View.GONE
+            }
+        })
+        databaseReferenceRejectEvent.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                rejectEventList.clear()
+
+                val currentUserUid = auth.currentUser?.uid
+
+                for (requestSnapshot in dataSnapshot.children) {
+                    if (requestSnapshot.child("uploadersUID").getValue(String::class.java) == currentUserUid
+                        && requestSnapshot.child("verificationStatus").getValue(Boolean::class.java) == false
+                        && requestSnapshot.hasChild("rejectReason")
+                    ) {
+                        val titleEvent = requestSnapshot.child("titleEvent").getValue(String::class.java) ?: ""
+                        val rejectReason = requestSnapshot.child("rejectReason").getValue(String::class.java) ?: ""
+                        val rejecttime = requestSnapshot.child("rejecttime").getValue(String::class.java) ?: ""
+                        val endDateTime = SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(rejecttime)
+
+                        if (endDateTime != null && isWithinOneMonth(endDateTime)) {
+                            continue
+                        }
+
+                        rejectEventList.add(RejectEventAdapter.RejectData(rejectReason, rejecttime, titleEvent ))
+                    }
+
+                }
+                rejectEventList.sortByDescending { it.rejecttime }
+                requestVerificationAdapter.notifyDataSetChanged()
+                updateAppIndicator()
+                updateNoPostsVisibility()
+                if (rejectEventList.isEmpty()) {
+                    RecyclerViewEngagementReject.visibility = View.GONE
+                } else {
+                    RecyclerViewEngagementReject.visibility = View.VISIBLE
                 }
                 progressBar.visibility = View.GONE
             }
@@ -591,6 +644,7 @@ class NotificationFragment : Fragment() {
     private fun updateNoPostsVisibility() {
         val isNotificationListEmpty = notificationList.isEmpty()
         val isUserListEmpty = userList.isEmpty()
+        val isRejectEventListEmpty = rejectEventList.isEmpty()
         val isJoinedListEmpty = joinedList.isEmpty()
         val isRejectListEmpty = rejectedList.isEmpty()
         val isActivePtsListEmpty = ActivePtsList.isEmpty()
@@ -598,7 +652,7 @@ class NotificationFragment : Fragment() {
         val isAttendedListEmpty = attendedList.isEmpty()
 
         noPostsImage.visibility = if (isNotificationListEmpty && isUserListEmpty && isJoinedListEmpty &&
-            isActivePtsListEmpty && isRequestListEmpty && isAttendedListEmpty && isRejectListEmpty
+            isActivePtsListEmpty && isRequestListEmpty && isAttendedListEmpty && isRejectListEmpty && isRejectEventListEmpty
         ) {
             View.VISIBLE
         } else {
@@ -606,7 +660,7 @@ class NotificationFragment : Fragment() {
         }
 
         noPostsText.visibility = if (isNotificationListEmpty && isUserListEmpty && isJoinedListEmpty &&
-            isActivePtsListEmpty && isRequestListEmpty && isAttendedListEmpty && isRejectListEmpty
+            isActivePtsListEmpty && isRequestListEmpty && isAttendedListEmpty && isRejectListEmpty && isRejectEventListEmpty
         ) {
             View.VISIBLE
         } else {

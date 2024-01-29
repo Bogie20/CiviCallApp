@@ -505,6 +505,8 @@ class Update_engagement: AppCompatActivity() {
         enddate = updateEndDate.text.toString().trim()
         location = updateLocation.text.toString()
         campus = updateCampus.text.toString()
+        databaseReference.child("rejectReason").removeValue()
+        databaseReference.child("rejecttime").removeValue()
         targetparty = updateTargetParty.text.toString().toInt()
         activepoints = updateActivePoints.text.toString().toInt()
         category = updateCategory.text.toString()
