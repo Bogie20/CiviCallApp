@@ -45,6 +45,7 @@ class Feedback : AppCompatActivity() {
         editTextMultiline = findViewById(R.id.editTextTextMultiLine)
         editTextText2 = findViewById(R.id.editTextText2)
         ratingBar = findViewById(R.id.ratingBar)
+        ratingBar.stepSize = 1.0f
         backbtn = findViewById(R.id.backbtn)
         none = findViewById(R.id.none)
         thank = findViewById(R.id.thank)
@@ -79,7 +80,8 @@ class Feedback : AppCompatActivity() {
             when (rating.toInt()) {
                 0 -> editTextText2.setText(R.string.very_dissatisfied)
                 1 -> editTextText2.setText(R.string.dissatisfied)
-                2, 3 -> editTextText2.setText(R.string.ok)
+                2 -> editTextText2.setText(R.string.ok)
+                3 -> editTextText2.setText(R.string.average)
                 4 -> editTextText2.setText(R.string.satisfied)
                 5 -> editTextText2.setText(R.string.very_satisfied)
                 else -> editTextText2.text = ""
