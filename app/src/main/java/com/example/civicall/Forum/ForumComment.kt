@@ -310,6 +310,8 @@ class ForumComment : AppCompatActivity() {
                     }
                 }
 
+                newCommentList.sortBy { it.commentTime }
+
                 // Calculate differences between old and new comment lists
                 val diffResult = DiffUtil.calculateDiff(CommentDiffCallback(commentList, newCommentList))
 
@@ -323,7 +325,6 @@ class ForumComment : AppCompatActivity() {
                     binding.noimage.visibility = View.GONE
                 }
 
-                // Update only the changed items in the adapter
                 commentList.clear()
                 commentList.addAll(newCommentList)
                 diffResult.dispatchUpdatesTo(commentsAdapter)
@@ -335,6 +336,7 @@ class ForumComment : AppCompatActivity() {
             }
         })
     }
+
 
     private fun loadUploaderData(postKey: String) {
         val postRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)

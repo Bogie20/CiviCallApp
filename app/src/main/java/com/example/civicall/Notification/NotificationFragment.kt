@@ -417,7 +417,6 @@ class NotificationFragment : Fragment() {
 
                         rejectEventList.add(RejectEventAdapter.RejectData(rejectReason, rejecttime, titleEvent ))
                     }
-
                 }
                 rejectEventList.sortByDescending { it.rejecttime }
                 requestVerificationAdapter.notifyDataSetChanged()
@@ -430,7 +429,6 @@ class NotificationFragment : Fragment() {
                 }
                 progressBar.visibility = View.GONE
             }
-
             override fun onCancelled(databaseError: DatabaseError) {
                 progressBar.visibility = View.GONE
             }
