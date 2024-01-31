@@ -147,13 +147,13 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                             }
 
                             override fun onCancelled(databaseError: DatabaseError) {
-                                handleDatabaseError(databaseError)
+
                             }
                         })
                     }
 
                     override fun onCancelled(databaseError: DatabaseError) {
-                        handleDatabaseError(databaseError)
+
                     }
                 })
         }
@@ -342,17 +342,10 @@ class RecognitionLeaderBoard : AppCompatActivity() {
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-              handleDatabaseError(databaseError)
+
                 }
             })
         }
-    }
-    private fun handleDatabaseError(databaseError: DatabaseError) {
-        val errorMessage = "Database error: ${databaseError.message}"
-
-        Log.e("RecognitionLeaderBoard", errorMessage)
-
-        Toast.makeText(this@RecognitionLeaderBoard, errorMessage, Toast.LENGTH_SHORT).show()
     }
     private fun showNoPostsMessage(campus: String) {
         noPostsImage.setImageResource(R.drawable.leaderboard)

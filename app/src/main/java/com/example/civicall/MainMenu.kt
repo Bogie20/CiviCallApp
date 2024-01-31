@@ -110,12 +110,12 @@ class MainMenu : AppCompatActivity() {
                     dialog.show()
                 }
             }else {
-                    if (!isNoInternetDialogShowing) {
-                        dismissCustomDialog()
-                        showNoInternetPopup()
-                    }
+                if (!isNoInternetDialogShowing) {
+                    dismissCustomDialog()
+                    showNoInternetPopup()
                 }
             }
+        }
 
         verification1.setOnClickListener {
             // Handle click for menu item 2

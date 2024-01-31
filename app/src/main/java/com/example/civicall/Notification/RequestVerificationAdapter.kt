@@ -14,7 +14,7 @@ class RequestVerificationAdapter(private val requestList: List<RequestData>) :
     RecyclerView.Adapter<RequestVerificationAdapter.RequestViewHolder>() {
 
     inner class RequestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val categoryTextView: TextView = itemView.findViewById(R.id.categoryTextView)
+        val approveBy: TextView = itemView.findViewById(R.id.categoryTextView)
         val title: TextView = itemView.findViewById(R.id.recTitle)
         val category: TextView = itemView.findViewById(R.id.schedule)
         val label: TextView = itemView.findViewById(R.id.label)
@@ -34,13 +34,14 @@ class RequestVerificationAdapter(private val requestList: List<RequestData>) :
 
         // Set label with a top margin of 30dp
         val labelLayoutParams = holder.label.layoutParams as ViewGroup.MarginLayoutParams
-        labelLayoutParams.topMargin = dpToPx(25) // Use your desired top margin in dp
+        labelLayoutParams.topMargin = dpToPx(15) // Use your desired top margin in dp
         holder.label.layoutParams = labelLayoutParams
 
         // Set text size for label, recTitle, and schedule to 12sp
         holder.label.textSize = 12f
         holder.title.textSize = 12f
         holder.category.textSize = 12f
+        holder.approveBy.textSize = 12f
 
         // Set label
         holder.label.text = "Your Request has been Approved"
@@ -49,10 +50,10 @@ class RequestVerificationAdapter(private val requestList: List<RequestData>) :
         holder.approveTimeStamp.text = "Since: ${currentRequest.approveTimeStamp}"
         holder.title.text = "Title: ${currentRequest.titleEvent}"
         holder.category.text = "Category: ${currentRequest.category}"
+        holder.approveBy.text = "Approve by: ${currentRequest.approveBy}"
 
         holder.recImage.setImageResource(R.drawable.approved)
 
-        holder.categoryTextView.visibility = View.GONE
     }
 
     private fun dpToPx(dp: Int): Int {
@@ -67,7 +68,8 @@ class RequestVerificationAdapter(private val requestList: List<RequestData>) :
     data class RequestData(
         val titleEvent: String,
         val category: String,
-        val approveTimeStamp: String
+        val approveTimeStamp: String,
+        val approveBy: String
     )
 }
 

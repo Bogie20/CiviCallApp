@@ -20,6 +20,7 @@ import android.os.Looper
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.view.ViewTreeObserver
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
@@ -132,7 +133,6 @@ class ForumUpload : AppCompatActivity() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                handleDatabaseError(error)
                 }
             })
         }
@@ -183,7 +183,7 @@ class ForumUpload : AppCompatActivity() {
                         }
 
                         override fun onCancelled(error: DatabaseError) {
-                          handleDatabaseError(error)
+
                         }
                     })
                 }
@@ -194,13 +194,6 @@ class ForumUpload : AppCompatActivity() {
                 }
             }
         }
-    }
-    private fun handleDatabaseError(databaseError: DatabaseError) {
-        val errorMessage = "Database error: ${databaseError.message}"
-
-        Log.e("ForumUpload", errorMessage)
-
-        Toast.makeText(this@ForumUpload, errorMessage, Toast.LENGTH_SHORT).show()
     }
     private var isNoInternetDialogShowing = false
     private fun showNoInternetPopup() {
@@ -369,56 +362,104 @@ class ForumUpload : AppCompatActivity() {
             return
         }
 
-        val dialogView = layoutInflater.inflate(R.layout.multiple_checkbox_selection, null)
-        val alertDialog = AlertDialog.Builder(this)
-            .setView(dialogView)
-            .create()
+        getCurrentUserCampus { currentUserCampus ->
+            if (currentUserCampus != null) {
+                val dialogView = layoutInflater.inflate(R.layout.multiple_checkbox_selection, null)
+                val alertDialog = AlertDialog.Builder(this)
+                    .setView(dialogView)
+                    .create()
 
-        val btnSelectCampus = dialogView.findViewById<Button>(R.id.btnSelectCampus)
-        val closeIcon = dialogView.findViewById<ImageView>(R.id.closeIcon) // Add this line
+                val btnSelectCampus = dialogView.findViewById<Button>(R.id.btnSelectCampus)
+                val closeIcon = dialogView.findViewById<ImageView>(R.id.closeIcon) // Add this line
 
-        val checkBoxes = ArrayList<CheckBox>()
+                val checkBoxes = ArrayList<CheckBox>()
 
-        // Iterate from 1 to 11 (excluding checkBox12)
-        for (i in 1 until 12) {
-            val checkBoxId = resources.getIdentifier("checkBox$i", "id", packageName)
-            val checkBox = dialogView.findViewById<CheckBox>(checkBoxId)
-            checkBoxes.add(checkBox)
+                // Iterate from 1 to 11 (excluding checkBox12)
+                // Iterate from 1 to 11 (excluding checkBox12)
+                for (i in 1 until 12) {
+                    val checkBoxId = resources.getIdentifier("checkBox$i", "id", packageName)
+                    val checkBox = dialogView.findViewById<CheckBox>(checkBoxId)
+
+                    // Assign an identifier to each checkbox based on the campus name
+                    val campusName = checkBox.text.toString()
+
+                    // Check if the current checkbox corresponds to the user's default campus
+                    val isCurrentUserCampus = campusName == currentUserCampus
+
+                    if (isCurrentUserCampus) {
+                        // Use ViewTreeObserver to delay setting isChecked until the view is fully initialized
+                        checkBox.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+                            override fun onPreDraw(): Boolean {
+                                checkBox.isChecked = true
+                                checkBox.isEnabled = false
+                                checkBox.viewTreeObserver.removeOnPreDrawListener(this)
+                                return true
+                            }
+                        })
+                    }
+
+                    checkBoxes.add(checkBox)
+                }
+
+                val checkBox12 = dialogView.findViewById<CheckBox>(R.id.checkBox12)
+
+                // Set a listener for checkBox12 to select all checkboxes
+                checkBox12.setOnCheckedChangeListener { _, isChecked ->
+                    checkBoxes.forEach { it.isChecked = isChecked }
+                }
+
+                // Check previously selected campuses and update the checkboxes
+                val selectedCampuses = binding.campusPick.text.toString().split(", ")
+                for (checkBox in checkBoxes) {
+                    checkBox.isChecked = selectedCampuses.contains(checkBox.text.toString())
+                }
+
+                btnSelectCampus.setOnClickListener {
+                    val selectedCampuses = checkBoxes.filter { it.isChecked }.map { it.text.toString() }
+                    val selectedCampusesText = selectedCampuses.joinToString(", ")
+
+                    // Set the selected campuses in the AutoCompleteTextView
+                    binding.campusPick.setText(selectedCampusesText)
+
+                    alertDialog.dismiss()
+                }
+
+                // Add click listener to closeIcon to dismiss the dialog
+                closeIcon.setOnClickListener {
+                    alertDialog.dismiss()
+                }
+                alertDialog.setOnDismissListener {
+                    isCampusDialogShowing = false
+                }
+                alertDialog.show()
+                isCampusDialogShowing = true
+            } else {
+                // Handle error or show a message if unable to fetch user's campus
+                Toast.makeText(this, "Unable to fetch user's campus information", Toast.LENGTH_SHORT).show()
+            }
         }
+    }
 
-        // Find the checkBox12 by ID
-        val checkBox12 = dialogView.findViewById<CheckBox>(R.id.checkBox12)
+    private fun getCurrentUserCampus(callback: (String?) -> Unit) {
+        val auth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            val uid = currentUser.uid
 
-        // Set a listener for checkBox12 to select all checkboxes
-        checkBox12.setOnCheckedChangeListener { _, isChecked ->
-            checkBoxes.forEach { it.isChecked = isChecked }
+            val currentUserRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+            currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val campus = snapshot.child("campus").getValue(String::class.java)
+                    callback(campus)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(null)
+                }
+            })
+        } else {
+            callback(null)
         }
-
-        // Check previously selected campuses and update the checkboxes
-        val selectedCampuses = binding.campusPick.text.toString().split(", ")
-        for (checkBox in checkBoxes) {
-            checkBox.isChecked = selectedCampuses.contains(checkBox.text.toString())
-        }
-
-        btnSelectCampus.setOnClickListener {
-            val selectedCampuses = checkBoxes.filter { it.isChecked }.map { it.text.toString() }
-            val selectedCampusesText = selectedCampuses.joinToString(", ")
-
-            // Set the selected campuses in the AutoCompleteTextView
-            binding.campusPick.setText(selectedCampusesText)
-
-            alertDialog.dismiss()
-        }
-
-        // Add click listener to closeIcon to dismiss the dialog
-        closeIcon.setOnClickListener {
-            alertDialog.dismiss()
-        }
-        alertDialog.setOnDismissListener {
-            isCampusDialogShowing = false
-        }
-        alertDialog.show()
-        isCampusDialogShowing = true
     }
 
     private var isAlreadyJoinDialogShowing = false
@@ -555,7 +596,7 @@ class ForumUpload : AppCompatActivity() {
         } else {
             val fileName = System.currentTimeMillis().toString() + "_forumImage"
             val storageReference = FirebaseStorage.getInstance().getReference()
-                .child("Forum Post Images").child(fileName)
+                .child("Forum_Post_Images").child(fileName)
 
             val builder = AlertDialog.Builder(this@ForumUpload)
             builder.setCancelable(false)
@@ -663,7 +704,7 @@ class ForumUpload : AppCompatActivity() {
 
         if (uploadersId != null) {
             val postKey =
-                FirebaseDatabase.getInstance().getReference("Forum Post").push().key
+                FirebaseDatabase.getInstance().getReference("Forum_Post").push().key
 
             if (postKey != null) {
                 val postTime = getCurrentDateTime()
@@ -681,7 +722,7 @@ class ForumUpload : AppCompatActivity() {
                     0
                 )
 
-                FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+                FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
                     .setValue(dataClass)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {

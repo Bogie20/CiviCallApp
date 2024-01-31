@@ -35,7 +35,7 @@ class CurrentEngagements : AppCompatActivity() {
 
         recyclerView = binding.currentRecycler
         auth = FirebaseAuth.getInstance()
-        databaseReference = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
+        databaseReference = FirebaseDatabase.getInstance().reference.child("Upload_Engagement")
         currentEngagements = mutableListOf()
         currentEngageAdapter = CurrentEngageAdapter(currentEngagements)
 
@@ -59,7 +59,7 @@ class CurrentEngagements : AppCompatActivity() {
         participantsQuery.addListenerForSingleValueEvent(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
-                currentEngagements.clear() // Clear existing data before updating
+                currentEngagements.clear()
 
                 for (engagementSnapshot in snapshot.children) {
                     val startDate = engagementSnapshot.child("startDate").getValue(String::class.java) ?: ""
@@ -80,11 +80,10 @@ class CurrentEngagements : AppCompatActivity() {
                             postKey,
                             engagementSnapshot.child("Participants/$currentUserUid/timestamp").getValue(String::class.java) ?: ""
                         )
-                        currentEngagements.add(0, currentEngagement)
+                        currentEngagements.add(currentEngagement)
                     }
                 }
-
-                // Update the adapter with the fetched data
+                currentEngagements.sortByDescending { it.timeStamp }
                 currentEngageAdapter.notifyDataSetChanged()
                 currentEngageAdapter = CurrentEngageAdapter(currentEngagements)
                 recyclerView.adapter = currentEngageAdapter

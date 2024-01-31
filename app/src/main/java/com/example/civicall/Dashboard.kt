@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import android.view.View
+import android.widget.ImageView
 import com.example.civicall.Notification.NotificationFragment
 
 
@@ -127,7 +128,7 @@ class Dashboard : AppCompatActivity() {
             return
         }
         dismissCustomDialog()
-        val dialogView = layoutInflater.inflate(R.layout.bottom_sheet_filter, null)
+        val dialogView = layoutInflater.inflate(R.layout.bottom_posting, null)
         val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
             .create()
@@ -142,6 +143,7 @@ class Dashboard : AppCompatActivity() {
         alertDialog.window?.attributes = layoutParams
 
         val civicpost: LinearLayout = dialogView.findViewById(R.id.CivicEngagement)
+        val closeIcon: ImageView = dialogView.findViewById(R.id.closeIcon)
 
         alertDialog.setOnDismissListener {
             isOptionDialogShowing = false
@@ -153,6 +155,11 @@ class Dashboard : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
+
+        closeIcon.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
         val forum: LinearLayout = dialogView.findViewById(R.id.Forum)
         forum.setOnClickListener {
             alertDialog.dismiss()
@@ -160,6 +167,7 @@ class Dashboard : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
+
         alertDialog.show()
         isOptionDialogShowing = true
     }

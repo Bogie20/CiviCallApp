@@ -296,7 +296,7 @@
                     android:layout_marginEnd="16dp"
                     android:textColor="@color/background2"
                     android:layout_weight="1"
-                    android:text="Users can post, apply to, or join civic engagements, participate in forum discussions, give feedback, and access educational resources."
+                    android:text="Users can request, apply to, or join civic engagements, participate in forum discussions, give feedback, and access educational resources."
                     android:textSize="16sp"
                     android:padding="4dp" />
 
@@ -611,7 +611,7 @@
                     android:layout_weight="1"
                     android:textColor="@color/background2"
                     android:layout_marginBottom="30dp"
-                    android:text="For any queries or concerns regarding these terms, contact us at [09952969073]"
+                    android:text="For any queries or concerns regarding these terms, contact us at [09267383649]"
                     android:textSize="16sp"
                     android:padding="4dp" />
 

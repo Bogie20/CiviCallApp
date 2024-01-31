@@ -44,7 +44,7 @@ class CalendarActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
         auth = FirebaseAuth.getInstance()
-        databaseReference = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
+        databaseReference = FirebaseDatabase.getInstance().reference.child("Upload_Engagement")
 
         engagementList = mutableListOf()
         calendarAdapter = CalendarAdapter(engagementList)
@@ -153,11 +153,6 @@ class CalendarActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                val errorMessage = "Database error: ${error.message}"
-
-                Log.e("CalendarActivity", errorMessage)
-
-                Toast.makeText(this@CalendarActivity, errorMessage, Toast.LENGTH_SHORT).show()
             }
         })
 

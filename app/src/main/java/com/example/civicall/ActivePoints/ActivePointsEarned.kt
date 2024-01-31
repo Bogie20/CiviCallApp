@@ -62,7 +62,7 @@ class ActivePointsEarned : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         val currentUserUid = auth.currentUser?.uid
 
-        databaseReference = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
+        databaseReference = FirebaseDatabase.getInstance().reference.child("Upload_Engagement")
 
         databaseReference.addValueEventListener(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
@@ -110,11 +110,6 @@ class ActivePointsEarned : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                val errorMessage = "Database error: ${databaseError.message}"
-
-                Log.e("ActivePointsEarned", errorMessage)
-
-                Toast.makeText(this@ActivePointsEarned, errorMessage, Toast.LENGTH_SHORT).show()
             }
         })
     }

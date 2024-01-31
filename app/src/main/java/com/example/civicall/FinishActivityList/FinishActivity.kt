@@ -35,7 +35,7 @@ class FinishActivity : AppCompatActivity() {
         networkUtils.initialize()
         recyclerView = binding.finishRecycler
         auth = FirebaseAuth.getInstance()
-        databaseReference = FirebaseDatabase.getInstance().reference.child("Upload Engagement")
+        databaseReference = FirebaseDatabase.getInstance().reference.child("Upload_Engagement")
         finishedActivities = mutableListOf()
         finishActAdapter = FinishActAdapter(finishedActivities)
 
@@ -77,9 +77,10 @@ class FinishActivity : AppCompatActivity() {
                             postKey,
                             engagementSnapshot.child("Participants/$currentUserUid/receivedStamp").getValue(String::class.java) ?: ""
                         )
-                        finishedActivities.add(0, finishData)
+                        finishedActivities.add(finishData)
                     }
                 }
+                finishedActivities.sortByDescending { it.receivedStamp }
                 finishActAdapter = FinishActAdapter(finishedActivities)
                 recyclerView.adapter = finishActAdapter
 
@@ -94,11 +95,6 @@ class FinishActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                val errorMessage = "Database error: ${error.message}"
-
-                Log.e("FinishActivity", errorMessage)
-
-                Toast.makeText(this@FinishActivity, errorMessage, Toast.LENGTH_SHORT).show()
             }
         })
     }

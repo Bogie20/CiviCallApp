@@ -267,7 +267,7 @@ class UploadVerificationFile : AppCompatActivity() {
         if (currentUser != null) {
             val userId = currentUser.uid
             val database = FirebaseDatabase.getInstance()
-            val usersRef = database.getReference("User Verification")
+            val usersRef = database.getReference("User_Verification")
             val currentUserRef = usersRef.child(userId)
 
             currentUserRef.addValueEventListener(object : ValueEventListener {
@@ -286,7 +286,6 @@ class UploadVerificationFile : AppCompatActivity() {
                 override fun onCancelled(error: DatabaseError) {
                     Log.e("UploadVerificationFile", "Error checking user verification status: ${error.message}")
 
-                    handleDatabaseError(error)
                 }
             })
         }
@@ -325,7 +324,7 @@ class UploadVerificationFile : AppCompatActivity() {
 
                 override fun onCancelled(error: DatabaseError) {
                     Log.e("UploadVerificationFile", "Error checking user verification status: ${error.message}")
-                    handleDatabaseError(error)
+
                 }
             })
         }
@@ -550,7 +549,7 @@ class UploadVerificationFile : AppCompatActivity() {
                 fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
                     // Image uploaded successfully
                     val database = FirebaseDatabase.getInstance()
-                    val usersRef = database.getReference("User Verification")
+                    val usersRef = database.getReference("User_Verification")
                     val currentUser = usersRef.child(
                         FirebaseAuth.getInstance().currentUser?.uid ?: ""
                     )
@@ -780,7 +779,7 @@ class UploadVerificationFile : AppCompatActivity() {
                 fileRef.downloadUrl.addOnSuccessListener { downloadUri ->
                     // File uploaded successfully
                     val database = FirebaseDatabase.getInstance()
-                    val usersRef = database.getReference("User Verification")
+                    val usersRef = database.getReference("User_Verification")
                     val currentUser = usersRef.child(
                         FirebaseAuth.getInstance().currentUser?.uid ?: ""
                     )

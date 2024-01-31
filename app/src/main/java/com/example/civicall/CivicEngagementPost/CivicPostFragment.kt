@@ -77,7 +77,7 @@ class CivicPostFragment : Fragment() {
         adapter = PostAdapter(requireContext(), dataList)
         recyclerView.adapter = adapter
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Upload Engagement")
+        databaseReference = FirebaseDatabase.getInstance().getReference("Upload_Engagement")
 
         databaseReference.addValueEventListener(object : ValueEventListener {
 
@@ -93,7 +93,6 @@ class CivicPostFragment : Fragment() {
                         val newDataList = ArrayList<DataClass>()
 
                         val currentMillis = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).timeInMillis
-
 
                         for (itemSnapshot in snapshot.children) {
                             val dataClass = itemSnapshot.getValue(DataClass::class.java)
@@ -111,13 +110,16 @@ class CivicPostFragment : Fragment() {
                                             .parse(it1 + " Asia/Manila")?.time
                                     } ?: 0
 
-
                                     if (currentMillis - postTimeMillis <= MAX_POST_AGE_MILLIS) {
-                                        newDataList.add(0, it)
+                                        // Add condition to check verificationStatus
+                                        if (it.verificationStatus || (it.uploadersUID == userUid && !it.verificationStatus)) {
+                                            newDataList.add(it)
+                                        }
                                     }
                                 }
                             }
                         }
+                        newDataList.sortByDescending { it.startDate }
                         dataList.clear()
                         dataList.addAll(newDataList)
                         adapter.notifyDataSetChanged()
@@ -132,8 +134,10 @@ class CivicPostFragment : Fragment() {
                             rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
                             recyclerView.visibility = View.VISIBLE
                         }
-                            progressBar.visibility = View.GONE
+
+                        progressBar.visibility = View.GONE
                     }
+
                     override fun onCancelled(error: DatabaseError) {
                         progressBar.visibility = View.GONE
                     }

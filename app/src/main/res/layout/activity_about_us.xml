@@ -116,6 +116,7 @@ android:text="Now you can effortlessly discover Nearby Volunteer Opportunities ,
             <ImageView
                 android:id="@+id/facebook"
                 android:layout_width="60dp"
+                android:background="@drawable/highlight_button"
                 android:layout_height="40dp"
                 android:layout_marginLeft="60dp"
                 android:layout_marginTop="40dp"
@@ -137,7 +138,8 @@ android:text="Now you can effortlessly discover Nearby Volunteer Opportunities ,
             <ImageView
                 android:layout_width="70dp"
                 android:layout_height="50dp"
-                android:src="@drawable/twitter"
+                android:background="@drawable/highlight_button"
+                android:src="@drawable/twitterx"
                 android:id="@+id/twitter"
                 android:layout_marginTop="-91dp"
                 android:layout_marginLeft="270dp">
@@ -147,12 +149,13 @@ android:text="Now you can effortlessly discover Nearby Volunteer Opportunities ,
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Follow us on Twitter"
+                android:text="Follow us on X (Twitter)"
                 android:textSize="16sp"
                 android:textColor="@android:color/black"
                 android:id="@+id/liketwitter"
+                android:maxLines="1"
                 android:layout_marginTop="18dp"
-                android:layout_marginLeft="240dp">
+                android:layout_marginLeft="210dp">
 
             </TextView>
 

@@ -113,10 +113,10 @@ class ForumComment : AppCompatActivity() {
             binding.downcount.text = downReactCount.toString()
             loadUploaderData(postKey)
             upReactCountRef =
-                FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+                FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
                     .child("upReactCount")
             downReactCountRef =
-                FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+                FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
                     .child("downReactCount")
 
             // Add listeners for real-time updates
@@ -157,7 +157,7 @@ class ForumComment : AppCompatActivity() {
                         }
 
                         override fun onCancelled(error: DatabaseError) {
-                          handleDatabaseError(error)
+
                         }
                     })
                 }
@@ -239,7 +239,7 @@ class ForumComment : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-              handleDatabaseError(error)
+
             }
         })
     }
@@ -255,7 +255,7 @@ class ForumComment : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-               handleDatabaseError(error)
+
             }
         })
     }
@@ -269,7 +269,7 @@ class ForumComment : AppCompatActivity() {
             }
             .format(Calendar.getInstance().time)
 
-        val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+        val commentsRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
             .child("Comments")
         val commentKey = commentsRef.push().key
 
@@ -293,7 +293,7 @@ class ForumComment : AppCompatActivity() {
 
 
     private fun loadCommentsFromDatabase() {
-        val commentsRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+        val commentsRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
             .child("Comments")
 
         commentsRef.addValueEventListener(object : ValueEventListener {
@@ -310,6 +310,8 @@ class ForumComment : AppCompatActivity() {
                     }
                 }
 
+                newCommentList.sortBy { it.commentTime }
+
                 // Calculate differences between old and new comment lists
                 val diffResult = DiffUtil.calculateDiff(CommentDiffCallback(commentList, newCommentList))
 
@@ -323,7 +325,6 @@ class ForumComment : AppCompatActivity() {
                     binding.noimage.visibility = View.GONE
                 }
 
-                // Update only the changed items in the adapter
                 commentList.clear()
                 commentList.addAll(newCommentList)
                 diffResult.dispatchUpdatesTo(commentsAdapter)
@@ -331,21 +332,14 @@ class ForumComment : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-              handleDatabaseError(error)
+
             }
         })
     }
 
 
-    private fun handleDatabaseError(databaseError: DatabaseError) {
-        val errorMessage = "Database error: ${databaseError.message}"
-
-        Log.e("ForumComment", errorMessage)
-
-        Toast.makeText(this@ForumComment, errorMessage, Toast.LENGTH_SHORT).show()
-    }
     private fun loadUploaderData(postKey: String) {
-        val postRef = FirebaseDatabase.getInstance().getReference("Forum Post").child(postKey)
+        val postRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
         postRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
@@ -384,7 +378,7 @@ class ForumComment : AppCompatActivity() {
                             }
 
                             override fun onCancelled(error: DatabaseError) {
-                            handleDatabaseError(error)
+
                             }
                         })
                     }
@@ -392,7 +386,7 @@ class ForumComment : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-               handleDatabaseError(error)
+
             }
         })
     }

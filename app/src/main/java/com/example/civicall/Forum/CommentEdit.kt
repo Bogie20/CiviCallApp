@@ -60,7 +60,7 @@ class CommentEdit : AppCompatActivity() {
             postKey = CommentAdapter.DataRepository.currentPostKey ?: ""
         }
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Forum Post")
+        databaseReference = FirebaseDatabase.getInstance().getReference("Forum_Post")
             .child(postKey).child("Comments").child(commentKey)
 
         updateButton.setOnClickListener {

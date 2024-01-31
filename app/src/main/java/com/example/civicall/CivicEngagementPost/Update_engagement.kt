@@ -12,6 +12,7 @@ import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.view.View
+import android.view.ViewTreeObserver
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
@@ -30,8 +31,11 @@ import com.example.civicall.R
 import com.example.civicall.databinding.ActivityUpdateEngagementBinding
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.text.ParseException
@@ -189,7 +193,7 @@ class Update_engagement: AppCompatActivity() {
         }
 
         databaseReference =
-            FirebaseDatabase.getInstance().getReference("Upload Engagement").child(key)
+            FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(key)
 
         updateImage.setOnClickListener {
             val photoPicker = Intent(Intent.ACTION_PICK)
@@ -263,7 +267,7 @@ class Update_engagement: AppCompatActivity() {
         if (uri != null) {
 
             val fileName = System.currentTimeMillis().toString() + "_civicImage"
-            storageReference = FirebaseStorage.getInstance().reference.child("Poster Civic Images")
+            storageReference = FirebaseStorage.getInstance().reference.child("Poster_Civic_Images")
                 .child(fileName)
 
             storageReference.putFile(uri!!).addOnSuccessListener { taskSnapshot ->
@@ -315,55 +319,106 @@ class Update_engagement: AppCompatActivity() {
             return
         }
 
-        val dialogView = layoutInflater.inflate(R.layout.multiple_checkbox_selection, null)
-        val alertDialog = AlertDialog.Builder(this)
-            .setView(dialogView)
-            .create()
+        getCurrentUserCampus { currentUserCampus ->
+            if (currentUserCampus != null) {
+                val dialogView = layoutInflater.inflate(R.layout.multiple_checkbox_selection, null)
+                val alertDialog = AlertDialog.Builder(this)
+                    .setView(dialogView)
+                    .create()
 
-        val btnSelectCampus = dialogView.findViewById<Button>(R.id.btnSelectCampus)
-        val closeIcon = dialogView.findViewById<ImageView>(R.id.closeIcon) // Add this line
+                val btnSelectCampus = dialogView.findViewById<Button>(R.id.btnSelectCampus)
+                val closeIcon = dialogView.findViewById<ImageView>(R.id.closeIcon) // Add this line
 
-        val checkBoxes = ArrayList<CheckBox>()
+                val checkBoxes = ArrayList<CheckBox>()
 
-        // Iterate from 1 to 11 (excluding checkBox12)
-        for (i in 1 until 12) {
-            val checkBoxId = resources.getIdentifier("checkBox$i", "id", packageName)
-            val checkBox = dialogView.findViewById<CheckBox>(checkBoxId)
-            checkBoxes.add(checkBox)
+                // Iterate from 1 to 11 (excluding checkBox12)
+                // Iterate from 1 to 11 (excluding checkBox12)
+                for (i in 1 until 12) {
+                    val checkBoxId = resources.getIdentifier("checkBox$i", "id", packageName)
+                    val checkBox = dialogView.findViewById<CheckBox>(checkBoxId)
+
+                    // Assign an identifier to each checkbox based on the campus name
+                    val campusName = checkBox.text.toString()
+
+                    // Check if the current checkbox corresponds to the user's default campus
+                    val isCurrentUserCampus = campusName == currentUserCampus
+
+                    if (isCurrentUserCampus) {
+                        // Use ViewTreeObserver to delay setting isChecked until the view is fully initialized
+                        checkBox.viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+                            override fun onPreDraw(): Boolean {
+                                checkBox.isChecked = true
+                                checkBox.isEnabled = false
+                                checkBox.viewTreeObserver.removeOnPreDrawListener(this)
+                                return true
+                            }
+                        })
+                    }
+
+                    checkBoxes.add(checkBox)
+                }
+
+                val checkBox12 = dialogView.findViewById<CheckBox>(R.id.checkBox12)
+
+                // Set a listener for checkBox12 to select all checkboxes
+                checkBox12.setOnCheckedChangeListener { _, isChecked ->
+                    checkBoxes.forEach { it.isChecked = isChecked }
+                }
+
+                // Check previously selected campuses and update the checkboxes
+                val selectedCampuses = binding.updateCampus.text.toString().split(", ")
+                for (checkBox in checkBoxes) {
+                    checkBox.isChecked = selectedCampuses.contains(checkBox.text.toString())
+                }
+
+                btnSelectCampus.setOnClickListener {
+                    val selectedCampuses = checkBoxes.filter { it.isChecked }.map { it.text.toString() }
+                    val selectedCampusesText = selectedCampuses.joinToString(", ")
+
+                    // Set the selected campuses in the AutoCompleteTextView
+                    binding.updateCampus.setText(selectedCampusesText)
+
+                    alertDialog.dismiss()
+                }
+
+                // Add click listener to closeIcon to dismiss the dialog
+                closeIcon.setOnClickListener {
+                    alertDialog.dismiss()
+                }
+                alertDialog.setOnDismissListener {
+                    isCampusDialogShowing = false
+                }
+                alertDialog.show()
+                isCampusDialogShowing = true
+            } else {
+                // Handle error or show a message if unable to fetch user's campus
+                Toast.makeText(this, "Unable to fetch user's campus information", Toast.LENGTH_SHORT).show()
+            }
         }
-
-        // Find the checkBox12 by ID
-        val checkBox12 = dialogView.findViewById<CheckBox>(R.id.checkBox12)
-
-        // Set a listener for checkBox12 to select all checkboxes
-        checkBox12.setOnCheckedChangeListener { _, isChecked ->
-            checkBoxes.forEach { it.isChecked = isChecked }
-        }
-
-        // Check previously selected campuses and update the checkboxes
-        val selectedCampuses = binding.updateCampus.text.toString().split(", ")
-        for (checkBox in checkBoxes) {
-            checkBox.isChecked = selectedCampuses.contains(checkBox.text.toString())
-        }
-
-        btnSelectCampus.setOnClickListener {
-            val selectedCampuses = checkBoxes.filter { it.isChecked }.map { it.text.toString() }
-            val selectedCampusesText = selectedCampuses.joinToString(", ")
-            binding.updateCampus.setText(selectedCampusesText)
-
-            alertDialog.dismiss()
-        }
-
-        // Add click listener to closeIcon to dismiss the dialog
-        closeIcon.setOnClickListener {
-            alertDialog.dismiss()
-        }
-        alertDialog.setOnDismissListener {
-            isCampusDialogShowing = false
-        }
-        alertDialog.show()
-        isCampusDialogShowing = true
     }
+
+    private fun getCurrentUserCampus(callback: (String?) -> Unit) {
+        val auth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            val uid = currentUser.uid
+
+            val currentUserRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+            currentUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val campus = snapshot.child("campus").getValue(String::class.java)
+                    callback(campus)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    callback(null)
+                }
+            })
+        } else {
+            callback(null)
+        }
+    }
+
 
 
 
@@ -450,6 +505,8 @@ class Update_engagement: AppCompatActivity() {
         enddate = updateEndDate.text.toString().trim()
         location = updateLocation.text.toString()
         campus = updateCampus.text.toString()
+        databaseReference.child("rejectReason").removeValue()
+        databaseReference.child("rejecttime").removeValue()
         targetparty = updateTargetParty.text.toString().toInt()
         activepoints = updateActivePoints.text.toString().toInt()
         category = updateCategory.text.toString()
