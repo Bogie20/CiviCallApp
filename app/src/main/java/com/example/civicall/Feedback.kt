@@ -230,7 +230,7 @@ class Feedback : AppCompatActivity() {
             // Create a reference to the Realtime Database node where you want to store the feedback
             val feedbackRef = database.reference.child("Feedback").child(uid)
 
-            feedbackRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            feedbackRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if (dataSnapshot.exists()) {
                         // Feedback already exists, update it
@@ -317,7 +317,7 @@ class Feedback : AppCompatActivity() {
     ) {
         // Retrieve the user's first name from the "Users" table
         val usersRef = database.reference.child("Users").child(uid)
-        usersRef.addListenerForSingleValueEvent(object : ValueEventListener {
+        usersRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
                     val firstName =
