@@ -91,15 +91,31 @@ class Feedback : AppCompatActivity() {
         val submitButton: Button = findViewById(R.id.publishbtn)
 
         submitButton.setOnClickListener {
-            if (networkUtils.isOnline) {
-                showConfirmationDialog()
+            val rating = ratingBar.rating.toInt()
+            val feedbackMessage = editTextText2.text.toString()
+            val commenttext = editTextMultiline.text.toString()
+
+            if (rating == 0) {
+                // If the rating is 0, set feedback message to "Very Dissatisfied"
+                editTextText2.setText(R.string.very_dissatisfied)
+            }
+
+            if (feedbackMessage.isEmpty() || commenttext.isEmpty()) {
+                // If either feedbackMessage or commenttext is empty, show a Toast and don't proceed
+                showToast("Please provide both a rating and feedback.")
             } else {
-                if (!isNoInternetDialogShowing) {
-                    dismissCustomDialog()
-                    showNoInternetPopup()
+                // Proceed with feedback submission
+                if (networkUtils.isOnline) {
+                    showConfirmationDialog()
+                } else {
+                    if (!isNoInternetDialogShowing) {
+                        dismissCustomDialog()
+                        showNoInternetPopup()
+                    }
                 }
             }
         }
+
 
         database = FirebaseDatabase.getInstance()
     }
@@ -227,7 +243,7 @@ class Feedback : AppCompatActivity() {
                             val currentTime = System.currentTimeMillis()
 
                             // Parse the last formatted timestamp to a Date object
-                            val sdf = SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault())
+                            val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
                             sdf.timeZone = TimeZone.getTimeZone("Asia/Manila")
 
                             try {
@@ -308,7 +324,7 @@ class Feedback : AppCompatActivity() {
                         dataSnapshot.child("firstName").getValue(String::class.java)
 
                     val sdf =
-                        SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault())
+                        SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
                     sdf.timeZone = TimeZone.getTimeZone("Asia/Manila")
 
                     val feedbackDataRealtime = hashMapOf(
