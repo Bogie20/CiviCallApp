@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.InputFilter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.RatingBar
@@ -54,6 +55,9 @@ class Feedback : AppCompatActivity() {
         error = findViewById(R.id.error)
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
+        val maxLength = 200
+        val filters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxLength))
+        editTextMultiline.filters = filters
 
         error.setOnClickListener {
             handleCategorySelection("Great app, but I found a suggestion")
