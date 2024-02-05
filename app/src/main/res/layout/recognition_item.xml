@@ -75,7 +75,7 @@
                 android:maxLines="1"
                 android:text="0000000000000000"
                 android:textColor="@color/redpink"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
             <TextView
                 android:id="@+id/userCampus"
                 android:layout_width="wrap_content"
@@ -99,8 +99,8 @@
         android:layout_height="100dp">
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/badge_25"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
             android:layout_marginTop="35dp"
             android:layout_marginBottom="10dp"
             android:layout_marginEnd="20dp"
