@@ -109,13 +109,28 @@ class Feedback : AppCompatActivity() {
                 showToast("Please provide both a rating and feedback.")
             } else {
                 // Proceed with feedback submission
-                if (networkUtils.isOnline) {
-                    showConfirmationDialog()
-                } else {
-                    if (!isNoInternetDialogShowing) {
-                        dismissCustomDialog()
-                        showNoInternetPopup()
-                    }
+                val currentUser = FirebaseAuth.getInstance().currentUser
+                if (currentUser != null) {
+                    // Check the verificationStatus from the Users node
+                    val uid = currentUser.uid
+                    val usersRef = database.reference.child("Users").child(uid)
+                    usersRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            val verificationStatus = dataSnapshot.child("verificationStatus").getValue(Boolean::class.java)
+                            if (verificationStatus == true) {
+                                // User is verified, show confirmation dialog
+                                showConfirmationDialog()
+                            } else {
+                                // User is not verified, show Toast
+                                showToast(
+                                    "Please verify your account before proceeding.")
+                            }
+                        }
+
+                        override fun onCancelled(databaseError: DatabaseError) {
+                            // Handle database error if necessary
+                        }
+                    })
                 }
             }
         }

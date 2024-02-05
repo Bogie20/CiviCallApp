@@ -43,6 +43,10 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 import com.example.civicall.NetworkUtils
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+
 class ReportProblem : AppCompatActivity() {
     private lateinit var binding: ActivityReportProblemBinding
     private lateinit var auth: FirebaseAuth
@@ -94,7 +98,16 @@ class ReportProblem : AppCompatActivity() {
                         // EditText is empty, show a message or take appropriate action
                         Toast.makeText(this, "Please enter a message", Toast.LENGTH_SHORT).show()
                     } else {
-                        showConfirmationDialog()
+                        // Check user verification status before proceeding
+                        checkUserVerificationStatus {
+                            if (it) {
+                                // User is verified, show confirmation dialog
+                                showConfirmationDialog()
+                            } else {
+                                // User is not verified, show Toast
+                                showToast("Your account needs to be verified first.")
+                            }
+                        }
                     }
                 }
             } else {
@@ -107,6 +120,31 @@ class ReportProblem : AppCompatActivity() {
 
         binding.RemoveButton.setOnClickListener {
             showRemovePhotoConfirmationDialog()
+        }
+    }
+    private fun showToast(message: String) {
+        Toast.makeText(this@ReportProblem, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun checkUserVerificationStatus(callback: (Boolean) -> Unit) {
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            val uid = currentUser.uid
+            val usersRef = databaseReference.reference.child("Users").child(uid)
+            usersRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val verificationStatus = dataSnapshot.child("verificationStatus").getValue(Boolean::class.java)
+                    callback(verificationStatus == true)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Handle database error if necessary
+                    callback(false)
+                }
+            })
+        } else {
+            // No current user, treat as not verified
+            callback(false)
         }
     }
     private var isNoInternetDialogShowing = false
