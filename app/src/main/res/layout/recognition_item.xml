@@ -92,7 +92,6 @@
                 android:text="Campus"
                 android:textColor="@color/background2"
                 android:textSize="11sp" />
-
         </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
