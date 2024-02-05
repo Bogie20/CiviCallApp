@@ -9,9 +9,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="55dp"
         app:cardBackgroundColor="@color/redpink"
-        app:cardCornerRadius="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -36,9 +35,10 @@
 
             <TextView
                 android:id="@+id/civicall"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
+                android:layout_marginStart="-40dp"
+                android:gravity="center"
                 android:fontFamily="@font/oleo_script"
                 android:text="Nasugbu Emergency Contact"
                 android:textColor="@color/white"
@@ -56,7 +56,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="70dp">
+        android:layout_marginTop="60dp">
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"

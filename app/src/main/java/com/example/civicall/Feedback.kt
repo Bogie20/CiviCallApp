@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.InputFilter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.RatingBar
@@ -45,6 +46,7 @@ class Feedback : AppCompatActivity() {
         editTextMultiline = findViewById(R.id.editTextTextMultiLine)
         editTextText2 = findViewById(R.id.editTextText2)
         ratingBar = findViewById(R.id.ratingBar)
+        ratingBar.stepSize = 1.0f
         backbtn = findViewById(R.id.backbtn)
         none = findViewById(R.id.none)
         thank = findViewById(R.id.thank)
@@ -53,6 +55,9 @@ class Feedback : AppCompatActivity() {
         error = findViewById(R.id.error)
         networkUtils = NetworkUtils(this)
         networkUtils.initialize()
+        val maxLength = 200
+        val filters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxLength))
+        editTextMultiline.filters = filters
 
         error.setOnClickListener {
             handleCategorySelection("Great app, but I found a suggestion")
@@ -79,7 +84,8 @@ class Feedback : AppCompatActivity() {
             when (rating.toInt()) {
                 0 -> editTextText2.setText(R.string.very_dissatisfied)
                 1 -> editTextText2.setText(R.string.dissatisfied)
-                2, 3 -> editTextText2.setText(R.string.ok)
+                2 -> editTextText2.setText(R.string.ok)
+                3 -> editTextText2.setText(R.string.average)
                 4 -> editTextText2.setText(R.string.satisfied)
                 5 -> editTextText2.setText(R.string.very_satisfied)
                 else -> editTextText2.text = ""
@@ -89,15 +95,31 @@ class Feedback : AppCompatActivity() {
         val submitButton: Button = findViewById(R.id.publishbtn)
 
         submitButton.setOnClickListener {
-            if (networkUtils.isOnline) {
-                showConfirmationDialog()
+            val rating = ratingBar.rating.toInt()
+            val feedbackMessage = editTextText2.text.toString()
+            val commenttext = editTextMultiline.text.toString()
+
+            if (rating == 0) {
+                // If the rating is 0, set feedback message to "Very Dissatisfied"
+                editTextText2.setText(R.string.very_dissatisfied)
+            }
+
+            if (feedbackMessage.isEmpty() || commenttext.isEmpty()) {
+                // If either feedbackMessage or commenttext is empty, show a Toast and don't proceed
+                showToast("Please provide both a rating and feedback.")
             } else {
-                if (!isNoInternetDialogShowing) {
-                    dismissCustomDialog()
-                    showNoInternetPopup()
+                // Proceed with feedback submission
+                if (networkUtils.isOnline) {
+                    showConfirmationDialog()
+                } else {
+                    if (!isNoInternetDialogShowing) {
+                        dismissCustomDialog()
+                        showNoInternetPopup()
+                    }
                 }
             }
         }
+
 
         database = FirebaseDatabase.getInstance()
     }
@@ -225,7 +247,7 @@ class Feedback : AppCompatActivity() {
                             val currentTime = System.currentTimeMillis()
 
                             // Parse the last formatted timestamp to a Date object
-                            val sdf = SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault())
+                            val sdf = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
                             sdf.timeZone = TimeZone.getTimeZone("Asia/Manila")
 
                             try {
@@ -306,7 +328,7 @@ class Feedback : AppCompatActivity() {
                         dataSnapshot.child("firstName").getValue(String::class.java)
 
                     val sdf =
-                        SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault())
+                        SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
                     sdf.timeZone = TimeZone.getTimeZone("Asia/Manila")
 
                     val feedbackDataRealtime = hashMapOf(

@@ -35,14 +35,15 @@
 
                 <TextView
                     android:id="@+id/civicall"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
+              android:layout_marginStart="-40dp"
+                    android:gravity="center"
                     android:textAllCaps="true"
                     android:fontFamily="@font/oleo_script"
                     android:text="UPDATE Comment POST"
                     android:textColor="@color/white"
-                    android:textSize="23dp" />
+                    android:textSize="21dp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

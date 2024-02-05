@@ -29,7 +29,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/card"
         android:layout_width="match_parent"
-        android:layout_height="235dp"
+        android:layout_height="230dp"
         android:background="@drawable/kurt1"
         app:cardCornerRadius="80dp"
         app:layout_constraintEnd_toEndOf="parent"

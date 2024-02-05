@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="55dp"
         android:background="@color/redpink"
         android:elevation="4dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -44,7 +44,7 @@
             android:id="@+id/filterCampus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/highlight_text"
             android:src="@drawable/filterbtn"
@@ -58,7 +58,7 @@
         style="@style/viewParent.headerText"
         android:textColor="@color/DarkGray"
         android:textSize="18.5sp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintTop_toBottomOf="@id/relativeLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
