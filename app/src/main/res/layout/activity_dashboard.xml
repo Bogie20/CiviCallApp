@@ -16,7 +16,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/titlecard"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             app:cardBackgroundColor="@color/redpink">
 
             <LinearLayout
@@ -28,7 +28,7 @@
                     android:layout_marginHorizontal="10dp"
                     android:gravity="center"
                     android:paddingStart="10dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="12dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/oleo_script"
@@ -103,9 +103,9 @@
         <!-- Centered FloatingActionButton -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/faback"
-            android:layout_width="63dp"
-            android:layout_height="63dp"
-            android:layout_marginBottom="23dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="20dp"
             android:backgroundTint="@color/background"
             android:clickable="false"
             app:borderWidth="0dp"
@@ -122,7 +122,7 @@
             android:src="@drawable/fab_add"
             app:tint="@color/white"
             android:background="@drawable/highlight_button"
-            android:layout_marginBottom="23dp"
+            android:layout_marginBottom="20dp"
             app:layout_constraintTop_toTopOf="@+id/bottom_bar"
             app:layout_constraintBottom_toBottomOf="@+id/bottom_bar"
             app:layout_constraintStart_toStartOf="parent"

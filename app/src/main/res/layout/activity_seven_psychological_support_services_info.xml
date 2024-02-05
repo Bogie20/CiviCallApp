@@ -12,7 +12,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="55dp"
         android:background="@color/redpink"
         android:elevation="4dp"
         app:layout_constraintTop_toTopOf="parent"
