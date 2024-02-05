@@ -33,21 +33,23 @@ class RejectEventAdapter(private val rejectedList: List<RejectData>) :
         val currentRejected = rejectedList[position]
 
         val labelLayoutParams = holder.label.layoutParams as ViewGroup.MarginLayoutParams
-        labelLayoutParams.topMargin = dpToPx(21)
+        labelLayoutParams.topMargin = dpToPx(19)
         holder.label.layoutParams = labelLayoutParams
 
         holder.label.textSize = 12f
         holder.recTitle.textSize = 12f
         holder.dateandTime.textSize = 12f
+        holder.schedule.textSize = 12f
         holder.recImage.setImageResource(R.drawable.rejectedimage)
-        holder.label.text = "Title: ${currentRejected.titleEvent}"
-        holder.recTitle.text = "Reason: ${currentRejected.rejectReason}"
+        holder.label.text = "Your request has been rejected"
+        holder.recTitle.text = "Title: ${currentRejected.titleEvent}"
+        holder.schedule.text = "Reason: ${currentRejected.rejectReason}"
         holder.dateandTime.text ="Since: ${currentRejected.rejecttime}"
 
         holder.categoryTextView.visibility = View.GONE
-        holder.schedule.visibility = View.GONE
-        holder.recTitle.maxLines = 3
-        holder.recTitle.setLineSpacing(0f, 1.2f)
+        holder.recTitle.maxLines = 1
+        holder.schedule.maxLines = 2
+        holder.schedule.setLineSpacing(0f, 1.2f)
     }
     private fun dpToPx(dp: Int): Int {
         val scale = Resources.getSystem().displayMetrics.density
