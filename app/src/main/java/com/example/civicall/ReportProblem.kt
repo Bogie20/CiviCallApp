@@ -13,6 +13,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
+import android.text.InputFilter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -36,13 +37,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
-import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
-import com.example.civicall.NetworkUtils
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -54,13 +53,9 @@ class ReportProblem : AppCompatActivity() {
     private lateinit var databaseReference: FirebaseDatabase
     private lateinit var problemEditText: EditText
     private var imageUrl: String = ""
-    private var lastReportTimestamp: Long = 0
     private val REQUEST_CAMERA_PERMISSION = 2
     private val PICK_IMAGE_REQUEST = 1
-    private val desiredCardViewWidth = 300 // Adjust as needed
-    private val desiredCardViewHeight = 200 // Adjust as needed
     private var selectedImageUri: Uri? = null
-    private var scaledBitmap: Bitmap? = null
     private lateinit var networkUtils: NetworkUtils
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,6 +79,7 @@ class ReportProblem : AppCompatActivity() {
         }
 
         problemEditText = findViewById(R.id.ProblemText)
+        problemEditText.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(200))
 
         binding.sendbutton.setOnClickListener {
             if (networkUtils.isOnline) {
@@ -91,6 +87,9 @@ class ReportProblem : AppCompatActivity() {
                 if (binding.radioGroup.checkedRadioButtonId == -1) {
                     // No radio button is selected, show a message or take appropriate action
                     Toast.makeText(this, "Please select a category", Toast.LENGTH_SHORT).show()
+                } else if (selectedImageUri == null) {
+                    // No image is selected, show a message
+                    Toast.makeText(this, "Please choose an image for proof", Toast.LENGTH_SHORT).show()
                 } else {
                     // A radio button is selected, check if the EditText has text
                     val userMessage = problemEditText.text.toString().trim()
@@ -104,7 +103,6 @@ class ReportProblem : AppCompatActivity() {
                                 // User is verified, show confirmation dialog
                                 showConfirmationDialog()
                             } else {
-                                // User is not verified, show Toast
                                 showToast("Your account needs to be verified first.")
                             }
                         }
@@ -117,6 +115,7 @@ class ReportProblem : AppCompatActivity() {
                 }
             }
         }
+
 
         binding.RemoveButton.setOnClickListener {
             showRemovePhotoConfirmationDialog()
@@ -216,53 +215,20 @@ class ReportProblem : AppCompatActivity() {
         val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST)
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
             selectedImageUri = data.data
-            resizeAndSetImage(selectedImageUri)
-        }
-    }
-
-    private fun resizeAndSetImage(selectedImageUri: Uri?) {
-        selectedImageUri?.let {
-            try {
-                val inputStream = contentResolver.openInputStream(selectedImageUri)
-                val options = BitmapFactory.Options()
-                options.inJustDecodeBounds = true
-                BitmapFactory.decodeStream(inputStream, null, options)
-                inputStream?.close()
-
-                val imageWidth = options.outWidth
-                val imageHeight = options.outHeight
-
-                val widthRatio = desiredCardViewWidth.toFloat() / imageWidth
-                val heightRatio = desiredCardViewHeight.toFloat() / imageHeight
-
-                // Use the maximum ratio to ensure the entire CardView is covered by the image
-                val scaleFactor = if (widthRatio > heightRatio) widthRatio else heightRatio
-
-                scaledBitmap = BitmapFactory.Options().run {
-                    inSampleSize = scaleFactor.toInt()
-                    inJustDecodeBounds = false
-                    contentResolver.openInputStream(selectedImageUri)?.use { stream ->
-                        BitmapFactory.decodeStream(stream, null, this)
-                    }
-                }
-
-                binding.showimage.scaleType = ImageView.ScaleType.CENTER_CROP
-                binding.showimage.setImageBitmap(scaledBitmap)
-            } catch (e: Exception) {
-                e.printStackTrace()
+            selectedImageUri?.let {
+                binding.showimage.setImageURI(it)
+                uploadImageToFirebase(it)
             }
+        } else {
+            Toast.makeText(this, "Failed to retrieve image", Toast.LENGTH_SHORT).show()
         }
     }
-
-
-    @OptIn(DelicateCoroutinesApi::class)
-    private fun uploadImageToFirebase(selectedImageUri: Uri?, bitmap: Bitmap?) {
+    private fun uploadImageToFirebase(imageUri: Uri) {
         val builder = AlertDialog.Builder(this@ReportProblem)
         builder.setCancelable(false)
         val inflater = layoutInflater
@@ -278,28 +244,17 @@ class ReportProblem : AppCompatActivity() {
 
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                val dateFormat = SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault())
-                dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+                val imageName = "${System.currentTimeMillis()}" // Use timestamp as image name
 
-                val currentDate = Date()
-                val formattedDate = dateFormat.format(currentDate)
-                val imageName = formattedDate.replace("/", "").replace(":", "") + ".png"
-
-                val byteArrayOutputStream = ByteArrayOutputStream()
-                bitmap?.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
-                val data = byteArrayOutputStream.toByteArray()
-
-                // Upload image to Firebase Storage in the background
-                withContext(Dispatchers.IO) {
-                    val imageRef = storageReference.child(imageName)
-                    imageRef.putBytes(data).await()
-                    imageUrl = imageRef.downloadUrl.await().toString()
-                }
+                val imageRef = storageReference.child(imageName)
+                imageRef.putFile(imageUri).await()
+                imageUrl = imageRef.downloadUrl.await().toString() // Update imageUrl here
             } finally {
                 dialog.dismiss()
             }
         }
     }
+
 
     private var isSaveConfirmationDialogShowing = false
 
@@ -332,9 +287,12 @@ class ReportProblem : AppCompatActivity() {
             alertDialog.dismiss()
             dismissCustomDialog()
 
-            uploadImageToFirebase(selectedImageUri, scaledBitmap)
+            selectedImageUri?.let {
+                uploadImageToFirebase(it)
+            }
             sendDataToFirebase(imageUrl)
         }
+
         cancelBtn.text = "Cancel"
         cancelBtn.setOnClickListener {
             isSaveConfirmationDialogShowing = false
@@ -373,47 +331,33 @@ class ReportProblem : AppCompatActivity() {
         // Get the UID and first name of the current user
         val user = auth.currentUser
         val uid = user?.uid ?: "YOUR_UID_HERE"
-        val fullName = user?.displayName ?: "Unknown"
 
         // Get the message from the EditText
         val userMessage = problemEditText.text.toString().trim()
 
         val databaseRef = databaseReference.reference
-        val problemRef = databaseRef.child("ReportedProblems").child(category).push()
+        val userReportRef = databaseRef.child("ReportedProblems").child(uid).push() // Store under UID
 
-        // Check if the user has already reported a problem today
-        checkIfAlreadyReported(uid, category) { alreadyReported ->
-            if (!alreadyReported) {
-                // User hasn't reported a problem today, proceed with saving data
-                val dateFormat = SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault())
-                dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
-                val formattedDate = dateFormat.format(System.currentTimeMillis())
+        val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+        dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
+        val formattedDate = dateFormat.format(System.currentTimeMillis())
 
-                val problemData = mapOf(
-                    "imageUrl" to imageUrl,
-                    "message" to userMessage,
-                    "timestamp" to formattedDate,
-                    "uid" to uid,
-                    "fullName" to fullName
-                )
+        val problemData = mapOf(
+            "imageUrl" to imageUrl,
+            "message" to userMessage,
+            "issue" to category, // Add issue category
+            "timestamp" to formattedDate
+        )
 
-                problemRef.updateChildren(problemData)
-                    .addOnSuccessListener {
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            Toast.makeText(this@ReportProblem, "Report sent successfully", Toast.LENGTH_SHORT).show()
-                            clearReportForm()
-                        }, 5000)
-                    }
-                    .addOnFailureListener { e ->
-                        e.printStackTrace()
-                    }
-            } else {
-                // User has already reported a problem today, show a message
-                Toast.makeText(this@ReportProblem, "You have already reported a problem today", Toast.LENGTH_SHORT).show()
+        userReportRef.setValue(problemData)
+            .addOnSuccessListener {
+                Toast.makeText(this@ReportProblem, "Report sent successfully", Toast.LENGTH_SHORT).show()
+                clearReportForm()
             }
-        }
+            .addOnFailureListener { e ->
+                e.printStackTrace()
+            }
     }
-
 
     private fun clearReportForm() {
         // Clear the image
@@ -424,15 +368,6 @@ class ReportProblem : AppCompatActivity() {
 
         // Clear the radio button selection
         binding.radioGroup.clearCheck()
-    }
-
-    private fun checkIfAlreadyReported(uid: String, category: String, callback: (Boolean) -> Unit) {
-        // Check if the user has already reported today based on the last report timestamp
-        val currentTime = System.currentTimeMillis()
-        val oneDayInMillis = 24 * 60 * 60 * 1000 // One day in milliseconds
-
-        val alreadyReported = currentTime - lastReportTimestamp < oneDayInMillis
-        callback(alreadyReported)
     }
 
     private suspend fun <T> Task<T>.await(): T = suspendCoroutine { continuation ->
