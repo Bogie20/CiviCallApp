@@ -13,6 +13,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
+import android.text.InputFilter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -52,7 +53,6 @@ class ReportProblem : AppCompatActivity() {
     private lateinit var databaseReference: FirebaseDatabase
     private lateinit var problemEditText: EditText
     private var imageUrl: String = ""
-    private var lastReportTimestamp: Long = 0
     private val REQUEST_CAMERA_PERMISSION = 2
     private val PICK_IMAGE_REQUEST = 1
     private var selectedImageUri: Uri? = null
@@ -79,6 +79,7 @@ class ReportProblem : AppCompatActivity() {
         }
 
         problemEditText = findViewById(R.id.ProblemText)
+        problemEditText.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(200))
 
         binding.sendbutton.setOnClickListener {
             if (networkUtils.isOnline) {
@@ -86,6 +87,9 @@ class ReportProblem : AppCompatActivity() {
                 if (binding.radioGroup.checkedRadioButtonId == -1) {
                     // No radio button is selected, show a message or take appropriate action
                     Toast.makeText(this, "Please select a category", Toast.LENGTH_SHORT).show()
+                } else if (selectedImageUri == null) {
+                    // No image is selected, show a message
+                    Toast.makeText(this, "Please choose an image for proof", Toast.LENGTH_SHORT).show()
                 } else {
                     // A radio button is selected, check if the EditText has text
                     val userMessage = problemEditText.text.toString().trim()
@@ -99,7 +103,6 @@ class ReportProblem : AppCompatActivity() {
                                 // User is verified, show confirmation dialog
                                 showConfirmationDialog()
                             } else {
-
                                 showToast("Your account needs to be verified first.")
                             }
                         }
@@ -112,6 +115,7 @@ class ReportProblem : AppCompatActivity() {
                 }
             }
         }
+
 
         binding.RemoveButton.setOnClickListener {
             showRemovePhotoConfirmationDialog()
@@ -211,7 +215,6 @@ class ReportProblem : AppCompatActivity() {
         val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST)
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -225,8 +228,6 @@ class ReportProblem : AppCompatActivity() {
             Toast.makeText(this, "Failed to retrieve image", Toast.LENGTH_SHORT).show()
         }
     }
-
-
     private fun uploadImageToFirebase(imageUri: Uri) {
         val builder = AlertDialog.Builder(this@ReportProblem)
         builder.setCancelable(false)
@@ -358,8 +359,6 @@ class ReportProblem : AppCompatActivity() {
             }
     }
 
-
-
     private fun clearReportForm() {
         // Clear the image
         binding.showimage.setImageBitmap(null)
@@ -369,15 +368,6 @@ class ReportProblem : AppCompatActivity() {
 
         // Clear the radio button selection
         binding.radioGroup.clearCheck()
-    }
-
-    private fun checkIfAlreadyReported(uid: String, category: String, callback: (Boolean) -> Unit) {
-        // Check if the user has already reported today based on the last report timestamp
-        val currentTime = System.currentTimeMillis()
-        val oneDayInMillis = 24 * 60 * 60 * 1000 // One day in milliseconds
-
-        val alreadyReported = currentTime - lastReportTimestamp < oneDayInMillis
-        callback(alreadyReported)
     }
 
     private suspend fun <T> Task<T>.await(): T = suspendCoroutine { continuation ->
