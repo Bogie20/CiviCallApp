@@ -222,13 +222,13 @@ class ReportProblem : AppCompatActivity() {
             selectedImageUri = data.data
             selectedImageUri?.let {
                 binding.showimage.setImageURI(it)
-                uploadImageToFirebase(it)
+
             }
         } else {
             Toast.makeText(this, "Failed to retrieve image", Toast.LENGTH_SHORT).show()
         }
     }
-    private fun uploadImageToFirebase(imageUri: Uri) {
+    private fun uploadImageToFirebase(imageUri: Uri, onComplete: (String) -> Unit) {
         val builder = AlertDialog.Builder(this@ReportProblem)
         builder.setCancelable(false)
         val inflater = layoutInflater
@@ -248,13 +248,13 @@ class ReportProblem : AppCompatActivity() {
 
                 val imageRef = storageReference.child(imageName)
                 imageRef.putFile(imageUri).await()
-                imageUrl = imageRef.downloadUrl.await().toString() // Update imageUrl here
+                val imageUrl = imageRef.downloadUrl.await().toString() // Update imageUrl here
+                onComplete(imageUrl)
             } finally {
                 dialog.dismiss()
             }
         }
     }
-
 
     private var isSaveConfirmationDialogShowing = false
 
@@ -287,13 +287,14 @@ class ReportProblem : AppCompatActivity() {
             alertDialog.dismiss()
             dismissCustomDialog()
 
-            selectedImageUri?.let {
-                uploadImageToFirebase(it)
+            selectedImageUri?.let { imageUri ->
+                uploadImageToFirebase(imageUri) { imageUrl ->
+                    sendDataToFirebase(imageUrl)
+                }
             }
-            sendDataToFirebase(imageUrl)
         }
 
-        cancelBtn.text = "Cancel"
+            cancelBtn.text = "Cancel"
         cancelBtn.setOnClickListener {
             isSaveConfirmationDialogShowing = false
             alertDialog.dismiss()
