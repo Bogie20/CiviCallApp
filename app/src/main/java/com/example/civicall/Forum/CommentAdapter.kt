@@ -445,6 +445,7 @@ class CommentAdapter(
         private val cardView: CardView = itemView.findViewById(R.id.recCard)
         private val profilePic: ImageView = itemView.findViewById(R.id.profilePic)
         private val userName: TextView = itemView.findViewById(R.id.userName)
+        private val Campus: TextView = itemView.findViewById(R.id.campus)
         private val timeRec: TextView = itemView.findViewById(R.id.timeRec)
         val upReact: ImageButton = itemView.findViewById(R.id.upBtn)
         val downReact: ImageButton = itemView.findViewById(R.id.downBtn)
@@ -517,9 +518,10 @@ class CommentAdapter(
 
 
 
-                                // Set commenter's full name
                                 val fullNameText = "${it.firstname} ${it.lastname}"
+                                val campus = it.campus
                                 userName.text = fullNameText
+                                Campus.text = campus
                             }
                         }
                     }

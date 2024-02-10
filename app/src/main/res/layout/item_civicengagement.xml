@@ -59,9 +59,10 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="12dp"
             android:gravity="start"
+            android:textStyle="bold"
             android:fontFamily="@font/lexend_medium"
             android:text="............................................................................"
-            android:textColor="@color/DarkGray"
+            android:textColor="@color/instruction"
             android:textSize="12sp"
             android:maxLines="1"
             android:ellipsize="end"
@@ -82,9 +83,10 @@
                 android:gravity="start"
                 android:maxLines="1"
                 android:ellipsize="end"
+                android:textStyle="bold"
                 android:layout_marginStart="15dp"
                 android:fontFamily="@font/lexend_medium"
-                android:textColor="@color/DarkGray"/>
+                android:textColor="@color/instruction"/>
 
             <TextView
                 android:id="@+id/date_to"
@@ -95,7 +97,8 @@
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/lexend"
                 android:textSize="14sp"
-                android:textColor="@color/DarkGray"/>
+                android:textStyle="bold"
+                android:textColor="@color/instruction"/>
             <TextView
                 android:id="@+id/civicEndDate"
                 android:layout_width="wrap_content"
@@ -107,9 +110,10 @@
                 android:layout_marginEnd="8dp"
                 android:maxLines="1"
                 android:ellipsize="end"
+                android:textStyle="bold"
                 android:layout_marginStart="5dp"
                 android:fontFamily="@font/lexend_medium"
-                android:textColor="@color/DarkGray"/>
+                android:textColor="@color/instruction"/>
         </LinearLayout>
 
         <TextView
@@ -122,9 +126,10 @@
             android:gravity="end"
             android:paddingEnd="20dp"
             android:textAllCaps="true"
+            android:textStyle="bold"
             android:fontFamily="@font/lexend_semibold"
             android:text="Category"
-            android:textColor="@color/DarkGray"
+            android:textColor="@color/instruction"
             android:textSize="12sp"
             android:maxLines="1"
             android:ellipsize="end"

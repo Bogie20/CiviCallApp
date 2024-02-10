@@ -108,14 +108,16 @@
                     android:layout_marginStart="3dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="10dp"
+                    android:textStyle="bold"
                     android:layout_marginBottom="33dp"
                     android:drawableStart="@drawable/earth"
                     android:ellipsize="end"
                     android:lines="1"
                     android:paddingHorizontal="10dp"
+
                     android:text="Campus"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="14sp"
+                    android:textColor="@color/instruction"
+                    android:textSize="13sp"
                     app:layout_constraintBottom_toTopOf="@+id/view2"
                     app:layout_constraintStart_toEndOf="@+id/userImage"
                     app:layout_constraintTop_toBottomOf="@+id/username" />
