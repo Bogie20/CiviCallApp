@@ -251,15 +251,30 @@ class CommentAdapter(
             }
     }
 
-
     @SuppressLint("NotifyDataSetChanged")
     fun deleteComment(commentKey: String) {
         val commentRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
             .child("Comments").child(commentKey)
 
+        // Get a reference to the post node to update commentCount
+        val postRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
+
         commentRef.removeValue()
             .addOnSuccessListener {
                 // Comment successfully deleted from the database
+                // Update the commentCount value in the post node
+                postRef.child("commentCount").addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val currentCommentCount = snapshot.getValue(Int::class.java) ?: 0
+                        if (currentCommentCount > 0) {
+                            // Decrease the comment count by 1
+                            postRef.child("commentCount").setValue(currentCommentCount - 1)
+                        }
+                    }
+                    override fun onCancelled(error: DatabaseError) {
+                        // Handle onCancelled as needed
+                    }
+                })
                 notifyDataSetChanged()
                 Toast.makeText(context, "Comment Deleted", Toast.LENGTH_SHORT).show()
             }
@@ -268,6 +283,7 @@ class CommentAdapter(
                 Toast.makeText(context, "Failed to delete comment", Toast.LENGTH_SHORT).show()
             }
     }
+
     private fun updateHiddenState(postKey: String, commentKey: String?, isHidden: Boolean) {
         if (commentKey != null) {
             val userHiddenCommentsRef = FirebaseDatabase.getInstance().getReference("Forum_Post")
