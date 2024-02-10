@@ -284,6 +284,19 @@ class ForumComment : AppCompatActivity() {
         commentsRef.updateChildren(commentData).addOnSuccessListener {
             commentEditText.text.clear()
 
+            // Update comment count in the post node
+            val postRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
+            postRef.child("commentCount").addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val currentCount = snapshot.getValue(Int::class.java) ?: 0
+                    postRef.child("commentCount").setValue(currentCount + 1)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle error if needed
+                }
+            })
+
             commentsRecyclerView.scrollToPosition(itemCount)
         }.addOnFailureListener {
             // Handle failure if needed
@@ -309,11 +322,7 @@ class ForumComment : AppCompatActivity() {
                         }
                     }
                 }
-
                 newCommentList.sortBy { it.commentTime }
-
-                // Calculate differences between old and new comment lists
-                val diffResult = DiffUtil.calculateDiff(CommentDiffCallback(commentList, newCommentList))
 
                 // Update the CommentCount in real-time with formatted count
                 commentCountTextView.text = formatCount(newCommentList.size)
@@ -327,12 +336,11 @@ class ForumComment : AppCompatActivity() {
 
                 commentList.clear()
                 commentList.addAll(newCommentList)
-                diffResult.dispatchUpdatesTo(commentsAdapter)
                 commentsAdapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
-
+                // Handle error if needed
             }
         })
     }
