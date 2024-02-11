@@ -652,7 +652,7 @@ class NotificationFragment : Fragment() {
                 val banAdapter = BanAccountAdapter(banList)
                 recyclerViewBan.adapter = banAdapter
 
-                if (rejectedList.isEmpty()) {
+                if (banList.isEmpty()) {
                     recyclerViewBan.visibility = View.GONE
                 } else {
                     recyclerViewBan.visibility = View.VISIBLE

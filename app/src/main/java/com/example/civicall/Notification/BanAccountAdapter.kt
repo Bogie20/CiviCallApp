@@ -30,23 +30,22 @@ class BanAccountAdapter(private val banList: List<BanData>) :
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: BanViewHolder, position: Int) {
-        val currentRejected = banList[position]
+        val currentBan = banList[position]
 
         val labelLayoutParams = holder.label.layoutParams as ViewGroup.MarginLayoutParams
-        labelLayoutParams.topMargin = dpToPx(27)
+        labelLayoutParams.topMargin = dpToPx(30)
         holder.label.layoutParams = labelLayoutParams
 
         holder.label.textSize = 12f
-        holder.recTitle.textSize = 12f
+        holder.recTitle.textSize = 13f
         holder.dateandTime.textSize = 12f
-        holder.recImage.setImageResource(R.drawable.rejectedimage)
-        holder.label.text = "Account Has Been Banned!!"
-        holder.dateandTime.text ="Since: ${currentRejected.banTimeStamp}"
+        holder.recImage.setImageResource(R.drawable.banccc)
+        holder.label.text = "Your Account Has Been Banned!!"
+        holder.dateandTime.text ="Since: ${currentBan.banTimeStamp}"
+        holder.recTitle.text = "Your post in the forum has led to this ban."
 
         holder.categoryTextView.visibility = View.GONE
         holder.schedule.visibility = View.GONE
-        holder.recTitle.maxLines = 2
-        holder.recTitle.setLineSpacing(0f, 1.3f)
     }
 
     private fun dpToPx(dp: Int): Int {
