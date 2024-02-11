@@ -33,6 +33,7 @@ class NotificationFragment : Fragment() {
     private lateinit var RecyclerViewEngagementReject: RecyclerView
     private lateinit var databaseReferenceRejectEvent: DatabaseReference
     private lateinit var rejectEventAdapter: RejectEventAdapter
+    private lateinit var banAccAdapter: BanAccountAdapter
     private lateinit var rejectEventList: MutableList<RejectEventAdapter.RejectData>
     private lateinit var RecyclerViewAccReject: RecyclerView
     private lateinit var notificationAdapter: NotificationAdapter
@@ -55,7 +56,9 @@ class NotificationFragment : Fragment() {
     private lateinit var RecyclerViewEngagementApproved: RecyclerView
     private lateinit var recyclerViewEngageJoined: RecyclerView
     private lateinit var recyclerViewAct: RecyclerView
+    private lateinit var recyclerViewBan: RecyclerView
     private lateinit var databaseReferenceAccReject: DatabaseReference
+    private lateinit var databaseReferenceBanAcc: DatabaseReference
     private lateinit var activePtsAdapter: ActivePointsAdapter
     private lateinit var engagementJoinedAdapter: EngagementJoinedAdapter
     private lateinit var rejectVerificationAdapter: AccountRejectAdapter
@@ -65,11 +68,13 @@ class NotificationFragment : Fragment() {
     private lateinit var databaseReferenceAttended: DatabaseReference
     private lateinit var RecyclerViewAttended: RecyclerView
     private lateinit var attendedAdapter: AttendedAdapter
+    private lateinit var banList: MutableList<BanAccountAdapter.BanData>
     private lateinit var attendedList: MutableList<AttendedAdapter.AttendedData>
     @SuppressLint("SuspiciousIndentation")
     private fun updateAppIndicator() {
         if (isAdded) {
         val totalNotificationCount = notificationList.size
+            val totalBanCount = banList.size
         val totalUserCount = userList.size
             val totalRejectEventCount = rejectEventList.size
         val totalJoinedCount = joinedList.size
@@ -78,7 +83,7 @@ class NotificationFragment : Fragment() {
         val totalRequestCount = requestList.size
         val totalAttendedCount = attendedList.size
 
-        val totalCount = totalNotificationCount + totalUserCount + totalJoinedCount + totalActivePtsCount + totalRequestCount + totalAttendedCount + totalRejectCount + totalRejectEventCount
+        val totalCount = totalNotificationCount + totalUserCount + totalJoinedCount + totalActivePtsCount + totalRequestCount + totalAttendedCount + totalRejectCount + totalRejectEventCount + totalBanCount
 
             ShortcutBadger.applyCount(requireContext(), totalCount)
         }
@@ -102,6 +107,12 @@ class NotificationFragment : Fragment() {
         view.startAnimation(anim)
         auth = FirebaseAuth.getInstance()
         val currentUserUid = auth.currentUser?.uid
+
+        recyclerViewBan = view.findViewById(R.id.recyclerViewBan)
+        recyclerViewBan.layoutManager = LinearLayoutManager(activity)
+        banList = mutableListOf()
+        banAccAdapter = BanAccountAdapter(banList)
+        recyclerViewBan.adapter = banAccAdapter
 
         recyclerViewAct = view.findViewById(R.id.recyclerViewAct)
         recyclerViewAct.layoutManager = LinearLayoutManager(activity)
@@ -145,6 +156,7 @@ class NotificationFragment : Fragment() {
         rejectVerificationAdapter = AccountRejectAdapter(rejectedList)
         RecyclerViewAccReject.adapter = rejectVerificationAdapter
 
+        databaseReferenceBanAcc = FirebaseDatabase.getInstance().reference.child("Users")
         databaseReferenceAccReject = FirebaseDatabase.getInstance().reference.child("Users")
         databaseReference = FirebaseDatabase.getInstance().reference.child("Upload_Engagement")
         databaseReferenceRequestVerify = FirebaseDatabase.getInstance().reference.child("Upload_Engagement")
@@ -605,7 +617,57 @@ class NotificationFragment : Fragment() {
                 progressBar.visibility = View.GONE
             }
         })
+        databaseReferenceBanAcc.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                banList.clear()
+                val currentUserUid = auth.currentUser?.uid
 
+                for (userSnapshot in dataSnapshot.children) {
+                    if (userSnapshot.key == currentUserUid) {
+                        val banTimeStamp = userSnapshot.child("banTimeStamp").getValue(String::class.java)
+
+                        // Add only if rejectReason is not null and verificationStatus is false
+                        if (!banTimeStamp.isNullOrBlank() && !(userSnapshot.child("verificationStatus").getValue(Boolean::class.java) ?: true)) {
+                            // Parse the rejectTimestamp
+                            val endDateTime = banTimeStamp?.let { SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).parse(it) }
+
+                            // Continue only if endDateTime is not null
+                            if (endDateTime != null) {
+                                val currentDate = Date()
+                                val calendar = Calendar.getInstance()
+                                calendar.time = endDateTime
+                                calendar.add(Calendar.MONTH, 1)
+
+                                // If currentDate is after 1 month of rejectTimestamp, skip this item
+                                if (currentDate.after(calendar.time)) {
+                                    continue
+                                }
+                                banList.add(BanAccountAdapter.BanData(banTimeStamp))
+                            }
+                        }
+                    }
+                }
+
+                val banAdapter = BanAccountAdapter(banList)
+                recyclerViewBan.adapter = banAdapter
+
+                if (rejectedList.isEmpty()) {
+                    recyclerViewBan.visibility = View.GONE
+                } else {
+                    recyclerViewBan.visibility = View.VISIBLE
+                }
+
+                banList.sortByDescending { it.banTimeStamp }
+                updateAppIndicator()
+                updateNoPostsVisibility()
+                banAdapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                progressBar.visibility = View.GONE
+            }
+        })
         val animatedBottomBar = requireActivity().findViewById<AnimatedBottomBar>(R.id.bottom_bar)
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
         val faback = requireActivity().findViewById<FloatingActionButton>(R.id.faback)
@@ -642,6 +704,7 @@ class NotificationFragment : Fragment() {
     private fun updateNoPostsVisibility() {
         val isNotificationListEmpty = notificationList.isEmpty()
         val isUserListEmpty = userList.isEmpty()
+        val isBanListEmpty = banList.isEmpty()
         val isRejectEventListEmpty = rejectEventList.isEmpty()
         val isJoinedListEmpty = joinedList.isEmpty()
         val isRejectListEmpty = rejectedList.isEmpty()
@@ -650,7 +713,7 @@ class NotificationFragment : Fragment() {
         val isAttendedListEmpty = attendedList.isEmpty()
 
         noPostsImage.visibility = if (isNotificationListEmpty && isUserListEmpty && isJoinedListEmpty &&
-            isActivePtsListEmpty && isRequestListEmpty && isAttendedListEmpty && isRejectListEmpty && isRejectEventListEmpty
+            isActivePtsListEmpty && isRequestListEmpty && isAttendedListEmpty && isRejectListEmpty && isRejectEventListEmpty && isBanListEmpty
         ) {
             View.VISIBLE
         } else {
@@ -658,7 +721,7 @@ class NotificationFragment : Fragment() {
         }
 
         noPostsText.visibility = if (isNotificationListEmpty && isUserListEmpty && isJoinedListEmpty &&
-            isActivePtsListEmpty && isRequestListEmpty && isAttendedListEmpty && isRejectListEmpty && isRejectEventListEmpty
+            isActivePtsListEmpty && isRequestListEmpty && isAttendedListEmpty && isRejectListEmpty && isRejectEventListEmpty && isBanListEmpty
         ) {
             View.VISIBLE
         } else {

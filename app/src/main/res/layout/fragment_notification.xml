@@ -20,6 +20,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewBan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:nestedScrollingEnabled="false"
+                android:scrollbarSize="5dp"
+                android:scrollbars="vertical" />
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewAct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
