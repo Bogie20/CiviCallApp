@@ -160,86 +160,113 @@ class ForumAdapter(
 
         dismissCustomDialog()
 
-        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_report_user, null)
-        val alertDialog = AlertDialog.Builder(context)
-            .setView(dialogView)
-            .create()
+        val currentUserUid = FirebaseAuth.getInstance().currentUser?.uid
 
-        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideUp
-        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        // Check if the current user is authenticated
+        if (currentUserUid != null) {
+            // Get a reference to the current user's verification status
+            val userRef = FirebaseDatabase.getInstance().getReference("Users").child(currentUserUid)
 
-        val layoutParams = alertDialog.window?.attributes
-        layoutParams?.gravity = Gravity.BOTTOM
-        layoutParams?.width = WindowManager.LayoutParams.MATCH_PARENT
-        alertDialog.window?.attributes = layoutParams
+            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    // Check if the user exists and if their verification status is true
+                    val verificationStatus = snapshot.child("verificationStatus").getValue(Boolean::class.java)
+                    if (verificationStatus == true) {
+                        // User is verified, proceed to show the report dialog
+                        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_report_user, null)
+                        val alertDialog = AlertDialog.Builder(context)
+                            .setView(dialogView)
+                            .create()
 
-        val Spam: LinearLayout = dialogView.findViewById(R.id.spam)
-        val HateSpeech: LinearLayout = dialogView.findViewById(R.id.hateSpeech)
-        val FalseInfo: LinearLayout = dialogView.findViewById(R.id.falseInfo)
-        val Harassment: LinearLayout = dialogView.findViewById(R.id.harassment)
-        val NotConnect: LinearLayout = dialogView.findViewById(R.id.notConnected)
-        val Nudity: LinearLayout = dialogView.findViewById(R.id.nudity)
-        val Violence: LinearLayout = dialogView.findViewById(R.id.violence)
-        val Other: LinearLayout = dialogView.findViewById(R.id.other)
-        val closeButton: ImageView = dialogView.findViewById(R.id.closeIcon)
+                        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideUp
+                        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        alertDialog.setOnDismissListener {
-            isOptionDialogShowing = false
+                        val layoutParams = alertDialog.window?.attributes
+                        layoutParams?.gravity = Gravity.BOTTOM
+                        layoutParams?.width = WindowManager.LayoutParams.MATCH_PARENT
+                        alertDialog.window?.attributes = layoutParams
+
+                        val Spam: LinearLayout = dialogView.findViewById(R.id.spam)
+                        val HateSpeech: LinearLayout = dialogView.findViewById(R.id.hateSpeech)
+                        val FalseInfo: LinearLayout = dialogView.findViewById(R.id.falseInfo)
+                        val Harassment: LinearLayout = dialogView.findViewById(R.id.harassment)
+                        val NotConnect: LinearLayout = dialogView.findViewById(R.id.notConnected)
+                        val Nudity: LinearLayout = dialogView.findViewById(R.id.nudity)
+                        val Violence: LinearLayout = dialogView.findViewById(R.id.violence)
+                        val Other: LinearLayout = dialogView.findViewById(R.id.other)
+                        val closeButton: ImageView = dialogView.findViewById(R.id.closeIcon)
+
+                        alertDialog.setOnDismissListener {
+                            isOptionDialogShowing = false
+                        }
+                        closeButton.setOnClickListener {
+                            alertDialog.dismiss()
+                        }
+                        Spam.setOnClickListener {
+                            alertDialog.dismiss()
+                            isOptionDialogShowing = false
+                            showConfirmationDialog(postKey, "Spam")
+                        }
+
+                        HateSpeech.setOnClickListener {
+                            alertDialog.dismiss()
+                            isOptionDialogShowing = false
+                            showConfirmationDialog(postKey, "Hate Speech")
+                        }
+
+                        FalseInfo.setOnClickListener {
+                            alertDialog.dismiss()
+                            isOptionDialogShowing = false
+                            showConfirmationDialog(postKey, "False Information")
+                        }
+
+                        Harassment.setOnClickListener {
+                            alertDialog.dismiss()
+                            isOptionDialogShowing = false
+                            showConfirmationDialog(postKey, "Harassment")
+                        }
+
+                        NotConnect.setOnClickListener {
+                            alertDialog.dismiss()
+                            isOptionDialogShowing = false
+                            showConfirmationDialog(postKey, "Not Relevant")
+                        }
+
+                        Nudity.setOnClickListener {
+                            alertDialog.dismiss()
+                            isOptionDialogShowing = false
+                            showConfirmationDialog(postKey, "Nudity")
+                        }
+
+                        Violence.setOnClickListener {
+                            alertDialog.dismiss()
+                            isOptionDialogShowing = false
+                            showConfirmationDialog(postKey, "Violence")
+                        }
+
+                        Other.setOnClickListener {
+                            alertDialog.dismiss()
+                            isOptionDialogShowing = false
+                            showConfirmationDialog(postKey, "Other")
+                        }
+
+                        alertDialog.show()
+                        isOptionDialogShowing = true
+                    } else {
+                        // User is not verified, show a toast indicating they can't report
+                        Toast.makeText(context, "Only Verified User can Report", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle onCancelled as needed
+                }
+            })
+        } else {
+            // User is not authenticated, handle accordingly (e.g., show login screen)
         }
-        closeButton.setOnClickListener {
-            alertDialog.dismiss()
-        }
-        Spam.setOnClickListener {
-            alertDialog.dismiss()
-            isOptionDialogShowing = false
-            showConfirmationDialog(postKey, "Spam")
-        }
-
-        HateSpeech.setOnClickListener {
-            alertDialog.dismiss()
-            isOptionDialogShowing = false
-            showConfirmationDialog(postKey, "Hate Speech")
-        }
-
-        FalseInfo.setOnClickListener {
-            alertDialog.dismiss()
-            isOptionDialogShowing = false
-            showConfirmationDialog(postKey, "False Information")
-        }
-
-        Harassment.setOnClickListener {
-            alertDialog.dismiss()
-            isOptionDialogShowing = false
-            showConfirmationDialog(postKey, "Harassment")
-        }
-
-        NotConnect.setOnClickListener {
-            alertDialog.dismiss()
-            isOptionDialogShowing = false
-            showConfirmationDialog(postKey, "Not Relevant")
-        }
-
-        Nudity.setOnClickListener {
-            alertDialog.dismiss()
-            isOptionDialogShowing = false
-            showConfirmationDialog(postKey, "Nudity")
-        }
-
-        Violence.setOnClickListener {
-            alertDialog.dismiss()
-            isOptionDialogShowing = false
-            showConfirmationDialog(postKey, "Violence")
-        }
-
-        Other.setOnClickListener {
-            alertDialog.dismiss()
-            isOptionDialogShowing = false
-            showConfirmationDialog(postKey, "Other")
-        }
-
-        alertDialog.show()
-        isOptionDialogShowing = true
     }
+
 
     private fun showConfirmationDialog(postKey: String, reportType: String) {
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_confirmation, null)
