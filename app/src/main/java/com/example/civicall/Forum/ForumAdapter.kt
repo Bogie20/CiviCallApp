@@ -524,7 +524,8 @@ class ForumAdapter(
         holder.reportButton.visibility = View.GONE
         holder.hideButton.visibility = View.GONE
 
-        holder.updateFABVisibility(data, isCurrentUserPost)
+        holder.updateFABVisibility(data, isCurrentUserPost, data.uploadersUID)
+
 
         Glide.with(context).load(data.postImage).into(holder.forumImage)
         holder.forumText.text = data.postText
@@ -601,21 +602,56 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val downReact: ImageButton = itemView.findViewById(R.id.downBtn)
     val upCount: TextView = itemView.findViewById(R.id.up_count)
     val downCount: TextView = itemView.findViewById(R.id.down_count)
-    fun updateFABVisibility(data: DataClassForum, isCurrentUserPost: Boolean) {
+    fun updateFABVisibility(data: DataClassForum, isCurrentUserPost: Boolean, uploaderUid: String?) {
         editButton.visibility = View.GONE
         deleteButton.visibility = View.GONE
         hideButton.visibility = View.GONE
         reportButton.visibility = View.GONE
 
+        // Check if the current user is the uploader
         if (isCurrentUserPost) {
             editButton.visibility = View.VISIBLE
             deleteButton.visibility = View.VISIBLE
         } else {
-            hideButton.visibility = View.VISIBLE
-            reportButton.visibility = View.VISIBLE
-        }
+            // If the current user is not the uploader, check the uploader's UID
+            if (uploaderUid != null) {
+                // Check if the uploader's UID is in the SuperAdminAcc node
+                val superAdminRef = FirebaseDatabase.getInstance().getReference("SuperAdminAcc").child(uploaderUid)
+                superAdminRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(superAdminSnapshot: DataSnapshot) {
+                        if (superAdminSnapshot.exists()) {
+                            // If the uploader's UID is in the SuperAdminAcc node, show only hide button
+                            hideButton.visibility = View.VISIBLE
+                        } else {
+                            // If the uploader's UID is not in the SuperAdminAcc node, check SubAdminAcc node
+                            val subAdminRef = FirebaseDatabase.getInstance().getReference("SubAdminAcc").child(uploaderUid)
+                            subAdminRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                                override fun onDataChange(subAdminSnapshot: DataSnapshot) {
+                                    if (subAdminSnapshot.exists()) {
+                                        // If the uploader's UID is in the SubAdminAcc node, show only hide button
+                                        hideButton.visibility = View.VISIBLE
+                                    } else {
+                                        // If the uploader's UID is not in the SubAdminAcc node, show report button
+                                        reportButton.visibility = View.VISIBLE
+                                        hideButton.visibility = View.VISIBLE
+                                    }
+                                }
 
+                                override fun onCancelled(subAdminError: DatabaseError) {
+                                    // Handle onCancelled as needed
+                                }
+                            })
+                        }
+                    }
+
+                    override fun onCancelled(superAdminError: DatabaseError) {
+                        // Handle onCancelled as needed
+                    }
+                })
+            }
+        }
     }
+
     fun updateReactButtons(postKey: String) {
         upReact.setOnClickListener {
             // Handle up react
