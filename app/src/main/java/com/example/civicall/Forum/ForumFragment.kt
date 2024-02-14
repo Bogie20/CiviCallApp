@@ -122,7 +122,7 @@ class ForumFragment : Fragment() {
                         newDataList.sortByDescending { it.postTime }
                         dataList.clear()
                         dataList.addAll(newDataList)
-                        adapter.notifyDataSetChanged();
+                        adapter.notifyItemChanged(0);
                         if (dataList.isEmpty()) {
                             rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
                             rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.VISIBLE
