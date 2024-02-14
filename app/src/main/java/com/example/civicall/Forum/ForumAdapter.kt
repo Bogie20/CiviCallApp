@@ -26,6 +26,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
+import com.example.civicall.SubAdminAcc
+import com.example.civicall.SuperAdminAcc
 import com.example.civicall.Users
 import com.github.clans.fab.FloatingActionButton
 import com.github.clans.fab.FloatingActionMenu
@@ -382,12 +384,14 @@ class ForumAdapter(
 
         val isCurrentUserPost =
             data.uploadersUID == currentUserUid || (data.uploadersUID == null && currentUserUid == null)
+        // Inside onBindViewHolder method of ForumAdapter
         val uploaderUid = data.uploadersUID
         if (uploaderUid != null) {
             val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uploaderUid)
             userRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
+                        // User exists in Users node
                         val uploaderData = snapshot.getValue(Users::class.java)
                         if (uploaderData != null) {
                             // Set uploader image profile with a placeholder
@@ -401,14 +405,70 @@ class ForumAdapter(
                             val fullName = "${uploaderData.firstname} ${uploaderData.lastname}"
                             holder.userName.text = fullName
                         }
+                    } else {
+                        // Check if uploader exists in SuperAdminAcc or SubAdminAcc node
+                        val superAdminRef = FirebaseDatabase.getInstance().getReference("SuperAdminAcc").child(uploaderUid)
+                        val subAdminRef = FirebaseDatabase.getInstance().getReference("SubAdminAcc").child(uploaderUid)
+                        superAdminRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                            override fun onDataChange(superAdminSnapshot: DataSnapshot) {
+                                if (superAdminSnapshot.exists()) {
+                                    // Uploader is a SuperAdmin
+                                    val superAdminData = superAdminSnapshot.getValue(SuperAdminAcc::class.java)
+                                    if (superAdminData != null) {
+                                        // Set uploader image profile with a placeholder
+                                        Glide.with(context)
+                                            .load(superAdminData.ImageProfile)
+                                            .placeholder(R.drawable.user)
+                                            .error(R.drawable.user)
+                                            .into(holder.profilePic)
+
+                                        // Set uploader full name
+                                        val fullName = "Admin: ${superAdminData.firstname} ${superAdminData.lastname}"
+                                        holder.userName.text = fullName
+                                    }
+                                } else {
+                                    // Uploader is not a SuperAdmin, check in SubAdminAcc
+                                    subAdminRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                                        override fun onDataChange(subAdminSnapshot: DataSnapshot) {
+                                            if (subAdminSnapshot.exists()) {
+                                                // Uploader is a SubAdmin
+                                                val subAdminData = subAdminSnapshot.getValue(
+                                                    SubAdminAcc::class.java)
+                                                if (subAdminData != null) {
+                                                    // Set uploader image profile with a placeholder
+                                                    Glide.with(context)
+                                                        .load(subAdminData.ImageProfile)
+                                                        .placeholder(R.drawable.user)
+                                                        .error(R.drawable.user)
+                                                        .into(holder.profilePic)
+
+                                                    // Set uploader full name
+                                                    val fullName = "Admin: ${subAdminData.firstname} ${subAdminData.lastname}"
+                                                    holder.userName.text = fullName
+                                                }
+                                            }
+                                        }
+
+                                        override fun onCancelled(subAdminError: DatabaseError) {
+                                            // Handle onCancelled for SubAdminAcc
+                                        }
+                                    })
+                                }
+                            }
+
+                            override fun onCancelled(superAdminError: DatabaseError) {
+                                // Handle onCancelled for SuperAdminAcc
+                            }
+                        })
                     }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    // Handle onCancelled as needed
+                    // Handle onCancelled for Users
                 }
             })
         }
+
         getHiddenState(data.key ?: "") { isHidden ->
             data.isHidden = isHidden
             if (data.isHidden) {
@@ -507,7 +567,7 @@ class ForumAdapter(
         holder.updateCommentCount(data.commentCount)
         holder.updateTimeText(data.postTime)
 
-            fetchCommentCount(data.key, holder)
+        fetchCommentCount(data.key, holder)
 
 
         holder.updateReactButtons(data.key ?: "")
