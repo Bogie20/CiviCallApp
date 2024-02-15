@@ -472,8 +472,7 @@ class CommentAdapter(
             }
         }
         fun bind(comment: DataComment) {
-            val currentUserReact =
-                comment.currentUserReact // Replace with the actual variable that stores the user's reaction
+            val currentUserReact = comment.currentUserReact // Replace with the actual variable that stores the user's reaction
             isUpSelected = currentUserReact == "up"
             isDownSelected = currentUserReact == "down"
 
@@ -483,13 +482,11 @@ class CommentAdapter(
             val currentUserUid = currentUser?.uid
 
             if (currentUserUid == comment.commenterUID) {
-
                 editButton.visibility = View.VISIBLE
                 deleteButton.visibility = View.VISIBLE
                 reportButton.visibility = View.GONE
                 hideButton.visibility = View.GONE
             } else {
-
                 editButton.visibility = View.GONE
                 deleteButton.visibility = View.GONE
                 reportButton.visibility = View.VISIBLE
@@ -526,24 +523,23 @@ class CommentAdapter(
                             override fun onDataChange(superAdminSnapshot: DataSnapshot) {
                                 if (superAdminSnapshot.exists()) {
                                     // User exists in SuperAdminAcc
-                                    val superAdminData =
-                                        superAdminSnapshot.getValue(SuperAdminAcc::class.java)
+                                    val superAdminData = superAdminSnapshot.getValue(SuperAdminAcc::class.java)
                                     superAdminData?.let {
                                         // Set super admin data
                                         setSuperAdminData(it)
+                                        reportButton.visibility = View.GONE // Hide report button for super admin
                                     }
                                 } else {
                                     // User doesn't exist in SuperAdminAcc, check SubAdminAcc
-                                    subAdminRef?.addListenerForSingleValueEvent(object :
-                                        ValueEventListener {
+                                    subAdminRef?.addListenerForSingleValueEvent(object : ValueEventListener {
                                         override fun onDataChange(subAdminSnapshot: DataSnapshot) {
                                             if (subAdminSnapshot.exists()) {
                                                 // User exists in SubAdminAcc
-                                                val subAdminData =
-                                                    subAdminSnapshot.getValue(SubAdminAcc::class.java)
+                                                val subAdminData = subAdminSnapshot.getValue(SubAdminAcc::class.java)
                                                 subAdminData?.let {
                                                     // Set sub admin data
                                                     setSubAdminData(it)
+                                                    reportButton.visibility = View.GONE // Hide report button for sub admin
                                                 }
                                             }
                                         }
@@ -567,7 +563,8 @@ class CommentAdapter(
                 }
             })
         }
-            private fun setUserData(userData: Users) {
+
+        private fun setUserData(userData: Users) {
                 // Set user data
                 Glide.with(itemView.context.applicationContext)
                     .asBitmap()
