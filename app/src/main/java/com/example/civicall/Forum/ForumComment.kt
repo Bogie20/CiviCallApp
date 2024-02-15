@@ -22,6 +22,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
+import com.example.civicall.SubAdminAcc
+import com.example.civicall.SuperAdminAcc
 import com.example.civicall.Users
 import com.example.civicall.databinding.ActivityForumCommentBinding
 import com.github.clans.fab.FloatingActionButton
@@ -354,8 +356,7 @@ class ForumComment : AppCompatActivity() {
                     val uploaderUID = snapshot.child("uploadersUID").getValue(String::class.java)
                     uploaderUID?.let { uid ->
                         // Fetch user data based on uploaderUID
-                        val userRef =
-                            FirebaseDatabase.getInstance().getReference("Users").child(uid)
+                        val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
                         userRef.addValueEventListener(object : ValueEventListener {
                             override fun onDataChange(userSnapshot: DataSnapshot) {
                                 if (userSnapshot.exists()) {
@@ -382,6 +383,87 @@ class ForumComment : AppCompatActivity() {
                                                 .into(detailImage)
                                         }
                                     }
+                                } else {
+                                    // Check if uploader exists in SuperAdminAcc or SubAdminAcc node
+                                    val superAdminRef =
+                                        FirebaseDatabase.getInstance().getReference("SuperAdminAcc")
+                                            .child(uid)
+                                    val subAdminRef =
+                                        FirebaseDatabase.getInstance().getReference("SubAdminAcc")
+                                            .child(uid)
+                                    superAdminRef.addListenerForSingleValueEvent(object :
+                                        ValueEventListener {
+                                        override fun onDataChange(superAdminSnapshot: DataSnapshot) {
+                                            if (superAdminSnapshot.exists()) {
+                                                // Uploader is a SuperAdmin
+                                                val superAdminData =
+                                                    superAdminSnapshot.getValue(SuperAdminAcc::class.java)
+                                                if (superAdminData != null) {
+                                                    // Set uploader image profile with a placeholder
+                                                    Glide.with(this@ForumComment)
+                                                        .load(superAdminData.ImageProfile)
+                                                        .placeholder(R.drawable.user)
+                                                        .error(R.drawable.user)
+                                                        .into(profilePic)
+
+                                                    // Set uploader full name
+                                                    val fullNameText =
+                                                        "Admin: ${superAdminData.firstname} ${superAdminData.lastname}"
+                                                    fullName.text = fullNameText
+
+                                                    if (imageUrl.isNullOrBlank()) {
+                                                        detailImage.visibility = View.GONE
+                                                    } else {
+                                                        detailImage.visibility = View.VISIBLE
+                                                        Glide.with(this@ForumComment).load(imageUrl)
+                                                            .into(detailImage)
+                                                    }
+                                                }
+                                            } else {
+                                                // Uploader is not a SuperAdmin, check in SubAdminAcc
+                                                subAdminRef.addListenerForSingleValueEvent(object :
+                                                    ValueEventListener {
+                                                    override fun onDataChange(subAdminSnapshot: DataSnapshot) {
+                                                        if (subAdminSnapshot.exists()) {
+                                                            // Uploader is a SubAdmin
+                                                            val subAdminData = subAdminSnapshot.getValue(
+                                                                SubAdminAcc::class.java
+                                                            )
+                                                            if (subAdminData != null) {
+                                                                // Set uploader image profile with a placeholder
+                                                                Glide.with(this@ForumComment)
+                                                                    .load(subAdminData.ImageProfile)
+                                                                    .placeholder(R.drawable.user)
+                                                                    .error(R.drawable.user)
+                                                                    .into(profilePic)
+
+                                                                // Set uploader full name
+                                                                val fullNameText =
+                                                                    "Admin: ${subAdminData.firstname} ${subAdminData.lastname}"
+                                                                fullName.text = fullNameText
+
+                                                                if (imageUrl.isNullOrBlank()) {
+                                                                    detailImage.visibility = View.GONE
+                                                                } else {
+                                                                    detailImage.visibility = View.VISIBLE
+                                                                    Glide.with(this@ForumComment).load(imageUrl)
+                                                                        .into(detailImage)
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                    override fun onCancelled(subAdminError: DatabaseError) {
+                                                        // Handle onCancelled for SubAdminAcc
+                                                    }
+                                                })
+                                            }
+                                        }
+
+                                        override fun onCancelled(superAdminError: DatabaseError) {
+                                            // Handle onCancelled for SuperAdminAcc
+                                        }
+                                    })
                                 }
                             }
 
@@ -398,6 +480,7 @@ class ForumComment : AppCompatActivity() {
             }
         })
     }
+
     override fun onDestroy() {
         super.onDestroy()
         networkUtils.cleanup()
