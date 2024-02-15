@@ -68,7 +68,7 @@
             android:maxLines="1"
             android:paddingStart="9dp"
             android:paddingEnd="100dp"
-            android:text="Campus"
+            android:text="BatStateU TNEU"
             android:textColor="@color/instruction"
             android:textStyle="bold"
             android:textSize="12dp"

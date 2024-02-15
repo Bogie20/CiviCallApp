@@ -24,6 +24,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.civicall.R
+import com.example.civicall.SubAdminAcc
+import com.example.civicall.SuperAdminAcc
 import com.example.civicall.Users
 import com.github.clans.fab.FloatingActionButton
 import com.github.clans.fab.FloatingActionMenu
@@ -470,7 +472,8 @@ class CommentAdapter(
             }
         }
         fun bind(comment: DataComment) {
-            val currentUserReact = comment.currentUserReact // Replace with the actual variable that stores the user's reaction
+            val currentUserReact =
+                comment.currentUserReact // Replace with the actual variable that stores the user's reaction
             isUpSelected = currentUserReact == "up"
             isDownSelected = currentUserReact == "down"
 
@@ -496,42 +499,120 @@ class CommentAdapter(
             val commentText = "${comment.commentText}"
             textRespond.text = commentText
             updateReactCountUI(comment.upReactCount, comment.downReactCount)
-            val userRef =
-                comment.commenterUID?.let {
-                    FirebaseDatabase.getInstance().getReference("Users").child(
-                        it
-                    )
-                }
-            if (userRef != null) {
-                userRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(userSnapshot: DataSnapshot) {
-                        if (userSnapshot.exists()) {
-                            val userData = userSnapshot.getValue(Users::class.java)
-                            userData?.let {
-
-                                Glide.with(itemView.context.applicationContext)  // Use application context
-                                    .asBitmap()
-                                    .load(it.ImageProfile)
-                                    .placeholder(R.drawable.user)
-                                    .error(R.drawable.user)
-                                    .into(profilePic)
-
-                                val fullNameText = "${it.firstname} ${it.lastname}"
-                                val campus = it.campus
-                                userName.text = fullNameText
-                                Campus.text = campus
-                            }
-                        }
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        Log.e("CommentsAdapter", "User data retrieval cancelled: ${error.message}")
-                    }
-                })
+            val userRef = comment.commenterUID?.let {
+                FirebaseDatabase.getInstance().getReference("Users").child(it)
             }
-        }
 
-        fun updateTimeText(commentTime: String?) {
+            val superAdminRef = comment.commenterUID?.let {
+                FirebaseDatabase.getInstance().getReference("SuperAdminAcc").child(it)
+            }
+
+            val subAdminRef = comment.commenterUID?.let {
+                FirebaseDatabase.getInstance().getReference("SubAdminAcc").child(it)
+            }
+
+            userRef?.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(userSnapshot: DataSnapshot) {
+                    if (userSnapshot.exists()) {
+                        // User exists in Users node
+                        val userData = userSnapshot.getValue(Users::class.java)
+                        userData?.let {
+                            // Set user data
+                            setUserData(it)
+                        }
+                    } else {
+                        // User doesn't exist in Users node, check SuperAdminAcc
+                        superAdminRef?.addListenerForSingleValueEvent(object : ValueEventListener {
+                            override fun onDataChange(superAdminSnapshot: DataSnapshot) {
+                                if (superAdminSnapshot.exists()) {
+                                    // User exists in SuperAdminAcc
+                                    val superAdminData =
+                                        superAdminSnapshot.getValue(SuperAdminAcc::class.java)
+                                    superAdminData?.let {
+                                        // Set super admin data
+                                        setSuperAdminData(it)
+                                    }
+                                } else {
+                                    // User doesn't exist in SuperAdminAcc, check SubAdminAcc
+                                    subAdminRef?.addListenerForSingleValueEvent(object :
+                                        ValueEventListener {
+                                        override fun onDataChange(subAdminSnapshot: DataSnapshot) {
+                                            if (subAdminSnapshot.exists()) {
+                                                // User exists in SubAdminAcc
+                                                val subAdminData =
+                                                    subAdminSnapshot.getValue(SubAdminAcc::class.java)
+                                                subAdminData?.let {
+                                                    // Set sub admin data
+                                                    setSubAdminData(it)
+                                                }
+                                            }
+                                        }
+
+                                        override fun onCancelled(subAdminError: DatabaseError) {
+                                            // Handle onCancelled for SubAdminAcc
+                                        }
+                                    })
+                                }
+                            }
+
+                            override fun onCancelled(superAdminError: DatabaseError) {
+                                // Handle onCancelled for SuperAdminAcc
+                            }
+                        })
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle onCancelled for Users
+                }
+            })
+        }
+            private fun setUserData(userData: Users) {
+                // Set user data
+                Glide.with(itemView.context.applicationContext)
+                    .asBitmap()
+                    .load(userData.ImageProfile)
+                    .placeholder(R.drawable.user)
+                    .error(R.drawable.user)
+                    .into(profilePic)
+
+                val fullNameText = "${userData.firstname} ${userData.lastname}"
+                val campus = userData.campus
+                userName.text = fullNameText
+                Campus.text = campus
+            }
+
+            private fun setSuperAdminData(superAdminData: SuperAdminAcc) {
+                // Set super admin data
+                Glide.with(itemView.context.applicationContext)
+                    .asBitmap()
+                    .load(superAdminData.ImageProfile)
+                    .placeholder(R.drawable.user)
+                    .error(R.drawable.user)
+                    .into(profilePic)
+
+                val fullName = "Admin: ${superAdminData.firstname} ${superAdminData.lastname}"
+
+                userName.text = fullName
+
+            }
+
+            private fun setSubAdminData(subAdminData: SubAdminAcc) {
+                // Set sub admin data
+                Glide.with(itemView.context.applicationContext)
+                    .asBitmap()
+                    .load(subAdminData.ImageProfile)
+                    .placeholder(R.drawable.user)
+                    .error(R.drawable.user)
+                    .into(profilePic)
+
+                val fullName = "Admin: ${subAdminData.firstname} ${subAdminData.lastname}"
+                val campus = subAdminData.campus
+                userName.text = fullName
+                Campus.text = campus
+            }
+
+            fun updateTimeText(commentTime: String?) {
             commentTime?.let {
                 val dateFormat = SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
                 dateFormat.timeZone = TimeZone.getTimeZone("Asia/Manila")
