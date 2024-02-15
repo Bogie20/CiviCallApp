@@ -516,8 +516,6 @@ class CommentAdapter(
                                     .error(R.drawable.user)
                                     .into(profilePic)
 
-
-
                                 val fullNameText = "${it.firstname} ${it.lastname}"
                                 val campus = it.campus
                                 userName.text = fullNameText
