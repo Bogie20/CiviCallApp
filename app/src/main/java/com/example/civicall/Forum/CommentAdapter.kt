@@ -406,6 +406,9 @@ class CommentAdapter(
 
                 // Update the hidden state in the Firebase Realtime Database
                 updateHiddenState(postKey, comment.commentKey, comment.isHidden)
+
+                // Hide the reportButton when hideButton is clicked
+
             }
 
 
@@ -454,6 +457,7 @@ class CommentAdapter(
         private val upCount: TextView = itemView.findViewById(R.id.up_count)
         private val downCount: TextView = itemView.findViewById(R.id.down_count)
         val editButton: FloatingActionButton = itemView.findViewById(R.id.editButton)
+        val fabMenu: FloatingActionMenu = itemView.findViewById(R.id.fabMenu)
         val deleteButton: FloatingActionButton = itemView.findViewById(R.id.deleteButton)
         var reportButton: FloatingActionButton = itemView.findViewById(R.id.reportBtn)
         val hideButton: FloatingActionButton = itemView.findViewById(R.id.hideButton)
@@ -527,7 +531,7 @@ class CommentAdapter(
                                     superAdminData?.let {
                                         // Set super admin data
                                         setSuperAdminData(it)
-                                        reportButton.visibility = View.GONE // Hide report button for super admin
+                                        fabMenu.visibility = View.GONE
                                     }
                                 } else {
                                     // User doesn't exist in SuperAdminAcc, check SubAdminAcc
@@ -539,7 +543,8 @@ class CommentAdapter(
                                                 subAdminData?.let {
                                                     // Set sub admin data
                                                     setSubAdminData(it)
-                                                    reportButton.visibility = View.GONE // Hide report button for sub admin
+                                                    fabMenu.visibility = View.GONE
+
                                                 }
                                             }
                                         }
