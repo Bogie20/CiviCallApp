@@ -360,7 +360,8 @@ class ForumUpdate: AppCompatActivity() {
                                 FirebaseStorage.getInstance().getReferenceFromUrl(oldImageURL)
                             reference.delete()
                         }
-                        Toast.makeText(this@ForumUpdate, "Updated", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@ForumUpdate, "Updated; refresh to see changes", Toast.LENGTH_LONG).show()
+
                         finish()
                     }
                 }.addOnFailureListener { e ->
@@ -385,7 +386,7 @@ class ForumUpdate: AppCompatActivity() {
             databaseReference.setValue(dataClass)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(this@ForumUpdate, "Updated", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@ForumUpdate, "Updated; refresh to see changes", Toast.LENGTH_LONG).show()
                         finish()
                     }
                 }.addOnFailureListener { e ->

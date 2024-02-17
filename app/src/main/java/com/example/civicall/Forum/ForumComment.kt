@@ -352,29 +352,24 @@ class ForumComment : AppCompatActivity() {
         val postRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
         postRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
+                if (snapshot.exists() && !isDestroyed) {
                     val uploaderUID = snapshot.child("uploadersUID").getValue(String::class.java)
                     uploaderUID?.let { uid ->
-                        // Fetch user data based on uploaderUID
                         val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
-                        userRef.addValueEventListener(object : ValueEventListener {
+                        userRef.addListenerForSingleValueEvent(object : ValueEventListener {
                             override fun onDataChange(userSnapshot: DataSnapshot) {
-                                if (userSnapshot.exists()) {
+                                if (userSnapshot.exists() && !isDestroyed) {
                                     val uploaderData = userSnapshot.getValue(Users::class.java)
-                                    if (uploaderData != null && !isDestroyed) {
-                                        // Set uploader image profile with a placeholder
+                                    uploaderData?.let { data ->
                                         Glide.with(this@ForumComment)
-                                            .load(uploaderData.ImageProfile)
+                                            .load(data.ImageProfile)
                                             .placeholder(R.drawable.user)
                                             .error(R.drawable.user)
                                             .into(profilePic)
 
-                                        // Set uploader full name
-                                        val fullNameText =
-                                            "${uploaderData.firstname} ${uploaderData.lastname}"
+                                        val fullNameText = "${data.firstname} ${data.lastname}"
                                         fullName.text = fullNameText
 
-                                        // Hide detailImage if there is no image URL
                                         if (imageUrl.isNullOrBlank()) {
                                             detailImage.visibility = View.GONE
                                         } else {
@@ -384,31 +379,22 @@ class ForumComment : AppCompatActivity() {
                                         }
                                     }
                                 } else {
-                                    // Check if uploader exists in SuperAdminAcc or SubAdminAcc node
-                                    val superAdminRef =
-                                        FirebaseDatabase.getInstance().getReference("SuperAdminAcc")
-                                            .child(uid)
-                                    val subAdminRef =
-                                        FirebaseDatabase.getInstance().getReference("SubAdminAcc")
-                                            .child(uid)
-                                    superAdminRef.addListenerForSingleValueEvent(object :
-                                        ValueEventListener {
+                                    val superAdminRef = FirebaseDatabase.getInstance().getReference("SuperAdminAcc")
+                                        .child(uid)
+                                    val subAdminRef = FirebaseDatabase.getInstance().getReference("SubAdminAcc")
+                                        .child(uid)
+                                    superAdminRef.addListenerForSingleValueEvent(object : ValueEventListener {
                                         override fun onDataChange(superAdminSnapshot: DataSnapshot) {
-                                            if (superAdminSnapshot.exists()) {
-                                                // Uploader is a SuperAdmin
-                                                val superAdminData =
-                                                    superAdminSnapshot.getValue(SuperAdminAcc::class.java)
-                                                if (superAdminData != null) {
-                                                    // Set uploader image profile with a placeholder
+                                            if (superAdminSnapshot.exists() && !isDestroyed) {
+                                                val superAdminData = superAdminSnapshot.getValue(SuperAdminAcc::class.java)
+                                                superAdminData?.let {
                                                     Glide.with(this@ForumComment)
-                                                        .load(superAdminData.ImageProfile)
+                                                        .load(it.ImageProfile)
                                                         .placeholder(R.drawable.user)
                                                         .error(R.drawable.user)
                                                         .into(profilePic)
 
-                                                    // Set uploader full name
-                                                    val fullNameText =
-                                                        "Admin: ${superAdminData.firstname} ${superAdminData.lastname}"
+                                                    val fullNameText = "Admin: ${it.firstname} ${it.lastname}"
                                                     fullName.text = fullNameText
 
                                                     if (imageUrl.isNullOrBlank()) {
@@ -420,26 +406,22 @@ class ForumComment : AppCompatActivity() {
                                                     }
                                                 }
                                             } else {
-                                                // Uploader is not a SuperAdmin, check in SubAdminAcc
                                                 subAdminRef.addListenerForSingleValueEvent(object :
                                                     ValueEventListener {
                                                     override fun onDataChange(subAdminSnapshot: DataSnapshot) {
-                                                        if (subAdminSnapshot.exists()) {
-                                                            // Uploader is a SubAdmin
+                                                        if (subAdminSnapshot.exists() && !isDestroyed) {
                                                             val subAdminData = subAdminSnapshot.getValue(
                                                                 SubAdminAcc::class.java
                                                             )
-                                                            if (subAdminData != null) {
-                                                                // Set uploader image profile with a placeholder
+                                                            subAdminData?.let {
                                                                 Glide.with(this@ForumComment)
-                                                                    .load(subAdminData.ImageProfile)
+                                                                    .load(it.ImageProfile)
                                                                     .placeholder(R.drawable.user)
                                                                     .error(R.drawable.user)
                                                                     .into(profilePic)
 
-                                                                // Set uploader full name
                                                                 val fullNameText =
-                                                                    "Admin: ${subAdminData.firstname} ${subAdminData.lastname}"
+                                                                    "Admin: ${it.firstname} ${it.lastname}"
                                                                 fullName.text = fullNameText
 
                                                                 if (imageUrl.isNullOrBlank()) {
@@ -468,7 +450,7 @@ class ForumComment : AppCompatActivity() {
                             }
 
                             override fun onCancelled(error: DatabaseError) {
-
+                                // Handle onCancelled
                             }
                         })
                     }
@@ -476,10 +458,11 @@ class ForumComment : AppCompatActivity() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-
+                // Handle onCancelled
             }
         })
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

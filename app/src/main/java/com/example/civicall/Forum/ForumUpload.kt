@@ -324,6 +324,7 @@ class ForumUpload : AppCompatActivity() {
             }
         }
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
@@ -726,7 +727,7 @@ class ForumUpload : AppCompatActivity() {
                     .setValue(dataClass)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(this@ForumUpload, "Success", Toast.LENGTH_SHORT)
+                            Toast.makeText(this@ForumUpload, "Success; refresh to see the post", Toast.LENGTH_SHORT)
                                 .show()
                             finish()
                             sendPushNotification(uploadCategory.text.toString())

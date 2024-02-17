@@ -342,7 +342,7 @@ class ForumAdapter(
 
         notifyDataSetChanged()
 
-        Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Deleted; refresh to see changes", Toast.LENGTH_LONG).show()
     }
 
     private fun updateHiddenState(postKey: String?, isHidden: Boolean) {
@@ -590,6 +590,7 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val forumCategory: TextView = itemView.findViewById(R.id.hashtag)
     val commentbutton: AppCompatImageButton = itemView.findViewById(R.id.commentBtn)
     val forumText: TextView = itemView.findViewById(R.id.postInputtxt)
+    val fabMenu: FloatingActionMenu = itemView.findViewById(R.id.fabMenu)
     val editButton: FloatingActionButton = itemView.findViewById(R.id.editButton)
     val deleteButton: FloatingActionButton = itemView.findViewById(R.id.deleteButton)
     val reportButton: FloatingActionButton = itemView.findViewById(R.id.reportButton)
@@ -621,7 +622,7 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
                     override fun onDataChange(superAdminSnapshot: DataSnapshot) {
                         if (superAdminSnapshot.exists()) {
                             // If the uploader's UID is in the SuperAdminAcc node, show only hide button
-                            hideButton.visibility = View.VISIBLE
+                            fabMenu.visibility = View.GONE
                         } else {
                             // If the uploader's UID is not in the SuperAdminAcc node, check SubAdminAcc node
                             val subAdminRef = FirebaseDatabase.getInstance().getReference("SubAdminAcc").child(uploaderUid)
@@ -629,7 +630,7 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
                                 override fun onDataChange(subAdminSnapshot: DataSnapshot) {
                                     if (subAdminSnapshot.exists()) {
                                         // If the uploader's UID is in the SubAdminAcc node, show only hide button
-                                        hideButton.visibility = View.VISIBLE
+                                        fabMenu.visibility = View.GONE
                                     } else {
                                         // If the uploader's UID is not in the SubAdminAcc node, show report button
                                         reportButton.visibility = View.VISIBLE
@@ -876,5 +877,7 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 // Your implementation here
             }
         }
+
     }
+
 }
