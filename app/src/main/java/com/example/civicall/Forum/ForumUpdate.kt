@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
+import com.example.civicall.Dashboard
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityForumUpdateBinding
@@ -74,7 +75,8 @@ class ForumUpdate: AppCompatActivity() {
         networkUtils.initialize()
 
         binding.backbtn.setOnClickListener {
-            super.onBackPressed()
+            val intent = Intent(this, Dashboard::class.java)
+            startActivity(intent)
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
         }
         updateCategory.setOnClickListener {
@@ -360,9 +362,9 @@ class ForumUpdate: AppCompatActivity() {
                                 FirebaseStorage.getInstance().getReferenceFromUrl(oldImageURL)
                             reference.delete()
                         }
-                        Toast.makeText(this@ForumUpdate, "Updated; refresh to see changes", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@ForumUpdate, "Updated", Toast.LENGTH_LONG).show()
 
-                        finish()
+
                     }
                 }.addOnFailureListener { e ->
                     Toast.makeText(this@ForumUpdate, e.message.toString(), Toast.LENGTH_SHORT)
@@ -386,8 +388,8 @@ class ForumUpdate: AppCompatActivity() {
             databaseReference.setValue(dataClass)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(this@ForumUpdate, "Updated; refresh to see changes", Toast.LENGTH_LONG).show()
-                        finish()
+                        Toast.makeText(this@ForumUpdate, "Updated", Toast.LENGTH_LONG).show()
+
                     }
                 }.addOnFailureListener { e ->
                     Toast.makeText(this@ForumUpdate, e.message.toString(), Toast.LENGTH_SHORT)
@@ -456,6 +458,13 @@ class ForumUpdate: AppCompatActivity() {
 
             isNoInternetDialogShowing = false
         }
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        val intent = Intent(this, Dashboard::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
     }
     override fun onDestroy() {
         super.onDestroy()
