@@ -334,12 +334,10 @@ class ForumAdapter(
                 Toast.makeText(context, "Failed to report", Toast.LENGTH_SHORT).show()
             }
     }
-    
+
     private fun deletePost(postKey: String) {
         val postRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
         postRef.removeValue()
-
-        notifyItemChanged(0)
 
         Toast.makeText(context, "Deleted; refresh to see changes", Toast.LENGTH_LONG).show()
     }

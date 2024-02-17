@@ -85,7 +85,6 @@ class ForumFragment : Fragment() {
 
         databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
 
-            @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
                 val currentUser = FirebaseAuth.getInstance().currentUser
                 val userUid = currentUser?.uid
@@ -295,7 +294,7 @@ class ForumFragment : Fragment() {
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+
     private fun filterByCategory(category: String) {
         if (category.isEmpty()) {
             adapter.updateData(dataList)
