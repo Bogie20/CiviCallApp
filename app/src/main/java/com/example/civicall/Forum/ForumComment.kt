@@ -350,7 +350,7 @@ class ForumComment : AppCompatActivity() {
 
     private fun loadUploaderData(postKey: String) {
         val postRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
-        postRef.addValueEventListener(object : ValueEventListener {
+        postRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists() && !isDestroyed) {
                     val uploaderUID = snapshot.child("uploadersUID").getValue(String::class.java)

@@ -334,13 +334,12 @@ class ForumAdapter(
                 Toast.makeText(context, "Failed to report", Toast.LENGTH_SHORT).show()
             }
     }
-
-    @SuppressLint("NotifyDataSetChanged")
+    
     private fun deletePost(postKey: String) {
         val postRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
         postRef.removeValue()
 
-        notifyDataSetChanged()
+        notifyItemChanged(0)
 
         Toast.makeText(context, "Deleted; refresh to see changes", Toast.LENGTH_LONG).show()
     }
@@ -384,7 +383,7 @@ class ForumAdapter(
 
         val isCurrentUserPost =
             data.uploadersUID == currentUserUid || (data.uploadersUID == null && currentUserUid == null)
-        // Inside onBindViewHolder method of ForumAdapter
+
         val uploaderUid = data.uploadersUID
         if (uploaderUid != null) {
             val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uploaderUid)
@@ -402,8 +401,8 @@ class ForumAdapter(
                                 .into(holder.profilePic)
 
                             // Set uploader full name
-                            val fullName = "${uploaderData.firstname} ${uploaderData.lastname}"
-                            holder.userName.text = fullName
+                            val fullName = "${uploaderData.firstname ?: ""} ${uploaderData.lastname ?: ""}"
+                            holder.userName.text = fullName.trim()
                         }
                     } else {
                         // Check if uploader exists in SuperAdminAcc or SubAdminAcc node
@@ -423,8 +422,8 @@ class ForumAdapter(
                                             .into(holder.profilePic)
 
                                         // Set uploader full name
-                                        val fullName = "Admin: ${superAdminData.firstname} ${superAdminData.lastname}"
-                                        holder.userName.text = fullName
+                                        val fullName = "Admin: ${superAdminData.firstname ?: ""} ${superAdminData.lastname ?: ""}"
+                                        holder.userName.text = fullName.trim()
                                     }
                                 } else {
                                     // Uploader is not a SuperAdmin, check in SubAdminAcc
@@ -443,9 +442,11 @@ class ForumAdapter(
                                                         .into(holder.profilePic)
 
                                                     // Set uploader full name
-                                                    val fullName = "Admin: ${subAdminData.firstname} ${subAdminData.lastname}"
-                                                    holder.userName.text = fullName
+                                                    val fullName = "Admin: ${subAdminData.firstname ?: ""} ${subAdminData.lastname ?: ""}"
+                                                    holder.userName.text = fullName.trim()
                                                 }
+                                            } else {
+                                                // If user does not exist in any node, handle it here
                                             }
                                         }
 
@@ -469,7 +470,7 @@ class ForumAdapter(
             })
         }
 
-        getHiddenState(data.key ?: "") { isHidden ->
+    getHiddenState(data.key ?: "") { isHidden ->
             data.isHidden = isHidden
             if (data.isHidden) {
                 // The post is marked as hidden, hide forumImage and forumText
@@ -604,54 +605,76 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val upCount: TextView = itemView.findViewById(R.id.up_count)
     val downCount: TextView = itemView.findViewById(R.id.down_count)
     fun updateFABVisibility(data: DataClassForum, isCurrentUserPost: Boolean, uploaderUid: String?) {
-        editButton.visibility = View.GONE
-        deleteButton.visibility = View.GONE
-        hideButton.visibility = View.GONE
-        reportButton.visibility = View.GONE
-
-        // Check if the current user is the uploader
         if (isCurrentUserPost) {
+            // Show edit and delete buttons for the current user's post
             editButton.visibility = View.VISIBLE
             deleteButton.visibility = View.VISIBLE
+            hideButton.visibility = View.GONE
+            reportButton.visibility = View.GONE
+            fabMenu.visibility = View.VISIBLE // Always ensure FAB menu is visible
         } else {
-            // If the current user is not the uploader, check the uploader's UID
-            if (uploaderUid != null) {
-                // Check if the uploader's UID is in the SuperAdminAcc node
-                val superAdminRef = FirebaseDatabase.getInstance().getReference("SuperAdminAcc").child(uploaderUid)
-                superAdminRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(superAdminSnapshot: DataSnapshot) {
-                        if (superAdminSnapshot.exists()) {
-                            // If the uploader's UID is in the SuperAdminAcc node, show only hide button
-                            fabMenu.visibility = View.GONE
+            uploaderUid?.let { uid ->
+                // Check if the uploader's UID exists
+                val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+                userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            // Uploader exists in Users node
+                            showReportAndHideButtons() // Show report and hide buttons
                         } else {
-                            // If the uploader's UID is not in the SuperAdminAcc node, check SubAdminAcc node
-                            val subAdminRef = FirebaseDatabase.getInstance().getReference("SubAdminAcc").child(uploaderUid)
-                            subAdminRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                                override fun onDataChange(subAdminSnapshot: DataSnapshot) {
-                                    if (subAdminSnapshot.exists()) {
-                                        // If the uploader's UID is in the SubAdminAcc node, show only hide button
-                                        fabMenu.visibility = View.GONE
-                                    } else {
-                                        // If the uploader's UID is not in the SubAdminAcc node, show report button
-                                        reportButton.visibility = View.VISIBLE
-                                        hideButton.visibility = View.VISIBLE
-                                    }
-                                }
-
-                                override fun onCancelled(subAdminError: DatabaseError) {
-                                    // Handle onCancelled as needed
-                                }
-                            })
+                            // Uploader doesn't exist in Users node, check SuperAdminAcc and SubAdminAcc
+                            checkAdminAccNodes(uid)
                         }
                     }
 
-                    override fun onCancelled(superAdminError: DatabaseError) {
+                    override fun onCancelled(error: DatabaseError) {
                         // Handle onCancelled as needed
                     }
                 })
             }
         }
     }
+
+    private fun showReportAndHideButtons() {
+        hideButton.visibility = View.VISIBLE
+        reportButton.visibility = View.VISIBLE
+        fabMenu.visibility = View.VISIBLE // Always ensure FAB menu is visible
+    }
+
+    private fun checkAdminAccNodes(uid: String) {
+        val superAdminRef = FirebaseDatabase.getInstance().getReference("SuperAdminAcc").child(uid)
+        superAdminRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(superAdminSnapshot: DataSnapshot) {
+                if (!superAdminSnapshot.exists()) {
+                    // Uploader is not a SuperAdmin, check in SubAdminAcc
+                    val subAdminRef = FirebaseDatabase.getInstance().getReference("SubAdminAcc").child(uid)
+                    subAdminRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(subAdminSnapshot: DataSnapshot) {
+                            if (!subAdminSnapshot.exists()) {
+                                // Uploader is neither SuperAdmin nor SubAdmin, show report and hide buttons
+                                showReportAndHideButtons()
+                            } else {
+                                // Uploader is a SubAdmin, hide FAB menu
+                                fabMenu.visibility = View.GONE
+                            }
+                        }
+
+                        override fun onCancelled(subAdminError: DatabaseError) {
+                            // Handle onCancelled for SubAdminAcc
+                        }
+                    })
+                } else {
+                    // Uploader is a SuperAdmin, hide FAB menu
+                    fabMenu.visibility = View.GONE
+                }
+            }
+
+            override fun onCancelled(superAdminError: DatabaseError) {
+                // Handle onCancelled for SuperAdminAcc
+            }
+        })
+    }
+
 
     fun updateReactButtons(postKey: String) {
         upReact.setOnClickListener {
@@ -780,6 +803,7 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
     }
 
+
     private fun formatCount(count: Int): String {
         return when {
             count < 1000 -> count.toString()
@@ -807,6 +831,7 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 updateReactCountUI(upReactCount, downReactCount)
             }
             override fun onCancelled(error: DatabaseError) {
+                // Handle onCancelled if needed
             }
         })
     }

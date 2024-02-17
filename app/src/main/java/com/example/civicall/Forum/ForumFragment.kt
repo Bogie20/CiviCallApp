@@ -87,7 +87,6 @@ class ForumFragment : Fragment() {
 
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
-                // Retrieve data from Firebase
                 val currentUser = FirebaseAuth.getInstance().currentUser
                 val userUid = currentUser?.uid
                 val userCampusRef = FirebaseDatabase.getInstance().getReference("Users/$userUid/campus")
@@ -96,6 +95,7 @@ class ForumFragment : Fragment() {
                     override fun onDataChange(userCampusSnapshot: DataSnapshot) {
                         val userCampus = userCampusSnapshot.value.toString()
                         val newDataList = ArrayList<DataClassForum>()
+
                         val currentMillis = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).timeInMillis
 
                         for (itemSnapshot in snapshot.children) {
@@ -122,18 +122,12 @@ class ForumFragment : Fragment() {
                         }
                         newDataList.sortByDescending { it.postTime }
 
-                        // Calculate diff between old and new data sets
-                        val diffCallback = ForumDiffCallBack(dataList, newDataList)
-                        val diffResult = DiffUtil.calculateDiff(diffCallback)
-
-                        // Update data list
+                        // Compare newDataList with dataList to determine the changes
+                        val diffResult = DiffUtil.calculateDiff(ForumDiffCallBack(dataList, newDataList))
                         dataList.clear()
                         dataList.addAll(newDataList)
-
-                        // Dispatch updates to adapter
                         diffResult.dispatchUpdatesTo(adapter)
 
-                        // Show/hide no posts message based on data availability
                         if (dataList.isEmpty()) {
                             rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
                             rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.VISIBLE
@@ -158,7 +152,7 @@ class ForumFragment : Fragment() {
             }
         })
 
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
