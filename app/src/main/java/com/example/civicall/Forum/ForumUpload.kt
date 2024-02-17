@@ -727,7 +727,7 @@ class ForumUpload : AppCompatActivity() {
                     .setValue(dataClass)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(this@ForumUpload, "Success; refresh to see the post", Toast.LENGTH_SHORT)
+                            Toast.makeText(this@ForumUpload, "Success; refresh to see the post", Toast.LENGTH_LONG)
                                 .show()
                             finish()
                             sendPushNotification(uploadCategory.text.toString())
