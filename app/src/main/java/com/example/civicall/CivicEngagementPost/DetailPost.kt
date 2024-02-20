@@ -867,14 +867,12 @@ class DetailPost : AppCompatActivity() {
         })
     }
 
-
     private fun incrementActivePointsForUser(uid: String) {
         // Fetch the current activepoints value in Upload Engagement
         FirebaseDatabase.getInstance().getReference("Upload_Engagement").child(key).child("activepoints")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(uploadEngagementSnapshot: DataSnapshot) {
                     val activePoints = uploadEngagementSnapshot.getValue(Int::class.java) ?: 0
-
                     // Increment the activepoints for the user
                     val userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
                     userRef.child("activepts").addListenerForSingleValueEvent(object : ValueEventListener {
