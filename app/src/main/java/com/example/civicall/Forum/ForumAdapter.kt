@@ -45,11 +45,13 @@ import java.util.TimeZone
 class ForumAdapter(
     private val context: Context,
     private var dataList: List<DataClassForum>,
-    private val currentUserUid: String?
-
+    private val currentUserUid: String?,
+    private val forumFragment: ForumFragment
 ) : RecyclerView.Adapter<MyViewHolderForum>() {
+
     fun updateData(newDataList: List<DataClassForum>) {
-        val diffResult = DiffUtil.calculateDiff(ForumDiffCallBack(dataList, newDataList))
+        val diffCallback = ForumDiffCallBack(dataList, newDataList)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
         dataList = newDataList
         diffResult.dispatchUpdatesTo(this)
     }
@@ -339,8 +341,14 @@ class ForumAdapter(
     private fun deletePost(postKey: String) {
         val postRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
         postRef.removeValue()
-
-        Toast.makeText(context, "Deleted; refresh to see changes", Toast.LENGTH_LONG).show()
+            .addOnSuccessListener {
+                // Trigger the database listener again from the ForumFragment instance
+                forumFragment.fetchForumPosts()
+                Toast.makeText(context, "Deleted; refresh to see changes", Toast.LENGTH_LONG).show()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(context, "Failed to delete post: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
     private fun updateHiddenState(postKey: String?, isHidden: Boolean) {
@@ -798,7 +806,7 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 downCount.text = formattedDownCount
 
                 isUpdatePending = false
-            }, 500)  // Delay in milliseconds
+            }, 300)  // Delay in milliseconds
         }
     }
 

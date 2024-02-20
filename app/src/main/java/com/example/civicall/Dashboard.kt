@@ -54,7 +54,14 @@ class Dashboard : AppCompatActivity() {
         checkUser()
         replaceFragment(CivicPostFragment())
 
-
+        if (intent.hasExtra("navigate_to_forum_fragment")) {
+            replaceFragment(ForumFragment())
+            binding.bottomBar.selectTabAt(3) // Assuming ForumFragment is at index 3 in your bottom bar
+        }
+        if (intent.hasExtra("navigate_to_civic_fragment")) {
+            replaceFragment(CivicPostFragment())
+            binding.bottomBar.selectTabAt(0) // Assuming ForumFragment is at index 3 in your bottom bar
+        }
         binding.bottomBar.setOnTabSelectListener(object : AnimatedBottomBar.OnTabSelectListener {
             override fun onTabSelected(
                 lastIndex: Int,

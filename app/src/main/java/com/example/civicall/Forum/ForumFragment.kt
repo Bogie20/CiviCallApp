@@ -33,10 +33,13 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import java.util.TimeZone
-
+import android.os.Handler
+import android.os.Looper
 class ForumFragment : Fragment() {
 
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var superAdminRef: DatabaseReference
+    private lateinit var subAdminRef: DatabaseReference
     private lateinit var recyclerView: RecyclerView
     private lateinit var nestedRecycler: NestedScrollView
     private val dataList = ArrayList<DataClassForum>()
@@ -46,15 +49,16 @@ class ForumFragment : Fragment() {
     private lateinit var noPostsImage: ImageView
     private lateinit var noPostsText: TextView
     private lateinit var progressBar: ProgressBar
+    private val mainHandler = Handler(Looper.getMainLooper())
     companion object {
         private val TIME_ZONE = TimeZone.getTimeZone("Asia/Manila")
         private const val MAX_POST_AGE_MILLIS = 365 * 24 * 60 * 60 * 1000L
     }
+
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-
     ): View? {
         rootView = inflater.inflate(R.layout.fragment_forum, container, false)
 
@@ -77,79 +81,17 @@ class ForumFragment : Fragment() {
 
         val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
-        adapter = ForumAdapter(requireContext(), dataList, currentUserId)
+        adapter = ForumAdapter(requireContext(), dataList, currentUserId, this)
+
         recyclerView.adapter = adapter
 
         // Adjusted reference for "Forum_Post" node
         databaseReference = FirebaseDatabase.getInstance().getReference("Forum_Post")
+        superAdminRef = FirebaseDatabase.getInstance().getReference("SuperAdminAcc")
+        subAdminRef = FirebaseDatabase.getInstance().getReference("SubAdminAcc")
 
-        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+        fetchForumPosts()
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val currentUser = FirebaseAuth.getInstance().currentUser
-                val userUid = currentUser?.uid
-                val userCampusRef = FirebaseDatabase.getInstance().getReference("Users/$userUid/campus")
-
-                userCampusRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(userCampusSnapshot: DataSnapshot) {
-                        val userCampus = userCampusSnapshot.value.toString()
-                        val newDataList = ArrayList<DataClassForum>()
-
-                        val currentMillis = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).timeInMillis
-
-                        for (itemSnapshot in snapshot.children) {
-                            val dataClass = itemSnapshot.getValue(DataClassForum::class.java)
-                            dataClass?.key = itemSnapshot.key
-
-                            dataClass?.let {
-                                val uploadEngagementCampuses =
-                                    it.campus?.split(", ")?.map { it.trim() } ?: emptyList()
-                                if (userCampus in uploadEngagementCampuses) {
-                                    val postTimeMillis = it.postTime?.let { it1 ->
-                                        SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
-                                            .apply {
-                                                timeZone = TIME_ZONE
-                                            }
-                                            .parse(it1 + " Asia/Manila")?.time
-                                    } ?: 0
-
-                                    if (currentMillis - postTimeMillis <= MAX_POST_AGE_MILLIS) {
-                                        newDataList.add(it)
-                                    }
-                                }
-                            }
-                        }
-                        newDataList.sortByDescending { it.postTime }
-
-                        // Compare newDataList with dataList to determine the changes
-                        val diffResult = DiffUtil.calculateDiff(ForumDiffCallBack(dataList, newDataList))
-                        dataList.clear()
-                        dataList.addAll(newDataList)
-                        diffResult.dispatchUpdatesTo(adapter)
-
-                        if (dataList.isEmpty()) {
-                            rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
-                            rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.VISIBLE
-                            recyclerView.visibility = View.GONE
-                        } else {
-                            rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.GONE
-                            rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
-                            recyclerView.visibility = View.VISIBLE
-                        }
-
-                        progressBar.visibility = View.GONE
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-                        progressBar.visibility = View.GONE
-                    }
-                })
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                progressBar.visibility = View.GONE
-            }
-        })
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -201,8 +143,81 @@ class ForumFragment : Fragment() {
         return rootView
 
     }
+    fun fetchForumPosts() {
+        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val currentUser = FirebaseAuth.getInstance().currentUser
+                val userUid = currentUser?.uid
+                val userCampusRef = FirebaseDatabase.getInstance().getReference("Users/$userUid/campus")
 
+                userCampusRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(userCampusSnapshot: DataSnapshot) {
+                        val userCampus = userCampusSnapshot.value.toString()
+                        val newDataList = ArrayList<DataClassForum>()
 
+                        val currentMillis = Calendar.getInstance(TimeZone.getTimeZone("Asia/Manila")).timeInMillis
+
+                        for (itemSnapshot in snapshot.children) {
+                            val dataClass = itemSnapshot.getValue(DataClassForum::class.java)
+                            dataClass?.key = itemSnapshot.key
+
+                            dataClass?.let {
+                                val uploadEngagementCampuses =
+                                    it.campus?.split(", ")?.map { it.trim() } ?: emptyList()
+                                if (userCampus in uploadEngagementCampuses) {
+                                    val postTimeMillis = it.postTime?.let { it1 ->
+                                        SimpleDateFormat("MM/dd/yyyy hh:mm a", Locale.getDefault())
+                                            .apply {
+                                                timeZone = TIME_ZONE
+                                            }
+                                            .parse(it1 + " Asia/Manila")?.time
+                                    } ?: 0
+
+                                    if (currentMillis - postTimeMillis <= MAX_POST_AGE_MILLIS) {
+                                        newDataList.add(it)
+                                    }
+                                }
+                            }
+                        }
+                        newDataList.sortByDescending { it.postTime }
+                        updateRecyclerView(newDataList)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        progressBar.visibility = View.GONE
+                    }
+                })
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                progressBar.visibility = View.GONE
+            }
+        })
+    }
+
+    private fun updateRecyclerView(newDataList: List<DataClassForum>) {
+        // Post a Runnable to the main looper
+        mainHandler.post {
+            val diffCallback = ForumDiffCallBack(dataList, newDataList)
+            val diffResult = DiffUtil.calculateDiff(diffCallback)
+
+            dataList.clear()
+            dataList.addAll(newDataList)
+            diffResult.dispatchUpdatesTo(adapter)
+
+            if (dataList.isEmpty()) {
+                rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
+                rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.GONE
+                rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+            }
+
+            progressBar.visibility = View.GONE
+        }
+    }
 
     private var isFilterDialogShowing = false // Add this variable
 
@@ -294,7 +309,7 @@ class ForumFragment : Fragment() {
         }
     }
 
-
+    @SuppressLint("NotifyDataSetChanged")
     private fun filterByCategory(category: String) {
         if (category.isEmpty()) {
             adapter.updateData(dataList)

@@ -27,6 +27,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import com.bumptech.glide.Glide
+import com.example.civicall.Dashboard
 import com.example.civicall.R
 import com.example.civicall.databinding.ActivityUpdateEngagementBinding
 import com.google.android.material.button.MaterialButton
@@ -557,7 +558,11 @@ class Update_engagement: AppCompatActivity() {
                             reference.delete()
                         }
                         Toast.makeText(this@Update_engagement, "Updated", Toast.LENGTH_SHORT).show()
+
                         finish()
+                        val intent = Intent(this@Update_engagement, Dashboard::class.java)
+                        intent.putExtra("navigate_to_civic_fragment", true)
+                        startActivity(intent)
                     }
                 }.addOnFailureListener { e ->
                     Toast.makeText(this@Update_engagement, e.message.toString(), Toast.LENGTH_SHORT)

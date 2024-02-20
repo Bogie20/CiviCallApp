@@ -38,6 +38,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import com.example.civicall.Dashboard
 import com.example.civicall.NetworkUtils
 import com.example.civicall.R
 import com.example.civicall.SplashActivity
@@ -766,6 +767,9 @@ class Upload_engagement : AppCompatActivity() {
                             Toast.makeText(this@Upload_engagement, "Success", Toast.LENGTH_SHORT)
                                 .show()
                             finish()
+                            val intent = Intent(this@Upload_engagement, Dashboard::class.java)
+                            intent.putExtra("navigate_to_civic_fragment", true)
+                            startActivity(intent)
                             sendEngagementNotification(uploadTitle.text.toString())
                         }
                     }

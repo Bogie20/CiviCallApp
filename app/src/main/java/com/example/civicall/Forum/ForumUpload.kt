@@ -100,12 +100,9 @@ class ForumUpload : AppCompatActivity() {
         bodyLayout.setOnClickListener {
             fabMenu.close(true)
         }
-
         binding.backbtn.setOnClickListener {
-            val intent = Intent(this, Dashboard::class.java)
-            startActivity(intent)
+            super.onBackPressed()
             overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-
         }
         val profilePic: ImageView = findViewById(R.id.profilePic)
         val uploaderName: TextView = findViewById(R.id.uploaderName)
@@ -328,7 +325,6 @@ class ForumUpload : AppCompatActivity() {
             }
         }
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
@@ -708,7 +704,8 @@ class ForumUpload : AppCompatActivity() {
         val uploadersId = user?.uid
 
         if (uploadersId != null) {
-            val postKey = FirebaseDatabase.getInstance().getReference("Forum_Post").push().key
+            val postKey =
+                FirebaseDatabase.getInstance().getReference("Forum_Post").push().key
 
             if (postKey != null) {
                 val postTime = getCurrentDateTime()
@@ -730,27 +727,29 @@ class ForumUpload : AppCompatActivity() {
                     .setValue(dataClass)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(this@ForumUpload, "Success", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@ForumUpload, "Success", Toast.LENGTH_SHORT)
+                                .show()
+                            // Finish current activity
+                            finish()
+                            // Inside uploadData function in ForumUpload activity
+                            val intent = Intent(this@ForumUpload, Dashboard::class.java)
+                            intent.putExtra("navigate_to_forum_fragment", true)
+                            startActivity(intent)
 
-                            // Clear fields after successful upload
-                            uploadPostText.setText("")
-                            binding.uploadCategory.setText("")
-                            binding.campusPick.setText("Select a Campus")
-
-                            // Optionally, you can also hide the image view or reset it to default
-                            uploadPostImage.setImageDrawable(ContextCompat.getDrawable(this@ForumUpload, R.drawable.placeholder))
-                            cardImage.visibility = View.GONE
-
-                            sendPushNotification(binding.uploadCategory.text.toString())
+                            sendPushNotification(uploadCategory.text.toString())
                         }
                     }
                     .addOnFailureListener { e ->
-                        Toast.makeText(this@ForumUpload, e.message.toString(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@ForumUpload,
+                            e.message.toString(),
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
                     }
             }
         }
     }
-
 
     private fun getCurrentDateTime(): String {
         val timeZone = TimeZone.getTimeZone("Asia/Manila")
@@ -758,13 +757,7 @@ class ForumUpload : AppCompatActivity() {
         simpleDateFormat.timeZone = timeZone
         return simpleDateFormat.format(Date())
     }
-    override fun onBackPressed() {
-        super.onBackPressed()
 
-        val intent = Intent(this, Dashboard::class.java)
-        startActivity(intent)
-        overridePendingTransition(R.anim.animate_fade_enter, R.anim.animate_fade_exit)
-    }
     override fun onDestroy() {
         super.onDestroy()
         networkUtils.cleanup()
