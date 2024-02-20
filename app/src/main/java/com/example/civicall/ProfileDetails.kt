@@ -170,8 +170,6 @@ class ProfileDetails : AppCompatActivity() {
                                 }
                             }
 
-                            val userNodeRef = FirebaseDatabase.getInstance().getReference("Users/$currentUserId")
-                            userNodeRef.child("finishactivity").setValue(finishactCount)
                             finishactTextView.text = formatNumber(finishactCount)
                         }
 
@@ -277,15 +275,12 @@ class ProfileDetails : AppCompatActivity() {
 
                     // Set the totalEngagementTextView after processing all engagements
                     totalEngagementTextView.text = formatNumber(totalEngagementCount)
-
-                    // Update the CurrentEngagement count in the Users node
-                    val userNodeRef = FirebaseDatabase.getInstance().getReference("Users/$currentUserId")
-                    userNodeRef.child("CurrentEngagement").setValue(totalEngagementCount)
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
                 }
             })
+
     }
 
         override fun onDestroy() {

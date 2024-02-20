@@ -478,6 +478,8 @@ class DetailPost : AppCompatActivity() {
                                     participantsReference.child("receivedStamp").setValue(timestamp)
                                         .addOnSuccessListener {
                                             incrementActivePointsForUser(uid)
+                                            updateFinishActivity(uid)
+                                            updateCurrentEngagementDecrement(uid)
                                             Toast.makeText(this@DetailPost, "Rating submitted. You have now received your active points.", Toast.LENGTH_LONG).show()
                                             alertDialog.dismiss()
                                         }
@@ -516,6 +518,65 @@ class DetailPost : AppCompatActivity() {
             else -> rateText.text = ""
         }
     }
+    private fun updateCurrentEngagementDecrement(uid: String) {
+        val userNodeRef = FirebaseDatabase.getInstance().getReference("Users/$uid")
+        userNodeRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    // Get the current value of CurrentEngagement
+                    val currentEngagement = snapshot.child("CurrentEngagement").getValue(Int::class.java) ?: 0
+
+                    // Update CurrentEngagement value
+                    userNodeRef.child("CurrentEngagement").setValue(currentEngagement - 1)
+                        .addOnSuccessListener {
+                            // CurrentEngagement value updated successfully
+                        }
+                        .addOnFailureListener { exception ->
+                            // Handle failure to update CurrentEngagement value
+                            Log.e("Update CurrentEngagement", "Failed: ${exception.message}")
+                        }
+                } else {
+                    // Handle case where user node does not exist
+                    Log.e("Update CurrentEngagement", "User node does not exist")
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle cancellation of database operation
+                Log.e("Update CurrentEngagement", "Database operation cancelled")
+            }
+        })
+    }
+    private fun updateFinishActivity(uid: String) {
+        val userNodeRef = FirebaseDatabase.getInstance().getReference("Users/$uid")
+        userNodeRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    // Get the current value of finishactivity
+                    val finishActivityCount = snapshot.child("finishactivity").getValue(Int::class.java) ?: 0
+
+                    // Update finishactivity value
+                    userNodeRef.child("finishactivity").setValue(finishActivityCount + 1)
+                        .addOnSuccessListener {
+                            // finishactivity value updated successfully
+                        }
+                        .addOnFailureListener { exception ->
+                            // Handle failure to update finishactivity value
+                            Log.e("Update finishactivity", "Failed: ${exception.message}")
+                        }
+                } else {
+                    // Handle case where user node does not exist
+                    Log.e("Update finishactivity", "User node does not exist")
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle cancellation of database operation
+                Log.e("Update finishactivity", "Database operation cancelled")
+            }
+        })
+    }
+
 
     private var isImageDialogShowing = false
 
@@ -937,7 +998,7 @@ class DetailPost : AppCompatActivity() {
         joinBtn.setOnClickListener {
             alertDialog.dismiss()
             dismissCustomDialog()
-
+            updateCurrentEngagement(currentUserId)
             val participantsReference = reference.child("Participants").child(currentUserId)
 
             // Set the value to false initially and set the timestamp
@@ -968,6 +1029,35 @@ class DetailPost : AppCompatActivity() {
 
         alertDialog.show()
         isJoinConfirmationDialogShowing = true
+    }
+    private fun updateCurrentEngagement(uid: String) {
+        val userNodeRef = FirebaseDatabase.getInstance().getReference("Users/$uid")
+        userNodeRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    // Get the current value of CurrentEngagement
+                    val currentEngagement = snapshot.child("CurrentEngagement").getValue(Int::class.java) ?: 0
+
+                    // Update CurrentEngagement value
+                    userNodeRef.child("CurrentEngagement").setValue(currentEngagement + 1)
+                        .addOnSuccessListener {
+                            // CurrentEngagement value updated successfully
+                        }
+                        .addOnFailureListener { exception ->
+                            // Handle failure to update CurrentEngagement value
+                            Log.e("Update CurrentEngagement", "Failed: ${exception.message}")
+                        }
+                } else {
+                    // Handle case where user node does not exist
+                    Log.e("Update CurrentEngagement", "User node does not exist")
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle cancellation of database operation
+                Log.e("Update CurrentEngagement", "Database operation cancelled")
+            }
+        })
     }
 
     private fun sendJoinNotification(engagementTitle: String, startDate: String) {
@@ -1059,7 +1149,7 @@ class DetailPost : AppCompatActivity() {
         joinBtn.setOnClickListener {
             isCancelConfirmationDialogShowing = false
             alertDialog.dismiss()
-
+            updateCurrentEngagementDecrement(currentUserId)
             sendCancelNotification(engagementTitle)
             // Remove the user's UID from the "Participants" node
             reference.child("Participants").child(currentUserId).removeValue()
