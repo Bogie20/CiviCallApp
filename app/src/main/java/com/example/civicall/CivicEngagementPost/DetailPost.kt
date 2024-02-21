@@ -526,15 +526,20 @@ class DetailPost : AppCompatActivity() {
                     // Get the current value of CurrentEngagement
                     val currentEngagement = snapshot.child("CurrentEngagement").getValue(Int::class.java) ?: 0
 
-                    // Update CurrentEngagement value
-                    userNodeRef.child("CurrentEngagement").setValue(currentEngagement - 1)
-                        .addOnSuccessListener {
-                            // CurrentEngagement value updated successfully
-                        }
-                        .addOnFailureListener { exception ->
-                            // Handle failure to update CurrentEngagement value
-                            Log.e("Update CurrentEngagement", "Failed: ${exception.message}")
-                        }
+                    if (currentEngagement > 0) { // Check if currentEngagement is greater than 0
+                        // Update CurrentEngagement value
+                        userNodeRef.child("CurrentEngagement").setValue(currentEngagement - 1)
+                            .addOnSuccessListener {
+                                // CurrentEngagement value updated successfully
+                            }
+                            .addOnFailureListener { exception ->
+                                // Handle failure to update CurrentEngagement value
+                                Log.e("Update CurrentEngagement", "Failed: ${exception.message}")
+                            }
+                    } else {
+                        // CurrentEngagement is already 0, no need to decrement further
+                        Log.e("Update CurrentEngagement", "CurrentEngagement is already 0")
+                    }
                 } else {
                     // Handle case where user node does not exist
                     Log.e("Update CurrentEngagement", "User node does not exist")
@@ -547,6 +552,7 @@ class DetailPost : AppCompatActivity() {
             }
         })
     }
+
     private fun updateFinishActivity(uid: String) {
         val userNodeRef = FirebaseDatabase.getInstance().getReference("Users/$uid")
         userNodeRef.addListenerForSingleValueEvent(object : ValueEventListener {

@@ -45,7 +45,7 @@
             android:drawableEnd="@drawable/notveri"
             android:fontFamily="@font/anton"
             android:text="Loading..........."
-            android:textColor="@color/redpink"
+            android:textColor="#4C4646"
             android:textSize="15sp"
             android:maxLines="1"
             android:ellipsize="end"
