@@ -252,11 +252,29 @@
                     />
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left">
 
+
+                <TextView
+                    android:id="@+id/warning5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/lexend_medium"
+                    android:text="•  Account profile information must be complete"
+                    android:textColor="@color/instruction"
+                    android:textSize="15sp"
+                    />
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="65dp"
                 android:orientation="vertical">
 
                 <LinearLayout
