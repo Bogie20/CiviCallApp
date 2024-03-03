@@ -45,7 +45,7 @@
             android:drawableEnd="@drawable/notveri"
             android:fontFamily="@font/anton"
             android:text="Loading..........."
-            android:textColor="#4C4646"
+            android:textColor="@color/redpink"
             android:textSize="15sp"
             android:maxLines="1"
             android:ellipsize="end"
@@ -62,7 +62,7 @@
             android:textStyle="bold"
             android:fontFamily="@font/lexend_medium"
             android:text="............................................................................"
-            android:textColor="@color/instruction"
+            android:textColor="#4C4646"
             android:textSize="12sp"
             android:maxLines="1"
             android:ellipsize="end"
@@ -86,7 +86,7 @@
                 android:textStyle="bold"
                 android:layout_marginStart="15dp"
                 android:fontFamily="@font/lexend_medium"
-                android:textColor="@color/instruction"/>
+                android:textColor="#4C4646"/>
 
             <TextView
                 android:id="@+id/date_to"
@@ -98,7 +98,7 @@
                 android:fontFamily="@font/lexend"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:textColor="@color/instruction"/>
+                android:textColor="#4C4646"/>
             <TextView
                 android:id="@+id/civicEndDate"
                 android:layout_width="wrap_content"
@@ -113,7 +113,7 @@
                 android:textStyle="bold"
                 android:layout_marginStart="5dp"
                 android:fontFamily="@font/lexend_medium"
-                android:textColor="@color/instruction"/>
+                android:textColor="#4C4646"/>
         </LinearLayout>
 
         <TextView
@@ -129,7 +129,7 @@
             android:textStyle="bold"
             android:fontFamily="@font/lexend_semibold"
             android:text="Category"
-            android:textColor="@color/instruction"
+            android:textColor="#4C4646"
             android:textSize="12sp"
             android:maxLines="1"
             android:ellipsize="end"
