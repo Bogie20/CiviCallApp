@@ -43,7 +43,7 @@ class AttendedAdapter(private val attendedList: List<AttendedData>) :
         holder.dateAndTime.textSize = 11f
         holder.categoryTextView.textSize = 11f
 
-        holder.label.text = "Attendance confirmed! Rate to claim points."
+        holder.label.text = "Engagement confirmed! Rate to claim points."
 
         holder.dateAndTime.text = "Since: ${currentAttendedEvent.attendedStamp}"
         holder.title.text = "Title: ${currentAttendedEvent.titleEvent}"
