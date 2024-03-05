@@ -38,8 +38,6 @@ import android.os.Looper
 class ForumFragment : Fragment() {
 
     private lateinit var databaseReference: DatabaseReference
-    private lateinit var superAdminRef: DatabaseReference
-    private lateinit var subAdminRef: DatabaseReference
     private lateinit var recyclerView: RecyclerView
     private lateinit var nestedRecycler: NestedScrollView
     private val dataList = ArrayList<DataClassForum>()
@@ -49,7 +47,6 @@ class ForumFragment : Fragment() {
     private lateinit var noPostsImage: ImageView
     private lateinit var noPostsText: TextView
     private lateinit var progressBar: ProgressBar
-    private val mainHandler = Handler(Looper.getMainLooper())
     companion object {
         private val TIME_ZONE = TimeZone.getTimeZone("Asia/Manila")
         private const val MAX_POST_AGE_MILLIS = 365 * 24 * 60 * 60 * 1000L
@@ -87,8 +84,6 @@ class ForumFragment : Fragment() {
 
         // Adjusted reference for "Forum_Post" node
         databaseReference = FirebaseDatabase.getInstance().getReference("Forum_Post")
-        superAdminRef = FirebaseDatabase.getInstance().getReference("SuperAdminAcc")
-        subAdminRef = FirebaseDatabase.getInstance().getReference("SubAdminAcc")
 
         fetchForumPosts()
 
@@ -196,8 +191,7 @@ class ForumFragment : Fragment() {
     }
 
     private fun updateRecyclerView(newDataList: List<DataClassForum>) {
-        // Post a Runnable to the main looper
-        mainHandler.post {
+
             val diffCallback = ForumDiffCallBack(dataList, newDataList)
             val diffResult = DiffUtil.calculateDiff(diffCallback)
 
@@ -217,7 +211,6 @@ class ForumFragment : Fragment() {
 
             progressBar.visibility = View.GONE
         }
-    }
 
     private var isFilterDialogShowing = false // Add this variable
 
