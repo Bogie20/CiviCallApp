@@ -806,7 +806,7 @@ class MyViewHolderForum(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 downCount.text = formattedDownCount
 
                 isUpdatePending = false
-            }, 300)  // Delay in milliseconds
+            }, 400)  // Delay in milliseconds
         }
     }
 

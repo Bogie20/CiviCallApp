@@ -5,6 +5,8 @@ import android.app.ProgressDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,11 +32,11 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import java.text.SimpleDateFormat
+import java.util.ArrayList
 import java.util.Calendar
 import java.util.Locale
 import java.util.TimeZone
-import android.os.Handler
-import android.os.Looper
+
 class ForumFragment : Fragment() {
 
     private lateinit var databaseReference: DatabaseReference
@@ -47,6 +49,11 @@ class ForumFragment : Fragment() {
     private lateinit var noPostsImage: ImageView
     private lateinit var noPostsText: TextView
     private lateinit var progressBar: ProgressBar
+    private val BATCH_UPDATE_DELAY_MS = 6000 // 2 seconds
+
+    private val mainHandler = Handler(Looper.getMainLooper())
+    private var updateTask: Runnable? = null
+
     companion object {
         private val TIME_ZONE = TimeZone.getTimeZone("Asia/Manila")
         private const val MAX_POST_AGE_MILLIS = 365 * 24 * 60 * 60 * 1000L
@@ -82,11 +89,9 @@ class ForumFragment : Fragment() {
 
         recyclerView.adapter = adapter
 
-        // Adjusted reference for "Forum_Post" node
         databaseReference = FirebaseDatabase.getInstance().getReference("Forum_Post")
 
         fetchForumPosts()
-
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -103,7 +108,6 @@ class ForumFragment : Fragment() {
         val fab = requireActivity().findViewById<FloatingActionButton>(R.id.fab)
         val faback = requireActivity().findViewById<FloatingActionButton>(R.id.faback)
         nestedRecycler.setOnScrollChangeListener(OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-            // Iterate through all visible items in the RecyclerView
             for (i in 0 until recyclerView.childCount) {
                 val viewHolder = recyclerView.getChildViewHolder(recyclerView.getChildAt(i))
                 if (viewHolder is MyViewHolderForum) {
@@ -122,7 +126,6 @@ class ForumFragment : Fragment() {
                     faback.hide()
                 }
             } else if (scrollY < oldScrollY) {
-                // Scroll up
                 if (!animatedBottomBar.isShown) {
                     animatedBottomBar.visibility = View.VISIBLE
                 }
@@ -136,10 +139,10 @@ class ForumFragment : Fragment() {
         })
 
         return rootView
-
     }
+
     fun fetchForumPosts() {
-        databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
+        databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val currentUser = FirebaseAuth.getInstance().currentUser
                 val userUid = currentUser?.uid
@@ -175,7 +178,16 @@ class ForumFragment : Fragment() {
                             }
                         }
                         newDataList.sortByDescending { it.postTime }
-                        updateRecyclerView(newDataList)
+
+                        updateTask?.let { mainHandler.removeCallbacks(it) }
+                        updateTask = Runnable {
+                            updateRecyclerView(newDataList)
+                        }
+
+                        mainHandler.postDelayed(
+                            updateTask!!,
+                            BATCH_UPDATE_DELAY_MS.toShort().toLong()
+                        )
                     }
 
                     override fun onCancelled(error: DatabaseError) {
@@ -191,26 +203,25 @@ class ForumFragment : Fragment() {
     }
 
     private fun updateRecyclerView(newDataList: List<DataClassForum>) {
+        val diffCallback = ForumDiffCallBack(dataList, newDataList)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
 
-            val diffCallback = ForumDiffCallBack(dataList, newDataList)
-            val diffResult = DiffUtil.calculateDiff(diffCallback)
+        dataList.clear()
+        dataList.addAll(newDataList)
+        diffResult.dispatchUpdatesTo(adapter)
 
-            dataList.clear()
-            dataList.addAll(newDataList)
-            diffResult.dispatchUpdatesTo(adapter)
-
-            if (dataList.isEmpty()) {
-                rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
-                rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.VISIBLE
-                recyclerView.visibility = View.GONE
-            } else {
-                rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.GONE
-                rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
-                recyclerView.visibility = View.VISIBLE
-            }
-
-            progressBar.visibility = View.GONE
+        if (dataList.isEmpty()) {
+            rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.VISIBLE
+            rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.VISIBLE
+            recyclerView.visibility = View.GONE
+        } else {
+            rootView.findViewById<ImageView>(R.id.noPostsImage).visibility = View.GONE
+            rootView.findViewById<TextView>(R.id.noPostsText).visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
         }
+
+        progressBar.visibility = View.GONE
+    }
 
     private var isFilterDialogShowing = false // Add this variable
 
