@@ -72,7 +72,7 @@ class ForumComment : AppCompatActivity() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val currentUserId = currentUser?.uid
 
-        loadCommentsFromDatabaseWithDelay(2000)
+        loadCommentsFromDatabaseWithDelay(1000)
 
         detailImage = findViewById(R.id.detailImage)
         detailCategory = findViewById(R.id.detailCategory)
