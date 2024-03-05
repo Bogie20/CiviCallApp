@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -70,6 +71,9 @@ class ForumComment : AppCompatActivity() {
         setContentView(binding.root)
         val currentUser = FirebaseAuth.getInstance().currentUser
         val currentUserId = currentUser?.uid
+
+        loadCommentsFromDatabaseWithDelay(2000)
+
         detailImage = findViewById(R.id.detailImage)
         detailCategory = findViewById(R.id.detailCategory)
         detailText = findViewById(R.id.detailText)
@@ -179,8 +183,6 @@ class ForumComment : AppCompatActivity() {
         layoutManager.stackFromEnd = true
         commentsRecyclerView.layoutManager = layoutManager
         commentsRecyclerView.adapter = commentsAdapter
-
-        loadCommentsFromDatabase()
 
         val nestedScrollView: NestedScrollView = findViewById(R.id.nestedScroll)
         nestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
@@ -306,6 +308,14 @@ class ForumComment : AppCompatActivity() {
         }
     }
 
+
+    private val mHandler = Handler()
+
+    private fun loadCommentsFromDatabaseWithDelay(delayMillis: Long) {
+        mHandler.postDelayed({
+            loadCommentsFromDatabase()
+        }, delayMillis)
+    }
 
     private fun loadCommentsFromDatabase() {
         val commentsRef = FirebaseDatabase.getInstance().getReference("Forum_Post").child(postKey)
