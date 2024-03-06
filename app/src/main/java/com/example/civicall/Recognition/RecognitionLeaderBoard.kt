@@ -224,11 +224,11 @@ class RecognitionLeaderBoard : AppCompatActivity() {
             alertDialog.dismiss()
         }
         pabloI.setOnClickListener {
-            filterByCategory("Pablo Borbon Campus I")
+            filterByCategory("Main Campus")
             alertDialog.dismiss()
         }
         pabloII.setOnClickListener {
-            filterByCategory("Pablo Borbon Campus II")
+            filterByCategory("Alangilan Campus")
             alertDialog.dismiss()
         }
         sanjuan.setOnClickListener {
