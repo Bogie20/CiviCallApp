@@ -32,53 +32,52 @@
         android:textColor="@color/redpink"
         android:textSize="15sp"
         android:textStyle="bold" />
-
+        <CheckBox
+            android:id="@+id/checkBox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alangilan Campus"/>
     <CheckBox
-        android:id="@+id/checkBox1"
+        android:id="@+id/checkBox2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ARASOF Nasugbu Campus"/>
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/checkBox3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Balayan Campus"/>
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/checkBox4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="JPLPC Malvar Campus"/>
     <CheckBox
-        android:id="@+id/checkBox4"
+        android:id="@+id/checkBox5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lemery Campus"/>
     <CheckBox
-        android:id="@+id/checkBox5"
+        android:id="@+id/checkBox6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lipa Campus"/>
     <CheckBox
-        android:id="@+id/checkBox6"
+        android:id="@+id/checkBox7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lobo Campus"/>
     <CheckBox
-        android:id="@+id/checkBox7"
+        android:id="@+id/checkBox8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mabini Campus"/>
     <CheckBox
-        android:id="@+id/checkBox8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pablo Borbon Campus I"/>
-    <CheckBox
         android:id="@+id/checkBox9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pablo Borbon Campus II"/>
+        android:text="Main Campus"/>
     <CheckBox
         android:id="@+id/checkBox10"
         android:layout_width="wrap_content"

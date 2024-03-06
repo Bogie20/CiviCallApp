@@ -208,7 +208,7 @@
                 android:padding="10sp"
                 android:paddingVertical="15sp"
                 android:maxLines="1"
-                android:text="Pablo Borbon Campus I"
+                android:text="Main Campus"
                 android:textColor="@color/redpink"
                 android:textSize="13sp" />
             <TextView
@@ -222,7 +222,7 @@
                 android:gravity="center"
                 android:padding="10sp"
                 android:paddingVertical="15sp"
-                android:text="Pablo Borbon Campus II"
+                android:text="Alangilan Campus"
                 android:textColor="@color/redpink"
                 android:textSize="13sp" />
 
