@@ -66,7 +66,7 @@ class MainEmergencyContact : AppCompatActivity() {
     }
 
     private fun addDataToList() {
-        mList.add(ContactData("ALANGINAN CAMPUS", R.drawable.batangasymbol))
+        mList.add(ContactData("ALANGILAN CAMPUS", R.drawable.batangasymbol))
         mList.add(ContactData("BALAYAN CAMPUS", R.drawable.balayansymbol))
         mList.add(ContactData("LEMERY CAMPUS", R.drawable.lemerysymbol))
         mList.add(ContactData("LIPA CAMPUS", R.drawable.lipasymbol))
