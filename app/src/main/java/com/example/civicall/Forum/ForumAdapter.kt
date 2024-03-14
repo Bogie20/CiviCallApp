@@ -343,7 +343,7 @@ class ForumAdapter(
             .addOnSuccessListener {
                 // Trigger the database listener again from the ForumFragment instance
                 forumFragment.fetchForumPosts()
-                Toast.makeText(context, "Deleted; refresh to see changes", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Deleted", Toast.LENGTH_LONG).show()
             }
             .addOnFailureListener { e ->
                 Toast.makeText(context, "Failed to delete post: ${e.message}", Toast.LENGTH_SHORT).show()

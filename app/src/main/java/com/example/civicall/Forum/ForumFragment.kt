@@ -49,7 +49,7 @@ class ForumFragment : Fragment() {
     private lateinit var noPostsImage: ImageView
     private lateinit var noPostsText: TextView
     private lateinit var progressBar: ProgressBar
-    private val BATCH_UPDATE_DELAY_MS = 5000 // 2 seconds
+    private val BATCH_UPDATE_DELAY_MS = 2000 // 2 seconds
 
     private val mainHandler = Handler(Looper.getMainLooper())
     private var updateTask: Runnable? = null
